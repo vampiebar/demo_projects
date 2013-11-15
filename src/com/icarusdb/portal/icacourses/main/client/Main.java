@@ -89,7 +89,7 @@ public class Main implements EntryPoint {
 		horizontalPanel.setBorderWidth(0);
 		horizontalPanel.setStyleName("gwt-HzPan");
 		rootPanel.add(horizontalPanel, 0, 0);
-		horizontalPanel.setSize("1131px", "89px");
+		horizontalPanel.setSize("100%", "89px");
 
 		AbsolutePanel horizontalPanel_2 = new AbsolutePanel();
 		horizontalPanel.add(horizontalPanel_2);
@@ -138,7 +138,7 @@ public class Main implements EntryPoint {
 		verticalPanel.setSize("251px", "636px");
 
 		Label lblEitimDnemi = new Label("Eğitim Dönemi:");
-		lblEitimDnemi.setStyleName("gwt-tree");
+		lblEitimDnemi.setStyleName("gwt-Bold");
 		verticalPanel.add(lblEitimDnemi);
 
 		ListBox comboBox = new ListBox();
@@ -151,7 +151,7 @@ public class Main implements EntryPoint {
 		MenuBar menuBar_1 = new MenuBar(true);
 
 		DisclosurePanel disclosurePanel_2 = new DisclosurePanel(
-				"KAYIT  İŞLEMLERİ", true);
+				"KAYIT  İŞLEMLERİ", false);
 		disclosurePanel_2.setStyleName("gwt-RichTextToolbar");
 		disclosurePanel_2.setAnimationEnabled(true);
 		verticalPanel.add(disclosurePanel_2);
@@ -469,14 +469,14 @@ public class Main implements EntryPoint {
 		tritmkullanicitanimlama.setState(true);
 
 		smpanMain = new SimplePanel();
-		rootPanel.add(smpanMain, 278, 96);
-		smpanMain.setSize("850px", "606px");
+		rootPanel.add(smpanMain, 280, 95);
+		smpanMain.setSize("100%", "606px");
 
 		Label lblDer = new Label("Dershane Yönetim Sistemi");
 		smpanMain.setWidget(lblDer);
 		lblDer.setSize("165px", "34px");
 		lblDer.setStylePrimaryName("gwt-LabelNew");
-		lblDer.setStyleName("gwttreeee");
+		lblDer.setStyleName("body");
 	}
 
 	private class TreeKayitIslemleriSelectionHandler implements
@@ -490,15 +490,18 @@ public class Main implements EntryPoint {
 			if (item == tritmDBSKayit) {
 
 				smpanMain.add(new DBSKayit());
+				scrollToTop();
 
 			} else if (item == tritmOnKayit) {
 
 				smpanMain.add(new OnKayit());
+				scrollToTop();
 
 			}
 
 			else if (item == tritmKesinKayit) {
 				smpanMain.add(new KesinKayit());
+				scrollToTop();
 			}
 
 		}
@@ -721,4 +724,8 @@ public class Main implements EntryPoint {
 
 		}
 	}
+
+	public static native void scrollToTop() /*-{
+											$wnd.scroll(0, 0);
+											}-*/;
 }

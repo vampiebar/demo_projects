@@ -232,9 +232,15 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxOkul.setSize("128px", "22px");
 
 		Button btnNewButton_4 = new Button("Kapat");
+		btnNewButton_4.addClickHandler(new BtnNewButton_4ClickHandler());
 		btnNewButton_4.setStyleName("gwt-ButonKapat");
 		absolutePanel_1.add(btnNewButton_4, 482, 377);
 		btnNewButton_4.setSize("78px", "49px");
+
+		Button btnNewButton_5 = new Button("Öğrenciyi Kaydet");
+		btnNewButton_5.setStyleName("gwt-ButtonSave");
+		absolutePanel_1.add(btnNewButton_5, 391, 376);
+		btnNewButton_5.setSize("78px", "49px");
 
 		absolutePanel_2 = new AbsolutePanel();
 		tabPanel.add(absolutePanel_2, "Kimlik Bilgileri", false);
@@ -905,34 +911,39 @@ public class KesinKayitBilgileri extends DialogBox {
 		textBox_11.setSize("196px", "14px");
 
 		ListBox comboBox_1 = new ListBox();
+		comboBox_1.addItem("  ");
 		comboBox_1.setStyleName("gwt-ComboBox1");
-		comboBox_1.addItem(" ");
 		absolutePanel_8.add(comboBox_1, 177, 228);
 		comboBox_1.setSize("204px", "22px");
 
 		Button btndemePlanOlutur = new Button("Ödeme Planı Oluştur");
+		btndemePlanOlutur.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_8.add(btndemePlanOlutur, 453, 425);
+		btndemePlanOlutur.setSize("150px", "24px");
 
 		Button btnSzlemeOlutur = new Button("Sözleşme Oluştur");
+		btnSzlemeOlutur.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_8.add(btnSzlemeOlutur, 453, 454);
-		btnSzlemeOlutur.setSize("134px", "24px");
+		btnSzlemeOlutur.setSize("150px", "24px");
 
 		Button btnNewButton_2 = new Button("Senetleri Oluştur");
+		btnNewButton_2.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_8.add(btnNewButton_2, 453, 483);
-		btnNewButton_2.setSize("134px", "24px");
+		btnNewButton_2.setSize("150px", "24px");
 
 		Button btnNewButton_3 = new Button("Taksitleri Oluştur");
+		btnNewButton_3.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_8.add(btnNewButton_3, 453, 514);
-		btnNewButton_3.setSize("134px", "24px");
+		btnNewButton_3.setSize("150px", "24px");
 
 		tctAdi = new TextBox();
 		tctAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAdi, 104, 56);
+		absolutePanel.add(tctAdi, 131, 56);
 		tctAdi.setSize("144px", "14px");
 
 		tctSoyadi = new TextBox();
 		tctSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSoyadi, 104, 87);
+		absolutePanel.add(tctSoyadi, 131, 87);
 		tctSoyadi.setSize("144px", "14px");
 
 		Label lblAd = new Label("Adı");
@@ -951,10 +962,11 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label lblTcKimlikNo = new Label("T.C Kimlik No");
 		lblTcKimlikNo.setStyleName("gwt-Bold");
 		absolutePanel.add(lblTcKimlikNo, 10, 34);
+		lblTcKimlikNo.setSize("115px", "18px");
 
 		tctTCKimlikNo = new TextBox();
-		absolutePanel.add(tctTCKimlikNo, 104, 34);
-		tctTCKimlikNo.setSize("138px", "8px");
+		absolutePanel.add(tctTCKimlikNo, 131, 32);
+		tctTCKimlikNo.setSize("138px", "10px");
 
 		if (!isDesignTime()) {
 
@@ -1353,4 +1365,11 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		}
 	}
+
+	private class BtnNewButton_4ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
+
 }

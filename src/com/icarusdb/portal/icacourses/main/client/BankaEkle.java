@@ -32,7 +32,7 @@ public class BankaEkle extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("795px", "445px");
+		absolutePanel.setSize("795px", "471px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
 		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
