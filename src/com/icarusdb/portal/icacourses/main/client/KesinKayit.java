@@ -60,7 +60,7 @@ public class KesinKayit extends Composite {
 		absolutePanel.add(tctSoyadi, 295, 33);
 		tctSoyadi.setSize("149px", "16px");
 
-		Label lblTcKimlikNo = new Label("T.C Kimlik No 2");
+		Label lblTcKimlikNo = new Label("T.C Kimlik No ");
 		lblTcKimlikNo.setStyleName("gwt-Bold");
 		absolutePanel.add(lblTcKimlikNo, 22, 68);
 
