@@ -34,7 +34,7 @@ public class AtanmisOdevler extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("628px", "406px");
+		absolutePanel.setSize("628px", "579px");
 
 		Label lblBalangTarihi = new Label("Başlangıç Tarihi");
 		lblBalangTarihi.setStyleName("gwt-Bold");

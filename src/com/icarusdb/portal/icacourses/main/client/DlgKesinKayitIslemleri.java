@@ -9,6 +9,7 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -22,57 +23,64 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 	private TextBox tctTCKimlikNo;
 	private TextBox tctAdi;
 	private TextBox tctSoyadi;
+	private AbsolutePanel absolutepanel;
+	public DecoratedTabPanel tabKesinKayitIslemleri;
 
 	public DlgKesinKayitIslemleri() {
 		setHTML("Kesin Kayıt İşlemleri");
 
-		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
-		setWidget(decoratedTabPanel);
-		decoratedTabPanel.setSize("519px", "397px");
+		tabKesinKayitIslemleri = new DecoratedTabPanel();
+		setWidget(tabKesinKayitIslemleri);
+		tabKesinKayitIslemleri.setSize("519px", "459px");
 
-		AbsolutePanel absolutePanel = new AbsolutePanel();
-		absolutePanel.setStyleName("gwt-DialogBackGround");
-		decoratedTabPanel.add(absolutePanel, "Kesin Kayıt İşlemleri (Ekleme)",
-				false);
-		absolutePanel.setSize("100%", "355px");
+		absolutepanel = new AbsolutePanel();
+		absolutepanel.setStyleName("gwt-DialogBackGround");
+		tabKesinKayitIslemleri.add(absolutepanel,
+				"Kesin Kayıt İşlemleri (Ekleme)", false);
+		absolutepanel.setSize("559px", "430px");
 
 		Label lblrenci = new Label("Öğrenci");
-		absolutePanel.add(lblrenci, 10, 10);
+		lblrenci.setStyleName("gwt-Bold");
+		absolutepanel.add(lblrenci, 10, 10);
 
 		Label lblTcKimlikNo = new Label("T.C. Kimlik No");
-		absolutePanel.add(lblTcKimlikNo, 10, 39);
+		lblTcKimlikNo.setStyleName("gwt-Bold");
+		absolutepanel.add(lblTcKimlikNo, 10, 39);
+		lblTcKimlikNo.setSize("100px", "18px");
 
 		chxTCKimlikNoSorgulama = new CheckBox("New check box");
 		chxTCKimlikNoSorgulama.setHTML("T.C Kimlik No Sorgulama");
-		absolutePanel.add(chxTCKimlikNoSorgulama, 127, 65);
+		absolutepanel.add(chxTCKimlikNoSorgulama, 127, 65);
 
 		Label lblAd = new Label("Adı");
-		absolutePanel.add(lblAd, 10, 103);
+		lblAd.setStyleName("gwt-Bold");
+		absolutepanel.add(lblAd, 10, 103);
 		lblAd.setSize("45px", "18px");
 
 		Label lblSoyad = new Label("Soyadı");
-		absolutePanel.add(lblSoyad, 10, 137);
+		lblSoyad.setStyleName("gwt-Bold");
+		absolutepanel.add(lblSoyad, 10, 137);
 
 		tctAdi = new TextBox();
 		tctAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAdi, 127, 103);
+		absolutepanel.add(tctAdi, 127, 103);
 		tctAdi.setSize("205px", "14px");
 
 		tctSoyadi = new TextBox();
 		tctSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSoyadi, 127, 137);
+		absolutepanel.add(tctSoyadi, 127, 137);
 		tctSoyadi.setSize("205px", "14px");
 
 		tctTCKimlikNo = new TextBox();
 		tctTCKimlikNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctTCKimlikNo, 127, 39);
+		absolutepanel.add(tctTCKimlikNo, 127, 39);
 		tctTCKimlikNo.setSize("159px", "14px");
 
 		Button btnBilgileriniGetir = new Button("Bilgilerini Getir");
 		btnBilgileriniGetir.setStyleName("gwt-ButonYeniKayit");
 		btnBilgileriniGetir
 				.addClickHandler(new BtnBilgileriniGetirClickHandler());
-		absolutePanel.add(btnBilgileriniGetir, 305, 35);
+		absolutepanel.add(btnBilgileriniGetir, 305, 35);
 		btnBilgileriniGetir.setSize("109px", "22px");
 
 		Button btnOgrenciBilgileriniKaydet = new Button("New button");
@@ -80,14 +88,14 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 		btnOgrenciBilgileriniKaydet
 				.addClickHandler(new BtnOgrenciBilgileriniKaydetClickHandler());
 		btnOgrenciBilgileriniKaydet.setText("Öğrenci Bilgilerini Kaydet");
-		absolutePanel.add(btnOgrenciBilgileriniKaydet, 127, 165);
-		btnOgrenciBilgileriniKaydet.setSize("167px", "22px");
+		absolutepanel.add(btnOgrenciBilgileriniKaydet, 127, 165);
+		btnOgrenciBilgileriniKaydet.setSize("181px", "22px");
 
 		Button btnKapat = new Button("Kapat");
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel.add(btnKapat, 127, 193);
-		btnKapat.setSize("167px", "24px");
+		absolutepanel.add(btnKapat, 127, 193);
+		btnKapat.setSize("181px", "24px");
 	}
 
 	private class BtnOgrenciBilgileriniKaydetClickHandler implements
@@ -135,21 +143,14 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 							public void onResponseReceived(Request request,
 									Response response) {
 
-								// Window.alert("AAABBBCCC " +
-								// response.getText());
+								Window.alert("AAABBBCCC " + response.getText());
 								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
 										.readList(response.getText());
 
-								// XMLOdevOlustur xmlOdevOlustur =
-								// XMLOdevOlustur.XML
-								// .read(response.getText());
+								KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri();
 
-								// lblNewLabel.setText(listXmlOdevOlustur.get(0).ders);
-								// grd.setRowCount(1, true);
-
-								// Push the data into the widget.
-								// grd
-								// .setRowData(0, listXmlOdevOlustur);
+								dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
+								dlgTemp.center();
 
 							}
 
@@ -160,9 +161,9 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 
 				// Window.alert(e.getMessage() + "ERROR");
 			}
-			KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri();
-			dlgTemp.center();
+
 		}
 
 	}
+
 }

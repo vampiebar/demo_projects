@@ -43,6 +43,7 @@ public class DBSKayit extends Composite {
 		absolutePanel.setSize("853px", "651px");
 
 		Label lblNewLabel = new Label("Adı");
+		lblNewLabel.setStyleName("gwt-Bold");
 		absolutePanel.add(lblNewLabel, 10, 30);
 
 		tctAdi = new TextBox();
@@ -51,9 +52,11 @@ public class DBSKayit extends Composite {
 		tctAdi.setSize("230px", "16px");
 
 		Label lblSoyad = new Label("Soyadı");
+		lblSoyad.setStyleName("gwt-Bold");
 		absolutePanel.add(lblSoyad, 10, 60);
 
 		Label lblNewLabel_1 = new Label("T.C Kimlik No");
+		lblNewLabel_1.setStyleName("gwt-Bold");
 		absolutePanel.add(lblNewLabel_1, 10, 90);
 
 		tctSoyadi = new TextBox();
@@ -67,12 +70,15 @@ public class DBSKayit extends Composite {
 		tctTCKimlikNo.setSize("230px", "16px");
 
 		Label lblOkulDurumu = new Label("Okul Durumu");
+		lblOkulDurumu.setStyleName("gwt-Bold");
 		absolutePanel.add(lblOkulDurumu, 10, 120);
 
 		Label lblAlanBilgi = new Label("Alan Bilgi");
+		lblAlanBilgi.setStyleName("gwt-Bold");
 		absolutePanel.add(lblAlanBilgi, 10, 150);
 
 		Label lblSnavTarihi = new Label("Sınav Tarihi");
+		lblSnavTarihi.setStyleName("gwt-Bold");
 		absolutePanel.add(lblSnavTarihi, 10, 187);
 
 		cbxOkulDurumu = new ListBox();
@@ -341,7 +347,7 @@ public class DBSKayit extends Composite {
 							public void onResponseReceived(Request request,
 									Response response) {
 
-								Window.alert(response.getText());
+								// Window.alert(response.getText());
 
 							}
 						});
@@ -367,6 +373,7 @@ public class DBSKayit extends Composite {
 			DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit();
 
 			dlgTemp.center();
+			dlgTemp.setAnimationEnabled(true);
 
 		}
 	}

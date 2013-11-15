@@ -34,9 +34,6 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgDBSYeniKayit extends DialogBox {
-	private Button btnKapat1;
-	private Button btnYeniKayit1;
-	private Button btnOgrenciyiKaydet1;
 	private TextBox tctAdi;
 	private TextBox tctSoyadi;
 	private TextBox tctTCKimlikNo;
@@ -346,7 +343,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		dtpVerilisTarihi = new DateBox();
 		dtpVerilisTarihi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(dtpVerilisTarihi, 130, 547);
-		dtpVerilisTarihi.setSize("162px", "16px");
+		dtpVerilisTarihi.setSize("158px", "14px");
 
 		Label lblNewLabel_12 = new Label("Veriliş Tarihi");
 		lblNewLabel_12.setStyleName("gwt-Bold");
@@ -413,28 +410,6 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOgrenciKimlikBilgileriIlce.addItem(" ");
 		absolutePanel.add(cbxOgrenciKimlikBilgileriIlce, 130, 200);
 		cbxOgrenciKimlikBilgileriIlce.setSize("162px", "22px");
-
-		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 387, 547);
-		horizontalPanel.setSize("252px", "57px");
-
-		btnYeniKayit1 = new Button("Yeni Kayıt");
-		horizontalPanel.add(btnYeniKayit1);
-		btnYeniKayit1.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit1.setSize("78px", "50px");
-
-		btnOgrenciyiKaydet1 = new Button("Öğrenciyi Kaydet");
-		horizontalPanel.add(btnOgrenciyiKaydet1);
-		btnOgrenciyiKaydet1.setStyleName("gwt-ButtonSave");
-		btnOgrenciyiKaydet1
-				.addClickHandler(new BtnOgrenciyiKaydet1ClickHandler());
-		btnOgrenciyiKaydet1.setSize("78px", "50px");
-
-		btnKapat1 = new Button("Kapat");
-		horizontalPanel.add(btnKapat1);
-		btnKapat1.setStyleName("gwt-ButonKapat");
-		btnKapat1.addClickHandler(new BtnKapat5ClickHandler());
-		btnKapat1.setSize("78px", "50px");
 
 		VerticalPanel verticalPanel_2 = new VerticalPanel();
 		decoratedTabPanel.add(verticalPanel_2, "Adres Bilgileri", false);
@@ -508,27 +483,6 @@ public class DlgDBSYeniKayit extends DialogBox {
 		absolutePanel_2.add(tctSokakveNo, 125, 237);
 		tctSokakveNo.setSize("191px", "48px");
 
-		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
-		absolutePanel_2.add(horizontalPanel_1, 344, 313);
-		horizontalPanel_1.setSize("256px", "70px");
-
-		Button btnYeniKayit2 = new Button("Yeni Kayıt");
-		horizontalPanel_1.add(btnYeniKayit2);
-		btnYeniKayit2.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit2.setSize("78px", "50px");
-
-		Button btnOgrenciyiKaydet2 = new Button("Öğrenciyi Kaydet");
-		horizontalPanel_1.add(btnOgrenciyiKaydet2);
-		btnOgrenciyiKaydet2.setStyleName("gwt-ButtonSave");
-
-		btnOgrenciyiKaydet2.setSize("78px", "50px");
-
-		Button btnKapat2 = new Button("Kapat");
-		horizontalPanel_1.add(btnKapat2);
-		btnKapat2.setStyleName("gwt-ButonKapat");
-		btnKapat2.addClickHandler(new BtnKapat2ClickHandler());
-		btnKapat2.setSize("78px", "50px");
-
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(absolutePanel_3, "Sınav Bilgileri", false);
@@ -580,6 +534,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxSinavTarihi.setSize("132px", "22px");
 
 		AbsolutePanel absolutePanel_4 = new AbsolutePanel();
+		absolutePanel_4.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(absolutePanel_4, "Veli Bilgileri", false);
 		absolutePanel_4.setSize("803px", "409px");
 
@@ -667,26 +622,6 @@ public class DlgDBSYeniKayit extends DialogBox {
 			}
 		};
 		cellTable.addColumn(column_4, "Sil");
-
-		HorizontalPanel horizontalPanel_4 = new HorizontalPanel();
-		absolutePanel_4.add(horizontalPanel_4, 409, 256);
-		horizontalPanel_4.setSize("269px", "64px");
-
-		Button btnYeniKayit4 = new Button("Yeni Kayıt");
-		horizontalPanel_4.add(btnYeniKayit4);
-		btnYeniKayit4.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit4.setSize("78px", "50px");
-
-		Button btnOgrenciyiKaydet4 = new Button("Öğrenciyi Kaydet");
-		horizontalPanel_4.add(btnOgrenciyiKaydet4);
-		btnOgrenciyiKaydet4.setStyleName("gwt-ButtonSave");
-		btnOgrenciyiKaydet4.setSize("78px", "50px");
-
-		Button btnKapat4 = new Button("Kapat");
-		horizontalPanel_4.add(btnKapat4);
-		btnKapat4.setStyleName("gwt-ButonKapat");
-		btnKapat4.addClickHandler(new BtnKapat4ClickHandler());
-		btnKapat4.setSize("78px", "50px");
 
 		// Set Default page
 		decoratedTabPanel.selectTab(0);
@@ -975,50 +910,56 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxSinavTarihi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxSinavTarihi, xml.sinav_tarihi));
 
+		cbxOgrenciBilgileriIl.setItemText(0, xml.ogrenci_bilgileri_il);
+		cbxOgrenciBilgileriIlce.setItemText(0, xml.ogrenci_bilgileri_ilce);
+		cbxOkul.setItemText(0, xml.okul);
+
+		cbxAdresBilgileriIl.setItemText(0, xml.adres_bilgileri_il);
+		cbxAdresBilgileriIlce.setItemText(0, xml.adres_bilgileri_ilce);
+		cbxSemt.setItemText(0, xml.semt);
+		cbxMahalle.setItemText(0, xml.mahalle);
+		cbxOgrenciKimlikBilgileriIl.setItemText(0,
+				xml.ogrenci_kimlik_bilgileri_il);
+		cbxOgrenciKimlikBilgileriIlce.setItemText(0,
+				xml.ogrenci_kimlik_bilgileri_ilce);
+
 	}
 
-	private class BtnKapat5ClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-
-			hide();
-		}
-	}
-
-	private class BtnOgrenciyiKaydet1ClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-			String URLValue = Util.urlBase + "putdbskayit?";
-			URLValue = URLValue + "seri_no=" + tctSeriNo.getText();
-			URLValue = URLValue + "&cuzdan_no=" + tctCuzdanNo.getText();
-			URLValue = URLValue
-					+ "&ogrenci_kimlik_bilgileri_ulke="
-					+ cbxOgrenciKimlikBilgileriUlke
-							.getValue(cbxOgrenciKimlikBilgileriUlke
-									.getSelectedIndex());
-			URLValue = URLValue
-					+ "&ogrenci_kimlik_bilgileri_il="
-					+ cbxOgrenciKimlikBilgileriIl
-							.getValue(cbxOgrenciKimlikBilgileriIl
-									.getSelectedIndex());
-			URLValue = URLValue
-					+ "&ogrenci_kimlik_bilgileri_ilce="
-					+ cbxOgrenciKimlikBilgileriIlce
-							.getValue(cbxOgrenciKimlikBilgileriIlce
-									.getSelectedIndex());
-			URLValue = URLValue + "&mahalle_koy=" + tctMahalleKoy.getText();
-			URLValue = URLValue + "&cilt_no=" + tctCiltNo.getText();
-			URLValue = URLValue + "&aile_sira_no=" + tctAileSiraNo.getText();
-			URLValue = URLValue + "&sira_no=" + tctSiraNo.getText();
-			URLValue = URLValue + "&verildigi_yer=" + tctVerildigiYer.getText();
-			URLValue = URLValue + "&verilis_nedeni="
-					+ tctVerilisNedeni.getText();
-			URLValue = URLValue + "&kayit_no=" + tctKayitNo.getText();
-
-			Window.alert(URLValue);
-
-			new Util().sendRequest(URLValue);
-
-		}
-	}
+	// private class BtnOgrenciyiKaydet1ClickHandler implements ClickHandler {
+	// public void onClick(ClickEvent event) {
+	// String URLValue = Util.urlBase + "putdbskayit?";
+	// URLValue = URLValue + "seri_no=" + tctSeriNo.getText();
+	// URLValue = URLValue + "&cuzdan_no=" + tctCuzdanNo.getText();
+	// URLValue = URLValue
+	// + "&ogrenci_kimlik_bilgileri_ulke="
+	// + cbxOgrenciKimlikBilgileriUlke
+	// .getValue(cbxOgrenciKimlikBilgileriUlke
+	// .getSelectedIndex());
+	// URLValue = URLValue
+	// + "&ogrenci_kimlik_bilgileri_il="
+	// + cbxOgrenciKimlikBilgileriIl
+	// .getValue(cbxOgrenciKimlikBilgileriIl
+	// .getSelectedIndex());
+	// URLValue = URLValue
+	// + "&ogrenci_kimlik_bilgileri_ilce="
+	// + cbxOgrenciKimlikBilgileriIlce
+	// .getValue(cbxOgrenciKimlikBilgileriIlce
+	// .getSelectedIndex());
+	// URLValue = URLValue + "&mahalle_koy=" + tctMahalleKoy.getText();
+	// URLValue = URLValue + "&cilt_no=" + tctCiltNo.getText();
+	// URLValue = URLValue + "&aile_sira_no=" + tctAileSiraNo.getText();
+	// URLValue = URLValue + "&sira_no=" + tctSiraNo.getText();
+	// URLValue = URLValue + "&verildigi_yer=" + tctVerildigiYer.getText();
+	// URLValue = URLValue + "&verilis_nedeni="
+	// + tctVerilisNedeni.getText();
+	// URLValue = URLValue + "&kayit_no=" + tctKayitNo.getText();
+	//
+	// Window.alert(URLValue);
+	//
+	// new Util().sendRequest(URLValue);
+	//
+	// }
+	// }
 
 	private class BtnOgrenciyiKaydet5ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
@@ -1113,7 +1054,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 					+ cbxSinavTarihi
 							.getValue(cbxSinavTarihi.getSelectedIndex());
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue);
 
@@ -1129,19 +1070,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		}
 	}
 
-	private class BtnKapat2ClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-			hide();
-		}
-	}
-
 	private class BtnKapat5ClickHandler_1 implements ClickHandler {
-		public void onClick(ClickEvent event) {
-			hide();
-		}
-	}
-
-	private class BtnKapat4ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
 		}
@@ -1150,7 +1079,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private class CbxAdresBilgileriIlChangeHandler implements ChangeHandler {
 		public void onChange(ChangeEvent event) {
 
-			Window.alert(cbxAdresBilgileriIl.getSelectedIndex() + "");
+			// Window.alert(cbxAdresBilgileriIl.getSelectedIndex() + "");
 			putIlceToCbx(cbxAdresBilgileriIl.getSelectedIndex(),
 					cbxAdresBilgileriIlce);
 
@@ -1160,7 +1089,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private class CbxAdresBilgileriIlceChangeHandler implements ChangeHandler {
 		public void onChange(ChangeEvent event) {
 
-			Window.alert(cbxAdresBilgileriIlce.getSelectedIndex() + "");
+			// Window.alert(cbxAdresBilgileriIlce.getSelectedIndex() + "");
 			putSemtToCbx(cbxAdresBilgileriIl.getItemText(cbxAdresBilgileriIl
 					.getSelectedIndex()),
 					cbxAdresBilgileriIlce.getItemText(cbxAdresBilgileriIlce
