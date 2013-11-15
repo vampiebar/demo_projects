@@ -163,7 +163,6 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 			}
 
 		}
-
 	}
 
 }
