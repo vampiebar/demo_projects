@@ -1,0 +1,9 @@
+<module>
+	<inherits name="com.google.gwt.user.User"/>
+	<inherits name="com.google.gwt.user.theme.standard.Standard"/>
+	<entry-point class="com.icarusdb.portal.icacourses.main.client.Main"/>
+	
+	<inherits name="name.pehl.piriti.json.JSON" />
+	<inherits name="name.pehl.piriti.xml.XML" />
+	
+</module>

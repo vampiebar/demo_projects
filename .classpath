@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/gwt-crypto.jar"/>
+	<classpathentry kind="lib" path="lib/gwt-widgets-0.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/piriti-core-0.7b2.jar"/>
+	<classpathentry kind="lib" path="lib/piriti-restlet-0.7b2.jar"/>
+	<classpathentry kind="lib" path="lib/postgresql-9.0-801.jdbc4.jar"/>
+	<classpathentry kind="lib" path="lib/totoe-0.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/validation-api-1.0.0.GA-sources.jar"/>
+	<classpathentry kind="lib" path="lib/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="lib/gin/aopalliance.jar"/>
+	<classpathentry kind="lib" path="lib/gin/gin-1.5-post-gwt-2.2.jar"/>
+	<classpathentry kind="lib" path="lib/gin/guice-assistedinject-snapshot.jar"/>
+	<classpathentry kind="lib" path="lib/gin/guice-snapshot.jar"/>
+	<classpathentry kind="lib" path="lib/gin/javax.inject.jar"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>
