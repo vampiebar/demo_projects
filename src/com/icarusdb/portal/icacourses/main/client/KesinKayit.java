@@ -331,6 +331,7 @@ public class KesinKayit extends Composite {
 
 					KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri();
 					dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
+					dlgTemp.tabKesinKayitBilgileri.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
 					dlgTemp.center();
 

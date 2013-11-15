@@ -231,7 +231,7 @@ public class DlgOnKayit extends DialogBox {
 				.addChangeHandler(new CbxOgrenciBilgileriIlChangeHandler());
 
 		cbxOgrenciBilgileriIl.setStyleName("gwt-ComboBox1");
-		cbxOgrenciBilgileriIl.setSize("128px", "22px");
+		cbxOgrenciBilgileriIl.setSize("181px", "22px");
 
 		Label label_24 = new Label("İlçe");
 		label_24.setStyleName("gwt-Bold");
@@ -244,7 +244,7 @@ public class DlgOnKayit extends DialogBox {
 		cbxOgrenciBilgileriIlce
 				.addChangeHandler(new CbxOgrenciBilgileriIlceChangeHandler());
 		cbxOgrenciBilgileriIlce.setStyleName("gwt-ComboBox1");
-		cbxOgrenciBilgileriIlce.setSize("180px", "22px");
+		cbxOgrenciBilgileriIlce.setSize("181px", "22px");
 
 		Label label_25 = new Label("Okul");
 		label_25.setStyleName("gwt-Bold");
@@ -1083,12 +1083,12 @@ public class DlgOnKayit extends DialogBox {
 				cbxMedeniHali, xml.medeni_hali));
 		cbxOgrenciBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOgrenciBilgileriUlke, xml.ogrenci_bilgileri_ulke));
-		cbxOgrenciBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxOgrenciBilgileriIl, xml.ogrenci_bilgileri_il));
-		cbxOgrenciBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxOgrenciBilgileriIlce, xml.ogrenci_bilgileri_ilce));
-		cbxOkul.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxOkul, xml.okul));
+		// cbxOgrenciBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxOgrenciBilgileriIl, xml.ogrenci_bilgileri_il));
+		// cbxOgrenciBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxOgrenciBilgileriIlce, xml.ogrenci_bilgileri_ilce));
+		// cbxOkul.setSelectedIndex(Util
+		// .GetLBXSelectedTextIndex(cbxOkul, xml.okul));
 		cbxOgrenciBilgileriSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOgrenciBilgileriSinif, xml.ogrenci_bilgileri_sinif));
 		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
@@ -1109,23 +1109,23 @@ public class DlgOnKayit extends DialogBox {
 				cbxGorusmeSonucu, xml.gorusme_sonucu));
 		cbxAdresBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxAdresBilgileriUlke, xml.adres_bilgileri_ulke));
-		cbxAdresBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxAdresBilgileriIl, xml.adres_bilgileri_il));
-		cbxAdresBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxAdresBilgileriIlce, xml.adres_bilgileri_ilce));
-		cbxSemt.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxSemt, xml.semt));
-		cbxMahalle.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxMahalle,
-				xml.mahalle));
+		// cbxAdresBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxAdresBilgileriIl, xml.adres_bilgileri_il));
+		// cbxAdresBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxAdresBilgileriIlce, xml.adres_bilgileri_ilce));
+		// cbxSemt.setSelectedIndex(Util
+		// .GetLBXSelectedTextIndex(cbxSemt, xml.semt));
+		// cbxMahalle.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxMahalle,
+		// xml.mahalle));
 		cbxOgrenciKimlikBilgileriUlke.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriUlke,
 						xml.ogrenci_kimlik_bilgileri_ulke));
-		cbxOgrenciKimlikBilgileriIl.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxOgrenciKimlikBilgileriIl,
-						xml.ogrenci_kimlik_bilgileri_il));
-		cbxOgrenciKimlikBilgileriIlce.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriIlce,
-						xml.ogrenci_kimlik_bilgileri_ilce));
+		// cbxOgrenciKimlikBilgileriIl.setSelectedIndex(Util
+		// .GetLBXSelectedTextIndex(cbxOgrenciKimlikBilgileriIl,
+		// xml.ogrenci_kimlik_bilgileri_il));
+		// cbxOgrenciKimlikBilgileriIlce.setSelectedIndex(Util
+		// .GetLBXSelectedTextIndex(cbxOgrenciBilgileriIlce,
+		// xml.ogrenci_kimlik_bilgileri_ilce));
 		cbxOgrenciKimlikBilgileriIl.setItemText(0,
 				xml.ogrenci_kimlik_bilgileri_il);
 		cbxOgrenciBilgileriIl.setItemText(0, xml.ogrenci_bilgileri_il);
