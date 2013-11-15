@@ -61,6 +61,7 @@ public class KesinKayit extends Composite {
 
 		Label lblTcKimlikNo = new Label("T.C Kimlik No");
 		absolutePanel.add(lblTcKimlikNo, 22, 68);
+		lblTcKimlikNo.setSize("105px", "15px");
 
 		tctTCKimlikNo = new TextBox();
 		tctTCKimlikNo.setStyleName("gwt-TextBox1");
