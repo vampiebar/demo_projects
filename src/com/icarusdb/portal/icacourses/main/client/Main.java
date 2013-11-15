@@ -137,7 +137,7 @@ public class Main implements EntryPoint {
 		rootPanel.add(verticalPanel, 23, 95);
 		verticalPanel.setSize("251px", "636px");
 
-		Label lblEitimDnemi = new Label("Eğitim Dönemi: 123455");
+		Label lblEitimDnemi = new Label("Eğitim Dönemi:");
 		lblEitimDnemi.setStyleName("gwt-Bold");
 		verticalPanel.add(lblEitimDnemi);
 
