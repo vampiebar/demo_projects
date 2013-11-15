@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="ImageViewer" default="all" basedir="/Users/vampie/PROJECTS/GIT/icacourses">
+	<description>
+		This is build file for GWT module 'com.icarusdb.portal.icacourses.main.Main' deployment.
+		GWT Designer generates it each time when you initiate deployment.
+		
+		You can use this file later for manual deployment, but keep in mind, that
+		classpath is hardcoded in it, so after changes in classpath you should
+		regenerate build file.
+	</description>
+
+	<property name="gwt.home" value="/Users/vampie/ECLIPSE_43_64/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1" />
+	<property name="gwt.module.id" value="com.icarusdb.portal.icacourses.main.Main" />
+	<property name="war.name" value="Main.war" />
+
+	<target name="jars" description="Package up the module project and required projects as jars">
+		<mkdir dir="war/WEB-INF/lib" />
+		<!--=== ICACourses ===-->
+		<jar destfile='war/WEB-INF/lib/ICACourses.jar'>
+			<fileset dir="/Users/vampie/PROJECTS/GIT/icacourses/src">
+				<include name="**"/>
+			</fileset>
+			<fileset dir="/Users/vampie/PROJECTS/GIT/icacourses/war/WEB-INF/classes">
+				<include name="**/*.class"/>
+			</fileset>
+		</jar>
+		<copy todir='war/WEB-INF/lib'>
+			<fileset file="/Users/vampie/ECLIPSE_43_64/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/gwt-dev.jar"/>
+			<fileset file="/Users/vampie/ECLIPSE_43_64/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/validation-api-1.0.0.GA-sources.jar"/>
+			<fileset file="/Users/vampie/ECLIPSE_43_64/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/validation-api-1.0.0.GA.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/gwt-crypto.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/gwt-widgets-0.2.0.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/piriti-core-0.7b2.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/piriti-restlet-0.7b2.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/postgresql-9.0-801.jdbc4.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/totoe-0.2.4.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/validation-api-1.0.0.GA-sources.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/validation-api-1.0.0.GA.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/gin/aopalliance.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/gin/gin-1.5-post-gwt-2.2.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/gin/guice-assistedinject-snapshot.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/gin/guice-snapshot.jar"/>
+			<fileset file="/Users/vampie/PROJECTS/GIT/icacourses/lib/gin/javax.inject.jar"/>
+		</copy>		
+	</target>
+
+	<target name="gwt-compile" description="Compile to JavaScript">
+		<java classname="com.google.gwt.dev.Compiler" fork="yes" failonerror="true" maxmemory="256m">
+			<classpath>
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/src" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/war/WEB-INF/classes" />
+				<pathelement location="/Users/vampie/ECLIPSE_43_64/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/gwt-user.jar" />
+				<pathelement location="/Users/vampie/ECLIPSE_43_64/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/gwt-dev.jar" />
+				<pathelement location="/Users/vampie/ECLIPSE_43_64/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/validation-api-1.0.0.GA-sources.jar" />
+				<pathelement location="/Users/vampie/ECLIPSE_43_64/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/validation-api-1.0.0.GA.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/gwt-crypto.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/gwt-widgets-0.2.0.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/piriti-core-0.7b2.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/piriti-restlet-0.7b2.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/postgresql-9.0-801.jdbc4.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/totoe-0.2.4.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/validation-api-1.0.0.GA-sources.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/validation-api-1.0.0.GA.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/gin/aopalliance.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/gin/gin-1.5-post-gwt-2.2.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/gin/guice-assistedinject-snapshot.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/gin/guice-snapshot.jar" />
+				<pathelement location="/Users/vampie/PROJECTS/GIT/icacourses/lib/gin/javax.inject.jar" />
+				<pathelement location="/Users/vampie/ECLIPSE_43_64/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/gwt-dev.jar" />
+			</classpath>
+			<arg value="-style"/>
+			<arg value="OBFUSCATED"/>
+			<arg value="${gwt.module.id}" />
+		</java>
+	</target>
+
+	<target name="war" depends="gwt-compile, jars">
+		<delete file="${war.name}" />
+		<jar destfile="${war.name}" basedir="war" duplicate="preserve" />
+	</target>
+	
+	<target name="deploy" depends="war">
+		<move file="${war.name}" todir="/Users/vampie/PROJECTS/GIT/icacourses/deploy" />
+	</target>
+
+	<target name="all" depends="deploy" />
+
+</project>
