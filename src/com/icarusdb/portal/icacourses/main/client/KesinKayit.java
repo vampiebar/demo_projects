@@ -46,6 +46,7 @@ public class KesinKayit extends Composite {
 		absolutePanel.setSize("911px", "651px");
 
 		Label lblAdsoyad = new Label("Adı Soyadı");
+		lblAdsoyad.setStyleName("gwt-Bold");
 		absolutePanel.add(lblAdsoyad, 22, 33);
 		lblAdsoyad.setSize("83px", "16px");
 
@@ -59,9 +60,9 @@ public class KesinKayit extends Composite {
 		absolutePanel.add(tctSoyadi, 295, 33);
 		tctSoyadi.setSize("149px", "16px");
 
-		Label lblTcKimlikNo = new Label("T.C Kimlik No");
+		Label lblTcKimlikNo = new Label("T.C Kimlik No ");
+		lblTcKimlikNo.setStyleName("gwt-Bold");
 		absolutePanel.add(lblTcKimlikNo, 22, 68);
-		lblTcKimlikNo.setSize("105px", "15px");
 
 		tctTCKimlikNo = new TextBox();
 		tctTCKimlikNo.setStyleName("gwt-TextBox1");
@@ -69,6 +70,7 @@ public class KesinKayit extends Composite {
 		tctTCKimlikNo.setSize("142px", "16px");
 
 		Label lblEtrAlan = new Label("E.Türü - Alan");
+		lblEtrAlan.setStyleName("gwt-Bold");
 		absolutePanel.add(lblEtrAlan, 22, 105);
 
 		cbxETuru = new ListBox();
@@ -94,6 +96,7 @@ public class KesinKayit extends Composite {
 		cbxAlan.setSize("150px", "25px");
 
 		Label lblKzamanSnf = new Label("K.Zamanı - Sınıf");
+		lblKzamanSnf.setStyleName("gwt-Bold");
 		absolutePanel.add(lblKzamanSnf, 22, 145);
 
 		cbxKZamani = new ListBox();
@@ -110,6 +113,7 @@ public class KesinKayit extends Composite {
 		cbxSinif.setSize("150px", "25px");
 
 		Label lblKaytDurumu = new Label("Kayıt Durumu");
+		lblKaytDurumu.setStyleName("gwt-Bold");
 		absolutePanel.add(lblKaytDurumu, 22, 182);
 
 		cbxKayitDurumu = new ListBox();
@@ -356,7 +360,9 @@ public class KesinKayit extends Composite {
 			// cbxKayitDurumu.setSelectedIndex(0);
 
 			DlgKesinKayitIslemleri dlgTemp = new DlgKesinKayitIslemleri();
+			dlgTemp.tabKesinKayitIslemleri.selectTab(0);
 			dlgTemp.center();
+
 		}
 	}
 
