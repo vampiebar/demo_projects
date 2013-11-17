@@ -32,7 +32,7 @@ public class FizikselSinifTanimlari extends Composite {
 		absolutePanel.setSize("807px", "434px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 38);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -53,7 +53,16 @@ public class FizikselSinifTanimlari extends Composite {
 
 		grdFizikselSinifTanimlari = new CellTable<XMLFizikselSinifTanimlari>();
 		horizontalPanel.add(grdFizikselSinifTanimlari);
-		grdFizikselSinifTanimlari.setSize("100%", "100%");
+		grdFizikselSinifTanimlari.setSize("773px", "100%");
+
+		TextColumn<XMLFizikselSinifTanimlari> textColumn_1 = new TextColumn<XMLFizikselSinifTanimlari>() {
+			@Override
+			public String getValue(XMLFizikselSinifTanimlari object) {
+				return object.id.toString();
+			}
+		};
+		grdFizikselSinifTanimlari.addColumn(textColumn_1, "İD");
+		grdFizikselSinifTanimlari.setColumnWidth(textColumn_1, "56px");
 
 		Column<XMLFizikselSinifTanimlari, ?> textColumn = new TextColumn<XMLFizikselSinifTanimlari>() {
 			public String getValue(XMLFizikselSinifTanimlari object) {
@@ -61,6 +70,7 @@ public class FizikselSinifTanimlari extends Composite {
 			}
 		};
 		grdFizikselSinifTanimlari.addColumn(textColumn, "Fiziksel Sınıf Adı");
+		grdFizikselSinifTanimlari.setColumnWidth(textColumn, "265px");
 
 		Column<XMLFizikselSinifTanimlari, ?> column = new Column<XMLFizikselSinifTanimlari, String>(
 				new ButtonCell()) {
@@ -70,6 +80,7 @@ public class FizikselSinifTanimlari extends Composite {
 			}
 		};
 		grdFizikselSinifTanimlari.addColumn(column, "İşlemler");
+		grdFizikselSinifTanimlari.setColumnWidth(column, "227px");
 
 		if (!isDesignTime()) {
 
@@ -88,7 +99,7 @@ public class FizikselSinifTanimlari extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.fiziksel_sinif_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -99,9 +110,10 @@ public class FizikselSinifTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String fiziksel_sinif_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getfizikselsiniftanimlari?";
+		String urlWithParameters = Util.urlBase
+				+ "getfizikselsiniftanimlari?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

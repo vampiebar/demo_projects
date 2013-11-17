@@ -24,21 +24,23 @@ public class DlgOdevOlustur extends DialogBox {
 	private ListBox cbxDers;
 	private ListBox cbxUnite;
 	private TextBox tctSoruSayisi;
+	private AbsolutePanel absolutePanel;
+	public DecoratedTabPanel tabOdevTakip;
 
 	public DlgOdevOlustur() {
 		setHTML("Ödev Takip ( Ekleme / Düzenleme)");
 
-		AbsolutePanel absolutePanel = new AbsolutePanel();
+		absolutePanel = new AbsolutePanel();
 		setWidget(absolutePanel);
 		absolutePanel.setSize("625px", "449px");
 
-		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
-		absolutePanel.add(decoratedTabPanel, 10, 32);
-		decoratedTabPanel.setSize("640px", "449px");
+		tabOdevTakip = new DecoratedTabPanel();
+		absolutePanel.add(tabOdevTakip, 10, 32);
+		tabOdevTakip.setSize("640px", "449px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
-		decoratedTabPanel.add(absolutePanel_1, "Ödev Bilgileri", false);
+		tabOdevTakip.add(absolutePanel_1, "Ödev Bilgileri", false);
 		absolutePanel_1.setSize("544px", "373px");
 
 		Label lbldevAd = new Label("Ödev Adı");
@@ -109,7 +111,7 @@ public class DlgOdevOlustur extends DialogBox {
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
-		decoratedTabPanel.add(absolutePanel_2, "Ödev Cevapları", false);
+		tabOdevTakip.add(absolutePanel_2, "Ödev Cevapları", false);
 		absolutePanel_2.setSize("585px", "369px");
 
 		CellTable<Object> grdOdevCevaplari = new CellTable<Object>();
@@ -159,7 +161,7 @@ public class DlgOdevOlustur extends DialogBox {
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
-		decoratedTabPanel.add(absolutePanel_3, "Dosya Ekle", false);
+		tabOdevTakip.add(absolutePanel_3, "Dosya Ekle", false);
 		absolutePanel_3.setSize("624px", "391px");
 
 		Label lblDosyaAklama = new Label("Dosya Açıklama");

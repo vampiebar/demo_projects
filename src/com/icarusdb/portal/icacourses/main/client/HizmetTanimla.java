@@ -29,10 +29,10 @@ public class HizmetTanimla extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("808px", "381px");
+		absolutePanel.setSize("808px", "750px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 29);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -54,6 +54,15 @@ public class HizmetTanimla extends Composite {
 		grdHizmetTanimla = new CellTable<XMLHizmetTanimla>();
 		horizontalPanel.add(grdHizmetTanimla);
 		grdHizmetTanimla.setSize("100%", "100%");
+
+		TextColumn<XMLHizmetTanimla> textColumn_2 = new TextColumn<XMLHizmetTanimla>() {
+			@Override
+			public String getValue(XMLHizmetTanimla object) {
+				return object.id.toString();
+			}
+		};
+		grdHizmetTanimla.addColumn(textColumn_2, "İD");
+		grdHizmetTanimla.setColumnWidth(textColumn_2, "60px");
 
 		Column<XMLHizmetTanimla, ?> textColumn = new TextColumn<XMLHizmetTanimla>() {
 			public String getValue(XMLHizmetTanimla object) {
@@ -104,7 +113,7 @@ public class HizmetTanimla extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.hizmet_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -114,9 +123,9 @@ public class HizmetTanimla extends Composite {
 
 	}
 
-	protected void showWithData(String hizmet_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "gethizmettanimla?";
+		String urlWithParameters = Util.urlBase + "gethizmettanimla?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

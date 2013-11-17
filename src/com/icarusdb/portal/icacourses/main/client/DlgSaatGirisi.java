@@ -22,17 +22,18 @@ public class DlgSaatGirisi extends DialogBox {
 	private ListBox cbxGun;
 	private DateBox dtpBaslangicSaati;
 	private DateBox dtpBitisSaati;
+	public DecoratedTabPanel tabSaatGrisi;
 
 	public DlgSaatGirisi() {
 		setHTML("Ders Dağıtım Saat İşlemleri");
 
-		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
-		setWidget(decoratedTabPanel);
-		decoratedTabPanel.setSize("351px", "256px");
+		tabSaatGrisi = new DecoratedTabPanel();
+		setWidget(tabSaatGrisi);
+		tabSaatGrisi.setSize("351px", "256px");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
-		decoratedTabPanel.add(absolutePanel, "El İle Ekleme", false);
+		tabSaatGrisi.add(absolutePanel, "El İle Ekleme", false);
 		absolutePanel.setSize("550px", "400px");
 
 		Label lblBalangSaati = new Label("Başlangıç Saati");
@@ -102,7 +103,7 @@ public class DlgSaatGirisi extends DialogBox {
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
-		decoratedTabPanel.add(absolutePanel_1, "Kopyalama İşlemi", false);
+		tabSaatGrisi.add(absolutePanel_1, "Kopyalama İşlemi", false);
 		absolutePanel_1.setSize("550px", "400px");
 
 		Label lblKopyalanacakGn = new Label("Kopyalanacak Gün");

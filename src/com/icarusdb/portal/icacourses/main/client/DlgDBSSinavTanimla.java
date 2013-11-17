@@ -59,16 +59,31 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		absolutePanel.add(lblBinaekli, 10, 229);
 
 		cbxOkulDurumu = new ListBox();
+		cbxOkulDurumu.addItem("1. Sınıf");
+		cbxOkulDurumu.addItem("2.. Sınıf");
+		cbxOkulDurumu.addItem("3. Sınıf");
+		cbxOkulDurumu.addItem("4. Sınıf");
+		cbxOkulDurumu.addItem("5. Sınıf");
+		cbxOkulDurumu.addItem("6. Sınıf");
+		cbxOkulDurumu.addItem("7. Sınıf");
+		cbxOkulDurumu.addItem("8. Sınıf");
+		cbxOkulDurumu.addItem("9. Sınıf");
+		cbxOkulDurumu.addItem("10. Sınıf");
+		cbxOkulDurumu.addItem("11. Sınıf");
+		cbxOkulDurumu.addItem("Lise Mezun");
+		cbxOkulDurumu.addItem("Üniversite Mezun");
+		cbxOkulDurumu.addItem("12. Sınıf");
 		cbxOkulDurumu.setStyleName("gwt-ComboBox1");
-		cbxOkulDurumu.addItem("1");
-		cbxOkulDurumu.addItem("2");
 		absolutePanel.add(cbxOkulDurumu, 141, 63);
 		cbxOkulDurumu.setSize("174px", "22px");
 
 		cbxAlan = new ListBox();
+		cbxAlan.addItem("ALAN YOK");
+		cbxAlan.addItem("SAYISAL");
+		cbxAlan.addItem("EŞİT AĞIRLIK");
+		cbxAlan.addItem("SÖZEL");
+		cbxAlan.addItem("DİL");
 		cbxAlan.setStyleName("gwt-ComboBox1");
-		cbxAlan.addItem("1");
-		cbxAlan.addItem("2");
 		absolutePanel.add(cbxAlan, 141, 97);
 		cbxAlan.setSize("174px", "22px");
 

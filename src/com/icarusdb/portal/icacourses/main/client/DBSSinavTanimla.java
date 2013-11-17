@@ -28,11 +28,12 @@ public class DBSSinavTanimla extends Composite {
 	public DBSSinavTanimla() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
+		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
 		absolutePanel.setSize("791px", "455px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 32);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -54,6 +55,15 @@ public class DBSSinavTanimla extends Composite {
 		grdDBSSinavTanimla = new CellTable<XMLDBSSinavTanimla>();
 		horizontalPanel.add(grdDBSSinavTanimla);
 		grdDBSSinavTanimla.setSize("100%", "100%");
+
+		TextColumn<XMLDBSSinavTanimla> textColumn_4 = new TextColumn<XMLDBSSinavTanimla>() {
+			@Override
+			public String getValue(XMLDBSSinavTanimla object) {
+				return object.id.toString();
+			}
+		};
+		grdDBSSinavTanimla.addColumn(textColumn_4, "İD");
+		grdDBSSinavTanimla.setColumnWidth(textColumn_4, "43px");
 
 		Column<XMLDBSSinavTanimla, ?> textColumn = new TextColumn<XMLDBSSinavTanimla>() {
 			public String getValue(XMLDBSSinavTanimla object) {
@@ -120,7 +130,7 @@ public class DBSSinavTanimla extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.okul_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -130,9 +140,9 @@ public class DBSSinavTanimla extends Composite {
 
 	}
 
-	protected void showWithData(String okul_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getdbssinavtanimla?";
+		String urlWithParameters = Util.urlBase + "getdbssinavtanimla?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -177,7 +187,7 @@ public class DBSSinavTanimla extends Composite {
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
 
-		Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -189,7 +199,7 @@ public class DBSSinavTanimla extends Composite {
 				public void onResponseReceived(Request request,
 						Response response) {
 
-					Window.alert("AAABBBCCC " + response.getText());
+					// Window.alert("AAABBBCCC " + response.getText());
 
 					List<XMLDBSSinavTanimla> listXmlDBSSinavTanimla = XMLDBSSinavTanimla.XML
 							.readList(response.getText());
@@ -212,7 +222,7 @@ public class DBSSinavTanimla extends Composite {
 		} catch (RequestException e) {
 			// displayError("Couldn't retrieve JSON");
 
-			Window.alert(e.getMessage() + "ERROR");
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -226,7 +236,8 @@ public class DBSSinavTanimla extends Composite {
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			DlgDBSSinavTanimla dlgTemp = new DlgDBSSinavTanimla();
-			dlgTemp.show();
+			dlgTemp.center();
+			dlgTemp.setAnimationEnabled(true);
 
 		}
 	}

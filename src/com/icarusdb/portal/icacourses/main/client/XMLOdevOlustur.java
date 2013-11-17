@@ -12,6 +12,9 @@ public class XMLOdevOlustur {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("odev_adi")
 	String odev_adi;
 

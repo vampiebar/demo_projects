@@ -12,6 +12,9 @@ public class XMLSablonTanimlari {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("sablon_adi")
 	String sablon_adi;
 

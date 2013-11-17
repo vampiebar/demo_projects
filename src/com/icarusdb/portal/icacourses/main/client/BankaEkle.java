@@ -15,7 +15,6 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -32,10 +31,10 @@ public class BankaEkle extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("795px", "471px");
+		absolutePanel.setSize("795px", "750px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 70);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -57,6 +56,15 @@ public class BankaEkle extends Composite {
 		grdBankaEkle = new CellTable<XMLBankaEkle>();
 		horizontalPanel.add(grdBankaEkle);
 		grdBankaEkle.setSize("100%", "100%");
+
+		TextColumn<XMLBankaEkle> textColumn_1 = new TextColumn<XMLBankaEkle>() {
+			@Override
+			public String getValue(XMLBankaEkle object) {
+				return object.id.toString();
+			}
+		};
+		grdBankaEkle.addColumn(textColumn_1, "İD");
+		grdBankaEkle.setColumnWidth(textColumn_1, "75px");
 
 		textColumn = new TextColumn<XMLBankaEkle>() {
 			@Override
@@ -90,7 +98,7 @@ public class BankaEkle extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.banka_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -100,9 +108,9 @@ public class BankaEkle extends Composite {
 
 	}
 
-	protected void showWithData(String banka_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getbankaekle?";
+		String urlWithParameters = Util.urlBase + "getbankaekle?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -118,7 +126,7 @@ public class BankaEkle extends Composite {
 				public void onResponseReceived(Request request,
 						Response response) {
 
-					Window.alert("AAABBBCCC " + response.getText());
+					// Window.alert("AAABBBCCC " + response.getText());
 
 					List<XMLBankaEkle> listXmlBankaEkle = XMLBankaEkle.XML
 							.readList(response.getText());
@@ -147,7 +155,7 @@ public class BankaEkle extends Composite {
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
 
-		Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -159,7 +167,7 @@ public class BankaEkle extends Composite {
 				public void onResponseReceived(Request request,
 						Response response) {
 
-					Window.alert("AAABBBCCC " + response.getText());
+					// Window.alert("AAABBBCCC " + response.getText());
 
 					List<XMLBankaEkle> listXmlBankaEkle = XMLBankaEkle.XML
 							.readList(response.getText());
@@ -182,7 +190,7 @@ public class BankaEkle extends Composite {
 		} catch (RequestException e) {
 			// displayError("Couldn't retrieve JSON");
 
-			Window.alert(e.getMessage() + "ERROR");
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -198,6 +206,8 @@ public class BankaEkle extends Composite {
 		public void onClick(ClickEvent event) {
 			DlgBankaEkle dlgTemp = new DlgBankaEkle();
 			dlgTemp.center();
+			dlgTemp.setAnimationEnabled(true);
+
 		}
 	}
 }

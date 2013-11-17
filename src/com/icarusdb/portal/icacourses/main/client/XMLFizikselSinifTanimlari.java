@@ -12,6 +12,9 @@ public class XMLFizikselSinifTanimlari {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("fiziksel_sinif_adi")
 	String fiziksel_sinif_adi;
 }

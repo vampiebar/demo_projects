@@ -2,7 +2,6 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.List;
 
-import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -25,20 +24,20 @@ import com.google.gwt.view.client.SingleSelectionModel;
 
 public class SinavTanimlama extends Composite {
 	private CellTable<XMLSinavTanimlama> grdSinavTanimlama;
-	private Column<XMLSinavTanimlama, Number> column;
 	private TextColumn<XMLSinavTanimlama> textColumn;
 	private Column<XMLSinavTanimlama, String> column_1;
 	private TextColumn<XMLSinavTanimlama> textColumn_1;
 	private TextColumn<XMLSinavTanimlama> textColumn_2;
 	private Button btnYeniKayit;
 	private ListBox cbxSinavTuru;
+	private TextColumn<XMLSinavTanimlama> textColumn_3;
 
 	public SinavTanimlama() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("780px", "429px");
+		absolutePanel.setSize("780px", "750px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 20, 137);
@@ -48,13 +47,14 @@ public class SinavTanimlama extends Composite {
 		horizontalPanel.add(grdSinavTanimlama);
 		grdSinavTanimlama.setSize("737px", "124px");
 
-		column = new Column<XMLSinavTanimlama, Number>(new NumberCell()) {
+		textColumn_3 = new TextColumn<XMLSinavTanimlama>() {
 			@Override
-			public Number getValue(XMLSinavTanimlama object) {
-				return (Number) null;
+			public String getValue(XMLSinavTanimlama object) {
+				return object.sinav_no.toString();
 			}
 		};
-		grdSinavTanimlama.addColumn(column, "Kayıt No");
+		grdSinavTanimlama.addColumn(textColumn_3, "Sınav No");
+		grdSinavTanimlama.setColumnWidth(textColumn_3, "91px");
 
 		textColumn = new TextColumn<XMLSinavTanimlama>() {
 			public String getValue(XMLSinavTanimlama object) {
@@ -86,7 +86,7 @@ public class SinavTanimlama extends Composite {
 		grdSinavTanimlama.addColumn(textColumn_2, "İşlemler");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 491, 42);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -128,7 +128,7 @@ public class SinavTanimlama extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.sinav_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -138,10 +138,9 @@ public class SinavTanimlama extends Composite {
 
 	}
 
-	protected void showWithData(String sinav_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase
-				+ "getsinavtanimlama?sinav_adi=" + sinav_adi;
+		String urlWithParameters = Util.urlBase + "getsinavtanimlama?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

@@ -3,7 +3,6 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
-import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -30,10 +29,10 @@ public class PersonelTanimlari extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("806px", "432px");
+		absolutePanel.setSize("806px", "750px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 557, 52);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -56,6 +55,15 @@ public class PersonelTanimlari extends Composite {
 		horizontalPanel.add(grdPersonelTanimlari);
 		grdPersonelTanimlari.setSize("100%", "100%");
 
+		TextColumn<XMLPersonelTanimlari> textColumn_2 = new TextColumn<XMLPersonelTanimlari>() {
+			@Override
+			public String getValue(XMLPersonelTanimlari object) {
+				return object.id.toString();
+			}
+		};
+		grdPersonelTanimlari.addColumn(textColumn_2, "İD");
+		grdPersonelTanimlari.setColumnWidth(textColumn_2, "58px");
+
 		Column<XMLPersonelTanimlari, ?> textColumn = new TextColumn<XMLPersonelTanimlari>() {
 			public String getValue(XMLPersonelTanimlari object) {
 				return object.adi_soyadi.toString();
@@ -71,32 +79,29 @@ public class PersonelTanimlari extends Composite {
 		};
 		grdPersonelTanimlari.addColumn(textColumn_1, "Görevi");
 
-		Column<XMLPersonelTanimlari, ?> column_1 = new Column<XMLPersonelTanimlari, Number>(
-				new NumberCell()) {
+		TextColumn<XMLPersonelTanimlari> textColumn_3 = new TextColumn<XMLPersonelTanimlari>() {
 			@Override
-			public Number getValue(XMLPersonelTanimlari object) {
-				return (Number) null;
+			public String getValue(XMLPersonelTanimlari object) {
+				return (object.ise_giris_tarihi);
 			}
 		};
-		grdPersonelTanimlari.addColumn(column_1, "İşe Girişi Tarihi");
+		grdPersonelTanimlari.addColumn(textColumn_3, "İşe Giriş Tarihi");
 
-		Column<XMLPersonelTanimlari, ?> column_2 = new Column<XMLPersonelTanimlari, Number>(
-				new NumberCell()) {
+		TextColumn<XMLPersonelTanimlari> textColumn_4 = new TextColumn<XMLPersonelTanimlari>() {
 			@Override
-			public Number getValue(XMLPersonelTanimlari object) {
-				return (Number) null;
+			public String getValue(XMLPersonelTanimlari object) {
+				return object.telefonu_1.toString();
 			}
 		};
-		grdPersonelTanimlari.addColumn(column_2, "1.Tel");
+		grdPersonelTanimlari.addColumn(textColumn_4, "1. Tel");
 
-		Column<XMLPersonelTanimlari, ?> column_3 = new Column<XMLPersonelTanimlari, Number>(
-				new NumberCell()) {
+		TextColumn<XMLPersonelTanimlari> textColumn_5 = new TextColumn<XMLPersonelTanimlari>() {
 			@Override
-			public Number getValue(XMLPersonelTanimlari object) {
-				return (Number) null;
+			public String getValue(XMLPersonelTanimlari object) {
+				return object.telefonu_2.toString();
 			}
 		};
-		grdPersonelTanimlari.addColumn(column_3, "2.Tel");
+		grdPersonelTanimlari.addColumn(textColumn_5, "2. Tel");
 
 		Column<XMLPersonelTanimlari, ?> column = new Column<XMLPersonelTanimlari, String>(
 				new ButtonCell()) {
@@ -124,7 +129,7 @@ public class PersonelTanimlari extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.adi_soyadi);
+						showWithData(selected.id);
 
 					}
 
@@ -134,9 +139,10 @@ public class PersonelTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String adi_soyadi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getpersoneltanimlari?";
+		String urlWithParameters = Util.urlBase + "getpersoneltanimlari?id="
+				+ id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

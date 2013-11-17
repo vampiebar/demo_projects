@@ -91,7 +91,7 @@ public class SaatGirisi extends Composite {
 		btnYeniKayit.setSize("78px", "48px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 582, 49);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -115,7 +115,7 @@ public class SaatGirisi extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.aciklama);
+						showWithData(selected.id);
 
 					}
 
@@ -125,9 +125,9 @@ public class SaatGirisi extends Composite {
 
 	}
 
-	protected void showWithData(String aciklama) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getsaatgirisi?";
+		String urlWithParameters = Util.urlBase + "getsaatgirisi?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -153,6 +153,7 @@ public class SaatGirisi extends Composite {
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
 					dlgTemp.center();
+					dlgTemp.tabSaatGrisi.selectTab(0);
 
 				}
 			});
@@ -223,6 +224,7 @@ public class SaatGirisi extends Composite {
 			DlgSaatGirisi dlgTemp = new DlgSaatGirisi();
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
+			dlgTemp.tabSaatGrisi.selectTab(0);
 
 		}
 	}

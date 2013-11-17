@@ -12,6 +12,9 @@ public class XMLSaatGirisi {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("baslangic_saati")
 	String baslangic_saati;
 

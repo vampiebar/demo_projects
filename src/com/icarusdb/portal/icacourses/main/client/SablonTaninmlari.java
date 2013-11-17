@@ -43,6 +43,15 @@ public class SablonTaninmlari extends Composite {
 		horizontalPanel.add(grdSablonTanimlari);
 		grdSablonTanimlari.setSize("737px", "124px");
 
+		TextColumn<XMLSablonTanimlari> textColumn = new TextColumn<XMLSablonTanimlari>() {
+			@Override
+			public String getValue(XMLSablonTanimlari object) {
+				return object.id.toString();
+			}
+		};
+		grdSablonTanimlari.addColumn(textColumn, "İD");
+		grdSablonTanimlari.setColumnWidth(textColumn, "51px");
+
 		Column<XMLSablonTanimlari, String> grdcSablon = new TextColumn<XMLSablonTanimlari>() {
 			@Override
 			public String getValue(XMLSablonTanimlari object) {
@@ -103,7 +112,7 @@ public class SablonTaninmlari extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.sablon_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -113,9 +122,9 @@ public class SablonTaninmlari extends Composite {
 		}
 	}
 
-	protected void showWithData(String sablon_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getsablontanimlari?";
+		String urlWithParameters = Util.urlBase + "getsablontanimlari?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

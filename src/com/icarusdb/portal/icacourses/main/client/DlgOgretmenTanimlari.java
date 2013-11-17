@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.SimpleCheckBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class DlgOgretmenTanimlari extends DialogBox {
 	private TextBox tctTCKimlikNo;
@@ -34,182 +35,207 @@ public class DlgOgretmenTanimlari extends DialogBox {
 	private SimpleCheckBox chx5;
 	private SimpleCheckBox chx6;
 	private SimpleCheckBox chx7;
+	public DecoratedTabPanel tabOgretmenIslemleri;
 
 	public DlgOgretmenTanimlari() {
 		setHTML("Öğretmen İşlemleri");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		setWidget(absolutePanel);
-		absolutePanel.setSize("774px", "534px");
+		absolutePanel.setSize("700px", "524px");
 
-		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
-		absolutePanel.add(decoratedTabPanel, 0, 32);
-		decoratedTabPanel.setSize("774px", "545px");
+		tabOgretmenIslemleri = new DecoratedTabPanel();
+		absolutePanel.add(tabOgretmenIslemleri, 0, 32);
+		tabOgretmenIslemleri.setSize("747px", "502px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
-		decoratedTabPanel.add(absolutePanel_1, "Öğretmen Bilgileri", false);
+		tabOgretmenIslemleri.add(absolutePanel_1, "Öğretmen Bilgileri", false);
 		absolutePanel_1.setSize("694px", "457px");
 
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel_1.add(verticalPanel, 10, 10);
+		verticalPanel.setSize("126px", "447px");
+
 		Label lblretmenNo = new Label("Öğretmen No");
+		verticalPanel.add(lblretmenNo);
 		lblretmenNo.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblretmenNo, 10, 10);
 
 		Label lblTcKimlikNo = new Label("T.C. Kimlik No");
+		verticalPanel.add(lblTcKimlikNo);
 		lblTcKimlikNo.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblTcKimlikNo, 10, 49);
 
 		Label lblAdSoyad = new Label("Adı Soyadı");
+		verticalPanel.add(lblAdSoyad);
 		lblAdSoyad.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblAdSoyad, 10, 73);
+		lblAdSoyad.setSize("176px", "18px");
 
 		Label lblGirdiğiDersBilgisi = new Label("Girdiği Ders Bilgisi");
+		verticalPanel.add(lblGirdiğiDersBilgisi);
 		lblGirdiğiDersBilgisi.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblGirdiğiDersBilgisi, 10, 97);
 
 		Label lblEitimTr = new Label("Eğitim Türü");
+		verticalPanel.add(lblEitimTr);
+		lblEitimTr.setHeight("25px");
 		lblEitimTr.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblEitimTr, 10, 121);
 
 		Label lblBran = new Label("Branş");
+		verticalPanel.add(lblBran);
+		lblBran.setHeight("20px");
 		lblBran.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblBran, 10, 145);
 
 		Label lblGirdiiDersler = new Label("Girdiği Dersler");
+		verticalPanel.add(lblGirdiiDersler);
+		lblGirdiiDersler.setHeight("21px");
 		lblGirdiiDersler.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblGirdiiDersler, 10, 169);
 
 		Label lblcreti = new Label("Ücreti");
+		verticalPanel.add(lblcreti);
 		lblcreti.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblcreti, 10, 193);
 
 		Label lblEvTelefonu = new Label("Ev Telefonu");
+		verticalPanel.add(lblEvTelefonu);
 		lblEvTelefonu.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblEvTelefonu, 10, 217);
 
 		Label lblCepTelefonu = new Label("Cep Telefonu");
+		verticalPanel.add(lblCepTelefonu);
 		lblCepTelefonu.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblCepTelefonu, 10, 241);
 
 		Label lblCepTelefonu_1 = new Label("Cep Telefonu 2");
+		verticalPanel.add(lblCepTelefonu_1);
 		lblCepTelefonu_1.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblCepTelefonu_1, 10, 265);
 
 		Label lblEmail = new Label("E-mail");
+		verticalPanel.add(lblEmail);
 		lblEmail.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblEmail, 10, 289);
 
 		Label lblSigortaGnSays = new Label("Sigorta Gün Sayısı");
+		verticalPanel.add(lblSigortaGnSays);
 		lblSigortaGnSays.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblSigortaGnSays, 10, 313);
 
 		Label lblDersProgmamnGrsun = new Label("Ders progmamını Görsün");
+		verticalPanel.add(lblDersProgmamnGrsun);
+		lblDersProgmamnGrsun.setWidth("159px");
 		lblDersProgmamnGrsun.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblDersProgmamnGrsun, 10, 337);
 
 		Label lblDurum = new Label("Durum");
+		verticalPanel.add(lblDurum);
 		lblDurum.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblDurum, 10, 367);
 
-		chxdurum = new CheckBox("Aktif / Pasif");
-		absolutePanel_1.add(chxdurum, 160, 365);
-		chxdurum.setSize("107px", "20px");
+		VerticalPanel verticalPanel_1 = new VerticalPanel();
+		absolutePanel_1.add(verticalPanel_1, 217, 10);
+		verticalPanel_1.setSize("165px", "440px");
 
-		chxDersPrograminiGorsun = new SimpleCheckBox();
-		absolutePanel_1.add(chxDersPrograminiGorsun, 160, 337);
-
-		tctSigortaGunSayisi = new TextBox();
-		tctSigortaGunSayisi.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctSigortaGunSayisi, 160, 313);
-		tctSigortaGunSayisi.setSize("143px", "14px");
-
-		tctEmail = new TextBox();
-		tctEmail.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctEmail, 160, 289);
-		tctEmail.setSize("143px", "14px");
-
-		tctCepTelefonu2 = new TextBox();
-		tctCepTelefonu2.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctCepTelefonu2, 160, 265);
-		tctCepTelefonu2.setSize("143px", "14px");
-
-		tctCepTelefonu = new TextBox();
-		tctCepTelefonu.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctCepTelefonu, 160, 241);
-		tctCepTelefonu.setSize("143px", "14px");
-
-		tctEvTelefonu = new TextBox();
-		tctEvTelefonu.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctEvTelefonu, 160, 217);
-		tctEvTelefonu.setSize("143px", "14px");
-
-		tctUcreti = new TextBox();
-		tctUcreti.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctUcreti, 160, 193);
-		tctUcreti.setSize("143px", "14px");
+		Label lblVerilmedi = new Label("Verilmedi");
+		lblVerilmedi.setStyleName("gwt-Bold");
+		verticalPanel_1.add(lblVerilmedi);
 
 		tctTCKimlikNo = new TextBox();
+		verticalPanel_1.add(tctTCKimlikNo);
 		tctTCKimlikNo.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctTCKimlikNo, 160, 49);
 		tctTCKimlikNo.setSize("143px", "14px");
 
 		tctAdiSoyadi = new TextBox();
+		verticalPanel_1.add(tctAdiSoyadi);
 		tctAdiSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctAdiSoyadi, 160, 73);
 		tctAdiSoyadi.setSize("143px", "14px");
 
 		tctGirdigiDersbilgisi = new TextBox();
+		verticalPanel_1.add(tctGirdigiDersbilgisi);
 		tctGirdigiDersbilgisi.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctGirdigiDersbilgisi, 160, 97);
 		tctGirdigiDersbilgisi.setSize("143px", "14px");
 
 		cbxEgitimTuru = new ListBox();
+		verticalPanel_1.add(cbxEgitimTuru);
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
 		cbxEgitimTuru.addItem("1");
 		cbxEgitimTuru.addItem("2 ");
-		absolutePanel_1.add(cbxEgitimTuru, 160, 121);
-		cbxEgitimTuru.setSize("151px", "14px");
+		cbxEgitimTuru.setSize("143px", "20px");
 
 		cbxBrans = new ListBox();
+		verticalPanel_1.add(cbxBrans);
 		cbxBrans.setStyleName("gwt-ComboBox1");
 		cbxBrans.addItem("a");
 		cbxBrans.addItem("2");
 		cbxBrans.addItem("1 ");
-		absolutePanel_1.add(cbxBrans, 160, 145);
-		cbxBrans.setSize("151px", "14px");
+		cbxBrans.setSize("143px", "20px");
 
 		cbxGirdigiDersler = new ListBox();
+		verticalPanel_1.add(cbxGirdigiDersler);
 		cbxGirdigiDersler.setStyleName("gwt-ComboBox1");
 		cbxGirdigiDersler.addItem("1");
 		cbxGirdigiDersler.addItem("2");
 		cbxGirdigiDersler.addItem("  ");
-		absolutePanel_1.add(cbxGirdigiDersler, 160, 165);
-		cbxGirdigiDersler.setSize("151px", "14px");
+		cbxGirdigiDersler.setSize("143px", "20px");
+
+		tctUcreti = new TextBox();
+		verticalPanel_1.add(tctUcreti);
+		tctUcreti.setStyleName("gwt-TextBox1");
+		tctUcreti.setSize("143px", "14px");
+
+		tctEvTelefonu = new TextBox();
+		verticalPanel_1.add(tctEvTelefonu);
+		tctEvTelefonu.setStyleName("gwt-TextBox1");
+		tctEvTelefonu.setSize("143px", "14px");
+
+		tctCepTelefonu = new TextBox();
+		verticalPanel_1.add(tctCepTelefonu);
+		tctCepTelefonu.setStyleName("gwt-TextBox1");
+		tctCepTelefonu.setSize("143px", "14px");
+
+		tctCepTelefonu2 = new TextBox();
+		verticalPanel_1.add(tctCepTelefonu2);
+		tctCepTelefonu2.setStyleName("gwt-TextBox1");
+		tctCepTelefonu2.setSize("143px", "14px");
+
+		tctEmail = new TextBox();
+		verticalPanel_1.add(tctEmail);
+		tctEmail.setStyleName("gwt-TextBox1");
+		tctEmail.setSize("143px", "14px");
+
+		tctSigortaGunSayisi = new TextBox();
+		verticalPanel_1.add(tctSigortaGunSayisi);
+		tctSigortaGunSayisi.setStyleName("gwt-TextBox1");
+		tctSigortaGunSayisi.setSize("143px", "14px");
+
+		chxDersPrograminiGorsun = new SimpleCheckBox();
+		verticalPanel_1.add(chxDersPrograminiGorsun);
+
+		chxdurum = new CheckBox("Aktif / Pasif");
+		verticalPanel_1.add(chxdurum);
+		chxdurum.setSize("107px", "20px");
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
-		decoratedTabPanel.add(absolutePanel_3, "Geldiği Günler", false);
+		tabOgretmenIslemleri.add(absolutePanel_3, "Geldiği Günler", false);
 		absolutePanel_3.setSize("713px", "385px");
 
 		Label lblPazartesi = new Label("Pazartesi");
+		lblPazartesi.setStyleName("gwt-Bold");
 		absolutePanel_3.add(lblPazartesi, 10, 29);
 
 		Label lblSal = new Label("Salı");
+		lblSal.setStyleName("gwt-Bold");
 		absolutePanel_3.add(lblSal, 10, 53);
 
 		Label lblaramba = new Label("Çarşamba");
+		lblaramba.setStyleName("gwt-Bold");
 		absolutePanel_3.add(lblaramba, 10, 77);
 
 		Label lblPerembe = new Label("Perşembe");
+		lblPerembe.setStyleName("gwt-Bold");
 		absolutePanel_3.add(lblPerembe, 10, 101);
 
 		Label lblCuma = new Label("Cuma");
+		lblCuma.setStyleName("gwt-Bold");
 		absolutePanel_3.add(lblCuma, 10, 125);
 
 		Label lblCumartesi = new Label("Cumartesi");
+		lblCumartesi.setStyleName("gwt-Bold");
 		absolutePanel_3.add(lblCumartesi, 10, 149);
 
 		Label lblPazar = new Label("Pazar");
+		lblPazar.setStyleName("gwt-Bold");
 		absolutePanel_3.add(lblPazar, 10, 173);
 
 		chx2 = new SimpleCheckBox();
@@ -241,8 +267,9 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		chx1.setSize("20px", "19px");
 
 		Label lblNewLabel = new Label("Öğretmen İşlemleri (Ekleme / Düzenleme)");
-		absolutePanel.add(lblNewLabel, 10, 10);
-		lblNewLabel.setSize("448px", "18px");
+		lblNewLabel.setStyleName("gwt-LabelMor");
+		absolutePanel.add(lblNewLabel, 0, 0);
+		lblNewLabel.setSize("100%", "28px");
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel.add(absolutePanel_2, 399, -33);

@@ -2,7 +2,6 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -149,7 +148,7 @@ public class DlgBankaEkle extends DialogBox {
 							.getSelectedIndex());
 			URLValue = URLValue + "&vade_tarihi=" + tctVadeTarihi.getText();
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue);
 		}

@@ -32,7 +32,7 @@ public class KursZamaniTanimlama extends Composite {
 		absolutePanel.setSize("806px", "417px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 36);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -55,12 +55,22 @@ public class KursZamaniTanimlama extends Composite {
 		horizontalPanel.add(grdKursZamaniTanimlama);
 		grdKursZamaniTanimlama.setSize("100%", "100%");
 
+		TextColumn<XMLKursZamaniTanimlama> textColumn = new TextColumn<XMLKursZamaniTanimlama>() {
+			@Override
+			public String getValue(XMLKursZamaniTanimlama object) {
+				return object.id.toString();
+			}
+		};
+		grdKursZamaniTanimlama.addColumn(textColumn, "İD");
+		grdKursZamaniTanimlama.setColumnWidth(textColumn, "69px");
+
 		Column<XMLKursZamaniTanimlama, ?> textColumn_3 = new TextColumn<XMLKursZamaniTanimlama>() {
 			public String getValue(XMLKursZamaniTanimlama object) {
 				return object.kurs_zamani.toString();
 			}
 		};
 		grdKursZamaniTanimlama.addColumn(textColumn_3, "Kurs Zamanı");
+		grdKursZamaniTanimlama.setColumnWidth(textColumn_3, "335px");
 
 		Column<XMLKursZamaniTanimlama, ?> column = new Column<XMLKursZamaniTanimlama, String>(
 				new ButtonCell()) {
@@ -88,7 +98,7 @@ public class KursZamaniTanimlama extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.kurs_zamani);
+						showWithData(selected.id);
 
 					}
 
@@ -98,9 +108,10 @@ public class KursZamaniTanimlama extends Composite {
 
 	}
 
-	protected void showWithData(String kurs_zamani) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getkurszamani?";
+		String urlWithParameters = Util.urlBase + "getkurszamanitanimlama?id="
+				+ id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

@@ -35,18 +35,22 @@ public class DlgSinavTanimlama extends DialogBox {
 		absolutePanel.setSize("541px", "409px");
 
 		Label label = new Label("Sınav No - Sınav Adı");
+		label.setStyleName("gwt-Bold");
 		absolutePanel.add(label, 10, 41);
 		label.setSize("121px", "18px");
 
 		Label label_1 = new Label("Tarih");
+		label_1.setStyleName("gwt-Bold");
 		absolutePanel.add(label_1, 10, 75);
 		label_1.setSize("50px", "18px");
 
 		Label label_2 = new Label("Son Kitapçık No");
+		label_2.setStyleName("gwt-Bold");
 		absolutePanel.add(label_2, 10, 107);
 		label_2.setSize("104px", "18px");
 
 		Label label_3 = new Label("Şablon Seçiniz");
+		label_3.setStyleName("gwt-Bold");
 		absolutePanel.add(label_3, 10, 147);
 		label_3.setSize("87px", "18px");
 
@@ -82,7 +86,7 @@ public class DlgSinavTanimlama extends DialogBox {
 		cbxSablonSeciniz.addItem("1");
 		cbxSablonSeciniz.addItem("a");
 		absolutePanel.add(cbxSablonSeciniz, 148, 147);
-		cbxSablonSeciniz.setSize("147px", "14px");
+		cbxSablonSeciniz.setSize("147px", "23px");
 
 		btnKaydet = new Button("New button");
 		btnKaydet.setStyleName("gwt-ButtonSave");
@@ -122,7 +126,7 @@ public class DlgSinavTanimlama extends DialogBox {
 					+ cbxSablonSeciniz.getValue(cbxSablonSeciniz
 							.getSelectedIndex());
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue);
 

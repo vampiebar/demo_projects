@@ -33,7 +33,7 @@ public class GelirGiderKategorileri extends Composite {
 		absolutePanel.setSize("807px", "458px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 46);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -55,6 +55,15 @@ public class GelirGiderKategorileri extends Composite {
 		grdGelirGiderKategorileri = new CellTable<XMLGelirGiderKategorileri>();
 		horizontalPanel.add(grdGelirGiderKategorileri);
 		grdGelirGiderKategorileri.setSize("100%", "100%");
+
+		TextColumn<XMLGelirGiderKategorileri> textColumn_1 = new TextColumn<XMLGelirGiderKategorileri>() {
+			@Override
+			public String getValue(XMLGelirGiderKategorileri object) {
+				return object.id.toString();
+			}
+		};
+		grdGelirGiderKategorileri.addColumn(textColumn_1, "İD");
+		grdGelirGiderKategorileri.setColumnWidth(textColumn_1, "51px");
 
 		Column<XMLGelirGiderKategorileri, ?> textColumn = new TextColumn<XMLGelirGiderKategorileri>() {
 			@Override
@@ -90,7 +99,7 @@ public class GelirGiderKategorileri extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.kategori_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -100,9 +109,10 @@ public class GelirGiderKategorileri extends Composite {
 		}
 	}
 
-	protected void showWithData(String kategori_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getgelirgiderkategorileri?";
+		String urlWithParameters = Util.urlBase
+				+ "getgelirgiderkategorileri?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

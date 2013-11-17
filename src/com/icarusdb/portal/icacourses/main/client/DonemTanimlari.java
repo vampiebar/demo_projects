@@ -33,7 +33,7 @@ public class DonemTanimlari extends Composite {
 		absolutePanel.setSize("812px", "441px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 56);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -55,6 +55,15 @@ public class DonemTanimlari extends Composite {
 		grdDonemTanimlari = new CellTable<XMLDonemTanimlari>();
 		horizontalPanel.add(grdDonemTanimlari);
 		grdDonemTanimlari.setSize("100%", "100%");
+
+		TextColumn<XMLDonemTanimlari> textColumn_1 = new TextColumn<XMLDonemTanimlari>() {
+			@Override
+			public String getValue(XMLDonemTanimlari object) {
+				return object.id.toString();
+			}
+		};
+		grdDonemTanimlari.addColumn(textColumn_1, "İD");
+		grdDonemTanimlari.setColumnWidth(textColumn_1, "44px");
 
 		Column<XMLDonemTanimlari, ?> textColumn = new TextColumn<XMLDonemTanimlari>() {
 			@Override
@@ -88,6 +97,7 @@ public class DonemTanimlari extends Composite {
 			}
 		};
 		grdDonemTanimlari.addColumn(column_3, "Varsayılan Dönem");
+		grdDonemTanimlari.setColumnWidth(column_3, "158px");
 
 		Column<XMLDonemTanimlari, ?> column_1 = new Column<XMLDonemTanimlari, String>(
 				new ButtonCell()) {
@@ -115,7 +125,7 @@ public class DonemTanimlari extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.donem_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -126,9 +136,9 @@ public class DonemTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String donem_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getdonemtanimlari?";
+		String urlWithParameters = Util.urlBase + "getdonemtanimlari?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
