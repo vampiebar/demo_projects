@@ -122,7 +122,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 			URLValue = URLValue + "&sifre_tekrar=" + tctSifretekrar.getText();
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 
 		}
 	}

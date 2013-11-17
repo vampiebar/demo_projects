@@ -59,7 +59,7 @@ public class GelirlerveGiderler extends Composite {
 		TextColumn<XMLGelirlerveGiderler> column_1 = new TextColumn<XMLGelirlerveGiderler>() {
 			@Override
 			public String getValue(XMLGelirlerveGiderler object) {
-				return (object.tarih);
+				return object.islem_tipi.toString();
 			}
 		};
 		grdGelirlerveGiderler.addColumn(column_1, "Gelir / Gider Tipi");
@@ -82,7 +82,7 @@ public class GelirlerveGiderler extends Composite {
 		grdGelirlerveGiderler.addColumn(column_4, "İşlemler");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 580, 75);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -114,7 +114,7 @@ public class GelirlerveGiderler extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.aciklama);
+						showWithData(selected.id);
 
 					}
 
@@ -124,9 +124,10 @@ public class GelirlerveGiderler extends Composite {
 
 	}
 
-	protected void showWithData(String aciklama) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getgelirvegiderler?";
+		String urlWithParameters = Util.urlBase + "getgelirlervegiderler?id="
+				+ id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

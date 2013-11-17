@@ -109,7 +109,9 @@ public class DlgUniteTanimlari extends DialogBox {
 
 			Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue,
+					"Ünite Bilgisi Başarıyla Ekşenmiştir.",
+					"Ünite Bilgisi Eklenememiştir.");
 
 		}
 	}

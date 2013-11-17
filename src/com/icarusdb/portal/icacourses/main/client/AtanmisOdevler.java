@@ -28,6 +28,7 @@ import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 public class AtanmisOdevler extends Composite {
 	private DateBox dtpBaslangicTarihi;
 	private DateBox dtpBitisTarihi;
+	private CellTable<Object> grdAtanmisOdevler;
 
 	public AtanmisOdevler() {
 
@@ -66,7 +67,7 @@ public class AtanmisOdevler extends Composite {
 		absolutePanel.add(horizontalPanel, 10, 109);
 		horizontalPanel.setSize("608px", "183px");
 
-		CellTable<Object> grdAtanmisOdevler = new CellTable<Object>();
+		grdAtanmisOdevler = new CellTable<Object>();
 		horizontalPanel.add(grdAtanmisOdevler);
 		grdAtanmisOdevler.setSize("100%", "100%");
 
@@ -134,6 +135,15 @@ public class AtanmisOdevler extends Composite {
 
 								// lblNewLabel
 								// .setText(xmlAtanmisODevler.baslangic_tarihi);
+								// Set the total row count. This isn't strictly
+								// necessary, but it affects
+								// paging calculations, so its good habit to
+								// keep the row count up to date.
+								// grdAtanmisOdevler.setRowCount(1, true);
+
+								// Push the data into the widget.
+								// grdAtanmisOdevler.setRowData(0,
+								// list);
 
 							}
 

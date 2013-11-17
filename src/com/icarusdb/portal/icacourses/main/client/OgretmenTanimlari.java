@@ -33,7 +33,7 @@ public class OgretmenTanimlari extends Composite {
 		absolutePanel.setSize("797px", "453px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 62);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -55,6 +55,15 @@ public class OgretmenTanimlari extends Composite {
 		grdOgretmenTanimlari = new CellTable<XMLOgretmenTanimlari>();
 		horizontalPanel.add(grdOgretmenTanimlari);
 		grdOgretmenTanimlari.setSize("100%", "100%");
+
+		TextColumn<XMLOgretmenTanimlari> textColumn_1 = new TextColumn<XMLOgretmenTanimlari>() {
+			@Override
+			public String getValue(XMLOgretmenTanimlari object) {
+				return object.id.toString();
+			}
+		};
+		grdOgretmenTanimlari.addColumn(textColumn_1, "İD");
+		grdOgretmenTanimlari.setColumnWidth(textColumn_1, "19px");
 
 		Column<XMLOgretmenTanimlari, ?> column_1 = new Column<XMLOgretmenTanimlari, Number>(
 				new NumberCell()) {
@@ -122,7 +131,7 @@ public class OgretmenTanimlari extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.adi_soyadi);
+						showWithData(selected.id);
 
 					}
 
@@ -132,9 +141,10 @@ public class OgretmenTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String adi_soyadi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getogretmentanimlari?";
+		String urlWithParameters = Util.urlBase + "getogretmentanimlari?id="
+				+ id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -160,6 +170,7 @@ public class OgretmenTanimlari extends Composite {
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
 					dlgTemp.center();
+					dlgTemp.tabOgretmenIslemleri.selectTab(0);
 
 				}
 			});
@@ -231,6 +242,7 @@ public class OgretmenTanimlari extends Composite {
 			DlgOgretmenTanimlari dlgTemp = new DlgOgretmenTanimlari();
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
+			dlgTemp.tabOgretmenIslemleri.selectTab(0);
 
 		}
 	}

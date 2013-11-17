@@ -231,7 +231,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOgrenciBilgileriIl.addItem(" ");
 		cbxOgrenciBilgileriIl.setStyleName("gwt-ComboBox1");
 		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriIl, 157, 345);
-		cbxOgrenciBilgileriIl.setSize("128px", "22px");
+		cbxOgrenciBilgileriIl.setSize("153px", "22px");
 
 		cbxOgrenciBilgileriIlce = new ListBox();
 		cbxOgrenciBilgileriIlce
@@ -239,7 +239,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOgrenciBilgileriIlce.addItem(" ");
 		cbxOgrenciBilgileriIlce.setStyleName("gwt-ComboBox1");
 		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriIlce, 157, 380);
-		cbxOgrenciBilgileriIlce.setSize("128px", "22px");
+		cbxOgrenciBilgileriIlce.setSize("153px", "22px");
 
 		tctCepTelefonu = new TextBox();
 		tctCepTelefonu.setStyleName("gwt-TextBox1");
@@ -247,7 +247,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		tctCepTelefonu.setSize("143px", "14px");
 
 		HorizontalPanel horizontalPanel_3 = new HorizontalPanel();
-		vtpanOgrenciBilgileri.add(horizontalPanel_3, 405, 457);
+		vtpanOgrenciBilgileri.add(horizontalPanel_3, 443, 452);
 		horizontalPanel_3.setSize("254px", "72px");
 
 		Button btnYeniKayit5 = new Button("Yeni Kayıt");
@@ -271,7 +271,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOkul = new ListBox();
 		cbxOkul.addItem(" ");
 		vtpanOgrenciBilgileri.add(cbxOkul, 157, 419);
-		cbxOkul.setSize("128px", "22px");
+		cbxOkul.setSize("252px", "22px");
 
 		VerticalPanel verticalPanel_1 = new VerticalPanel();
 		decoratedTabPanel.add(verticalPanel_1, "Öğrenci Kimlik Bilgileri",
@@ -877,32 +877,32 @@ public class DlgDBSYeniKayit extends DialogBox {
 				cbxMedeniHali, xml.medeni_hali));
 		cbxOgrenciBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOgrenciBilgileriUlke, xml.ogrenci_bilgileri_ulke));
-		cbxOgrenciBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxOgrenciBilgileriIl, xml.ogrenci_bilgileri_il));
-		cbxOgrenciBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxOgrenciBilgileriIlce, xml.ogrenci_bilgileri_ilce));
-		cbxOkul.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxOkul, xml.okul));
+		// cbxOgrenciBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxOgrenciBilgileriIl, xml.ogrenci_bilgileri_il));
+		// cbxOgrenciBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxOgrenciBilgileriIlce, xml.ogrenci_bilgileri_ilce));
+		// cbxOkul.setSelectedIndex(Util
+		// .GetLBXSelectedTextIndex(cbxOkul, xml.okul));
 
 		cbxAdresBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxAdresBilgileriIlce, xml.adres_bilgileri_ulke));
-		cbxAdresBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxAdresBilgileriIlce, xml.adres_bilgileri_il));
-		cbxAdresBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxAdresBilgileriIlce, xml.adres_bilgileri_ilce));
-		cbxSemt.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxSemt, xml.semt));
-		cbxMahalle.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxMahalle,
-				xml.mahalle));
+				cbxAdresBilgileriUlke, xml.adres_bilgileri_ulke));
+		// cbxAdresBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxAdresBilgileriIlce, xml.adres_bilgileri_il));
+		// cbxAdresBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxAdresBilgileriIlce, xml.adres_bilgileri_ilce));
+		// cbxSemt.setSelectedIndex(Util
+		// .GetLBXSelectedTextIndex(cbxSemt, xml.semt));
+		// cbxMahalle.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxMahalle,
+		// xml.mahalle));
 		cbxOgrenciKimlikBilgileriUlke.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriUlke,
 						xml.ogrenci_kimlik_bilgileri_ulke));
-		cbxOgrenciKimlikBilgileriIl.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxOgrenciKimlikBilgileriIl,
-						xml.ogrenci_kimlik_bilgileri_il));
-		cbxOgrenciKimlikBilgileriIlce.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriIlce,
-						xml.ogrenci_kimlik_bilgileri_ilce));
+		// cbxOgrenciKimlikBilgileriIl.setSelectedIndex(Util
+		// .GetLBXSelectedTextIndex(cbxOgrenciKimlikBilgileriIl,
+		// xml.ogrenci_kimlik_bilgileri_il));
+		// cbxOgrenciKimlikBilgileriIlce.setSelectedIndex(Util
+		// .GetLBXSelectedTextIndex(cbxOgrenciBilgileriIlce,
+		// xml.ogrenci_kimlik_bilgileri_ilce));
 		cbxOkulDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOkulDurumu, xml.okul_durumu));
 		cbxAlanbilgisi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
@@ -1054,9 +1054,11 @@ public class DlgDBSYeniKayit extends DialogBox {
 					+ cbxSinavTarihi
 							.getValue(cbxSinavTarihi.getSelectedIndex());
 
-			// Window.alert(URLValue);
+			Window.alert("Öğrenci Başarıyla Kayıt Edilmiştir.");
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue,
+					"ÖĞRENCİ BİLGİLERİ BAŞARI İLE KAYIT EDİLDİ",
+					"ÖĞRENCİ BİLGİLERİ BAŞARI İLE KAYIT EDİLDİ");
 
 		}
 	}

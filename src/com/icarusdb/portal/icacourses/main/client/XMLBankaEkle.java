@@ -12,6 +12,9 @@ public class XMLBankaEkle {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("banka_adi")
 	String banka_adi;
 

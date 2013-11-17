@@ -516,14 +516,16 @@ public class Main implements EntryPoint {
 			TreeItem item = event.getSelectedItem();
 
 			if (item == tritmDersDagitimSistemi) {
-
+				scrollToTop();
 				smpanMain.add(new DersDagitimSistemi());
 			} else if (item == tritmYetkiTanimlama) {
 				smpanMain.add(new YetkiTanimlama());
+				scrollToTop();
 			}
 
 			else if (item == tritmSaatGirisi) {
 				smpanMain.add(new SaatGirisi());
+				scrollToTop();
 
 			}
 
@@ -540,18 +542,22 @@ public class Main implements EntryPoint {
 
 			if (item == tritmOdevolustur) {
 				smpanMain.add(new OdevOlustur());
+				scrollToTop();
 			}
 
 			else if (item == tritmCevapadedibelirle) {
 				smpanMain.add(new CevapAdediBelirle());
+				scrollToTop();
 			}
 
 			else if (item == tritmOdevtakipUnite) {
 				smpanMain.add(new OdevTakipUnite());
+				scrollToTop();
 			}
 
 			else if (item == tritmatanmisodevler) {
 				smpanMain.add(new AtanmisOdevler());
+				scrollToTop();
 			}
 
 		}
@@ -568,10 +574,12 @@ public class Main implements EntryPoint {
 
 			if (item == tritmsinavtanimlama) {
 				smpanMain.add(new SinavTanimlama());
+				scrollToTop();
 			}
 
 			else if (item == tritmSablontanimlari) {
 				smpanMain.add(new SablonTaninmlari());
+				scrollToTop();
 			}
 
 		}
@@ -587,24 +595,29 @@ public class Main implements EntryPoint {
 
 			if (item == tritmgelirvegiderler) {
 				smpanMain.add(new GelirlerveGiderler());
+				scrollToTop();
 			}
 
 			else if (item == tritmkasahareketleri) {
 				smpanMain.add(new KasaHareketleri());
+				scrollToTop();
 			}
 
 			else if (item == tritmgelirgidertanimlari) {
 				smpanMain.add(new GelirGiderTanimlari());
+				scrollToTop();
 			}
 
 			else if (item == tritmgelirgiderkategorileri) {
 				smpanMain.add(new GelirGiderKategorileri());
+				scrollToTop();
 
 			}
 
 			else if (item == tritmbankaekle) {
 
 				smpanMain.add(new BankaEkle());
+				scrollToTop();
 			}
 
 		}
@@ -619,30 +632,37 @@ public class Main implements EntryPoint {
 
 			if (item == tritmDBSSinavTanimla) {
 				smpanMain.add(new DBSSinavTanimla());
+				scrollToTop();
 			}
 
 			else if (item == tritmOgretmenTanimlari) {
 				smpanMain.add(new OgretmenTanimlari());
+				scrollToTop();
 			}
 
 			else if (item == tritmSinifTanimlari) {
 				smpanMain.add(new SinifTanimlari());
+				scrollToTop();
 			}
 
 			else if (item == tritmIndirimturu) {
 				smpanMain.add(new IndirimTuru());
+				scrollToTop();
 			}
 
 			else if (item == tritmHizmettanimla) {
 				smpanMain.add(new HizmetTanimla());
+				scrollToTop();
 			}
 
 			else if (item == tritmreferanslar) {
 				smpanMain.add(new Referanslar());
+				scrollToTop();
 			}
 
 			else if (item == tritmpersoneltanimlari) {
 				smpanMain.add(new PersonelTanimlari());
+				scrollToTop();
 			}
 		}
 
@@ -657,36 +677,46 @@ public class Main implements EntryPoint {
 
 			if (item == tritmkurumsalbilgiler) {
 				smpanMain.add(new KurumsalBilgiler());
+				scrollToTop();
 			}
 
 			else if (item == tritmdönemtanimlari) {
 				smpanMain.add(new DonemTanimlari());
+				scrollToTop();
 			}
 
 			else if (item == tritmderstanimlari) {
 				smpanMain.add(new DersTanimlari());
+				scrollToTop();
 			}
 
 			else if (item == tritmUnitetanimlari) {
 				smpanMain.add(new UniteTanimlari());
+				scrollToTop();
 			}
 
 			else if (item == tritmKonutanimlari) {
 				smpanMain.add(new KonuTanimlari());
+				scrollToTop();
 			}
 
 			else if (item == tritmFizikselsiniftanimlari) {
 				smpanMain.add(new FizikselSinifTanimlari());
+				scrollToTop();
 			}
 
 			else if (item == tritmKurszamanitanimlari) {
 				smpanMain.add(new KursZamaniTanimlama());
+				scrollToTop();
 			}
 
 			else if (item == tritmsifredegistirme) {
 				smpanMain.add(new SifreDegistirme());
+				scrollToTop();
+
 			} else if (item == tritmsozlesmemaddeleri) {
-				smpanMain.add(new SözleşmeMaddeleri());
+				smpanMain.add(new SozlesmeMaddeleri());
+				scrollToTop();
 			}
 		}
 
@@ -701,6 +731,7 @@ public class Main implements EntryPoint {
 
 			if (item == tritmDestekAlmakIstiyorum) {
 				smpanMain.add(new DestekAlmakIstiyorum());
+				scrollToTop();
 
 			}
 		}
@@ -715,6 +746,7 @@ public class Main implements EntryPoint {
 
 			if (item == tritmkullanicitanimlama) {
 				smpanMain.add(new KullaniciTanimlama());
+				scrollToTop();
 			}
 		}
 	}

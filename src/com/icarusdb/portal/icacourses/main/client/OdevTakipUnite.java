@@ -13,7 +13,6 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -38,7 +37,7 @@ public class OdevTakipUnite extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("789px", "424px");
+		absolutePanel.setSize("789px", "750px");
 
 		Label label = new Label("Eğitim Türü");
 		label.setStyleName("gwt-Bold");
@@ -168,7 +167,9 @@ public class OdevTakipUnite extends Composite {
 			// cbxDersAdi.setSelectedIndex(0);
 
 			DlgOdevTakipUnite dlgTemp = new DlgOdevTakipUnite();
-			dlgTemp.show();
+			dlgTemp.center();
+			dlgTemp.setAnimationEnabled(true);
+
 		}
 	}
 
@@ -180,7 +181,7 @@ public class OdevTakipUnite extends Composite {
 
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 					urlWithParameters);
-			Window.alert("URL TO GET VALUES: " + urlWithParameters);
+			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
 
 			try {
 				Request request = builder.sendRequest(null,
@@ -194,7 +195,8 @@ public class OdevTakipUnite extends Composite {
 							public void onResponseReceived(Request request,
 									Response response) {
 
-								Window.alert("AAABBBCCC " + response.getText());
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
 
 								List<XMLOdevTakipUnite> listXmlOdevTakipUnite = XMLOdevTakipUnite.XML
 										.readList(response.getText());
@@ -218,7 +220,7 @@ public class OdevTakipUnite extends Composite {
 			} catch (RequestException e) {
 				// displayError("Couldn't retrieve JSON");
 
-				Window.alert(e.getMessage() + "ERROR");
+				// Window.alert(e.getMessage() + "ERROR");
 			}
 
 		}

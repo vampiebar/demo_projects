@@ -12,7 +12,7 @@ public class Util {
 
 	static public String urlBase = "http://localhost:9090/ICACoursesWS/jaxrs/genel/";
 
-	void sendRequest(String url) {
+	void sendRequest(String url, String successMsg, String errorMsg) {
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
 
@@ -26,7 +26,7 @@ public class Util {
 				public void onResponseReceived(Request request,
 						Response response) {
 
-					Window.alert(response.getText());
+					Window.alert("SONUC: " + response.getText());
 
 				}
 

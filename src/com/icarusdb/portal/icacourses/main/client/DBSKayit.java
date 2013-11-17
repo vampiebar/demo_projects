@@ -165,7 +165,7 @@ public class DBSKayit extends Composite {
 		TextColumn<XMLDBSKayit> textColumn = new TextColumn<XMLDBSKayit>() {
 			@Override
 			public String getValue(XMLDBSKayit object) {
-				return "???";
+				return (object.sinav_tarihi);
 			}
 		};
 		grdDBSKayit.addColumn(textColumn, "Sınav Tarih Saat");

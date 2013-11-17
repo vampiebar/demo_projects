@@ -110,7 +110,7 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 
 		}
 	}
@@ -151,6 +151,7 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 
 								dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
 								dlgTemp.center();
+								dlgTemp.tabKesinKayitBilgileri.selectTab(0);
 
 							}
 

@@ -29,7 +29,7 @@ public class GelirGiderTanimlari extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("801px", "455px");
+		absolutePanel.setSize("801px", "750px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 127);
@@ -38,6 +38,15 @@ public class GelirGiderTanimlari extends Composite {
 		grdGelirgiderTanimnlari = new CellTable<XMLGelirGiderTanimlari>();
 		horizontalPanel.add(grdGelirgiderTanimnlari);
 		grdGelirgiderTanimnlari.setSize("100%", "100%");
+
+		TextColumn<XMLGelirGiderTanimlari> textColumn_3 = new TextColumn<XMLGelirGiderTanimlari>() {
+			@Override
+			public String getValue(XMLGelirGiderTanimlari object) {
+				return object.id.toString();
+			}
+		};
+		grdGelirgiderTanimnlari.addColumn(textColumn_3, "İD");
+		grdGelirgiderTanimnlari.setColumnWidth(textColumn_3, "68px");
 
 		Column<XMLGelirGiderTanimlari, ?> textColumn = new TextColumn<XMLGelirGiderTanimlari>() {
 			@Override
@@ -73,7 +82,7 @@ public class GelirGiderTanimlari extends Composite {
 		grdGelirgiderTanimnlari.addColumn(column, "İşlemler");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 597, 50);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -105,7 +114,7 @@ public class GelirGiderTanimlari extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.gelir_gider_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -115,9 +124,10 @@ public class GelirGiderTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String gelir_gider_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getgelirgidertanimlari?";
+		String urlWithParameters = Util.urlBase + "getgelirgidertanimlari?id="
+				+ id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

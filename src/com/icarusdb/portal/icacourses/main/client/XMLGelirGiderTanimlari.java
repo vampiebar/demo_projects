@@ -12,6 +12,9 @@ public class XMLGelirGiderTanimlari {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("kategori_adi")
 	String kategori_adi;
 

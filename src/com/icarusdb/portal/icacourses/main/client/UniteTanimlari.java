@@ -32,7 +32,7 @@ public class UniteTanimlari extends Composite {
 		absolutePanel.setSize("800px", "445px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 73);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -54,6 +54,14 @@ public class UniteTanimlari extends Composite {
 		grdUnitetanimlari = new CellTable<XMLUniteTanimlari>();
 		horizontalPanel.add(grdUnitetanimlari);
 		grdUnitetanimlari.setSize("100%", "100%");
+
+		TextColumn<XMLUniteTanimlari> textColumn_4 = new TextColumn<XMLUniteTanimlari>() {
+			@Override
+			public String getValue(XMLUniteTanimlari object) {
+				return object.id.toString();
+			}
+		};
+		grdUnitetanimlari.addColumn(textColumn_4, "İD");
 
 		Column<XMLUniteTanimlari, ?> textColumn = new TextColumn<XMLUniteTanimlari>() {
 			public String getValue(XMLUniteTanimlari object) {
@@ -110,7 +118,7 @@ public class UniteTanimlari extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.alan_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -120,9 +128,9 @@ public class UniteTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String alan_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getunitetanimlari?";
+		String urlWithParameters = Util.urlBase + "getunitetanimlari?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

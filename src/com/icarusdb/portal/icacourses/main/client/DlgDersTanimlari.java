@@ -1,7 +1,14 @@
 package com.icarusdb.portal.icacourses.main.client;
 
+import java.util.List;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -44,7 +51,7 @@ public class DlgDersTanimlari extends DialogBox {
 		tctDersAdi = new TextBox();
 		tctDersAdi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctDersAdi, 112, 111);
-		tctDersAdi.setSize("149px", "14px");
+		tctDersAdi.setSize("149px", "18px");
 
 		cbxEgitimTuru = new ListBox();
 		cbxEgitimTuru.addItem("1");
@@ -72,6 +79,61 @@ public class DlgDersTanimlari extends DialogBox {
 		btnKapat.setText("Kapat");
 		absolutePanel.add(btnKapat, 196, 166);
 		btnKapat.setSize("78px", "45px");
+
+		if (!isDesignTime()) {
+
+			putEgitimTuruToCbx(cbxEgitimTuru);
+
+		}
+
+	}
+
+	public void putEgitimTuruToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getegitimturu");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlEgitimTuru.size(); i++) {
+
+						lbxTemp.addItem(xmlEgitimTuru.get(i).egitim_turu_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	// Implement the following method exactly as-is
+	private static final boolean isDesignTime() {
+		// return Beans.isDesignTime(); // GWT 2.4 and above
+		return false; // GWT 2.2 and earlier
+
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -92,7 +154,9 @@ public class DlgDersTanimlari extends DialogBox {
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue,
+					"DERS BİLGİSİ BAŞARI İLE KAYIT EDİLDİ",
+					"DERS BİLGİSİ KAYIT EDİLEMEDİ");
 		}
 	}
 

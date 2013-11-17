@@ -1,8 +1,16 @@
 package com.icarusdb.portal.icacourses.main.client;
 
+import java.util.List;
+
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -175,101 +183,28 @@ public class KurumsalBilgiler extends Composite {
 		cbxUlke.setSize("158px", "25px");
 
 		cbxIl = new ListBox();
-		cbxIl.addItem("Adana");
-		cbxIl.addItem("Adıyaman");
-		cbxIl.addItem("Afyon");
-		cbxIl.addItem("Ağrı");
-		cbxIl.addItem("Amasya");
-		cbxIl.addItem("Ankara");
-		cbxIl.addItem("Antalya");
-		cbxIl.addItem("Artvin");
-		cbxIl.addItem("Aydın");
-		cbxIl.addItem("Balıkesir");
-		cbxIl.addItem("Bilecik");
-		cbxIl.addItem("Bitlis");
-		cbxIl.addItem("Bolu");
-		cbxIl.addItem("Burdur");
-		cbxIl.addItem("Bursa");
-		cbxIl.addItem("Çanakkale");
-		cbxIl.addItem("Çankırı");
-		cbxIl.addItem("Çorum");
-		cbxIl.addItem("Denizli");
-		cbxIl.addItem("Diyarbakır");
-		cbxIl.addItem("Edirne");
-		cbxIl.addItem("Elazığ");
-		cbxIl.addItem("Erzurum");
-		cbxIl.addItem("Eskişehir");
-		cbxIl.addItem("Giresun");
-		cbxIl.addItem("Gümüşhane");
-		cbxIl.addItem("Hakkari");
-		cbxIl.addItem("Hatay");
-		cbxIl.addItem("Isparta");
-		cbxIl.addItem("İçel");
-		cbxIl.addItem("İstanbul");
-		cbxIl.addItem("İzmir");
-		cbxIl.addItem("Kars");
-		cbxIl.addItem("Kastamonu");
-		cbxIl.addItem("Kayseri");
-		cbxIl.addItem("Kırklareli");
-		cbxIl.addItem("Kırşehir");
-		cbxIl.addItem("Kocaeli");
-		cbxIl.addItem("Konya");
-		cbxIl.addItem("Kütahya");
-		cbxIl.addItem("Malatya");
-		cbxIl.addItem("Manisa");
-		cbxIl.addItem("Kahramanmaraş");
-		cbxIl.addItem("Mardin");
-		cbxIl.addItem("Muğla");
-		cbxIl.addItem("Muş");
-		cbxIl.addItem("Nevşehir");
-		cbxIl.addItem("Niğde");
-		cbxIl.addItem("Rize");
-		cbxIl.addItem("Sakarya");
-		cbxIl.addItem("Samsun");
-		cbxIl.addItem("Siirt");
-		cbxIl.addItem("Sinop");
-		cbxIl.addItem("Sivas");
-		cbxIl.addItem("Tekirdağ");
-		cbxIl.addItem("Tokat");
-		cbxIl.addItem("Trabzon");
-		cbxIl.addItem("Tunceli");
-		cbxIl.addItem("Şanlıurfa");
-		cbxIl.addItem("Uşak");
-		cbxIl.addItem("Van");
-		cbxIl.addItem("Yozgat");
-		cbxIl.addItem("Zonguldak");
-		cbxIl.addItem("Aksaray");
-		cbxIl.addItem("Bayburt");
-		cbxIl.addItem("Karaman");
-		cbxIl.addItem("Kırıkkale");
-		cbxIl.addItem("Batman");
-		cbxIl.addItem("Şırnak");
-		cbxIl.addItem("Bartın");
-		cbxIl.addItem("Ardahan");
-		cbxIl.addItem("Iğdır");
-		cbxIl.addItem("Yalova");
-		cbxIl.addItem("Karabük");
-		cbxIl.addItem("Osmaniye");
-		cbxIl.addItem("Düzce");
+		cbxIl.addChangeHandler(new CbxIlChangeHandler());
+		cbxIl.addItem(" ");
 		cbxIl.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxIl, 138, 365);
 		cbxIl.setSize("158px", "25px");
 
 		cbxIlce = new ListBox();
-		cbxIlce.addItem("büyükçekmece");
+		cbxIlce.addChangeHandler(new CbxIlceChangeHandler());
+		cbxIlce.addItem(" ");
 		cbxIlce.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxIlce, 138, 397);
 		cbxIlce.setSize("158px", "25px");
 
 		cbxSemt = new ListBox();
-		cbxSemt.addItem("kumburgaz");
+		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
+		cbxSemt.addItem(" ");
 		cbxSemt.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxSemt, 138, 436);
 		cbxSemt.setSize("158px", "25px");
 
 		cbxMahalleKoy = new ListBox();
-		cbxMahalleKoy.addItem("1");
-		cbxMahalleKoy.addItem("2 ");
+		cbxMahalleKoy.addItem(" ");
 		cbxMahalleKoy.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxMahalleKoy, 138, 471);
 		cbxMahalleKoy.setSize("160px", "25px");
@@ -315,6 +250,199 @@ public class KurumsalBilgiler extends Composite {
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		absolutePanel.add(btnKaydet, 605, 541);
 		btnKaydet.setSize("78px", "48px");
+
+		if (!isDesignTime()) {
+
+			putIlToCbx(cbxIl);
+
+		}
+
+	}
+
+	public void putIlToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getil");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLIl> xmlil = XMLIl.XML.readList(response.getText());
+
+					for (int i = 0; i < xmlil.size(); i++) {
+
+						lbxTemp.addItem(xmlil.get(i).il_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	public void putIlceToCbx(int il_id, final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getilce?il_id=" + il_id);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLIlce> xmlilce = XMLIlce.XML.readList(response
+							.getText());
+
+					for (int i = 0; i < xmlilce.size(); i++) {
+
+						lbxTemp.addItem(xmlilce.get(i).ilce_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	public void putSemtToCbx(String il, String ilce, final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getpostakodu?il=" + il + "&ilce=" + ilce);
+
+		// Window.alert(Util.urlBase + "getpostakodu?il=" + il + "&ilce=" +
+		// ilce);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLPostaKodu> xmlpostakodu = XMLPostaKodu.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlpostakodu.size(); i++) {
+
+						lbxTemp.addItem(xmlpostakodu.get(i).semt_bucak_belde);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	public void putMahalleToCbx(String il, String ilce,
+			String semt_bucak_belde, final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getpostakodumahalle?il=" + il + "&ilce=" + ilce
+						+ "&semt_bucak_belde=" + semt_bucak_belde);
+
+		// Window.alert(Util.urlBase + "getpostakodumahalle?il=" + il + "&ilce="
+		// + ilce + "&semt_bucak_belde=" + semt_bucak_belde);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLPostaKoduMahalle> xmlpostakodumahalle = XMLPostaKoduMahalle.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlpostakodumahalle.size(); i++) {
+
+						lbxTemp.addItem(xmlpostakodumahalle.get(i).mahalle
+								+ " - " + xmlpostakodumahalle.get(i).posta_kodu);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private boolean isDesignTime() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void putDataFromXML(XMLKurumsalBilgiler xml) {
+
+		tctAdres.setText(xml.adres);
+		tctEMail.setText(xml.email);
+		tctFaks.setText(xml.faks);
+		tctMudur.setText(xml.mudur);
+
 	}
 
 	private class BtnKaydetClickHandler implements ClickHandler {
@@ -344,12 +472,35 @@ public class KurumsalBilgiler extends Composite {
 			URLValue = URLValue + "&logo=" + tctLogo.getText();
 			URLValue = URLValue + "&telefon=" + tctTelefon.getText();
 			URLValue = URLValue + "&faks=" + tctFaks.getText();
-			URLValue = URLValue + "&e_mail=" + tctEMail.getText();
+			URLValue = URLValue + "&email=" + tctEMail.getText();
 			URLValue = URLValue + "&adres=" + tctAdres.getText();
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
+
+		}
+	}
+
+	private class CbxIlChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putIlceToCbx(cbxIl.getSelectedIndex(), cbxIlce);
+		}
+	}
+
+	private class CbxIlceChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putSemtToCbx(cbxIl.getItemText(cbxIl.getSelectedIndex()),
+					cbxIlce.getItemText(cbxIlce.getSelectedIndex()), cbxSemt);
+		}
+	}
+
+	private class CbxSemtChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putMahalleToCbx(cbxIl.getItemText(cbxIl.getSelectedIndex()),
+					cbxIlce.getItemText(cbxIlce.getSelectedIndex()),
+					cbxSemt.getItemText(cbxSemt.getSelectedIndex()),
+					cbxMahalleKoy);
 
 		}
 	}

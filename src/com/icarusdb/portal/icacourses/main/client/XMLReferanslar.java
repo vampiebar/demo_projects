@@ -12,6 +12,9 @@ public class XMLReferanslar {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("referans_adi_soyadi")
 	String referans_adi_soyadi;
 

@@ -12,6 +12,9 @@ public class XMLGelirlerveGiderler {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("islem_tipi")
 	String islem_tipi;
 

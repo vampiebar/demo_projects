@@ -129,39 +129,54 @@ public class DlgSinifTanimlari extends DialogBox {
 		tctSinifKontenjani.setSize("143px", "14px");
 
 		cbxDanismanOgretmen = new ListBox();
+		cbxDanismanOgretmen.addItem("İlhami YILDIZ");
+		cbxDanismanOgretmen.addItem("Tuba YILDIZ");
+		cbxDanismanOgretmen.addItem("Melike AKDAĞ");
+		cbxDanismanOgretmen.addItem("Onur MIHÇI");
+		cbxDanismanOgretmen.addItem("Alpaslan ÇOLAK");
+		cbxDanismanOgretmen.addItem("Hazal Erol");
+		cbxDanismanOgretmen.addItem("Mesut ÇALIŞKAN");
+		cbxDanismanOgretmen.addItem("Kübra UĞUR");
+		cbxDanismanOgretmen.addItem("Mehmet AKİF ÖZER");
+		cbxDanismanOgretmen.addItem("Murat AKGÜN");
+		cbxDanismanOgretmen.addItem("Mehmet Şahin DEMİR");
+		cbxDanismanOgretmen.addItem("Şems HOCA");
+		cbxDanismanOgretmen.addItem("Kıymet AKGÜN");
 		cbxDanismanOgretmen.setStyleName("gwt-ComboBox1");
-		cbxDanismanOgretmen.addItem("a");
-		cbxDanismanOgretmen.addItem("b");
 		absolutePanel.add(cbxDanismanOgretmen, 186, 238);
-		cbxDanismanOgretmen.setSize("147px", "16px");
+		cbxDanismanOgretmen.setSize("147px", "22px");
 
 		cbxAlan = new ListBox();
 		cbxAlan.setStyleName("gwt-ComboBox1");
 		cbxAlan.addItem("1");
 		cbxAlan.addItem("2");
 		absolutePanel.add(cbxAlan, 186, 197);
-		cbxAlan.setSize("147px", "16px");
+		cbxAlan.setSize("147px", "22px");
 
 		cbxEgitimTuru = new ListBox();
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
 		cbxEgitimTuru.addItem("a");
 		cbxEgitimTuru.addItem("b");
 		absolutePanel.add(cbxEgitimTuru, 186, 161);
-		cbxEgitimTuru.setSize("147px", "16px");
+		cbxEgitimTuru.setSize("147px", "22px");
 
 		cbxKursZamani = new ListBox();
+		cbxKursZamani.addItem("HAFTA SONU");
+		cbxKursZamani.addItem("HAFTA İÇİ");
 		cbxKursZamani.setStyleName("gwt-ComboBox1");
-		cbxKursZamani.addItem("1");
-		cbxKursZamani.addItem("2");
 		absolutePanel.add(cbxKursZamani, 186, 122);
-		cbxKursZamani.setSize("147px", "16px");
+		cbxKursZamani.setSize("147px", "22px");
 
 		cbxFizikselSinifAdi = new ListBox();
+		cbxFizikselSinifAdi.addItem("A SINIFI");
+		cbxFizikselSinifAdi.addItem("B SINIFI");
+		cbxFizikselSinifAdi.addItem("C SINIFI");
+		cbxFizikselSinifAdi.addItem("D SINIFI");
+		cbxFizikselSinifAdi.addItem("E SINIFI");
+		cbxFizikselSinifAdi.addItem("F SINIFI");
 		cbxFizikselSinifAdi.setStyleName("gwt-ComboBox1");
-		cbxFizikselSinifAdi.addItem("a");
-		cbxFizikselSinifAdi.addItem("b");
 		absolutePanel.add(cbxFizikselSinifAdi, 186, 84);
-		cbxFizikselSinifAdi.setSize("147px", "16px");
+		cbxFizikselSinifAdi.setSize("147px", "22px");
 
 		tctSinifAdi = new TextBox();
 		tctSinifAdi.setStyleName("gwt-TextBox1");
@@ -226,7 +241,7 @@ public class DlgSinifTanimlari extends DialogBox {
 
 			Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 
 		}
 	}
@@ -235,7 +250,7 @@ public class DlgSinifTanimlari extends DialogBox {
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm");
-			Window.alert(dtf.format(dtpBaslangicTarihi.getValue()));
+			// Window.alert(dtf.format(dtpBaslangicTarihi.getValue()));
 		}
 	}
 
@@ -243,8 +258,29 @@ public class DlgSinifTanimlari extends DialogBox {
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm");
-			Window.alert(dtf.format(dtpBitisTarihi.getValue()));
+			// Window.alert(dtf.format(dtpBitisTarihi.getValue()));
 		}
+	}
+
+	public void putDataFromXML(XMLSinifTanimlari xml) {
+		tctBaslangicNumarasi.setText(xml.baslangic_numarasi);
+		tctBtisiNumarasi.setText(xml.bitis_numarasi);
+		tctFiyati.setText(xml.fiyati);
+		tctOzelDersSayisi.setText(xml.ozel_ders_sayisi);
+		tctSinifAdi.setText(xml.sinif_adi);
+		tctSinifKontenjani.setText(xml.sinif_kontenjani);
+
+		cbxAlan.setSelectedIndex(Util
+				.GetLBXSelectedTextIndex(cbxAlan, xml.alan));
+		cbxDanismanOgretmen.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxDanismanOgretmen, xml.danisman_ogretmen));
+		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxEgitimTuru, xml.egitim_turu));
+		cbxFizikselSinifAdi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxFizikselSinifAdi, xml.fiziksel_sinif_adi));
+		cbxKursZamani.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxKursZamani, xml.kurs_zamani));
+
 	}
 
 }

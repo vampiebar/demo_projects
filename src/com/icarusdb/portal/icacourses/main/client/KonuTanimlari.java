@@ -55,6 +55,15 @@ public class KonuTanimlari extends Composite {
 		horizontalPanel.add(grdKonuTanimlari);
 		grdKonuTanimlari.setSize("100%", "100%");
 
+		TextColumn<XMLKonuTanimlari> textColumn_5 = new TextColumn<XMLKonuTanimlari>() {
+			@Override
+			public String getValue(XMLKonuTanimlari object) {
+				return object.id.toString();
+			}
+		};
+		grdKonuTanimlari.addColumn(textColumn_5, "İD");
+		grdKonuTanimlari.setColumnWidth(textColumn_5, "24px");
+
 		Column<XMLKonuTanimlari, ?> textColumn = new TextColumn<XMLKonuTanimlari>() {
 			public String getValue(XMLKonuTanimlari object) {
 				return object.egitim_turu_adi.toString();
@@ -117,7 +126,7 @@ public class KonuTanimlari extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.alan_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -127,9 +136,9 @@ public class KonuTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String alan_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getkonutanimlari?";
+		String urlWithParameters = Util.urlBase + "getkonutanimlari?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

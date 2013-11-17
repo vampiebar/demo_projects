@@ -12,6 +12,9 @@ public class XMLSinavTanimlama {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("sinav_no")
 	String sinav_no;
 

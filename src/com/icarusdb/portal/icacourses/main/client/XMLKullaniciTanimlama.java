@@ -12,6 +12,9 @@ public class XMLKullaniciTanimlama {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("kullanici_kodu")
 	String kullanici_kodu;
 

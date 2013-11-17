@@ -203,7 +203,7 @@ public class YetkiTanimlama extends Composite {
 
 			Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 		}
 	}
 }

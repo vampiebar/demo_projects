@@ -27,11 +27,12 @@ public class Referanslar extends Composite {
 	public Referanslar() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
+		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("808px", "428px");
+		absolutePanel.setSize("808px", "750px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 56);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -54,12 +55,22 @@ public class Referanslar extends Composite {
 		horizontalPanel.add(grdReferanslar);
 		grdReferanslar.setSize("100%", "100%");
 
+		TextColumn<XMLReferanslar> textColumn_1 = new TextColumn<XMLReferanslar>() {
+			@Override
+			public String getValue(XMLReferanslar object) {
+				return object.id.toString();
+			}
+		};
+		grdReferanslar.addColumn(textColumn_1, "İD");
+		grdReferanslar.setColumnWidth(textColumn_1, "75px");
+
 		Column<XMLReferanslar, ?> textColumn = new TextColumn<XMLReferanslar>() {
 			public String getValue(XMLReferanslar object) {
 				return object.referans_adi_soyadi.toString();
 			}
 		};
 		grdReferanslar.addColumn(textColumn, "Referans Adı Soyadı");
+		grdReferanslar.setColumnWidth(textColumn, "394px");
 
 		Column<XMLReferanslar, ?> column = new Column<XMLReferanslar, String>(
 				new ButtonCell()) {
@@ -87,7 +98,7 @@ public class Referanslar extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.referans_adi_soyadi);
+						showWithData(selected.id);
 
 					}
 
@@ -97,9 +108,9 @@ public class Referanslar extends Composite {
 
 	}
 
-	protected void showWithData(String referans_adi_soyadi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getreferanslar?";
+		String urlWithParameters = Util.urlBase + "getreferanslar?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

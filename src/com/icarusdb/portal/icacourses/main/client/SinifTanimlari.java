@@ -5,6 +5,8 @@ import java.util.List;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
+import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -17,6 +19,7 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.view.client.SingleSelectionModel;
 
 public class SinifTanimlari extends Composite {
 	private CellTable<XMLSinifTanimlari> grdSinifTanimlari;
@@ -29,7 +32,7 @@ public class SinifTanimlari extends Composite {
 		absolutePanel.setSize("809px", "439px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 560, 44);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -51,6 +54,15 @@ public class SinifTanimlari extends Composite {
 		grdSinifTanimlari = new CellTable<XMLSinifTanimlari>();
 		horizontalPanel.add(grdSinifTanimlari);
 		grdSinifTanimlari.setSize("100%", "100%");
+
+		TextColumn<XMLSinifTanimlari> textColumn = new TextColumn<XMLSinifTanimlari>() {
+			@Override
+			public String getValue(XMLSinifTanimlari object) {
+				return object.id.toString();
+			}
+		};
+		grdSinifTanimlari.addColumn(textColumn, "İD");
+		grdSinifTanimlari.setColumnWidth(textColumn, "53px");
 
 		Column<XMLSinifTanimlari, ?> textColumn_1 = new TextColumn<XMLSinifTanimlari>() {
 			@Override
@@ -112,6 +124,66 @@ public class SinifTanimlari extends Composite {
 		if (!isDesignTime()) {
 
 			putDataToGrid();
+
+			final SingleSelectionModel<XMLSinifTanimlari> selectionModel = new SingleSelectionModel<XMLSinifTanimlari>();
+
+			grdSinifTanimlari.setSelectionModel(selectionModel);
+			grdSinifTanimlari.addDomHandler(new DoubleClickHandler() {
+
+				@Override
+				public void onDoubleClick(final DoubleClickEvent event) {
+					XMLSinifTanimlari selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			}, DoubleClickEvent.getType());
+		}
+
+	}
+
+	protected void showWithData(String id) {
+
+		String urlWithParameters = Util.urlBase + "getsiniftanimlari?id=" + id;
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLSinifTanimlari> listXmlSinifTanimlari = XMLSinifTanimlari.XML
+							.readList(response.getText());
+
+					DlgSinifTanimlari dlgTemp = new DlgSinifTanimlari();
+					dlgTemp.putDataFromXML(listXmlSinifTanimlari.get(0));
+					dlgTemp.setAnimationEnabled(true);
+					dlgTemp.center();
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}

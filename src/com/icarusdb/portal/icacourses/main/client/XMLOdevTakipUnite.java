@@ -12,6 +12,9 @@ public class XMLOdevTakipUnite {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("egitim_turu")
 	String egitim_turu;
 

@@ -32,7 +32,7 @@ public class DersTanimlari extends Composite {
 		absolutePanel.setSize("824px", "443px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 33);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -54,6 +54,15 @@ public class DersTanimlari extends Composite {
 		grdDersTanimlari = new CellTable<XMLDersTanimlari>();
 		horizontalPanel.add(grdDersTanimlari);
 		grdDersTanimlari.setSize("100%", "100%");
+
+		TextColumn<XMLDersTanimlari> textColumn_3 = new TextColumn<XMLDersTanimlari>() {
+			@Override
+			public String getValue(XMLDersTanimlari object) {
+				return object.id.toString();
+			}
+		};
+		grdDersTanimlari.addColumn(textColumn_3, "İD");
+		grdDersTanimlari.setColumnWidth(textColumn_3, "32px");
 
 		Column<XMLDersTanimlari, String> textColumn = new TextColumn<XMLDersTanimlari>() {
 			public String getValue(XMLDersTanimlari object) {
@@ -103,7 +112,7 @@ public class DersTanimlari extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.egitim_turu_adi);
+						showWithData(selected.id);
 
 					}
 
@@ -113,9 +122,9 @@ public class DersTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String egitim_turu_adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "gerderstanimlari?";
+		String urlWithParameters = Util.urlBase + "getderstanimlari?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

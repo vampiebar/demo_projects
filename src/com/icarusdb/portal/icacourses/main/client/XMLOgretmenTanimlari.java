@@ -12,6 +12,9 @@ public class XMLOgretmenTanimlari {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("tc_kimlik_no")
 	String tc_kimlik_no;
 

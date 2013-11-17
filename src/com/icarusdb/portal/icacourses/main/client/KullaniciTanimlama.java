@@ -111,7 +111,7 @@ public class KullaniciTanimlama extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.adi);
+						showWithData(selected.id);
 
 					}
 
@@ -121,9 +121,10 @@ public class KullaniciTanimlama extends Composite {
 
 	}
 
-	protected void showWithData(String adi) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getkullanicitanimlama?";
+		String urlWithParameters = Util.urlBase + "getkullanicitanimlama?id="
+				+ id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

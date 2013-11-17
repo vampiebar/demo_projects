@@ -103,7 +103,7 @@ public class DestekAlmakIstiyorum extends Composite {
 			URLValue = URLValue + "&mesajiniz=" + tctMesajiniz.getText();
 			Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 		}
 	}
 }

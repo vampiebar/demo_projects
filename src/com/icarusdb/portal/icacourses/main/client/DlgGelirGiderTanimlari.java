@@ -42,16 +42,26 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 		absolutePanel.add(lblGelirGider_1, 10, 106);
 
 		cbxKategoriAdi = new ListBox();
+		cbxKategoriAdi.addItem("Fatura");
+		cbxKategoriAdi.addItem("Araç Gideri");
+		cbxKategoriAdi.addItem("Bina Bakım Onarım Giderleri");
+		cbxKategoriAdi.addItem("Demirbaş Giderleri");
+		cbxKategoriAdi.addItem("Fatura Giderleri");
+		cbxKategoriAdi.addItem("Kırtasiye Giderleri");
+		cbxKategoriAdi.addItem("Muhtelif Giderler");
+		cbxKategoriAdi.addItem("SGK - Vergi Giderleri");
+		cbxKategoriAdi.addItem("Temizlik Giderleri");
+		cbxKategoriAdi.addItem("Yayın Giderleri");
+		cbxKategoriAdi.addItem("Mutfak Gideri");
+		cbxKategoriAdi.addItem("Öğrenci Dışı Gelirler");
 		cbxKategoriAdi.setStyleName("gwt-ComboBox1");
-		cbxKategoriAdi.addItem("1");
-		cbxKategoriAdi.addItem("2");
 		absolutePanel.add(cbxKategoriAdi, 136, 46);
 		cbxKategoriAdi.setSize("158px", "22px");
 
 		cbxTipi = new ListBox();
+		cbxTipi.addItem("Gelir");
+		cbxTipi.addItem("Gider");
 		cbxTipi.setStyleName("gwt-ComboBox1");
-		cbxTipi.addItem("1");
-		cbxTipi.addItem("2");
 		absolutePanel.add(cbxTipi, 136, 72);
 		cbxTipi.setSize("158px", "22px");
 
@@ -96,7 +106,7 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 		}
 	}
 

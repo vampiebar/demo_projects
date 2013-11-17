@@ -29,10 +29,10 @@ public class IndirimTuru extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("809px", "428px");
+		absolutePanel.setSize("809px", "750px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 27);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -54,6 +54,15 @@ public class IndirimTuru extends Composite {
 		grdIndirimTuru = new CellTable<XMLIndirimTuru>();
 		horizontalPanel.add(grdIndirimTuru);
 		grdIndirimTuru.setSize("100%", "100%");
+
+		TextColumn<XMLIndirimTuru> textColumn_1 = new TextColumn<XMLIndirimTuru>() {
+			@Override
+			public String getValue(XMLIndirimTuru object) {
+				return object.id.toString();
+			}
+		};
+		grdIndirimTuru.addColumn(textColumn_1, "İD");
+		grdIndirimTuru.setColumnWidth(textColumn_1, "90px");
 
 		Column<XMLIndirimTuru, ?> textColumn = new TextColumn<XMLIndirimTuru>() {
 			public String getValue(XMLIndirimTuru object) {
@@ -89,7 +98,7 @@ public class IndirimTuru extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.indirim_miktari);
+						showWithData(selected.id);
 
 					}
 
@@ -99,9 +108,9 @@ public class IndirimTuru extends Composite {
 
 	}
 
-	protected void showWithData(String indirim_miktari) {
+	protected void showWithData(String id) {
 
-		String urlWithParameters = Util.urlBase + "getindirimturu?";
+		String urlWithParameters = Util.urlBase + "getindirimturu?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
