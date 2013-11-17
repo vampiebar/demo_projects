@@ -16,5 +16,7 @@
 	<classpathentry kind="lib" path="lib/gin/guice-assistedinject-snapshot.jar"/>
 	<classpathentry kind="lib" path="lib/gin/guice-snapshot.jar"/>
 	<classpathentry kind="lib" path="lib/gin/javax.inject.jar"/>
+	<classpathentry kind="lib" path="lib/gwt-cal-0.9.4.jar"/>
+	<classpathentry kind="lib" path="lib/gwt-dnd-3.2.3.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
