@@ -79,7 +79,8 @@ public class SifreDegistirme extends Composite {
 
 			Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "ŞİFRE BAŞARIYLA DEĞİŞTİ",
+					"ŞİFRE DEĞİŞTİRİLEMEDİ");
 		}
 	}
 }

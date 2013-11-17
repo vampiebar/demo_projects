@@ -1054,9 +1054,11 @@ public class DlgDBSYeniKayit extends DialogBox {
 					+ cbxSinavTarihi
 							.getValue(cbxSinavTarihi.getSelectedIndex());
 
-			// Window.alert(URLValue);
+			Window.alert("Öğrenci Başarıyla Kayıt Edilmiştir.");
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue,
+					"ÖĞRENCİ BİLGİLERİ BAŞARI İLE KAYIT EDİLDİ",
+					"ÖĞRENCİ BİLGİLERİ BAŞARI İLE KAYIT EDİLDİ");
 
 		}
 	}

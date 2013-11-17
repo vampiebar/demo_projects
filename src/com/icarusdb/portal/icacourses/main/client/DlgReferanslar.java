@@ -70,7 +70,8 @@ public class DlgReferanslar extends DialogBox {
 
 			Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "Referans Kaydı Başarılı",
+					"Referans Kaydı Yapılamadı");
 		}
 	}
 

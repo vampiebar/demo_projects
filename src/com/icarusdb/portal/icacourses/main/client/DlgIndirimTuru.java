@@ -96,7 +96,7 @@ public class DlgIndirimTuru extends DialogBox {
 					+ tctIndirimMiktari.getText();
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 		}
 	}
 

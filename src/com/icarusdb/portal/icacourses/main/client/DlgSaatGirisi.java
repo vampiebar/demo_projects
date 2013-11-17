@@ -171,7 +171,7 @@ public class DlgSaatGirisi extends DialogBox {
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 
 		}
 	}

@@ -67,7 +67,7 @@ public class CevapAdediBelirle extends Composite {
 			URLValue = URLValue + "&cevap_sayisi=" + tctCevapSayisi.getText();
 			Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 		}
 	}
 }

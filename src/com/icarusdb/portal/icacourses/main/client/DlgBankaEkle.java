@@ -150,7 +150,8 @@ public class DlgBankaEkle extends DialogBox {
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "BANKA BİLGİLERİ KAYIT EDİLDİ",
+					"BANKA BİLGİLERİ KAYIT EDİLEMEDİ");
 		}
 	}
 }

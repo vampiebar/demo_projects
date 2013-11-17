@@ -195,7 +195,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 
 			Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 
 		}
 	}

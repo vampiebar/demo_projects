@@ -69,7 +69,7 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 		}
 	}
 

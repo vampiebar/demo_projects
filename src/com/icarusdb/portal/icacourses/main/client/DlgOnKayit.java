@@ -1258,7 +1258,8 @@ public class DlgOnKayit extends DialogBox {
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "Öğrenci Ön Kaydı Yapılmıştır",
+					"Öğrenci Ön Kaydı Yapılamadı.");
 
 		}
 	}

@@ -141,7 +141,8 @@ public class DlgDBSSinavTanimla extends DialogBox {
 
 			Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "SINAV BİLGİSİ KAYIT EDİLDİ",
+					"SINAV BİLGİSİ KAYIT EDİLEMEDİ");
 		}
 	}
 

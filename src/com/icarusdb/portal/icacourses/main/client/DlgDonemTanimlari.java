@@ -115,7 +115,8 @@ public class DlgDonemTanimlari extends DialogBox {
 
 			Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "DÖNEM BİLGİSİ KAYIT EDİLDİ",
+					"DÖNEM BİLGİSİ KAYIT EDİLEMEDİ");
 		}
 	}
 

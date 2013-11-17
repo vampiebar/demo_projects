@@ -132,7 +132,8 @@ public class DlgPersonelIslemleri extends DialogBox {
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "Personel Kaydı Başarılı",
+					"Personel Kaydı Yapılamadı");
 
 		}
 	}

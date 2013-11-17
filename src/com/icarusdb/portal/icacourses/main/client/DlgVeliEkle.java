@@ -218,7 +218,9 @@ public class DlgVeliEkle extends DialogBox {
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue,
+					"Veli Bilgisi Başarıyla Eklenmiştir",
+					"Veli Bilgisi Eklenemedi");
 		}
 
 	}

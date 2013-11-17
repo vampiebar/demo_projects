@@ -333,7 +333,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue);
+			new Util().sendRequest(URLValue, "", "");
 		}
 	}
 
