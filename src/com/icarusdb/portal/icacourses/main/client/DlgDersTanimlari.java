@@ -109,13 +109,13 @@ public class DlgDersTanimlari extends DialogBox {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
-							.readList(response.getText());
-
-					for (int i = 0; i < xmlEgitimTuru.size(); i++) {
-
-						lbxTemp.addItem(xmlEgitimTuru.get(i).egitim_turu_adi);
-					}
+//					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
+//							.readList(response.getText());
+//
+//					for (int i = 0; i < xmlEgitimTuru.size(); i++) {
+//
+//						lbxTemp.addItem(xmlEgitimTuru.get(i).egitim_turu_adi);
+//					}
 
 				}
 
