@@ -2,28 +2,26 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.Date;
 
-import com.bradrydzewski.gwt.calendar.client.Calendar;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
-import com.google.gwt.user.client.ui.SimplePanel;
 
 public class DersDagitimSistemi extends Composite {
 	private SimplePanel smpanCalendar;
 
 	public DersDagitimSistemi() {
-		
-//		Calendar calendar = new Calendar();
-//		calendar.setDate(new Date()); //calendar date, not required
-//		calendar.setDays(3); //number of days displayed at a time, not required
-//		calendar.setWidth("500px");
-//		calendar.setHeight("400px");
+
+		// Calendar calendar = new Calendar();
+		// calendar.setDate(new Date()); //calendar date, not required
+		// calendar.setDays(3); //number of days displayed at a time, not
+		// required
+		// calendar.setWidth("500px");
+		// calendar.setHeight("400px");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
@@ -61,18 +59,18 @@ public class DersDagitimSistemi extends Composite {
 		dptTarihSeciniz.setValue(new Date(1378037602295L));
 		absolutePanel.add(dptTarihSeciniz, 120, 121);
 		dptTarihSeciniz.setSize("143px", "17px");
-		
+
 		smpanCalendar = new SimplePanel();
 		absolutePanel.add(smpanCalendar, 10, 153);
 		smpanCalendar.setSize("800px", "347px");
-		
-		if( !isDesignTime() ) {
-			
-			//smpanCalendar.add(calendar);
+
+		if (!isDesignTime()) {
+
+			// smpanCalendar.add(calendar);
 		}
-		
+
 	}
-	
+
 	// Implement the following method exactly as-is
 	private static final boolean isDesignTime() {
 		return false; // GWT 2.2 and earlier

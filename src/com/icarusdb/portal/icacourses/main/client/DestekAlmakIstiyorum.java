@@ -16,6 +16,7 @@ public class DestekAlmakIstiyorum extends Composite {
 	private TextBox tctKonu;
 	private ListBox cbxBolum;
 	private TextArea tctMesajiniz;
+	public TabPanel tabDestekAlmakIstiyorum;
 
 	public DestekAlmakIstiyorum() {
 
@@ -29,15 +30,15 @@ public class DestekAlmakIstiyorum extends Composite {
 		absolutePanel.add(lblNewLabel, 10, 10);
 		lblNewLabel.setSize("775px", "31px");
 
-		TabPanel tabPanel = new TabPanel();
-		tabPanel.setAnimationEnabled(true);
-		absolutePanel.add(tabPanel, 25, 67);
-		tabPanel.setSize("614px", "239px");
+		tabDestekAlmakIstiyorum = new TabPanel();
+		tabDestekAlmakIstiyorum.setAnimationEnabled(true);
+		absolutePanel.add(tabDestekAlmakIstiyorum, 25, 67);
+		tabDestekAlmakIstiyorum.setSize("614px", "239px");
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
-		tabPanel.add(absolutePanel_2, "Destek İstiyorum", false);
-		absolutePanel_2.setSize("499px", "323px");
+		tabDestekAlmakIstiyorum.add(absolutePanel_2, "Destek İstiyorum", false);
+		absolutePanel_2.setSize("605px", "323px");
 
 		Label lblNewLabel_1 = new Label("Soru, İstek veya Hata Bildirme Formu");
 		lblNewLabel_1.setStyleName("gwt-LabelMor");
@@ -82,19 +83,20 @@ public class DestekAlmakIstiyorum extends Composite {
 		lblMesajnz.setStyleName("gwt-Bold");
 		absolutePanel_2.add(lblMesajnz, 10, 111);
 
-		Button btnNewButton = new Button("Kaydet");
-		btnNewButton.setStyleName("gwt-ButtonSave");
-		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
-		absolutePanel_2.add(btnNewButton, 188, 228);
-		btnNewButton.setSize("78px", "46px");
+		Button btnKaydet = new Button("Kaydet");
+		btnKaydet.setStyleName("gwt-ButtonSave");
+		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
+		absolutePanel_2.add(btnKaydet, 188, 228);
+		btnKaydet.setSize("78px", "46px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
-		tabPanel.add(absolutePanel_1, "Gönderilen Mesajlar", false);
+		tabDestekAlmakIstiyorum.add(absolutePanel_1, "Gönderilen Mesajlar",
+				false);
 		absolutePanel_1.setSize("503px", "321px");
 	}
 
-	private class BtnNewButtonClickHandler implements ClickHandler {
+	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putdestekalmakistiyorum?";
 			URLValue = URLValue + "konu=" + tctKonu.getText();

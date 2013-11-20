@@ -11,6 +11,9 @@ public class XMLVeliEkle {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("veli_bilgileri_adi")
 	String veli_bilgileri_adi;
 
@@ -18,7 +21,7 @@ public class XMLVeliEkle {
 	String veli_bilgileri_soyadi;
 
 	@Path("veli_bilgileri_tc_kimlik_no")
-	Number veli_bilgileri_tc_kimlik_no;
+	String veli_bilgileri_tc_kimlik_no;
 
 	@Path("yakinlik_durumu")
 	String yakinlik_durumu;
@@ -27,7 +30,7 @@ public class XMLVeliEkle {
 	String odeme_sorumlusu;
 
 	@Path("cep_tel")
-	Number cep_tel;
+	String cep_tel;
 
 	@Path("ev_tel")
 	String ev_tel;

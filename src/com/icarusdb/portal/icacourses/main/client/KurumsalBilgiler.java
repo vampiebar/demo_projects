@@ -259,6 +259,17 @@ public class KurumsalBilgiler extends Composite {
 
 	}
 
+	public void putDataFromXML(XMLKurumsalBilgiler xml) {
+
+		tctAdres.setText(xml.adres);
+		tctEMail.setText(xml.email);
+		tctFaks.setText(xml.faks);
+		tctMudur.setText(xml.mudur);
+		tctYoneticiTel.setText(xml.yonetici_tel);
+		tctMudurYardimcisi.setValue(xml.mudur_yardimcisi);
+
+	}
+
 	public void putIlToCbx(final ListBox lbxTemp) {
 
 		lbxTemp.clear();
@@ -431,17 +442,10 @@ public class KurumsalBilgiler extends Composite {
 
 	}
 
-	private boolean isDesignTime() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public void putDataFromXML(XMLKurumsalBilgiler xml) {
-
-		tctAdres.setText(xml.adres);
-		tctEMail.setText(xml.email);
-		tctFaks.setText(xml.faks);
-		tctMudur.setText(xml.mudur);
+	// Implement the following method exactly as-is
+	private static final boolean isDesignTime() {
+		// return Beans.isDesignTime(); // GWT 2.4 and above
+		return false; // GWT 2.2 and earlier
 
 	}
 

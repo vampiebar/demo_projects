@@ -19,16 +19,17 @@ public class DlgVeliEkle extends DialogBox {
 	private ListBox cbxYakinlikDurumu;
 	private TextBox tctCepTel;
 	private TextBox tctEvTel;
-	private TextBox tctİsTel;
+	private TextBox tctIsTel;
 	private TextBox tctEmail;
 	private TextBox tctFirma;
 	private TextBox tctSektor;
-	private TextBox tctUnvanı;
+	private TextBox tctUnvani;
 	private TextBox tctGorevi;
 	private TextBox tctVeliBilgileriAdres;
 	private SimpleCheckBox chxOdemeSorumlusu;
 
 	public DlgVeliEkle() {
+		setAutoHideEnabled(true);
 		setHTML("Veli Bilgileri");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -114,10 +115,10 @@ public class DlgVeliEkle extends DialogBox {
 		absolutePanel.add(tctEvTel, 129, 221);
 		tctEvTel.setSize("180px", "14px");
 
-		tctİsTel = new TextBox();
-		tctİsTel.setStylePrimaryName("gwt-TextBox1");
-		absolutePanel.add(tctİsTel, 129, 254);
-		tctİsTel.setSize("180px", "14px");
+		tctIsTel = new TextBox();
+		tctIsTel.setStylePrimaryName("gwt-TextBox1");
+		absolutePanel.add(tctIsTel, 129, 254);
+		tctIsTel.setSize("180px", "14px");
 
 		tctEmail = new TextBox();
 		tctEmail.setStylePrimaryName("gwt-TextBox1");
@@ -144,10 +145,10 @@ public class DlgVeliEkle extends DialogBox {
 		absolutePanel.add(tctGorevi, 129, 429);
 		tctGorevi.setSize("180px", "14px");
 
-		tctUnvanı = new TextBox();
-		tctUnvanı.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctUnvanı, 129, 387);
-		tctUnvanı.setSize("180px", "14px");
+		tctUnvani = new TextBox();
+		tctUnvani.setStyleName("gwt-TextBox1");
+		absolutePanel.add(tctUnvani, 129, 387);
+		tctUnvani.setSize("180px", "14px");
 
 		tctCepTel = new TextBox();
 		tctCepTel.setStylePrimaryName("gwt-TextBox1");
@@ -162,7 +163,7 @@ public class DlgVeliEkle extends DialogBox {
 		cbxYakinlikDurumu.addItem("Anne");
 		cbxYakinlikDurumu.addItem("Baba");
 		cbxYakinlikDurumu.addItem("Diğer");
-		absolutePanel.add(cbxYakinlikDurumu, 129, 108);
+		absolutePanel.add(cbxYakinlikDurumu, 129, 112);
 		cbxYakinlikDurumu.setSize("147px", "22px");
 
 		btnVeliyiKaydet = new Button("New button");
@@ -206,12 +207,12 @@ public class DlgVeliEkle extends DialogBox {
 					+ chxOdemeSorumlusu.getValue().toString();
 			URLValue = URLValue + "&cep_tel=" + tctCepTel.getText();
 			URLValue = URLValue + "&ev_tel=" + tctEvTel.getText();
-			URLValue = URLValue + "&is_tel=" + tctİsTel.getText();
+			URLValue = URLValue + "&is_tel=" + tctIsTel.getText();
 
 			URLValue = URLValue + "&e_mail=" + tctEmail.getText();
 			URLValue = URLValue + "&firma=" + tctFirma.getText();
 			URLValue = URLValue + "&sektor=" + tctSektor.getText();
-			URLValue = URLValue + "&unvani=" + tctUnvanı.getText();
+			URLValue = URLValue + "&unvani=" + tctUnvani.getText();
 			URLValue = URLValue + "&gorevi=" + tctGorevi.getText();
 			URLValue = URLValue + "&veli_bilgileri_adres="
 					+ tctVeliBilgileriAdres.getText();
@@ -222,6 +223,22 @@ public class DlgVeliEkle extends DialogBox {
 					"Veli Bilgisi Başarıyla Eklenmiştir",
 					"Veli Bilgisi Eklenemedi");
 		}
+
+	}
+
+	public void putDataFromXML(XMLVeliEkle xml) {
+		tctCepTel.setText(xml.cep_tel);
+		tctEmail.setText(xml.e_mail);
+		tctEvTel.setText(xml.ev_tel);
+		tctFirma.setText(xml.firma);
+		tctGorevi.setText(xml.gorevi);
+		tctIsTel.setText(xml.is_tel);
+		tctSektor.setText(xml.sektor);
+		tctUnvani.setText(xml.unvani);
+		tctVeliBilgileriAdi.setText(xml.veli_bilgileri_adi);
+		tctVeliBilgileriAdres.setText(xml.veli_bilgileri_adres);
+		tctVeliBilgileriSoyadi.setText(xml.veli_bilgileri_soyadi);
+		tctVeliBilgileriTcKimlikNo.setText(xml.veli_bilgileri_tc_kimlik_no);
 
 	}
 }

@@ -76,7 +76,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		Label lblEitimTr = new Label("Eğitim Türü");
 		verticalPanel.add(lblEitimTr);
-		lblEitimTr.setHeight("25px");
+		lblEitimTr.setHeight("21px");
 		lblEitimTr.setStyleName("gwt-Bold");
 
 		Label lblBran = new Label("Branş");

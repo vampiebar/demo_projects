@@ -13,7 +13,6 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -199,7 +198,7 @@ public class DBSKayit extends Composite {
 
 		Button btnKaydet = new Button("Yeni Kayıt");
 		btnKaydet.setStyleName("gwt-ButtonSave");
-		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
+		// btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
 		absolutePanel.add(btnKaydet, 676, 30);
 		btnKaydet.setSize("78px", "48px");
@@ -270,7 +269,7 @@ public class DBSKayit extends Composite {
 		} catch (RequestException e) {
 			// displayError("Couldn't retrieve JSON");
 
-			Window.alert(e.getMessage() + "ERROR");
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -329,35 +328,35 @@ public class DBSKayit extends Composite {
 		return false; // GWT 2.2 and earlier
 	}
 
-	private class BtnKaydetClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-
-			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-					"http://localhost:9090/ICACoursesWS/jaxrs/genel/getdbskayit");
-
-			try {
-				Request request = builder.sendRequest(null,
-						new RequestCallback() {
-							public void onError(Request request,
-									Throwable exception) {
-
-							}
-
-							@Override
-							public void onResponseReceived(Request request,
-									Response response) {
-
-								// Window.alert(response.getText());
-
-							}
-						});
-			} catch (RequestException e) {
-				// displayError("Couldn't retrieve JSON");
-
-				// Window.alert(e.getMessage() + "ERROR");
-			}
-		}
-	}
+	// private class BtnKaydetClickHandler implements ClickHandler {
+	// public void onClick(ClickEvent event) {
+	//
+	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+	// "http://localhost:9090/ICACoursesWS/jaxrs/genel/getdbskayit");
+	//
+	// try {
+	// Request request = builder.sendRequest(null,
+	// new RequestCallback() {
+	// public void onError(Request request,
+	// Throwable exception) {
+	//
+	// }
+	//
+	// @Override
+	// public void onResponseReceived(Request request,
+	// Response response) {
+	//
+	// // Window.alert(response.getText());
+	//
+	// }
+	// });
+	// } catch (RequestException e) {
+	// // displayError("Couldn't retrieve JSON");
+	//
+	// // Window.alert(e.getMessage() + "ERROR");
+	// }
+	// }
+	// }
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {

@@ -15,7 +15,6 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -158,7 +157,7 @@ public class DBSSinavTanimla extends Composite {
 				public void onResponseReceived(Request request,
 						Response response) {
 
-					Window.alert("AAABBBCCC " + response.getText());
+					// Window.alert("AAABBBCCC " + response.getText());
 
 					List<XMLDBSSinavTanimla> listXmlDBSinavTanimla = XMLDBSSinavTanimla.XML
 							.readList(response.getText());

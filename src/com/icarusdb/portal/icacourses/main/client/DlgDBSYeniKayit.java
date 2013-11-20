@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
-import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -71,6 +70,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private ListBox cbxSinavTarihi;
 	private AbsolutePanel vtpanOgrenciBilgileri;
 	private ListBox cbxOkul;
+	private CellTable<XMLVeliEkle> grdVeliEkle;
 
 	public DlgDBSYeniKayit() {
 		setAutoHideOnHistoryEventsEnabled(true);
@@ -271,7 +271,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOkul = new ListBox();
 		cbxOkul.addItem(" ");
 		vtpanOgrenciBilgileri.add(cbxOkul, 157, 419);
-		cbxOkul.setSize("252px", "22px");
+		cbxOkul.setSize("266px", "22px");
 
 		VerticalPanel verticalPanel_1 = new VerticalPanel();
 		decoratedTabPanel.add(verticalPanel_1, "Öğrenci Kimlik Bilgileri",
@@ -476,7 +476,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxMahalle = new ListBox();
 		cbxMahalle.addItem(" ");
 		absolutePanel_2.add(cbxMahalle, 125, 193);
-		cbxMahalle.setSize("146px", "22px");
+		cbxMahalle.setSize("193px", "22px");
 
 		tctSokakveNo = new TextBox();
 		tctSokakveNo.setStyleName("gwt-TextBox1");
@@ -536,103 +536,210 @@ public class DlgDBSYeniKayit extends DialogBox {
 		AbsolutePanel absolutePanel_4 = new AbsolutePanel();
 		absolutePanel_4.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(absolutePanel_4, "Veli Bilgileri", false);
-		absolutePanel_4.setSize("803px", "409px");
+		absolutePanel_4.setSize("803px", "500px");
 
 		Button btnVeliEkle = new Button("Veli Ekle");
+		btnVeliEkle.addClickHandler(new BtnVeliEkleClickHandler());
 		btnVeliEkle.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_4.add(btnVeliEkle, 10, 10);
 
-		CellTable<Object> cellTable = new CellTable<Object>();
-		absolutePanel_4.add(cellTable, 10, 46);
-		cellTable.setSize("715px", "174px");
+		grdVeliEkle = new CellTable<XMLVeliEkle>();
+		absolutePanel_4.add(grdVeliEkle, 0, 42);
+		grdVeliEkle.setSize("715px", "174px");
 
-		Column<Object, Number> column = new Column<Object, Number>(
-				new NumberCell()) {
+		TextColumn<XMLVeliEkle> textColumn_4 = new TextColumn<XMLVeliEkle>() {
 			@Override
-			public Number getValue(Object object) {
-				return (Number) null;
+			public String getValue(XMLVeliEkle object) {
+				return object.veli_bilgileri_tc_kimlik_no.toString();
 			}
 		};
-		cellTable.addColumn(column, "TC Kimlik No");
+		grdVeliEkle.addColumn(textColumn_4, "TC Kimlik No");
 
-		TextColumn<Object> textColumn_3 = new TextColumn<Object>() {
+		Column<XMLVeliEkle, ?> textColumn_3 = new TextColumn<XMLVeliEkle>() {
 			@Override
-			public String getValue(Object object) {
-				return object.toString();
+			public String getValue(XMLVeliEkle object) {
+				return object.veli_bilgileri_adi.toString();
 			}
 		};
-		cellTable.addColumn(textColumn_3, "Adı");
+		grdVeliEkle.addColumn(textColumn_3, "Adı");
 
-		TextColumn<Object> textColumn_2 = new TextColumn<Object>() {
+		TextColumn<XMLVeliEkle> textColumn_2 = new TextColumn<XMLVeliEkle>() {
 			@Override
-			public String getValue(Object object) {
-				return object.toString();
+			public String getValue(XMLVeliEkle object) {
+				return object.veli_bilgileri_soyadi.toString();
 			}
 		};
-		cellTable.addColumn(textColumn_2, "Soyadı");
+		grdVeliEkle.addColumn(textColumn_2, "Soyadı");
 
-		TextColumn<Object> textColumn_1 = new TextColumn<Object>() {
+		TextColumn<XMLVeliEkle> textColumn_1 = new TextColumn<XMLVeliEkle>() {
 			@Override
-			public String getValue(Object object) {
-				return object.toString();
+			public String getValue(XMLVeliEkle object) {
+				return object.yakinlik_durumu;
 			}
 		};
-		cellTable.addColumn(textColumn_1, "Yakınlık Durumu");
+		grdVeliEkle.addColumn(textColumn_1, "Yakınlık Durumu");
 
-		TextColumn<Object> textColumn = new TextColumn<Object>() {
+		TextColumn<XMLVeliEkle> textColumn = new TextColumn<XMLVeliEkle>() {
 			@Override
-			public String getValue(Object object) {
-				return object.toString();
+			public String getValue(XMLVeliEkle object) {
+				return object.odeme_sorumlusu;
 			}
 		};
-		cellTable.addColumn(textColumn, "Ödeme Sorumlusu");
+		grdVeliEkle.addColumn(textColumn, "Ödeme Sorumlusu");
 
-		Column<Object, Number> column_2 = new Column<Object, Number>(
-				new NumberCell()) {
+		TextColumn<XMLVeliEkle> textColumn_5 = new TextColumn<XMLVeliEkle>() {
 			@Override
-			public Number getValue(Object object) {
-				return (Number) null;
+			public String getValue(XMLVeliEkle object) {
+				return object.cep_tel.toString();
 			}
 		};
-		cellTable.addColumn(column_2, "Cep Tel");
+		grdVeliEkle.addColumn(textColumn_5, "Cep Tel");
 
-		Column<Object, Number> column_1 = new Column<Object, Number>(
-				new NumberCell()) {
+		TextColumn<XMLVeliEkle> textColumn_6 = new TextColumn<XMLVeliEkle>() {
 			@Override
-			public Number getValue(Object object) {
-				return (Number) null;
+			public String getValue(XMLVeliEkle object) {
+				return object.is_tel.toString();
 			}
 		};
-		cellTable.addColumn(column_1, "İş Tel");
+		grdVeliEkle.addColumn(textColumn_6, "İş Tel");
 
-		Column<Object, String> column_3 = new Column<Object, String>(
+		Column<XMLVeliEkle, String> column_3 = new Column<XMLVeliEkle, String>(
 				new ButtonCell()) {
 			@Override
-			public String getValue(Object object) {
+			public String getValue(XMLVeliEkle object) {
 				return (String) null;
 			}
 		};
-		cellTable.addColumn(column_3, "Düzenle");
+		grdVeliEkle.addColumn(column_3, "Düzenle");
 
-		Column<Object, String> column_4 = new Column<Object, String>(
+		Column<XMLVeliEkle, String> column_4 = new Column<XMLVeliEkle, String>(
 				new ButtonCell()) {
 			@Override
-			public String getValue(Object object) {
+			public String getValue(XMLVeliEkle object) {
 				return (String) null;
 			}
 		};
-		cellTable.addColumn(column_4, "Sil");
+		grdVeliEkle.addColumn(column_4, "Sil");
 
 		// Set Default page
 		decoratedTabPanel.selectTab(0);
 
 		if (!isDesignTime()) {
+			putDataToGrid();
 
 			putIlToCbx(cbxAdresBilgileriIl);
 			putIlToCbx(cbxOgrenciBilgileriIl);
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl);
+
+			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
+			// SingleSelectionModel<XMLVeliEkle>();
+			//
+			// // grdVeliEkle.setSelectionModel(selectionModel);
+			// grdVeliEkle.addDomHandler(new DoubleClickHandler() {
+			//
+			// @Override
+			// public void onDoubleClick(final DoubleClickEvent event) {
+			// XMLVeliEkle selected = selectionModel.getSelectedObject();
+			// if (selected != null) {
+			// // DO YOUR STUFF
+			//
+			// // Window.alert("selected id: " + selected.id);
+			// showWithData(selected.id);
+			//
+			// }
+			//
+			// }
+			// }, DoubleClickEvent.getType());
 		}
 	}
+
+	private void putDataToGrid() {
+
+		String urlWithParameters = Util.urlBase + "getveliekle";
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLVeliEkle> listXmlVeliEkle = XMLVeliEkle.XML
+							.readList(response.getText());
+
+					// Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
+
+					// Window.alert("veli_bilgileri_adi: "
+					// + listXmlVeliEkle.get(0).veli_bilgileri_adi);
+
+					// Set the total row count. This isn't strictly
+					// necessary, but it affects
+					// paging calculations, so its good habit to
+					// keep the row count up to date.
+					grdVeliEkle.setRowCount(1, true);
+
+					// Push the data into the widget.
+					grdVeliEkle.setRowData(0, listXmlVeliEkle);
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	// protected void showWithData(String id) {
+	//
+	// String urlWithParameters = Util.urlBase + "getveliekle?id=" + id;
+	//
+	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+	// urlWithParameters);
+	//
+	// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
+	// try {
+	// Request request = builder.sendRequest(null, new RequestCallback() {
+	// public void onError(Request request, Throwable exception) {
+	//
+	// }
+	//
+	// @Override
+	// public void onResponseReceived(Request request,
+	// Response response) {
+	//
+	// // Window.alert("AAABBBCCC " + response.getText());
+	//
+	// List<XMLVeliEkle> listXmlVeliEkle = XMLVeliEkle.XML
+	// .readList(response.getText());
+	//
+	// DlgVeliEkle dlgTemp = new DlgVeliEkle();
+	// dlgTemp.putDataFromXML(listXmlVeliEkle.get(0));
+	// dlgTemp.center();
+	//
+	// }
+	//
+	// });
+	//
+	// } catch (RequestException e) {
+	// // displayError("Couldn't retrieve JSON");
+	//
+	// // Window.alert(e.getMessage() + "ERROR");
+	// }
+	//
+	// }
 
 	public void putIlToCbx(final ListBox lbxTemp) {
 
@@ -669,7 +776,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		} catch (RequestException e) {
 			// displayError("Couldn't retrieve JSON");
 
-			Window.alert(e.getMessage() + "ERROR");
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -710,7 +817,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		} catch (RequestException e) {
 			// displayError("Couldn't retrieve JSON");
 
-			Window.alert(e.getMessage() + "ERROR");
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -723,7 +830,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				Util.urlBase + "getpostakodu?il=" + il + "&ilce=" + ilce);
 
-		Window.alert(Util.urlBase + "getpostakodu?il=" + il + "&ilce=" + ilce);
+		// Window.alert(Util.urlBase + "getpostakodu?il=" + il + "&ilce=" +
+		// ilce);
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -736,7 +844,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 				public void onResponseReceived(Request request,
 						Response response) {
 
-					Window.alert("AAABBBCCC " + response.getText());
+					// Window.alert("AAABBBCCC " + response.getText());
 
 					List<XMLPostaKodu> xmlpostakodu = XMLPostaKodu.XML
 							.readList(response.getText());
@@ -753,7 +861,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		} catch (RequestException e) {
 			// displayError("Couldn't retrieve JSON");
 
-			Window.alert(e.getMessage() + "ERROR");
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -768,8 +876,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 				Util.urlBase + "getpostakodumahalle?il=" + il + "&ilce=" + ilce
 						+ "&semt_bucak_belde=" + semt_bucak_belde);
 
-		Window.alert(Util.urlBase + "getpostakodumahalle?il=" + il + "&ilce="
-				+ ilce + "&semt_bucak_belde=" + semt_bucak_belde);
+		// Window.alert(Util.urlBase + "getpostakodumahalle?il=" + il + "&ilce="
+		// + ilce + "&semt_bucak_belde=" + semt_bucak_belde);
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -782,7 +890,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 				public void onResponseReceived(Request request,
 						Response response) {
 
-					Window.alert("AAABBBCCC " + response.getText());
+					// Window.alert("AAABBBCCC " + response.getText());
 
 					List<XMLPostaKoduMahalle> xmlpostakodumahalle = XMLPostaKoduMahalle.XML
 							.readList(response.getText());
@@ -800,7 +908,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		} catch (RequestException e) {
 			// displayError("Couldn't retrieve JSON");
 
-			Window.alert(e.getMessage() + "ERROR");
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -841,10 +949,58 @@ public class DlgDBSYeniKayit extends DialogBox {
 		} catch (RequestException e) {
 			// displayError("Couldn't retrieve JSON");
 
-			Window.alert(e.getMessage() + "ERROR");
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
+
+	// private void putDataToGrid() {
+	//
+	// String urlWithParameters = Util.urlBase + "getveliekle";
+	//
+	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+	// urlWithParameters);
+	//
+	// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
+	// try {
+	// Request request = builder.sendRequest(null, new RequestCallback() {
+	// public void onError(Request request, Throwable exception) {
+	//
+	// }
+	//
+	// @Override
+	// public void onResponseReceived(Request request,
+	// Response response) {
+	//
+	// // Window.alert("AAABBBCCC " + response.getText());
+	//
+	// List<XMLVeliEkle> listXmlVeliEkle = XMLVeliEkle.XML
+	// .readList(response.getText());
+	//
+	// // Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
+	//
+	// // Window.alert("gun: " + listXmlSaatGirisi.get(0).gun);
+	//
+	// // Set the total row count. This isn't strictly
+	// // necessary, but it affects
+	// // paging calculations, so its good habit to
+	// // keep the row count up to date.
+	// grdVeliEkle.setRowCount(1, true);
+	//
+	// // Push the data into the widget.
+	// grdVeliEkle.setRowData(0, listXmlVeliEkle);
+	//
+	// }
+	//
+	// });
+	//
+	// } catch (RequestException e) {
+	// // displayError("Couldn't retrieve JSON");
+	//
+	// // Window.alert(e.getMessage() + "ERROR");
+	// }
+	//
+	// }
 
 	// Implement the following method exactly as-is
 	private static final boolean isDesignTime() {
@@ -1058,7 +1214,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 			new Util().sendRequest(URLValue,
 					"ÖĞRENCİ BİLGİLERİ BAŞARI İLE KAYIT EDİLDİ",
-					"ÖĞRENCİ BİLGİLERİ BAŞARI İLE KAYIT EDİLDİ");
+					"ÖĞRENCİ BİLGİLERİ KAYIT EDİLEMEDİ");
 
 		}
 	}
@@ -1132,6 +1288,14 @@ public class DlgDBSYeniKayit extends DialogBox {
 		public void onChange(ChangeEvent event) {
 			putIlceToCbx(cbxOgrenciKimlikBilgileriIl.getSelectedIndex(),
 					cbxOgrenciKimlikBilgileriIlce);
+		}
+	}
+
+	private class BtnVeliEkleClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			DlgVeliEkle dlgTemp = new DlgVeliEkle();
+			dlgTemp.center();
+			dlgTemp.setAnimationEnabled(true);
 		}
 	}
 }

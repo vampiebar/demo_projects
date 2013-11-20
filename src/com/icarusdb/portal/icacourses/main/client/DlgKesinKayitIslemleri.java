@@ -27,6 +27,7 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 	public DecoratedTabPanel tabKesinKayitIslemleri;
 
 	public DlgKesinKayitIslemleri() {
+		setAutoHideEnabled(true);
 		setHTML("Kesin Kayıt İşlemleri");
 
 		tabKesinKayitIslemleri = new DecoratedTabPanel();

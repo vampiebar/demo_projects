@@ -83,8 +83,10 @@ public class DlgOnKayit extends DialogBox {
 	public DecoratedTabPanel tabOnKayit;
 	private CaptionPanel cptnpnlNewPanel;
 	private TextBox tctKursIndirimFiyati;
+	private DateBox dtpTarih;
 
 	public DlgOnKayit() {
+		setAutoHideEnabled(true);
 		setHTML("Ön Kayıt İşlemleri");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -279,6 +281,12 @@ public class DlgOnKayit extends DialogBox {
 		cbxOgrenciBilgileriSinif.addItem("12.Sınıf");
 		cbxOgrenciBilgileriSinif.setSize("127px", "22px");
 
+		dtpTarih = new DateBox();
+		dtpTarih.addValueChangeHandler(new DtpTarihValueChangeHandler());
+		dtpTarih.setFormat(new DefaultFormat(DateTimeFormat
+				.getFormat("yyyy.MM.dd")));
+		absolutePanel_2.add(dtpTarih, 96, 472);
+
 		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
 		absolutePanel_5.setStyleName("gwt-DialogBackGround");
 		tabOnKayit.add(absolutePanel_5, "Adres Bilgileri", false);
@@ -348,7 +356,7 @@ public class DlgOnKayit extends DialogBox {
 		cbxMahalle.addItem(" ");
 		cbxMahalle.setStyleName("gwt-ComboBox1");
 		absolutePanel_5.add(cbxMahalle, 125, 186);
-		cbxMahalle.setSize("146px", "22px");
+		cbxMahalle.setSize("199px", "22px");
 
 		tctSokakveNo = new TextBox();
 		absolutePanel_5.add(tctSokakveNo, 125, 230);
@@ -477,7 +485,7 @@ public class DlgOnKayit extends DialogBox {
 		cbxIndirimMiktari.addItem("Para");
 		cbxIndirimMiktari.addItem("Yüzde");
 		cbxIndirimMiktari.setStyleName("gwt-ComboBox1");
-		cbxIndirimMiktari.setSize("65px", "22px");
+		cbxIndirimMiktari.setSize("71px", "22px");
 
 		tctReferans = new TextBox();
 		absolutePanel_4.add(tctReferans, 163, 306);
@@ -689,32 +697,32 @@ public class DlgOnKayit extends DialogBox {
 		absolutePanel_7.add(grdVeliEkle, 10, 54);
 		grdVeliEkle.setSize("715px", "174px");
 
-		Column<XMLVeliEkle, Number> column = new Column<XMLVeliEkle, Number>(
-				new NumberCell()) {
+		TextColumn<XMLVeliEkle> textColumn_4 = new TextColumn<XMLVeliEkle>() {
 			@Override
-			public Number getValue(XMLVeliEkle object) {
-				return (object.veli_bilgileri_tc_kimlik_no);
+			public String getValue(XMLVeliEkle object) {
+				return object.veli_bilgileri_tc_kimlik_no.toString();
 			}
 		};
-		grdVeliEkle.addColumn(column, "TC Kimlik No");
+		grdVeliEkle.addColumn(textColumn_4, "TC Kimlik No");
+		grdVeliEkle.setColumnWidth(textColumn_4, "129px");
 
 		TextColumn<XMLVeliEkle> textColumn = new TextColumn<XMLVeliEkle>() {
 			public String getValue(XMLVeliEkle object) {
-				return (String) null;
+				return object.veli_bilgileri_adi.toString();
 			}
 		};
 		grdVeliEkle.addColumn(textColumn, "Adı");
 
 		TextColumn<XMLVeliEkle> textColumn_1 = new TextColumn<XMLVeliEkle>() {
 			public String getValue(XMLVeliEkle object) {
-				return (String) null;
+				return object.veli_bilgileri_soyadi.toString();
 			}
 		};
 		grdVeliEkle.addColumn(textColumn_1, "Soyadı");
 
 		TextColumn<XMLVeliEkle> textColumn_2 = new TextColumn<XMLVeliEkle>() {
 			public String getValue(XMLVeliEkle object) {
-				return (String) null;
+				return object.yakinlik_durumu;
 			}
 		};
 		grdVeliEkle.addColumn(textColumn_2, "Yakınlık Durumu");
@@ -723,19 +731,18 @@ public class DlgOnKayit extends DialogBox {
 				new EditTextCell()) {
 			@Override
 			public String getValue(XMLVeliEkle object) {
-				return (String) null;
+				return object.odeme_sorumlusu;
 			}
 		};
 		grdVeliEkle.addColumn(column_5, "Ödeme Sorumlusu");
 
-		Column<XMLVeliEkle, Number> column_1 = new Column<XMLVeliEkle, Number>(
-				new NumberCell()) {
+		TextColumn<XMLVeliEkle> textColumn_3 = new TextColumn<XMLVeliEkle>() {
 			@Override
-			public Number getValue(XMLVeliEkle object) {
-				return (object.cep_tel);
+			public String getValue(XMLVeliEkle object) {
+				return object.cep_tel.toString();
 			}
 		};
-		grdVeliEkle.addColumn(column_1, "Cep Tel");
+		grdVeliEkle.addColumn(textColumn_3, "Cep Tel");
 
 		Column<XMLVeliEkle, Number> column_2 = new Column<XMLVeliEkle, Number>(
 				new NumberCell()) {
@@ -781,11 +788,121 @@ public class DlgOnKayit extends DialogBox {
 		btnKapat1.setSize("78px", "48px");
 
 		if (!isDesignTime()) {
+			putDataToGrid();
 
-			putIlToCbx(cbxAdresBilgileriIl);
 			putIlToCbx(cbxOgrenciBilgileriIl);
+			putIlToCbx(cbxAdresBilgileriIl);
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl);
 
+			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
+			// SingleSelectionModel<XMLVeliEkle>();
+			//
+			// grdVeliEkle.setSelectionModel(selectionModel);
+			// grdVeliEkle.addDomHandler(new DoubleClickHandler() {
+			//
+			// @Override
+			// public void onDoubleClick(final DoubleClickEvent event) {
+			// XMLVeliEkle selected = selectionModel.getSelectedObject();
+			// if (selected != null) {
+			// // DO YOUR STUFF
+			//
+			// // Window.alert("selected id: " + selected.id);
+			// showWithData(selected.id);
+			//
+			// }
+			//
+			// }
+			//
+			// }, DoubleClickEvent.getType());
+
+		}
+
+	}
+
+	// private void showWithData(String id) {
+	//
+	// String urlWithParameters = Util.urlBase + "getveliekle?id=" + id;
+	//
+	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+	// urlWithParameters);
+	//
+	// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
+	// try {
+	// Request request = builder.sendRequest(null, new RequestCallback() {
+	// public void onError(Request request, Throwable exception) {
+	//
+	// }
+	//
+	// @Override
+	// public void onResponseReceived(Request request,
+	// Response response) {
+	//
+	// // Window.alert("AAABBBCCC " + response.getText());
+	//
+	// List<XMLVeliEkle> listXmlVeliEkle = XMLVeliEkle.XML
+	// .readList(response.getText());
+	//
+	// DlgVeliEkle dlgTemp = new DlgVeliEkle();
+	// dlgTemp.putDataFromXML(listXmlVeliEkle.get(0));
+	// dlgTemp.center();
+	//
+	// }
+	//
+	// });
+	//
+	// } catch (RequestException e) {
+	// // displayError("Couldn't retrieve JSON");
+	//
+	// // Window.alert(e.getMessage() + "ERROR");
+	// }
+	//
+	// }
+
+	private void putDataToGrid() {
+
+		String urlWithParameters = Util.urlBase + "getveliekle";
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLVeliEkle> listXmlVeliEkle = XMLVeliEkle.XML
+							.readList(response.getText());
+
+					// Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
+
+					// Window.alert("veli_bilgileri_adi: "
+					// + listXmlVeliEkle.get(0).veli_bilgileri_adi);
+
+					// Set the total row count. This isn't strictly
+					// necessary, but it affects
+					// paging calculations, so its good habit to
+					// keep the row count up to date.
+					grdVeliEkle.setRowCount(1, true);
+
+					// Push the data into the widget.
+					grdVeliEkle.setRowData(0, listXmlVeliEkle);
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -1009,51 +1126,6 @@ public class DlgOnKayit extends DialogBox {
 
 	}
 
-	// private void putDataToGrid() {
-	//
-	// String urlWithParameters = Util.urlBase + "getveliekle";
-	//
-	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-	// urlWithParameters);
-	//
-	// Window.alert("URL TO GET VALUES: " + urlWithParameters);
-	//
-	// try {
-	// Request request = builder.sendRequest(null, new RequestCallback() {
-	// public void onError(Request request, Throwable exception) {
-	//
-	// }
-	//
-	// @Override
-	// public void onResponseReceived(Request request,
-	// Response response) {
-	//
-	// Window.alert("AAABBBCCC " + response.getText());
-	//
-	// List<XMLVeliEkle> listXmlVeliEkle = XMLVeliEkle.XML
-	// .readList(response.getText());
-	//
-	// // Set the total row count. This isn't strictly
-	// // necessary, but it affects
-	// // paging calculations, so its good habit to
-	// // keep the row count up to date.
-	// grdVeliEkle.setRowCount(1, true);
-	//
-	// // Push the data into the widget.
-	// grdVeliEkle.setRowData(0, listXmlVeliEkle);
-	//
-	// }
-	//
-	// });
-	//
-	// } catch (RequestException e) {
-	// // displayError("Couldn't retrieve JSON");
-	//
-	// Window.alert(e.getMessage() + "ERROR");
-	// }
-	//
-	// }
-
 	public void putDataFromXML(XMLOnKayit xml) {
 
 		// Window.alert("adi:" + xml.adi);
@@ -1076,6 +1148,7 @@ public class DlgOnKayit extends DialogBox {
 		tctVerildigiYer.setText(xml.verildigi_yer);
 		tctVerilisNedeni.setText(xml.verilis_nedeni);
 		tctKayitNo.setText(xml.kayit_no);
+		tctKursIndirimFiyati.setText(xml.kurs_indirim_fiyati);
 
 		cbxCinsiyet.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxCinsiyet,
 				xml.cinsiyet));
@@ -1157,6 +1230,8 @@ public class DlgOnKayit extends DialogBox {
 			URLValue = URLValue + "&ev_telefonu=" + tctEvTelefonu.getText();
 			URLValue = URLValue + "&cep_telefonu=" + tctCepTelefonu.getText();
 			URLValue = URLValue + "&email=" + tctEmail.getText();
+			URLValue = URLValue + "&kurs_inidirim_fiyati="
+					+ tctKursIndirimFiyati.getText();
 
 			URLValue = URLValue
 					+ "&ogrenci_bilgileri_ulke="
@@ -1255,6 +1330,7 @@ public class DlgOnKayit extends DialogBox {
 			URLValue = URLValue + "&verilis_nedeni="
 					+ tctVerilisNedeni.getText();
 			URLValue = URLValue + "&kayit_no=" + tctKayitNo.getText();
+			URLValue = URLValue + "&tarih=" + dtpTarih.getValue();
 
 			// Window.alert(URLValue);
 
@@ -1278,6 +1354,7 @@ public class DlgOnKayit extends DialogBox {
 		public void onValueChange(ValueChangeEvent<Date> event) {
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 			// Window.alert(dtf.format(dtpDogumTarihi.getValue()));
+
 		}
 	}
 
@@ -1358,6 +1435,13 @@ public class DlgOnKayit extends DialogBox {
 							.getSelectedIndex()), cbxSemt.getItemText(cbxSemt
 							.getSelectedIndex()), cbxMahalle);
 
+		}
+	}
+
+	private class DtpTarihValueChangeHandler implements
+			ValueChangeHandler<Date> {
+		public void onValueChange(ValueChangeEvent<Date> event) {
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 		}
 	}
 }
