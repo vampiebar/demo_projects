@@ -7,7 +7,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -99,7 +98,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		dtpSinavTarihi
 				.addValueChangeHandler(new DtpSinavTarihiValueChangeHandler());
 		dtpSinavTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy.MM.dd HH:mm")));
+				.getShortDateTimeFormat()));
 		absolutePanel.add(dtpSinavTarihi, 141, 144);
 		dtpSinavTarihi.setSize("172px", "14px");
 
@@ -139,7 +138,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 			URLValue = URLValue + "&bina_sekli="
 					+ cbxBinaSekli.getValue(cbxBinaSekli.getSelectedIndex());
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "SINAV BİLGİSİ KAYIT EDİLDİ",
 					"SINAV BİLGİSİ KAYIT EDİLEMEDİ");
@@ -150,7 +149,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm");
-			Window.alert(dtf.format(dtpSinavTarihi.getValue()));
+			// Window.alert(dtf.format(dtpSinavTarihi.getValue()));
 
 		}
 	}

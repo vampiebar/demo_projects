@@ -30,6 +30,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
@@ -84,22 +85,27 @@ public class DlgOnKayit extends DialogBox {
 	private CaptionPanel cptnpnlNewPanel;
 	private TextBox tctKursIndirimFiyati;
 
+	public DialogBox _dlgonkayit;
+
 	public DlgOnKayit() {
-		setAutoHideEnabled(true);
+
+		_dlgonkayit = this;
+
+		setAutoHideEnabled(false);
 		setHTML("Ön Kayıt İşlemleri");
 
-		AbsolutePanel absolutePanel = new AbsolutePanel();
-		setWidget(absolutePanel);
-		absolutePanel.setSize("840px", "695px");
+		VerticalPanel verticalpanel = new VerticalPanel();
+		setWidget(verticalpanel);
+		verticalpanel.setSize("854px", "737px");
 
 		tabOnKayit = new DecoratedTabPanel();
-		absolutePanel.add(tabOnKayit, 10, 0);
-		tabOnKayit.setSize("462px", "156px");
+		verticalpanel.add(tabOnKayit);
+		tabOnKayit.setSize("462px", "705px");
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
 		tabOnKayit.add(absolutePanel_2, "Öğrenci Bilgileri", false);
-		absolutePanel_2.setSize("840px", "712px");
+		absolutePanel_2.setSize("840px", "667px");
 
 		Label label_27 = new Label("Adı");
 		label_27.setStyleName("gwt-Bold");
@@ -122,6 +128,8 @@ public class DlgOnKayit extends DialogBox {
 		label_29.setSize("85px", "18px");
 
 		Button btnBilgileriniGetir = new Button("Bilgilerini Getir");
+		btnBilgileriniGetir
+				.addClickHandler(new BtnBilgileriniGetirClickHandler());
 		btnBilgileriniGetir.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_2.add(btnBilgileriniGetir, 304, 62);
 		btnBilgileriniGetir.setSize("127px", "22px");
@@ -218,7 +226,7 @@ public class DlgOnKayit extends DialogBox {
 		flexTable.setWidget(0, 2, cbxOgrenciBilgileriUlke);
 		cbxOgrenciBilgileriUlke.setStyleName("gwt-ComboBox1");
 		cbxOgrenciBilgileriUlke.addItem("Türkiye");
-		cbxOgrenciBilgileriUlke.setSize("128px", "22px");
+		cbxOgrenciBilgileriUlke.setSize("135px", "22px");
 
 		Label label_23 = new Label("İl");
 		label_23.setStyleName("gwt-Bold");
@@ -253,6 +261,7 @@ public class DlgOnKayit extends DialogBox {
 		label_25.setSize("27px", "18px");
 
 		cbxOkul = new ListBox();
+		cbxOkul.setStyleName("gwt-ComboBox1");
 		flexTable.setWidget(3, 2, cbxOkul);
 		cbxOkul.addItem(" ");
 		cbxOkul.setSize("350px", "22px");
@@ -263,6 +272,7 @@ public class DlgOnKayit extends DialogBox {
 		label_26.setSize("26px", "18px");
 
 		cbxOgrenciBilgileriSinif = new ListBox();
+		cbxOgrenciBilgileriSinif.setStyleName("gwt-ComboBox1");
 		flexTable.setWidget(4, 2, cbxOgrenciBilgileriSinif);
 		cbxOgrenciBilgileriSinif.addItem("1.Sınıf");
 		cbxOgrenciBilgileriSinif.addItem("2.Sınıf");
@@ -278,7 +288,7 @@ public class DlgOnKayit extends DialogBox {
 		cbxOgrenciBilgileriSinif.addItem("Lise Mezun");
 		cbxOgrenciBilgileriSinif.addItem("Üniversite Mezun");
 		cbxOgrenciBilgileriSinif.addItem("12.Sınıf");
-		cbxOgrenciBilgileriSinif.setSize("127px", "22px");
+		cbxOgrenciBilgileriSinif.setSize("135px", "22px");
 
 		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
 		absolutePanel_5.setStyleName("gwt-DialogBackGround");
@@ -349,16 +359,69 @@ public class DlgOnKayit extends DialogBox {
 		cbxMahalle.addItem(" ");
 		cbxMahalle.setStyleName("gwt-ComboBox1");
 		absolutePanel_5.add(cbxMahalle, 125, 186);
-		cbxMahalle.setSize("199px", "22px");
+		cbxMahalle.setSize("209px", "22px");
 
 		tctSokakveNo = new TextBox();
+		tctSokakveNo.setStyleName("gwt-TextBox1");
 		absolutePanel_5.add(tctSokakveNo, 125, 230);
-		tctSokakveNo.setSize("191px", "48px");
+		tctSokakveNo.setSize("207px", "48px");
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
 		tabOnKayit.add(absolutePanel_3, "DBS Sonuç", false);
 		absolutePanel_3.setSize("840px", "712px");
+
+		Label lblNewLabel_2 = new Label("Okul Durumu");
+		lblNewLabel_2.setStyleName("gwt-Bold");
+		absolutePanel_3.add(lblNewLabel_2, 10, 22);
+
+		Label lblAlanBilgisi = new Label("Alan Bilgisi");
+		lblAlanBilgisi.setStyleName("gwt-Bold");
+		absolutePanel_3.add(lblAlanBilgisi, 10, 54);
+
+		Label lblSnavTarihi = new Label("Sınav Tarihi");
+		lblSnavTarihi.setStyleName("gwt-Bold");
+		absolutePanel_3.add(lblSnavTarihi, 10, 88);
+
+		Label lblNewLabel_3 = new Label("DBS Sıralaması");
+		lblNewLabel_3.setStyleName("gwt-Bold");
+		absolutePanel_3.add(lblNewLabel_3, 10, 122);
+
+		Label lblSonuc = new Label("Sonuç");
+		lblSonuc.setStyleName("gwt-Bold");
+		absolutePanel_3.add(lblSonuc, 10, 151);
+
+		TextBox textBox = new TextBox();
+		absolutePanel_3.add(textBox, 129, 22);
+		textBox.setSize("115px", "10px");
+
+		TextBox textBox_1 = new TextBox();
+		absolutePanel_3.add(textBox_1, 129, 54);
+		textBox_1.setSize("115px", "10px");
+
+		TextBox textBox_2 = new TextBox();
+		absolutePanel_3.add(textBox_2, 129, 88);
+		textBox_2.setSize("115px", "10px");
+
+		TextBox txtbxGirilmemi = new TextBox();
+		txtbxGirilmemi.setReadOnly(true);
+		txtbxGirilmemi.setText("Sonuç Girilmemiş");
+		absolutePanel_3.add(txtbxGirilmemi, 129, 122);
+		txtbxGirilmemi.setSize("115px", "10px");
+
+		TextBox txtbxSonuGirilmemi = new TextBox();
+		txtbxSonuGirilmemi.setReadOnly(true);
+		txtbxSonuGirilmemi.setText("Sonuç Girilmemiş");
+		absolutePanel_3.add(txtbxSonuGirilmemi, 129, 151);
+		txtbxSonuGirilmemi.setSize("115px", "10px");
+
+		TextBox textBox_5 = new TextBox();
+		absolutePanel_3.add(textBox_5, 129, 186);
+		textBox_5.setSize("115px", "10px");
+
+		Label lblIndirimMiktar_1 = new Label("İndirim Miktarı");
+		lblIndirimMiktar_1.setStyleName("gwt-Bold");
+		absolutePanel_3.add(lblIndirimMiktar_1, 10, 186);
 
 		AbsolutePanel absolutePanel_4 = new AbsolutePanel();
 		absolutePanel_4.setStyleName("gwt-DialogBackGround");
@@ -481,8 +544,9 @@ public class DlgOnKayit extends DialogBox {
 		cbxIndirimMiktari.setSize("71px", "22px");
 
 		tctReferans = new TextBox();
+		tctReferans.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(tctReferans, 163, 306);
-		tctReferans.setSize("132px", "10px");
+		tctReferans.setSize("138px", "14px");
 
 		dtpGorusmeTarihi = new DateBox();
 		absolutePanel_4.add(dtpGorusmeTarihi, 163, 350);
@@ -509,21 +573,24 @@ public class DlgOnKayit extends DialogBox {
 		cbxGorusmeSonucu.setSize("140px", "18px");
 
 		tctGorusmeYuzdesi = new TextBox();
+		tctGorusmeYuzdesi.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(tctGorusmeYuzdesi, 163, 480);
-		tctGorusmeYuzdesi.setSize("140px", "10px");
+		tctGorusmeYuzdesi.setSize("138px", "14px");
 
 		tctAciklama = new TextBox();
+		tctAciklama.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(tctAciklama, 163, 520);
 		tctAciklama.setSize("264px", "58px");
 
 		tctKursIndirimFiyati = new TextBox();
+		tctKursIndirimFiyati.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(tctKursIndirimFiyati, 163, 191);
-		tctKursIndirimFiyati.setSize("128px", "10px");
+		tctKursIndirimFiyati.setSize("138px", "14px");
 
 		AbsolutePanel absolutePanel_8 = new AbsolutePanel();
 		absolutePanel_8.setStyleName("gwt-DialogBackGround");
 		tabOnKayit.add(absolutePanel_8, "Öğrenci Kimlik Bilgileri", false);
-		absolutePanel_8.setSize("840px", "712px");
+		absolutePanel_8.setSize("840px", "666px");
 
 		Label label_6 = new Label("Seri No");
 		label_6.setStyleName("gwt-Bold");
@@ -765,7 +832,7 @@ public class DlgOnKayit extends DialogBox {
 		grdVeliEkle.addColumn(column_4, "Sil");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
-		absolutePanel.add(absolutePanel_1, 478, 606);
+		verticalpanel.add(absolutePanel_1);
 		absolutePanel_1.setSize("191px", "67px");
 
 		Button btnYeniOgrenci = new Button("Yeni Öğrenci");
@@ -814,7 +881,7 @@ public class DlgOnKayit extends DialogBox {
 
 	// private void showWithData(String id) {
 	//
-	// String urlWithParameters = Util.urlBase + "getveliekle?id=" + id;
+	// String urlWithParameters = Util.urlBase + "getveliler?id=" + id;
 	//
 	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 	// urlWithParameters);
@@ -853,7 +920,7 @@ public class DlgOnKayit extends DialogBox {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getveliekle";
+		String urlWithParameters = Util.urlBase + "getveliler";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -1429,4 +1496,50 @@ public class DlgOnKayit extends DialogBox {
 
 		}
 	}
+
+	private class BtnBilgileriniGetirClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			String urlWithParameters = Util.urlBase + "getonkayit"
+					+ "?tc_kimlik_no=" + tctTCKimlikNo.getText();
+
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					urlWithParameters);
+			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+			try {
+				Request request = builder.sendRequest(null,
+						new RequestCallback() {
+							public void onError(Request request,
+									Throwable exception) {
+
+							}
+
+							@Override
+							public void onResponseReceived(Request request,
+									Response response) {
+
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
+								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
+										.readList(response.getText());
+								_dlgonkayit.hide();
+								DlgOnKayit dlgTemp = new DlgOnKayit();
+
+								dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
+								dlgTemp.center();
+								dlgTemp.tabOnKayit.selectTab(0);
+
+							}
+
+						});
+
+			} catch (RequestException e) {
+				// displayError("Couldn't retrieve JSON");
+
+				// Window.alert(e.getMessage() + "ERROR");
+			}
+
+		}
+	}
+
 }

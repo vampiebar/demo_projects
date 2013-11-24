@@ -14,6 +14,9 @@ public class XMLVeliEkle {
 	@Path("id")
 	String id;
 
+	@Path("ogrenci_tc_kimlik_no")
+	String ogrenci_tc_kimlik_no;
+
 	@Path("veli_bilgileri_adi")
 	String veli_bilgileri_adi;
 

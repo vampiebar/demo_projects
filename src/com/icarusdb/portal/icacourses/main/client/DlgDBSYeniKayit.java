@@ -19,7 +19,6 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
@@ -33,6 +32,7 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgDBSYeniKayit extends DialogBox {
+
 	private TextBox tctAdi;
 	private TextBox tctSoyadi;
 	private TextBox tctTCKimlikNo;
@@ -72,14 +72,19 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private ListBox cbxOkul;
 	private CellTable<XMLVeliEkle> grdVeliEkle;
 
+	public DialogBox _dlgDBSYeniKayit;
+
 	public DlgDBSYeniKayit() {
-		setAutoHideOnHistoryEventsEnabled(true);
-		setAutoHideEnabled(true);
+
+		_dlgDBSYeniKayit = this;
+
+		setAutoHideOnHistoryEventsEnabled(false);
+		setAutoHideEnabled(false);
 		setHTML("DBS Sınav Kayıt");
 
 		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
 		setWidget(decoratedTabPanel);
-		decoratedTabPanel.setSize("761px", "724px");
+		decoratedTabPanel.setSize("742px", "642px");
 
 		vtpanOgrenciBilgileri = new AbsolutePanel();
 		vtpanOgrenciBilgileri.setStyleName("gwt-DialogBackGround");
@@ -107,8 +112,9 @@ public class DlgDBSYeniKayit extends DialogBox {
 		vtpanOgrenciBilgileri.add(lblTcKimlikNo, 10, 52);
 
 		Button btnNewButton = new Button("Bilgilerini Getir");
+		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
 		btnNewButton.setStyleName("gwt-ButonYeniKayit");
-		vtpanOgrenciBilgileri.add(btnNewButton, 296, 56);
+		vtpanOgrenciBilgileri.add(btnNewButton, 298, 52);
 		btnNewButton.setSize("113px", "22px");
 
 		tctSoyadi = new TextBox();
@@ -168,7 +174,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 		Label lblEmail = new Label("E-Mail");
 		lblEmail.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblEmail, 10, 249);
+		vtpanOgrenciBilgileri.add(lblEmail, 10, 242);
+		lblEmail.setSize("37px", "18px");
 
 		Label lblOkulBilgisi = new Label("OKUL BİLGİSİ");
 		lblOkulBilgisi.setStyleName("gwt-Bold");
@@ -176,7 +183,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 		tctEmail = new TextBox();
 		tctEmail.setStyleName("gwt-TextBox1");
-		vtpanOgrenciBilgileri.add(tctEmail, 157, 249);
+		vtpanOgrenciBilgileri.add(tctEmail, 157, 242);
 		tctEmail.setSize("232px", "14px");
 
 		Label lblUlke = new Label("Ulke");
@@ -217,13 +224,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOgrenciBilgileriSinif.addItem("12.Sınıf");
 		cbxOgrenciBilgileriSinif.setStyleName("gwt-ComboBox1");
 		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriSinif, 157, 453);
-		cbxOgrenciBilgileriSinif.setSize("127px", "22px");
+		cbxOgrenciBilgileriSinif.setSize("138px", "22px");
 
 		cbxOgrenciBilgileriUlke = new ListBox();
 		cbxOgrenciBilgileriUlke.setStyleName("gwt-ComboBox1");
 		cbxOgrenciBilgileriUlke.addItem("Türkiye");
 		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriUlke, 157, 308);
-		cbxOgrenciBilgileriUlke.setSize("128px", "22px");
+		cbxOgrenciBilgileriUlke.setSize("138px", "22px");
 
 		cbxOgrenciBilgileriIl = new ListBox();
 		cbxOgrenciBilgileriIl
@@ -269,6 +276,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		btnKapat5.setSize("78px", "50px");
 
 		cbxOkul = new ListBox();
+		cbxOkul.setStyleName("gwt-ComboBox1");
 		cbxOkul.addItem(" ");
 		vtpanOgrenciBilgileri.add(cbxOkul, 157, 419);
 		cbxOkul.setSize("266px", "22px");
@@ -395,11 +403,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 		tctKayitNo.setSize("158px", "14px");
 
 		cbxOgrenciKimlikBilgileriUlke = new ListBox();
+		cbxOgrenciKimlikBilgileriUlke.setStyleName("gwt-ComboBox1");
 		cbxOgrenciKimlikBilgileriUlke.addItem("Türkiye");
 		absolutePanel.add(cbxOgrenciKimlikBilgileriUlke, 130, 127);
 		cbxOgrenciKimlikBilgileriUlke.setSize("162px", "22px");
 
 		cbxOgrenciKimlikBilgileriIl = new ListBox();
+		cbxOgrenciKimlikBilgileriIl.setStyleName("gwt-ComboBox1");
 		cbxOgrenciKimlikBilgileriIl
 				.addChangeHandler(new CbxOgrenciKimlikBilgileriIlChangeHandler());
 		cbxOgrenciKimlikBilgileriIl.addItem(" ");
@@ -407,6 +417,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOgrenciKimlikBilgileriIl.setSize("162px", "22px");
 
 		cbxOgrenciKimlikBilgileriIlce = new ListBox();
+		cbxOgrenciKimlikBilgileriIlce.setStyleName("gwt-ComboBox1");
 		cbxOgrenciKimlikBilgileriIlce.addItem(" ");
 		absolutePanel.add(cbxOgrenciKimlikBilgileriIlce, 130, 200);
 		cbxOgrenciKimlikBilgileriIlce.setSize("162px", "22px");
@@ -449,39 +460,44 @@ public class DlgDBSYeniKayit extends DialogBox {
 		absolutePanel_2.add(lblNewLabel_18, 10, 237);
 
 		cbxAdresBilgileriUlke = new ListBox();
+		cbxAdresBilgileriUlke.setStyleName("gwt-ComboBox1");
 		cbxAdresBilgileriUlke.addItem("Türkiye");
 		absolutePanel_2.add(cbxAdresBilgileriUlke, 125, 17);
-		cbxAdresBilgileriUlke.setSize("146px", "22px");
+		cbxAdresBilgileriUlke.setSize("156px", "22px");
 
 		cbxAdresBilgileriIl = new ListBox();
+		cbxAdresBilgileriIl.setStyleName("gwt-ComboBox1");
 		cbxAdresBilgileriIl
 				.addChangeHandler(new CbxAdresBilgileriIlChangeHandler());
 		cbxAdresBilgileriIl.addItem(" ");
 		absolutePanel_2.add(cbxAdresBilgileriIl, 125, 64);
-		cbxAdresBilgileriIl.setSize("146px", "22px");
+		cbxAdresBilgileriIl.setSize("156px", "22px");
 
 		cbxAdresBilgileriIlce = new ListBox();
+		cbxAdresBilgileriIlce.setStyleName("gwt-ComboBox1");
 		cbxAdresBilgileriIlce
 				.addChangeHandler(new CbxAdresBilgileriIlceChangeHandler());
 		cbxAdresBilgileriIlce.addItem(" ");
 		absolutePanel_2.add(cbxAdresBilgileriIlce, 125, 118);
-		cbxAdresBilgileriIlce.setSize("146px", "22px");
+		cbxAdresBilgileriIlce.setSize("156px", "22px");
 
 		cbxSemt = new ListBox();
+		cbxSemt.setStyleName("gwt-ComboBox1");
 		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
 		cbxSemt.addItem(" ");
 		absolutePanel_2.add(cbxSemt, 125, 152);
-		cbxSemt.setSize("146px", "22px");
+		cbxSemt.setSize("156px", "22px");
 
 		cbxMahalle = new ListBox();
+		cbxMahalle.setStyleName("gwt-ComboBox1");
 		cbxMahalle.addItem(" ");
 		absolutePanel_2.add(cbxMahalle, 125, 193);
-		cbxMahalle.setSize("193px", "22px");
+		cbxMahalle.setSize("220px", "22px");
 
 		tctSokakveNo = new TextBox();
 		tctSokakveNo.setStyleName("gwt-TextBox1");
 		absolutePanel_2.add(tctSokakveNo, 125, 237);
-		tctSokakveNo.setSize("191px", "48px");
+		tctSokakveNo.setSize("218px", "48px");
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
@@ -527,9 +543,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxAlanbilgisi.setSize("132px", "22px");
 
 		cbxSinavTarihi = new ListBox();
+		cbxSinavTarihi.addItem("2013-11-24");
 		cbxSinavTarihi.setStyleName("gwt-ComboBox1");
-		cbxSinavTarihi.addItem("1");
-		cbxSinavTarihi.addItem("2");
 		absolutePanel_3.add(cbxSinavTarihi, 126, 107);
 		cbxSinavTarihi.setSize("132px", "22px");
 
@@ -655,7 +670,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getveliekle";
+		String urlWithParameters = Util.urlBase + "getveliler";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -704,7 +719,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 	// protected void showWithData(String id) {
 	//
-	// String urlWithParameters = Util.urlBase + "getveliekle?id=" + id;
+	// String urlWithParameters = Util.urlBase + "getveliler?id=" + id;
 	//
 	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 	// urlWithParameters);
@@ -956,7 +971,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 	// private void putDataToGrid() {
 	//
-	// String urlWithParameters = Util.urlBase + "getveliekle";
+	// String urlWithParameters = Util.urlBase + "getveliler";
 	//
 	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 	// urlWithParameters);
@@ -1210,7 +1225,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 					+ cbxSinavTarihi
 							.getValue(cbxSinavTarihi.getSelectedIndex());
 
-			Window.alert("Öğrenci Başarıyla Kayıt Edilmiştir.");
+			// Window.alert("Öğrenci Başarıyla Kayıt Edilmiştir.");
 
 			new Util().sendRequest(URLValue,
 					"ÖĞRENCİ BİLGİLERİ BAŞARI İLE KAYIT EDİLDİ",
@@ -1298,4 +1313,55 @@ public class DlgDBSYeniKayit extends DialogBox {
 			dlgTemp.setAnimationEnabled(true);
 		}
 	}
+
+	private class BtnNewButtonClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			// DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit();
+			// dlgTemp.hide();
+
+			String urlWithParameters = Util.urlBase + "getdbskayit"
+					+ "?tc_kimlik_no=" + tctTCKimlikNo.getText();
+
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					urlWithParameters);
+			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+			try {
+				Request request = builder.sendRequest(null,
+						new RequestCallback() {
+							public void onError(Request request,
+									Throwable exception) {
+
+							}
+
+							@Override
+							public void onResponseReceived(Request request,
+									Response response) {
+
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
+								List<XMLDBSKayit> listXmlDBSKayit = XMLDBSKayit.XML
+										.readList(response.getText());
+
+								_dlgDBSYeniKayit.hide();
+
+								DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit();
+
+								dlgTemp.putDataFromXML(listXmlDBSKayit.get(0));
+								dlgTemp.center();
+								// dlgTemp.tab.selectTab(0);
+
+							}
+
+						});
+
+			} catch (RequestException e) {
+				// displayError("Couldn't retrieve JSON");
+
+				// Window.alert(e.getMessage() + "ERROR");
+			}
+
+		}
+	}
+
 }

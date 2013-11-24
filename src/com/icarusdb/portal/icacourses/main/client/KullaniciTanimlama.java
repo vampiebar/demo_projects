@@ -38,7 +38,7 @@ public class KullaniciTanimlama extends Composite {
 		btnYeniKayit.setSize("78px", "48px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 556, 53);
 		btnListeyiYenile.setSize("78px", "48px");
 
@@ -62,6 +62,7 @@ public class KullaniciTanimlama extends Composite {
 			}
 		};
 		grdKullaniciTanimlari.addColumn(column, "Kullanıcı Kodu");
+		grdKullaniciTanimlari.setColumnWidth(column, "124px");
 
 		Column<XMLKullaniciTanimlama, ?> textColumn = new TextColumn<XMLKullaniciTanimlama>() {
 			@Override

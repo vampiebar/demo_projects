@@ -58,8 +58,6 @@ public class Main implements EntryPoint {
 	private TreeItem tritmgelirgidertanimlari;
 	private TreeItem tritmgelirgiderkategorileri;
 	private TreeItem tritmbankaekle;
-	private TreeItem tritmNewItem_11;
-	private DisclosurePanel disclosurePanel_6;
 	private TreeItem tritmDBSSinavTanimla;
 	private TreeItem tritmOgretmenTanimlari;
 	private TreeItem tritmSinifTanimlari;
@@ -324,22 +322,6 @@ public class Main implements EntryPoint {
 		tritmbankaekle.setWidth("130px");
 		tritmbankaekle.setState(true);
 
-		disclosurePanel_6 = new DisclosurePanel("MEVZUAT", false);
-		disclosurePanel_6
-				.setStyleName("gwt-RichTextToolbar .gwt-PushButton-up-hovering");
-		disclosurePanel_6.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel_6);
-		disclosurePanel_6.setSize("220px", "26px");
-
-		Tree tree_6 = new Tree();
-		disclosurePanel_6.setContent(tree_6);
-		tree_6.setSize("122px", "38px");
-
-		tritmNewItem_11 = new TreeItem("Öğretmen Listesi");
-		tritmNewItem_11.setStyleName("gwttreeee");
-		tree_6.addItem(tritmNewItem_11);
-		tritmNewItem_11.setWidth("130px");
-
 		DisclosurePanel disclosurePanel_7 = new DisclosurePanel(
 				"DÖNEMSEL TANIMLAR", false);
 		disclosurePanel_7
@@ -470,7 +452,7 @@ public class Main implements EntryPoint {
 
 		smpanMain = new SimplePanel();
 		rootPanel.add(smpanMain, 280, 95);
-		smpanMain.setSize("100%", "606px");
+		smpanMain.setSize("1012px", "606px");
 
 		Label lblDer = new Label("Dershane Yönetim Sistemi");
 		smpanMain.setWidget(lblDer);
