@@ -116,7 +116,7 @@ public class DlgSablonTanimlari extends DialogBox {
 		tctAlanYok.setSize("143px", "14px");
 
 		Label lblDatadanCevapAnahtar = new Label(
-				"Datadan Cevap Anahtarı Alam Parametresi");
+				"Datadan Cevap Anahtarı Alan Parametresi");
 		lblDatadanCevapAnahtar.setStyleName("gwt-Bold");
 		absolutePanel.add(lblDatadanCevapAnahtar, 363, 117);
 		lblDatadanCevapAnahtar.setSize("309px", "18px");

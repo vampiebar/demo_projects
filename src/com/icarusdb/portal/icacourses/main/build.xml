@@ -11,7 +11,7 @@
 
 	<property name="gwt.home" value="/Users/vampie/ECLIPSE_43_64/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1" />
 	<property name="gwt.module.id" value="com.icarusdb.portal.icacourses.main.Main" />
-	<property name="war.name" value="Main.war" />
+	<property name="war.name" value="ICACourses.war" />
 
 	<target name="jars" description="Package up the module project and required projects as jars">
 		<mkdir dir="war/WEB-INF/lib" />
