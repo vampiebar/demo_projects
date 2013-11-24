@@ -266,7 +266,6 @@ public class KurumsalBilgiler extends Composite {
 		tctFaks.setText(xml.faks);
 		tctMudur.setText(xml.mudur);
 		tctYoneticiTel.setText(xml.yonetici_tel);
-		tctMudurYardimcisi.setValue(xml.mudur_yardimcisi);
 
 	}
 

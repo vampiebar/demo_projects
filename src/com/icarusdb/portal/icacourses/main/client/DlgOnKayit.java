@@ -83,7 +83,6 @@ public class DlgOnKayit extends DialogBox {
 	public DecoratedTabPanel tabOnKayit;
 	private CaptionPanel cptnpnlNewPanel;
 	private TextBox tctKursIndirimFiyati;
-	private DateBox dtpTarih;
 
 	public DlgOnKayit() {
 		setAutoHideEnabled(true);
@@ -280,12 +279,6 @@ public class DlgOnKayit extends DialogBox {
 		cbxOgrenciBilgileriSinif.addItem("Üniversite Mezun");
 		cbxOgrenciBilgileriSinif.addItem("12.Sınıf");
 		cbxOgrenciBilgileriSinif.setSize("127px", "22px");
-
-		dtpTarih = new DateBox();
-		dtpTarih.addValueChangeHandler(new DtpTarihValueChangeHandler());
-		dtpTarih.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy.MM.dd")));
-		absolutePanel_2.add(dtpTarih, 96, 472);
 
 		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
 		absolutePanel_5.setStyleName("gwt-DialogBackGround");
@@ -1330,7 +1323,6 @@ public class DlgOnKayit extends DialogBox {
 			URLValue = URLValue + "&verilis_nedeni="
 					+ tctVerilisNedeni.getText();
 			URLValue = URLValue + "&kayit_no=" + tctKayitNo.getText();
-			URLValue = URLValue + "&tarih=" + dtpTarih.getValue();
 
 			// Window.alert(URLValue);
 
@@ -1435,13 +1427,6 @@ public class DlgOnKayit extends DialogBox {
 							.getSelectedIndex()), cbxSemt.getItemText(cbxSemt
 							.getSelectedIndex()), cbxMahalle);
 
-		}
-	}
-
-	private class DtpTarihValueChangeHandler implements
-			ValueChangeHandler<Date> {
-		public void onValueChange(ValueChangeEvent<Date> event) {
-			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 		}
 	}
 }
