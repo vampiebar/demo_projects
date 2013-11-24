@@ -30,6 +30,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
@@ -88,13 +89,14 @@ public class DlgOnKayit extends DialogBox {
 		setAutoHideEnabled(true);
 		setHTML("Ön Kayıt İşlemleri");
 
-		AbsolutePanel absolutePanel = new AbsolutePanel();
-		setWidget(absolutePanel);
-		absolutePanel.setSize("840px", "695px");
+		VerticalPanel verticalPanel = new VerticalPanel();
+		
+		setWidget(verticalPanel);
+		verticalPanel.setSize("840px", "695px");
 
 		tabOnKayit = new DecoratedTabPanel();
-		absolutePanel.add(tabOnKayit, 10, 0);
-		tabOnKayit.setSize("462px", "156px");
+		verticalPanel.add(tabOnKayit);
+		tabOnKayit.setSize("854px", "647px");
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
@@ -765,7 +767,7 @@ public class DlgOnKayit extends DialogBox {
 		grdVeliEkle.addColumn(column_4, "Sil");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
-		absolutePanel.add(absolutePanel_1, 478, 606);
+		verticalPanel.add(absolutePanel_1);
 		absolutePanel_1.setSize("191px", "67px");
 
 		Button btnYeniOgrenci = new Button("Yeni Öğrenci");
@@ -1211,6 +1213,7 @@ public class DlgOnKayit extends DialogBox {
 
 	private class BtnYeniOgrenciClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
+			
 			String URLValue = Util.urlBase + "putonkayit?";
 
 			URLValue = URLValue + "adi=" + tctAdi.getText();

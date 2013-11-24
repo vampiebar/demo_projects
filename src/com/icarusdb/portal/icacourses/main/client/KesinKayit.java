@@ -37,6 +37,7 @@ public class KesinKayit extends Composite {
 	private CellTable<XMLOnKayit> grdKesinKayit;
 	private Column<XMLOnKayit, ?> grdcAdi;
 	private Column<XMLOnKayit, ?> grdcSoyadi;
+	private Button btnAra;
 
 	public KesinKayit() {
 
@@ -122,7 +123,7 @@ public class KesinKayit extends Composite {
 		absolutePanel.add(cbxKayitDurumu, 133, 176);
 		cbxKayitDurumu.setSize("144px", "25px");
 
-		Button btnAra = new Button("ARA");
+		btnAra = new Button("ARA");
 		btnAra.setStyleName("gwt-ButonKapat");
 		btnAra.addClickHandler(new BtnAraClickHandler());
 		absolutePanel.add(btnAra, 493, 33);
@@ -292,8 +293,14 @@ public class KesinKayit extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+			
+			// btnAra Clicked
+			new BtnAraClickHandler().onClick(null);
+		
 		}
 
+		
+		
 	}
 
 	private boolean isDesignTime() {
