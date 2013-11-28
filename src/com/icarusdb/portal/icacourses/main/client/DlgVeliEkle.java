@@ -11,6 +11,10 @@ import com.google.gwt.user.client.ui.SimpleCheckBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgVeliEkle extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private Button btnVeliyiKaydet;
 	private Button btnKapat;
 	private TextBox tctVeliBilgileriAdi;
@@ -29,7 +33,11 @@ public class DlgVeliEkle extends DialogBox {
 	private SimpleCheckBox chxOdemeSorumlusu;
 	private TextBox tctOgrenciTCKimlikNo;
 
-	public DlgVeliEkle() {
+	public DlgVeliEkle(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setAutoHideEnabled(true);
 		setHTML("Veli Bilgileri");
 
@@ -199,9 +207,10 @@ public class DlgVeliEkle extends DialogBox {
 
 	private class BtnVeliyiKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			String URLValue = Util.urlBase + "putveliekle?";
+			String URLValue = Util.urlBase + "putveliler?";
 
-			URLValue = URLValue + "veli_bilgileri_adi="
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&veli_bilgileri_adi="
 					+ tctVeliBilgileriAdi.getText();
 			URLValue = URLValue + "&veli_bilgileri_soyadi="
 					+ tctVeliBilgileriAdi.getText();

@@ -18,12 +18,20 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgDonemTanimlari extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctDonemAdi;
 	private DateBox dtpDonemBaslangicTarihi;
 	private DateBox dtpDonemBitisTarihi;
 	private ListBox cbxVarsayilanDonem;
 
-	public DlgDonemTanimlari() {
+	public DlgDonemTanimlari(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Dönem Ekle / Değiştir");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -107,7 +115,8 @@ public class DlgDonemTanimlari extends DialogBox {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putdonemtanimlari?";
 
-			URLValue = URLValue + "donem_adi=" + tctDonemAdi.getText();
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&donem_adi=" + tctDonemAdi.getText();
 			URLValue = URLValue
 					+ "&varsayilan_donem="
 					+ cbxVarsayilanDonem.getValue(cbxVarsayilanDonem
@@ -139,5 +148,6 @@ public class DlgDonemTanimlari extends DialogBox {
 	public void putDataFromXML(XMLDonemTanimlari xml) {
 
 		tctDonemAdi.setText(xml.donem_adi);
+
 	}
 }

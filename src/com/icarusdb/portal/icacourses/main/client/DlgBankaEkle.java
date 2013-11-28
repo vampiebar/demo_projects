@@ -10,6 +10,10 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgBankaEkle extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private Button btnKaydet;
 	private TextBox tctBankaAdi;
 	private TextBox tctBankaSube;
@@ -19,7 +23,10 @@ public class DlgBankaEkle extends DialogBox {
 	private TextBox tctVadeTarihi;
 	private Button btnKapat;
 
-	public DlgBankaEkle() {
+	public DlgBankaEkle(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
 		setHTML("Banka İşlemleri (Ekleme / Düzenleme)");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -138,7 +145,8 @@ public class DlgBankaEkle extends DialogBox {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putbankaekle?";
 
-			URLValue = URLValue + "banka_adi=" + tctBankaAdi.getText();
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&banka_adi=" + tctBankaAdi.getText();
 			URLValue = URLValue + "&banka_sube=" + tctBankaSube.getText();
 			URLValue = URLValue + "&hesap_no=" + tctHesapNo.getText();
 			URLValue = URLValue + "&iban_no=" + tctIBANNo.getText();

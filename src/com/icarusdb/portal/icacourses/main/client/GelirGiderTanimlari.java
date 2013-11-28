@@ -124,7 +124,7 @@ public class GelirGiderTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getgelirgidertanimlari?id="
 				+ id;
@@ -148,7 +148,8 @@ public class GelirGiderTanimlari extends Composite {
 					List<XMLGelirGiderTanimlari> listXmlGelirGiderTanimlari = XMLGelirGiderTanimlari.XML
 							.readList(response.getText());
 
-					DlgGelirGiderTanimlari dlgTemp = new DlgGelirGiderTanimlari();
+					DlgGelirGiderTanimlari dlgTemp = new DlgGelirGiderTanimlari(
+							false, new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlGelirGiderTanimlari.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -220,7 +221,8 @@ public class GelirGiderTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgGelirGiderTanimlari dlgTemp = new DlgGelirGiderTanimlari();
+			DlgGelirGiderTanimlari dlgTemp = new DlgGelirGiderTanimlari(true,
+					-1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

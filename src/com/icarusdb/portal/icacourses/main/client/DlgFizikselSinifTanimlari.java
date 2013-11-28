@@ -9,11 +9,17 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgFizikselSinifTanimlari extends DialogBox {
+	public boolean _isInsert = true;
+	public long _id = -1;
 	private Button btnKaydet;
 	private Button btnKapat;
 	private TextBox tctFizikselSinifAdi;
 
-	public DlgFizikselSinifTanimlari() {
+	public DlgFizikselSinifTanimlari(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Fiziksel Sınıf İşlemleri");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -62,7 +68,8 @@ public class DlgFizikselSinifTanimlari extends DialogBox {
 
 			String URLValue = Util.urlBase + "putfizikselsiniftanimlari?";
 
-			URLValue = URLValue + "fiziksel_sinif_adi="
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&fiziksel_sinif_adi="
 					+ tctFizikselSinifAdi.getText();
 
 			// Window.alert(URLValue);

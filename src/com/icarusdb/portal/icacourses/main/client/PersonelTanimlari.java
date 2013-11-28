@@ -139,7 +139,7 @@ public class PersonelTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getpersoneltanimlari?id="
 				+ id;
@@ -163,7 +163,8 @@ public class PersonelTanimlari extends Composite {
 					List<XMLPersonelTanimlari> listXmlPersonelTanimlari = XMLPersonelTanimlari.XML
 							.readList(response.getText());
 
-					DlgPersonelIslemleri dlgTemp = new DlgPersonelIslemleri();
+					DlgPersonelIslemleri dlgTemp = new DlgPersonelIslemleri(
+							false, new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlPersonelTanimlari.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -237,7 +238,7 @@ public class PersonelTanimlari extends Composite {
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			DlgPersonelIslemleri dlgTemp = new DlgPersonelIslemleri();
+			DlgPersonelIslemleri dlgTemp = new DlgPersonelIslemleri(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

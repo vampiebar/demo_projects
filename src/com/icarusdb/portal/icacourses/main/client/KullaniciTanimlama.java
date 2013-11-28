@@ -122,7 +122,7 @@ public class KullaniciTanimlama extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getkullanicitanimlama?id="
 				+ id;
@@ -146,7 +146,8 @@ public class KullaniciTanimlama extends Composite {
 					List<XMLKullaniciTanimlama> listXmlKullaniciTanimlama = XMLKullaniciTanimlama.XML
 							.readList(response.getText());
 
-					DlgKullaniciTanimlama dlgTemp = new DlgKullaniciTanimlama();
+					DlgKullaniciTanimlama dlgTemp = new DlgKullaniciTanimlama(
+							false, new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlKullaniciTanimlama.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -220,7 +221,7 @@ public class KullaniciTanimlama extends Composite {
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			DlgKullaniciTanimlama dlgTemp = new DlgKullaniciTanimlama();
+			DlgKullaniciTanimlama dlgTemp = new DlgKullaniciTanimlama(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

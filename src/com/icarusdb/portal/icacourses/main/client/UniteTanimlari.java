@@ -128,7 +128,7 @@ public class UniteTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getunitetanimlari?id=" + id;
 
@@ -151,7 +151,8 @@ public class UniteTanimlari extends Composite {
 					List<XMLUniteTanimlari> listXmlUniteTanimlari = XMLUniteTanimlari.XML
 							.readList(response.getText());
 
-					DlgUniteTanimlari dlgTemp = new DlgUniteTanimlari();
+					DlgUniteTanimlari dlgTemp = new DlgUniteTanimlari(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlUniteTanimlari.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -223,7 +224,7 @@ public class UniteTanimlari extends Composite {
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			DlgUniteTanimlari dlgTemp = new DlgUniteTanimlari();
+			DlgUniteTanimlari dlgTemp = new DlgUniteTanimlari(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 		}

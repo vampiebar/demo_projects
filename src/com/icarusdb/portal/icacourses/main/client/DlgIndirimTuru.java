@@ -10,11 +10,19 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgIndirimTuru extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctIndirimTuru;
 	private ListBox cbxIndirimSekli;
 	private TextBox tctIndirimMiktari;
 
-	public DlgIndirimTuru() {
+	public DlgIndirimTuru(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("İndirim Türü İşlemleri");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -87,7 +95,9 @@ public class DlgIndirimTuru extends DialogBox {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putindirimturu?";
-			URLValue = URLValue + "indirim_turu=" + tctIndirimTuru.getText();
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&indirim_turu=" + tctIndirimTuru.getText();
 			URLValue = URLValue
 					+ "&indirim_sekli="
 					+ cbxIndirimSekli.getValue(cbxIndirimSekli

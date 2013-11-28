@@ -19,6 +19,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgKesinKayitIslemleri extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private CheckBox chxTCKimlikNoSorgulama;
 	private TextBox tctTCKimlikNo;
 	private TextBox tctAdi;
@@ -26,7 +30,11 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 	private AbsolutePanel absolutepanel;
 	public DecoratedTabPanel tabKesinKayitIslemleri;
 
-	public DlgKesinKayitIslemleri() {
+	public DlgKesinKayitIslemleri(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setAutoHideEnabled(true);
 		setHTML("Kesin Kayıt İşlemleri");
 

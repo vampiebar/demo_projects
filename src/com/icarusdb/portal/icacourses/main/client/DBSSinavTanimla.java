@@ -139,7 +139,7 @@ public class DBSSinavTanimla extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getdbssinavtanimla?id=" + id;
 
@@ -162,7 +162,8 @@ public class DBSSinavTanimla extends Composite {
 					List<XMLDBSSinavTanimla> listXmlDBSinavTanimla = XMLDBSSinavTanimla.XML
 							.readList(response.getText());
 
-					DlgDBSSinavTanimla dlgTemp = new DlgDBSSinavTanimla();
+					DlgDBSSinavTanimla dlgTemp = new DlgDBSSinavTanimla(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlDBSinavTanimla.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -234,7 +235,7 @@ public class DBSSinavTanimla extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgDBSSinavTanimla dlgTemp = new DlgDBSSinavTanimla();
+			DlgDBSSinavTanimla dlgTemp = new DlgDBSSinavTanimla(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

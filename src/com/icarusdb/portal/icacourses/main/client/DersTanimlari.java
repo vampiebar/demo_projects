@@ -122,7 +122,7 @@ public class DersTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getderstanimlari?id=" + id;
 
@@ -145,7 +145,8 @@ public class DersTanimlari extends Composite {
 					List<XMLDersTanimlari> listXmlDersTanimlari = XMLDersTanimlari.XML
 							.readList(response.getText());
 
-					DlgDersTanimlari dlgTemp = new DlgDersTanimlari();
+					DlgDersTanimlari dlgTemp = new DlgDersTanimlari(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlDersTanimlari.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -216,7 +217,7 @@ public class DersTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgDersTanimlari dlgTemp = new DlgDersTanimlari();
+			DlgDersTanimlari dlgTemp = new DlgDersTanimlari(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

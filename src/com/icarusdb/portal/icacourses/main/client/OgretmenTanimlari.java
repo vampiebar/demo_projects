@@ -141,7 +141,7 @@ public class OgretmenTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getogretmentanimlari?id="
 				+ id;
@@ -165,7 +165,8 @@ public class OgretmenTanimlari extends Composite {
 					List<XMLOgretmenTanimlari> listXmlOgretmenTanimlari = XMLOgretmenTanimlari.XML
 							.readList(response.getText());
 
-					DlgOgretmenTanimlari dlgTemp = new DlgOgretmenTanimlari();
+					DlgOgretmenTanimlari dlgTemp = new DlgOgretmenTanimlari(
+							false, new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlOgretmenTanimlari.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -239,7 +240,7 @@ public class OgretmenTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgOgretmenTanimlari dlgTemp = new DlgOgretmenTanimlari();
+			DlgOgretmenTanimlari dlgTemp = new DlgOgretmenTanimlari(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 			dlgTemp.tabOgretmenIslemleri.selectTab(0);

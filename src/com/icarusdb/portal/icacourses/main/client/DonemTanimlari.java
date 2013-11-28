@@ -136,7 +136,7 @@ public class DonemTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getdonemtanimlari?id=" + id;
 
@@ -159,7 +159,8 @@ public class DonemTanimlari extends Composite {
 					List<XMLDonemTanimlari> listXmlDonemTanimlari = XMLDonemTanimlari.XML
 							.readList(response.getText());
 
-					DlgDonemTanimlari dlgTemp = new DlgDonemTanimlari();
+					DlgDonemTanimlari dlgTemp = new DlgDonemTanimlari(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlDonemTanimlari.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -231,7 +232,7 @@ public class DonemTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgDonemTanimlari dlgTemp = new DlgDonemTanimlari();
+			DlgDonemTanimlari dlgTemp = new DlgDonemTanimlari(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

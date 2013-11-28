@@ -19,6 +19,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
@@ -32,6 +33,9 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgDBSYeniKayit extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
 
 	private TextBox tctAdi;
 	private TextBox tctSoyadi;
@@ -74,9 +78,11 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 	public DialogBox _dlgDBSYeniKayit;
 
-	public DlgDBSYeniKayit() {
+	public DlgDBSYeniKayit(boolean isInsert, long id) {
 
 		_dlgDBSYeniKayit = this;
+		_isInsert = isInsert;
+		_id = id;
 
 		setAutoHideOnHistoryEventsEnabled(false);
 		setAutoHideEnabled(false);
@@ -111,11 +117,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 		lblTcKimlikNo.setStyleName("gwt-Bold");
 		vtpanOgrenciBilgileri.add(lblTcKimlikNo, 10, 52);
 
-		Button btnNewButton = new Button("Bilgilerini Getir");
-		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
-		btnNewButton.setStyleName("gwt-ButonYeniKayit");
-		vtpanOgrenciBilgileri.add(btnNewButton, 298, 52);
-		btnNewButton.setSize("113px", "22px");
+		Button btnBilgileriniGetir = new Button("Bilgilerini Getir");
+		btnBilgileriniGetir
+				.addClickHandler(new BtnBilgileriniGetirClickHandler());
+
+		btnBilgileriniGetir.setStyleName("gwt-ButonYeniKayit");
+		vtpanOgrenciBilgileri.add(btnBilgileriniGetir, 298, 52);
+		btnBilgileriniGetir.setSize("113px", "22px");
 
 		tctSoyadi = new TextBox();
 		tctSoyadi.setStyleName("gwt-TextBox1");
@@ -641,10 +649,10 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 		if (!isDesignTime()) {
 			putDataToGrid();
-
-			putIlToCbx(cbxAdresBilgileriIl);
+			//
 			putIlToCbx(cbxOgrenciBilgileriIl);
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl);
+			putIlToCbx(cbxAdresBilgileriIl);
 
 			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
 			// SingleSelectionModel<XMLVeliEkle>();
@@ -1136,7 +1144,9 @@ public class DlgDBSYeniKayit extends DialogBox {
 		public void onClick(ClickEvent event) {
 
 			String URLValue = Util.urlBase + "putdbskayit?";
-			URLValue = URLValue + "adi=" + tctAdi.getText();
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&adi=" + tctAdi.getText();
 			URLValue = URLValue + "&soyadi=" + tctSoyadi.getText();
 			URLValue = URLValue + "&tc_kimlik_no=" + tctTCKimlikNo.getText();
 			URLValue = URLValue + "&cinsiyet="
@@ -1221,11 +1231,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 							.getValue(cbxAlanbilgisi.getSelectedIndex());
 
 			URLValue = URLValue
-					+ "&sinav_tarihi"
+					+ "&sinav_tarihi="
 					+ cbxSinavTarihi
 							.getValue(cbxSinavTarihi.getSelectedIndex());
 
 			// Window.alert("Öğrenci Başarıyla Kayıt Edilmiştir.");
+
+			Window.alert("URL VALUE:  DBS: " + URLValue);
 
 			new Util().sendRequest(URLValue,
 					"ÖĞRENCİ BİLGİLERİ BAŞARI İLE KAYIT EDİLDİ",
@@ -1308,17 +1320,14 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 	private class BtnVeliEkleClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgVeliEkle dlgTemp = new DlgVeliEkle();
+			DlgVeliEkle dlgTemp = new DlgVeliEkle(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 		}
 	}
 
-	private class BtnNewButtonClickHandler implements ClickHandler {
+	private class BtnBilgileriniGetirClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			// DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit();
-			// dlgTemp.hide();
-
 			String urlWithParameters = Util.urlBase + "getdbskayit"
 					+ "?tc_kimlik_no=" + tctTCKimlikNo.getText();
 
@@ -1345,7 +1354,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 								_dlgDBSYeniKayit.hide();
 
-								DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit();
+								DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit(
+										_isInsert, -1);
 
 								dlgTemp.putDataFromXML(listXmlDBSKayit.get(0));
 								dlgTemp.center();
@@ -1363,5 +1373,4 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 		}
 	}
-
 }

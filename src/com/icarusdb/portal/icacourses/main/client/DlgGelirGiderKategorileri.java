@@ -2,7 +2,6 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -10,11 +9,19 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgGelirGiderKategorileri extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private Button btnKaydet;
 	private Button btnKapat;
 	private TextBox tctKategoriAdi;
 
-	public DlgGelirGiderKategorileri() {
+	public DlgGelirGiderKategorileri(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Gelir / Gider Kategori ( Ekleme / Düzenleme )");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -60,9 +67,10 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putgelirgiderkategorileri?";
 
-			URLValue = URLValue + "kategori_adi=" + tctKategoriAdi.getText();
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&kategori_adi=" + tctKategoriAdi.getText();
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");
 		}

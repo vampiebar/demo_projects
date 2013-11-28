@@ -1389,7 +1389,7 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	private class BtnVeliEkleClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgVeliEkle dlgtemp = new DlgVeliEkle();
+			DlgVeliEkle dlgtemp = new DlgVeliEkle(true, -1);
 			dlgtemp.center();
 
 		}

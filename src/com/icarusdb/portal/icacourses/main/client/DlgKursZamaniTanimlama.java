@@ -9,9 +9,17 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgKursZamaniTanimlama extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctKursZamani;
 
-	public DlgKursZamaniTanimlama() {
+	public DlgKursZamaniTanimlama(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Kurs Zamani Tanimlama");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -65,7 +73,8 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putkurszamanitanimlama?";
 
-			URLValue = URLValue + "kurs_zamani=" + tctKursZamani.getText();
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&kurs_zamani=" + tctKursZamani.getText();
 
 			// Window.alert(URLValue);
 

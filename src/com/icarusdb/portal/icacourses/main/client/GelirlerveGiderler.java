@@ -124,7 +124,7 @@ public class GelirlerveGiderler extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getgelirlervegiderler?id="
 				+ id;
@@ -148,7 +148,9 @@ public class GelirlerveGiderler extends Composite {
 					List<XMLGelirlerveGiderler> listXmlGelirlerveGiderler = XMLGelirlerveGiderler.XML
 							.readList(response.getText());
 
-					DlgGelirlerveGiderler dlgTemp = new DlgGelirlerveGiderler();
+					DlgGelirlerveGiderler dlgTemp = new DlgGelirlerveGiderler(
+							false, new Long(id).longValue());
+
 					dlgTemp.putDataFromXML(listXmlGelirlerveGiderler.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -219,7 +221,7 @@ public class GelirlerveGiderler extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgGelirlerveGiderler dlgTemp = new DlgGelirlerveGiderler();
+			DlgGelirlerveGiderler dlgTemp = new DlgGelirlerveGiderler(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

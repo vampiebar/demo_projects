@@ -18,6 +18,10 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgSinavTanimlama extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private Button btnKaydet;
 	private Button btnKapat;
 	private TextBox tctSinavNo;
@@ -26,7 +30,11 @@ public class DlgSinavTanimlama extends DialogBox {
 	private TextBox tctSOnKitapcikNo;
 	private ListBox cbxSablonSeciniz;
 
-	public DlgSinavTanimlama() {
+	public DlgSinavTanimlama(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Dönem  Ekle / Değiştir");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -117,7 +125,9 @@ public class DlgSinavTanimlama extends DialogBox {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putsinavtanimlama?";
-			URLValue = URLValue + "sinav_no=" + tctSinavNo.getText();
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&sinav_no=" + tctSinavNo.getText();
 			URLValue = URLValue + "&sinav_adi=" + tctSinavAdi.getText();
 			URLValue = URLValue + "&son_kitapcik_no="
 					+ tctSOnKitapcikNo.getText();

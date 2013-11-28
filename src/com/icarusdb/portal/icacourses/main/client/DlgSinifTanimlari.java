@@ -18,6 +18,10 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgSinifTanimlari extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private DateBox dtpBitisTarihi;
 	private DateBox dtpBaslangicTarihi;
 	private TextBox tctOzelDersSayisi;
@@ -32,7 +36,11 @@ public class DlgSinifTanimlari extends DialogBox {
 	private ListBox cbxFizikselSinifAdi;
 	private TextBox tctSinifAdi;
 
-	public DlgSinifTanimlari() {
+	public DlgSinifTanimlari(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Sınıf İşlemleri");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -214,7 +222,8 @@ public class DlgSinifTanimlari extends DialogBox {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putsiniftanimlari?";
 
-			URLValue = URLValue + "sinif_adi=" + tctSinifAdi.getText();
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&sinif_adi=" + tctSinifAdi.getText();
 			URLValue = URLValue
 					+ "&fiziksel_sinif_adi="
 					+ cbxFizikselSinifAdi.getValue(cbxFizikselSinifAdi

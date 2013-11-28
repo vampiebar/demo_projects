@@ -2,7 +2,6 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -11,12 +10,20 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgUniteTanimlari extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private ListBox cbxEgitimTuru;
 	private ListBox cbxAlan;
 	private ListBox cbxDers;
 	private TextBox tctUniteAdi;
 
-	public DlgUniteTanimlari() {
+	public DlgUniteTanimlari(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Unite Ekleme / Duzenleme");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -98,7 +105,9 @@ public class DlgUniteTanimlari extends DialogBox {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putunitetanimlari?";
-			URLValue = URLValue + "egitim_turu_adi="
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&egitim_turu_adi="
 					+ cbxEgitimTuru.getValue(cbxEgitimTuru.getSelectedIndex());
 			URLValue = URLValue + "&alan_adi="
 					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());
@@ -107,7 +116,7 @@ public class DlgUniteTanimlari extends DialogBox {
 
 			URLValue = URLValue + "&unite_adi=" + tctUniteAdi.getText();
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue,
 					"Ünite Bilgisi Başarıyla Ekşenmiştir.",

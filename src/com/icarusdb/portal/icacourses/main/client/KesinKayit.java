@@ -293,14 +293,12 @@ public class KesinKayit extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
-			
+
 			// btnAra Clicked
 			new BtnAraClickHandler().onClick(null);
-		
+
 		}
 
-		
-		
 	}
 
 	private boolean isDesignTime() {
@@ -367,7 +365,8 @@ public class KesinKayit extends Composite {
 			// cbxSinif.setSelectedIndex(0);
 			// cbxKayitDurumu.setSelectedIndex(0);
 
-			DlgKesinKayitIslemleri dlgTemp = new DlgKesinKayitIslemleri();
+			DlgKesinKayitIslemleri dlgTemp = new DlgKesinKayitIslemleri(true,
+					-1);
 			dlgTemp.tabKesinKayitIslemleri.selectTab(0);
 			dlgTemp.center();
 

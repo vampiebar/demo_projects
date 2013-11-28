@@ -108,7 +108,7 @@ public class BankaEkle extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getbankaekle?id=" + id;
 
@@ -131,7 +131,8 @@ public class BankaEkle extends Composite {
 					List<XMLBankaEkle> listXmlBankaEkle = XMLBankaEkle.XML
 							.readList(response.getText());
 
-					DlgBankaEkle dlgTemp = new DlgBankaEkle();
+					DlgBankaEkle dlgTemp = new DlgBankaEkle(false, new Long(id)
+							.longValue());
 					dlgTemp.putDataFromXML(listXmlBankaEkle.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -204,7 +205,7 @@ public class BankaEkle extends Composite {
 
 	public class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgBankaEkle dlgTemp = new DlgBankaEkle();
+			DlgBankaEkle dlgTemp = new DlgBankaEkle(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

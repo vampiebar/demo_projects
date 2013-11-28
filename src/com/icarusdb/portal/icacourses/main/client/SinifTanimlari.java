@@ -148,7 +148,7 @@ public class SinifTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getsiniftanimlari?id=" + id;
 
@@ -171,7 +171,8 @@ public class SinifTanimlari extends Composite {
 					List<XMLSinifTanimlari> listXmlSinifTanimlari = XMLSinifTanimlari.XML
 							.readList(response.getText());
 
-					DlgSinifTanimlari dlgTemp = new DlgSinifTanimlari();
+					DlgSinifTanimlari dlgTemp = new DlgSinifTanimlari(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlSinifTanimlari.get(0));
 					dlgTemp.setAnimationEnabled(true);
 					dlgTemp.center();
@@ -243,7 +244,7 @@ public class SinifTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgSinifTanimlari dlgTemp = new DlgSinifTanimlari();
+			DlgSinifTanimlari dlgTemp = new DlgSinifTanimlari(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

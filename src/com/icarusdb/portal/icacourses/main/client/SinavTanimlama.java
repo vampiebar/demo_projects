@@ -138,7 +138,7 @@ public class SinavTanimlama extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getsinavtanimlama?id=" + id;
 
@@ -161,7 +161,8 @@ public class SinavTanimlama extends Composite {
 					List<XMLSinavTanimlama> listXmlSinavTanimlama = XMLSinavTanimlama.XML
 							.readList(response.getText());
 
-					DlgSinavTanimlama dlgTemp = new DlgSinavTanimlama();
+					DlgSinavTanimlama dlgTemp = new DlgSinavTanimlama(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlSinavTanimlama.get(0));
 					dlgTemp.setAnimationEnabled(true);
 					dlgTemp.center();
@@ -231,7 +232,7 @@ public class SinavTanimlama extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgSinavTanimlama dlgTemp = new DlgSinavTanimlama();
+			DlgSinavTanimlama dlgTemp = new DlgSinavTanimlama(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

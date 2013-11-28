@@ -123,7 +123,7 @@ public class HizmetTanimla extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "gethizmettanimla?id=" + id;
 
@@ -146,7 +146,8 @@ public class HizmetTanimla extends Composite {
 					List<XMLHizmetTanimla> listXmlHizmetTanimla = XMLHizmetTanimla.XML
 							.readList(response.getText());
 
-					DlgHizmetTanimla dlgTemp = new DlgHizmetTanimla();
+					DlgHizmetTanimla dlgTemp = new DlgHizmetTanimla(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlHizmetTanimla.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -218,7 +219,7 @@ public class HizmetTanimla extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgHizmetTanimla dlgTemp = new DlgHizmetTanimla();
+			DlgHizmetTanimla dlgTemp = new DlgHizmetTanimla(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

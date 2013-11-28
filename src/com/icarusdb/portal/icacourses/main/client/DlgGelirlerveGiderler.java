@@ -7,7 +7,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -19,6 +18,10 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgGelirlerveGiderler extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private LongBox tctAciklama;
 	private DateBox dtpTarih;
 	private TextBox tctMiktar;
@@ -30,7 +33,11 @@ public class DlgGelirlerveGiderler extends DialogBox {
 	private ListBox cbxİslemTipi;
 	private DateBox dtpVadeTarihi;
 
-	public DlgGelirlerveGiderler() {
+	public DlgGelirlerveGiderler(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Gelir / Gider İşlemleri ( Ekleme / Düzenleme )");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -193,7 +200,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 			URLValue = URLValue + "&miktar=" + tctMiktar.getText();
 			URLValue = URLValue + "&aciklama=" + tctAciklama.getText();
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");
 
@@ -204,7 +211,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm");
-			Window.alert(dtf.format(dtpTarih.getValue()));
+			// Window.alert(dtf.format(dtpTarih.getValue()));
 		}
 	}
 
@@ -212,7 +219,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
-			Window.alert(dtf.format(dtpVadeTarihi.getValue()));
+			// Window.alert(dtf.format(dtpVadeTarihi.getValue()));
 		}
 	}
 

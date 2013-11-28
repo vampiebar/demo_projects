@@ -108,7 +108,7 @@ public class IndirimTuru extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getindirimturu?id=" + id;
 
@@ -131,7 +131,8 @@ public class IndirimTuru extends Composite {
 					List<XMLIndirimTuru> listXmlIndirimTuru = XMLIndirimTuru.XML
 							.readList(response.getText());
 
-					DlgIndirimTuru dlgTemp = new DlgIndirimTuru();
+					DlgIndirimTuru dlgTemp = new DlgIndirimTuru(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlIndirimTuru.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -203,7 +204,7 @@ public class IndirimTuru extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgIndirimTuru dlgTemp = new DlgIndirimTuru();
+			DlgIndirimTuru dlgTemp = new DlgIndirimTuru(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

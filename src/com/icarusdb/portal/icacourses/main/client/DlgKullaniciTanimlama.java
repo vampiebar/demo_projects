@@ -10,13 +10,21 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgKullaniciTanimlama extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctKullaniciKodu;
 	private TextBox tctAdi;
 	private TextBox tctSoyadi;
 	private TextBox tctSifre;
 	private TextBox tctSifretekrar;
 
-	public DlgKullaniciTanimlama() {
+	public DlgKullaniciTanimlama(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Kullanici Tanimlama");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -114,7 +122,8 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putkullanicitanimlama?";
 
-			URLValue = URLValue + "kullanici_kodu="
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&kullanici_kodu="
 					+ tctKullaniciKodu.getText();
 			URLValue = URLValue + "&adi=" + tctAdi.getText();
 			URLValue = URLValue + "&soyadi=" + tctSoyadi.getText();

@@ -11,6 +11,10 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgSablonTanimlari extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctSablonAdi;
 	private TextBox tctSayisal;
 	private TextBox tctSozel;
@@ -28,7 +32,11 @@ public class DlgSablonTanimlari extends DialogBox {
 	private CheckBox chxErkek;
 	private CheckBox chxKiz;
 
-	public DlgSablonTanimlari() {
+	public DlgSablonTanimlari(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Dönem Ekle/Değiştir");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -249,7 +257,9 @@ public class DlgSablonTanimlari extends DialogBox {
 	private class BtnSablonuKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putsablontanimlari?";
-			URLValue = URLValue + "sablon_adi=" + tctSablonAdi.getText();
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&sablon_adi=" + tctSablonAdi.getText();
 			URLValue = URLValue + "&erkek=" + chxErkek.getValue().toString();
 			URLValue = URLValue + "&kiz=" + chxKiz.getValue().toString();
 

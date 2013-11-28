@@ -10,13 +10,21 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgKonuTanimlari extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private ListBox cbxEgitimTuru;
 	private ListBox cbxAlan;
 	private ListBox cbxDers;
 	private ListBox cbxUniteAdi;
 	private TextBox tctKonu;
 
-	public DlgKonuTanimlari() {
+	public DlgKonuTanimlari(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Konu Ekleme / Düzenleme");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -113,7 +121,9 @@ public class DlgKonuTanimlari extends DialogBox {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putkonutanimlari?";
-			URLValue = URLValue + "egitim_turu_adi="
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&egitim_turu_adi="
 					+ cbxEgitimTuru.getValue(cbxEgitimTuru.getSelectedIndex());
 			URLValue = URLValue + "&alan_adi="
 					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());

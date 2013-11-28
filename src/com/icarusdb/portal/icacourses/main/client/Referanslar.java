@@ -108,7 +108,7 @@ public class Referanslar extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getreferanslar?id=" + id;
 
@@ -131,7 +131,8 @@ public class Referanslar extends Composite {
 					List<XMLReferanslar> listXmlReferanslar = XMLReferanslar.XML
 							.readList(response.getText());
 
-					DlgReferanslar dlgTemp = new DlgReferanslar();
+					DlgReferanslar dlgTemp = new DlgReferanslar(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlReferanslar.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -203,7 +204,7 @@ public class Referanslar extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgReferanslar dlgTemp = new DlgReferanslar();
+			DlgReferanslar dlgTemp = new DlgReferanslar(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

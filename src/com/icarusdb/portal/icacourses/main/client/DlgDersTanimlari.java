@@ -17,11 +17,19 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgDersTanimlari extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private ListBox cbxEgitimTuru;
 	private ListBox cbxAlan;
 	private TextBox tctDersAdi;
 
-	public DlgDersTanimlari() {
+	public DlgDersTanimlari(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Ders Ekleme / Düzenleme");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -146,7 +154,9 @@ public class DlgDersTanimlari extends DialogBox {
 		public void onClick(ClickEvent event) {
 
 			String URLValue = Util.urlBase + "putderstanimlari?";
-			URLValue = URLValue + "egitim_turu_adi="
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&egitim_turu_adi="
 					+ cbxEgitimTuru.getValue(cbxEgitimTuru.getSelectedIndex());
 			URLValue = URLValue + "&alan_adi="
 					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());

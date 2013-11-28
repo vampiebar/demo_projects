@@ -108,7 +108,7 @@ public class KursZamaniTanimlama extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getkurszamanitanimlama?id="
 				+ id;
@@ -132,7 +132,8 @@ public class KursZamaniTanimlama extends Composite {
 					List<XMLKursZamaniTanimlama> listXmlKursZamaniTanimlama = XMLKursZamaniTanimlama.XML
 							.readList(response.getText());
 
-					DlgKursZamaniTanimlama dlgTemp = new DlgKursZamaniTanimlama();
+					DlgKursZamaniTanimlama dlgTemp = new DlgKursZamaniTanimlama(
+							false, new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlKursZamaniTanimlama.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -205,7 +206,8 @@ public class KursZamaniTanimlama extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgKursZamaniTanimlama dlgTemp = new DlgKursZamaniTanimlama();
+			DlgKursZamaniTanimlama dlgTemp = new DlgKursZamaniTanimlama(true,
+					-1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

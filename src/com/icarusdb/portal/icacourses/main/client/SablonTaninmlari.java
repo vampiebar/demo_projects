@@ -122,7 +122,7 @@ public class SablonTaninmlari extends Composite {
 		}
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getsablontanimlari?id=" + id;
 
@@ -145,7 +145,8 @@ public class SablonTaninmlari extends Composite {
 					List<XMLSablonTanimlari> listXmlSablonTanimlari = XMLSablonTanimlari.XML
 							.readList(response.getText());
 
-					DlgSablonTanimlari dlgTemp = new DlgSablonTanimlari();
+					DlgSablonTanimlari dlgTemp = new DlgSablonTanimlari(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlSablonTanimlari.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -163,19 +164,18 @@ public class SablonTaninmlari extends Composite {
 	}
 
 	private void putDataToGrid() {
-		// TODO Auto-generated method stub
 
 	}
 
 	private boolean isDesignTime() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			DlgSablonTanimlari dlgTemp = new DlgSablonTanimlari();
+			DlgSablonTanimlari dlgTemp = new DlgSablonTanimlari(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 		}

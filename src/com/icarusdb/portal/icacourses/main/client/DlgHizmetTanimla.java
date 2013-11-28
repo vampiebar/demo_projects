@@ -11,11 +11,19 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgHizmetTanimla extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctHizmetAdi;
 	private ListBox cbxHizmetTuru;
 	private TextBox tctBirimFiyati;
 
-	public DlgHizmetTanimla() {
+	public DlgHizmetTanimla(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Hizmet Ekleme / Düzenleme");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -90,7 +98,9 @@ public class DlgHizmetTanimla extends DialogBox {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "puthizmettanimla?";
-			URLValue = URLValue + "hizmet_adi=" + tctHizmetAdi.getText();
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&hizmet_adi=" + tctHizmetAdi.getText();
 			URLValue = URLValue + "&hizmet_turu="
 					+ cbxHizmetTuru.getValue(cbxHizmetTuru.getSelectedIndex());
 			URLValue = URLValue + "&birim_fiyati=" + tctBirimFiyati.getText();

@@ -136,7 +136,7 @@ public class KonuTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getkonutanimlari?id=" + id;
 
@@ -159,7 +159,8 @@ public class KonuTanimlari extends Composite {
 					List<XMLKonuTanimlari> listXmlKonuTanimlari = XMLKonuTanimlari.XML
 							.readList(response.getText());
 
-					DlgKonuTanimlari dlgTemp = new DlgKonuTanimlari();
+					DlgKonuTanimlari dlgTemp = new DlgKonuTanimlari(false,
+							new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlKonuTanimlari.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -231,7 +232,7 @@ public class KonuTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgKonuTanimlari dlgTemp = new DlgKonuTanimlari();
+			DlgKonuTanimlari dlgTemp = new DlgKonuTanimlari(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

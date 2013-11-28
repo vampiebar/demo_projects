@@ -110,7 +110,7 @@ public class FizikselSinifTanimlari extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase
 				+ "getfizikselsiniftanimlari?id=" + id;
@@ -134,7 +134,8 @@ public class FizikselSinifTanimlari extends Composite {
 					List<XMLFizikselSinifTanimlari> listXmlFizikselSinifTanimlari = XMLFizikselSinifTanimlari.XML
 							.readList(response.getText());
 
-					DlgFizikselSinifTanimlari dlgTemp = new DlgFizikselSinifTanimlari();
+					DlgFizikselSinifTanimlari dlgTemp = new DlgFizikselSinifTanimlari(
+							false, new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlFizikselSinifTanimlari.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -208,7 +209,10 @@ public class FizikselSinifTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgFizikselSinifTanimlari dlgTemp = new DlgFizikselSinifTanimlari();
+			DlgFizikselSinifTanimlari dlgTemp = new DlgFizikselSinifTanimlari(
+					true, -1);
+			// DlgFizikselSinifTanimlari dlgTemp = new
+			// DlgFizikselSinifTanimlari(true,-1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

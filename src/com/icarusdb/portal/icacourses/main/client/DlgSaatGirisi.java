@@ -18,13 +18,21 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgSaatGirisi extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctAciklama;
 	private ListBox cbxGun;
 	private DateBox dtpBaslangicSaati;
 	private DateBox dtpBitisSaati;
 	public DecoratedTabPanel tabSaatGrisi;
 
-	public DlgSaatGirisi() {
+	public DlgSaatGirisi(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Ders Dağıtım Saat İşlemleri");
 
 		tabSaatGrisi = new DecoratedTabPanel();
@@ -165,7 +173,8 @@ public class DlgSaatGirisi extends DialogBox {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putsaatgirisi?";
 
-			URLValue = URLValue + "gun="
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&gun="
 					+ cbxGun.getValue(cbxGun.getSelectedIndex());
 			URLValue = URLValue + "&aciklama=" + tctAciklama.getText();
 

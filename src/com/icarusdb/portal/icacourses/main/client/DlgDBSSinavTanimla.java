@@ -17,13 +17,21 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgDBSSinavTanimla extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private ListBox cbxBinaSekli;
 	private TextBox tctKota;
 	private DateBox dtpSinavTarihi;
 	private ListBox cbxOkulDurumu;
 	private ListBox cbxAlan;
 
-	public DlgDBSSinavTanimla() {
+	public DlgDBSSinavTanimla(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("DBS Sınav Ekleme / Düzenleme");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -130,7 +138,9 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		public void onClick(ClickEvent event) {
 
 			String URLValue = Util.urlBase + "putdbssinavtanimla?";
-			URLValue = URLValue + "okul_durumu="
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&okul_durumu="
 					+ cbxOkulDurumu.getValue(cbxOkulDurumu.getSelectedIndex());
 			URLValue = URLValue + "&alan="
 					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());

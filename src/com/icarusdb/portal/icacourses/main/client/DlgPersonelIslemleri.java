@@ -16,6 +16,10 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgPersonelIslemleri extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctAdiSoyadi;
 	private TextBox tctGorevi;
 	private DateBox dtpIseGirisTarihi;
@@ -23,7 +27,11 @@ public class DlgPersonelIslemleri extends DialogBox {
 	private TextBox tctTelefonu1;
 	private TextBox tctTelefonu2;
 
-	public DlgPersonelIslemleri() {
+	public DlgPersonelIslemleri(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Personel İşlemleri ");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -124,7 +132,9 @@ public class DlgPersonelIslemleri extends DialogBox {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putpersoneltanimlari?";
-			URLValue = URLValue + "adi_soyadi=" + tctAdiSoyadi.getText();
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&adi_soyadi=" + tctAdiSoyadi.getText();
 			URLValue = URLValue + "&gorevi=" + tctGorevi.getText();
 			URLValue = URLValue + "&ucreti=" + tctUcreti.getText();
 			URLValue = URLValue + "&telefonu_1=" + tctTelefonu1.getText();

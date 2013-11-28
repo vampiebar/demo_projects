@@ -125,7 +125,7 @@ public class SaatGirisi extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getsaatgirisi?id=" + id;
 
@@ -148,7 +148,8 @@ public class SaatGirisi extends Composite {
 					List<XMLSaatGirisi> listXmlSaatGirisi = XMLSaatGirisi.XML
 							.readList(response.getText());
 
-					DlgSaatGirisi dlgTemp = new DlgSaatGirisi();
+					DlgSaatGirisi dlgTemp = new DlgSaatGirisi(false, new Long(
+							id).longValue());
 					dlgTemp.putDataFromXML(listXmlSaatGirisi.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -221,7 +222,7 @@ public class SaatGirisi extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgSaatGirisi dlgTemp = new DlgSaatGirisi();
+			DlgSaatGirisi dlgTemp = new DlgSaatGirisi(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 			dlgTemp.tabSaatGrisi.selectTab(0);

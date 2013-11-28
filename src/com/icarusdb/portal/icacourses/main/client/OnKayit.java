@@ -135,7 +135,7 @@ public class OnKayit extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getonkayit?id=" + id;
 
@@ -158,7 +158,8 @@ public class OnKayit extends Composite {
 					List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
 							.readList(response.getText());
 
-					DlgOnKayit dlgTemp = new DlgOnKayit();
+					DlgOnKayit dlgTemp = new DlgOnKayit(false, new Long(id)
+							.longValue());
 					dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
 					dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -230,7 +231,7 @@ public class OnKayit extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgOnKayit dlgTemp = new DlgOnKayit();
+			DlgOnKayit dlgTemp = new DlgOnKayit(true, -1);
 			dlgTemp.tabOnKayit.selectTab(0);
 			dlgTemp.setAnimationEnabled(true);
 			dlgTemp.center();

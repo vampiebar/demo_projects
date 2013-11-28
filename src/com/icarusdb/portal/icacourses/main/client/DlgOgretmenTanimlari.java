@@ -14,6 +14,10 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class DlgOgretmenTanimlari extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctTCKimlikNo;
 	private TextBox tctAdiSoyadi;
 	private TextBox tctGirdigiDersbilgisi;
@@ -37,7 +41,11 @@ public class DlgOgretmenTanimlari extends DialogBox {
 	private SimpleCheckBox chx7;
 	public DecoratedTabPanel tabOgretmenIslemleri;
 
-	public DlgOgretmenTanimlari() {
+	public DlgOgretmenTanimlari(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Öğretmen İşlemleri");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -305,7 +313,9 @@ public class DlgOgretmenTanimlari extends DialogBox {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putogretmentanimlari?";
-			URLValue = URLValue + "tc_kimlik_no=" + tctTCKimlikNo.getText();
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&tc_kimlik_no=" + tctTCKimlikNo.getText();
 			URLValue = URLValue + "&adi_soyadi=" + tctAdiSoyadi.getText();
 			URLValue = URLValue + "&girdigi_ders_bilgisi="
 					+ tctGirdigiDersbilgisi.getText();

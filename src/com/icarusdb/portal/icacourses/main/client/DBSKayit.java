@@ -235,7 +235,7 @@ public class DBSKayit extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getdbskayit?id=" + id;
 
@@ -258,7 +258,9 @@ public class DBSKayit extends Composite {
 					List<XMLDBSKayit> listXmlDBSKayit = XMLDBSKayit.XML
 							.readList(response.getText());
 
-					DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit();
+					DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit(false,
+							new Long(id).longValue());
+
 					dlgTemp.putDataFromXML(listXmlDBSKayit.get(0));
 					dlgTemp.center();
 
@@ -369,7 +371,7 @@ public class DBSKayit extends Composite {
 			// cbxAlanBilgi.setSelectedIndex(0);
 			// cbxSinavTarihi.setSelectedIndex(0);
 
-			DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit();
+			DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit(true, -1);
 
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);

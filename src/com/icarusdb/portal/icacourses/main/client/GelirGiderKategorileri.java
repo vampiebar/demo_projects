@@ -109,7 +109,7 @@ public class GelirGiderKategorileri extends Composite {
 		}
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase
 				+ "getgelirgiderkategorileri?id=" + id;
@@ -133,7 +133,8 @@ public class GelirGiderKategorileri extends Composite {
 					List<XMLGelirGiderKategorileri> listXmlGelirGiderKategorileri = XMLGelirGiderKategorileri.XML
 							.readList(response.getText());
 
-					DlgGelirGiderKategorileri dlgTemp = new DlgGelirGiderKategorileri();
+					DlgGelirGiderKategorileri dlgTemp = new DlgGelirGiderKategorileri(
+							false, new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlGelirGiderKategorileri.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -206,7 +207,8 @@ public class GelirGiderKategorileri extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgGelirGiderKategorileri dlgTemp = new DlgGelirGiderKategorileri();
+			DlgGelirGiderKategorileri dlgTemp = new DlgGelirGiderKategorileri(
+					true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
 

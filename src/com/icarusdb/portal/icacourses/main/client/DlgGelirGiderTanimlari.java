@@ -10,11 +10,19 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgGelirGiderTanimlari extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private ListBox cbxKategoriAdi;
 	private ListBox cbxTipi;
 	private TextBox tctGelirGiderAdi;
 
-	public DlgGelirGiderTanimlari() {
+	public DlgGelirGiderTanimlari(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setHTML("Gelir / Gider Tanımı");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -94,9 +102,9 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putgelirgidertanimlari?";
-
+			URLValue = URLValue + "id=" + _id;
 			URLValue = URLValue
-					+ "kategori_adi="
+					+ "&kategori_adi="
 					+ cbxKategoriAdi
 							.getValue(cbxKategoriAdi.getSelectedIndex());
 			URLValue = URLValue + "&tipi="

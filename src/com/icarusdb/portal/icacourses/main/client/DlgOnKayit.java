@@ -35,6 +35,10 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgOnKayit extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctAdi;
 	private TextBox tctSoyadi;
 	private TextBox tctTCKimlikNo;
@@ -87,10 +91,11 @@ public class DlgOnKayit extends DialogBox {
 
 	public DialogBox _dlgonkayit;
 
-	public DlgOnKayit() {
+	public DlgOnKayit(boolean isInsert, long id) {
 
 		_dlgonkayit = this;
-
+		_isInsert = isInsert;
+		_id = id;
 		setAutoHideEnabled(false);
 		setHTML("Ön Kayıt İşlemleri");
 
@@ -849,7 +854,7 @@ public class DlgOnKayit extends DialogBox {
 
 		if (!isDesignTime()) {
 			putDataToGrid();
-
+			//
 			putIlToCbx(cbxOgrenciBilgileriIl);
 			putIlToCbx(cbxAdresBilgileriIl);
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl);
@@ -874,7 +879,6 @@ public class DlgOnKayit extends DialogBox {
 			// }
 			//
 			// }, DoubleClickEvent.getType());
-
 		}
 
 	}
@@ -1280,7 +1284,8 @@ public class DlgOnKayit extends DialogBox {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putonkayit?";
 
-			URLValue = URLValue + "adi=" + tctAdi.getText();
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&adi=" + tctAdi.getText();
 			URLValue = URLValue + "&soyadi=" + tctSoyadi.getText();
 			URLValue = URLValue + "&tc_kimlik_no=" + tctTCKimlikNo.getText();
 			URLValue = URLValue + "&cinsiyet="
@@ -1434,7 +1439,7 @@ public class DlgOnKayit extends DialogBox {
 	private class ButtonClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			DlgVeliEkle dlgTemp = new DlgVeliEkle();
+			DlgVeliEkle dlgTemp = new DlgVeliEkle(true, -1);
 			dlgTemp.center();
 		}
 	}
@@ -1523,7 +1528,8 @@ public class DlgOnKayit extends DialogBox {
 								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
 										.readList(response.getText());
 
-								DlgOnKayit dlgTemp = new DlgOnKayit();
+								DlgOnKayit dlgTemp = new DlgOnKayit(_isInsert,
+										-1);
 
 								dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
 								dlgTemp.center();
