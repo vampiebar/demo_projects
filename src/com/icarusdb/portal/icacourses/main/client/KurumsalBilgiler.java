@@ -157,57 +157,57 @@ public class KurumsalBilgiler extends Composite {
 
 		Label lbllke = new Label("Ülke");
 		lbllke.setStyleName("gwt-Bold");
-		absolutePanel.add(lbllke, 43, 337);
+		absolutePanel.add(lbllke, 24, 343);
 
 		Label lblIl = new Label("İl");
 		lblIl.setStyleName("gwt-Bold");
-		absolutePanel.add(lblIl, 43, 371);
+		absolutePanel.add(lblIl, 23, 375);
 
 		Label lblIle = new Label("İlçe");
 		lblIle.setStyleName("gwt-Bold");
-		absolutePanel.add(lblIle, 43, 403);
+		absolutePanel.add(lblIle, 24, 411);
 
 		Label lblSemt = new Label("Semt");
 		lblSemt.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSemt, 43, 442);
+		absolutePanel.add(lblSemt, 24, 449);
 
 		Label lblMahalleKy = new Label("Mahalle / Köy");
 		lblMahalleKy.setStyleName("gwt-Bold");
-		absolutePanel.add(lblMahalleKy, 43, 477);
-		lblMahalleKy.setSize("89px", "16px");
+		absolutePanel.add(lblMahalleKy, 24, 485);
+		lblMahalleKy.setSize("101px", "16px");
 
 		cbxUlke = new ListBox();
 		cbxUlke.addItem("TÜRKİYE");
 		cbxUlke.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxUlke, 138, 331);
-		cbxUlke.setSize("158px", "25px");
+		cbxUlke.setSize("158px", "24px");
 
 		cbxIl = new ListBox();
 		cbxIl.addChangeHandler(new CbxIlChangeHandler());
 		cbxIl.addItem(" ");
 		cbxIl.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxIl, 138, 365);
-		cbxIl.setSize("158px", "25px");
+		cbxIl.setSize("158px", "24px");
 
 		cbxIlce = new ListBox();
 		cbxIlce.addChangeHandler(new CbxIlceChangeHandler());
 		cbxIlce.addItem(" ");
 		cbxIlce.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxIlce, 138, 397);
-		cbxIlce.setSize("158px", "25px");
+		cbxIlce.setSize("158px", "24px");
 
 		cbxSemt = new ListBox();
 		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
 		cbxSemt.addItem(" ");
 		cbxSemt.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxSemt, 138, 436);
-		cbxSemt.setSize("158px", "25px");
+		cbxSemt.setSize("158px", "24px");
 
 		cbxMahalleKoy = new ListBox();
 		cbxMahalleKoy.addItem(" ");
 		cbxMahalleKoy.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxMahalleKoy, 138, 471);
-		cbxMahalleKoy.setSize("160px", "25px");
+		cbxMahalleKoy.setSize("160px", "24px");
 
 		Label lblTelefon = new Label("Telefon");
 		lblTelefon.setStyleName("gwt-Bold");
@@ -253,6 +253,8 @@ public class KurumsalBilgiler extends Composite {
 
 		if (!isDesignTime()) {
 
+			// putDataFromXML();
+
 			putIlToCbx(cbxIl);
 
 		}
@@ -261,6 +263,7 @@ public class KurumsalBilgiler extends Composite {
 
 	public void putDataFromXML(XMLKurumsalBilgiler xml) {
 
+		tctSubeAdiKisa.setText(xml.sube_kisa_adi);
 		tctAdres.setText(xml.adres);
 		tctEMail.setText(xml.email);
 		tctFaks.setText(xml.faks);

@@ -7,7 +7,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -80,7 +79,7 @@ public class DlgSinavTanimlama extends DialogBox {
 		dtpTarih.setStyleName("gwt-TextBox1");
 		dtpTarih.addValueChangeHandler(new DtpTarihValueChangeHandler());
 		dtpTarih.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy.MM.dd HH:mm")));
+				.getFormat("yyyy-MM-dd HH:mm")));
 		absolutePanel.add(dtpTarih, 148, 75);
 		dtpTarih.setSize("152px", "14px");
 
@@ -147,7 +146,7 @@ public class DlgSinavTanimlama extends DialogBox {
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm");
-			Window.alert(dtf.format(dtpTarih.getValue()));
+			// Window.alert(dtf.format(dtpTarih.getValue()));
 		}
 	}
 

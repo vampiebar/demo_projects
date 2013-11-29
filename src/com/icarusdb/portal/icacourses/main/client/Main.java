@@ -140,7 +140,7 @@ public class Main implements EntryPoint {
 		verticalPanel.add(lblEitimDnemi);
 
 		ListBox comboBox = new ListBox();
-		comboBox.setStyleName("gwt-SuggestBoxPopup");
+		comboBox.setStyleName("gwt-ComboBox1");
 		comboBox.addItem("2013/2014");
 		comboBox.addItem("2014/2015");
 		comboBox.setVisibleItemCount(1);

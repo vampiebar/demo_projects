@@ -423,7 +423,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label lblKursZaman = new Label("Kurs Zamanı");
 		lblKursZaman.setStyleName("gwt-Bold");
 		absolutePanel_4.add(lblKursZaman, 10, 94);
-		lblKursZaman.setSize("84px", "18px");
+		lblKursZaman.setSize("110px", "18px");
 
 		Label lblSnf = new Label("Sınıf");
 		lblSnf.setStyleName("gwt-Bold");
@@ -434,14 +434,14 @@ public class KesinKayitBilgileri extends DialogBox {
 		cnxKursZamanı.addItem("HAFTA SONU");
 		cnxKursZamanı.addItem("HAFTA İÇİ");
 		cnxKursZamanı.setStyleName("gwt-ComboBox1");
-		absolutePanel_4.add(cnxKursZamanı, 122, 90);
+		absolutePanel_4.add(cnxKursZamanı, 162, 94);
 		cnxKursZamanı.setSize("151px", "18px");
 
 		cbxAlan = new ListBox();
 		cbxAlan.addItem(" ");
 		cbxAlan.addItem("ALAN YOK");
 		cbxAlan.setStyleName("gwt-ComboBox1");
-		absolutePanel_4.add(cbxAlan, 122, 60);
+		absolutePanel_4.add(cbxAlan, 162, 64);
 		cbxAlan.setSize("151px", "18px");
 
 		cbxEgitimTuru = new ListBox();
@@ -457,31 +457,33 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxEgitimTuru.addItem("4.SINIF TAKVİYE");
 		cbxEgitimTuru.addItem("3.SINIF TAKVİYE");
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
-		absolutePanel_4.add(cbxEgitimTuru, 122, 25);
+		absolutePanel_4.add(cbxEgitimTuru, 162, 29);
 		cbxEgitimTuru.setSize("151px", "18px");
 
 		cbxSinif = new ListBox();
 		cbxSinif.setStyleName("gwt-ComboBox1");
 		cbxSinif.addItem("1");
-		absolutePanel_4.add(cbxSinif, 122, 118);
+		absolutePanel_4.add(cbxSinif, 162, 122);
 		cbxSinif.setSize("151px", "18px");
 
 		Label lblrenciNumaras = new Label("Öğrenci Numarası");
 		lblrenciNumaras.setStyleName("gwt-Bold");
 		absolutePanel_4.add(lblrenciNumaras, 10, 146);
+		lblrenciNumaras.setSize("124px", "18px");
 
 		tctOgrenciNumarasi = new TextBox();
 		tctOgrenciNumarasi.setStyleName("gwt-TextBox1");
-		absolutePanel_4.add(tctOgrenciNumarasi, 122, 150);
+		absolutePanel_4.add(tctOgrenciNumarasi, 162, 154);
 		tctOgrenciNumarasi.setSize("143px", "14px");
 
 		Label lblKursIndirimFiyat = new Label("Kurs İndirim Fiyatı");
 		lblKursIndirimFiyat.setStyleName("gwt-Bold");
 		absolutePanel_4.add(lblKursIndirimFiyat, 10, 179);
+		lblKursIndirimFiyat.setSize("124px", "18px");
 
 		textBox_1 = new TextBox();
 		textBox_1.setStyleName("gwt-TextBox1");
-		absolutePanel_4.add(textBox_1, 122, 183);
+		absolutePanel_4.add(textBox_1, 162, 187);
 		textBox_1.setSize("143px", "14px");
 
 		Label lblInidirmTr = new Label("İnidirm Türü");
@@ -491,7 +493,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxIndirimTuru = new ListBox();
 		cbxIndirimTuru.setStyleName("gwt-ComboBox1");
 		cbxIndirimTuru.addItem("Para");
-		absolutePanel_4.add(cbxIndirimTuru, 122, 213);
+		absolutePanel_4.add(cbxIndirimTuru, 162, 217);
 		cbxIndirimTuru.setSize("73px", "22px");
 
 		Label lblIndirimMiktar = new Label("İndirim Miktarı");
@@ -509,19 +511,19 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxReferans.addItem("GOOGLE");
 		cbxReferans.addItem("ARKADAŞ TAVSİYESİ");
 		cbxReferans.setStyleName("gwt-ComboBox1");
-		absolutePanel_4.add(cbxReferans, 122, 288);
+		absolutePanel_4.add(cbxReferans, 162, 292);
 		cbxReferans.setSize("151px", "18px");
 
 		cbxInidirimMiktari = new ListBox();
 		cbxInidirimMiktari.addItem("İndirim Yok ");
 		cbxInidirimMiktari.addItem("Pazarlık");
 		cbxInidirimMiktari.setStyleName("gwt-ComboBox1");
-		absolutePanel_4.add(cbxInidirimMiktari, 122, 250);
+		absolutePanel_4.add(cbxInidirimMiktari, 162, 254);
 		cbxInidirimMiktari.setSize("151px", "18px");
 
 		TextBox textBox = new TextBox();
 		textBox.setStyleName("gwt-TextBox1");
-		absolutePanel_4.add(textBox, 201, 217);
+		absolutePanel_4.add(textBox, 241, 221);
 		textBox.setSize("143px", "14px");
 
 		tabKisiselBilgileri = new AbsolutePanel();
@@ -987,7 +989,7 @@ public class KesinKayitBilgileri extends DialogBox {
 			putIlToCbx(cbxAdresBilgileriIl);
 			putIlToCbx(cbxOgrenciBilgileriIl);
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl);
-
+			putDataToGrid();
 		}
 
 	}
@@ -1264,8 +1266,6 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	public void putDataFromXML(XMLOnKayit xml) {
 
-		// Window.alert("adi:" + xml.adi);
-		// Window.alert(xml);
 		tctAdi.setText(xml.adi);
 		tctSoyadi.setText(xml.soyadi);
 		tctTCKimlikNo.setText(xml.tc_kimlik_no);
@@ -1291,12 +1291,7 @@ public class KesinKayitBilgileri extends DialogBox {
 				cbxMedeniHali, xml.medeni_hali));
 		cbxOgrenciBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOgrenciBilgileriUlke, xml.ogrenci_bilgileri_ulke));
-		// cbxOgrenciBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-		// cbxOgrenciBilgileriIl, xml.ogrenci_bilgileri_il));
-		// cbxOgrenciBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-		// cbxOgrenciBilgileriIlce, xml.ogrenci_bilgileri_ilce));
-		// cbxOkul.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxOkul, xml.okul));
+
 		cbxOgrenciBilgileriSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOgrenciBilgileriSinif, xml.ogrenci_bilgileri_sinif));
 		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
@@ -1305,23 +1300,10 @@ public class KesinKayitBilgileri extends DialogBox {
 				.GetLBXSelectedTextIndex(cbxAlan, xml.alan));
 		cbxAdresBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxAdresBilgileriUlke, xml.adres_bilgileri_ulke));
-		// cbxAdresBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-		// cbxAdresBilgileriIlce, xml.adres_bilgileri_il));
-		// cbxAdresBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-		// cbxAdresBilgileriIlce, xml.adres_bilgileri_ilce));
-		// cbxSemt.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxSemt, xml.semt));
-		// cbxMahalle.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxMahalle,
-		// xml.mahalle));
+
 		cbxOgrenciKimlikBilgileriUlke.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriUlke,
 						xml.ogrenci_kimlik_bilgileri_ulke));
-		// cbxOgrenciKimlikBilgileriIl.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxOgrenciKimlikBilgileriIl,
-		// xml.ogrenci_kimlik_bilgileri_il));
-		// cbxOgrenciKimlikBilgileriIlce.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxOgrenciBilgileriIlce,
-		// xml.ogrenci_kimlik_bilgileri_ilce));
 
 		cbxOgrenciBilgileriIl.setItemText(0, xml.ogrenci_bilgileri_il);
 		cbxOgrenciBilgileriIlce.setItemText(0, xml.ogrenci_bilgileri_ilce);

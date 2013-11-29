@@ -156,8 +156,10 @@ public class DlgDersTanimlari extends DialogBox {
 			String URLValue = Util.urlBase + "putderstanimlari?";
 
 			URLValue = URLValue + "id=" + _id;
-			URLValue = URLValue + "&egitim_turu_adi="
-					+ cbxEgitimTuru.getValue(cbxEgitimTuru.getSelectedIndex());
+			URLValue = URLValue
+					+ "&egitim_turu_adi="
+					+ cbxEgitimTuru.getItemText(cbxEgitimTuru
+							.getSelectedIndex());
 			URLValue = URLValue + "&alan_adi="
 					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());
 			URLValue = URLValue + "&ders_adi=" + tctDersAdi.getText();
@@ -174,7 +176,6 @@ public class DlgDersTanimlari extends DialogBox {
 		tctDersAdi.setText(xml.ders_adi);
 		cbxAlan.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxAlan,
 				xml.alan_adi));
-		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxEgitimTuru, xml.egitim_turu_adi));
+		cbxEgitimTuru.setItemText(0, xml.egitim_turu_adi);
 	}
 }

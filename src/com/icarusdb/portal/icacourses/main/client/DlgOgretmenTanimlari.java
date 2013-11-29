@@ -356,6 +356,8 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		tctGirdigiDersbilgisi.setText(xml.girdigi_ders_bilgisi);
 		tctTCKimlikNo.setText(xml.tc_kimlik_no);
 		tctUcreti.setText(xml.ucreti);
+		tctSigortaGunSayisi.setText(xml.sigorta_gun_sayisi);
+
 		cbxBrans.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxBrans,
 				xml.brans));
 		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(

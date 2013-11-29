@@ -126,7 +126,7 @@ public class DBSKayit extends Composite {
 			}
 		};
 		grdDBSKayit.addColumn(textColumn_5, "İD");
-		grdDBSKayit.setColumnWidth(textColumn_5, "44px");
+		grdDBSKayit.setColumnWidth(textColumn_5, "27px");
 
 		TextColumn<XMLDBSKayit> textColumn_1 = new TextColumn<XMLDBSKayit>() {
 			@Override
@@ -135,6 +135,7 @@ public class DBSKayit extends Composite {
 			}
 		};
 		grdDBSKayit.addColumn(textColumn_1, "Adı");
+		grdDBSKayit.setColumnWidth(textColumn_1, "91px");
 
 		TextColumn<XMLDBSKayit> textColumn_2 = new TextColumn<XMLDBSKayit>() {
 			@Override
@@ -151,7 +152,7 @@ public class DBSKayit extends Composite {
 			}
 		};
 		grdDBSKayit.addColumn(textColumn_7, "TC Kimlik No");
-		grdDBSKayit.setColumnWidth(textColumn_7, "123px");
+		grdDBSKayit.setColumnWidth(textColumn_7, "117px");
 
 		TextColumn<XMLDBSKayit> textColumn_6 = new TextColumn<XMLDBSKayit>() {
 			@Override
@@ -160,6 +161,7 @@ public class DBSKayit extends Composite {
 			}
 		};
 		grdDBSKayit.addColumn(textColumn_6, "Okul Adı");
+		grdDBSKayit.setColumnWidth(textColumn_6, "142px");
 
 		TextColumn<XMLDBSKayit> textColumn = new TextColumn<XMLDBSKayit>() {
 			@Override

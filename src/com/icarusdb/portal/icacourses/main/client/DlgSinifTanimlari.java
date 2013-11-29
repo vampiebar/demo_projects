@@ -7,7 +7,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -248,7 +247,7 @@ public class DlgSinifTanimlari extends DialogBox {
 					+ tctOzelDersSayisi.getText();
 			URLValue = URLValue + "&fiyati=" + tctFiyati.getText();
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");
 
@@ -283,6 +282,7 @@ public class DlgSinifTanimlari extends DialogBox {
 				.GetLBXSelectedTextIndex(cbxAlan, xml.alan));
 		cbxDanismanOgretmen.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxDanismanOgretmen, xml.danisman_ogretmen));
+
 		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxEgitimTuru, xml.egitim_turu));
 		cbxFizikselSinifAdi.setSelectedIndex(Util.GetLBXSelectedTextIndex(

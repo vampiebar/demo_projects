@@ -19,7 +19,6 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
@@ -262,7 +261,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		tctCepTelefonu.setSize("143px", "14px");
 
 		HorizontalPanel horizontalPanel_3 = new HorizontalPanel();
-		vtpanOgrenciBilgileri.add(horizontalPanel_3, 443, 452);
+		vtpanOgrenciBilgileri.add(horizontalPanel_3, 472, 452);
 		horizontalPanel_3.setSize("254px", "72px");
 
 		Button btnYeniKayit5 = new Button("Yeni Kayıt");
@@ -287,7 +286,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOkul.setStyleName("gwt-ComboBox1");
 		cbxOkul.addItem(" ");
 		vtpanOgrenciBilgileri.add(cbxOkul, 157, 419);
-		cbxOkul.setSize("266px", "22px");
+		cbxOkul.setSize("292px", "22px");
 
 		VerticalPanel verticalPanel_1 = new VerticalPanel();
 		decoratedTabPanel.add(verticalPanel_1, "Öğrenci Kimlik Bilgileri",
@@ -648,11 +647,11 @@ public class DlgDBSYeniKayit extends DialogBox {
 		decoratedTabPanel.selectTab(0);
 
 		if (!isDesignTime()) {
-			putDataToGrid();
-			//
+
 			putIlToCbx(cbxOgrenciBilgileriIl);
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl);
 			putIlToCbx(cbxAdresBilgileriIl);
+			putDataToGrid();
 
 			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
 			// SingleSelectionModel<XMLVeliEkle>();
@@ -1056,32 +1055,14 @@ public class DlgDBSYeniKayit extends DialogBox {
 				cbxMedeniHali, xml.medeni_hali));
 		cbxOgrenciBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOgrenciBilgileriUlke, xml.ogrenci_bilgileri_ulke));
-		// cbxOgrenciBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-		// cbxOgrenciBilgileriIl, xml.ogrenci_bilgileri_il));
-		// cbxOgrenciBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-		// cbxOgrenciBilgileriIlce, xml.ogrenci_bilgileri_ilce));
-		// cbxOkul.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxOkul, xml.okul));
 
 		cbxAdresBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxAdresBilgileriUlke, xml.adres_bilgileri_ulke));
-		// cbxAdresBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-		// cbxAdresBilgileriIlce, xml.adres_bilgileri_il));
-		// cbxAdresBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-		// cbxAdresBilgileriIlce, xml.adres_bilgileri_ilce));
-		// cbxSemt.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxSemt, xml.semt));
-		// cbxMahalle.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxMahalle,
-		// xml.mahalle));
+
 		cbxOgrenciKimlikBilgileriUlke.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriUlke,
 						xml.ogrenci_kimlik_bilgileri_ulke));
-		// cbxOgrenciKimlikBilgileriIl.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxOgrenciKimlikBilgileriIl,
-		// xml.ogrenci_kimlik_bilgileri_il));
-		// cbxOgrenciKimlikBilgileriIlce.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxOgrenciBilgileriIlce,
-		// xml.ogrenci_kimlik_bilgileri_ilce));
+
 		cbxOkulDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOkulDurumu, xml.okul_durumu));
 		cbxAlanbilgisi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
@@ -1103,42 +1084,6 @@ public class DlgDBSYeniKayit extends DialogBox {
 				xml.ogrenci_kimlik_bilgileri_ilce);
 
 	}
-
-	// private class BtnOgrenciyiKaydet1ClickHandler implements ClickHandler {
-	// public void onClick(ClickEvent event) {
-	// String URLValue = Util.urlBase + "putdbskayit?";
-	// URLValue = URLValue + "seri_no=" + tctSeriNo.getText();
-	// URLValue = URLValue + "&cuzdan_no=" + tctCuzdanNo.getText();
-	// URLValue = URLValue
-	// + "&ogrenci_kimlik_bilgileri_ulke="
-	// + cbxOgrenciKimlikBilgileriUlke
-	// .getValue(cbxOgrenciKimlikBilgileriUlke
-	// .getSelectedIndex());
-	// URLValue = URLValue
-	// + "&ogrenci_kimlik_bilgileri_il="
-	// + cbxOgrenciKimlikBilgileriIl
-	// .getValue(cbxOgrenciKimlikBilgileriIl
-	// .getSelectedIndex());
-	// URLValue = URLValue
-	// + "&ogrenci_kimlik_bilgileri_ilce="
-	// + cbxOgrenciKimlikBilgileriIlce
-	// .getValue(cbxOgrenciKimlikBilgileriIlce
-	// .getSelectedIndex());
-	// URLValue = URLValue + "&mahalle_koy=" + tctMahalleKoy.getText();
-	// URLValue = URLValue + "&cilt_no=" + tctCiltNo.getText();
-	// URLValue = URLValue + "&aile_sira_no=" + tctAileSiraNo.getText();
-	// URLValue = URLValue + "&sira_no=" + tctSiraNo.getText();
-	// URLValue = URLValue + "&verildigi_yer=" + tctVerildigiYer.getText();
-	// URLValue = URLValue + "&verilis_nedeni="
-	// + tctVerilisNedeni.getText();
-	// URLValue = URLValue + "&kayit_no=" + tctKayitNo.getText();
-	//
-	// Window.alert(URLValue);
-	//
-	// new Util().sendRequest(URLValue);
-	//
-	// }
-	// }
 
 	private class BtnOgrenciyiKaydet5ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
@@ -1165,16 +1110,21 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 			URLValue = URLValue
 					+ "&ogrenci_bilgileri_il="
-					+ cbxOgrenciBilgileriIl.getValue(cbxOgrenciBilgileriIl
+					+ cbxOgrenciBilgileriIl.getItemText(cbxOgrenciBilgileriIl
 							.getSelectedIndex());
+
+			// Window.alert("OGRENCI BILGILERI IL:"
+			// + cbxOgrenciBilgileriIl.getItemText(cbxOgrenciBilgileriIl
+			// .getSelectedIndex()));
 
 			URLValue = URLValue
 					+ "&ogrenci_bilgileri_ilce="
-					+ cbxOgrenciBilgileriIlce.getValue(cbxOgrenciBilgileriIlce
-							.getSelectedIndex());
+					+ cbxOgrenciBilgileriIlce
+							.getItemText(cbxOgrenciBilgileriIlce
+									.getSelectedIndex());
 
 			URLValue = URLValue + "&okul="
-					+ cbxOkul.getValue(cbxOkul.getSelectedIndex());
+					+ cbxOkul.getItemText(cbxOkul.getSelectedIndex());
 
 			URLValue = URLValue
 					+ "&sinif="
@@ -1191,12 +1141,12 @@ public class DlgDBSYeniKayit extends DialogBox {
 			URLValue = URLValue
 					+ "&ogrenci_kimlik_bilgileri_il="
 					+ cbxOgrenciKimlikBilgileriIl
-							.getValue(cbxOgrenciKimlikBilgileriIl
+							.getItemText(cbxOgrenciKimlikBilgileriIl
 									.getSelectedIndex());
 			URLValue = URLValue
 					+ "&ogrenci_kimlik_bilgileri_ilce="
 					+ cbxOgrenciKimlikBilgileriIlce
-							.getValue(cbxOgrenciKimlikBilgileriIlce
+							.getItemText(cbxOgrenciKimlikBilgileriIlce
 									.getSelectedIndex());
 			URLValue = URLValue + "&mahalle_koy=" + tctMahalleKoy.getText();
 			URLValue = URLValue + "&cilt_no=" + tctCiltNo.getText();
@@ -1212,16 +1162,16 @@ public class DlgDBSYeniKayit extends DialogBox {
 							.getSelectedIndex());
 			URLValue = URLValue
 					+ "&adres_bilgileri_il="
-					+ cbxAdresBilgileriIl.getValue(cbxAdresBilgileriIl
+					+ cbxAdresBilgileriIl.getItemText(cbxAdresBilgileriIl
 							.getSelectedIndex());
 			URLValue = URLValue
 					+ "&adres_bilgileri_ilce="
-					+ cbxAdresBilgileriIlce.getValue(cbxAdresBilgileriIlce
+					+ cbxAdresBilgileriIlce.getItemText(cbxAdresBilgileriIlce
 							.getSelectedIndex());
 			URLValue = URLValue + "&semt="
-					+ cbxSemt.getValue(cbxSemt.getSelectedIndex());
+					+ cbxSemt.getItemText(cbxSemt.getSelectedIndex());
 			URLValue = URLValue + "&mahalle="
-					+ cbxMahalle.getValue(cbxMahalle.getSelectedIndex());
+					+ cbxMahalle.getItemText(cbxMahalle.getSelectedIndex());
 			URLValue = URLValue + "&sokak_ve_no=" + tctSokakveNo.getText();
 			URLValue = URLValue + "&okul_durumu="
 					+ cbxOkulDurumu.getValue(cbxOkulDurumu.getSelectedIndex());
@@ -1235,9 +1185,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 					+ cbxSinavTarihi
 							.getValue(cbxSinavTarihi.getSelectedIndex());
 
-			// Window.alert("Öğrenci Başarıyla Kayıt Edilmiştir.");
-
-			Window.alert("URL VALUE:  DBS: " + URLValue);
+			// Window.alert("URL VALUE:  DBS: " + URLValue);
 
 			new Util().sendRequest(URLValue,
 					"ÖĞRENCİ BİLGİLERİ BAŞARI İLE KAYIT EDİLDİ",

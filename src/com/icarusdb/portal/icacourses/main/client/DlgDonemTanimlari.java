@@ -133,7 +133,7 @@ public class DlgDonemTanimlari extends DialogBox {
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
-			Window.alert(dtf.format(dtpDonemBaslangicTarihi.getValue()));
+			// Window.alert(dtf.format(dtpDonemBaslangicTarihi.getValue()));
 		}
 	}
 
@@ -141,7 +141,7 @@ public class DlgDonemTanimlari extends DialogBox {
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
-			Window.alert(dtf.format(dtpDonemBitisTarihi.getValue()));
+			// Window.alert(dtf.format(dtpDonemBitisTarihi.getValue()));
 		}
 	}
 

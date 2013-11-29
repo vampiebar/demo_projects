@@ -1305,15 +1305,16 @@ public class DlgOnKayit extends DialogBox {
 
 			URLValue = URLValue
 					+ "&ogrenci_bilgileri_il="
-					+ cbxOgrenciBilgileriIl.getValue(cbxOgrenciBilgileriIl
+					+ cbxOgrenciBilgileriIl.getItemText(cbxOgrenciBilgileriIl
 							.getSelectedIndex());
 
 			URLValue = URLValue
 					+ "&ogrenci_bilgileri_ilce="
-					+ cbxOgrenciBilgileriIlce.getValue(cbxOgrenciBilgileriIlce
-							.getSelectedIndex());
+					+ cbxOgrenciBilgileriIlce
+							.getItemText(cbxOgrenciBilgileriIlce
+									.getSelectedIndex());
 			URLValue = URLValue + "&okul="
-					+ cbxOkul.getValue(cbxOkul.getSelectedIndex());
+					+ cbxOkul.getItemText(cbxOkul.getSelectedIndex());
 
 			URLValue = URLValue
 					+ "&ogrenci_bilgileri_sinif="
@@ -1358,16 +1359,16 @@ public class DlgOnKayit extends DialogBox {
 							.getSelectedIndex());
 			URLValue = URLValue
 					+ "&adres_bilgileri_il="
-					+ cbxAdresBilgileriIl.getValue(cbxAdresBilgileriIl
+					+ cbxAdresBilgileriIl.getItemText(cbxAdresBilgileriIl
 							.getSelectedIndex());
 			URLValue = URLValue
 					+ "&adres_bilgileri_ilce="
-					+ cbxAdresBilgileriIlce.getValue(cbxAdresBilgileriIlce
+					+ cbxAdresBilgileriIlce.getItemText(cbxAdresBilgileriIlce
 							.getSelectedIndex());
 			URLValue = URLValue + "&semt="
-					+ cbxSemt.getValue(cbxSemt.getSelectedIndex());
+					+ cbxSemt.getItemText(cbxSemt.getSelectedIndex());
 			URLValue = URLValue + "&mahalle="
-					+ cbxMahalle.getValue(cbxMahalle.getSelectedIndex());
+					+ cbxMahalle.getItemText(cbxMahalle.getSelectedIndex());
 			URLValue = URLValue + "&sokak_ve_no=" + tctSokakveNo.getText();
 
 			URLValue = URLValue + "&seri_no=" + tctSeriNo.getText();
@@ -1380,12 +1381,12 @@ public class DlgOnKayit extends DialogBox {
 			URLValue = URLValue
 					+ "&ogrenci_kimlik_bilgileri_il="
 					+ cbxOgrenciKimlikBilgileriIl
-							.getValue(cbxOgrenciKimlikBilgileriIl
+							.getItemText(cbxOgrenciKimlikBilgileriIl
 									.getSelectedIndex());
 			URLValue = URLValue
 					+ "&ogrenci_kimlik_bilgileri_ilce="
 					+ cbxOgrenciKimlikBilgileriIlce
-							.getValue(cbxOgrenciKimlikBilgileriIlce
+							.getItemText(cbxOgrenciKimlikBilgileriIlce
 									.getSelectedIndex());
 			URLValue = URLValue + "&mahalle_koy=" + tctMahalleKoy.getText();
 			URLValue = URLValue + "&cilt_no=" + tctCiltNo.getText();

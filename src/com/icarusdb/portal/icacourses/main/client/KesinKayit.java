@@ -295,7 +295,7 @@ public class KesinKayit extends Composite {
 			}, DoubleClickEvent.getType());
 
 			// btnAra Clicked
-			new BtnAraClickHandler().onClick(null);
+			// new BtnAraClickHandler().onClick(null);
 
 		}
 

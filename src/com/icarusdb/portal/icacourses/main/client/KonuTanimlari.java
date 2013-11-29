@@ -32,7 +32,7 @@ public class KonuTanimlari extends Composite {
 		absolutePanel.setSize("823px", "430px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
+		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 25);
 		btnListeyiYenile.setSize("78px", "48px");
 
