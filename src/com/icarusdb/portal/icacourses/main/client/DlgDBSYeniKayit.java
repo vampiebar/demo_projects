@@ -164,7 +164,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		dtpDogumTarihi = new DateBox();
 		dtpDogumTarihi.setStyleName("gwt-TextBox1");
 		dtpDogumTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy.MM.dd")));
+				.getFormat("yyyy-MM-dd")));
 		dtpDogumTarihi
 				.addValueChangeHandler(new DtpDogumTarihiValueChangeHandler());
 		vtpanOgrenciBilgileri.add(dtpDogumTarihi, 157, 172);
@@ -356,6 +356,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 		absolutePanel.add(lblNewLabel_11, 10, 509);
 
 		dtpVerilisTarihi = new DateBox();
+		dtpVerilisTarihi.setFormat(new DefaultFormat(DateTimeFormat
+				.getFormat("yyyy-MM-dd")));
 		dtpVerilisTarihi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(dtpVerilisTarihi, 130, 547);
 		dtpVerilisTarihi.setSize("158px", "14px");
@@ -649,8 +651,11 @@ public class DlgDBSYeniKayit extends DialogBox {
 		if (!isDesignTime()) {
 
 			putIlToCbx(cbxOgrenciBilgileriIl);
+
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl);
+
 			putIlToCbx(cbxAdresBilgileriIl);
+
 			putDataToGrid();
 
 			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
@@ -1083,6 +1088,12 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOgrenciKimlikBilgileriIlce.setItemText(0,
 				xml.ogrenci_kimlik_bilgileri_ilce);
 
+		// Window.alert("DOG T: " + xml.dogum_tarihi);
+
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
+		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
+
 	}
 
 	private class BtnOgrenciyiKaydet5ClickHandler implements ClickHandler {
@@ -1184,6 +1195,15 @@ public class DlgDBSYeniKayit extends DialogBox {
 					+ "&sinav_tarihi="
 					+ cbxSinavTarihi
 							.getValue(cbxSinavTarihi.getSelectedIndex());
+
+			// DATEs
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+			URLValue = URLValue + "&dogum_tarihi="
+					+ dtf.format(dtpDogumTarihi.getValue());
+
+			URLValue = URLValue + "&verilis_tarihi="
+					+ dtf.format(dtpVerilisTarihi.getValue());
 
 			// Window.alert("URL VALUE:  DBS: " + URLValue);
 

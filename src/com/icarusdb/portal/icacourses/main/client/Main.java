@@ -17,11 +17,9 @@ package com.icarusdb.portal.icacourses.main.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.SelectionEvent;
-import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DisclosurePanel;
+import com.google.gwt.user.client.ui.DecoratedStackPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -31,53 +29,25 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.Tree;
-import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class Main implements EntryPoint {
-	private TreeItem tritmDBSKayit;
-	private Tree treeKayitIslemleri;
 	private SimplePanel smpanMain;
-	private TreeItem tritmOnKayit;
-	private TreeItem tritmDersDagitimSistemi;
-	private TreeItem tritmYetkiTanimlama;
-	private TreeItem tritmSaatGirisi;
-	private TreeItem tritmKesinKayit;
-	private TreeItem tritmOdevolustur;
-	private TreeItem tritmCevapadedibelirle;
-	private TreeItem tritmOdevtakipUnite;
-	private TreeItem tritmatanmisodevler;
-	private TreeItem tritmsinavtanimlama;
-	private TreeItem tritmSablontanimlari;
-	private TreeItem tritmgelirvegiderler;
-	private TreeItem tritmkasahareketleri;
-	private TreeItem tritmgelirgidertanimlari;
-	private TreeItem tritmgelirgiderkategorileri;
-	private TreeItem tritmbankaekle;
-	private TreeItem tritmDBSSinavTanimla;
-	private TreeItem tritmOgretmenTanimlari;
-	private TreeItem tritmSinifTanimlari;
-	private TreeItem tritmIndirimturu;
-	private TreeItem tritmHizmettanimla;
-	private TreeItem tritmreferanslar;
-	private TreeItem tritmpersoneltanimlari;
-	private TreeItem tritmkurumsalbilgiler;
-	private TreeItem tritmdönemtanimlari;
-	private TreeItem tritmderstanimlari;
-	private TreeItem tritmUnitetanimlari;
-	private TreeItem tritmKonutanimlari;
-	private TreeItem tritmFizikselsiniftanimlari;
-	private TreeItem tritmKurszamanitanimlari;
-	private TreeItem tritmsozlesmemaddeleri;
-	private TreeItem tritmsifredegistirme;
-	private TreeItem tritmDestekAlmakIstiyorum;
-	private TreeItem tritmkullanicitanimlama;
-	private Tree tritmYetki;
-	private Tree tritmDonemseltanimlar;
+	private VerticalPanel vtpanOgrenciIsleri;
+	private VerticalPanel vtpanKayitIslemleri;
+	private VerticalPanel vtpanDersDagitim;
+	private VerticalPanel vtpanOdevTakip;
+	private VerticalPanel vtpanSinavDegerlendirme;
+	private VerticalPanel vtpanMuhasebe;
+	private VerticalPanel vtpanDonemselTanimlar;
+	private VerticalPanel vtpanSabitTanimlamalar;
+	private VerticalPanel vtpanDestek;
+	private VerticalPanel vtpanYetki;
+	private Button btnMenuDBSKayit;
+	private Button btnMenuSinifTanimlari;
 
 	public void onModuleLoad() {
 		RootPanel rootPanel = RootPanel.get();
@@ -133,11 +103,12 @@ public class Main implements EntryPoint {
 		verticalPanel.setStyleName("gwt-DialogBackGround");
 		verticalPanel.setSpacing(10);
 		rootPanel.add(verticalPanel, 23, 95);
-		verticalPanel.setSize("251px", "636px");
+		verticalPanel.setSize("240px", "508px");
 
 		Label lblEitimDnemi = new Label("Eğitim Dönemi:");
 		lblEitimDnemi.setStyleName("gwt-Bold");
 		verticalPanel.add(lblEitimDnemi);
+		verticalPanel.setCellHeight(lblEitimDnemi, "10");
 
 		ListBox comboBox = new ListBox();
 		comboBox.setStyleName("gwt-ComboBox1");
@@ -145,314 +116,283 @@ public class Main implements EntryPoint {
 		comboBox.addItem("2014/2015");
 		comboBox.setVisibleItemCount(1);
 		verticalPanel.add(comboBox);
+		verticalPanel.setCellHeight(comboBox, "10");
 		comboBox.setSize("217px", "26px");
+
+		DecoratedStackPanel decoratedStackPanel = new DecoratedStackPanel();
+		verticalPanel.add(decoratedStackPanel);
+		decoratedStackPanel.setSize("220px", "399px");
+
+		vtpanKayitIslemleri = new VerticalPanel();
+		vtpanKayitIslemleri.setSpacing(3);
+		decoratedStackPanel.add(vtpanKayitIslemleri, "KAYIT İŞLEMLERİ", false);
+		vtpanKayitIslemleri.setSize("100%", "108px");
+
+		btnMenuDBSKayit = new Button("DBS Kayıt");
+		btnMenuDBSKayit.addClickHandler(new BtnMenuDBSKayitClickHandler());
+		vtpanKayitIslemleri.add(btnMenuDBSKayit);
+		vtpanKayitIslemleri.setCellHeight(btnMenuDBSKayit, "30");
+		btnMenuDBSKayit.setWidth("60%");
+
+		Button btnMenuOnkayit = new Button("Ön Kayıt");
+		btnMenuOnkayit.addClickHandler(new BtnMenuOnkayitClickHandler());
+		vtpanKayitIslemleri.add(btnMenuOnkayit);
+		vtpanKayitIslemleri.setCellHeight(btnMenuOnkayit, "30");
+		btnMenuOnkayit.setWidth("60%");
+
+		Button btnMenuKesinKayit = new Button("Kesin Kayıt");
+		btnMenuKesinKayit.addClickHandler(new BtnMenuKesinKayitClickHandler());
+		vtpanKayitIslemleri.add(btnMenuKesinKayit);
+		btnMenuKesinKayit.setSize("60%", "26px");
+
+		vtpanOgrenciIsleri = new VerticalPanel();
+		vtpanOgrenciIsleri.setSpacing(3);
+		decoratedStackPanel.add(vtpanOgrenciIsleri, "ÖĞRENCİ İŞLERİ", false);
+		vtpanOgrenciIsleri.setSize("100%", "100%");
+
+		Button btnNewButton_4 = new Button("Öğrenci Kayıtları");
+		vtpanOgrenciIsleri.add(btnNewButton_4);
+		vtpanOgrenciIsleri.setCellHeight(btnNewButton_4, "30px");
+
+		Button btnNewButton_5 = new Button("Raporlar");
+		vtpanOgrenciIsleri.add(btnNewButton_5);
+
+		vtpanDersDagitim = new VerticalPanel();
+		vtpanDersDagitim.setSpacing(3);
+		decoratedStackPanel.add(vtpanDersDagitim, "DERS DAĞITIM", false);
+		vtpanDersDagitim.setSize("100%", "100%");
+
+		Button btbMenuDersDagitimSistemi = new Button("Ders Dağıtım Sistemi");
+		btbMenuDersDagitimSistemi
+				.addClickHandler(new BtbMenuDersDagitimSistemiClickHandler());
+		vtpanDersDagitim.add(btbMenuDersDagitimSistemi);
+		btbMenuDersDagitimSistemi.setWidth("90%");
+
+		Button btnMenuYetkiTanimlama = new Button("Yetki Tanımlama (Kısıtlama)");
+		btnMenuYetkiTanimlama
+				.addClickHandler(new BtnMenuYetkiTanimlamaClickHandler());
+		vtpanDersDagitim.add(btnMenuYetkiTanimlama);
+		btnMenuYetkiTanimlama.setWidth("90%");
+
+		Button btnMenuSaatGirisi = new Button("Saat Girişi");
+		btnMenuSaatGirisi.addClickHandler(new BtnMenuSaatGirisiClickHandler());
+		vtpanDersDagitim.add(btnMenuSaatGirisi);
+		btnMenuSaatGirisi.setWidth("90%");
+
+		vtpanOdevTakip = new VerticalPanel();
+		vtpanOdevTakip.setSpacing(3);
+		decoratedStackPanel.add(vtpanOdevTakip, "ÖDEV TAKİP", false);
+		vtpanOdevTakip.setSize("100%", "100%");
+
+		Button btnMenuOdevOlustur = new Button("Ödev Oluştur");
+		btnMenuOdevOlustur
+				.addClickHandler(new BtnMenuOdevOlusturClickHandler());
+		vtpanOdevTakip.add(btnMenuOdevOlustur);
+		btnMenuOdevOlustur.setWidth("65%");
+
+		Button btnMenuCevapAdediBelirle = new Button("Cevap Adedi Belirle");
+		btnMenuCevapAdediBelirle
+				.addClickHandler(new BtnMenuCevapAdediBelirleClickHandler());
+		vtpanOdevTakip.add(btnMenuCevapAdediBelirle);
+
+		Button btnMenuOdevTakipUnite = new Button("Ödev Takip Ünite");
+		btnMenuOdevTakipUnite
+				.addClickHandler(new BtnMenuOdevTakipUniteClickHandler());
+		vtpanOdevTakip.add(btnMenuOdevTakipUnite);
+		btnMenuOdevTakipUnite.setWidth("65%");
+
+		Button btnMenuAtanmisOdevler = new Button("Atanmış Ödevler");
+		btnMenuAtanmisOdevler
+				.addClickHandler(new BtnMenuAtanmisOdevlerClickHandler());
+		vtpanOdevTakip.add(btnMenuAtanmisOdevler);
+		btnMenuAtanmisOdevler.setWidth("65%");
+
+		vtpanSinavDegerlendirme = new VerticalPanel();
+		vtpanSinavDegerlendirme.setSpacing(3);
+		decoratedStackPanel.add(vtpanSinavDegerlendirme, "SINAV DEĞERLENDİRME",
+				false);
+		vtpanSinavDegerlendirme.setSize("100%", "64px");
+
+		Button btnMenuSinavTanimlama = new Button("Sınav Tanımlama");
+		btnMenuSinavTanimlama
+				.addClickHandler(new BtnMenuSinavTanimlamaClickHandler());
+		vtpanSinavDegerlendirme.add(btnMenuSinavTanimlama);
+
+		Button btnMenuSablonTanimlari = new Button("Şablon Tanımları");
+		btnMenuSablonTanimlari
+				.addClickHandler(new BtnMenuSablonTanimlariClickHandler());
+		vtpanSinavDegerlendirme.add(btnMenuSablonTanimlari);
+		btnMenuSablonTanimlari.setWidth("116px");
+
+		vtpanMuhasebe = new VerticalPanel();
+		vtpanMuhasebe.setSpacing(3);
+		decoratedStackPanel.add(vtpanMuhasebe, "MUHASEBE", false);
+		vtpanMuhasebe.setSize("100%", "142px");
+
+		Button btnMenuGelirveGiderler = new Button("Gelir ve Giderler");
+		btnMenuGelirveGiderler
+				.addClickHandler(new BtnMenuGelirveGiderlerClickHandler());
+		vtpanMuhasebe.add(btnMenuGelirveGiderler);
+		btnMenuGelirveGiderler.setWidth("75%");
+
+		Button btnMenuKasaHareketleri = new Button("Kasa Hareketleri");
+		btnMenuKasaHareketleri
+				.addClickHandler(new BtnMenuKasaHareketleriClickHandler());
+		vtpanMuhasebe.add(btnMenuKasaHareketleri);
+		btnMenuKasaHareketleri.setWidth("75%");
+
+		Button btnMenuGelirGiderTanimlari = new Button("Gelir/Gider Tanımları");
+		btnMenuGelirGiderTanimlari
+				.addClickHandler(new BtnMenuGelirGiderTanimlariClickHandler());
+		vtpanMuhasebe.add(btnMenuGelirGiderTanimlari);
+		btnMenuGelirGiderTanimlari.setWidth("75%");
+
+		Button btnMenuGelirGiderKategorileri = new Button(
+				"Gelir Gider Kategorileri");
+		btnMenuGelirGiderKategorileri
+				.addClickHandler(new BtnMenuGelirGiderKategorileriClickHandler());
+		vtpanMuhasebe.add(btnMenuGelirGiderKategorileri);
+		btnMenuGelirGiderKategorileri.setWidth("75%");
+
+		Button btnMenuBankaEkle = new Button("Banka Ekle");
+		btnMenuBankaEkle.addClickHandler(new BtnMenuBankaEkleClickHandler());
+		vtpanMuhasebe.add(btnMenuBankaEkle);
+		btnMenuBankaEkle.setWidth("75%");
+
+		vtpanDonemselTanimlar = new VerticalPanel();
+		vtpanDonemselTanimlar.setSpacing(3);
+		decoratedStackPanel.add(vtpanDonemselTanimlar, "DÖNEMSEL TANIMLAR",
+				false);
+		vtpanDonemselTanimlar.setSize("100%", "194px");
+
+		Button btnMenuDBSSinavTanimla = new Button("DBS Sınav Tanımla");
+		btnMenuDBSSinavTanimla
+				.addClickHandler(new BtnMenuDBSSinavTanimlaClickHandler());
+		vtpanDonemselTanimlar.add(btnMenuDBSSinavTanimla);
+		btnMenuDBSSinavTanimla.setWidth("65%");
+
+		Button btnMenuOgretmenTanimlari = new Button("Öğretmen Tanımları");
+		btnMenuOgretmenTanimlari
+				.addClickHandler(new BtnMenuOgretmenTanimlariClickHandler());
+		vtpanDonemselTanimlar.add(btnMenuOgretmenTanimlari);
+		btnMenuOgretmenTanimlari.setWidth("65%");
+
+		btnMenuSinifTanimlari = new Button("Sınıf Tanımları");
+		btnMenuSinifTanimlari
+				.addClickHandler(new BtnMenuSinifTanimlariClickHandler());
+		vtpanDonemselTanimlar.add(btnMenuSinifTanimlari);
+		btnMenuSinifTanimlari.setWidth("65%");
+
+		Button btnMenuIndirimTuru = new Button("İndirim Türü");
+		btnMenuIndirimTuru
+				.addClickHandler(new BtnMenuIndirimTuruClickHandler());
+		vtpanDonemselTanimlar.add(btnMenuIndirimTuru);
+		btnMenuIndirimTuru.setWidth("65%");
+
+		Button btnMenuHizmetTanmla = new Button("Hizmet Tanımla");
+		btnMenuHizmetTanmla
+				.addClickHandler(new BtnMenuHizmetTanmlaClickHandler());
+		vtpanDonemselTanimlar.add(btnMenuHizmetTanmla);
+		btnMenuHizmetTanmla.setWidth("65%");
+
+		Button btnMenuReferanslar = new Button("Referanslar");
+		btnMenuReferanslar
+				.addClickHandler(new BtnMenuReferanslarClickHandler());
+		vtpanDonemselTanimlar.add(btnMenuReferanslar);
+		btnMenuReferanslar.setWidth("65%");
+
+		Button btnMenuPersonelTanimlari = new Button("Personel Tanımları");
+		btnMenuPersonelTanimlari
+				.addClickHandler(new BtnMenuPersonelTanimlariClickHandler());
+		vtpanDonemselTanimlar.add(btnMenuPersonelTanimlari);
+		btnMenuPersonelTanimlari.setWidth("65%");
+
+		vtpanSabitTanimlamalar = new VerticalPanel();
+		vtpanSabitTanimlamalar.setSpacing(3);
+		decoratedStackPanel.add(vtpanSabitTanimlamalar, "SABİT TANIMLAMALAR",
+				false);
+		vtpanSabitTanimlamalar.setSize("100%", "252px");
+
+		Button btnMenuKurumsalBilgiler = new Button("Kurumsal Bilgiler");
+		btnMenuKurumsalBilgiler
+				.addClickHandler(new BtnMenuKurumsalBilgilerClickHandler());
+		vtpanSabitTanimlamalar.add(btnMenuKurumsalBilgiler);
+		btnMenuKurumsalBilgiler.setWidth("80%");
+
+		Button btnMenuDonemTanimlari = new Button("Dönem Tanımları");
+		btnMenuDonemTanimlari
+				.addClickHandler(new BtnMenuDonemTanimlariClickHandler());
+		vtpanSabitTanimlamalar.add(btnMenuDonemTanimlari);
+		btnMenuDonemTanimlari.setWidth("80%");
+
+		Button btnMenuDersTanimlari = new Button("Ders Tanımları");
+		btnMenuDersTanimlari
+				.addClickHandler(new BtnMenuDersTanimlariClickHandler());
+		vtpanSabitTanimlamalar.add(btnMenuDersTanimlari);
+		btnMenuDersTanimlari.setWidth("80%");
+
+		Button btnMenuUniteTanimlari = new Button("Ünite Tanımları");
+		btnMenuUniteTanimlari
+				.addClickHandler(new BtnMenuUniteTanimlariClickHandler());
+		vtpanSabitTanimlamalar.add(btnMenuUniteTanimlari);
+		btnMenuUniteTanimlari.setWidth("80%");
+
+		Button btnMenuKonuTanimlari = new Button("Konu Tanımları");
+		btnMenuKonuTanimlari
+				.addClickHandler(new BtnMenuKonuTanimlariClickHandler());
+		vtpanSabitTanimlamalar.add(btnMenuKonuTanimlari);
+		btnMenuKonuTanimlari.setWidth("80%");
+
+		Button btnMenuFizikselSinifTanimlama = new Button(
+				"Fiziksel Sınıf Tanımlama");
+		btnMenuFizikselSinifTanimlama
+				.addClickHandler(new BtnMenuFizikselSinifTanimlamaClickHandler());
+		vtpanSabitTanimlamalar.add(btnMenuFizikselSinifTanimlama);
+		btnMenuFizikselSinifTanimlama.setWidth("80%");
+
+		Button btnMenuKursZamaniTanimlama = new Button("Kurs Zamanı Tanımlama");
+		btnMenuKursZamaniTanimlama
+				.addClickHandler(new BtnMenuKursZamaniTanimlamaClickHandler());
+		vtpanSabitTanimlamalar.add(btnMenuKursZamaniTanimlama);
+		btnMenuKursZamaniTanimlama.setWidth("80%");
+
+		Button btnMenuSozlemeMaddeleri = new Button("Sözleşme Maddeleri");
+		btnMenuSozlemeMaddeleri
+				.addClickHandler(new BtnMenuSozlemeMaddeleriClickHandler());
+		vtpanSabitTanimlamalar.add(btnMenuSozlemeMaddeleri);
+		btnMenuSozlemeMaddeleri.setWidth("80%");
+
+		Button btnMenuSifreDegistirme = new Button("Şifre Değiştirme");
+		btnMenuSifreDegistirme
+				.addClickHandler(new BtnMenuSifreDegistirmeClickHandler());
+		vtpanSabitTanimlamalar.add(btnMenuSifreDegistirme);
+		btnMenuSifreDegistirme.setWidth("80%");
+
+		vtpanDestek = new VerticalPanel();
+		vtpanDestek.setSpacing(3);
+		decoratedStackPanel.add(vtpanDestek, "DESTEK", false);
+		vtpanDestek.setSize("100%", "100%");
+
+		Button btnMenuDestekAlmakIstiyorum = new Button(
+				"Destek Almak İstiyorum");
+		btnMenuDestekAlmakIstiyorum
+				.addClickHandler(new BtnMenuDestekAlmakIstiyorumClickHandler());
+		vtpanDestek.add(btnMenuDestekAlmakIstiyorum);
+
+		vtpanYetki = new VerticalPanel();
+		vtpanYetki.setSpacing(3);
+		decoratedStackPanel.add(vtpanYetki, "YETKİ", false);
+		vtpanYetki.setSize("100%", "44px");
+
+		Button btnMenuKullaniciTanimlama = new Button("Kullanıcı Tanımlama");
+		btnMenuKullaniciTanimlama
+				.addClickHandler(new BtnMenuKullaniciTanimlamaClickHandler());
+		vtpanYetki.add(btnMenuKullaniciTanimlama);
 		MenuBar menuBar_1 = new MenuBar(true);
 
-		DisclosurePanel disclosurePanel_2 = new DisclosurePanel(
-				"KAYIT  İŞLEMLERİ", false);
-		disclosurePanel_2.setStyleName("gwt-RichTextToolbar");
-		disclosurePanel_2.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel_2);
-		disclosurePanel_2.setSize("220px", "25px");
-
-		treeKayitIslemleri = new Tree();
-		treeKayitIslemleri
-				.addSelectionHandler(new TreeKayitIslemleriSelectionHandler());
-		disclosurePanel_2.setContent(treeKayitIslemleri);
-		treeKayitIslemleri.setSize("122px", "88px");
-
-		tritmDBSKayit = new TreeItem("DBS Kayıt");
-		tritmDBSKayit.setStyleName("gwttreeee");
-		treeKayitIslemleri.addItem(tritmDBSKayit);
-		tritmDBSKayit.setWidth("130px");
-		tritmDBSKayit.setState(true);
-
-		tritmOnKayit = new TreeItem("Ön Kayıt");
-		tritmOnKayit.setStyleName("gwttreeee");
-		treeKayitIslemleri.addItem(tritmOnKayit);
-		tritmOnKayit.setSize("130px", "");
-
-		tritmKesinKayit = new TreeItem("Kesin Kayıt");
-		tritmKesinKayit.setStyleName("gwttreeee");
-		treeKayitIslemleri.addItem(tritmKesinKayit);
-		tritmKesinKayit.setWidth("130px");
-
-		DisclosurePanel disclosurePanel_3 = new DisclosurePanel(
-				"ÖĞRENCİ İŞLERİ", false);
-		disclosurePanel_3.setStyleName("gwt-RichTextToolbar");
-		disclosurePanel_3.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel_3);
-		disclosurePanel_3.setSize("220px", "25px");
-
-		Tree tree_3 = new Tree();
-		tree_3.setAnimationEnabled(true);
-		disclosurePanel_3.setContent(tree_3);
-		tree_3.setSize("122px", "55px");
-
-		TreeItem trıtmNewItem_7 = new TreeItem("Öğrenci Kayıtları");
-		trıtmNewItem_7.setStyleName("gwttreeee");
-		tree_3.addItem(trıtmNewItem_7);
-		trıtmNewItem_7.setWidth("130px");
-
-		TreeItem trıtmNewItem_10 = new TreeItem("Raporlar");
-		trıtmNewItem_10.setStyleName("gwttreeee");
-		tree_3.addItem(trıtmNewItem_10);
-		trıtmNewItem_10.setWidth("130px");
-
-		DisclosurePanel disclosurePanel_4 = new DisclosurePanel("DERS DAĞITIM",
-				false);
-		disclosurePanel_4.setStyleName("gwt-RichTextToolbar");
-		disclosurePanel_4.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel_4);
-		disclosurePanel_4.setSize("220px", "25px");
-
-		Tree treeDersDagitim = new Tree();
-		treeDersDagitim
-				.addSelectionHandler(new TreeDersDagitimSelectionHandler());
-		disclosurePanel_4.setContent(treeDersDagitim);
-		treeDersDagitim.setSize("181px", "97px");
-
-		tritmDersDagitimSistemi = new TreeItem("Ders Dağıtım Sistemi");
-		tritmDersDagitimSistemi.setStyleName("gwttreeee");
-		treeDersDagitim.addItem(tritmDersDagitimSistemi);
-		tritmDersDagitimSistemi.setWidth("130px");
-
-		tritmYetkiTanimlama = new TreeItem("Yetki Tanımlama (Kısıtlama)");
-		tritmYetkiTanimlama.setStyleName("gwttreeee");
-		treeDersDagitim.addItem(tritmYetkiTanimlama);
-		tritmYetkiTanimlama.setWidth("130px");
-
-		tritmSaatGirisi = new TreeItem("Saat Girişi");
-		tritmSaatGirisi.setStyleName("gwttreeee");
-		treeDersDagitim.addItem(tritmSaatGirisi);
-		tritmSaatGirisi.setWidth("130px");
-
-		DisclosurePanel disclosurePanel_5 = new DisclosurePanel("ÖDEV TAKİP",
-				false);
-		disclosurePanel_5.setStyleName("gwt-RichTextToolbar");
-		disclosurePanel_5.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel_5);
-		disclosurePanel_5.setSize("222px", "25px");
-
-		Tree TreeOdevTakip = new Tree();
-		TreeOdevTakip.addSelectionHandler(new TreeOdevTakipSelectionHandler());
-		disclosurePanel_5.setContent(TreeOdevTakip);
-		TreeOdevTakip.setSize("122px", "97px");
-
-		tritmOdevolustur = new TreeItem("Ödev Oluştur");
-		tritmOdevolustur.setStyleName("gwttreeee");
-		TreeOdevTakip.addItem(tritmOdevolustur);
-		tritmOdevolustur.setWidth("130px");
-
-		tritmCevapadedibelirle = new TreeItem("Cevap Adedi Belirle");
-		tritmCevapadedibelirle.setStyleName("gwttreeee");
-		TreeOdevTakip.addItem(tritmCevapadedibelirle);
-		tritmCevapadedibelirle.setWidth("130px");
-
-		tritmOdevtakipUnite = new TreeItem("Ödev Takip Ünite");
-		tritmOdevtakipUnite.setStyleName("gwttreeee");
-		TreeOdevTakip.addItem(tritmOdevtakipUnite);
-		tritmOdevtakipUnite.setWidth("130px");
-
-		tritmatanmisodevler = new TreeItem("Atanmış Ödevler");
-		tritmatanmisodevler.setStyleName("gwttreeee");
-		TreeOdevTakip.addItem(tritmatanmisodevler);
-		tritmatanmisodevler.setWidth("130px");
-
-		DisclosurePanel disclosurePanel_1 = new DisclosurePanel(
-				"SINAV DEĞERLENDİRME", false);
-		disclosurePanel_1.setStyleName("gwt-RichTextToolbar");
-		disclosurePanel_1.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel_1);
-		disclosurePanel_1.setSize("220px", "25px");
-
-		Tree tritmSinavDegerlendirme = new Tree();
-		tritmSinavDegerlendirme
-				.addSelectionHandler(new TritmSinavDegerlendirmeSelectionHandler());
-		disclosurePanel_1.setContent(tritmSinavDegerlendirme);
-		tritmSinavDegerlendirme.setSize("122px", "66px");
-
-		tritmsinavtanimlama = new TreeItem("Sınav Tanımlama");
-		tritmsinavtanimlama.setStyleName("gwttreeee");
-		tritmSinavDegerlendirme.addItem(tritmsinavtanimlama);
-		tritmsinavtanimlama.setWidth("130px");
-
-		tritmSablontanimlari = new TreeItem("Şablon Tanımları");
-		tritmSablontanimlari.setStyleName("gwttreeee");
-		tritmSinavDegerlendirme.addItem(tritmSablontanimlari);
-		tritmSablontanimlari.setWidth("130px");
-
-		DisclosurePanel disclosurePanel = new DisclosurePanel("MUHASEBE", false);
-		disclosurePanel
-				.setStyleName("gwt-RichTextToolbar .gwt-PushButton-up-hovering");
-		disclosurePanel.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel);
-		disclosurePanel.setSize("220px", "25px");
-
-		Tree tritmmuhasebe = new Tree();
-		tritmmuhasebe.addSelectionHandler(new TritmmuhasebeSelectionHandler());
-		disclosurePanel.setContent(tritmmuhasebe);
-		tritmmuhasebe.setSize("140px", "119px");
-
-		tritmgelirvegiderler = new TreeItem("Gelir ve Giderler");
-		tritmgelirvegiderler.setStyleName("gwttreeee");
-		tritmmuhasebe.addItem(tritmgelirvegiderler);
-		tritmgelirvegiderler.setWidth("130px");
-
-		tritmkasahareketleri = new TreeItem("Kasa Hareketleri");
-		tritmkasahareketleri.setStyleName("gwttreeee");
-		tritmmuhasebe.addItem(tritmkasahareketleri);
-		tritmkasahareketleri.setWidth("130px");
-
-		tritmgelirgidertanimlari = new TreeItem("Gelir/Gider Tanımlarım");
-		tritmgelirgidertanimlari.setStyleName("gwttreeee");
-		tritmgelirgidertanimlari.setText("Gelir/Gider Tanımları");
-		tritmmuhasebe.addItem(tritmgelirgidertanimlari);
-		tritmgelirgidertanimlari.setWidth("130px");
-		tritmgelirgidertanimlari.setState(true);
-
-		tritmgelirgiderkategorileri = new TreeItem("Gelir/Gider Kategorileri");
-		tritmgelirgiderkategorileri.setStyleName("gwttreeee");
-		tritmmuhasebe.addItem(tritmgelirgiderkategorileri);
-		tritmgelirgiderkategorileri.setWidth("130px");
-
-		tritmbankaekle = new TreeItem("Banka Ekle");
-		tritmbankaekle.setStyleName("gwttreeee");
-		tritmmuhasebe.addItem(tritmbankaekle);
-		tritmbankaekle.setWidth("130px");
-		tritmbankaekle.setState(true);
-
-		DisclosurePanel disclosurePanel_7 = new DisclosurePanel(
-				"DÖNEMSEL TANIMLAR", false);
-		disclosurePanel_7
-				.setStyleName("gwt-RichTextToolbar .gwt-PushButton-up-hovering");
-		disclosurePanel_7.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel_7);
-		disclosurePanel_7.setSize("220px", "25px");
-
-		tritmDonemseltanimlar = new Tree();
-		tritmDonemseltanimlar
-				.addSelectionHandler(new TritmDonemseltanimlarSelectionHandler());
-		disclosurePanel_7.setContent(tritmDonemseltanimlar);
-		tritmDonemseltanimlar.setSize("188px", "172px");
-
-		tritmDBSSinavTanimla = new TreeItem("DBS Sınav Tanımla");
-		tritmDBSSinavTanimla.setStyleName("gwttreeee");
-		tritmDonemseltanimlar.addItem(tritmDBSSinavTanimla);
-
-		tritmOgretmenTanimlari = new TreeItem("Öğretmen Tanımları");
-		tritmOgretmenTanimlari.setStyleName("gwttreeee");
-		tritmDonemseltanimlar.addItem(tritmOgretmenTanimlari);
-
-		tritmSinifTanimlari = new TreeItem("Sınıf Tanımları");
-		tritmSinifTanimlari.setStyleName("gwttreeee");
-		tritmDonemseltanimlar.addItem(tritmSinifTanimlari);
-
-		tritmIndirimturu = new TreeItem("İndirim Türü");
-		tritmIndirimturu.setStyleName("gwttreeee");
-		tritmDonemseltanimlar.addItem(tritmIndirimturu);
-
-		tritmHizmettanimla = new TreeItem("Hizmet Tanımla");
-		tritmHizmettanimla.setStyleName("gwttreeee");
-		tritmDonemseltanimlar.addItem(tritmHizmettanimla);
-
-		tritmreferanslar = new TreeItem("Referanslar");
-		tritmreferanslar.setStyleName("gwttreeee");
-		tritmDonemseltanimlar.addItem(tritmreferanslar);
-
-		tritmpersoneltanimlari = new TreeItem("Personel Tanımları");
-		tritmpersoneltanimlari.setStyleName("gwttreeee");
-		tritmDonemseltanimlar.addItem(tritmpersoneltanimlari);
-		tritmpersoneltanimlari.setState(true);
-
-		DisclosurePanel disclosurePanel_8 = new DisclosurePanel(
-				"SABİT TANIMLAMALAR", false);
-		disclosurePanel_8
-				.setStyleName("gwt-RichTextToolbar .gwt-PushButton-up-hovering");
-		disclosurePanel_8.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel_8);
-		disclosurePanel_8.setSize("220px", "25px");
-
-		Tree tritmSabittanimlamalar = new Tree();
-		tritmSabittanimlamalar
-				.addSelectionHandler(new TritmSabittanimlamalarSelectionHandler());
-		disclosurePanel_8.setContent(tritmSabittanimlamalar);
-		tritmSabittanimlamalar.setSize("167px", "213px");
-
-		tritmkurumsalbilgiler = new TreeItem("Kurumsal Bilgiler");
-		tritmkurumsalbilgiler.setStyleName("gwttreeee");
-		tritmSabittanimlamalar.addItem(tritmkurumsalbilgiler);
-
-		tritmdönemtanimlari = new TreeItem("Dönem Tanımları");
-		tritmdönemtanimlari.setStyleName("gwttreeee");
-		tritmSabittanimlamalar.addItem(tritmdönemtanimlari);
-
-		tritmderstanimlari = new TreeItem("Ders Tanımları");
-		tritmderstanimlari.setStyleName("gwttreeee");
-		tritmSabittanimlamalar.addItem(tritmderstanimlari);
-
-		tritmUnitetanimlari = new TreeItem("Ünite Tanımları");
-		tritmUnitetanimlari.setStyleName("gwttreeee");
-		tritmSabittanimlamalar.addItem(tritmUnitetanimlari);
-
-		tritmKonutanimlari = new TreeItem("Konu Tanımları");
-		tritmKonutanimlari.setStyleName("gwttreeee");
-		tritmSabittanimlamalar.addItem(tritmKonutanimlari);
-
-		tritmFizikselsiniftanimlari = new TreeItem("Fiziksel Sınıf Tanımları");
-		tritmFizikselsiniftanimlari.setStyleName("gwttreeee");
-		tritmSabittanimlamalar.addItem(tritmFizikselsiniftanimlari);
-
-		tritmKurszamanitanimlari = new TreeItem("Kurs Zamanı Tanımlama");
-		tritmKurszamanitanimlari.setStyleName("gwttreeee");
-		tritmSabittanimlamalar.addItem(tritmKurszamanitanimlari);
-
-		tritmsozlesmemaddeleri = new TreeItem("Sözleşme Maddeleri");
-		tritmsozlesmemaddeleri.setStyleName("gwttreeee");
-		tritmSabittanimlamalar.addItem(tritmsozlesmemaddeleri);
-
-		tritmsifredegistirme = new TreeItem("Şifre Değilştirme");
-		tritmsifredegistirme.setStyleName("gwttreeee");
-		tritmSabittanimlamalar.addItem(tritmsifredegistirme);
-
-		DisclosurePanel disclosurePanel_9 = new DisclosurePanel("DESTEK", false);
-		disclosurePanel_9
-				.setStyleName("gwt-RichTextToolbar .gwt-PushButton-up-hovering");
-		disclosurePanel_9.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel_9);
-		disclosurePanel_9.setSize("220px", "25px");
-
-		Tree tritmDestek = new Tree();
-		tritmDestek.addSelectionHandler(new TritmDestekSelectionHandler());
-		disclosurePanel_9.setContent(tritmDestek);
-		tritmDestek.setSize("122px", "30px");
-
-		tritmDestekAlmakIstiyorum = new TreeItem("Destek Almak İstiyorum");
-		tritmDestekAlmakIstiyorum.setStyleName("gwttreeee");
-		tritmDestek.addItem(tritmDestekAlmakIstiyorum);
-
-		DisclosurePanel disclosurePanel_10 = new DisclosurePanel("YETKİ", false);
-		disclosurePanel_10
-				.setStyleName("gwt-RichTextToolbar .gwt-PushButton-up-hovering");
-		disclosurePanel_10.setAnimationEnabled(true);
-		verticalPanel.add(disclosurePanel_10);
-		disclosurePanel_10.setSize("220px", "30px");
-
-		tritmYetki = new Tree();
-		tritmYetki.addSelectionHandler(new TritmYetkiSelectionHandler());
-
-		disclosurePanel_10.setContent(tritmYetki);
-		tritmYetki.setSize("145px", "31px");
-
-		tritmkullanicitanimlama = new TreeItem("Kullanıcı Tanımlama");
-		tritmkullanicitanimlama.setStyleName("gwttreeee");
-		tritmYetki.addItem(tritmkullanicitanimlama);
-		tritmkullanicitanimlama.setWidth("130px");
-		tritmkullanicitanimlama.setState(true);
-
 		smpanMain = new SimplePanel();
-		rootPanel.add(smpanMain, 280, 95);
-		smpanMain.setSize("1012px", "606px");
+		rootPanel.add(smpanMain, 269, 95);
+		smpanMain.setSize("1023px", "606px");
 
 		Label lblDer = new Label("Dershane Yönetim Sistemi");
 		smpanMain.setWidget(lblDer);
@@ -461,277 +401,277 @@ public class Main implements EntryPoint {
 		lblDer.setStyleName("body");
 	}
 
-	private class TreeKayitIslemleriSelectionHandler implements
-			SelectionHandler<TreeItem> {
-		public void onSelection(SelectionEvent<TreeItem> event) {
-
-			smpanMain.clear();
-
-			TreeItem item = event.getSelectedItem();
-
-			if (item == tritmDBSKayit) {
-
-				smpanMain.add(new DBSKayit());
-				scrollToTop();
-
-			} else if (item == tritmOnKayit) {
-
-				smpanMain.add(new OnKayit());
-				scrollToTop();
-
-			}
-
-			else if (item == tritmKesinKayit) {
-				smpanMain.add(new KesinKayit());
-				scrollToTop();
-			}
-
-		}
-	}
-
-	private class TreeDersDagitimSelectionHandler implements
-			SelectionHandler<TreeItem> {
-		public void onSelection(SelectionEvent<TreeItem> event) {
-
-			smpanMain.clear();
-
-			TreeItem item = event.getSelectedItem();
-
-			if (item == tritmDersDagitimSistemi) {
-				scrollToTop();
-				smpanMain.add(new DersDagitimSistemi());
-			} else if (item == tritmYetkiTanimlama) {
-				smpanMain.add(new YetkiTanimlama());
-				scrollToTop();
-			}
-
-			else if (item == tritmSaatGirisi) {
-				smpanMain.add(new SaatGirisi());
-				scrollToTop();
-
-			}
-
-		}
-	}
-
-	private class TreeOdevTakipSelectionHandler implements
-			SelectionHandler<TreeItem> {
-		public void onSelection(SelectionEvent<TreeItem> event) {
-
-			smpanMain.clear();
-
-			TreeItem item = event.getSelectedItem();
-
-			if (item == tritmOdevolustur) {
-				smpanMain.add(new OdevOlustur());
-				scrollToTop();
-			}
-
-			else if (item == tritmCevapadedibelirle) {
-				smpanMain.add(new CevapAdediBelirle());
-				scrollToTop();
-			}
-
-			else if (item == tritmOdevtakipUnite) {
-				smpanMain.add(new OdevTakipUnite());
-				scrollToTop();
-			}
-
-			else if (item == tritmatanmisodevler) {
-				smpanMain.add(new AtanmisOdevler());
-				scrollToTop();
-			}
-
-		}
-
-	}
-
-	private class TritmSinavDegerlendirmeSelectionHandler implements
-			SelectionHandler<TreeItem> {
-		public void onSelection(SelectionEvent<TreeItem> event) {
-
-			smpanMain.clear();
-
-			TreeItem item = event.getSelectedItem();
-
-			if (item == tritmsinavtanimlama) {
-				smpanMain.add(new SinavTanimlama());
-				scrollToTop();
-			}
-
-			else if (item == tritmSablontanimlari) {
-				smpanMain.add(new SablonTaninmlari());
-				scrollToTop();
-			}
-
-		}
-	}
-
-	private class TritmmuhasebeSelectionHandler implements
-			SelectionHandler<TreeItem> {
-		public void onSelection(SelectionEvent<TreeItem> event) {
-
-			smpanMain.clear();
-
-			TreeItem item = event.getSelectedItem();
-
-			if (item == tritmgelirvegiderler) {
-				smpanMain.add(new GelirlerveGiderler());
-				scrollToTop();
-			}
-
-			else if (item == tritmkasahareketleri) {
-				smpanMain.add(new KasaHareketleri());
-				scrollToTop();
-			}
-
-			else if (item == tritmgelirgidertanimlari) {
-				smpanMain.add(new GelirGiderTanimlari());
-				scrollToTop();
-			}
-
-			else if (item == tritmgelirgiderkategorileri) {
-				smpanMain.add(new GelirGiderKategorileri());
-				scrollToTop();
-
-			}
-
-			else if (item == tritmbankaekle) {
-
-				smpanMain.add(new BankaEkle());
-				scrollToTop();
-			}
-
-		}
-	}
-
-	private class TritmDonemseltanimlarSelectionHandler implements
-			SelectionHandler<TreeItem> {
-		public void onSelection(SelectionEvent<TreeItem> event) {
-			smpanMain.clear();
-
-			TreeItem item = event.getSelectedItem();
-
-			if (item == tritmDBSSinavTanimla) {
-				smpanMain.add(new DBSSinavTanimla());
-				scrollToTop();
-			}
-
-			else if (item == tritmOgretmenTanimlari) {
-				smpanMain.add(new OgretmenTanimlari());
-				scrollToTop();
-			}
-
-			else if (item == tritmSinifTanimlari) {
-				smpanMain.add(new SinifTanimlari());
-				scrollToTop();
-			}
-
-			else if (item == tritmIndirimturu) {
-				smpanMain.add(new IndirimTuru());
-				scrollToTop();
-			}
-
-			else if (item == tritmHizmettanimla) {
-				smpanMain.add(new HizmetTanimla());
-				scrollToTop();
-			}
-
-			else if (item == tritmreferanslar) {
-				smpanMain.add(new Referanslar());
-				scrollToTop();
-			}
-
-			else if (item == tritmpersoneltanimlari) {
-				smpanMain.add(new PersonelTanimlari());
-				scrollToTop();
-			}
-		}
-
-	}
-
-	private class TritmSabittanimlamalarSelectionHandler implements
-			SelectionHandler<TreeItem> {
-		public void onSelection(SelectionEvent<TreeItem> event) {
-			smpanMain.clear();
-
-			TreeItem item = event.getSelectedItem();
-
-			if (item == tritmkurumsalbilgiler) {
-				smpanMain.add(new KurumsalBilgiler());
-				scrollToTop();
-			}
-
-			else if (item == tritmdönemtanimlari) {
-				smpanMain.add(new DonemTanimlari());
-				scrollToTop();
-			}
-
-			else if (item == tritmderstanimlari) {
-				smpanMain.add(new DersTanimlari());
-				scrollToTop();
-			}
-
-			else if (item == tritmUnitetanimlari) {
-				smpanMain.add(new UniteTanimlari());
-				scrollToTop();
-			}
-
-			else if (item == tritmKonutanimlari) {
-				smpanMain.add(new KonuTanimlari());
-				scrollToTop();
-			}
-
-			else if (item == tritmFizikselsiniftanimlari) {
-				smpanMain.add(new FizikselSinifTanimlari());
-				scrollToTop();
-			}
-
-			else if (item == tritmKurszamanitanimlari) {
-				smpanMain.add(new KursZamaniTanimlama());
-				scrollToTop();
-			}
-
-			else if (item == tritmsifredegistirme) {
-				smpanMain.add(new SifreDegistirme());
-				scrollToTop();
-
-			} else if (item == tritmsozlesmemaddeleri) {
-				smpanMain.add(new SozlesmeMaddeleri());
-				scrollToTop();
-			}
-		}
-
-	}
-
-	private class TritmDestekSelectionHandler implements
-			SelectionHandler<TreeItem> {
-		public void onSelection(SelectionEvent<TreeItem> event) {
-			smpanMain.clear();
-
-			TreeItem item = event.getSelectedItem();
-
-			if (item == tritmDestekAlmakIstiyorum) {
-				smpanMain.add(new DestekAlmakIstiyorum());
-				scrollToTop();
-
-			}
-		}
-	}
-
-	private class TritmYetkiSelectionHandler implements
-			SelectionHandler<TreeItem> {
-		public void onSelection(SelectionEvent<TreeItem> event) {
-			smpanMain.clear();
-
-			TreeItem item = event.getSelectedItem();
-
-			if (item == tritmkullanicitanimlama) {
-				smpanMain.add(new KullaniciTanimlama());
-				scrollToTop();
-			}
-		}
-	}
+	// private class TreeKayitIslemleriSelectionHandler implements
+	// SelectionHandler<TreeItem> {
+	// public void onSelection(SelectionEvent<TreeItem> event) {
+	//
+	// smpanMain.clear();
+	//
+	// TreeItem item = event.getSelectedItem();
+	//
+	// if (item == tritmDBSKayit) {
+	//
+	// smpanMain.add(new DBSKayit());
+	// scrollToTop();
+	//
+	// } else if (item == tritmOnKayit) {
+	//
+	// smpanMain.add(new OnKayit());
+	// scrollToTop();
+	//
+	// }
+	//
+	// else if (item == tritmKesinKayit) {
+	// smpanMain.add(new KesinKayit());
+	// scrollToTop();
+	// }
+	//
+	// }
+	// }
+	//
+	// private class TreeDersDagitimSelectionHandler implements
+	// SelectionHandler<TreeItem> {
+	// public void onSelection(SelectionEvent<TreeItem> event) {
+	//
+	// smpanMain.clear();
+	//
+	// TreeItem item = event.getSelectedItem();
+	//
+	// if (item == tritmDersDagitimSistemi) {
+	// scrollToTop();
+	// smpanMain.add(new DersDagitimSistemi());
+	// } else if (item == tritmYetkiTanimlama) {
+	// smpanMain.add(new YetkiTanimlama());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmSaatGirisi) {
+	// smpanMain.add(new SaatGirisi());
+	// scrollToTop();
+	//
+	// }
+	//
+	// }
+	// }
+	//
+	// private class TreeOdevTakipSelectionHandler implements
+	// SelectionHandler<TreeItem> {
+	// public void onSelection(SelectionEvent<TreeItem> event) {
+	//
+	// smpanMain.clear();
+	//
+	// TreeItem item = event.getSelectedItem();
+	//
+	// if (item == tritmOdevolustur) {
+	// smpanMain.add(new OdevOlustur());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmCevapadedibelirle) {
+	// smpanMain.add(new CevapAdediBelirle());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmOdevtakipUnite) {
+	// smpanMain.add(new OdevTakipUnite());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmatanmisodevler) {
+	// smpanMain.add(new AtanmisOdevler());
+	// scrollToTop();
+	// }
+	//
+	// }
+	//
+	// }
+	//
+	// private class TritmSinavDegerlendirmeSelectionHandler implements
+	// SelectionHandler<TreeItem> {
+	// public void onSelection(SelectionEvent<TreeItem> event) {
+	//
+	// smpanMain.clear();
+	//
+	// TreeItem item = event.getSelectedItem();
+	//
+	// if (item == tritmsinavtanimlama) {
+	// smpanMain.add(new SinavTanimlama());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmSablontanimlari) {
+	// smpanMain.add(new SablonTaninmlari());
+	// scrollToTop();
+	// }
+	//
+	// }
+	// }
+	//
+	// private class TritmmuhasebeSelectionHandler implements
+	// SelectionHandler<TreeItem> {
+	// public void onSelection(SelectionEvent<TreeItem> event) {
+	//
+	// smpanMain.clear();
+	//
+	// TreeItem item = event.getSelectedItem();
+	//
+	// if (item == tritmgelirvegiderler) {
+	// smpanMain.add(new GelirlerveGiderler());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmkasahareketleri) {
+	// smpanMain.add(new KasaHareketleri());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmgelirgidertanimlari) {
+	// smpanMain.add(new GelirGiderTanimlari());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmgelirgiderkategorileri) {
+	// smpanMain.add(new GelirGiderKategorileri());
+	// scrollToTop();
+	//
+	// }
+	//
+	// else if (item == tritmbankaekle) {
+	//
+	// smpanMain.add(new BankaEkle());
+	// scrollToTop();
+	// }
+	//
+	// }
+	// }
+	//
+	// private class TritmDonemseltanimlarSelectionHandler implements
+	// SelectionHandler<TreeItem> {
+	// public void onSelection(SelectionEvent<TreeItem> event) {
+	// smpanMain.clear();
+	//
+	// TreeItem item = event.getSelectedItem();
+	//
+	// if (item == tritmDBSSinavTanimla) {
+	// smpanMain.add(new DBSSinavTanimla());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmOgretmenTanimlari) {
+	// smpanMain.add(new OgretmenTanimlari());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmSinifTanimlari) {
+	// smpanMain.add(new SinifTanimlari());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmIndirimturu) {
+	// smpanMain.add(new IndirimTuru());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmHizmettanimla) {
+	// smpanMain.add(new HizmetTanimla());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmreferanslar) {
+	// smpanMain.add(new Referanslar());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmpersoneltanimlari) {
+	// smpanMain.add(new PersonelTanimlari());
+	// scrollToTop();
+	// }
+	// }
+	//
+	// }
+	//
+	// private class TritmSabittanimlamalarSelectionHandler implements
+	// SelectionHandler<TreeItem> {
+	// public void onSelection(SelectionEvent<TreeItem> event) {
+	// smpanMain.clear();
+	//
+	// TreeItem item = event.getSelectedItem();
+	//
+	// if (item == tritmkurumsalbilgiler) {
+	// smpanMain.add(new KurumsalBilgiler());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmdönemtanimlari) {
+	// smpanMain.add(new DonemTanimlari());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmderstanimlari) {
+	// smpanMain.add(new DersTanimlari());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmUnitetanimlari) {
+	// smpanMain.add(new UniteTanimlari());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmKonutanimlari) {
+	// smpanMain.add(new KonuTanimlari());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmFizikselsiniftanimlari) {
+	// smpanMain.add(new FizikselSinifTanimlari());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmKurszamanitanimlari) {
+	// smpanMain.add(new KursZamaniTanimlama());
+	// scrollToTop();
+	// }
+	//
+	// else if (item == tritmsifredegistirme) {
+	// smpanMain.add(new SifreDegistirme());
+	// scrollToTop();
+	//
+	// } else if (item == tritmsozlesmemaddeleri) {
+	// smpanMain.add(new SozlesmeMaddeleri());
+	// scrollToTop();
+	// }
+	// }
+	//
+	// }
+	//
+	// private class TritmDestekSelectionHandler implements
+	// SelectionHandler<TreeItem> {
+	// public void onSelection(SelectionEvent<TreeItem> event) {
+	// smpanMain.clear();
+	//
+	// TreeItem item = event.getSelectedItem();
+	//
+	// if (item == tritmDestekAlmakIstiyorum) {
+	// smpanMain.add(new DestekAlmakIstiyorum());
+	// scrollToTop();
+	//
+	// }
+	// }
+	// }
+	//
+	// private class TritmYetkiSelectionHandler implements
+	// SelectionHandler<TreeItem> {
+	// public void onSelection(SelectionEvent<TreeItem> event) {
+	// smpanMain.clear();
+	//
+	// TreeItem item = event.getSelectedItem();
+	//
+	// if (item == tritmkullanicitanimlama) {
+	// smpanMain.add(new KullaniciTanimlama());
+	// scrollToTop();
+	// }
+	// }
+	// }
 
 	private class LblNewLabelClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
@@ -742,4 +682,390 @@ public class Main implements EntryPoint {
 	public static native void scrollToTop() /*-{
 											$wnd.scroll(0, 0);
 											}-*/;
+
+	private class BtnMenuDBSKayitClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new DBSKayit());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuOnkayitClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new OnKayit());
+			scrollToTop();
+		}
+	}
+
+	private class BtnMenuKesinKayitClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			smpanMain.clear();
+
+			smpanMain.add(new KesinKayit());
+			scrollToTop();
+		}
+	}
+
+	private class BtbMenuDersDagitimSistemiClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new DersDagitimSistemi());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuSaatGirisiClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new SaatGirisi());
+			scrollToTop();
+		}
+	}
+
+	private class BtnMenuYetkiTanimlamaClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new YetkiTanimlama());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuOdevTakipUniteClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new OdevTakipUnite());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuOdevOlusturClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new OdevOlustur());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuCevapAdediBelirleClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new CevapAdediBelirle());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuAtanmisOdevlerClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new AtanmisOdevler());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuSinavTanimlamaClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new SinavTanimlama());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuSablonTanimlariClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new SablonTaninmlari());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuBankaEkleClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new BankaEkle());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuGelirGiderKategorileriClickHandler implements
+			ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new GelirGiderKategorileri());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuKasaHareketleriClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new KasaHareketleri());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuGelirveGiderlerClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new GelirlerveGiderler());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuGelirGiderTanimlariClickHandler implements
+			ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new GelirGiderTanimlari());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuReferanslarClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new Referanslar());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuPersonelTanimlariClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new PersonelTanimlari());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuOgretmenTanimlariClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new OgretmenTanimlari());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuHizmetTanmlaClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new HizmetTanimla());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuDBSSinavTanimlaClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new DBSSinavTanimla());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuIndirimTuruClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new IndirimTuru());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuSinifTanimlariClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new SinifTanimlari());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuKurumsalBilgilerClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new KurumsalBilgiler());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuSifreDegistirmeClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new SifreDegistirme());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuDonemTanimlariClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new DonemTanimlari());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuFizikselSinifTanimlamaClickHandler implements
+			ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new FizikselSinifTanimlari());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuUniteTanimlariClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new UniteTanimlari());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuKursZamaniTanimlamaClickHandler implements
+			ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new KursZamaniTanimlama());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuDersTanimlariClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new DersTanimlari());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuSozlemeMaddeleriClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new SozlesmeMaddeleri());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuKonuTanimlariClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new KonuTanimlari());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuDestekAlmakIstiyorumClickHandler implements
+			ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new DestekAlmakIstiyorum());
+			scrollToTop();
+
+		}
+	}
+
+	private class BtnMenuKullaniciTanimlamaClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new KullaniciTanimlama());
+			scrollToTop();
+
+		}
+	}
 }

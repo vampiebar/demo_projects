@@ -11,6 +11,7 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -252,23 +253,10 @@ public class KurumsalBilgiler extends Composite {
 		btnKaydet.setSize("78px", "48px");
 
 		if (!isDesignTime()) {
-
-			// putDataFromXML();
-
+			getKurumsalBilgiler(1);
 			putIlToCbx(cbxIl);
 
 		}
-
-	}
-
-	public void putDataFromXML(XMLKurumsalBilgiler xml) {
-
-		tctSubeAdiKisa.setText(xml.sube_kisa_adi);
-		tctAdres.setText(xml.adres);
-		tctEMail.setText(xml.email);
-		tctFaks.setText(xml.faks);
-		tctMudur.setText(xml.mudur);
-		tctYoneticiTel.setText(xml.yonetici_tel);
 
 	}
 
@@ -444,6 +432,48 @@ public class KurumsalBilgiler extends Composite {
 
 	}
 
+	public void getKurumsalBilgiler(long id) {
+		// protected void showWithData(final String id) {
+
+		String urlWithParameters = Util.urlBase + "getkurumsalbilgiler?id="
+				+ id;
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					List<XMLKurumsalBilgiler> listXmlKurumsalBilgiler = XMLKurumsalBilgiler.XML
+							.readList(response.getText());
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					// KurumsalBilgiler dlgTemp = new KurumsalBilgiler();
+					// false, new Long(id).longValue());
+					// dlgTemp.
+					putDataFromXML(listXmlKurumsalBilgiler.get(0));
+					// dlgTemp.tabOnKayit.selectTab(0);
+
+				}
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
 	// Implement the following method exactly as-is
 	private static final boolean isDesignTime() {
 		// return Beans.isDesignTime(); // GWT 2.4 and above
@@ -499,6 +529,18 @@ public class KurumsalBilgiler extends Composite {
 			putSemtToCbx(cbxIl.getItemText(cbxIl.getSelectedIndex()),
 					cbxIlce.getItemText(cbxIlce.getSelectedIndex()), cbxSemt);
 		}
+	}
+
+	public void putDataFromXML(XMLKurumsalBilgiler xml) {
+
+		tctSubeResmiAdi.setText(xml.sube_resmi_adi);
+		tctSubeAdiKisa.setText(xml.sube_kisa_adi);
+		tctAdres.setText(xml.adres);
+		tctEMail.setText(xml.email);
+		tctFaks.setText(xml.faks);
+		tctMudur.setText(xml.mudur);
+		tctYoneticiTel.setText(xml.yonetici_tel);
+
 	}
 
 	private class CbxSemtChangeHandler implements ChangeHandler {

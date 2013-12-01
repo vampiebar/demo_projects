@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.TextBoxBase;
 import com.google.gwt.user.client.ui.ValueBoxBase.TextAlignment;
 
 public class YetkiTanimlama extends Composite {
@@ -34,6 +35,7 @@ public class YetkiTanimlama extends Composite {
 		Label lblDersSilme = new Label("Ders Silme Zamanı");
 		lblDersSilme.setStyleName("gwt-Bold");
 		absolutePanel.add(lblDersSilme, 10, 54);
+		lblDersSilme.setSize("131px", "16px");
 
 		tctDersSilmeZamani = new IntegerBox();
 		tctDersSilmeZamani.setStyleName("gwt-TextBox1");
@@ -48,14 +50,17 @@ public class YetkiTanimlama extends Composite {
 		Label lblEnErkenRezervasyon = new Label("En Erken Rezervasyon");
 		lblEnErkenRezervasyon.setStyleName("gwt-Bold");
 		absolutePanel.add(lblEnErkenRezervasyon, 10, 149);
+		lblEnErkenRezervasyon.setSize("149px", "16px");
 
 		Label lblEnGeRezervasyon = new Label("En Geç Rezervasyon");
 		lblEnGeRezervasyon.setStyleName("gwt-Bold");
 		absolutePanel.add(lblEnGeRezervasyon, 10, 187);
+		lblEnGeRezervasyon.setSize("143px", "16px");
 
 		Label lblEttMaksimumKii = new Label("Etüt Maksimum Kişi Sayısı");
 		lblEttMaksimumKii.setStyleName("gwt-Bold");
 		absolutePanel.add(lblEttMaksimumKii, 10, 226);
+		lblEttMaksimumKii.setSize("171px", "16px");
 
 		TextBox txtrLimitYok = new TextBox();
 		txtrLimitYok.setStyleName("gwt-TextBox1");
@@ -99,6 +104,7 @@ public class YetkiTanimlama extends Composite {
 		Label lblGnlkSaatKotas = new Label("Günlük Saat Kotası");
 		lblGnlkSaatKotas.setStyleName("gwt-Bold");
 		absolutePanel.add(lblGnlkSaatKotas, 10, 280);
+		lblGnlkSaatKotas.setSize("137px", "16px");
 
 		tctGunlukSaatKotasi = new TextBox();
 		tctGunlukSaatKotasi.setText("0");
@@ -128,7 +134,7 @@ public class YetkiTanimlama extends Composite {
 		Label lblAylkSaatKotas = new Label("Aylık Saat Kotası");
 		lblAylkSaatKotas.setStyleName("gwt-Bold");
 		absolutePanel.add(lblAylkSaatKotas, 10, 386);
-		lblAylkSaatKotas.setSize("113px", "16px");
+		lblAylkSaatKotas.setSize("148px", "16px");
 
 		TextBox textArea_2 = new TextBox();
 		textArea_2.setStyleName("gwt-TextBox1");
@@ -172,13 +178,15 @@ public class YetkiTanimlama extends Composite {
 		btnNewButton.setSize("78px", "49px");
 
 		TextBox txtrDersinBalamasna = new TextBox();
+		txtrDersinBalamasna.setTextAlignment(TextBoxBase.ALIGN_LEFT);
+		txtrDersinBalamasna.setVisibleLength(40);
 		txtrDersinBalamasna.setStyleName("gwt-TextBox1");
 		txtrDersinBalamasna.setReadOnly(true);
 		txtrDersinBalamasna.setMaxLength(5555);
 		absolutePanel.add(txtrDersinBalamasna, 10, 76);
 		txtrDersinBalamasna.setSize("168px", "41px");
 		txtrDersinBalamasna
-				.setText("Dersin Başlamasına \r\nKaç Gün Kala Öğrenci Dersi Silebilsin?\r\n 0 Herzaman Silebilir Demektir.");
+				.setText("Dersin Başlamasına Kaç Gün Kala Öğrenci Dersi Silebilsin? 0 Herzaman Silebilir Demektir.");
 	}
 
 	private class BtnNewButtonClickHandler implements ClickHandler {

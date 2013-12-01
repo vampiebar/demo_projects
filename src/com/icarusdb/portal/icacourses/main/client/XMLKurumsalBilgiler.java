@@ -12,6 +12,9 @@ public class XMLKurumsalBilgiler {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("id")
+	String id;
+
 	@Path("sube_resmi_adi")
 	String sube_resmi_adi;
 

@@ -68,8 +68,7 @@ public class KesinKayitBilgileri extends DialogBox {
 	private Button btnNewButton;
 	private Button btnNewButton_1;
 	private CellTable<XMLHizmetTanimla> cellTable;
-	private ListBox comboBox;
-	private TextBox textBox_6;
+	private TextBox tctAciklama;
 	private AbsolutePanel tabKisiselBilgileri;
 	private ListBox cbxOkul;
 	private AbsolutePanel absolutePanel_2;
@@ -83,6 +82,18 @@ public class KesinKayitBilgileri extends DialogBox {
 	private TextBox tctOkulNumarası;
 	private CellTable<XMLVeliEkle> grdVeliEkle;
 	public TabPanel tabKesinKayitBilgileri;
+	private TextBox tctHizmetlerinToplamı;
+	private TextBox tctIndirimliTutar;
+	private TextBox tctToplamTutar;
+	private ListBox cbxPesinatOdemeTuru;
+	private ListBox tctPesinatınYatacagiBanka;
+	private TextBox tctPesinatMiktari;
+	private ListBox cbxTaksitinOdemeTuru;
+	private TextBox tctTaksitAciklama;
+	private TextBox tctTaksitlerinToplami;
+	private TextBox tctSozlesmeDisiKalan;
+	private ListBox cbxTaksitinYapilacagiBanka;
+	private DateBox dtpTaksideBaslanacakGun;
 
 	public KesinKayitBilgileri() {
 		setGlassStyleName("");
@@ -819,7 +830,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		tabKesinKayitBilgileri.add(absolutePanel_8, "Ödemeleri", false);
 		absolutePanel_8.setSize("744px", "675px");
 
-		Label lblIndirimTutar = new Label("İndirim Tutar");
+		Label lblIndirimTutar = new Label("İndirimli Tutar");
 		lblIndirimTutar.setStyleName("gwt-Bold");
 		absolutePanel_8.add(lblIndirimTutar, 10, 22);
 
@@ -831,17 +842,19 @@ public class KesinKayitBilgileri extends DialogBox {
 		lblToplamTutar.setStyleName("gwt-Bold");
 		absolutePanel_8.add(lblToplamTutar, 10, 88);
 
-		Label lblNewLabel_2 = new Label("PeşinatÖdeme Türü");
+		Label lblNewLabel_2 = new Label("Peşinat Ödeme Türü");
 		lblNewLabel_2.setStyleName("gwt-Bold");
-		absolutePanel_8.add(lblNewLabel_2, 10, 127);
+		absolutePanel_8.add(lblNewLabel_2, 10, 123);
 
 		Label lblAklama = new Label("Açıklama");
 		lblAklama.setStyleName("gwt-Bold");
-		absolutePanel_8.add(lblAklama, 10, 166);
+		absolutePanel_8.add(lblAklama, 10, 163);
+		lblAklama.setSize("72px", "18px");
 
 		Label lblPeinatnYatacaBanka = new Label("Peşinatın Yatacağı Banka");
 		lblPeinatnYatacaBanka.setStyleName("gwt-Bold");
 		absolutePanel_8.add(lblPeinatnYatacaBanka, 10, 232);
+		lblPeinatnYatacaBanka.setSize("161px", "18px");
 
 		Label lblPeinatMiktar = new Label("Peşinat Miktarı");
 		lblPeinatMiktar.setStyleName("gwt-Bold");
@@ -865,72 +878,73 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		Label lblTaksitinYapacaBanka = new Label("Taksitin Yapacağı Banka");
 		lblTaksitinYapacaBanka.setStyleName("gwt-Bold");
-		absolutePanel_8.add(lblTaksitinYapacaBanka, 10, 449);
+		absolutePanel_8.add(lblTaksitinYapacaBanka, 10, 452);
+		lblTaksitinYapacaBanka.setSize("150px", "18px");
 
 		Label lblTaksitSays = new Label("Taksit Sayısı");
 		lblTaksitSays.setStyleName("gwt-Bold");
-		absolutePanel_8.add(lblTaksitSays, 6, 483);
+		absolutePanel_8.add(lblTaksitSays, 10, 483);
 
 		Label lblTaksitin = new Label("Takside Başlanacak Gün");
 		lblTaksitin.setStyleName("gwt-Bold");
-		absolutePanel_8.add(lblTaksitin, 10, 520);
+		absolutePanel_8.add(lblTaksitin, 10, 512);
 
-		TextBox textBox_3 = new TextBox();
-		textBox_3.setStyleName("gwt-TextBox1");
-		absolutePanel_8.add(textBox_3, 177, 19);
-		textBox_3.setSize("202px", "14px");
+		tctIndirimliTutar = new TextBox();
+		tctIndirimliTutar.setStyleName("gwt-TextBox1");
+		absolutePanel_8.add(tctIndirimliTutar, 177, 19);
+		tctIndirimliTutar.setSize("202px", "14px");
 
-		TextBox textBox_4 = new TextBox();
-		textBox_4.setStyleName("gwt-TextBox1");
-		absolutePanel_8.add(textBox_4, 177, 56);
-		textBox_4.setSize("202px", "14px");
+		tctHizmetlerinToplamı = new TextBox();
+		tctHizmetlerinToplamı.setStyleName("gwt-TextBox1");
+		absolutePanel_8.add(tctHizmetlerinToplamı, 177, 56);
+		tctHizmetlerinToplamı.setSize("202px", "14px");
 
-		TextBox textBox_5 = new TextBox();
-		textBox_5.setStyleName("gwt-TextBox1");
-		absolutePanel_8.add(textBox_5, 177, 85);
-		textBox_5.setSize("202px", "14px");
+		tctToplamTutar = new TextBox();
+		tctToplamTutar.setStyleName("gwt-TextBox1");
+		absolutePanel_8.add(tctToplamTutar, 177, 85);
+		tctToplamTutar.setSize("202px", "14px");
 
-		textBox_6 = new TextBox();
-		textBox_6.setStyleName("gwt-TextBox1");
-		absolutePanel_8.add(textBox_6, 177, 163);
-		textBox_6.setSize("202px", "39px");
+		tctAciklama = new TextBox();
+		tctAciklama.setStyleName("gwt-TextBox1");
+		absolutePanel_8.add(tctAciklama, 177, 163);
+		tctAciklama.setSize("202px", "39px");
 
-		TextBox textBox_7 = new TextBox();
-		textBox_7.setStyleName("gwt-TextBox1");
-		absolutePanel_8.add(textBox_7, 177, 425);
-		textBox_7.setSize("196px", "14px");
+		tctTaksitAciklama = new TextBox();
+		tctTaksitAciklama.setStyleName("gwt-TextBox1");
+		absolutePanel_8.add(tctTaksitAciklama, 177, 425);
+		tctTaksitAciklama.setSize("196px", "14px");
 
-		TextBox textBox_8 = new TextBox();
-		textBox_8.setStyleName("gwt-TextBox1");
-		absolutePanel_8.add(textBox_8, 177, 309);
-		textBox_8.setSize("196px", "14px");
+		tctTaksitlerinToplami = new TextBox();
+		tctTaksitlerinToplami.setStyleName("gwt-TextBox1");
+		absolutePanel_8.add(tctTaksitlerinToplami, 177, 309);
+		tctTaksitlerinToplami.setSize("196px", "14px");
 
-		TextBox textBox_9 = new TextBox();
-		textBox_9.setStyleName("gwt-TextBox1");
-		absolutePanel_8.add(textBox_9, 177, 348);
-		textBox_9.setSize("196px", "14px");
+		tctSozlesmeDisiKalan = new TextBox();
+		tctSozlesmeDisiKalan.setStyleName("gwt-TextBox1");
+		absolutePanel_8.add(tctSozlesmeDisiKalan, 177, 348);
+		tctSozlesmeDisiKalan.setSize("196px", "14px");
 
-		TextBox textBox_10 = new TextBox();
-		textBox_10.setStyleName("gwt-TextBox1");
-		absolutePanel_8.add(textBox_10, 177, 483);
-		textBox_10.setSize("196px", "14px");
+		TextBox tctTaksitSayisi = new TextBox();
+		tctTaksitSayisi.setStyleName("gwt-TextBox1");
+		absolutePanel_8.add(tctTaksitSayisi, 177, 483);
+		tctTaksitSayisi.setSize("196px", "14px");
 
-		comboBox = new ListBox();
-		comboBox.setStyleName("gwt-ComboBox1");
-		comboBox.addItem("Senet");
-		absolutePanel_8.add(comboBox, 177, 119);
-		comboBox.setSize("97px", "22px");
+		cbxPesinatOdemeTuru = new ListBox();
+		cbxPesinatOdemeTuru.setStyleName("gwt-ComboBox1");
+		cbxPesinatOdemeTuru.addItem("Senet");
+		absolutePanel_8.add(cbxPesinatOdemeTuru, 177, 119);
+		cbxPesinatOdemeTuru.setSize("97px", "22px");
 
-		TextBox textBox_11 = new TextBox();
-		textBox_11.setStyleName("gwt-TextBox1");
-		absolutePanel_8.add(textBox_11, 177, 266);
-		textBox_11.setSize("196px", "14px");
+		tctPesinatMiktari = new TextBox();
+		tctPesinatMiktari.setStyleName("gwt-TextBox1");
+		absolutePanel_8.add(tctPesinatMiktari, 177, 266);
+		tctPesinatMiktari.setSize("196px", "14px");
 
-		ListBox comboBox_1 = new ListBox();
-		comboBox_1.addItem("  ");
-		comboBox_1.setStyleName("gwt-ComboBox1");
-		absolutePanel_8.add(comboBox_1, 177, 228);
-		comboBox_1.setSize("204px", "22px");
+		tctPesinatınYatacagiBanka = new ListBox();
+		tctPesinatınYatacagiBanka.addItem("  ");
+		tctPesinatınYatacagiBanka.setStyleName("gwt-ComboBox1");
+		absolutePanel_8.add(tctPesinatınYatacagiBanka, 177, 228);
+		tctPesinatınYatacagiBanka.setSize("204px", "22px");
 
 		Button btndemePlanOlutur = new Button("Ödeme Planı Oluştur");
 		btndemePlanOlutur.setStyleName("gwt-ButonYeniKayit");
@@ -951,6 +965,24 @@ public class KesinKayitBilgileri extends DialogBox {
 		btnNewButton_3.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_8.add(btnNewButton_3, 453, 514);
 		btnNewButton_3.setSize("150px", "24px");
+
+		cbxTaksitinOdemeTuru = new ListBox();
+		cbxTaksitinOdemeTuru.addItem("Senet");
+		cbxTaksitinOdemeTuru.addItem("Kredi Kartı");
+		cbxTaksitinOdemeTuru.addItem("Çek");
+		cbxTaksitinOdemeTuru.addItem("Nakit");
+		cbxTaksitinOdemeTuru.addItem("EFT-Havale");
+		cbxTaksitinOdemeTuru.setStyleName("gwt-ComboBox1");
+		absolutePanel_8.add(cbxTaksitinOdemeTuru, 177, 383);
+		cbxTaksitinOdemeTuru.setSize("194px", "22px");
+
+		cbxTaksitinYapilacagiBanka = new ListBox();
+		absolutePanel_8.add(cbxTaksitinYapilacagiBanka, 177, 449);
+		cbxTaksitinYapilacagiBanka.setSize("198px", "22px");
+
+		dtpTaksideBaslanacakGun = new DateBox();
+		absolutePanel_8.add(dtpTaksideBaslanacakGun, 177, 512);
+		dtpTaksideBaslanacakGun.setSize("194px", "12px");
 
 		tctAdi = new TextBox();
 		tctAdi.setStyleName("gwt-TextBox1");
@@ -981,8 +1013,9 @@ public class KesinKayitBilgileri extends DialogBox {
 		lblTcKimlikNo.setSize("115px", "18px");
 
 		tctTCKimlikNo = new TextBox();
+		tctTCKimlikNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctTCKimlikNo, 131, 32);
-		tctTCKimlikNo.setSize("138px", "10px");
+		tctTCKimlikNo.setSize("144px", "14px");
 
 		if (!isDesignTime()) {
 
@@ -1382,5 +1415,4 @@ public class KesinKayitBilgileri extends DialogBox {
 			hide();
 		}
 	}
-
 }

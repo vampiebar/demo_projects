@@ -1278,6 +1278,12 @@ public class DlgOnKayit extends DialogBox {
 		cbxOgrenciKimlikBilgileriIlce.setItemText(0,
 				xml.ogrenci_kimlik_bilgileri_ilce);
 
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
+		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
+		dtpGorusmeTarihi.setValue(dtf.parse(xml.gorusme_tarihi));
+
 	}
 
 	private class BtnYeniOgrenciClickHandler implements ClickHandler {
@@ -1295,7 +1301,7 @@ public class DlgOnKayit extends DialogBox {
 			URLValue = URLValue + "&ev_telefonu=" + tctEvTelefonu.getText();
 			URLValue = URLValue + "&cep_telefonu=" + tctCepTelefonu.getText();
 			URLValue = URLValue + "&email=" + tctEmail.getText();
-			URLValue = URLValue + "&kurs_inidirim_fiyati="
+			URLValue = URLValue + "&kurs_indirim_fiyati="
 					+ tctKursIndirimFiyati.getText();
 
 			URLValue = URLValue
@@ -1396,6 +1402,17 @@ public class DlgOnKayit extends DialogBox {
 			URLValue = URLValue + "&verilis_nedeni="
 					+ tctVerilisNedeni.getText();
 			URLValue = URLValue + "&kayit_no=" + tctKayitNo.getText();
+
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+			URLValue = URLValue + "&dogum_tarihi="
+					+ dtf.format(dtpDogumTarihi.getValue());
+
+			URLValue = URLValue + "&gorusme_tarihi="
+					+ dtf.format(dtpGorusmeTarihi.getValue());
+
+			URLValue = URLValue + "&verilis_tarihi="
+					+ dtf.format(dtpVerilisTarihi.getValue());
 
 			// Window.alert(URLValue);
 
