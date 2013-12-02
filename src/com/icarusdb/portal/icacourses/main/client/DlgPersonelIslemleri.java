@@ -48,7 +48,7 @@ public class DlgPersonelIslemleri extends DialogBox {
 		lblAd.setStyleName("gwt-Bold");
 		absolutePanel.add(lblAd, 10, 46);
 
-		Label lblGorevi = new Label("Gorevi");
+		Label lblGorevi = new Label("Görevi");
 		lblGorevi.setStyleName("gwt-Bold");
 		absolutePanel.add(lblGorevi, 10, 81);
 
@@ -63,10 +63,12 @@ public class DlgPersonelIslemleri extends DialogBox {
 		Label lblTelefonu = new Label("Telefonu 1");
 		lblTelefonu.setStyleName("gwt-Bold");
 		absolutePanel.add(lblTelefonu, 10, 194);
+		lblTelefonu.setSize("69px", "18px");
 
 		Label lblTelefonu_1 = new Label("Telefonu 2");
 		lblTelefonu_1.setStyleName("gwt-Bold");
 		absolutePanel.add(lblTelefonu_1, 10, 229);
+		lblTelefonu_1.setSize("63px", "18px");
 
 		tctAdiSoyadi = new TextBox();
 		tctAdiSoyadi.setStyleName("gwt-TextBox1");
@@ -140,6 +142,11 @@ public class DlgPersonelIslemleri extends DialogBox {
 			URLValue = URLValue + "&telefonu_1=" + tctTelefonu1.getText();
 			URLValue = URLValue + "&telefonu_2=" + tctTelefonu2.getText();
 
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+			URLValue = URLValue + "&ise_giris_tarihi="
+					+ dtf.format(dtpIseGirisTarihi.getValue());
+
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "Personel Kaydı Başarılı",
@@ -162,6 +169,9 @@ public class DlgPersonelIslemleri extends DialogBox {
 		tctTelefonu1.setText(xml.telefonu_1);
 		tctTelefonu2.setText(xml.telefonu_2);
 		tctUcreti.setText(xml.ucreti);
+
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+		dtpIseGirisTarihi.setValue(dtf.parse(xml.ise_giris_tarihi));
 
 	}
 }

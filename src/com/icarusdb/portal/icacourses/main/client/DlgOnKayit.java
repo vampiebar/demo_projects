@@ -83,7 +83,7 @@ public class DlgOnKayit extends DialogBox {
 	private ListBox cbxIndirimMiktari;
 	private TextBox tctAciklama;
 	private TextBox tctGorusmeYuzdesi;
-	private CellTable<XMLVeliEkle> grdVeliEkle;
+	private CellTable<XMLVeliler> grdVeliEkle;
 	private ListBox cbxOkul;
 	public DecoratedTabPanel tabOnKayit;
 	private CaptionPanel cptnpnlNewPanel;
@@ -96,6 +96,7 @@ public class DlgOnKayit extends DialogBox {
 		_dlgonkayit = this;
 		_isInsert = isInsert;
 		_id = id;
+
 		setAutoHideEnabled(false);
 		setHTML("Ön Kayıt İşlemleri");
 
@@ -106,6 +107,82 @@ public class DlgOnKayit extends DialogBox {
 		tabOnKayit = new DecoratedTabPanel();
 		verticalpanel.add(tabOnKayit);
 		tabOnKayit.setSize("462px", "705px");
+
+		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
+		absolutePanel_5.setStyleName("gwt-DialogBackGround");
+		tabOnKayit.add(absolutePanel_5, "Adres Bilgileri", false);
+		absolutePanel_5.setSize("840px", "712px");
+
+		Label label = new Label("Ülke");
+		label.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label, 10, 18);
+		label.setSize("26px", "18px");
+
+		Label label_1 = new Label("İl");
+		label_1.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label_1, 10, 61);
+		label_1.setSize("26px", "18px");
+
+		Label label_2 = new Label("İlçe");
+		label_2.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label_2, 10, 111);
+		label_2.setSize("20px", "18px");
+
+		Label label_3 = new Label("Semt");
+		label_3.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label_3, 10, 149);
+		label_3.setSize("31px", "18px");
+
+		Label label_4 = new Label("Mahalle");
+		label_4.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label_4, 10, 190);
+		label_4.setSize("45px", "18px");
+
+		Label label_5 = new Label("Sokak ve no");
+		label_5.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label_5, 10, 230);
+		label_5.setSize("73px", "18px");
+
+		cbxAdresBilgileriUlke = new ListBox();
+		cbxAdresBilgileriUlke.setStyleName("gwt-ComboBox1");
+		cbxAdresBilgileriUlke.addItem("Türkiye");
+		absolutePanel_5.add(cbxAdresBilgileriUlke, 125, 10);
+		cbxAdresBilgileriUlke.setSize("146px", "22px");
+
+		cbxAdresBilgileriIl = new ListBox();
+		cbxAdresBilgileriIl.addItem(" ");
+		cbxAdresBilgileriIl
+				.addChangeHandler(new CbxAdresBilgileriIlChangeHandler());
+		cbxAdresBilgileriIl.setStyleName("gwt-ComboBox1");
+		absolutePanel_5.add(cbxAdresBilgileriIl, 125, 57);
+		cbxAdresBilgileriIl.setSize("146px", "22px");
+
+		cbxAdresBilgileriIlce = new ListBox();
+		cbxAdresBilgileriIlce
+				.addChangeHandler(new CbxAdresBilgileriIlceChangeHandler());
+		cbxAdresBilgileriIlce.addItem(" ");
+		cbxAdresBilgileriIlce.setStyleName("gwt-ComboBox1");
+		absolutePanel_5.add(cbxAdresBilgileriIlce, 125, 111);
+		cbxAdresBilgileriIlce.setSize("146px", "22px");
+
+		cbxSemt = new ListBox();
+		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
+		cbxSemt.addItem(" ");
+
+		cbxSemt.setStyleName("gwt-ComboBox1");
+		absolutePanel_5.add(cbxSemt, 125, 145);
+		cbxSemt.setSize("146px", "22px");
+
+		cbxMahalle = new ListBox();
+		cbxMahalle.addItem(" ");
+		cbxMahalle.setStyleName("gwt-ComboBox1");
+		absolutePanel_5.add(cbxMahalle, 125, 186);
+		cbxMahalle.setSize("209px", "22px");
+
+		tctSokakveNo = new TextBox();
+		tctSokakveNo.setStyleName("gwt-TextBox1");
+		absolutePanel_5.add(tctSokakveNo, 125, 230);
+		tctSokakveNo.setSize("207px", "48px");
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
@@ -294,82 +371,6 @@ public class DlgOnKayit extends DialogBox {
 		cbxOgrenciBilgileriSinif.addItem("Üniversite Mezun");
 		cbxOgrenciBilgileriSinif.addItem("12.Sınıf");
 		cbxOgrenciBilgileriSinif.setSize("135px", "22px");
-
-		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
-		absolutePanel_5.setStyleName("gwt-DialogBackGround");
-		tabOnKayit.add(absolutePanel_5, "Adres Bilgileri", false);
-		absolutePanel_5.setSize("840px", "712px");
-
-		Label label = new Label("Ülke");
-		label.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label, 10, 18);
-		label.setSize("26px", "18px");
-
-		Label label_1 = new Label("İl");
-		label_1.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label_1, 10, 61);
-		label_1.setSize("26px", "18px");
-
-		Label label_2 = new Label("İlçe");
-		label_2.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label_2, 10, 111);
-		label_2.setSize("20px", "18px");
-
-		Label label_3 = new Label("Semt");
-		label_3.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label_3, 10, 149);
-		label_3.setSize("31px", "18px");
-
-		Label label_4 = new Label("Mahalle");
-		label_4.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label_4, 10, 190);
-		label_4.setSize("45px", "18px");
-
-		Label label_5 = new Label("Sokak ve no");
-		label_5.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label_5, 10, 230);
-		label_5.setSize("73px", "18px");
-
-		cbxAdresBilgileriUlke = new ListBox();
-		cbxAdresBilgileriUlke.setStyleName("gwt-ComboBox1");
-		cbxAdresBilgileriUlke.addItem("Türkiye");
-		absolutePanel_5.add(cbxAdresBilgileriUlke, 125, 10);
-		cbxAdresBilgileriUlke.setSize("146px", "22px");
-
-		cbxAdresBilgileriIl = new ListBox();
-		cbxAdresBilgileriIl.addItem(" ");
-		cbxAdresBilgileriIl
-				.addChangeHandler(new CbxAdresBilgileriIlChangeHandler());
-		cbxAdresBilgileriIl.setStyleName("gwt-ComboBox1");
-		absolutePanel_5.add(cbxAdresBilgileriIl, 125, 57);
-		cbxAdresBilgileriIl.setSize("146px", "22px");
-
-		cbxAdresBilgileriIlce = new ListBox();
-		cbxAdresBilgileriIlce
-				.addChangeHandler(new CbxAdresBilgileriIlceChangeHandler());
-		cbxAdresBilgileriIlce.addItem(" ");
-		cbxAdresBilgileriIlce.setStyleName("gwt-ComboBox1");
-		absolutePanel_5.add(cbxAdresBilgileriIlce, 125, 111);
-		cbxAdresBilgileriIlce.setSize("146px", "22px");
-
-		cbxSemt = new ListBox();
-		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
-		cbxSemt.addItem(" ");
-
-		cbxSemt.setStyleName("gwt-ComboBox1");
-		absolutePanel_5.add(cbxSemt, 125, 145);
-		cbxSemt.setSize("146px", "22px");
-
-		cbxMahalle = new ListBox();
-		cbxMahalle.addItem(" ");
-		cbxMahalle.setStyleName("gwt-ComboBox1");
-		absolutePanel_5.add(cbxMahalle, 125, 186);
-		cbxMahalle.setSize("209px", "22px");
-
-		tctSokakveNo = new TextBox();
-		tctSokakveNo.setStyleName("gwt-TextBox1");
-		absolutePanel_5.add(tctSokakveNo, 125, 230);
-		tctSokakveNo.setSize("207px", "48px");
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
@@ -758,79 +759,79 @@ public class DlgOnKayit extends DialogBox {
 		absolutePanel_7.add(button, 10, 10);
 		button.setSize("76px", "24px");
 
-		grdVeliEkle = new CellTable<XMLVeliEkle>();
+		grdVeliEkle = new CellTable<XMLVeliler>();
 		absolutePanel_7.add(grdVeliEkle, 10, 54);
 		grdVeliEkle.setSize("715px", "174px");
 
-		TextColumn<XMLVeliEkle> textColumn_4 = new TextColumn<XMLVeliEkle>() {
+		TextColumn<XMLVeliler> textColumn_4 = new TextColumn<XMLVeliler>() {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return object.veli_bilgileri_tc_kimlik_no.toString();
 			}
 		};
 		grdVeliEkle.addColumn(textColumn_4, "TC Kimlik No");
 		grdVeliEkle.setColumnWidth(textColumn_4, "129px");
 
-		TextColumn<XMLVeliEkle> textColumn = new TextColumn<XMLVeliEkle>() {
-			public String getValue(XMLVeliEkle object) {
+		TextColumn<XMLVeliler> textColumn = new TextColumn<XMLVeliler>() {
+			public String getValue(XMLVeliler object) {
 				return object.veli_bilgileri_adi.toString();
 			}
 		};
 		grdVeliEkle.addColumn(textColumn, "Adı");
 
-		TextColumn<XMLVeliEkle> textColumn_1 = new TextColumn<XMLVeliEkle>() {
-			public String getValue(XMLVeliEkle object) {
+		TextColumn<XMLVeliler> textColumn_1 = new TextColumn<XMLVeliler>() {
+			public String getValue(XMLVeliler object) {
 				return object.veli_bilgileri_soyadi.toString();
 			}
 		};
 		grdVeliEkle.addColumn(textColumn_1, "Soyadı");
 
-		TextColumn<XMLVeliEkle> textColumn_2 = new TextColumn<XMLVeliEkle>() {
-			public String getValue(XMLVeliEkle object) {
+		TextColumn<XMLVeliler> textColumn_2 = new TextColumn<XMLVeliler>() {
+			public String getValue(XMLVeliler object) {
 				return object.yakinlik_durumu;
 			}
 		};
 		grdVeliEkle.addColumn(textColumn_2, "Yakınlık Durumu");
 
-		Column<XMLVeliEkle, String> column_5 = new Column<XMLVeliEkle, String>(
+		Column<XMLVeliler, String> column_5 = new Column<XMLVeliler, String>(
 				new EditTextCell()) {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return object.odeme_sorumlusu;
 			}
 		};
 		grdVeliEkle.addColumn(column_5, "Ödeme Sorumlusu");
 
-		TextColumn<XMLVeliEkle> textColumn_3 = new TextColumn<XMLVeliEkle>() {
+		TextColumn<XMLVeliler> textColumn_3 = new TextColumn<XMLVeliler>() {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return object.cep_tel.toString();
 			}
 		};
 		grdVeliEkle.addColumn(textColumn_3, "Cep Tel");
 
-		Column<XMLVeliEkle, Number> column_2 = new Column<XMLVeliEkle, Number>(
+		Column<XMLVeliler, Number> column_2 = new Column<XMLVeliler, Number>(
 				new NumberCell()) {
 			@Override
-			public Number getValue(XMLVeliEkle object) {
+			public Number getValue(XMLVeliler object) {
 				return (Number) null;
 			}
 		};
 		grdVeliEkle.addColumn(column_2, "İş Tel");
 
-		Column<XMLVeliEkle, String> column_3 = new Column<XMLVeliEkle, String>(
+		Column<XMLVeliler, String> column_3 = new Column<XMLVeliler, String>(
 				new ButtonCell()) {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return (String) null;
 			}
 		};
 		grdVeliEkle.addColumn(column_3, "Düzenle");
 
-		Column<XMLVeliEkle, String> column_4 = new Column<XMLVeliEkle, String>(
+		Column<XMLVeliler, String> column_4 = new Column<XMLVeliler, String>(
 				new ButtonCell()) {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return (String) null;
 			}
 		};
@@ -853,11 +854,10 @@ public class DlgOnKayit extends DialogBox {
 		btnKapat1.setSize("78px", "48px");
 
 		if (!isDesignTime()) {
+			putIlToCbx(cbxOgrenciBilgileriIl, cbxAdresBilgileriIl,
+					cbxOgrenciKimlikBilgileriIl);
+
 			putDataToGrid();
-			//
-			putIlToCbx(cbxOgrenciBilgileriIl);
-			putIlToCbx(cbxAdresBilgileriIl);
-			putIlToCbx(cbxOgrenciKimlikBilgileriIl);
 
 			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
 			// SingleSelectionModel<XMLVeliEkle>();
@@ -942,7 +942,7 @@ public class DlgOnKayit extends DialogBox {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLVeliEkle> listXmlVeliEkle = XMLVeliEkle.XML
+					List<XMLVeliler> listXmlVeliEkle = XMLVeliler.XML
 							.readList(response.getText());
 
 					// Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
@@ -971,10 +971,17 @@ public class DlgOnKayit extends DialogBox {
 
 	}
 
-	public void putIlToCbx(final ListBox lbxTemp) {
+	public void putIlToCbx(final ListBox lbxTemp, final ListBox lbxTemp2,
+			final ListBox lbxTemp3) {
 
 		lbxTemp.clear();
 		lbxTemp.addItem("");
+
+		lbxTemp2.clear();
+		lbxTemp2.addItem("");
+
+		lbxTemp3.clear();
+		lbxTemp3.addItem("");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				Util.urlBase + "getil");
@@ -997,6 +1004,10 @@ public class DlgOnKayit extends DialogBox {
 					for (int i = 0; i < xmlil.size(); i++) {
 
 						lbxTemp.addItem(xmlil.get(i).il_adi);
+
+						lbxTemp2.addItem(xmlil.get(i).il_adi);
+
+						lbxTemp3.addItem(xmlil.get(i).il_adi);
 					}
 
 				}
@@ -1213,6 +1224,8 @@ public class DlgOnKayit extends DialogBox {
 		tctVerilisNedeni.setText(xml.verilis_nedeni);
 		tctKayitNo.setText(xml.kayit_no);
 		tctKursIndirimFiyati.setText(xml.kurs_indirim_fiyati);
+		tctGorusmeYuzdesi.setText(xml.gorusme_yuzdesi);
+		tctMahalleKoy.setText(xml.mahalle_koy);
 
 		cbxCinsiyet.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxCinsiyet,
 				xml.cinsiyet));
@@ -1246,23 +1259,9 @@ public class DlgOnKayit extends DialogBox {
 				cbxGorusmeSonucu, xml.gorusme_sonucu));
 		cbxAdresBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxAdresBilgileriUlke, xml.adres_bilgileri_ulke));
-		// cbxAdresBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-		// cbxAdresBilgileriIl, xml.adres_bilgileri_il));
-		// cbxAdresBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-		// cbxAdresBilgileriIlce, xml.adres_bilgileri_ilce));
-		// cbxSemt.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxSemt, xml.semt));
-		// cbxMahalle.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxMahalle,
-		// xml.mahalle));
 		cbxOgrenciKimlikBilgileriUlke.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriUlke,
 						xml.ogrenci_kimlik_bilgileri_ulke));
-		// cbxOgrenciKimlikBilgileriIl.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxOgrenciKimlikBilgileriIl,
-		// xml.ogrenci_kimlik_bilgileri_il));
-		// cbxOgrenciKimlikBilgileriIlce.setSelectedIndex(Util
-		// .GetLBXSelectedTextIndex(cbxOgrenciBilgileriIlce,
-		// xml.ogrenci_kimlik_bilgileri_ilce));
 		cbxOgrenciKimlikBilgileriIl.setItemText(0,
 				xml.ogrenci_kimlik_bilgileri_il);
 		cbxOgrenciBilgileriIl.setItemText(0, xml.ogrenci_bilgileri_il);
@@ -1375,6 +1374,7 @@ public class DlgOnKayit extends DialogBox {
 					+ cbxSemt.getItemText(cbxSemt.getSelectedIndex());
 			URLValue = URLValue + "&mahalle="
 					+ cbxMahalle.getItemText(cbxMahalle.getSelectedIndex());
+
 			URLValue = URLValue + "&sokak_ve_no=" + tctSokakveNo.getText();
 
 			URLValue = URLValue + "&seri_no=" + tctSeriNo.getText();
@@ -1548,7 +1548,7 @@ public class DlgOnKayit extends DialogBox {
 
 								DlgOnKayit dlgTemp = new DlgOnKayit(_isInsert,
 										-1);
-
+								_dlgonkayit.hide();
 								dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
 								dlgTemp.center();
 								dlgTemp.tabOnKayit.selectTab(0);

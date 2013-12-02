@@ -358,6 +358,7 @@ box-shadow: 0 2px 4px #BBB inset;
 	color: black;
 	border: 1px solid #B9BDC1;
 	font-size: 18px;
+	font-style: normal;
 	font-family: cursive; 
 
 }
@@ -416,12 +417,26 @@ color: rgb(255, 255, 255);
 	
 }
 .gwttextbuton {
-	background-image: url(home.gif);
-	cursor: pointer;
+	border-color: rgb(38, 154, 188);
+	font-family: cursive;
+
+	border-radius: 4px 4px 4px 4px;
 }
 .gwttreeee {
 	background-color: ButtonFace;
 	cursor: pointer;
 	
+}
+.gwt-MenuButton {
+	border-color: rgb(38, 154, 188);
+	font-family: cursive;
+	font-weight: bold;
+	border-radius: 4px 4px 4px 4px;
+}
+.gwt-MenuButton2 {
+	border-color: rgb(38, 154, 188);
+	font-family: cursive;
+	font-weight: bold;
+	border-radius: 4px 4px 4px 4px;
 }
 }

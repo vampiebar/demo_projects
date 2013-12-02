@@ -36,20 +36,20 @@ public class DlgHizmetTanimla extends DialogBox {
 		absolutePanel.add(lblNewLabel, 0, 0);
 		lblNewLabel.setSize("100%", "28px");
 
-		Label lblBirimFiyat = new Label("Birim fiyatı");
+		Label lblBirimFiyat = new Label("Birim Fiyatı");
 		lblBirimFiyat.setStyleName("gwt-Bold");
 		absolutePanel.add(lblBirimFiyat, 10, 133);
 		lblBirimFiyat.setSize("81px", "18px");
 
-		Label lblHzmetT = new Label("Hizmet türü");
+		Label lblHzmetT = new Label("Hizmet Türü");
 		lblHzmetT.setStyleName("gwt-Bold");
 		absolutePanel.add(lblHzmetT, 10, 90);
-		lblHzmetT.setSize("71px", "18px");
+		lblHzmetT.setSize("81px", "18px");
 
 		Label lblHizmetAd = new Label("Hizmet Adı");
 		lblHizmetAd.setStyleName("gwt-Bold");
 		absolutePanel.add(lblHizmetAd, 10, 49);
-		lblHizmetAd.setSize("68px", "18px");
+		lblHizmetAd.setSize("81px", "18px");
 
 		tctHizmetAdi = new TextBox();
 		tctHizmetAdi.setStyleName("gwt-TextBox1");

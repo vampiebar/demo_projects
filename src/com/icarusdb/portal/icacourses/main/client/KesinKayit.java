@@ -98,7 +98,7 @@ public class KesinKayit extends Composite {
 
 		Label lblKzamanSnf = new Label("K.Zamanı - Sınıf");
 		lblKzamanSnf.setStyleName("gwt-Bold");
-		absolutePanel.add(lblKzamanSnf, 22, 145);
+		absolutePanel.add(lblKzamanSnf, 22, 141);
 
 		cbxKZamani = new ListBox();
 		cbxKZamani.setStyleName("gwt-ComboBox1");
@@ -118,10 +118,10 @@ public class KesinKayit extends Composite {
 		absolutePanel.add(lblKaytDurumu, 22, 182);
 
 		cbxKayitDurumu = new ListBox();
-		cbxKayitDurumu.addItem("1");
+		cbxKayitDurumu.addItem("Kayıtlı Öğrencileri Göster");
 		cbxKayitDurumu.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxKayitDurumu, 133, 176);
-		cbxKayitDurumu.setSize("144px", "25px");
+		cbxKayitDurumu.setSize("198px", "22px");
 
 		btnAra = new Button("ARA");
 		btnAra.setStyleName("gwt-ButonKapat");
@@ -177,6 +177,7 @@ public class KesinKayit extends Composite {
 			}
 		};
 		grdKesinKayit.addColumn(column, "TC Kimlik No");
+		grdKesinKayit.setColumnWidth(column, "103px");
 
 		Column<XMLOnKayit, ?> textColumn = new TextColumn<XMLOnKayit>() {
 			@Override
@@ -202,6 +203,7 @@ public class KesinKayit extends Composite {
 			}
 		};
 		grdKesinKayit.addColumn(column_1, "Öğrenci D. No");
+		grdKesinKayit.setColumnWidth(column_1, "89px");
 
 		Column<XMLOnKayit, ?> column_2 = new TextColumn<XMLOnKayit>() {
 			@Override
@@ -218,6 +220,7 @@ public class KesinKayit extends Composite {
 			}
 		};
 		grdKesinKayit.addColumn(textColumn_4, "Durum");
+		grdKesinKayit.setColumnWidth(textColumn_4, "69px");
 
 		Column<XMLOnKayit, ?> column_3 = new Column<XMLOnKayit, String>(
 				new ButtonCell()) {
@@ -227,6 +230,7 @@ public class KesinKayit extends Composite {
 			}
 		};
 		grdKesinKayit.addColumn(column_3, "Şifre Sıfırla");
+		grdKesinKayit.setColumnWidth(column_3, "54px");
 
 		Column<XMLOnKayit, ?> textColumn_5 = new TextColumn<XMLOnKayit>() {
 			@Override
@@ -302,12 +306,11 @@ public class KesinKayit extends Composite {
 	}
 
 	private boolean isDesignTime() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	private void putDataToGrid() {
-		// TODO Auto-generated method stub
 
 	}
 

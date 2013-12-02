@@ -36,10 +36,11 @@ public class DlgFizikselSinifTanimlari extends DialogBox {
 		Label lblFizikselSnfAd = new Label("Fiziksel Sınıf Adı");
 		lblFizikselSnfAd.setStyleName("gwt-Bold");
 		absolutePanel.add(lblFizikselSnfAd, 10, 49);
+		lblFizikselSnfAd.setSize("102px", "18px");
 
 		tctFizikselSinifAdi = new TextBox();
 		tctFizikselSinifAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctFizikselSinifAdi, 132, 49);
+		absolutePanel.add(tctFizikselSinifAdi, 142, 49);
 		tctFizikselSinifAdi.setSize("143px", "14px");
 
 		btnKaydet = new Button("New button");

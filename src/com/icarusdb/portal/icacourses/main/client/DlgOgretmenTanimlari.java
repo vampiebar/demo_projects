@@ -63,10 +63,11 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		VerticalPanel verticalPanel = new VerticalPanel();
 		absolutePanel_1.add(verticalPanel, 10, 10);
-		verticalPanel.setSize("126px", "447px");
+		verticalPanel.setSize("201px", "447px");
 
 		Label lblretmenNo = new Label("Öğretmen No");
 		verticalPanel.add(lblretmenNo);
+		verticalPanel.setCellHeight(lblretmenNo, "26");
 		lblretmenNo.setStyleName("gwt-Bold");
 
 		Label lblTcKimlikNo = new Label("T.C. Kimlik No");
@@ -84,16 +85,19 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		Label lblEitimTr = new Label("Eğitim Türü");
 		verticalPanel.add(lblEitimTr);
+		verticalPanel.setCellHeight(lblEitimTr, "30");
 		lblEitimTr.setHeight("21px");
 		lblEitimTr.setStyleName("gwt-Bold");
 
 		Label lblBran = new Label("Branş");
 		verticalPanel.add(lblBran);
+		verticalPanel.setCellHeight(lblBran, "27");
 		lblBran.setHeight("20px");
 		lblBran.setStyleName("gwt-Bold");
 
 		Label lblGirdiiDersler = new Label("Girdiği Dersler");
 		verticalPanel.add(lblGirdiiDersler);
+		verticalPanel.setCellHeight(lblGirdiiDersler, "30");
 		lblGirdiiDersler.setHeight("21px");
 		lblGirdiiDersler.setStyleName("gwt-Bold");
 
@@ -121,7 +125,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		verticalPanel.add(lblSigortaGnSays);
 		lblSigortaGnSays.setStyleName("gwt-Bold");
 
-		Label lblDersProgmamnGrsun = new Label("Ders progmamını Görsün");
+		Label lblDersProgmamnGrsun = new Label("Ders Progmamını Görsün");
 		verticalPanel.add(lblDersProgmamnGrsun);
 		lblDersProgmamnGrsun.setWidth("159px");
 		lblDersProgmamnGrsun.setStyleName("gwt-Bold");
@@ -154,10 +158,19 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		tctGirdigiDersbilgisi.setSize("143px", "14px");
 
 		cbxEgitimTuru = new ListBox();
+		cbxEgitimTuru.addItem("YGS HAZIRLIK");
+		cbxEgitimTuru.addItem("YGS/LYS HAZIRLIK");
+		cbxEgitimTuru.addItem("11.SINIF TAKVİYE");
+		cbxEgitimTuru.addItem("10.SINIF TAKVİYE");
+		cbxEgitimTuru.addItem("9.SINIF TAKVİYE");
+		cbxEgitimTuru.addItem("SBS HAZIRLIK");
+		cbxEgitimTuru.addItem("8.SINIF TAKVİYE");
+		cbxEgitimTuru.addItem("7.SINIF TAKVİYE");
+		cbxEgitimTuru.addItem("6.SINIF TAKVİYE");
+		cbxEgitimTuru.addItem("5.SINIF TAKVİYE");
+		cbxEgitimTuru.addItem("4.SINIF TAKVİYE");
 		verticalPanel_1.add(cbxEgitimTuru);
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
-		cbxEgitimTuru.addItem("1");
-		cbxEgitimTuru.addItem("2 ");
 		cbxEgitimTuru.setSize("143px", "20px");
 
 		cbxBrans = new ListBox();

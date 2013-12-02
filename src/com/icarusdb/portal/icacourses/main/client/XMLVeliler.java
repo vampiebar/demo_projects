@@ -5,8 +5,8 @@ import name.pehl.piriti.xml.client.XmlReader;
 
 import com.google.gwt.core.client.GWT;
 
-public class XMLVeliEkle {
-	interface VubReader extends XmlReader<XMLVeliEkle> {
+public class XMLVeliler {
+	interface VubReader extends XmlReader<XMLVeliler> {
 	}
 
 	public static final VubReader XML = GWT.create(VubReader.class);

@@ -102,8 +102,8 @@ public class Main implements EntryPoint {
 		VerticalPanel verticalPanel = new VerticalPanel();
 		verticalPanel.setStyleName("gwt-DialogBackGround");
 		verticalPanel.setSpacing(10);
-		rootPanel.add(verticalPanel, 23, 95);
-		verticalPanel.setSize("240px", "508px");
+		rootPanel.add(verticalPanel, 10, 96);
+		verticalPanel.setSize("250px", "490px");
 
 		Label lblEitimDnemi = new Label("Eğitim Dönemi:");
 		lblEitimDnemi.setStyleName("gwt-Bold");
@@ -117,282 +117,341 @@ public class Main implements EntryPoint {
 		comboBox.setVisibleItemCount(1);
 		verticalPanel.add(comboBox);
 		verticalPanel.setCellHeight(comboBox, "10");
-		comboBox.setSize("217px", "26px");
+		comboBox.setSize("236px", "26px");
 
 		DecoratedStackPanel decoratedStackPanel = new DecoratedStackPanel();
 		verticalPanel.add(decoratedStackPanel);
-		decoratedStackPanel.setSize("220px", "399px");
+		decoratedStackPanel.setSize("238px", "353px");
 
 		vtpanKayitIslemleri = new VerticalPanel();
-		vtpanKayitIslemleri.setSpacing(3);
+		vtpanKayitIslemleri
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vtpanKayitIslemleri.setSpacing(6);
 		decoratedStackPanel.add(vtpanKayitIslemleri, "KAYIT İŞLEMLERİ", false);
 		vtpanKayitIslemleri.setSize("100%", "108px");
 
 		btnMenuDBSKayit = new Button("DBS Kayıt");
+		btnMenuDBSKayit.setStyleName("gwt-MenuButton");
 		btnMenuDBSKayit.addClickHandler(new BtnMenuDBSKayitClickHandler());
 		vtpanKayitIslemleri.add(btnMenuDBSKayit);
-		vtpanKayitIslemleri.setCellHeight(btnMenuDBSKayit, "30");
+		vtpanKayitIslemleri.setCellHeight(btnMenuDBSKayit, "25");
 		btnMenuDBSKayit.setWidth("60%");
 
 		Button btnMenuOnkayit = new Button("Ön Kayıt");
+		btnMenuOnkayit.setStyleName("gwt-MenuButton");
 		btnMenuOnkayit.addClickHandler(new BtnMenuOnkayitClickHandler());
 		vtpanKayitIslemleri.add(btnMenuOnkayit);
-		vtpanKayitIslemleri.setCellHeight(btnMenuOnkayit, "30");
+		vtpanKayitIslemleri.setCellHeight(btnMenuOnkayit, "25");
 		btnMenuOnkayit.setWidth("60%");
 
 		Button btnMenuKesinKayit = new Button("Kesin Kayıt");
+		btnMenuKesinKayit.setStyleName("gwt-MenuButton");
 		btnMenuKesinKayit.addClickHandler(new BtnMenuKesinKayitClickHandler());
 		vtpanKayitIslemleri.add(btnMenuKesinKayit);
 		btnMenuKesinKayit.setSize("60%", "26px");
 
 		vtpanOgrenciIsleri = new VerticalPanel();
-		vtpanOgrenciIsleri.setSpacing(3);
+		vtpanOgrenciIsleri
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vtpanOgrenciIsleri.setSpacing(6);
 		decoratedStackPanel.add(vtpanOgrenciIsleri, "ÖĞRENCİ İŞLERİ", false);
-		vtpanOgrenciIsleri.setSize("100%", "100%");
+		vtpanOgrenciIsleri.setSize("100%", "76px");
 
 		Button btnNewButton_4 = new Button("Öğrenci Kayıtları");
+		btnNewButton_4.setStyleName("gwt-MenuButton");
 		vtpanOgrenciIsleri.add(btnNewButton_4);
+		btnNewButton_4.setWidth("70%");
 		vtpanOgrenciIsleri.setCellHeight(btnNewButton_4, "30px");
 
 		Button btnNewButton_5 = new Button("Raporlar");
+		btnNewButton_5.setStyleName("gwt-MenuButton");
 		vtpanOgrenciIsleri.add(btnNewButton_5);
+		btnNewButton_5.setWidth("70%");
 
 		vtpanDersDagitim = new VerticalPanel();
-		vtpanDersDagitim.setSpacing(3);
+		vtpanDersDagitim
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vtpanDersDagitim.setSpacing(6);
 		decoratedStackPanel.add(vtpanDersDagitim, "DERS DAĞITIM", false);
 		vtpanDersDagitim.setSize("100%", "100%");
 
 		Button btbMenuDersDagitimSistemi = new Button("Ders Dağıtım Sistemi");
+		btbMenuDersDagitimSistemi.setStyleName("gwt-MenuButton");
 		btbMenuDersDagitimSistemi
 				.addClickHandler(new BtbMenuDersDagitimSistemiClickHandler());
 		vtpanDersDagitim.add(btbMenuDersDagitimSistemi);
-		btbMenuDersDagitimSistemi.setWidth("90%");
+		btbMenuDersDagitimSistemi.setWidth("95%");
 
 		Button btnMenuYetkiTanimlama = new Button("Yetki Tanımlama (Kısıtlama)");
+		btnMenuYetkiTanimlama.setStyleName("gwt-MenuButton");
 		btnMenuYetkiTanimlama
 				.addClickHandler(new BtnMenuYetkiTanimlamaClickHandler());
 		vtpanDersDagitim.add(btnMenuYetkiTanimlama);
-		btnMenuYetkiTanimlama.setWidth("90%");
+		btnMenuYetkiTanimlama.setWidth("95%");
 
 		Button btnMenuSaatGirisi = new Button("Saat Girişi");
+		btnMenuSaatGirisi.setStyleName("gwt-MenuButton");
 		btnMenuSaatGirisi.addClickHandler(new BtnMenuSaatGirisiClickHandler());
 		vtpanDersDagitim.add(btnMenuSaatGirisi);
-		btnMenuSaatGirisi.setWidth("90%");
+		btnMenuSaatGirisi.setWidth("95%");
 
 		vtpanOdevTakip = new VerticalPanel();
-		vtpanOdevTakip.setSpacing(3);
+		vtpanOdevTakip
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vtpanOdevTakip.setSpacing(6);
 		decoratedStackPanel.add(vtpanOdevTakip, "ÖDEV TAKİP", false);
 		vtpanOdevTakip.setSize("100%", "100%");
 
 		Button btnMenuOdevOlustur = new Button("Ödev Oluştur");
+		btnMenuOdevOlustur.setStyleName("gwt-MenuButton");
 		btnMenuOdevOlustur
 				.addClickHandler(new BtnMenuOdevOlusturClickHandler());
 		vtpanOdevTakip.add(btnMenuOdevOlustur);
-		btnMenuOdevOlustur.setWidth("65%");
+		btnMenuOdevOlustur.setWidth("75%");
 
 		Button btnMenuCevapAdediBelirle = new Button("Cevap Adedi Belirle");
+		btnMenuCevapAdediBelirle.setStyleName("gwt-MenuButton");
 		btnMenuCevapAdediBelirle
 				.addClickHandler(new BtnMenuCevapAdediBelirleClickHandler());
 		vtpanOdevTakip.add(btnMenuCevapAdediBelirle);
+		btnMenuCevapAdediBelirle.setWidth("75%");
 
 		Button btnMenuOdevTakipUnite = new Button("Ödev Takip Ünite");
+		btnMenuOdevTakipUnite.setStyleName("gwt-MenuButton");
 		btnMenuOdevTakipUnite
 				.addClickHandler(new BtnMenuOdevTakipUniteClickHandler());
 		vtpanOdevTakip.add(btnMenuOdevTakipUnite);
-		btnMenuOdevTakipUnite.setWidth("65%");
+		btnMenuOdevTakipUnite.setWidth("75%");
 
 		Button btnMenuAtanmisOdevler = new Button("Atanmış Ödevler");
+		btnMenuAtanmisOdevler.setStyleName("gwt-MenuButton");
 		btnMenuAtanmisOdevler
 				.addClickHandler(new BtnMenuAtanmisOdevlerClickHandler());
 		vtpanOdevTakip.add(btnMenuAtanmisOdevler);
-		btnMenuAtanmisOdevler.setWidth("65%");
+		btnMenuAtanmisOdevler.setWidth("75%");
 
 		vtpanSinavDegerlendirme = new VerticalPanel();
-		vtpanSinavDegerlendirme.setSpacing(3);
+		vtpanSinavDegerlendirme
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vtpanSinavDegerlendirme.setSpacing(6);
 		decoratedStackPanel.add(vtpanSinavDegerlendirme, "SINAV DEĞERLENDİRME",
 				false);
 		vtpanSinavDegerlendirme.setSize("100%", "64px");
 
 		Button btnMenuSinavTanimlama = new Button("Sınav Tanımlama");
+		btnMenuSinavTanimlama.setStyleName("gwt-MenuButton");
 		btnMenuSinavTanimlama
 				.addClickHandler(new BtnMenuSinavTanimlamaClickHandler());
 		vtpanSinavDegerlendirme.add(btnMenuSinavTanimlama);
+		btnMenuSinavTanimlama.setWidth("65%");
 
 		Button btnMenuSablonTanimlari = new Button("Şablon Tanımları");
+		btnMenuSablonTanimlari.setStyleName("gwt-MenuButton");
 		btnMenuSablonTanimlari
 				.addClickHandler(new BtnMenuSablonTanimlariClickHandler());
 		vtpanSinavDegerlendirme.add(btnMenuSablonTanimlari);
-		btnMenuSablonTanimlari.setWidth("116px");
+		btnMenuSablonTanimlari.setWidth("65%");
 
 		vtpanMuhasebe = new VerticalPanel();
-		vtpanMuhasebe.setSpacing(3);
+		vtpanMuhasebe
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vtpanMuhasebe.setSpacing(6);
 		decoratedStackPanel.add(vtpanMuhasebe, "MUHASEBE", false);
 		vtpanMuhasebe.setSize("100%", "142px");
 
 		Button btnMenuGelirveGiderler = new Button("Gelir ve Giderler");
+		btnMenuGelirveGiderler.setStyleName("gwt-MenuButton");
 		btnMenuGelirveGiderler
 				.addClickHandler(new BtnMenuGelirveGiderlerClickHandler());
 		vtpanMuhasebe.add(btnMenuGelirveGiderler);
-		btnMenuGelirveGiderler.setWidth("75%");
+		btnMenuGelirveGiderler.setWidth("85%");
 
 		Button btnMenuKasaHareketleri = new Button("Kasa Hareketleri");
+		btnMenuKasaHareketleri.setStyleName("gwt-MenuButton");
 		btnMenuKasaHareketleri
 				.addClickHandler(new BtnMenuKasaHareketleriClickHandler());
 		vtpanMuhasebe.add(btnMenuKasaHareketleri);
-		btnMenuKasaHareketleri.setWidth("75%");
+		btnMenuKasaHareketleri.setWidth("85%");
 
 		Button btnMenuGelirGiderTanimlari = new Button("Gelir/Gider Tanımları");
+		btnMenuGelirGiderTanimlari.setStyleName("gwt-MenuButton");
 		btnMenuGelirGiderTanimlari
 				.addClickHandler(new BtnMenuGelirGiderTanimlariClickHandler());
 		vtpanMuhasebe.add(btnMenuGelirGiderTanimlari);
-		btnMenuGelirGiderTanimlari.setWidth("75%");
+		btnMenuGelirGiderTanimlari.setWidth("85%");
 
 		Button btnMenuGelirGiderKategorileri = new Button(
 				"Gelir Gider Kategorileri");
+		btnMenuGelirGiderKategorileri.setStyleName("gwt-MenuButton");
 		btnMenuGelirGiderKategorileri
 				.addClickHandler(new BtnMenuGelirGiderKategorileriClickHandler());
 		vtpanMuhasebe.add(btnMenuGelirGiderKategorileri);
-		btnMenuGelirGiderKategorileri.setWidth("75%");
+		btnMenuGelirGiderKategorileri.setWidth("85%");
 
 		Button btnMenuBankaEkle = new Button("Banka Ekle");
+		btnMenuBankaEkle.setStyleName("gwt-MenuButton");
 		btnMenuBankaEkle.addClickHandler(new BtnMenuBankaEkleClickHandler());
 		vtpanMuhasebe.add(btnMenuBankaEkle);
-		btnMenuBankaEkle.setWidth("75%");
+		btnMenuBankaEkle.setWidth("85%");
 
 		vtpanDonemselTanimlar = new VerticalPanel();
-		vtpanDonemselTanimlar.setSpacing(3);
+		vtpanDonemselTanimlar
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vtpanDonemselTanimlar.setSpacing(6);
 		decoratedStackPanel.add(vtpanDonemselTanimlar, "DÖNEMSEL TANIMLAR",
 				false);
 		vtpanDonemselTanimlar.setSize("100%", "194px");
 
 		Button btnMenuDBSSinavTanimla = new Button("DBS Sınav Tanımla");
+		btnMenuDBSSinavTanimla.setStyleName("gwt-MenuButton");
 		btnMenuDBSSinavTanimla
 				.addClickHandler(new BtnMenuDBSSinavTanimlaClickHandler());
 		vtpanDonemselTanimlar.add(btnMenuDBSSinavTanimla);
-		btnMenuDBSSinavTanimla.setWidth("65%");
+		btnMenuDBSSinavTanimla.setWidth("70%");
 
 		Button btnMenuOgretmenTanimlari = new Button("Öğretmen Tanımları");
+		btnMenuOgretmenTanimlari.setStyleName("gwt-MenuButton");
 		btnMenuOgretmenTanimlari
 				.addClickHandler(new BtnMenuOgretmenTanimlariClickHandler());
 		vtpanDonemselTanimlar.add(btnMenuOgretmenTanimlari);
-		btnMenuOgretmenTanimlari.setWidth("65%");
+		btnMenuOgretmenTanimlari.setWidth("70%");
 
 		btnMenuSinifTanimlari = new Button("Sınıf Tanımları");
+		btnMenuSinifTanimlari.setStyleName("gwt-MenuButton");
 		btnMenuSinifTanimlari
 				.addClickHandler(new BtnMenuSinifTanimlariClickHandler());
 		vtpanDonemselTanimlar.add(btnMenuSinifTanimlari);
-		btnMenuSinifTanimlari.setWidth("65%");
+		btnMenuSinifTanimlari.setWidth("70%");
 
 		Button btnMenuIndirimTuru = new Button("İndirim Türü");
+		btnMenuIndirimTuru.setStyleName("gwt-MenuButton");
 		btnMenuIndirimTuru
 				.addClickHandler(new BtnMenuIndirimTuruClickHandler());
 		vtpanDonemselTanimlar.add(btnMenuIndirimTuru);
-		btnMenuIndirimTuru.setWidth("65%");
+		btnMenuIndirimTuru.setWidth("70%");
 
 		Button btnMenuHizmetTanmla = new Button("Hizmet Tanımla");
+		btnMenuHizmetTanmla.setStyleName("gwt-MenuButton");
 		btnMenuHizmetTanmla
 				.addClickHandler(new BtnMenuHizmetTanmlaClickHandler());
 		vtpanDonemselTanimlar.add(btnMenuHizmetTanmla);
-		btnMenuHizmetTanmla.setWidth("65%");
+		btnMenuHizmetTanmla.setWidth("70%");
 
 		Button btnMenuReferanslar = new Button("Referanslar");
+		btnMenuReferanslar.setStyleName("gwt-MenuButton");
 		btnMenuReferanslar
 				.addClickHandler(new BtnMenuReferanslarClickHandler());
 		vtpanDonemselTanimlar.add(btnMenuReferanslar);
-		btnMenuReferanslar.setWidth("65%");
+		btnMenuReferanslar.setWidth("70%");
 
 		Button btnMenuPersonelTanimlari = new Button("Personel Tanımları");
+		btnMenuPersonelTanimlari.setStyleName("gwt-MenuButton");
 		btnMenuPersonelTanimlari
 				.addClickHandler(new BtnMenuPersonelTanimlariClickHandler());
 		vtpanDonemselTanimlar.add(btnMenuPersonelTanimlari);
-		btnMenuPersonelTanimlari.setWidth("65%");
+		btnMenuPersonelTanimlari.setWidth("70%");
 
 		vtpanSabitTanimlamalar = new VerticalPanel();
-		vtpanSabitTanimlamalar.setSpacing(3);
+		vtpanSabitTanimlamalar
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vtpanSabitTanimlamalar.setSpacing(6);
 		decoratedStackPanel.add(vtpanSabitTanimlamalar, "SABİT TANIMLAMALAR",
 				false);
 		vtpanSabitTanimlamalar.setSize("100%", "252px");
 
 		Button btnMenuKurumsalBilgiler = new Button("Kurumsal Bilgiler");
+		btnMenuKurumsalBilgiler.setStyleName("gwt-MenuButton");
 		btnMenuKurumsalBilgiler
 				.addClickHandler(new BtnMenuKurumsalBilgilerClickHandler());
 		vtpanSabitTanimlamalar.add(btnMenuKurumsalBilgiler);
-		btnMenuKurumsalBilgiler.setWidth("80%");
+		btnMenuKurumsalBilgiler.setWidth("85%");
 
 		Button btnMenuDonemTanimlari = new Button("Dönem Tanımları");
+		btnMenuDonemTanimlari.setStyleName("gwt-MenuButton");
 		btnMenuDonemTanimlari
 				.addClickHandler(new BtnMenuDonemTanimlariClickHandler());
 		vtpanSabitTanimlamalar.add(btnMenuDonemTanimlari);
-		btnMenuDonemTanimlari.setWidth("80%");
+		btnMenuDonemTanimlari.setWidth("85%");
 
 		Button btnMenuDersTanimlari = new Button("Ders Tanımları");
+		btnMenuDersTanimlari.setStyleName("gwt-MenuButton");
 		btnMenuDersTanimlari
 				.addClickHandler(new BtnMenuDersTanimlariClickHandler());
 		vtpanSabitTanimlamalar.add(btnMenuDersTanimlari);
-		btnMenuDersTanimlari.setWidth("80%");
+		btnMenuDersTanimlari.setWidth("85%");
 
 		Button btnMenuUniteTanimlari = new Button("Ünite Tanımları");
+		btnMenuUniteTanimlari.setStyleName("gwt-MenuButton");
 		btnMenuUniteTanimlari
 				.addClickHandler(new BtnMenuUniteTanimlariClickHandler());
 		vtpanSabitTanimlamalar.add(btnMenuUniteTanimlari);
-		btnMenuUniteTanimlari.setWidth("80%");
+		btnMenuUniteTanimlari.setWidth("85%");
 
 		Button btnMenuKonuTanimlari = new Button("Konu Tanımları");
+		btnMenuKonuTanimlari.setStyleName("gwt-MenuButton");
 		btnMenuKonuTanimlari
 				.addClickHandler(new BtnMenuKonuTanimlariClickHandler());
 		vtpanSabitTanimlamalar.add(btnMenuKonuTanimlari);
-		btnMenuKonuTanimlari.setWidth("80%");
+		btnMenuKonuTanimlari.setWidth("85%");
 
 		Button btnMenuFizikselSinifTanimlama = new Button(
 				"Fiziksel Sınıf Tanımlama");
+		btnMenuFizikselSinifTanimlama.setStyleName("gwt-MenuButton");
 		btnMenuFizikselSinifTanimlama
 				.addClickHandler(new BtnMenuFizikselSinifTanimlamaClickHandler());
 		vtpanSabitTanimlamalar.add(btnMenuFizikselSinifTanimlama);
-		btnMenuFizikselSinifTanimlama.setWidth("80%");
+		btnMenuFizikselSinifTanimlama.setWidth("85%");
 
 		Button btnMenuKursZamaniTanimlama = new Button("Kurs Zamanı Tanımlama");
+		btnMenuKursZamaniTanimlama.setStyleName("gwt-MenuButton");
 		btnMenuKursZamaniTanimlama
 				.addClickHandler(new BtnMenuKursZamaniTanimlamaClickHandler());
 		vtpanSabitTanimlamalar.add(btnMenuKursZamaniTanimlama);
-		btnMenuKursZamaniTanimlama.setWidth("80%");
+		btnMenuKursZamaniTanimlama.setWidth("85%");
 
 		Button btnMenuSozlemeMaddeleri = new Button("Sözleşme Maddeleri");
+		btnMenuSozlemeMaddeleri.setStyleName("gwt-MenuButton");
 		btnMenuSozlemeMaddeleri
 				.addClickHandler(new BtnMenuSozlemeMaddeleriClickHandler());
 		vtpanSabitTanimlamalar.add(btnMenuSozlemeMaddeleri);
-		btnMenuSozlemeMaddeleri.setWidth("80%");
+		btnMenuSozlemeMaddeleri.setWidth("85%");
 
 		Button btnMenuSifreDegistirme = new Button("Şifre Değiştirme");
+		btnMenuSifreDegistirme.setStyleName("gwt-MenuButton");
 		btnMenuSifreDegistirme
 				.addClickHandler(new BtnMenuSifreDegistirmeClickHandler());
 		vtpanSabitTanimlamalar.add(btnMenuSifreDegistirme);
-		btnMenuSifreDegistirme.setWidth("80%");
+		btnMenuSifreDegistirme.setWidth("85%");
 
 		vtpanDestek = new VerticalPanel();
-		vtpanDestek.setSpacing(3);
+		vtpanDestek.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vtpanDestek.setSpacing(6);
 		decoratedStackPanel.add(vtpanDestek, "DESTEK", false);
-		vtpanDestek.setSize("100%", "100%");
+		vtpanDestek.setSize("100%", "47px");
 
 		Button btnMenuDestekAlmakIstiyorum = new Button(
 				"Destek Almak İstiyorum");
+		btnMenuDestekAlmakIstiyorum.setStyleName("gwt-MenuButton");
 		btnMenuDestekAlmakIstiyorum
 				.addClickHandler(new BtnMenuDestekAlmakIstiyorumClickHandler());
 		vtpanDestek.add(btnMenuDestekAlmakIstiyorum);
 
 		vtpanYetki = new VerticalPanel();
-		vtpanYetki.setSpacing(3);
+		vtpanYetki.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vtpanYetki.setSpacing(6);
 		decoratedStackPanel.add(vtpanYetki, "YETKİ", false);
 		vtpanYetki.setSize("100%", "44px");
 
 		Button btnMenuKullaniciTanimlama = new Button("Kullanıcı Tanımlama");
+		btnMenuKullaniciTanimlama.setStyleName("gwt-MenuButton");
 		btnMenuKullaniciTanimlama
 				.addClickHandler(new BtnMenuKullaniciTanimlamaClickHandler());
 		vtpanYetki.add(btnMenuKullaniciTanimlama);
 		MenuBar menuBar_1 = new MenuBar(true);
 
 		smpanMain = new SimplePanel();
-		rootPanel.add(smpanMain, 269, 95);
-		smpanMain.setSize("1023px", "606px");
+		rootPanel.add(smpanMain, 285, 95);
+		smpanMain.setSize("1007px", "606px");
 
 		Label lblDer = new Label("Dershane Yönetim Sistemi");
 		smpanMain.setWidget(lblDer);
@@ -1053,6 +1112,7 @@ public class Main implements EntryPoint {
 			smpanMain.clear();
 
 			smpanMain.add(new DestekAlmakIstiyorum());
+
 			scrollToTop();
 
 		}

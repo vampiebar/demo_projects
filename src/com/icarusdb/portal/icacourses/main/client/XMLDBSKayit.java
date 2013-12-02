@@ -50,6 +50,9 @@ public class XMLDBSKayit {
 	@Path("ogrenci_bilgileri_ilce")
 	String ogrenci_bilgileri_ilce;
 
+	@Path("sinif")
+	String sinif;
+
 	@Path("mahalle_koy")
 	String mahalle_koy;
 

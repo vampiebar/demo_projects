@@ -247,7 +247,7 @@ public class DlgVeliEkle extends DialogBox {
 
 	}
 
-	public void putDataFromXML(XMLVeliEkle xml) {
+	public void putDataFromXML(XMLVeliler xml) {
 		tctCepTel.setText(xml.cep_tel);
 		tctEmail.setText(xml.e_mail);
 		tctEvTel.setText(xml.ev_tel);

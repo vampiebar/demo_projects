@@ -41,7 +41,7 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 
 		tctKategoriAdi = new TextBox();
 		tctKategoriAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctKategoriAdi, 98, 44);
+		absolutePanel.add(tctKategoriAdi, 110, 44);
 		tctKategoriAdi.setSize("143px", "14px");
 
 		btnKaydet = new Button("Kaydet");

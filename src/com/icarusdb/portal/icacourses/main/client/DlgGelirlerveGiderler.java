@@ -49,7 +49,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 				"Gelir / Gider Giriş İşlemleri ( Ekleme / Düzenleme )");
 		lblNewLabel.setStyleName("gwt-LabelMor");
 		absolutePanel.add(lblNewLabel, 0, 0);
-		lblNewLabel.setSize("525px", "28px");
+		lblNewLabel.setSize("100%", "28px");
 
 		Label lblIlemTipi = new Label("İşlem Tipi");
 		lblIlemTipi.setStyleName("gwt-Bold");
@@ -102,31 +102,56 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		btnKapat.setSize("78px", "46px");
 
 		cbxİslemTipi = new ListBox();
-		cbxİslemTipi.setStyleName("gwt-ComboBox1");
 		cbxİslemTipi.addItem("Gelir");
 		cbxİslemTipi.addItem("Gider");
+		cbxİslemTipi.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxİslemTipi, 155, 42);
 		cbxİslemTipi.setSize("157px", "22px");
 
 		cbxKategoriler = new ListBox();
+		cbxKategoriler.addItem("Öğretmen");
+		cbxKategoriler.addItem("Fatura");
+		cbxKategoriler.addItem("Personel");
+		cbxKategoriler.addItem("Araç Gideri");
+		cbxKategoriler.addItem("Bina Bakım Onarım Giderleri");
+		cbxKategoriler.addItem("Demirbaş Giderleri");
+		cbxKategoriler.addItem("Fatura Giderleri");
+		cbxKategoriler.addItem("Kırtasiye Giderleri");
+		cbxKategoriler.addItem("Muhtelif Giderler");
+		cbxKategoriler.addItem("SGK - Vergi Giderleri");
+		cbxKategoriler.addItem("Temizlik Giderleri");
+		cbxKategoriler.addItem("Yayın Giderleri");
+		cbxKategoriler.addItem("Mutfak Gideri");
+		cbxKategoriler.addItem("Öğrenci Dışı Gelirler");
 		cbxKategoriler.setStyleName("gwt-ComboBox1");
-		cbxKategoriler.addItem(" ");
-		cbxKategoriler.addItem("1");
-		cbxKategoriler.addItem("2");
 		absolutePanel.add(cbxKategoriler, 155, 80);
-		cbxKategoriler.setSize("278px", "22px");
+		cbxKategoriler.setSize("190px", "22px");
 
 		cbxGelirler = new ListBox();
+		cbxGelirler.addItem("İlhami YILDIZ");
+		cbxGelirler.addItem("Tuba YILDIZ");
+		cbxGelirler.addItem("Melike AKDAĞ");
+		cbxGelirler.addItem("Onur MIHÇI");
+		cbxGelirler.addItem("Alpaslan ÇOLAK");
+		cbxGelirler.addItem("Hazal Erol");
+		cbxGelirler.addItem("Mesut ÇALIŞKAN");
+		cbxGelirler.addItem("Kübra UĞUR");
+		cbxGelirler.addItem("Mehmet AKİF ÖZER");
+		cbxGelirler.addItem("Murat AKGÜN");
+		cbxGelirler.addItem("Mehmet Şahin DEMİR");
+		cbxGelirler.addItem("Şems HOCA");
+		cbxGelirler.addItem("Kıymet AKGÜN");
 		cbxGelirler.setStyleName("gwt-ComboBox1");
-		cbxGelirler.addItem(" 1");
-		cbxGelirler.addItem("2");
 		absolutePanel.add(cbxGelirler, 155, 123);
-		cbxGelirler.setSize("278px", "22px");
+		cbxGelirler.setSize("157px", "22px");
 
 		cbxOdemeTuru = new ListBox();
+		cbxOdemeTuru.addItem("Senet");
+		cbxOdemeTuru.addItem("Kredi Kartı");
+		cbxOdemeTuru.addItem("Çek");
+		cbxOdemeTuru.addItem("Nakit");
+		cbxOdemeTuru.addItem("Havale - EFT");
 		cbxOdemeTuru.setStyleName("gwt-ComboBox1");
-		cbxOdemeTuru.addItem(" 1");
-		cbxOdemeTuru.addItem("2");
 		absolutePanel.add(cbxOdemeTuru, 155, 164);
 		cbxOdemeTuru.setSize("157px", "22px");
 
@@ -150,7 +175,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		dtpVadeTarihi
 				.addValueChangeHandler(new DtpVadeTarihiValueChangeHandler());
 		dtpVadeTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy.MM.dd")));
+				.getFormat("yyyy-MM-dd")));
 		absolutePanel.add(dtpVadeTarihi, 447, 238);
 		dtpVadeTarihi.setSize("127px", "16px");
 
@@ -163,7 +188,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		dtpTarih.setStyleName("gwt-TextBox1");
 		dtpTarih.addValueChangeHandler(new DtpTarihValueChangeHandler());
 		dtpTarih.setFormat(new DefaultFormat(DateTimeFormat
-				.getShortDateTimeFormat()));
+				.getFormat("yyyy-MM-dd HH:mm")));
 		absolutePanel.add(dtpTarih, 155, 308);
 		dtpTarih.setSize("136px", "16px");
 
@@ -199,6 +224,13 @@ public class DlgGelirlerveGiderler extends DialogBox {
 					+ cbxCek.getValue(cbxCek.getSelectedIndex());
 			URLValue = URLValue + "&miktar=" + tctMiktar.getText();
 			URLValue = URLValue + "&aciklama=" + tctAciklama.getText();
+
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+			URLValue = URLValue + "&tarih=" + dtf.format(dtpTarih.getValue());
+
+			URLValue = URLValue + "&vade_tarihi="
+					+ dtf.format(dtpVadeTarihi.getValue());
 
 			// Window.alert(URLValue);
 
@@ -237,6 +269,11 @@ public class DlgGelirlerveGiderler extends DialogBox {
 				cbxKategoriler, xml.kategoriler));
 		cbxOdemeTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOdemeTuru, xml.odeme_turu));
+
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+		dtpTarih.setValue(dtf.parse(xml.tarih));
+		dtpVadeTarihi.setValue(dtf.parse(xml.vade_tarihi));
 
 	}
 }

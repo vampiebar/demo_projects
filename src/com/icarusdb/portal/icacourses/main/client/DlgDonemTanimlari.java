@@ -68,7 +68,7 @@ public class DlgDonemTanimlari extends DialogBox {
 		dtpDonemBaslangicTarihi = new DateBox();
 		dtpDonemBaslangicTarihi.setStyleName("gwt-TextBox1");
 		dtpDonemBaslangicTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy.MM.dd")));
+				.getFormat("yyyy-MM-dd")));
 		dtpDonemBaslangicTarihi
 				.addValueChangeHandler(new DtpDonemBaslangicTarihiValueChangeHandler());
 		absolutePanel.add(dtpDonemBaslangicTarihi, 186, 83);
@@ -77,7 +77,7 @@ public class DlgDonemTanimlari extends DialogBox {
 		dtpDonemBitisTarihi = new DateBox();
 		dtpDonemBitisTarihi.setStyleName("gwt-TextBox1");
 		dtpDonemBitisTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy.MM.dd")));
+				.getFormat("yyyy-MM-dd")));
 		dtpDonemBitisTarihi
 				.addValueChangeHandler(new DtpDonemBitisTarihiValueChangeHandler());
 		absolutePanel.add(dtpDonemBitisTarihi, 186, 119);
@@ -122,6 +122,13 @@ public class DlgDonemTanimlari extends DialogBox {
 					+ cbxVarsayilanDonem.getValue(cbxVarsayilanDonem
 							.getSelectedIndex());
 
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+			URLValue = URLValue + "&baslangic_tarihi="
+					+ dtf.format(dtpDonemBaslangicTarihi.getValue());
+			URLValue = URLValue + "&bitis_tarihi="
+					+ dtf.format(dtpDonemBitisTarihi.getValue());
+
 			Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "DÖNEM BİLGİSİ KAYIT EDİLDİ",
@@ -148,6 +155,11 @@ public class DlgDonemTanimlari extends DialogBox {
 	public void putDataFromXML(XMLDonemTanimlari xml) {
 
 		tctDonemAdi.setText(xml.donem_adi);
+		cbxVarsayilanDonem.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxVarsayilanDonem, xml.varsayilan_donem));
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+		dtpDonemBaslangicTarihi.setValue(dtf.parse(xml.baslangic_tarihi));
+		dtpDonemBitisTarihi.setValue(dtf.parse(xml.bitis_tarihi));
 
 	}
 }

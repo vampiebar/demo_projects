@@ -19,6 +19,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 	private TextBox tctSoyadi;
 	private TextBox tctSifre;
 	private TextBox tctSifretekrar;
+	public DecoratedTabPanel tabKullaniciTanimlama;
 
 	public DlgKullaniciTanimlama(boolean isInsert, long id) {
 
@@ -38,16 +39,17 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		absolutePanel.add(lblKullancIlemlerieklemedzenleme, 0, 0);
 		lblKullancIlemlerieklemedzenleme.setSize("500px", "28px");
 
-		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
-		absolutePanel.add(decoratedTabPanel, 10, 38);
-		decoratedTabPanel.setSize("470px", "300px");
+		tabKullaniciTanimlama = new DecoratedTabPanel();
+		absolutePanel.add(tabKullaniciTanimlama, 10, 38);
+		tabKullaniciTanimlama.setSize("470px", "300px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
-		decoratedTabPanel.add(absolutePanel_1, "Kullanıcı Bilgileri", false);
+		tabKullaniciTanimlama
+				.add(absolutePanel_1, "Kullanıcı Bilgileri", false);
 		absolutePanel_1.setSize("462px", "268px");
 
-		Label lblKullancKodu = new Label("Kullanıcı kodu");
+		Label lblKullancKodu = new Label("Kullanıcı Kodu");
 		lblKullancKodu.setStyleName("gwt-Bold");
 		absolutePanel_1.add(lblKullancKodu, 10, 10);
 
@@ -94,8 +96,8 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		tctSifretekrar.setSize("143px", "14px");
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
-		decoratedTabPanel.add(absolutePanel_2, "Yetkileri", false);
-		absolutePanel_2.setSize("468px", "264px");
+		tabKullaniciTanimlama.add(absolutePanel_2, "Yetkileri", false);
+		absolutePanel_2.setSize("455px", "264px");
 
 		Button tctKaydet = new Button("New button");
 		tctKaydet.setStyleName("gwt-ButtonSave");

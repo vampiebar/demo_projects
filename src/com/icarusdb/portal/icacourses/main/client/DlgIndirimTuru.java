@@ -39,30 +39,33 @@ public class DlgIndirimTuru extends DialogBox {
 		Label lblIndirimTr = new Label("İndirim Türü");
 		lblIndirimTr.setStyleName("gwt-Bold");
 		absolutePanel.add(lblIndirimTr, 10, 52);
+		lblIndirimTr.setSize("78px", "18px");
 
 		Label lblInidirmekli = new Label("İnidirm Şekli");
 		lblInidirmekli.setStyleName("gwt-Bold");
 		absolutePanel.add(lblInidirmekli, 10, 93);
+		lblInidirmekli.setSize("92px", "18px");
 
 		Label lblIndrmMiktar = new Label("İndirim Miktarı");
 		lblIndrmMiktar.setStyleName("gwt-Bold");
 		absolutePanel.add(lblIndrmMiktar, 10, 136);
+		lblIndrmMiktar.setSize("92px", "18px");
 
 		tctIndirimTuru = new TextBox();
 		tctIndirimTuru.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctIndirimTuru, 108, 53);
+		absolutePanel.add(tctIndirimTuru, 127, 52);
 		tctIndirimTuru.setSize("149px", "13px");
 
 		tctIndirimMiktari = new TextBox();
 		tctIndirimMiktari.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctIndirimMiktari, 108, 136);
+		absolutePanel.add(tctIndirimMiktari, 127, 135);
 		tctIndirimMiktari.setSize("149px", "14px");
 
 		cbxIndirimSekli = new ListBox();
 		cbxIndirimSekli.setStyleName("gwt-ComboBox1");
 		cbxIndirimSekli.addItem("Para");
 		cbxIndirimSekli.addItem("Yüzde");
-		absolutePanel.add(cbxIndirimSekli, 108, 94);
+		absolutePanel.add(cbxIndirimSekli, 127, 93);
 		cbxIndirimSekli.setSize("151px", "22px");
 
 		Button btnKapat = new Button("New button");

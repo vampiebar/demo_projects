@@ -106,7 +106,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		dtpSinavTarihi
 				.addValueChangeHandler(new DtpSinavTarihiValueChangeHandler());
 		dtpSinavTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getShortDateTimeFormat()));
+				.getFormat("yyyy-MM-dd")));
 		absolutePanel.add(dtpSinavTarihi, 141, 144);
 		dtpSinavTarihi.setSize("172px", "14px");
 
@@ -148,6 +148,11 @@ public class DlgDBSSinavTanimla extends DialogBox {
 			URLValue = URLValue + "&bina_sekli="
 					+ cbxBinaSekli.getValue(cbxBinaSekli.getSelectedIndex());
 
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+			URLValue = URLValue + "&sinav_tarihi="
+					+ dtf.format(dtpSinavTarihi.getValue());
+
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "SINAV BİLGİSİ KAYIT EDİLDİ",
@@ -173,6 +178,9 @@ public class DlgDBSSinavTanimla extends DialogBox {
 				cbxBinaSekli, xml.bina_sekli));
 		cbxOkulDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOkulDurumu, xml.okul_adi));
+
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+		dtpSinavTarihi.setValue(dtf.parse(xml.sinav_tarihi));
 
 	}
 }

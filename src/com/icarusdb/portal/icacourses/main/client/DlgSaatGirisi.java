@@ -71,13 +71,13 @@ public class DlgSaatGirisi extends DialogBox {
 		Button btnKapat = new Button("Kapat");
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel.add(btnKapat, 428, 207);
+		absolutePanel.add(btnKapat, 422, 207);
 		btnKapat.setSize("78px", "43px");
 
 		dtpBaslangicSaati = new DateBox();
 		dtpBaslangicSaati.setStyleName("gwt-TextBox1");
 		dtpBaslangicSaati.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("HH:mm")));
+				.getFormat("HH:mm:ss")));
 		dtpBaslangicSaati
 				.addValueChangeHandler(new DtpBaslangicSaatiValueChangeHandler());
 		absolutePanel.add(dtpBaslangicSaati, 134, 30);
@@ -86,7 +86,7 @@ public class DlgSaatGirisi extends DialogBox {
 		dtpBitisSaati = new DateBox();
 		dtpBitisSaati.setStyleName("gwt-TextBox1");
 		dtpBitisSaati.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("HH:mm")));
+				.getFormat("HH:mm:ss")));
 		dtpBitisSaati
 				.addValueChangeHandler(new DtpBitisSaatiValueChangeHandler());
 		absolutePanel.add(dtpBitisSaati, 134, 72);
@@ -156,7 +156,7 @@ public class DlgSaatGirisi extends DialogBox {
 	private class DtpBaslangicSaatiValueChangeHandler implements
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
-			DateTimeFormat dtf = DateTimeFormat.getFormat("HH:mm");
+			DateTimeFormat dtf = DateTimeFormat.getFormat("HH:mm:ss");
 			// Window.alert(dtf.format(dtpBaslangicSaati.getValue()));
 		}
 	}
@@ -164,7 +164,7 @@ public class DlgSaatGirisi extends DialogBox {
 	private class DtpBitisSaatiValueChangeHandler implements
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
-			DateTimeFormat dtf = DateTimeFormat.getFormat("HH:mm");
+			DateTimeFormat dtf = DateTimeFormat.getFormat("HH:mm:ss");
 			// .alert(dtf.format(dtpBitisSaati.getValue()));
 		}
 	}
@@ -178,6 +178,14 @@ public class DlgSaatGirisi extends DialogBox {
 					+ cbxGun.getValue(cbxGun.getSelectedIndex());
 			URLValue = URLValue + "&aciklama=" + tctAciklama.getText();
 
+			DateTimeFormat dtf = DateTimeFormat.getFormat("HH:mm:ss");
+
+			URLValue = URLValue + "&baslangic_saati="
+					+ dtf.format(dtpBaslangicSaati.getValue());
+
+			URLValue = URLValue + "&bitis_saati="
+					+ dtf.format(dtpBitisSaati.getValue());
+
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");
@@ -188,6 +196,11 @@ public class DlgSaatGirisi extends DialogBox {
 	public void putDataFromXML(XMLSaatGirisi xml) {
 		tctAciklama.setText(xml.aciklama);
 		cbxGun.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxGun, xml.gun));
+
+		DateTimeFormat dtf = DateTimeFormat.getFormat("HH:mm:ss");
+
+		dtpBaslangicSaati.setValue(dtf.parse(xml.baslangic_saati));
+		dtpBitisSaati.setValue(dtf.parse(xml.bitis_saati));
 
 	}
 }

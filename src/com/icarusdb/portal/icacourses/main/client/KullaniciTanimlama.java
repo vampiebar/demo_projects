@@ -152,6 +152,7 @@ public class KullaniciTanimlama extends Composite {
 					// dlgTemp.tabOnKayit.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
 					dlgTemp.center();
+					dlgTemp.tabKullaniciTanimlama.selectTab(0);
 
 				}
 			});
@@ -224,6 +225,7 @@ public class KullaniciTanimlama extends Composite {
 			DlgKullaniciTanimlama dlgTemp = new DlgKullaniciTanimlama(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
+			dlgTemp.tabKullaniciTanimlama.selectTab(0);
 
 		}
 	}

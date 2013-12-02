@@ -26,7 +26,7 @@ public class DestekAlmakIstiyorum extends Composite {
 
 		Label lblNewLabel = new Label(
 				"Destek Bölümü (Soru , İstek , Hata Bildirimi )");
-		lblNewLabel.setStyleName("gwt-Bold");
+		lblNewLabel.setStyleName("gwt-LabelMor");
 		absolutePanel.add(lblNewLabel, 10, 10);
 		lblNewLabel.setSize("775px", "31px");
 

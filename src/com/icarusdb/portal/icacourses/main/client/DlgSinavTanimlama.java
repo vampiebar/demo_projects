@@ -44,7 +44,7 @@ public class DlgSinavTanimlama extends DialogBox {
 		Label label = new Label("Sınav No - Sınav Adı");
 		label.setStyleName("gwt-Bold");
 		absolutePanel.add(label, 10, 41);
-		label.setSize("121px", "18px");
+		label.setSize("149px", "18px");
 
 		Label label_1 = new Label("Tarih");
 		label_1.setStyleName("gwt-Bold");
@@ -59,20 +59,20 @@ public class DlgSinavTanimlama extends DialogBox {
 		Label label_3 = new Label("Şablon Seçiniz");
 		label_3.setStyleName("gwt-Bold");
 		absolutePanel.add(label_3, 10, 147);
-		label_3.setSize("87px", "18px");
+		label_3.setSize("104px", "18px");
 
 		tctSinavNo = new TextBox();
 		tctSinavNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSinavNo, 148, 41);
+		absolutePanel.add(tctSinavNo, 165, 41);
 		tctSinavNo.setSize("152px", "14px");
 
 		tctSinavAdi = new TextBox();
 		tctSinavAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSinavAdi, 328, 41);
+		absolutePanel.add(tctSinavAdi, 345, 41);
 		tctSinavAdi.setSize("143px", "14px");
 
 		Label label_4 = new Label("-");
-		absolutePanel.add(label_4, 308, 41);
+		absolutePanel.add(label_4, 325, 41);
 		label_4.setSize("14px", "18px");
 
 		dtpTarih = new DateBox();
@@ -80,19 +80,19 @@ public class DlgSinavTanimlama extends DialogBox {
 		dtpTarih.addValueChangeHandler(new DtpTarihValueChangeHandler());
 		dtpTarih.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd HH:mm")));
-		absolutePanel.add(dtpTarih, 148, 75);
+		absolutePanel.add(dtpTarih, 165, 75);
 		dtpTarih.setSize("152px", "14px");
 
 		tctSOnKitapcikNo = new TextBox();
 		tctSOnKitapcikNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSOnKitapcikNo, 148, 107);
+		absolutePanel.add(tctSOnKitapcikNo, 165, 107);
 		tctSOnKitapcikNo.setSize("152px", "14px");
 
 		cbxSablonSeciniz = new ListBox();
 		cbxSablonSeciniz.setStyleName("gwt-ComboBox1");
 		cbxSablonSeciniz.addItem("1");
 		cbxSablonSeciniz.addItem("a");
-		absolutePanel.add(cbxSablonSeciniz, 148, 147);
+		absolutePanel.add(cbxSablonSeciniz, 165, 147);
 		cbxSablonSeciniz.setSize("147px", "23px");
 
 		btnKaydet = new Button("New button");

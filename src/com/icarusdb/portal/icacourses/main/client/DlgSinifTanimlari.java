@@ -54,42 +54,55 @@ public class DlgSinifTanimlari extends DialogBox {
 		lblSnfIlemleriekleme.setSize("704px", "28px");
 
 		Label lblSnfAd = new Label("Sınıf Adı");
+		lblSnfAd.setStyleName("gwt-Bold");
 		absolutePanel.add(lblSnfAd, 10, 47);
 
 		Label lblFizikselSnfAd = new Label("Fiziksel Sınıf Adı");
+		lblFizikselSnfAd.setStyleName("gwt-Bold");
 		absolutePanel.add(lblFizikselSnfAd, 10, 84);
 
 		Label lblNewLabel = new Label("Kurs Zamanı");
+		lblNewLabel.setStyleName("gwt-Bold");
 		absolutePanel.add(lblNewLabel, 10, 122);
 
 		Label lblEitimTr = new Label("Eğitim türü");
+		lblEitimTr.setStyleName("gwt-Bold");
 		absolutePanel.add(lblEitimTr, 10, 161);
 
 		Label lblAlan = new Label("Alan");
+		lblAlan.setStyleName("gwt-Bold");
 		absolutePanel.add(lblAlan, 10, 201);
 
 		Label lblDanmanretmen = new Label("Danışman Öğretmen");
+		lblDanmanretmen.setStyleName("gwt-Bold");
 		absolutePanel.add(lblDanmanretmen, 10, 238);
 
 		Label lblSnfKontenjan = new Label("Sınıf  Kontenjanı");
+		lblSnfKontenjan.setStyleName("gwt-Bold");
 		absolutePanel.add(lblSnfKontenjan, 10, 274);
 
 		Label lblBalang = new Label("Başlangıç Numarası");
+		lblBalang.setStyleName("gwt-Bold");
 		absolutePanel.add(lblBalang, 10, 309);
 
 		Label lblBitiNumaras = new Label("Bitiş Numarası");
+		lblBitiNumaras.setStyleName("gwt-Bold");
 		absolutePanel.add(lblBitiNumaras, 10, 345);
 
 		Label lblzelDersSays = new Label("Özel Ders Sayısı");
+		lblzelDersSays.setStyleName("gwt-Bold");
 		absolutePanel.add(lblzelDersSays, 10, 381);
 
 		Label lblFiyat = new Label("Fiyatı");
+		lblFiyat.setStyleName("gwt-Bold");
 		absolutePanel.add(lblFiyat, 10, 410);
 
 		Label lblBalangTarihi = new Label("Başlangıç Tarihi");
+		lblBalangTarihi.setStyleName("gwt-Bold");
 		absolutePanel.add(lblBalangTarihi, 10, 443);
 
 		Label lblBitiTarihi = new Label("Bitiş Tarihi");
+		lblBitiTarihi.setStyleName("gwt-Bold");
 		absolutePanel.add(lblBitiTarihi, 10, 477);
 
 		dtpBaslangicTarihi = new DateBox();
@@ -97,7 +110,7 @@ public class DlgSinifTanimlari extends DialogBox {
 		dtpBaslangicTarihi
 				.addValueChangeHandler(new DtpBaslangicTarihiValueChangeHandler());
 		dtpBaslangicTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy.MM.dd")));
+				.getFormat("yyyy-MM-dd")));
 		absolutePanel.add(dtpBaslangicTarihi, 186, 443);
 		dtpBaslangicTarihi.setSize("143px", "14px");
 
@@ -106,7 +119,7 @@ public class DlgSinifTanimlari extends DialogBox {
 		dtpBitisTarihi
 				.addValueChangeHandler(new DptBitisTarihiValueChangeHandler());
 		dtpBitisTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy.MM.dd")));
+				.getFormat("yyyy-MM-dd")));
 		absolutePanel.add(dtpBitisTarihi, 186, 477);
 		dtpBitisTarihi.setSize("143px", "14px");
 
@@ -247,6 +260,14 @@ public class DlgSinifTanimlari extends DialogBox {
 					+ tctOzelDersSayisi.getText();
 			URLValue = URLValue + "&fiyati=" + tctFiyati.getText();
 
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+			URLValue = URLValue + "&baslangic_tarihi="
+					+ dtf.format(dtpBaslangicTarihi.getValue());
+
+			URLValue = URLValue + "&bitis_tarihi="
+					+ dtf.format(dtpBitisTarihi.getValue());
+
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");
@@ -289,6 +310,10 @@ public class DlgSinifTanimlari extends DialogBox {
 				cbxFizikselSinifAdi, xml.fiziksel_sinif_adi));
 		cbxKursZamani.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxKursZamani, xml.kurs_zamani));
+
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+		dtpBaslangicTarihi.setValue(dtf.parse(xml.baslangic_tarihi));
+		dtpBitisTarihi.setValue(dtf.parse(xml.bitis_tarihi));
 
 	}
 

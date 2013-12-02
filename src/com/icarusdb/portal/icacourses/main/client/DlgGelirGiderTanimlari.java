@@ -70,7 +70,7 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 		cbxTipi.addItem("Gelir");
 		cbxTipi.addItem("Gider");
 		cbxTipi.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxTipi, 136, 72);
+		absolutePanel.add(cbxTipi, 136, 76);
 		cbxTipi.setSize("158px", "22px");
 
 		tctGelirGiderAdi = new TextBox();

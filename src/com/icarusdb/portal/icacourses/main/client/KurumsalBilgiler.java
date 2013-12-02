@@ -99,7 +99,7 @@ public class KurumsalBilgiler extends Composite {
 		absolutePanel.add(tctVergiNo, 138, 241);
 		tctVergiNo.setSize("143px", "16px");
 
-		Label lblYneticiAd = new Label("Yönetici adı");
+		Label lblYneticiAd = new Label("Yönetici Adı");
 		lblYneticiAd.setStyleName("gwt-Bold");
 		absolutePanel.add(lblYneticiAd, 357, 89);
 

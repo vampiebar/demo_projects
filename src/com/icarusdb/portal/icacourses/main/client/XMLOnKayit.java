@@ -57,14 +57,23 @@ public class XMLOnKayit {
 	@Path("ogrenci_bilgileri_sinif")
 	String ogrenci_bilgileri_sinif;
 
-	@Path("egitim_turu")
-	String egitim_turu;
+	@Path("adres_bilgileri_ulke")
+	String adres_bilgileri_ulke;
 
-	@Path("alan")
-	String alan;
+	@Path("adres_bilgileri_il")
+	String adres_bilgileri_il;
 
-	@Path("kurs_zamani")
-	String kurs_zamani;
+	@Path("adres_bilgileri_ilce")
+	String adres_bilgileri_ilce;
+
+	@Path("semt")
+	String semt;
+
+	@Path("mahalle")
+	String mahalle;
+
+	@Path("sokak_ve_no")
+	String sokak_ve_no;
 
 	@Path("gorusme_sinif")
 	String gorusme_sinif;
@@ -95,6 +104,15 @@ public class XMLOnKayit {
 
 	@Path("aciklama")
 	String aciklama;
+
+	@Path("egitim_turu")
+	String egitim_turu;
+
+	@Path("alan")
+	String alan;
+
+	@Path("kurs_zamani")
+	String kurs_zamani;
 
 	@Path("seri_no")
 	String seri_no;
@@ -134,24 +152,6 @@ public class XMLOnKayit {
 
 	@Path("verilis_tarihi")
 	String verilis_tarihi;
-
-	@Path("adres_bilgileri_ulke")
-	String adres_bilgileri_ulke;
-
-	@Path("adres_bilgileri_il")
-	String adres_bilgileri_il;
-
-	@Path("adres_bilgileri_ilce")
-	String adres_bilgileri_ilce;
-
-	@Path("semt")
-	String semt;
-
-	@Path("mahalle")
-	String mahalle;
-
-	@Path("sokak_ve_no")
-	String sokak_ve_no;
 
 	@Path("kesin_kayit_mi")
 	String kesin_kayit_mi;

@@ -73,7 +73,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private ListBox cbxSinavTarihi;
 	private AbsolutePanel vtpanOgrenciBilgileri;
 	private ListBox cbxOkul;
-	private CellTable<XMLVeliEkle> grdVeliEkle;
+	private CellTable<XMLVeliler> grdVeliler;
 
 	public DialogBox _dlgDBSYeniKayit;
 
@@ -567,94 +567,91 @@ public class DlgDBSYeniKayit extends DialogBox {
 		btnVeliEkle.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_4.add(btnVeliEkle, 10, 10);
 
-		grdVeliEkle = new CellTable<XMLVeliEkle>();
-		absolutePanel_4.add(grdVeliEkle, 0, 42);
-		grdVeliEkle.setSize("715px", "174px");
+		grdVeliler = new CellTable<XMLVeliler>();
+		absolutePanel_4.add(grdVeliler, 0, 42);
+		grdVeliler.setSize("715px", "174px");
 
-		TextColumn<XMLVeliEkle> textColumn_4 = new TextColumn<XMLVeliEkle>() {
+		TextColumn<XMLVeliler> textColumn_4 = new TextColumn<XMLVeliler>() {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return object.veli_bilgileri_tc_kimlik_no.toString();
 			}
 		};
-		grdVeliEkle.addColumn(textColumn_4, "TC Kimlik No");
+		grdVeliler.addColumn(textColumn_4, "TC Kimlik No");
 
-		Column<XMLVeliEkle, ?> textColumn_3 = new TextColumn<XMLVeliEkle>() {
+		Column<XMLVeliler, ?> textColumn_3 = new TextColumn<XMLVeliler>() {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return object.veli_bilgileri_adi.toString();
 			}
 		};
-		grdVeliEkle.addColumn(textColumn_3, "Adı");
+		grdVeliler.addColumn(textColumn_3, "Adı");
 
-		TextColumn<XMLVeliEkle> textColumn_2 = new TextColumn<XMLVeliEkle>() {
+		TextColumn<XMLVeliler> textColumn_2 = new TextColumn<XMLVeliler>() {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return object.veli_bilgileri_soyadi.toString();
 			}
 		};
-		grdVeliEkle.addColumn(textColumn_2, "Soyadı");
+		grdVeliler.addColumn(textColumn_2, "Soyadı");
 
-		TextColumn<XMLVeliEkle> textColumn_1 = new TextColumn<XMLVeliEkle>() {
+		TextColumn<XMLVeliler> textColumn_1 = new TextColumn<XMLVeliler>() {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return object.yakinlik_durumu;
 			}
 		};
-		grdVeliEkle.addColumn(textColumn_1, "Yakınlık Durumu");
+		grdVeliler.addColumn(textColumn_1, "Yakınlık Durumu");
 
-		TextColumn<XMLVeliEkle> textColumn = new TextColumn<XMLVeliEkle>() {
+		TextColumn<XMLVeliler> textColumn = new TextColumn<XMLVeliler>() {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return object.odeme_sorumlusu;
 			}
 		};
-		grdVeliEkle.addColumn(textColumn, "Ödeme Sorumlusu");
+		grdVeliler.addColumn(textColumn, "Ödeme Sorumlusu");
 
-		TextColumn<XMLVeliEkle> textColumn_5 = new TextColumn<XMLVeliEkle>() {
+		TextColumn<XMLVeliler> textColumn_5 = new TextColumn<XMLVeliler>() {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return object.cep_tel.toString();
 			}
 		};
-		grdVeliEkle.addColumn(textColumn_5, "Cep Tel");
+		grdVeliler.addColumn(textColumn_5, "Cep Tel");
 
-		TextColumn<XMLVeliEkle> textColumn_6 = new TextColumn<XMLVeliEkle>() {
+		TextColumn<XMLVeliler> textColumn_6 = new TextColumn<XMLVeliler>() {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return object.is_tel.toString();
 			}
 		};
-		grdVeliEkle.addColumn(textColumn_6, "İş Tel");
+		grdVeliler.addColumn(textColumn_6, "İş Tel");
 
-		Column<XMLVeliEkle, String> column_3 = new Column<XMLVeliEkle, String>(
+		Column<XMLVeliler, String> column_3 = new Column<XMLVeliler, String>(
 				new ButtonCell()) {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return (String) null;
 			}
 		};
-		grdVeliEkle.addColumn(column_3, "Düzenle");
+		grdVeliler.addColumn(column_3, "Düzenle");
 
-		Column<XMLVeliEkle, String> column_4 = new Column<XMLVeliEkle, String>(
+		Column<XMLVeliler, String> column_4 = new Column<XMLVeliler, String>(
 				new ButtonCell()) {
 			@Override
-			public String getValue(XMLVeliEkle object) {
+			public String getValue(XMLVeliler object) {
 				return (String) null;
 			}
 		};
-		grdVeliEkle.addColumn(column_4, "Sil");
+		grdVeliler.addColumn(column_4, "Sil");
 
 		// Set Default page
 		decoratedTabPanel.selectTab(0);
 
 		if (!isDesignTime()) {
 
-			putIlToCbx(cbxOgrenciBilgileriIl);
-
-			putIlToCbx(cbxOgrenciKimlikBilgileriIl);
-
-			putIlToCbx(cbxAdresBilgileriIl);
+			putIlToCbx(cbxOgrenciKimlikBilgileriIl, cbxOgrenciBilgileriIl,
+					cbxAdresBilgileriIl);
 
 			putDataToGrid();
 
@@ -700,7 +697,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLVeliEkle> listXmlVeliEkle = XMLVeliEkle.XML
+					List<XMLVeliler> listXmlVeliler = XMLVeliler.XML
 							.readList(response.getText());
 
 					// Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
@@ -712,10 +709,10 @@ public class DlgDBSYeniKayit extends DialogBox {
 					// necessary, but it affects
 					// paging calculations, so its good habit to
 					// keep the row count up to date.
-					grdVeliEkle.setRowCount(1, true);
+					grdVeliler.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdVeliEkle.setRowData(0, listXmlVeliEkle);
+					grdVeliler.setRowData(0, listXmlVeliler);
 
 				}
 
@@ -768,10 +765,17 @@ public class DlgDBSYeniKayit extends DialogBox {
 	//
 	// }
 
-	public void putIlToCbx(final ListBox lbxTemp) {
+	public void putIlToCbx(final ListBox lbxTemp, final ListBox lbxTemp2,
+			final ListBox lbxTemp3) {
 
 		lbxTemp.clear();
 		lbxTemp.addItem("");
+
+		lbxTemp2.clear();
+		lbxTemp2.addItem("");
+
+		lbxTemp3.clear();
+		lbxTemp3.addItem("");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				Util.urlBase + "getil");
@@ -794,6 +798,11 @@ public class DlgDBSYeniKayit extends DialogBox {
 					for (int i = 0; i < xmlil.size(); i++) {
 
 						lbxTemp.addItem(xmlil.get(i).il_adi);
+
+						lbxTemp2.addItem(xmlil.get(i).il_adi);
+
+						lbxTemp3.addItem(xmlil.get(i).il_adi);
+
 					}
 
 				}
@@ -1068,6 +1077,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriUlke,
 						xml.ogrenci_kimlik_bilgileri_ulke));
 
+		cbxOgrenciBilgileriSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxOgrenciBilgileriSinif, xml.sinif));
 		cbxOkulDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOkulDurumu, xml.okul_durumu));
 		cbxAlanbilgisi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
