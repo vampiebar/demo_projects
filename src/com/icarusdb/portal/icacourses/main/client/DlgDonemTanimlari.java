@@ -7,7 +7,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -23,8 +22,8 @@ public class DlgDonemTanimlari extends DialogBox {
 	public long _id = -1;
 
 	private TextBox tctDonemAdi;
-	private DateBox dtpDonemBaslangicTarihi;
-	private DateBox dtpDonemBitisTarihi;
+	private DateBox dtpBaslangicTarihi;
+	private DateBox dtpBitisTarihi;
 	private ListBox cbxVarsayilanDonem;
 
 	public DlgDonemTanimlari(boolean isInsert, long id) {
@@ -65,23 +64,23 @@ public class DlgDonemTanimlari extends DialogBox {
 		absolutePanel.add(tctDonemAdi, 186, 48);
 		tctDonemAdi.setSize("147px", "14px");
 
-		dtpDonemBaslangicTarihi = new DateBox();
-		dtpDonemBaslangicTarihi.setStyleName("gwt-TextBox1");
-		dtpDonemBaslangicTarihi.setFormat(new DefaultFormat(DateTimeFormat
+		dtpBaslangicTarihi = new DateBox();
+		dtpBaslangicTarihi.setStyleName("gwt-TextBox1");
+		dtpBaslangicTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd")));
-		dtpDonemBaslangicTarihi
+		dtpBaslangicTarihi
 				.addValueChangeHandler(new DtpDonemBaslangicTarihiValueChangeHandler());
-		absolutePanel.add(dtpDonemBaslangicTarihi, 186, 83);
-		dtpDonemBaslangicTarihi.setSize("147px", "12px");
+		absolutePanel.add(dtpBaslangicTarihi, 186, 83);
+		dtpBaslangicTarihi.setSize("147px", "12px");
 
-		dtpDonemBitisTarihi = new DateBox();
-		dtpDonemBitisTarihi.setStyleName("gwt-TextBox1");
-		dtpDonemBitisTarihi.setFormat(new DefaultFormat(DateTimeFormat
+		dtpBitisTarihi = new DateBox();
+		dtpBitisTarihi.setStyleName("gwt-TextBox1");
+		dtpBitisTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd")));
-		dtpDonemBitisTarihi
+		dtpBitisTarihi
 				.addValueChangeHandler(new DtpDonemBitisTarihiValueChangeHandler());
-		absolutePanel.add(dtpDonemBitisTarihi, 186, 119);
-		dtpDonemBitisTarihi.setSize("147px", "14px");
+		absolutePanel.add(dtpBitisTarihi, 186, 119);
+		dtpBitisTarihi.setSize("147px", "14px");
 
 		cbxVarsayilanDonem = new ListBox();
 		cbxVarsayilanDonem.setStyleName("gwt-ComboBox1");
@@ -125,11 +124,11 @@ public class DlgDonemTanimlari extends DialogBox {
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 
 			URLValue = URLValue + "&baslangic_tarihi="
-					+ dtf.format(dtpDonemBaslangicTarihi.getValue());
+					+ dtf.format(dtpBaslangicTarihi.getValue());
 			URLValue = URLValue + "&bitis_tarihi="
-					+ dtf.format(dtpDonemBitisTarihi.getValue());
+					+ dtf.format(dtpBitisTarihi.getValue());
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "DÖNEM BİLGİSİ KAYIT EDİLDİ",
 					"DÖNEM BİLGİSİ KAYIT EDİLEMEDİ");
@@ -158,8 +157,9 @@ public class DlgDonemTanimlari extends DialogBox {
 		cbxVarsayilanDonem.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxVarsayilanDonem, xml.varsayilan_donem));
 		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
-		dtpDonemBaslangicTarihi.setValue(dtf.parse(xml.baslangic_tarihi));
-		dtpDonemBitisTarihi.setValue(dtf.parse(xml.bitis_tarihi));
+
+		dtpBaslangicTarihi.setValue(dtf.parse(xml.baslangic_tarihi));
+		dtpBitisTarihi.setValue(dtf.parse(xml.bitis_tarihi));
 
 	}
 }

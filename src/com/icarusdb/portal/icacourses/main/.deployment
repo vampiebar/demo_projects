@@ -1,5 +1,5 @@
-#Sun Nov 17 19:34:53 EET 2013
+#Tue Dec 03 19:52:56 EET 2013
 war.name=ICACourses.war
 compiler.style=OBFUSCATED
-server.path=/Users/vampie/PROJECTS/GIT/icacourses/deploy
+server.path=C\:\\projects\\GIT\\icacourses\\deploy
 compiler.memory.max=392m

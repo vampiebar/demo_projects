@@ -7,6 +7,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,10 +21,12 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class PersonelTanimlari extends Composite {
 	private CellTable<XMLPersonelTanimlari> grdPersonelTanimlari;
+	private DlgPersonelIslemleri _dlgPersonelIslemleri;
 
 	public PersonelTanimlari() {
 
@@ -163,12 +167,23 @@ public class PersonelTanimlari extends Composite {
 					List<XMLPersonelTanimlari> listXmlPersonelTanimlari = XMLPersonelTanimlari.XML
 							.readList(response.getText());
 
-					DlgPersonelIslemleri dlgTemp = new DlgPersonelIslemleri(
-							false, new Long(id).longValue());
-					dlgTemp.putDataFromXML(listXmlPersonelTanimlari.get(0));
-					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
+					_dlgPersonelIslemleri = new DlgPersonelIslemleri(false,
+							new Long(id).longValue());
+					_dlgPersonelIslemleri
+							.putDataFromXML(listXmlPersonelTanimlari.get(0));
+					_dlgPersonelIslemleri.setAnimationEnabled(true);
+					_dlgPersonelIslemleri.center();
+
+					_dlgPersonelIslemleri
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 
 				}
 			});
@@ -237,10 +252,20 @@ public class PersonelTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
+			_dlgPersonelIslemleri = new DlgPersonelIslemleri(true, -1);
+			_dlgPersonelIslemleri.center();
+			_dlgPersonelIslemleri.setAnimationEnabled(true);
 
-			DlgPersonelIslemleri dlgTemp = new DlgPersonelIslemleri(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+			_dlgPersonelIslemleri
+					.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+						@Override
+						public void onClose(CloseEvent<PopupPanel> event) {
+
+							putDataToGrid();
+
+						}
+					});
 
 		}
 	}

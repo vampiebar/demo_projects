@@ -7,6 +7,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,10 +21,12 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class HizmetTanimla extends Composite {
 	private CellTable<XMLHizmetTanimla> grdHizmetTanimla;
+	private DlgHizmetTanimla _dlgHizmetTanimla;
 
 	public HizmetTanimla() {
 
@@ -146,13 +150,23 @@ public class HizmetTanimla extends Composite {
 					List<XMLHizmetTanimla> listXmlHizmetTanimla = XMLHizmetTanimla.XML
 							.readList(response.getText());
 
-					DlgHizmetTanimla dlgTemp = new DlgHizmetTanimla(false,
+					_dlgHizmetTanimla = new DlgHizmetTanimla(false,
 							new Long(id).longValue());
-					dlgTemp.putDataFromXML(listXmlHizmetTanimla.get(0));
+					_dlgHizmetTanimla.putDataFromXML(listXmlHizmetTanimla
+							.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
+					_dlgHizmetTanimla.setAnimationEnabled(true);
+					_dlgHizmetTanimla.center();
+					_dlgHizmetTanimla
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
 
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 				}
 			});
 
@@ -219,10 +233,19 @@ public class HizmetTanimla extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgHizmetTanimla dlgTemp = new DlgHizmetTanimla(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+			_dlgHizmetTanimla = new DlgHizmetTanimla(true, -1);
+			_dlgHizmetTanimla.center();
+			_dlgHizmetTanimla.setAnimationEnabled(true);
 
+			_dlgHizmetTanimla.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
+
+					putDataToGrid();
+
+				}
+			});
 		}
 	}
 }

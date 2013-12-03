@@ -138,7 +138,7 @@ public class DlgBankaEkle extends DialogBox {
 		tctVadeTarihi.setText(xml.vade_tarihi);
 
 		cbxBankaninOdemeSekli.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxBankaninOdemeSekli, xml.bankanin_ödeme_sekli));
+				cbxBankaninOdemeSekli, xml.bankanin_odeme_sekli));
 	}
 
 	private class BtnKaydetClickHandler implements ClickHandler {
@@ -154,6 +154,7 @@ public class DlgBankaEkle extends DialogBox {
 					+ "&bankanin_odeme_sekli="
 					+ cbxBankaninOdemeSekli.getValue(cbxBankaninOdemeSekli
 							.getSelectedIndex());
+
 			URLValue = URLValue + "&vade_tarihi=" + tctVadeTarihi.getText();
 
 			// Window.alert(URLValue);

@@ -4,11 +4,13 @@
 	<inherits name="com.google.gwt.user.User"/>
 	<inherits name="com.google.gwt.user.theme.standard.Standard"/>
 	
-	<!--  inherits name="com.google.gwt.i18n.I18N"/ -->
+	
+<!-- 	
+	<inherits name="com.google.gwt.i18n.I18N"/>
  	
- 	<!--  extend-property name="locale" values="en, cs" / -->
+ 	<extend-property name="locale" values="en, tr" />
  	
- 	<!--  inherits name="com.google.gwt.i18n.CldrLocales"/ -->
+ 	<inherits name="com.google.gwt.i18n.CldrLocales"/> -->
  	
  	<inherits name="name.pehl.piriti.json.JSON" />
 	<inherits name="name.pehl.piriti.xml.XML" />
@@ -19,6 +21,10 @@
 	<inherits name="com.bradrydzewski.gwt.calendar.Calendar" />
 	<inherits name="com.bradrydzewski.gwt.calendar.theme.google.Google" />
 	-->
+	
+
+
+	
 	<entry-point class="com.icarusdb.portal.icacourses.main.client.Main"/>
 	
 	

@@ -7,6 +7,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,10 +21,12 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class KonuTanimlari extends Composite {
 	private CellTable<XMLKonuTanimlari> grdKonuTanimlari;
+	private DlgKonuTanimlari _dlgKonuTanimlari;
 
 	public KonuTanimlari() {
 
@@ -159,12 +163,23 @@ public class KonuTanimlari extends Composite {
 					List<XMLKonuTanimlari> listXmlKonuTanimlari = XMLKonuTanimlari.XML
 							.readList(response.getText());
 
-					DlgKonuTanimlari dlgTemp = new DlgKonuTanimlari(false,
+					_dlgKonuTanimlari = new DlgKonuTanimlari(false,
 							new Long(id).longValue());
-					dlgTemp.putDataFromXML(listXmlKonuTanimlari.get(0));
+					_dlgKonuTanimlari.putDataFromXML(listXmlKonuTanimlari
+							.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
+					_dlgKonuTanimlari.setAnimationEnabled(true);
+					_dlgKonuTanimlari.center();
+					_dlgKonuTanimlari
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 
 				}
 			});
@@ -232,9 +247,19 @@ public class KonuTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgKonuTanimlari dlgTemp = new DlgKonuTanimlari(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+			_dlgKonuTanimlari = new DlgKonuTanimlari(true, -1);
+			_dlgKonuTanimlari.center();
+			_dlgKonuTanimlari.setAnimationEnabled(true);
+
+			_dlgKonuTanimlari.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
+
+					putDataToGrid();
+
+				}
+			});
 
 		}
 	}

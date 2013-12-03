@@ -113,6 +113,7 @@ public class DlgSinavTanimlama extends DialogBox {
 		lblNewLabel.setStyleName("gwt-LabelMor");
 		absolutePanel.add(lblNewLabel, 0, 0);
 		lblNewLabel.setSize("541px", "28px");
+
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -135,6 +136,11 @@ public class DlgSinavTanimlama extends DialogBox {
 					+ cbxSablonSeciniz.getValue(cbxSablonSeciniz
 							.getSelectedIndex());
 
+			DateTimeFormat dtf = DateTimeFormat
+					.getFormat("yyyy-MM-dd HH:mm:ss");
+
+			URLValue = URLValue + "&tarih=" + dtf.format(dtpTarih.getValue());
+
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");
@@ -145,7 +151,8 @@ public class DlgSinavTanimlama extends DialogBox {
 	private class DtpTarihValueChangeHandler implements
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
-			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm");
+			DateTimeFormat dtf = DateTimeFormat
+					.getFormat("yyyy-MM-dd HH:mm:ss");
 			// Window.alert(dtf.format(dtpTarih.getValue()));
 		}
 	}
@@ -156,6 +163,10 @@ public class DlgSinavTanimlama extends DialogBox {
 		tctSOnKitapcikNo.setText(xml.son_kitapcik_no);
 		cbxSablonSeciniz.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxSablonSeciniz, xml.sablon_seciniz));
+
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss");
+
+		dtpTarih.setValue(dtf.parse(xml.tarih));
 
 	}
 }

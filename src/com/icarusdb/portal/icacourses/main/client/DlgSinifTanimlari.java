@@ -1,11 +1,17 @@
 package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.Date;
+import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -167,9 +173,13 @@ public class DlgSinifTanimlari extends DialogBox {
 		cbxDanismanOgretmen.setSize("147px", "22px");
 
 		cbxAlan = new ListBox();
+		cbxAlan.addItem(" ");
+		cbxAlan.addItem("ALAN YOK");
+		cbxAlan.addItem("SAYISAL");
+		cbxAlan.addItem("EŞİT AĞIRLIK");
+		cbxAlan.addItem("SÖZEL");
+		cbxAlan.addItem("DİL");
 		cbxAlan.setStyleName("gwt-ComboBox1");
-		cbxAlan.addItem("1");
-		cbxAlan.addItem("2");
 		absolutePanel.add(cbxAlan, 186, 197);
 		cbxAlan.setSize("147px", "22px");
 
@@ -222,6 +232,58 @@ public class DlgSinifTanimlari extends DialogBox {
 		btnKapat.setText("Kapat");
 		absolutePanel.add(btnKapat, 556, 497);
 		btnKapat.setSize("78px", "45px");
+		if (!isDesignTime()) {
+
+			putEgitimTuruToCbx(cbxEgitimTuru);
+
+		}
+
+	}
+
+	private boolean isDesignTime() {
+
+		return false;
+	}
+
+	public void putEgitimTuruToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getegitimturu");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlEgitimTuru.size(); i++) {
+
+						lbxTemp.addItem(xmlEgitimTuru.get(i).egitim_turu_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -302,7 +364,7 @@ public class DlgSinifTanimlari extends DialogBox {
 		cbxAlan.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxAlan, xml.alan));
 		cbxDanismanOgretmen.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxDanismanOgretmen, xml.danisman_ogretmen));
+				cbxDanismanOgretmen, xml.dan_ogretmen));
 
 		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxEgitimTuru, xml.egitim_turu));

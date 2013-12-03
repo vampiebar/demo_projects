@@ -6,6 +6,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -20,6 +22,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class SinavTanimlama extends Composite {
@@ -31,6 +34,7 @@ public class SinavTanimlama extends Composite {
 	private Button btnYeniKayit;
 	private ListBox cbxSinavTuru;
 	private TextColumn<XMLSinavTanimlama> textColumn_3;
+	private DlgSinavTanimlama _dlgSinavTanimlama;
 
 	public SinavTanimlama() {
 
@@ -161,11 +165,22 @@ public class SinavTanimlama extends Composite {
 					List<XMLSinavTanimlama> listXmlSinavTanimlama = XMLSinavTanimlama.XML
 							.readList(response.getText());
 
-					DlgSinavTanimlama dlgTemp = new DlgSinavTanimlama(false,
-							new Long(id).longValue());
-					dlgTemp.putDataFromXML(listXmlSinavTanimlama.get(0));
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
+					_dlgSinavTanimlama = new DlgSinavTanimlama(false, new Long(
+							id).longValue());
+					_dlgSinavTanimlama.putDataFromXML(listXmlSinavTanimlama
+							.get(0));
+					_dlgSinavTanimlama.setAnimationEnabled(true);
+					_dlgSinavTanimlama.center();
+					_dlgSinavTanimlama
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 
 				}
 
@@ -232,10 +247,19 @@ public class SinavTanimlama extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgSinavTanimlama dlgTemp = new DlgSinavTanimlama(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+			_dlgSinavTanimlama = new DlgSinavTanimlama(true, -1);
+			_dlgSinavTanimlama.center();
+			_dlgSinavTanimlama.setAnimationEnabled(true);
 
+			_dlgSinavTanimlama.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
+
+					putDataToGrid();
+
+				}
+			});
 		}
 
 	}

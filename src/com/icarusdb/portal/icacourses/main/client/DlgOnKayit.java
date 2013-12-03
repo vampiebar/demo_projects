@@ -108,82 +108,6 @@ public class DlgOnKayit extends DialogBox {
 		verticalpanel.add(tabOnKayit);
 		tabOnKayit.setSize("462px", "705px");
 
-		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
-		absolutePanel_5.setStyleName("gwt-DialogBackGround");
-		tabOnKayit.add(absolutePanel_5, "Adres Bilgileri", false);
-		absolutePanel_5.setSize("840px", "712px");
-
-		Label label = new Label("Ülke");
-		label.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label, 10, 18);
-		label.setSize("26px", "18px");
-
-		Label label_1 = new Label("İl");
-		label_1.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label_1, 10, 61);
-		label_1.setSize("26px", "18px");
-
-		Label label_2 = new Label("İlçe");
-		label_2.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label_2, 10, 111);
-		label_2.setSize("20px", "18px");
-
-		Label label_3 = new Label("Semt");
-		label_3.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label_3, 10, 149);
-		label_3.setSize("31px", "18px");
-
-		Label label_4 = new Label("Mahalle");
-		label_4.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label_4, 10, 190);
-		label_4.setSize("45px", "18px");
-
-		Label label_5 = new Label("Sokak ve no");
-		label_5.setStyleName("gwt-Bold");
-		absolutePanel_5.add(label_5, 10, 230);
-		label_5.setSize("73px", "18px");
-
-		cbxAdresBilgileriUlke = new ListBox();
-		cbxAdresBilgileriUlke.setStyleName("gwt-ComboBox1");
-		cbxAdresBilgileriUlke.addItem("Türkiye");
-		absolutePanel_5.add(cbxAdresBilgileriUlke, 125, 10);
-		cbxAdresBilgileriUlke.setSize("146px", "22px");
-
-		cbxAdresBilgileriIl = new ListBox();
-		cbxAdresBilgileriIl.addItem(" ");
-		cbxAdresBilgileriIl
-				.addChangeHandler(new CbxAdresBilgileriIlChangeHandler());
-		cbxAdresBilgileriIl.setStyleName("gwt-ComboBox1");
-		absolutePanel_5.add(cbxAdresBilgileriIl, 125, 57);
-		cbxAdresBilgileriIl.setSize("146px", "22px");
-
-		cbxAdresBilgileriIlce = new ListBox();
-		cbxAdresBilgileriIlce
-				.addChangeHandler(new CbxAdresBilgileriIlceChangeHandler());
-		cbxAdresBilgileriIlce.addItem(" ");
-		cbxAdresBilgileriIlce.setStyleName("gwt-ComboBox1");
-		absolutePanel_5.add(cbxAdresBilgileriIlce, 125, 111);
-		cbxAdresBilgileriIlce.setSize("146px", "22px");
-
-		cbxSemt = new ListBox();
-		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
-		cbxSemt.addItem(" ");
-
-		cbxSemt.setStyleName("gwt-ComboBox1");
-		absolutePanel_5.add(cbxSemt, 125, 145);
-		cbxSemt.setSize("146px", "22px");
-
-		cbxMahalle = new ListBox();
-		cbxMahalle.addItem(" ");
-		cbxMahalle.setStyleName("gwt-ComboBox1");
-		absolutePanel_5.add(cbxMahalle, 125, 186);
-		cbxMahalle.setSize("209px", "22px");
-
-		tctSokakveNo = new TextBox();
-		tctSokakveNo.setStyleName("gwt-TextBox1");
-		absolutePanel_5.add(tctSokakveNo, 125, 230);
-		tctSokakveNo.setSize("207px", "48px");
-
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
 		tabOnKayit.add(absolutePanel_2, "Öğrenci Bilgileri", false);
@@ -371,6 +295,82 @@ public class DlgOnKayit extends DialogBox {
 		cbxOgrenciBilgileriSinif.addItem("Üniversite Mezun");
 		cbxOgrenciBilgileriSinif.addItem("12.Sınıf");
 		cbxOgrenciBilgileriSinif.setSize("135px", "22px");
+
+		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
+		absolutePanel_5.setStyleName("gwt-DialogBackGround");
+		tabOnKayit.add(absolutePanel_5, "Adres Bilgileri", false);
+		absolutePanel_5.setSize("840px", "712px");
+
+		Label label = new Label("Ülke");
+		label.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label, 10, 18);
+		label.setSize("26px", "18px");
+
+		Label label_1 = new Label("İl");
+		label_1.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label_1, 10, 61);
+		label_1.setSize("26px", "18px");
+
+		Label label_2 = new Label("İlçe");
+		label_2.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label_2, 10, 111);
+		label_2.setSize("20px", "18px");
+
+		Label label_3 = new Label("Semt");
+		label_3.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label_3, 10, 149);
+		label_3.setSize("31px", "18px");
+
+		Label label_4 = new Label("Mahalle");
+		label_4.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label_4, 10, 190);
+		label_4.setSize("45px", "18px");
+
+		Label label_5 = new Label("Sokak ve no");
+		label_5.setStyleName("gwt-Bold");
+		absolutePanel_5.add(label_5, 10, 230);
+		label_5.setSize("73px", "18px");
+
+		cbxAdresBilgileriUlke = new ListBox();
+		cbxAdresBilgileriUlke.setStyleName("gwt-ComboBox1");
+		cbxAdresBilgileriUlke.addItem("Türkiye");
+		absolutePanel_5.add(cbxAdresBilgileriUlke, 125, 10);
+		cbxAdresBilgileriUlke.setSize("146px", "22px");
+
+		cbxAdresBilgileriIl = new ListBox();
+		cbxAdresBilgileriIl.addItem(" ");
+		cbxAdresBilgileriIl
+				.addChangeHandler(new CbxAdresBilgileriIlChangeHandler());
+		cbxAdresBilgileriIl.setStyleName("gwt-ComboBox1");
+		absolutePanel_5.add(cbxAdresBilgileriIl, 125, 57);
+		cbxAdresBilgileriIl.setSize("146px", "22px");
+
+		cbxAdresBilgileriIlce = new ListBox();
+		cbxAdresBilgileriIlce
+				.addChangeHandler(new CbxAdresBilgileriIlceChangeHandler());
+		cbxAdresBilgileriIlce.addItem(" ");
+		cbxAdresBilgileriIlce.setStyleName("gwt-ComboBox1");
+		absolutePanel_5.add(cbxAdresBilgileriIlce, 125, 111);
+		cbxAdresBilgileriIlce.setSize("146px", "22px");
+
+		cbxSemt = new ListBox();
+		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
+		cbxSemt.addItem(" ");
+
+		cbxSemt.setStyleName("gwt-ComboBox1");
+		absolutePanel_5.add(cbxSemt, 125, 145);
+		cbxSemt.setSize("146px", "22px");
+
+		cbxMahalle = new ListBox();
+		cbxMahalle.addItem(" ");
+		cbxMahalle.setStyleName("gwt-ComboBox1");
+		absolutePanel_5.add(cbxMahalle, 125, 186);
+		cbxMahalle.setSize("209px", "22px");
+
+		tctSokakveNo = new TextBox();
+		tctSokakveNo.setStyleName("gwt-TextBox1");
+		absolutePanel_5.add(tctSokakveNo, 125, 230);
+		tctSokakveNo.setSize("207px", "48px");
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");

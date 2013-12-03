@@ -7,6 +7,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,10 +21,12 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class UniteTanimlari extends Composite {
 	private CellTable<XMLUniteTanimlari> grdUnitetanimlari;
+	private DlgUniteTanimlari _dlgUniteTanimlari;
 
 	public UniteTanimlari() {
 
@@ -151,12 +155,22 @@ public class UniteTanimlari extends Composite {
 					List<XMLUniteTanimlari> listXmlUniteTanimlari = XMLUniteTanimlari.XML
 							.readList(response.getText());
 
-					DlgUniteTanimlari dlgTemp = new DlgUniteTanimlari(false,
-							new Long(id).longValue());
-					dlgTemp.putDataFromXML(listXmlUniteTanimlari.get(0));
-					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
+					_dlgUniteTanimlari = new DlgUniteTanimlari(false, new Long(
+							id).longValue());
+					_dlgUniteTanimlari.putDataFromXML(listXmlUniteTanimlari
+							.get(0));
+					_dlgUniteTanimlari.setAnimationEnabled(true);
+					_dlgUniteTanimlari.center();
+					_dlgUniteTanimlari
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 
 				}
 			});
@@ -223,10 +237,19 @@ public class UniteTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
+			_dlgUniteTanimlari = new DlgUniteTanimlari(true, -1);
+			_dlgUniteTanimlari.center();
+			_dlgUniteTanimlari.setAnimationEnabled(true);
 
-			DlgUniteTanimlari dlgTemp = new DlgUniteTanimlari(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+			_dlgUniteTanimlari.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
+
+					putDataToGrid();
+
+				}
+			});
 		}
 	}
 }

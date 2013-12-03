@@ -188,7 +188,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		dtpTarih.setStyleName("gwt-TextBox1");
 		dtpTarih.addValueChangeHandler(new DtpTarihValueChangeHandler());
 		dtpTarih.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy-MM-dd HH:mm")));
+				.getFormat("yyyy-MM-dd HH:mm:ss")));
 		absolutePanel.add(dtpTarih, 155, 308);
 		dtpTarih.setSize("136px", "16px");
 
@@ -225,12 +225,15 @@ public class DlgGelirlerveGiderler extends DialogBox {
 			URLValue = URLValue + "&miktar=" + tctMiktar.getText();
 			URLValue = URLValue + "&aciklama=" + tctAciklama.getText();
 
-			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+			DateTimeFormat dtf = DateTimeFormat
+					.getFormat("yyyy-MM-dd HH:mm:ss");
 
 			URLValue = URLValue + "&tarih=" + dtf.format(dtpTarih.getValue());
 
+			DateTimeFormat dtf2 = DateTimeFormat.getFormat("yyyy-MM-dd");
+
 			URLValue = URLValue + "&vade_tarihi="
-					+ dtf.format(dtpVadeTarihi.getValue());
+					+ dtf2.format(dtpVadeTarihi.getValue());
 
 			// Window.alert(URLValue);
 
@@ -270,10 +273,13 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		cbxOdemeTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOdemeTuru, xml.odeme_turu));
 
-		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss");
 
 		dtpTarih.setValue(dtf.parse(xml.tarih));
-		dtpVadeTarihi.setValue(dtf.parse(xml.vade_tarihi));
+
+		DateTimeFormat dtf2 = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+		dtpVadeTarihi.setValue(dtf2.parse(xml.vade_tarihi));
 
 	}
 }

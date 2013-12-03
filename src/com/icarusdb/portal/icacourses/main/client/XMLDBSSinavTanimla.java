@@ -30,6 +30,21 @@ public class XMLDBSSinavTanimla {
 	@Path("bina_sekli")
 	String bina_sekli;
 
+	@Path("ulke")
+	String ulke;
+
+	@Path("il")
+	String il;
+
+	@Path("ilce")
+	String ilce;
+
+	@Path("semt")
+	String semt;
+
+	@Path("mahalle_koy")
+	String mahalle_koy;
+
 	@Path("adres")
 	String adres;
 }

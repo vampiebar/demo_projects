@@ -7,6 +7,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,10 +21,12 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class KullaniciTanimlama extends Composite {
 	private CellTable<XMLKullaniciTanimlama> grdKullaniciTanimlari;
+	private DlgKullaniciTanimlama _dlgKullaniciTanimlama;
 
 	public KullaniciTanimlama() {
 
@@ -146,14 +150,24 @@ public class KullaniciTanimlama extends Composite {
 					List<XMLKullaniciTanimlama> listXmlKullaniciTanimlama = XMLKullaniciTanimlama.XML
 							.readList(response.getText());
 
-					DlgKullaniciTanimlama dlgTemp = new DlgKullaniciTanimlama(
-							false, new Long(id).longValue());
-					dlgTemp.putDataFromXML(listXmlKullaniciTanimlama.get(0));
+					_dlgKullaniciTanimlama = new DlgKullaniciTanimlama(false,
+							new Long(id).longValue());
+					_dlgKullaniciTanimlama
+							.putDataFromXML(listXmlKullaniciTanimlama.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
-					dlgTemp.tabKullaniciTanimlama.selectTab(0);
+					_dlgKullaniciTanimlama.setAnimationEnabled(true);
+					_dlgKullaniciTanimlama.center();
+					_dlgKullaniciTanimlama.tabKullaniciTanimlama.selectTab(0);
+					_dlgKullaniciTanimlama
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
 
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 				}
 			});
 
@@ -221,11 +235,21 @@ public class KullaniciTanimlama extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
+			_dlgKullaniciTanimlama = new DlgKullaniciTanimlama(true, -1);
+			_dlgKullaniciTanimlama.center();
+			_dlgKullaniciTanimlama.setAnimationEnabled(true);
+			_dlgKullaniciTanimlama.tabKullaniciTanimlama.selectTab(0);
 
-			DlgKullaniciTanimlama dlgTemp = new DlgKullaniciTanimlama(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
-			dlgTemp.tabKullaniciTanimlama.selectTab(0);
+			_dlgKullaniciTanimlama
+					.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+						@Override
+						public void onClose(CloseEvent<PopupPanel> event) {
+
+							putDataToGrid();
+
+						}
+					});
 
 		}
 	}

@@ -7,6 +7,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,11 +21,13 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class GelirGiderKategorileri extends Composite {
 	private CellTable<XMLGelirGiderKategorileri> grdGelirGiderKategorileri;
 	private Button btnYeniKayit;
+	private DlgGelirGiderKategorileri _dlgGelirGiderKategorileri;
 
 	public GelirGiderKategorileri() {
 
@@ -133,12 +137,24 @@ public class GelirGiderKategorileri extends Composite {
 					List<XMLGelirGiderKategorileri> listXmlGelirGiderKategorileri = XMLGelirGiderKategorileri.XML
 							.readList(response.getText());
 
-					DlgGelirGiderKategorileri dlgTemp = new DlgGelirGiderKategorileri(
+					_dlgGelirGiderKategorileri = new DlgGelirGiderKategorileri(
 							false, new Long(id).longValue());
-					dlgTemp.putDataFromXML(listXmlGelirGiderKategorileri.get(0));
+					_dlgGelirGiderKategorileri
+							.putDataFromXML(listXmlGelirGiderKategorileri
+									.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
+					_dlgGelirGiderKategorileri.setAnimationEnabled(true);
+					_dlgGelirGiderKategorileri.center();
+					_dlgGelirGiderKategorileri
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 
 				}
 			});
@@ -207,10 +223,20 @@ public class GelirGiderKategorileri extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgGelirGiderKategorileri dlgTemp = new DlgGelirGiderKategorileri(
-					true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+			_dlgGelirGiderKategorileri = new DlgGelirGiderKategorileri(true, -1);
+			_dlgGelirGiderKategorileri.center();
+			_dlgGelirGiderKategorileri.setAnimationEnabled(true);
+
+			_dlgGelirGiderKategorileri
+					.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+						@Override
+						public void onClose(CloseEvent<PopupPanel> event) {
+
+							putDataToGrid();
+
+						}
+					});
 
 		}
 	}

@@ -7,6 +7,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,10 +21,12 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class KursZamaniTanimlama extends Composite {
 	private CellTable<XMLKursZamaniTanimlama> grdKursZamaniTanimlama;
+	private DlgKursZamaniTanimlama _dlgKursZamaniTanimlama;
 
 	public KursZamaniTanimlama() {
 
@@ -132,12 +136,23 @@ public class KursZamaniTanimlama extends Composite {
 					List<XMLKursZamaniTanimlama> listXmlKursZamaniTanimlama = XMLKursZamaniTanimlama.XML
 							.readList(response.getText());
 
-					DlgKursZamaniTanimlama dlgTemp = new DlgKursZamaniTanimlama(
-							false, new Long(id).longValue());
-					dlgTemp.putDataFromXML(listXmlKursZamaniTanimlama.get(0));
+					_dlgKursZamaniTanimlama = new DlgKursZamaniTanimlama(false,
+							new Long(id).longValue());
+					_dlgKursZamaniTanimlama
+							.putDataFromXML(listXmlKursZamaniTanimlama.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
+					_dlgKursZamaniTanimlama.setAnimationEnabled(true);
+					_dlgKursZamaniTanimlama.center();
+					_dlgKursZamaniTanimlama
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 
 				}
 			});
@@ -206,10 +221,20 @@ public class KursZamaniTanimlama extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgKursZamaniTanimlama dlgTemp = new DlgKursZamaniTanimlama(true,
-					-1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+			_dlgKursZamaniTanimlama = new DlgKursZamaniTanimlama(true, -1);
+			_dlgKursZamaniTanimlama.center();
+			_dlgKursZamaniTanimlama.setAnimationEnabled(true);
+
+			_dlgKursZamaniTanimlama
+					.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+						@Override
+						public void onClose(CloseEvent<PopupPanel> event) {
+
+							putDataToGrid();
+
+						}
+					});
 
 		}
 	}

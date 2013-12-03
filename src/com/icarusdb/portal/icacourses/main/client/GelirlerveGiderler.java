@@ -7,6 +7,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,11 +21,13 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class GelirlerveGiderler extends Composite {
 	private CellTable<XMLGelirlerveGiderler> grdGelirlerveGiderler;
 	private Column<XMLGelirlerveGiderler, String> column;
+	private DlgGelirlerveGiderler _dlgGelirlerveGiderler;
 
 	public GelirlerveGiderler() {
 
@@ -40,6 +44,15 @@ public class GelirlerveGiderler extends Composite {
 		horizontalPanel.add(grdGelirlerveGiderler);
 		grdGelirlerveGiderler.setSize("100%", "100%");
 
+		TextColumn<XMLGelirlerveGiderler> textColumn_2 = new TextColumn<XMLGelirlerveGiderler>() {
+			@Override
+			public String getValue(XMLGelirlerveGiderler object) {
+				return object.id.toString();
+			}
+		};
+		grdGelirlerveGiderler.addColumn(textColumn_2, "İD");
+		grdGelirlerveGiderler.setColumnWidth(textColumn_2, "72px");
+
 		column = new TextColumn<XMLGelirlerveGiderler>() {
 			@Override
 			public String getValue(XMLGelirlerveGiderler object) {
@@ -47,6 +60,7 @@ public class GelirlerveGiderler extends Composite {
 			}
 		};
 		grdGelirlerveGiderler.addColumn(column, "Tarih - Saat");
+		grdGelirlerveGiderler.setColumnWidth(column, "132px");
 
 		TextColumn<XMLGelirlerveGiderler> textColumn = new TextColumn<XMLGelirlerveGiderler>() {
 			@Override
@@ -148,13 +162,24 @@ public class GelirlerveGiderler extends Composite {
 					List<XMLGelirlerveGiderler> listXmlGelirlerveGiderler = XMLGelirlerveGiderler.XML
 							.readList(response.getText());
 
-					DlgGelirlerveGiderler dlgTemp = new DlgGelirlerveGiderler(
-							false, new Long(id).longValue());
+					_dlgGelirlerveGiderler = new DlgGelirlerveGiderler(false,
+							new Long(id).longValue());
 
-					dlgTemp.putDataFromXML(listXmlGelirlerveGiderler.get(0));
+					_dlgGelirlerveGiderler
+							.putDataFromXML(listXmlGelirlerveGiderler.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
+					_dlgGelirlerveGiderler.setAnimationEnabled(true);
+					_dlgGelirlerveGiderler.center();
+					_dlgGelirlerveGiderler
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 
 				}
 			});
@@ -221,10 +246,20 @@ public class GelirlerveGiderler extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgGelirlerveGiderler dlgTemp = new DlgGelirlerveGiderler(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+			_dlgGelirlerveGiderler = new DlgGelirlerveGiderler(true, -1);
+			_dlgGelirlerveGiderler.center();
+			_dlgGelirlerveGiderler.setAnimationEnabled(true);
 
+			_dlgGelirlerveGiderler
+					.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+						@Override
+						public void onClose(CloseEvent<PopupPanel> event) {
+
+							putDataToGrid();
+
+						}
+					});
 		}
 	}
 }

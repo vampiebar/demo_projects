@@ -7,6 +7,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,12 +21,14 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class BankaEkle extends Composite {
 	private CellTable<XMLBankaEkle> grdBankaEkle;
 	private Column<XMLBankaEkle, ?> textColumn;
 	private Column<XMLBankaEkle, ?> column;
+	private DlgBankaEkle _dlgBankaEkle;
 
 	public BankaEkle() {
 
@@ -131,13 +135,23 @@ public class BankaEkle extends Composite {
 					List<XMLBankaEkle> listXmlBankaEkle = XMLBankaEkle.XML
 							.readList(response.getText());
 
-					DlgBankaEkle dlgTemp = new DlgBankaEkle(false, new Long(id)
+					_dlgBankaEkle = new DlgBankaEkle(false, new Long(id)
 							.longValue());
-					dlgTemp.putDataFromXML(listXmlBankaEkle.get(0));
+					_dlgBankaEkle.putDataFromXML(listXmlBankaEkle.get(0));
 					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
+					_dlgBankaEkle.setAnimationEnabled(true);
+					_dlgBankaEkle.center();
 
+					_dlgBankaEkle
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 				}
 			});
 
@@ -205,9 +219,19 @@ public class BankaEkle extends Composite {
 
 	public class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgBankaEkle dlgTemp = new DlgBankaEkle(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+			_dlgBankaEkle = new DlgBankaEkle(true, -1);
+			_dlgBankaEkle.center();
+			_dlgBankaEkle.setAnimationEnabled(true);
+
+			_dlgBankaEkle.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
+
+					putDataToGrid();
+
+				}
+			});
 
 		}
 	}

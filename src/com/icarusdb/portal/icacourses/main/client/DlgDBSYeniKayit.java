@@ -19,6 +19,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
@@ -76,6 +77,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private CellTable<XMLVeliler> grdVeliler;
 
 	public DialogBox _dlgDBSYeniKayit;
+	private HorizontalPanel hzpanMenu1;
 
 	public DlgDBSYeniKayit(boolean isInsert, long id) {
 
@@ -87,15 +89,29 @@ public class DlgDBSYeniKayit extends DialogBox {
 		setAutoHideEnabled(false);
 		setHTML("DBS Sınav Kayıt");
 
+		VerticalPanel vtpanMain = new VerticalPanel();
+
 		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
-		setWidget(decoratedTabPanel);
-		decoratedTabPanel.setSize("742px", "642px");
+		setWidget(vtpanMain);
+		decoratedTabPanel.setSize("742px", "622px");
+
+		vtpanMain.add(decoratedTabPanel);
+
+		VerticalPanel hzpanMain = new VerticalPanel();
 
 		vtpanOgrenciBilgileri = new AbsolutePanel();
 		vtpanOgrenciBilgileri.setStyleName("gwt-DialogBackGround");
-		decoratedTabPanel
-				.add(vtpanOgrenciBilgileri, "Öğrenci Bilgileri", false);
+		decoratedTabPanel.add(hzpanMain, "Öğrenci Bilgileri", false);
 		vtpanOgrenciBilgileri.setSize("736px", "524px");
+
+		hzpanMain.add(vtpanOgrenciBilgileri);
+
+		hzpanMenu1 = new HorizontalPanel();
+		// vtpanOgrenciBilgileri.add(hzpanMenu1, 472, 452);
+		hzpanMenu1.setSize("254px", "72px");
+		vtpanMain.add(hzpanMenu1);
+
+		// hzpanMain.add(hzpanMenu1);
 
 		Label lblNewLabel = new Label("Adı");
 		lblNewLabel.setStyleName("gwt-Bold");
@@ -260,24 +276,20 @@ public class DlgDBSYeniKayit extends DialogBox {
 		vtpanOgrenciBilgileri.add(tctCepTelefonu, 304, 206);
 		tctCepTelefonu.setSize("143px", "14px");
 
-		HorizontalPanel horizontalPanel_3 = new HorizontalPanel();
-		vtpanOgrenciBilgileri.add(horizontalPanel_3, 472, 452);
-		horizontalPanel_3.setSize("254px", "72px");
-
 		Button btnYeniKayit5 = new Button("Yeni Kayıt");
-		horizontalPanel_3.add(btnYeniKayit5);
+		hzpanMenu1.add(btnYeniKayit5);
 		btnYeniKayit5.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit5.setSize("78px", "50px");
 
 		Button btnOgrenciyiKaydet5 = new Button("Öğrenciyi Kaydet");
-		horizontalPanel_3.add(btnOgrenciyiKaydet5);
+		hzpanMenu1.add(btnOgrenciyiKaydet5);
 		btnOgrenciyiKaydet5.setStyleName("gwt-ButtonSave");
 		btnOgrenciyiKaydet5
 				.addClickHandler(new BtnOgrenciyiKaydet5ClickHandler());
 		btnOgrenciyiKaydet5.setSize("78px", "49px");
 
 		Button btnKapat5 = new Button("Kapat");
-		horizontalPanel_3.add(btnKapat5);
+		hzpanMenu1.add(btnKapat5);
 		btnKapat5.setStyleName("gwt-ButonKapat");
 		btnKapat5.addClickHandler(new BtnKapat5ClickHandler_1());
 		btnKapat5.setSize("78px", "50px");
@@ -653,6 +665,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl, cbxOgrenciBilgileriIl,
 					cbxAdresBilgileriIl);
 
+			putSinavTarihleriToCbx(cbxSinavTarihi);
+
 			putDataToGrid();
 
 			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
@@ -675,6 +689,48 @@ public class DlgDBSYeniKayit extends DialogBox {
 			// }
 			// }, DoubleClickEvent.getType());
 		}
+	}
+
+	private void putSinavTarihleriToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getdbssinavtanimla");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					Window.alert("getdbssinavtanimla " + response.getText());
+
+					List<XMLDBSSinavTanimla> xmlDBSSinavTanimla = XMLDBSSinavTanimla.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlDBSSinavTanimla.size(); i++) {
+
+						lbxTemp.addItem(xmlDBSSinavTanimla.get(i).sinav_tarihi);
+
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
 	}
 
 	private void putDataToGrid() {

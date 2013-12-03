@@ -7,6 +7,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,6 +21,7 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class SaatGirisi extends Composite {
@@ -28,6 +31,7 @@ public class SaatGirisi extends Composite {
 	private Column<XMLSaatGirisi, String> column_1;
 	private Column<XMLSaatGirisi, ?> textColumn;
 	private Column<XMLSaatGirisi, ?> column_2;
+	private DlgSaatGirisi _dlgSaatGirisi;
 
 	public SaatGirisi() {
 
@@ -148,13 +152,22 @@ public class SaatGirisi extends Composite {
 					List<XMLSaatGirisi> listXmlSaatGirisi = XMLSaatGirisi.XML
 							.readList(response.getText());
 
-					DlgSaatGirisi dlgTemp = new DlgSaatGirisi(false, new Long(
-							id).longValue());
-					dlgTemp.putDataFromXML(listXmlSaatGirisi.get(0));
-					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
-					dlgTemp.tabSaatGrisi.selectTab(0);
+					_dlgSaatGirisi = new DlgSaatGirisi(false, new Long(id)
+							.longValue());
+					_dlgSaatGirisi.putDataFromXML(listXmlSaatGirisi.get(0));
+					_dlgSaatGirisi.setAnimationEnabled(true);
+					_dlgSaatGirisi.center();
+					_dlgSaatGirisi.tabSaatGirisi.selectTab(0);
+					_dlgSaatGirisi
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 
 				}
 			});
@@ -222,11 +235,20 @@ public class SaatGirisi extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgSaatGirisi dlgTemp = new DlgSaatGirisi(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
-			dlgTemp.tabSaatGrisi.selectTab(0);
+			_dlgSaatGirisi = new DlgSaatGirisi(true, -1);
+			_dlgSaatGirisi.center();
+			_dlgSaatGirisi.setAnimationEnabled(true);
+			_dlgSaatGirisi.tabSaatGirisi.selectTab(0);
 
+			_dlgSaatGirisi.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
+
+					putDataToGrid();
+
+				}
+			});
 		}
 	}
 }

@@ -27,8 +27,8 @@ public class XMLBankaEkle {
 	@Path("iban_no")
 	String iban_no;
 
-	@Path("bankanin_ödeme_sekli")
-	String bankanin_ödeme_sekli;
+	@Path("bankanin_odeme_sekli")
+	String bankanin_odeme_sekli;
 
 	@Path("vade_tarihi")
 	String vade_tarihi;

@@ -2,6 +2,8 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.List;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.http.client.Request;
@@ -62,15 +64,19 @@ public class DlgDersTanimlari extends DialogBox {
 		tctDersAdi.setSize("149px", "18px");
 
 		cbxEgitimTuru = new ListBox();
-		cbxEgitimTuru.addItem("1");
-		cbxEgitimTuru.addItem("2");
+		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
+		cbxEgitimTuru.addItem(" ");
 		absolutePanel.add(cbxEgitimTuru, 112, 46);
 		cbxEgitimTuru.setSize("151px", "22px");
 
 		cbxAlan = new ListBox();
+		cbxAlan.addItem(" ");
+		cbxAlan.addItem("ALAN YOK");
+		cbxAlan.addItem("SAYISAL");
+		cbxAlan.addItem("EŞİT AĞIRLIK");
+		cbxAlan.addItem("SÖZEL");
+		cbxAlan.addItem("DİL");
 		cbxAlan.setStyleName("gwt-ComboBox1");
-		cbxAlan.addItem("a");
-		cbxAlan.addItem("b");
 		absolutePanel.add(cbxAlan, 112, 77);
 		cbxAlan.setSize("151px", "22px");
 
@@ -137,6 +143,49 @@ public class DlgDersTanimlari extends DialogBox {
 
 	}
 
+	public void putEgitimTuruAlanKategorileriToCbx(int egitim_turu_adi,
+			final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getegitimturualankategorileri?egitim_turu_adi="
+						+ egitim_turu_adi);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLEgitimTuruAlanKategorileri> xmlegitimturualankategorileri = XMLEgitimTuruAlanKategorileri.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlegitimturualankategorileri.size(); i++) {
+
+						lbxTemp.addItem(xmlegitimturualankategorileri.get(i).alan_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
 	// Implement the following method exactly as-is
 	private static final boolean isDesignTime() {
 		// return Beans.isDesignTime(); // GWT 2.4 and above
@@ -177,5 +226,12 @@ public class DlgDersTanimlari extends DialogBox {
 		cbxAlan.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxAlan,
 				xml.alan_adi));
 		cbxEgitimTuru.setItemText(0, xml.egitim_turu_adi);
+	}
+
+	private class CbxEgitimTuruChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putEgitimTuruAlanKategorileriToCbx(
+					cbxEgitimTuru.getSelectedIndex(), cbxAlan);
+		}
 	}
 }

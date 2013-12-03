@@ -63,12 +63,12 @@ public class DlgPersonelIslemleri extends DialogBox {
 		Label lblTelefonu = new Label("Telefonu 1");
 		lblTelefonu.setStyleName("gwt-Bold");
 		absolutePanel.add(lblTelefonu, 10, 194);
-		lblTelefonu.setSize("69px", "18px");
+		lblTelefonu.setSize("84px", "18px");
 
 		Label lblTelefonu_1 = new Label("Telefonu 2");
 		lblTelefonu_1.setStyleName("gwt-Bold");
 		absolutePanel.add(lblTelefonu_1, 10, 229);
-		lblTelefonu_1.setSize("63px", "18px");
+		lblTelefonu_1.setSize("84px", "18px");
 
 		tctAdiSoyadi = new TextBox();
 		tctAdiSoyadi.setStyleName("gwt-TextBox1");

@@ -8,6 +8,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -20,10 +22,12 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class OgretmenTanimlari extends Composite {
 	private CellTable<XMLOgretmenTanimlari> grdOgretmenTanimlari;
+	private DlgOgretmenTanimlari _dlgOgretmenTanimlari;
 
 	public OgretmenTanimlari() {
 
@@ -165,13 +169,23 @@ public class OgretmenTanimlari extends Composite {
 					List<XMLOgretmenTanimlari> listXmlOgretmenTanimlari = XMLOgretmenTanimlari.XML
 							.readList(response.getText());
 
-					DlgOgretmenTanimlari dlgTemp = new DlgOgretmenTanimlari(
-							false, new Long(id).longValue());
-					dlgTemp.putDataFromXML(listXmlOgretmenTanimlari.get(0));
-					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
-					dlgTemp.tabOgretmenIslemleri.selectTab(0);
+					_dlgOgretmenTanimlari = new DlgOgretmenTanimlari(false,
+							new Long(id).longValue());
+					_dlgOgretmenTanimlari
+							.putDataFromXML(listXmlOgretmenTanimlari.get(0));
+					_dlgOgretmenTanimlari.setAnimationEnabled(true);
+					_dlgOgretmenTanimlari.center();
+					_dlgOgretmenTanimlari.tabOgretmenIslemleri.selectTab(0);
+					_dlgOgretmenTanimlari
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 
 				}
 			});
@@ -240,10 +254,21 @@ public class OgretmenTanimlari extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgOgretmenTanimlari dlgTemp = new DlgOgretmenTanimlari(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
-			dlgTemp.tabOgretmenIslemleri.selectTab(0);
+			_dlgOgretmenTanimlari = new DlgOgretmenTanimlari(true, -1);
+			_dlgOgretmenTanimlari.center();
+			_dlgOgretmenTanimlari.setAnimationEnabled(true);
+			_dlgOgretmenTanimlari.tabOgretmenIslemleri.selectTab(0);
+
+			_dlgOgretmenTanimlari
+					.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+						@Override
+						public void onClose(CloseEvent<PopupPanel> event) {
+
+							putDataToGrid();
+
+						}
+					});
 
 		}
 	}

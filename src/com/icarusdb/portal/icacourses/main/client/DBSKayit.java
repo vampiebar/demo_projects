@@ -6,6 +6,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,6 +21,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.SingleSelectionModel;
 
@@ -30,6 +33,7 @@ public class DBSKayit extends Composite {
 	private ListBox cbxSinavTarihi;
 	private TextBox tctSoyadi;
 	private CellTable<XMLDBSKayit> grdDBSKayit;
+	private DlgDBSYeniKayit _dlgDbsYeniKayit;
 
 	public DBSKayit() {
 
@@ -260,12 +264,21 @@ public class DBSKayit extends Composite {
 					List<XMLDBSKayit> listXmlDBSKayit = XMLDBSKayit.XML
 							.readList(response.getText());
 
-					DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit(false,
-							new Long(id).longValue());
+					_dlgDbsYeniKayit = new DlgDBSYeniKayit(false, new Long(id)
+							.longValue());
 
-					dlgTemp.putDataFromXML(listXmlDBSKayit.get(0));
-					dlgTemp.center();
+					_dlgDbsYeniKayit.putDataFromXML(listXmlDBSKayit.get(0));
+					_dlgDbsYeniKayit.center();
+					_dlgDbsYeniKayit
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
 
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 				}
 
 			});
@@ -364,19 +377,19 @@ public class DBSKayit extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
+			_dlgDbsYeniKayit = new DlgDBSYeniKayit(true, -1);
+			_dlgDbsYeniKayit.center();
+			_dlgDbsYeniKayit.setAnimationEnabled(true);
 
-			// tctAdi.setText("");
-			// tctSoyadi.setText("");
-			// tctTCKimlikNo.setText("");
-			//
-			// cbxOkulDurumu.setSelectedIndex(0);
-			// cbxAlanBilgi.setSelectedIndex(0);
-			// cbxSinavTarihi.setSelectedIndex(0);
+			_dlgDbsYeniKayit.addCloseHandler(new CloseHandler<PopupPanel>() {
 
-			DlgDBSYeniKayit dlgTemp = new DlgDBSYeniKayit(true, -1);
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
 
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+					putDataToGrid();
+
+				}
+			});
 
 		}
 	}

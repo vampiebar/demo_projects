@@ -1,7 +1,14 @@
 package com.icarusdb.portal.icacourses.main.client;
 
+import java.util.List;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -61,9 +68,8 @@ public class DlgUniteTanimlari extends DialogBox {
 		tctUniteAdi.setSize("149px", "18px");
 
 		cbxEgitimTuru = new ListBox();
+		cbxEgitimTuru.addItem(" ");
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
-		cbxEgitimTuru.addItem("1");
-		cbxEgitimTuru.addItem("2");
 		absolutePanel.add(cbxEgitimTuru, 129, 39);
 		cbxEgitimTuru.setSize("151px", "18px");
 
@@ -94,6 +100,59 @@ public class DlgUniteTanimlari extends DialogBox {
 		btnKapat.setText("Kapat");
 		absolutePanel.add(btnKapat, 326, 171);
 		btnKapat.setSize("78px", "45px");
+
+		if (!isDesignTime()) {
+
+			putEgitimTuruToCbx(cbxEgitimTuru);
+
+		}
+
+	}
+
+	private boolean isDesignTime() {
+
+		return false;
+	}
+
+	public void putEgitimTuruToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getegitimturu");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlEgitimTuru.size(); i++) {
+
+						lbxTemp.addItem(xmlEgitimTuru.get(i).egitim_turu_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {

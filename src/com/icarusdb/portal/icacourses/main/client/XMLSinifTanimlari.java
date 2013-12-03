@@ -30,8 +30,8 @@ public class XMLSinifTanimlari {
 	@Path("alan")
 	String alan;
 
-	@Path("danisman_ogretmen")
-	String danisman_ogretmen;
+	@Path("dan_ogretmen")
+	String dan_ogretmen;
 
 	@Path("sinif_kontenjani")
 	String sinif_kontenjani;
