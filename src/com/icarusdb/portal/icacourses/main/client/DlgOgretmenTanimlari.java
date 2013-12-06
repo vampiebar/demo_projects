@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.SimpleCheckBox;
@@ -32,13 +33,13 @@ public class DlgOgretmenTanimlari extends DialogBox {
 	private TextBox tctSigortaGunSayisi;
 	private CheckBox chxdurum;
 	private SimpleCheckBox chxDersPrograminiGorsun;
-	private SimpleCheckBox chx1;
-	private SimpleCheckBox chx2;
-	private SimpleCheckBox chx3;
-	private SimpleCheckBox chx4;
-	private SimpleCheckBox chx5;
-	private SimpleCheckBox chx6;
-	private SimpleCheckBox chx7;
+	private SimpleCheckBox chxPazartesi;
+	private SimpleCheckBox chxSali;
+	private SimpleCheckBox chxCarsamba;
+	private SimpleCheckBox chxPersembe;
+	private SimpleCheckBox chxCuma;
+	private SimpleCheckBox chxCumartesi;
+	private SimpleCheckBox chxPazar;
 	public DecoratedTabPanel tabOgretmenIslemleri;
 
 	public DlgOgretmenTanimlari(boolean isInsert, long id) {
@@ -63,71 +64,84 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		VerticalPanel verticalPanel = new VerticalPanel();
 		absolutePanel_1.add(verticalPanel, 10, 10);
-		verticalPanel.setSize("201px", "447px");
+		verticalPanel.setSize("208px", "447px");
 
 		Label lblretmenNo = new Label("Öğretmen No");
 		verticalPanel.add(lblretmenNo);
-		verticalPanel.setCellHeight(lblretmenNo, "26");
+		verticalPanel.setCellHeight(lblretmenNo, "28");
 		lblretmenNo.setStyleName("gwt-Bold");
 
 		Label lblTcKimlikNo = new Label("T.C. Kimlik No");
 		verticalPanel.add(lblTcKimlikNo);
+		verticalPanel.setCellHeight(lblTcKimlikNo, "27");
 		lblTcKimlikNo.setStyleName("gwt-Bold");
 
 		Label lblAdSoyad = new Label("Adı Soyadı");
 		verticalPanel.add(lblAdSoyad);
+		verticalPanel.setCellHeight(lblAdSoyad, "27");
 		lblAdSoyad.setStyleName("gwt-Bold");
 		lblAdSoyad.setSize("176px", "18px");
 
 		Label lblGirdiğiDersBilgisi = new Label("Girdiği Ders Bilgisi");
 		verticalPanel.add(lblGirdiğiDersBilgisi);
+		verticalPanel.setCellHeight(lblGirdiğiDersBilgisi, "29");
+		lblGirdiğiDersBilgisi.setHeight("19px");
 		lblGirdiğiDersBilgisi.setStyleName("gwt-Bold");
 
 		Label lblEitimTr = new Label("Eğitim Türü");
 		verticalPanel.add(lblEitimTr);
-		verticalPanel.setCellHeight(lblEitimTr, "30");
+		verticalPanel.setCellVerticalAlignment(lblEitimTr,
+				HasVerticalAlignment.ALIGN_MIDDLE);
+		verticalPanel.setCellHeight(lblEitimTr, "32");
 		lblEitimTr.setHeight("21px");
 		lblEitimTr.setStyleName("gwt-Bold");
 
 		Label lblBran = new Label("Branş");
 		verticalPanel.add(lblBran);
-		verticalPanel.setCellHeight(lblBran, "27");
+		verticalPanel.setCellHeight(lblBran, "33");
 		lblBran.setHeight("20px");
 		lblBran.setStyleName("gwt-Bold");
 
 		Label lblGirdiiDersler = new Label("Girdiği Dersler");
 		verticalPanel.add(lblGirdiiDersler);
-		verticalPanel.setCellHeight(lblGirdiiDersler, "30");
+		verticalPanel.setCellHeight(lblGirdiiDersler, "33");
 		lblGirdiiDersler.setHeight("21px");
 		lblGirdiiDersler.setStyleName("gwt-Bold");
 
 		Label lblcreti = new Label("Ücreti");
 		verticalPanel.add(lblcreti);
+		verticalPanel.setCellHeight(lblcreti, "28");
 		lblcreti.setStyleName("gwt-Bold");
 
 		Label lblEvTelefonu = new Label("Ev Telefonu");
 		verticalPanel.add(lblEvTelefonu);
+		verticalPanel.setCellHeight(lblEvTelefonu, "28");
 		lblEvTelefonu.setStyleName("gwt-Bold");
 
 		Label lblCepTelefonu = new Label("Cep Telefonu");
 		verticalPanel.add(lblCepTelefonu);
+		verticalPanel.setCellHeight(lblCepTelefonu, "30");
 		lblCepTelefonu.setStyleName("gwt-Bold");
 
 		Label lblCepTelefonu_1 = new Label("Cep Telefonu 2");
 		verticalPanel.add(lblCepTelefonu_1);
+		verticalPanel.setCellHeight(lblCepTelefonu_1, "30");
 		lblCepTelefonu_1.setStyleName("gwt-Bold");
 
 		Label lblEmail = new Label("E-mail");
 		verticalPanel.add(lblEmail);
+		verticalPanel.setCellHeight(lblEmail, "29");
 		lblEmail.setStyleName("gwt-Bold");
 
 		Label lblSigortaGnSays = new Label("Sigorta Gün Sayısı");
 		verticalPanel.add(lblSigortaGnSays);
+		verticalPanel.setCellHeight(lblSigortaGnSays, "31");
 		lblSigortaGnSays.setStyleName("gwt-Bold");
 
 		Label lblDersProgmamnGrsun = new Label("Ders Progmamını Görsün");
 		verticalPanel.add(lblDersProgmamnGrsun);
-		lblDersProgmamnGrsun.setWidth("159px");
+		verticalPanel.setCellHeight(lblDersProgmamnGrsun, "29");
+		lblDersProgmamnGrsun.setWidth("193px");
 		lblDersProgmamnGrsun.setStyleName("gwt-Bold");
 
 		Label lblDurum = new Label("Durum");
@@ -135,7 +149,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		lblDurum.setStyleName("gwt-Bold");
 
 		VerticalPanel verticalPanel_1 = new VerticalPanel();
-		absolutePanel_1.add(verticalPanel_1, 217, 10);
+		absolutePanel_1.add(verticalPanel_1, 225, 10);
 		verticalPanel_1.setSize("165px", "440px");
 
 		Label lblVerilmedi = new Label("Verilmedi");
@@ -259,33 +273,33 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		lblPazar.setStyleName("gwt-Bold");
 		absolutePanel_3.add(lblPazar, 10, 173);
 
-		chx2 = new SimpleCheckBox();
-		absolutePanel_3.add(chx2, 114, 53);
-		chx2.setSize("20px", "19px");
+		chxSali = new SimpleCheckBox();
+		absolutePanel_3.add(chxSali, 114, 53);
+		chxSali.setSize("20px", "19px");
 
-		chx3 = new SimpleCheckBox();
-		absolutePanel_3.add(chx3, 114, 76);
-		chx3.setSize("20px", "19px");
+		chxCarsamba = new SimpleCheckBox();
+		absolutePanel_3.add(chxCarsamba, 114, 76);
+		chxCarsamba.setSize("20px", "19px");
 
-		chx4 = new SimpleCheckBox();
-		absolutePanel_3.add(chx4, 114, 100);
-		chx4.setSize("20px", "19px");
+		chxPersembe = new SimpleCheckBox();
+		absolutePanel_3.add(chxPersembe, 114, 100);
+		chxPersembe.setSize("20px", "19px");
 
-		chx5 = new SimpleCheckBox();
-		absolutePanel_3.add(chx5, 114, 124);
-		chx5.setSize("20px", "19px");
+		chxCuma = new SimpleCheckBox();
+		absolutePanel_3.add(chxCuma, 114, 124);
+		chxCuma.setSize("20px", "19px");
 
-		chx6 = new SimpleCheckBox();
-		absolutePanel_3.add(chx6, 114, 148);
-		chx6.setSize("20px", "19px");
+		chxCumartesi = new SimpleCheckBox();
+		absolutePanel_3.add(chxCumartesi, 114, 148);
+		chxCumartesi.setSize("20px", "19px");
 
-		chx7 = new SimpleCheckBox();
-		absolutePanel_3.add(chx7, 114, 173);
-		chx7.setSize("20px", "19px");
+		chxPazar = new SimpleCheckBox();
+		absolutePanel_3.add(chxPazar, 114, 173);
+		chxPazar.setSize("20px", "19px");
 
-		chx1 = new SimpleCheckBox();
-		absolutePanel_3.add(chx1, 114, 29);
-		chx1.setSize("20px", "19px");
+		chxPazartesi = new SimpleCheckBox();
+		absolutePanel_3.add(chxPazartesi, 114, 29);
+		chxPazartesi.setSize("20px", "19px");
 
 		Label lblNewLabel = new Label("Öğretmen İşlemleri (Ekleme / Düzenleme)");
 		lblNewLabel.setStyleName("gwt-LabelMor");
@@ -353,6 +367,17 @@ public class DlgOgretmenTanimlari extends DialogBox {
 			URLValue = URLValue + "&ders_programini_gorsun="
 					+ chxDersPrograminiGorsun.getValue().toString();
 			URLValue = URLValue + "&durum=" + chxdurum.getValue().toString();
+			URLValue = URLValue + "&pazartesi="
+					+ chxPazartesi.getValue().toString();
+			URLValue = URLValue + "&sali=" + chxSali.getValue().toString();
+			URLValue = URLValue + "&carsamba="
+					+ chxCarsamba.getValue().toString();
+			URLValue = URLValue + "&persembe="
+					+ chxPersembe.getValue().toString();
+			URLValue = URLValue + "&cuma=" + chxCuma.getValue().toString();
+			URLValue = URLValue + "&cumartesi="
+					+ chxCumartesi.getValue().toString();
+			URLValue = URLValue + "&pazar=" + chxPazar.getValue().toString();
 
 			// Window.alert(URLValue);
 
@@ -377,6 +402,22 @@ public class DlgOgretmenTanimlari extends DialogBox {
 				cbxEgitimTuru, xml.egitim_turu));
 		cbxGirdigiDersler.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxGirdigiDersler, xml.girdigi_dersler));
+
+		chxDersPrograminiGorsun.setValue(xml.ders_programini_gorsun
+				.equalsIgnoreCase("true") ? true : false);
+
+		chxdurum.setValue(xml.durum.equalsIgnoreCase("true") ? true : false);
+		chxPazartesi.setValue(xml.pazartesi.equalsIgnoreCase("true") ? true
+				: false);
+		chxSali.setValue(xml.sali.equalsIgnoreCase("true") ? true : false);
+		chxCarsamba.setValue(xml.carsamba.equalsIgnoreCase("true") ? true
+				: false);
+		chxPersembe.setValue(xml.persembe.equalsIgnoreCase("true") ? true
+				: false);
+		chxCuma.setValue(xml.cuma.equalsIgnoreCase("true") ? true : false);
+		chxCumartesi.setValue(xml.cumartesi.equalsIgnoreCase("true") ? true
+				: false);
+		chxPazar.setValue(xml.pazar.equalsIgnoreCase("true") ? true : false);
 
 	}
 }

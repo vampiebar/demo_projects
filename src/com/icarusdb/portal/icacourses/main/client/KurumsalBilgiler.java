@@ -22,6 +22,10 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.widget.client.TextButton;
 
 public class KurumsalBilgiler extends Composite {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private TextBox tctSubeAdiKisa;
 	private TextBox tctSubeResmiAdi;
 	private TextBox tctSirketAdi;
@@ -42,7 +46,10 @@ public class KurumsalBilgiler extends Composite {
 	private TextBox tctEMail;
 	private TextArea tctAdres;
 
-	public KurumsalBilgiler() {
+	public KurumsalBilgiler(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
@@ -158,23 +165,25 @@ public class KurumsalBilgiler extends Composite {
 
 		Label lbllke = new Label("Ülke");
 		lbllke.setStyleName("gwt-Bold");
-		absolutePanel.add(lbllke, 24, 343);
+		absolutePanel.add(lbllke, 24, 340);
 
 		Label lblIl = new Label("İl");
 		lblIl.setStyleName("gwt-Bold");
-		absolutePanel.add(lblIl, 23, 375);
+		absolutePanel.add(lblIl, 24, 374);
+		lblIl.setSize("27px", "16px");
 
 		Label lblIle = new Label("İlçe");
 		lblIle.setStyleName("gwt-Bold");
-		absolutePanel.add(lblIle, 24, 411);
+		absolutePanel.add(lblIle, 24, 406);
+		lblIle.setSize("26px", "16px");
 
 		Label lblSemt = new Label("Semt");
 		lblSemt.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSemt, 24, 449);
+		absolutePanel.add(lblSemt, 24, 445);
 
 		Label lblMahalleKy = new Label("Mahalle / Köy");
 		lblMahalleKy.setStyleName("gwt-Bold");
-		absolutePanel.add(lblMahalleKy, 24, 485);
+		absolutePanel.add(lblMahalleKy, 24, 480);
 		lblMahalleKy.setSize("101px", "16px");
 
 		cbxUlke = new ListBox();
@@ -224,7 +233,7 @@ public class KurumsalBilgiler extends Composite {
 
 		Label lblAdres = new Label("Adres");
 		lblAdres.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAdres, 357, 442);
+		absolutePanel.add(lblAdres, 357, 449);
 
 		tctTelefon = new TextBox();
 		tctTelefon.setStyleName("gwt-TextBox1");
@@ -484,7 +493,9 @@ public class KurumsalBilgiler extends Composite {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putkurumsalbilgiler?";
-			URLValue = URLValue + "sube_kisa_adi=" + tctSubeAdiKisa.getText();
+			URLValue = URLValue + "id=" + _id;
+
+			URLValue = URLValue + "&sube_kisa_adi=" + tctSubeAdiKisa.getText();
 			URLValue = URLValue + "&sube_resmi_adi="
 					+ tctSubeResmiAdi.getText();
 			URLValue = URLValue + "&sirket_adi=" + tctSirketAdi.getText();

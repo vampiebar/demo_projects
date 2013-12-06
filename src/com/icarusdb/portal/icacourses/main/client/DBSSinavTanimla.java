@@ -66,7 +66,7 @@ public class DBSSinavTanimla extends Composite {
 			}
 		};
 		grdDBSSinavTanimla.addColumn(textColumn_4, "İD");
-		grdDBSSinavTanimla.setColumnWidth(textColumn_4, "43px");
+		grdDBSSinavTanimla.setColumnWidth(textColumn_4, "53px");
 
 		Column<XMLDBSSinavTanimla, ?> textColumn = new TextColumn<XMLDBSSinavTanimla>() {
 			public String getValue(XMLDBSSinavTanimla object) {
@@ -82,6 +82,7 @@ public class DBSSinavTanimla extends Composite {
 			}
 		};
 		grdDBSSinavTanimla.addColumn(textColumn_1, "Alan Bilgisi");
+		grdDBSSinavTanimla.setColumnWidth(textColumn_1, "102px");
 
 		TextColumn<XMLDBSSinavTanimla> column_1 = new TextColumn<XMLDBSSinavTanimla>() {
 			@Override
@@ -90,22 +91,34 @@ public class DBSSinavTanimla extends Composite {
 			}
 		};
 		grdDBSSinavTanimla.addColumn(column_1, "Sınav Tarihi");
+		grdDBSSinavTanimla.setColumnWidth(column_1, "135px");
+
+		TextColumn<XMLDBSSinavTanimla> textColumn_5 = new TextColumn<XMLDBSSinavTanimla>() {
+			@Override
+			public String getValue(XMLDBSSinavTanimla object) {
+				return object.saat + ":" + object.dakika.toString();
+			}
+		};
+		grdDBSSinavTanimla.addColumn(textColumn_5, "Sınav Saati");
+		grdDBSSinavTanimla.setColumnWidth(textColumn_5, "103px");
 
 		Column<XMLDBSSinavTanimla, ?> textColumn_2 = new TextColumn<XMLDBSSinavTanimla>() {
 			@Override
 			public String getValue(XMLDBSSinavTanimla object) {
-				return object.bina_sekli.toString();
+				return object.sinav_yeri.toString();
 			}
 		};
 		grdDBSSinavTanimla.addColumn(textColumn_2, "Sınav Yeri");
+		grdDBSSinavTanimla.setColumnWidth(textColumn_2, "118px");
 
 		Column<XMLDBSSinavTanimla, ?> textColumn_3 = new TextColumn<XMLDBSSinavTanimla>() {
 			@Override
 			public String getValue(XMLDBSSinavTanimla object) {
-				return object.bina_sekli.toString();
+				return object.adres.toString();
 			}
 		};
 		grdDBSSinavTanimla.addColumn(textColumn_3, "Adres");
+		grdDBSSinavTanimla.setColumnWidth(textColumn_3, "57px");
 
 		Column<XMLDBSSinavTanimla, ?> column = new Column<XMLDBSSinavTanimla, String>(
 				new ButtonCell()) {
@@ -170,6 +183,7 @@ public class DBSSinavTanimla extends Composite {
 							new Long(id).longValue());
 					_dlgDbsSinavTanimla.putDataFromXML(listXmlDBSinavTanimla
 							.get(0));
+
 					// dlgTemp.tabOnKayit.selectTab(0);
 					_dlgDbsSinavTanimla.setAnimationEnabled(true);
 					_dlgDbsSinavTanimla.center();
@@ -250,6 +264,7 @@ public class DBSSinavTanimla extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
+
 			_dlgDbsSinavTanimla = new DlgDBSSinavTanimla(true, -1);
 			_dlgDbsSinavTanimla.center();
 			_dlgDbsSinavTanimla.setAnimationEnabled(true);

@@ -20,7 +20,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.SingleSelectionModel;
@@ -28,9 +27,6 @@ import com.google.gwt.view.client.SingleSelectionModel;
 public class DBSKayit extends Composite {
 	private TextBox tctAdi;
 	private TextBox tctTCKimlikNo;
-	private ListBox cbxOkulDurumu;
-	private ListBox cbxAlanBilgi;
-	private ListBox cbxSinavTarihi;
 	private TextBox tctSoyadi;
 	private CellTable<XMLDBSKayit> grdDBSKayit;
 	private DlgDBSYeniKayit _dlgDbsYeniKayit;
@@ -72,51 +68,8 @@ public class DBSKayit extends Composite {
 		absolutePanel.add(tctTCKimlikNo, 166, 90);
 		tctTCKimlikNo.setSize("230px", "16px");
 
-		Label lblOkulDurumu = new Label("Okul Durumu");
-		lblOkulDurumu.setStyleName("gwt-Bold");
-		absolutePanel.add(lblOkulDurumu, 10, 120);
-
-		Label lblAlanBilgi = new Label("Alan Bilgi");
-		lblAlanBilgi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAlanBilgi, 10, 150);
-
-		Label lblSnavTarihi = new Label("Sınav Tarihi");
-		lblSnavTarihi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSnavTarihi, 10, 187);
-
-		cbxOkulDurumu = new ListBox();
-		cbxOkulDurumu.setStyleName("gwt-ComboBox1");
-		cbxOkulDurumu.addItem("1.Sınıf");
-		cbxOkulDurumu.addItem("2.Sınıf");
-		cbxOkulDurumu.addItem("3.Sınıf");
-		cbxOkulDurumu.addItem("4.Sınıf");
-		cbxOkulDurumu.addItem("5.Sınıf");
-		cbxOkulDurumu.addItem("6.Sınıf");
-		cbxOkulDurumu.addItem("7.Sınıf");
-		cbxOkulDurumu.addItem("8.Sınıf");
-		cbxOkulDurumu.addItem("9.Sınıf");
-		cbxOkulDurumu.addItem("10.Sınıf");
-		cbxOkulDurumu.addItem("11.Sınıf");
-		cbxOkulDurumu.addItem("Lise Mezun");
-		cbxOkulDurumu.addItem("Üniversite Mezun");
-		cbxOkulDurumu.addItem("12.Sınıf ");
-		absolutePanel.add(cbxOkulDurumu, 166, 120);
-		cbxOkulDurumu.setSize("232px", "25px");
-
-		cbxAlanBilgi = new ListBox();
-		cbxAlanBilgi.setStyleName("gwt-ComboBox1");
-		cbxAlanBilgi.addItem(" ");
-		absolutePanel.add(cbxAlanBilgi, 166, 150);
-		cbxAlanBilgi.setSize("232px", "25px");
-
-		cbxSinavTarihi = new ListBox();
-		cbxSinavTarihi.setStyleName("gwt-ComboBox1");
-		cbxSinavTarihi.addItem("");
-		absolutePanel.add(cbxSinavTarihi, 166, 180);
-		cbxSinavTarihi.setSize("232px", "25px");
-
 		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel_1, 10, 242);
+		absolutePanel.add(horizontalPanel_1, 21, 158);
 		horizontalPanel_1.setSize("817px", "174px");
 
 		grdDBSKayit = new CellTable<XMLDBSKayit>();
@@ -345,36 +298,6 @@ public class DBSKayit extends Composite {
 		return false; // GWT 2.2 and earlier
 	}
 
-	// private class BtnKaydetClickHandler implements ClickHandler {
-	// public void onClick(ClickEvent event) {
-	//
-	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-	// "http://localhost:9090/ICACoursesWS/jaxrs/genel/getdbskayit");
-	//
-	// try {
-	// Request request = builder.sendRequest(null,
-	// new RequestCallback() {
-	// public void onError(Request request,
-	// Throwable exception) {
-	//
-	// }
-	//
-	// @Override
-	// public void onResponseReceived(Request request,
-	// Response response) {
-	//
-	// // Window.alert(response.getText());
-	//
-	// }
-	// });
-	// } catch (RequestException e) {
-	// // displayError("Couldn't retrieve JSON");
-	//
-	// // Window.alert(e.getMessage() + "ERROR");
-	// }
-	// }
-	// }
-
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			_dlgDbsYeniKayit = new DlgDBSYeniKayit(true, -1);
@@ -393,4 +316,59 @@ public class DBSKayit extends Composite {
 
 		}
 	}
+
+	// private class BtnAraClickHandler implements ClickHandler {
+	// public void onClick(ClickEvent event) {
+	// String urlWithParameters = Util.urlBase + "getdbskayit" + "?adi="
+	// + tctAdi.getText();
+	//
+	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+	// urlWithParameters);
+	//
+	// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
+	//
+	// try {
+	// Request request = builder.sendRequest(null,
+	// new RequestCallback() {
+	// public void onError(Request request,
+	// Throwable exception) {
+	//
+	// }
+	//
+	// @Override
+	// public void onResponseReceived(Request request,
+	// Response response) {
+	//
+	// // Window.alert("AAABBBCCC " +
+	// // response.getText());
+	//
+	// List<XMLDBSKayit> listxmlDbsKayit = XMLDBSKayit.XML
+	// .readList(response.getText());
+	//
+	// // listXmlOnKayit.add(xmlOnKayit);
+	//
+	// // lblNewLabel.setText(listxmlSablonTanimlari
+	// // .get(0).sablon_adi);
+	//
+	// // Set the total row count. This isn't strictly
+	// // necessary, but it affects
+	// // paging calculations, so its good habit to
+	// // keep the row count up to date.
+	// grdDBSKayit.setRowCount(1, true);
+	//
+	// // Push the data into the widget.
+	// grdDBSKayit.setRowData(0, listxmlDbsKayit);
+	//
+	// }
+	//
+	// });
+	//
+	// } catch (RequestException e) {
+	// // displayError("Couldn't retrieve JSON");
+	//
+	// // Window.alert(e.getMessage() + "ERROR");
+	// }
+	//
+	// }
+
 }

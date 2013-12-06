@@ -43,7 +43,7 @@ public class DlgHizmetTanimla extends DialogBox {
 		Label lblHzmetT = new Label("Hizmet Türü");
 		lblHzmetT.setStyleName("gwt-Bold");
 		absolutePanel.add(lblHzmetT, 10, 90);
-		lblHzmetT.setSize("81px", "18px");
+		lblHzmetT.setSize("92px", "18px");
 
 		Label lblHizmetAd = new Label("Hizmet Adı");
 		lblHizmetAd.setStyleName("gwt-Bold");

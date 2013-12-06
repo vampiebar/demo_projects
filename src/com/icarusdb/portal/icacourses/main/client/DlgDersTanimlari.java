@@ -96,19 +96,20 @@ public class DlgDersTanimlari extends DialogBox {
 
 		if (!isDesignTime()) {
 
-			putEgitimTuruToCbx(cbxEgitimTuru);
+			putEgitimTuruAlanKategorileriGetEgitimTuruToCbx(cbxEgitimTuru);
 
 		}
 
 	}
 
-	public void putEgitimTuruToCbx(final ListBox lbxTemp) {
+	public void putEgitimTuruAlanKategorileriGetEgitimTuruToCbx(
+			final ListBox lbxTemp) {
 
 		lbxTemp.clear();
 		lbxTemp.addItem("");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				Util.urlBase + "getegitimturu");
+				Util.urlBase + "getegitimturualankategorileri");
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -123,12 +124,12 @@ public class DlgDersTanimlari extends DialogBox {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
+					List<XMLEgitimTuruAlanKategorileri> xmlEgitimTuruAlanKategorileri = XMLEgitimTuruAlanKategorileri.XML
 							.readList(response.getText());
 
-					for (int i = 0; i < xmlEgitimTuru.size(); i++) {
+					for (int i = 0; i < xmlEgitimTuruAlanKategorileri.size(); i++) {
 
-						lbxTemp.addItem(xmlEgitimTuru.get(i).egitim_turu_adi);
+						lbxTemp.addItem(xmlEgitimTuruAlanKategorileri.get(i).egitim_turu_adi);
 					}
 
 				}
@@ -143,8 +144,8 @@ public class DlgDersTanimlari extends DialogBox {
 
 	}
 
-	public void putEgitimTuruAlanKategorileriToCbx(int egitim_turu_adi,
-			final ListBox lbxTemp) {
+	public void putEgitimTuruAlanKategorileriGetAlanAdiToCbx(
+			int egitim_turu_adi, final ListBox lbxTemp) {
 
 		lbxTemp.clear();
 		lbxTemp.addItem("");
@@ -230,7 +231,7 @@ public class DlgDersTanimlari extends DialogBox {
 
 	private class CbxEgitimTuruChangeHandler implements ChangeHandler {
 		public void onChange(ChangeEvent event) {
-			putEgitimTuruAlanKategorileriToCbx(
+			putEgitimTuruAlanKategorileriGetAlanAdiToCbx(
 					cbxEgitimTuru.getSelectedIndex(), cbxAlan);
 		}
 	}

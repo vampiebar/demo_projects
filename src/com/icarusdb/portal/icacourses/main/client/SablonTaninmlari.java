@@ -6,6 +6,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,6 +21,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.SingleSelectionModel;
 
@@ -27,6 +30,7 @@ public class SablonTaninmlari extends Composite {
 	private CellTable<XMLSablonTanimlari> grdSablonTanimlari;
 	private TextColumn<XMLSablonTanimlari> grdcIslemler;
 	private TextBox tctSablonAdi;
+	private DlgSablonTanimlari _dlgDlgSablonTanimlari;
 
 	public SablonTaninmlari() {
 
@@ -145,12 +149,23 @@ public class SablonTaninmlari extends Composite {
 					List<XMLSablonTanimlari> listXmlSablonTanimlari = XMLSablonTanimlari.XML
 							.readList(response.getText());
 
-					DlgSablonTanimlari dlgTemp = new DlgSablonTanimlari(false,
+					_dlgDlgSablonTanimlari = new DlgSablonTanimlari(false,
 							new Long(id).longValue());
-					dlgTemp.putDataFromXML(listXmlSablonTanimlari.get(0));
-					// dlgTemp.tabOnKayit.selectTab(0);
-					dlgTemp.setAnimationEnabled(true);
-					dlgTemp.center();
+					_dlgDlgSablonTanimlari
+							.putDataFromXML(listXmlSablonTanimlari.get(0));
+					_dlgDlgSablonTanimlari.setAnimationEnabled(true);
+					_dlgDlgSablonTanimlari.center();
+
+					_dlgDlgSablonTanimlari
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
 
 				}
 			});
@@ -175,9 +190,20 @@ public class SablonTaninmlari extends Composite {
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			DlgSablonTanimlari dlgTemp = new DlgSablonTanimlari(true, -1);
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+			_dlgDlgSablonTanimlari = new DlgSablonTanimlari(true, -1);
+			_dlgDlgSablonTanimlari.center();
+			_dlgDlgSablonTanimlari.setAnimationEnabled(true);
+
+			_dlgDlgSablonTanimlari
+					.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+						@Override
+						public void onClose(CloseEvent<PopupPanel> event) {
+
+							putDataToGrid();
+
+						}
+					});
 		}
 
 	}

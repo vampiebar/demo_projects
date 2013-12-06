@@ -167,7 +167,6 @@ public class GelirlerveGiderler extends Composite {
 
 					_dlgGelirlerveGiderler
 							.putDataFromXML(listXmlGelirlerveGiderler.get(0));
-					// dlgTemp.tabOnKayit.selectTab(0);
 					_dlgGelirlerveGiderler.setAnimationEnabled(true);
 					_dlgGelirlerveGiderler.center();
 					_dlgGelirlerveGiderler

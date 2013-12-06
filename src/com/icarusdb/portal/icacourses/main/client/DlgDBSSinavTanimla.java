@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -32,18 +33,20 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	public boolean _isInsert = true;
 	public long _id = -1;
 
-	private ListBox cbxBinaSekli;
+	private ListBox cbxSinavYeri;
 	private TextBox tctKota;
 	private DateBox dtpSinavTarihi;
 	private ListBox cbxOkulDurumu;
 	private ListBox cbxAlan;
-	private HorizontalPanel hzpanOtherBuilding;
+	public HorizontalPanel hzpanOtherBuilding;
 	private ListBox cbxUlke;
 	private ListBox cbxMahalleKoy;
 	private ListBox cbxSemt;
 	private ListBox cbxIlce;
 	private ListBox cbxIl;
 	private TextBox tctAdres;
+	private ListBox cbxSaat;
+	private ListBox cbxDakika;
 
 	public DlgDBSSinavTanimla(boolean isInsert, long id) {
 
@@ -77,9 +80,8 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		lblOkulDurumu.setStyleName("gwt-Bold");
 
 		cbxOkulDurumu = new ListBox();
-		flexTable.setWidget(0, 1, cbxOkulDurumu);
 		cbxOkulDurumu.addItem("1. Sınıf");
-		cbxOkulDurumu.addItem("2.. Sınıf");
+		cbxOkulDurumu.addItem("2. Sınıf");
 		cbxOkulDurumu.addItem("3. Sınıf");
 		cbxOkulDurumu.addItem("4. Sınıf");
 		cbxOkulDurumu.addItem("5. Sınıf");
@@ -92,6 +94,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxOkulDurumu.addItem("Lise Mezun");
 		cbxOkulDurumu.addItem("Üniversite Mezun");
 		cbxOkulDurumu.addItem("12. Sınıf");
+		flexTable.setWidget(0, 1, cbxOkulDurumu);
 		cbxOkulDurumu.setStyleName("gwt-ComboBox1");
 		cbxOkulDurumu.setSize("174px", "22px");
 
@@ -109,18 +112,66 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxAlan.setStyleName("gwt-ComboBox1");
 		cbxAlan.setSize("174px", "22px");
 
-		Label lblSnavTarihi = new Label("Sınav Tarihi");
+		Label lblSnavTarihi = new Label("Sınav Tarihi/Zamanı");
 		flexTable.setWidget(2, 0, lblSnavTarihi);
 		lblSnavTarihi.setStyleName("gwt-Bold");
 
+		HorizontalPanel horizontalPanel_3 = new HorizontalPanel();
+		horizontalPanel_3
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		horizontalPanel_3
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		flexTable.setWidget(2, 1, horizontalPanel_3);
+
 		dtpSinavTarihi = new DateBox();
-		flexTable.setWidget(2, 1, dtpSinavTarihi);
+		horizontalPanel_3.add(dtpSinavTarihi);
 		dtpSinavTarihi.setStyleName("gwt-TextBox1");
 		dtpSinavTarihi
 				.addValueChangeHandler(new DtpSinavTarihiValueChangeHandler());
 		dtpSinavTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy-MM-dd HH:mm")));
+				.getFormat("yyyy-MM-dd")));
 		dtpSinavTarihi.setSize("172px", "14px");
+
+		cbxSaat = new ListBox();
+		cbxSaat.addItem("1");
+		cbxSaat.addItem("2");
+		cbxSaat.addItem("3");
+		cbxSaat.addItem("4");
+		cbxSaat.addItem("5");
+		cbxSaat.addItem("6");
+		cbxSaat.addItem("7");
+		cbxSaat.addItem("8");
+		cbxSaat.addItem("9");
+		cbxSaat.addItem("10");
+		cbxSaat.addItem("11");
+		cbxSaat.addItem("12");
+		cbxSaat.addItem("13");
+		cbxSaat.addItem("14");
+		cbxSaat.addItem("15");
+		cbxSaat.addItem("16");
+		cbxSaat.addItem("17");
+		cbxSaat.addItem("18");
+		cbxSaat.addItem("19");
+		cbxSaat.addItem("20");
+		cbxSaat.addItem("21");
+		cbxSaat.addItem("22");
+		cbxSaat.addItem("23");
+		cbxSaat.addItem("00");
+		horizontalPanel_3.add(cbxSaat);
+
+		Label lblNewLabel_5 = new Label(":");
+		lblNewLabel_5
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		lblNewLabel_5.setStyleName("gwt-Bold");
+		horizontalPanel_3.add(lblNewLabel_5);
+		lblNewLabel_5.setSize("14px", "23px");
+
+		cbxDakika = new ListBox();
+		cbxDakika.addItem("00");
+		cbxDakika.addItem("15");
+		cbxDakika.addItem("30");
+		cbxDakika.addItem("45");
+		horizontalPanel_3.add(cbxDakika);
 
 		Label lblNewLabel = new Label("Kota ( Kişi)");
 		flexTable.setWidget(3, 0, lblNewLabel);
@@ -131,17 +182,18 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		tctKota.setStyleName("gwt-TextBox1");
 		tctKota.setSize("172px", "14px");
 
-		Label lblBinaekli = new Label("Sınav Yeri");
-		flexTable.setWidget(4, 0, lblBinaekli);
-		lblBinaekli.setStyleName("gwt-Bold");
-		lblBinaekli.setSize("76px", "18px");
+		Label lblSinavYeri = new Label("Sınav Yeri");
+		flexTable.setWidget(4, 0, lblSinavYeri);
+		lblSinavYeri.setStyleName("gwt-Bold");
+		lblSinavYeri.setSize("76px", "18px");
 
-		cbxBinaSekli = new ListBox();
-		flexTable.setWidget(4, 1, cbxBinaSekli);
-		cbxBinaSekli.setStyleName("gwt-ComboBox1");
-		cbxBinaSekli.addItem("Dershane Binası");
-		cbxBinaSekli.addItem("Başka Bina");
-		cbxBinaSekli.setSize("174px", "22px");
+		cbxSinavYeri = new ListBox();
+		cbxSinavYeri.addChangeHandler(new CbxSinavYeriChangeHandler());
+		flexTable.setWidget(4, 1, cbxSinavYeri);
+		cbxSinavYeri.setStyleName("gwt-ComboBox1");
+		cbxSinavYeri.addItem("Dershane Binası");
+		cbxSinavYeri.addItem("Başka Bina");
+		cbxSinavYeri.setSize("174px", "22px");
 
 		hzpanOtherBuilding = new HorizontalPanel();
 		hzpanOtherBuilding.setVisible(false);
@@ -208,12 +260,16 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		Label lblAdres = new Label("Adres");
 		lblAdres.setStyleName("gwt-Bold");
 		flexTable_1.setWidget(5, 0, lblAdres);
-		lblAdres.setWidth("30%");
+		lblAdres.setWidth("20%");
 
 		tctAdres = new TextBox();
 		tctAdres.setStyleName("gwt-TextBox1");
 		flexTable_1.setWidget(5, 1, tctAdres);
 		tctAdres.setSize("60%", "54px");
+		flexTable_1.getCellFormatter().setVerticalAlignment(5, 0,
+				HasVerticalAlignment.ALIGN_TOP);
+		flexTable_1.getCellFormatter().setHorizontalAlignment(0, 0,
+				HasHorizontalAlignment.ALIGN_LEFT);
 
 		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
 		horizontalPanel_2.setSpacing(6);
@@ -430,27 +486,32 @@ public class DlgDBSSinavTanimla extends DialogBox {
 			String URLValue = Util.urlBase + "putdbssinavtanimla?";
 
 			URLValue = URLValue + "id=" + _id;
-			URLValue = URLValue + "&okul_durumu="
+			URLValue = URLValue + "&okul_adi="
 					+ cbxOkulDurumu.getValue(cbxOkulDurumu.getSelectedIndex());
-			URLValue = URLValue + "&alan="
+			URLValue = URLValue + "&alan_bilgisi="
 					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());
 			URLValue = URLValue + "&kota=" + tctKota.getText();
-			URLValue = URLValue + "&bina_sekli="
-					+ cbxBinaSekli.getValue(cbxBinaSekli.getSelectedIndex());
+			URLValue = URLValue + "&sinav_yeri="
+					+ cbxSinavYeri.getValue(cbxSinavYeri.getSelectedIndex());
 			URLValue = URLValue + "&ulke="
-					+ cbxUlke.getValue(cbxUlke.getSelectedIndex());
+					+ cbxUlke.getItemText(cbxUlke.getSelectedIndex());
 			URLValue = URLValue + "&il="
-					+ cbxUlke.getValue(cbxIl.getSelectedIndex());
+					+ cbxIl.getItemText(cbxIl.getSelectedIndex());
 			URLValue = URLValue + "&ilce="
-					+ cbxUlke.getValue(cbxIlce.getSelectedIndex());
+					+ cbxIlce.getItemText(cbxIlce.getSelectedIndex());
 			URLValue = URLValue + "&semt="
-					+ cbxSemt.getValue(cbxSemt.getSelectedIndex());
-			URLValue = URLValue + "&mahalle_koy="
-					+ cbxMahalleKoy.getValue(cbxMahalleKoy.getSelectedIndex());
+					+ cbxSemt.getItemText(cbxSemt.getSelectedIndex());
+			URLValue = URLValue
+					+ "&mahalle_koy="
+					+ cbxMahalleKoy.getItemText(cbxMahalleKoy
+							.getSelectedIndex());
 			URLValue = URLValue + "&adres=" + tctAdres.getText();
+			URLValue = URLValue + "&saat="
+					+ cbxSaat.getValue(cbxSaat.getSelectedIndex());
+			URLValue = URLValue + "&dakika="
+					+ cbxDakika.getValue(cbxDakika.getSelectedIndex());
 
-			DateTimeFormat dtf = DateTimeFormat
-					.getFormat("yyyy-MM-dd HH:mm:ss");
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 
 			URLValue = URLValue + "&sinav_tarihi="
 					+ dtf.format(dtpSinavTarihi.getValue());
@@ -474,14 +535,31 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	public void putDataFromXML(XMLDBSSinavTanimla xml) {
 
 		tctKota.setText(xml.kota);
+		tctAdres.setText(xml.adres);
 		cbxAlan.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxAlan,
 				xml.alan_bilgisi));
-		cbxBinaSekli.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxBinaSekli, xml.bina_sekli));
+		cbxSinavYeri.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxSinavYeri, xml.sinav_yeri));
+
+		hzpanOtherBuilding.setVisible((cbxSinavYeri.getSelectedIndex() == 1));
+
 		cbxOkulDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOkulDurumu, xml.okul_adi));
 
-		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss");
+		cbxUlke.setSelectedIndex(Util
+				.GetLBXSelectedTextIndex(cbxUlke, xml.ulke));
+		cbxSaat.setSelectedIndex(Util
+				.GetLBXSelectedTextIndex(cbxSaat, xml.saat));
+
+		cbxDakika.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxDakika,
+				xml.dakika));
+
+		cbxIl.setItemText(0, xml.il);
+		cbxIlce.setItemText(0, xml.ilce);
+		cbxSemt.setItemText(0, xml.semt);
+		cbxMahalleKoy.setItemText(0, xml.mahalle_koy);
+
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 		dtpSinavTarihi.setValue(dtf.parse(xml.sinav_tarihi));
 
 	}
@@ -505,6 +583,15 @@ public class DlgDBSSinavTanimla extends DialogBox {
 					cbxIlce.getItemText(cbxIlce.getSelectedIndex()),
 					cbxSemt.getItemText(cbxSemt.getSelectedIndex()),
 					cbxMahalleKoy);
+		}
+	}
+
+	private class CbxSinavYeriChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+
+			hzpanOtherBuilding
+					.setVisible((cbxSinavYeri.getSelectedIndex() == 1));
+
 		}
 	}
 }

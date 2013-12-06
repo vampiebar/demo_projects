@@ -1,11 +1,17 @@
 package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.Date;
+import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -109,20 +115,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		cbxİslemTipi.setSize("157px", "22px");
 
 		cbxKategoriler = new ListBox();
-		cbxKategoriler.addItem("Öğretmen");
-		cbxKategoriler.addItem("Fatura");
-		cbxKategoriler.addItem("Personel");
-		cbxKategoriler.addItem("Araç Gideri");
-		cbxKategoriler.addItem("Bina Bakım Onarım Giderleri");
-		cbxKategoriler.addItem("Demirbaş Giderleri");
-		cbxKategoriler.addItem("Fatura Giderleri");
-		cbxKategoriler.addItem("Kırtasiye Giderleri");
-		cbxKategoriler.addItem("Muhtelif Giderler");
-		cbxKategoriler.addItem("SGK - Vergi Giderleri");
-		cbxKategoriler.addItem("Temizlik Giderleri");
-		cbxKategoriler.addItem("Yayın Giderleri");
-		cbxKategoriler.addItem("Mutfak Gideri");
-		cbxKategoriler.addItem("Öğrenci Dışı Gelirler");
+		cbxKategoriler.addItem(" ");
 		cbxKategoriler.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxKategoriler, 155, 80);
 		cbxKategoriler.setSize("190px", "22px");
@@ -196,6 +189,59 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		tctAciklama.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctAciklama, 155, 349);
 		tctAciklama.setSize("188px", "48px");
+
+		if (!isDesignTime()) {
+
+			putKategoriAdiToCbx(cbxKategoriler);
+
+		}
+	}
+
+	private void putKategoriAdiToCbx(final ListBox lbxTemp) {
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getgelirgiderkategorileri");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("getgelirlervegiderler " +
+					// response.getText());
+
+					List<XMLGelirGiderKategorileri> xmlGelirGiderKategorileri = XMLGelirGiderKategorileri.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlGelirGiderKategorileri.size(); i++) {
+
+						lbxTemp.addItem(xmlGelirGiderKategorileri.get(i).kategori_adi);
+
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private boolean isDesignTime() {
+
+		return false;
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -207,13 +253,15 @@ public class DlgGelirlerveGiderler extends DialogBox {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putgelirlervegiderler?";
-			URLValue = URLValue + "islem_tipi="
-					+ cbxİslemTipi.getValue(cbxİslemTipi.getSelectedIndex());
 
+			URLValue = URLValue + "id=" + _id;
+
+			URLValue = URLValue + "&islem_tipi="
+					+ cbxİslemTipi.getValue(cbxİslemTipi.getSelectedIndex());
 			URLValue = URLValue
 					+ "&kategoriler="
-					+ cbxKategoriler
-							.getValue(cbxKategoriler.getSelectedIndex());
+					+ cbxKategoriler.getItemText(cbxKategoriler
+							.getSelectedIndex());
 			URLValue = URLValue + "&gelirler="
 					+ cbxGelirler.getValue(cbxGelirler.getSelectedIndex());
 			URLValue = URLValue + "&odeme_turu="
@@ -245,7 +293,8 @@ public class DlgGelirlerveGiderler extends DialogBox {
 	private class DtpTarihValueChangeHandler implements
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
-			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm");
+			DateTimeFormat dtf = DateTimeFormat
+					.getFormat("yyyy-MM-dd HH:mm:ss");
 			// Window.alert(dtf.format(dtpTarih.getValue()));
 		}
 	}
@@ -268,8 +317,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 				xml.gelirler));
 		cbxİslemTipi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxİslemTipi, xml.islem_tipi));
-		cbxKategoriler.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxKategoriler, xml.kategoriler));
+		cbxKategoriler.setItemText(0, xml.kategoriler);
 		cbxOdemeTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOdemeTuru, xml.odeme_turu));
 

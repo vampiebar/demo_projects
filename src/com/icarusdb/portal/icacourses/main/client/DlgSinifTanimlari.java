@@ -233,9 +233,93 @@ public class DlgSinifTanimlari extends DialogBox {
 		absolutePanel.add(btnKapat, 556, 497);
 		btnKapat.setSize("78px", "45px");
 		if (!isDesignTime()) {
+			putFizikselSinifAdiToCbx(cbxFizikselSinifAdi);
+
+			putKursZamaniToCbx(cbxKursZamani);
 
 			putEgitimTuruToCbx(cbxEgitimTuru);
+		}
 
+	}
+
+	private void putFizikselSinifAdiToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getfizikselsiniftanimlari");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("getdbssinavtanimla " + response.getText());
+
+					List<XMLFizikselSinifTanimlari> xmlFizikselSinifTanimlari = XMLFizikselSinifTanimlari.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlFizikselSinifTanimlari.size(); i++) {
+
+						lbxTemp.addItem(xmlFizikselSinifTanimlari.get(i).fiziksel_sinif_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private void putKursZamaniToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getkurszamanitanimlama");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLKursZamaniTanimlama> xmlKursZamaniTanimlama = XMLKursZamaniTanimlama.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlKursZamaniTanimlama.size(); i++) {
+
+						lbxTemp.addItem(xmlKursZamaniTanimlama.get(i).kurs_zamani);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -300,10 +384,12 @@ public class DlgSinifTanimlari extends DialogBox {
 			URLValue = URLValue + "&sinif_adi=" + tctSinifAdi.getText();
 			URLValue = URLValue
 					+ "&fiziksel_sinif_adi="
-					+ cbxFizikselSinifAdi.getValue(cbxFizikselSinifAdi
+					+ cbxFizikselSinifAdi.getItemText(cbxFizikselSinifAdi
 							.getSelectedIndex());
-			URLValue = URLValue + "&kurs_zamani="
-					+ cbxKursZamani.getValue(cbxKursZamani.getSelectedIndex());
+			URLValue = URLValue
+					+ "&kurs_zamani="
+					+ cbxKursZamani.getItemText(cbxKursZamani
+							.getSelectedIndex());
 			URLValue = URLValue + "&egitim_turu="
 					+ cbxEgitimTuru.getValue(cbxEgitimTuru.getSelectedIndex());
 			URLValue = URLValue + "&alan="
@@ -366,14 +452,12 @@ public class DlgSinifTanimlari extends DialogBox {
 		cbxDanismanOgretmen.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxDanismanOgretmen, xml.dan_ogretmen));
 
-		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxEgitimTuru, xml.egitim_turu));
-		cbxFizikselSinifAdi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxFizikselSinifAdi, xml.fiziksel_sinif_adi));
-		cbxKursZamani.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxKursZamani, xml.kurs_zamani));
+		cbxFizikselSinifAdi.setItemText(0, xml.fiziksel_sinif_adi);
+		cbxKursZamani.setItemText(0, xml.kurs_zamani);
+		cbxEgitimTuru.setItemText(0, xml.egitim_turu);
 
 		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
 		dtpBaslangicTarihi.setValue(dtf.parse(xml.baslangic_tarihi));
 		dtpBitisTarihi.setValue(dtf.parse(xml.bitis_tarihi));
 

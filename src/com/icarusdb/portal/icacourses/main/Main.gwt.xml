@@ -5,6 +5,12 @@
 	<inherits name="com.google.gwt.user.theme.standard.Standard"/>
 	
 	
+	<inherits name="com.google.gwt.i18n.I18N"/>
+ <!-- 	<inherits name='com.tractionsoftware.gwt.user.UTCDateTime'/> -->
+<!-- 	<inherits name='com.tractionsoftware.gwt.demostyle.DemoStyle'/> -->
+	      
+ 	
+	
 <!-- 	
 	<inherits name="com.google.gwt.i18n.I18N"/>
  	
@@ -26,7 +32,7 @@
 
 	
 	<entry-point class="com.icarusdb.portal.icacourses.main.client.Main"/>
-	
+	<!-- <extend-property name="locale" values="en"/> -->
 	
 	
 </module>

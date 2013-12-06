@@ -33,7 +33,7 @@ public class FizikselSinifTanimlari extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("807px", "434px");
+		absolutePanel.setSize("807px", "750px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
 		btnListeyiYenile.setStyleName("gwt-ButtonSave");
@@ -43,8 +43,8 @@ public class FizikselSinifTanimlari extends Composite {
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 437, 38);
-		btnYeniKayit.setSize("91px", "48px");
+		absolutePanel.add(btnYeniKayit, 450, 38);
+		btnYeniKayit.setSize("78px", "48px");
 
 		Button btnExceleAktar = new Button("Excel'e Aktar");
 		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");

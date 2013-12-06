@@ -21,7 +21,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.SingleSelectionModel;
 
@@ -29,11 +28,6 @@ public class KesinKayit extends Composite {
 	private TextBox tctAdi;
 	private TextBox tctSoyadi;
 	private TextBox tctTCKimlikNo;
-	private ListBox cbxETuru;
-	private ListBox cbxAlan;
-	private ListBox cbxKZamani;
-	private ListBox cbxSinif;
-	private ListBox cbxKayitDurumu;
 	private CellTable<XMLOnKayit> grdKesinKayit;
 	private Column<XMLOnKayit, ?> grdcAdi;
 	private Column<XMLOnKayit, ?> grdcSoyadi;
@@ -70,59 +64,6 @@ public class KesinKayit extends Composite {
 		absolutePanel.add(tctTCKimlikNo, 133, 64);
 		tctTCKimlikNo.setSize("142px", "16px");
 
-		Label lblEtrAlan = new Label("E.Türü - Alan");
-		lblEtrAlan.setStyleName("gwt-Bold");
-		absolutePanel.add(lblEtrAlan, 22, 105);
-
-		cbxETuru = new ListBox();
-		cbxETuru.setStyleName("gwt-ComboBox1");
-		cbxETuru.addItem("YGS HAZIRLIK");
-		cbxETuru.addItem("YGS/LYS HAZIRLIK");
-		cbxETuru.addItem("11.SINIF TAKVİYE");
-		cbxETuru.addItem("10.SINIF TAKVİYE");
-		cbxETuru.addItem("9.SINIF TAKVİYE");
-		cbxETuru.addItem("SBS HAZIRLIK");
-		cbxETuru.addItem("8.SINIF TAKVİYE");
-		cbxETuru.addItem("7.SINIF TAKVİYE");
-		cbxETuru.addItem("6.SINIF TAKVİYE");
-		cbxETuru.addItem("5.SINIF TAKVİYE");
-		cbxETuru.addItem("4.SINIF TAKVİYE");
-		absolutePanel.add(cbxETuru, 133, 99);
-		cbxETuru.setSize("144px", "25px");
-
-		cbxAlan = new ListBox();
-		cbxAlan.setStyleName("gwt-ComboBox1");
-		cbxAlan.addItem("ALAN YOK");
-		absolutePanel.add(cbxAlan, 296, 99);
-		cbxAlan.setSize("150px", "25px");
-
-		Label lblKzamanSnf = new Label("K.Zamanı - Sınıf");
-		lblKzamanSnf.setStyleName("gwt-Bold");
-		absolutePanel.add(lblKzamanSnf, 22, 141);
-
-		cbxKZamani = new ListBox();
-		cbxKZamani.setStyleName("gwt-ComboBox1");
-		cbxKZamani.addItem("HAFTA SONU ");
-		cbxKZamani.addItem("HAFTA İÇİ");
-		absolutePanel.add(cbxKZamani, 133, 135);
-		cbxKZamani.setSize("144px", "25px");
-
-		cbxSinif = new ListBox();
-		cbxSinif.setStyleName("gwt-ComboBox1");
-		cbxSinif.addItem("Lütfen Seçiniz");
-		absolutePanel.add(cbxSinif, 296, 135);
-		cbxSinif.setSize("150px", "25px");
-
-		Label lblKaytDurumu = new Label("Kayıt Durumu");
-		lblKaytDurumu.setStyleName("gwt-Bold");
-		absolutePanel.add(lblKaytDurumu, 22, 182);
-
-		cbxKayitDurumu = new ListBox();
-		cbxKayitDurumu.addItem("Kayıtlı Öğrencileri Göster");
-		cbxKayitDurumu.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxKayitDurumu, 133, 176);
-		cbxKayitDurumu.setSize("198px", "22px");
-
 		btnAra = new Button("ARA");
 		btnAra.setStyleName("gwt-ButonKapat");
 		btnAra.addClickHandler(new BtnAraClickHandler());
@@ -143,7 +84,7 @@ public class KesinKayit extends Composite {
 		btnKaydet.setSize("78px", "48px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 22, 224);
+		absolutePanel.add(horizontalPanel, 10, 151);
 		horizontalPanel.setSize("758px", "164px");
 
 		grdKesinKayit = new CellTable<XMLOnKayit>();

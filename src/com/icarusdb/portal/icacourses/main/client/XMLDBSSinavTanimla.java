@@ -27,8 +27,8 @@ public class XMLDBSSinavTanimla {
 	@Path("kota")
 	String kota;
 
-	@Path("bina_sekli")
-	String bina_sekli;
+	@Path("sinav_yeri")
+	String sinav_yeri;
 
 	@Path("ulke")
 	String ulke;
@@ -47,4 +47,10 @@ public class XMLDBSSinavTanimla {
 
 	@Path("adres")
 	String adres;
+
+	@Path("saat")
+	String saat;
+
+	@Path("dakika")
+	String dakika;
 }

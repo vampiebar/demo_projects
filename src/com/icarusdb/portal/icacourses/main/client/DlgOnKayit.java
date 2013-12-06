@@ -856,6 +856,7 @@ public class DlgOnKayit extends DialogBox {
 		if (!isDesignTime()) {
 			putIlToCbx(cbxOgrenciBilgileriIl, cbxAdresBilgileriIl,
 					cbxOgrenciKimlikBilgileriIl);
+			putKursZamaniToCbx(cbxKursZamani);
 
 			putDataToGrid();
 
@@ -879,6 +880,47 @@ public class DlgOnKayit extends DialogBox {
 			// }
 			//
 			// }, DoubleClickEvent.getType());
+		}
+
+	}
+
+	private void putKursZamaniToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getkurszamanitanimlama");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLKursZamaniTanimlama> xmlKursZamaniTanimlama = XMLKursZamaniTanimlama.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlKursZamaniTanimlama.size(); i++) {
+
+						lbxTemp.addItem(xmlKursZamaniTanimlama.get(i).kurs_zamani);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -1245,8 +1287,7 @@ public class DlgOnKayit extends DialogBox {
 				cbxEgitimTuru, xml.egitim_turu));
 		cbxAlan.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxAlan, xml.alan));
-		cbxKursZamani.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxKursZamani, xml.kurs_zamani));
+		cbxKursZamani.setItemText(0, xml.kurs_zamani);
 		cbxGorusmeSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxGorusmeSinif, xml.gorusme_sinif));
 		cbxIndirimturu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
@@ -1331,8 +1372,10 @@ public class DlgOnKayit extends DialogBox {
 					+ cbxEgitimTuru.getValue(cbxEgitimTuru.getSelectedIndex());
 			URLValue = URLValue + "&alan="
 					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());
-			URLValue = URLValue + "&kurs_zamani="
-					+ cbxKursZamani.getValue(cbxKursZamani.getSelectedIndex());
+			URLValue = URLValue
+					+ "&kurs_zamani="
+					+ cbxKursZamani.getItemText(cbxKursZamani
+							.getSelectedIndex());
 			URLValue = URLValue
 					+ "&gorusme_sinif="
 					+ cbxGorusmeSinif.getValue(cbxGorusmeSinif

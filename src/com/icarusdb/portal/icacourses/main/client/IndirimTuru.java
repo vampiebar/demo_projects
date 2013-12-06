@@ -138,7 +138,6 @@ public class IndirimTuru extends Composite {
 					_dlgIndirimTuru = new DlgIndirimTuru(false, new Long(id)
 							.longValue());
 					_dlgIndirimTuru.putDataFromXML(listXmlIndirimTuru.get(0));
-					// dlgTemp.tabOnKayit.selectTab(0);
 					_dlgIndirimTuru.setAnimationEnabled(true);
 					_dlgIndirimTuru.center();
 

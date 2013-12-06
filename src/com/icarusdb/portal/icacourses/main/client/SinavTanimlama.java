@@ -70,7 +70,7 @@ public class SinavTanimlama extends Composite {
 		column_1 = new TextColumn<XMLSinavTanimlama>() {
 			@Override
 			public String getValue(XMLSinavTanimlama object) {
-				return (object.tarih);
+				return (object.tarih + " " + object.saat + ":" + object.dakika);
 			}
 		};
 		grdSinavTanimlama.addColumn(column_1, "Sınav Tarihi");

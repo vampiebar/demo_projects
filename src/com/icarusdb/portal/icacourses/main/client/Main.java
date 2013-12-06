@@ -103,7 +103,7 @@ public class Main implements EntryPoint {
 		verticalPanel.setStyleName("gwt-DialogBackGround");
 		verticalPanel.setSpacing(10);
 		rootPanel.add(verticalPanel, 10, 96);
-		verticalPanel.setSize("250px", "490px");
+		verticalPanel.setSize("269px", "490px");
 
 		Label lblEitimDnemi = new Label("Eğitim Dönemi:");
 		lblEitimDnemi.setStyleName("gwt-Bold");
@@ -117,11 +117,11 @@ public class Main implements EntryPoint {
 		comboBox.setVisibleItemCount(1);
 		verticalPanel.add(comboBox);
 		verticalPanel.setCellHeight(comboBox, "10");
-		comboBox.setSize("236px", "26px");
+		comboBox.setSize("249px", "26px");
 
 		DecoratedStackPanel decoratedStackPanel = new DecoratedStackPanel();
 		verticalPanel.add(decoratedStackPanel);
-		decoratedStackPanel.setSize("238px", "353px");
+		decoratedStackPanel.setSize("249px", "353px");
 
 		vtpanKayitIslemleri = new VerticalPanel();
 		vtpanKayitIslemleri
@@ -148,7 +148,7 @@ public class Main implements EntryPoint {
 		btnMenuKesinKayit.setStyleName("gwt-MenuButton");
 		btnMenuKesinKayit.addClickHandler(new BtnMenuKesinKayitClickHandler());
 		vtpanKayitIslemleri.add(btnMenuKesinKayit);
-		btnMenuKesinKayit.setSize("60%", "26px");
+		btnMenuKesinKayit.setSize("60%", "24px");
 
 		vtpanOgrenciIsleri = new VerticalPanel();
 		vtpanOgrenciIsleri
@@ -1009,7 +1009,7 @@ public class Main implements EntryPoint {
 
 			smpanMain.clear();
 
-			smpanMain.add(new KurumsalBilgiler());
+			smpanMain.add(new KurumsalBilgiler(false, -1));
 			scrollToTop();
 
 		}

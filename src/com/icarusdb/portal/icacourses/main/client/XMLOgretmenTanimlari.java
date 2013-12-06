@@ -57,4 +57,24 @@ public class XMLOgretmenTanimlari {
 	@Path("durum")
 	String durum;
 
+	@Path("pazartesi")
+	String pazartesi;
+
+	@Path("sali")
+	String sali;
+
+	@Path("carsamba")
+	String carsamba;
+
+	@Path("persembe")
+	String persembe;
+
+	@Path("cuma")
+	String cuma;
+
+	@Path("cumartesi")
+	String cumartesi;
+
+	@Path("pazar")
+	String pazar;
 }

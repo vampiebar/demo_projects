@@ -167,7 +167,6 @@ public class KonuTanimlari extends Composite {
 							new Long(id).longValue());
 					_dlgKonuTanimlari.putDataFromXML(listXmlKonuTanimlari
 							.get(0));
-					// dlgTemp.tabOnKayit.selectTab(0);
 					_dlgKonuTanimlari.setAnimationEnabled(true);
 					_dlgKonuTanimlari.center();
 					_dlgKonuTanimlari

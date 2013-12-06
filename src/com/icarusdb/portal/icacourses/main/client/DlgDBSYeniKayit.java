@@ -19,7 +19,6 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
@@ -557,14 +556,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOkulDurumu.setSize("132px", "22px");
 
 		cbxAlanbilgisi = new ListBox();
-		cbxAlanbilgisi.addItem("a");
-		cbxAlanbilgisi.addItem("b");
+		cbxAlanbilgisi.addItem(" ");
 		cbxAlanbilgisi.setStyleName("gwt-ComboBox1");
 		absolutePanel_3.add(cbxAlanbilgisi, 126, 64);
 		cbxAlanbilgisi.setSize("132px", "22px");
 
 		cbxSinavTarihi = new ListBox();
-		cbxSinavTarihi.addItem("2013-11-24");
+		cbxSinavTarihi.addItem(" ");
 		cbxSinavTarihi.setStyleName("gwt-ComboBox1");
 		absolutePanel_3.add(cbxSinavTarihi, 126, 107);
 		cbxSinavTarihi.setSize("132px", "22px");
@@ -666,7 +664,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 					cbxAdresBilgileriIl);
 
 			putSinavTarihleriToCbx(cbxSinavTarihi);
-
+			putAlanBilgisiToCbx(cbxAlanbilgisi);
 			putDataToGrid();
 
 			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
@@ -691,6 +689,47 @@ public class DlgDBSYeniKayit extends DialogBox {
 		}
 	}
 
+	private void putAlanBilgisiToCbx(final ListBox lbxTemp) {
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getdbssinavtanimla");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("getdbssinavtanimla " + response.getText());
+
+					List<XMLDBSSinavTanimla> xmlDBSSinavTanimla = XMLDBSSinavTanimla.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlDBSSinavTanimla.size(); i++) {
+
+						lbxTemp.addItem(xmlDBSSinavTanimla.get(i).alan_bilgisi);
+
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
 	private void putSinavTarihleriToCbx(final ListBox lbxTemp) {
 
 		lbxTemp.clear();
@@ -710,14 +749,16 @@ public class DlgDBSYeniKayit extends DialogBox {
 				public void onResponseReceived(Request request,
 						Response response) {
 
-					Window.alert("getdbssinavtanimla " + response.getText());
+					// Window.alert("getdbssinavtanimla " + response.getText());
 
 					List<XMLDBSSinavTanimla> xmlDBSSinavTanimla = XMLDBSSinavTanimla.XML
 							.readList(response.getText());
 
 					for (int i = 0; i < xmlDBSSinavTanimla.size(); i++) {
 
-						lbxTemp.addItem(xmlDBSSinavTanimla.get(i).sinav_tarihi);
+						lbxTemp.addItem(xmlDBSSinavTanimla.get(i).sinav_tarihi
+								+ " " + xmlDBSSinavTanimla.get(i).saat + ":"
+								+ xmlDBSSinavTanimla.get(i).dakika);
 
 					}
 
@@ -1137,10 +1178,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 				cbxOgrenciBilgileriSinif, xml.sinif));
 		cbxOkulDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOkulDurumu, xml.okul_durumu));
-		cbxAlanbilgisi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxAlanbilgisi, xml.alan_bilgisi));
-		cbxSinavTarihi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxSinavTarihi, xml.sinav_tarihi));
+		cbxAlanbilgisi.setItemText(0, xml.alan_bilgisi);
+		cbxSinavTarihi.setItemText(0, xml.sinav_tarihi);
 
 		cbxOgrenciBilgileriIl.setItemText(0, xml.ogrenci_bilgileri_il);
 		cbxOgrenciBilgileriIlce.setItemText(0, xml.ogrenci_bilgileri_ilce);

@@ -39,17 +39,17 @@ public class DlgIndirimTuru extends DialogBox {
 		Label lblIndirimTr = new Label("İndirim Türü");
 		lblIndirimTr.setStyleName("gwt-Bold");
 		absolutePanel.add(lblIndirimTr, 10, 52);
-		lblIndirimTr.setSize("78px", "18px");
+		lblIndirimTr.setSize("105px", "18px");
 
 		Label lblInidirmekli = new Label("İnidirm Şekli");
 		lblInidirmekli.setStyleName("gwt-Bold");
 		absolutePanel.add(lblInidirmekli, 10, 93);
-		lblInidirmekli.setSize("92px", "18px");
+		lblInidirmekli.setSize("105px", "18px");
 
 		Label lblIndrmMiktar = new Label("İndirim Miktarı");
 		lblIndrmMiktar.setStyleName("gwt-Bold");
 		absolutePanel.add(lblIndrmMiktar, 10, 136);
-		lblIndrmMiktar.setSize("92px", "18px");
+		lblIndrmMiktar.setSize("105px", "18px");
 
 		tctIndirimTuru = new TextBox();
 		tctIndirimTuru.setStyleName("gwt-TextBox1");

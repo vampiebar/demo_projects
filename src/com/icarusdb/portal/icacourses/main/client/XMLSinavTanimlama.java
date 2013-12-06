@@ -30,4 +30,10 @@ public class XMLSinavTanimlama {
 	@Path("sablon_seciniz")
 	String sablon_seciniz;
 
+	@Path("saat")
+	String saat;
+
+	@Path("dakika")
+	String dakika;
+
 }

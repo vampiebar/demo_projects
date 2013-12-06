@@ -50,17 +50,17 @@ public class DlgUniteTanimlari extends DialogBox {
 
 		Label lblAlan = new Label("Alan");
 		lblAlan.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAlan, 11, 77);
+		absolutePanel.add(lblAlan, 10, 80);
 
 		Label lblDers = new Label("Ders");
 		lblDers.setStyleName("gwt-Bold");
-		absolutePanel.add(lblDers, 10, 101);
-		lblDers.setSize("27px", "25px");
+		absolutePanel.add(lblDers, 9, 110);
+		lblDers.setSize("27px", "16px");
 
 		Label lblniteAd = new Label("Ünite Adı");
 		lblniteAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblniteAd, 10, 132);
-		lblniteAd.setSize("67px", "18px");
+		absolutePanel.add(lblniteAd, 10, 138);
+		lblniteAd.setSize("67px", "16px");
 
 		tctUniteAdi = new TextBox();
 		tctUniteAdi.setStyleName("gwt-TextBox1");
@@ -191,7 +191,6 @@ public class DlgUniteTanimlari extends DialogBox {
 				xml.alan_adi));
 		cbxDers.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxDers,
 				xml.ders_adi));
-		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxEgitimTuru, xml.egitim_turu_adi));
+		cbxEgitimTuru.setItemText(0, xml.egitim_turu_adi);
 	}
 }

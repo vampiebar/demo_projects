@@ -34,7 +34,7 @@ public class GelirGiderKategorileri extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("807px", "458px");
+		absolutePanel.setSize("807px", "750px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
 		btnListeyiYenile.setStyleName("gwt-ButtonSave");
