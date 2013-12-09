@@ -117,6 +117,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		lblSnavTarihi.setStyleName("gwt-Bold");
 
 		HorizontalPanel horizontalPanel_3 = new HorizontalPanel();
+		horizontalPanel_3.setSpacing(2);
 		horizontalPanel_3
 				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		horizontalPanel_3

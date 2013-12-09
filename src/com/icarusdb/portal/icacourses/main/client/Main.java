@@ -1088,7 +1088,7 @@ public class Main implements EntryPoint {
 
 			smpanMain.clear();
 
-			smpanMain.add(new SozlesmeMaddeleri());
+			smpanMain.add(new SozlesmeMaddeleri(false, -1));
 			scrollToTop();
 
 		}

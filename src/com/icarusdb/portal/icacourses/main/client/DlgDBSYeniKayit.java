@@ -329,6 +329,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		Label lblNewLabel_6 = new Label("İl");
 		lblNewLabel_6.setStyleName("gwt-Bold");
 		absolutePanel.add(lblNewLabel_6, 10, 166);
+		lblNewLabel_6.setSize("20px", "16px");
 
 		Label lblNewLabel_7 = new Label("İlçe");
 		lblNewLabel_7.setStyleName("gwt-Bold");
@@ -370,7 +371,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		dtpVerilisTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd")));
 		dtpVerilisTarihi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(dtpVerilisTarihi, 130, 547);
+		absolutePanel.add(dtpVerilisTarihi, 130, 545);
 		dtpVerilisTarihi.setSize("158px", "14px");
 
 		Label lblNewLabel_12 = new Label("Veriliş Tarihi");
@@ -389,37 +390,37 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 		tctMahalleKoy = new TextBox();
 		tctMahalleKoy.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctMahalleKoy, 130, 241);
+		absolutePanel.add(tctMahalleKoy, 130, 243);
 		tctMahalleKoy.setSize("158px", "14px");
 
 		tctCiltNo = new TextBox();
 		tctCiltNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctCiltNo, 130, 282);
+		absolutePanel.add(tctCiltNo, 130, 284);
 		tctCiltNo.setSize("158px", "14px");
 
 		tctAileSiraNo = new TextBox();
 		tctAileSiraNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAileSiraNo, 130, 322);
+		absolutePanel.add(tctAileSiraNo, 130, 324);
 		tctAileSiraNo.setSize("158px", "14px");
 
 		tctSiraNo = new TextBox();
 		tctSiraNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSiraNo, 130, 360);
+		absolutePanel.add(tctSiraNo, 130, 362);
 		tctSiraNo.setSize("158px", "14px");
 
 		tctVerildigiYer = new TextBox();
 		tctVerildigiYer.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVerildigiYer, 130, 432);
+		absolutePanel.add(tctVerildigiYer, 130, 434);
 		tctVerildigiYer.setSize("158px", "14px");
 
 		tctVerilisNedeni = new TextBox();
 		tctVerilisNedeni.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVerilisNedeni, 130, 470);
+		absolutePanel.add(tctVerilisNedeni, 130, 472);
 		tctVerilisNedeni.setSize("158px", "14px");
 
 		tctKayitNo = new TextBox();
 		tctKayitNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctKayitNo, 130, 505);
+		absolutePanel.add(tctKayitNo, 130, 507);
 		tctKayitNo.setSize("158px", "14px");
 
 		cbxOgrenciKimlikBilgileriUlke = new ListBox();
@@ -433,13 +434,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOgrenciKimlikBilgileriIl
 				.addChangeHandler(new CbxOgrenciKimlikBilgileriIlChangeHandler());
 		cbxOgrenciKimlikBilgileriIl.addItem(" ");
-		absolutePanel.add(cbxOgrenciKimlikBilgileriIl, 130, 162);
+		absolutePanel.add(cbxOgrenciKimlikBilgileriIl, 130, 160);
 		cbxOgrenciKimlikBilgileriIl.setSize("162px", "22px");
 
 		cbxOgrenciKimlikBilgileriIlce = new ListBox();
 		cbxOgrenciKimlikBilgileriIlce.setStyleName("gwt-ComboBox1");
 		cbxOgrenciKimlikBilgileriIlce.addItem(" ");
-		absolutePanel.add(cbxOgrenciKimlikBilgileriIlce, 130, 200);
+		absolutePanel.add(cbxOgrenciKimlikBilgileriIlce, 130, 194);
 		cbxOgrenciKimlikBilgileriIlce.setSize("162px", "22px");
 
 		VerticalPanel verticalPanel_2 = new VerticalPanel();
@@ -498,20 +499,20 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxAdresBilgileriIlce
 				.addChangeHandler(new CbxAdresBilgileriIlceChangeHandler());
 		cbxAdresBilgileriIlce.addItem(" ");
-		absolutePanel_2.add(cbxAdresBilgileriIlce, 125, 118);
+		absolutePanel_2.add(cbxAdresBilgileriIlce, 125, 106);
 		cbxAdresBilgileriIlce.setSize("156px", "22px");
 
 		cbxSemt = new ListBox();
 		cbxSemt.setStyleName("gwt-ComboBox1");
 		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
 		cbxSemt.addItem(" ");
-		absolutePanel_2.add(cbxSemt, 125, 152);
+		absolutePanel_2.add(cbxSemt, 125, 144);
 		cbxSemt.setSize("156px", "22px");
 
 		cbxMahalle = new ListBox();
 		cbxMahalle.setStyleName("gwt-ComboBox1");
 		cbxMahalle.addItem(" ");
-		absolutePanel_2.add(cbxMahalle, 125, 193);
+		absolutePanel_2.add(cbxMahalle, 125, 191);
 		cbxMahalle.setSize("220px", "22px");
 
 		tctSokakveNo = new TextBox();

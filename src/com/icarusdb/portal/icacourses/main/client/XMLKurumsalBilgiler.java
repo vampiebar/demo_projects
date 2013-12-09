@@ -27,8 +27,8 @@ public class XMLKurumsalBilgiler {
 	@Path("vergi_no")
 	String vergi_no;
 
-	@Path("yönetici_adi")
-	String yönetici_adi;
+	@Path("yonetici_adi")
+	String yonetici_adi;
 
 	@Path("yonetici_tel")
 	String yonetici_tel;

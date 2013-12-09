@@ -11,15 +11,14 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.widget.client.TextButton;
 
 public class KurumsalBilgiler extends Composite {
 
@@ -40,7 +39,6 @@ public class KurumsalBilgiler extends Composite {
 	private TextBox tctYoneticiTel;
 	private TextBox tctMudur;
 	private TextBox tctMudurYardimcisi;
-	private TextBox tctLogo;
 	private TextBox tctTelefon;
 	private TextBox tctFaks;
 	private TextBox tctEMail;
@@ -84,27 +82,27 @@ public class KurumsalBilgiler extends Composite {
 		tctSubeAdiKisa = new TextBox();
 		tctSubeAdiKisa.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctSubeAdiKisa, 138, 89);
-		tctSubeAdiKisa.setSize("143px", "16px");
+		tctSubeAdiKisa.setSize("166px", "16px");
 
 		tctSubeResmiAdi = new TextBox();
 		tctSubeResmiAdi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctSubeResmiAdi, 138, 127);
-		tctSubeResmiAdi.setSize("143px", "16px");
+		tctSubeResmiAdi.setSize("166px", "16px");
 
 		tctSirketAdi = new TextBox();
 		tctSirketAdi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctSirketAdi, 138, 168);
-		tctSirketAdi.setSize("143px", "16px");
+		tctSirketAdi.setSize("166px", "16px");
 
 		tctVergiDairesi = new TextBox();
 		tctVergiDairesi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctVergiDairesi, 138, 208);
-		tctVergiDairesi.setSize("143px", "16px");
+		tctVergiDairesi.setSize("166px", "16px");
 
 		tctVergiNo = new TextBox();
 		tctVergiNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctVergiNo, 138, 241);
-		tctVergiNo.setSize("143px", "16px");
+		tctVergiNo.setSize("166px", "16px");
 
 		Label lblYneticiAd = new Label("Yönetici Adı");
 		lblYneticiAd.setStyleName("gwt-Bold");
@@ -125,36 +123,27 @@ public class KurumsalBilgiler extends Composite {
 
 		Label lblLogopng = new Label("Logo (png)");
 		lblLogopng.setStyleName("gwt-Bold");
-		absolutePanel.add(lblLogopng, 354, 241);
+		absolutePanel.add(lblLogopng, 357, 241);
 
 		tctYoneticiAdi = new TextBox();
 		tctYoneticiAdi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctYoneticiAdi, 499, 89);
-		tctYoneticiAdi.setSize("143px", "16px");
+		tctYoneticiAdi.setSize("164px", "16px");
 
 		tctYoneticiTel = new TextBox();
 		tctYoneticiTel.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctYoneticiTel, 499, 127);
-		tctYoneticiTel.setSize("143px", "16px");
+		tctYoneticiTel.setSize("164px", "16px");
 
 		tctMudur = new TextBox();
 		tctMudur.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctMudur, 499, 168);
-		tctMudur.setSize("143px", "16px");
+		tctMudur.setSize("164px", "16px");
 
 		tctMudurYardimcisi = new TextBox();
 		tctMudurYardimcisi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctMudurYardimcisi, 499, 208);
-		tctMudurYardimcisi.setSize("143px", "16px");
-
-		tctLogo = new TextBox();
-		tctLogo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctLogo, 499, 241);
-		tctLogo.setSize("143px", "16px");
-
-		TextButton txtbtnNewButton = new TextButton("Seç");
-		absolutePanel.add(txtbtnNewButton, 661, 241);
-		txtbtnNewButton.setSize("94px", "25px");
+		tctMudurYardimcisi.setSize("164px", "16px");
 
 		Label lblKurumsalBilgiler = new Label("Kurumsal Bilgiler");
 		absolutePanel.add(lblKurumsalBilgiler, 10, 49);
@@ -190,50 +179,50 @@ public class KurumsalBilgiler extends Composite {
 		cbxUlke.addItem("TÜRKİYE");
 		cbxUlke.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxUlke, 138, 331);
-		cbxUlke.setSize("158px", "24px");
+		cbxUlke.setSize("168px", "25px");
 
 		cbxIl = new ListBox();
 		cbxIl.addChangeHandler(new CbxIlChangeHandler());
 		cbxIl.addItem(" ");
 		cbxIl.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxIl, 138, 365);
-		cbxIl.setSize("158px", "24px");
+		cbxIl.setSize("168px", "25px");
 
 		cbxIlce = new ListBox();
 		cbxIlce.addChangeHandler(new CbxIlceChangeHandler());
 		cbxIlce.addItem(" ");
 		cbxIlce.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxIlce, 138, 397);
-		cbxIlce.setSize("158px", "24px");
+		cbxIlce.setSize("168px", "25px");
 
 		cbxSemt = new ListBox();
 		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
 		cbxSemt.addItem(" ");
 		cbxSemt.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxSemt, 138, 436);
-		cbxSemt.setSize("158px", "24px");
+		cbxSemt.setSize("168px", "25px");
 
 		cbxMahalleKoy = new ListBox();
 		cbxMahalleKoy.addItem(" ");
 		cbxMahalleKoy.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxMahalleKoy, 138, 471);
-		cbxMahalleKoy.setSize("160px", "24px");
+		cbxMahalleKoy.setSize("168px", "25px");
 
 		Label lblTelefon = new Label("Telefon");
 		lblTelefon.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTelefon, 357, 337);
+		absolutePanel.add(lblTelefon, 357, 340);
 
 		Label lblFaks = new Label("Faks");
 		lblFaks.setStyleName("gwt-Bold");
-		absolutePanel.add(lblFaks, 357, 371);
+		absolutePanel.add(lblFaks, 357, 374);
 
 		Label lblNewLabel_1 = new Label("E-Mail");
 		lblNewLabel_1.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_1, 357, 403);
+		absolutePanel.add(lblNewLabel_1, 357, 406);
 
 		Label lblAdres = new Label("Adres");
 		lblAdres.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAdres, 357, 449);
+		absolutePanel.add(lblAdres, 357, 445);
 
 		tctTelefon = new TextBox();
 		tctTelefon.setStyleName("gwt-TextBox1");
@@ -252,7 +241,7 @@ public class KurumsalBilgiler extends Composite {
 
 		tctAdres = new TextArea();
 		tctAdres.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAdres, 458, 452);
+		absolutePanel.add(tctAdres, 458, 445);
 		tctAdres.setSize("236px", "61px");
 
 		Button btnKaydet = new Button("Kaydet");
@@ -260,6 +249,10 @@ public class KurumsalBilgiler extends Composite {
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		absolutePanel.add(btnKaydet, 605, 541);
 		btnKaydet.setSize("78px", "48px");
+
+		FileUpload fileUpload = new FileUpload();
+		absolutePanel.add(fileUpload, 499, 241);
+		fileUpload.setSize("217px", "22px");
 
 		if (!isDesignTime()) {
 			getKurumsalBilgiler(1);
@@ -478,7 +471,7 @@ public class KurumsalBilgiler extends Composite {
 		} catch (RequestException e) {
 			// displayError("Couldn't retrieve JSON");
 
-			Window.alert(e.getMessage() + "ERROR");
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -493,6 +486,7 @@ public class KurumsalBilgiler extends Composite {
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putkurumsalbilgiler?";
+
 			URLValue = URLValue + "id=" + _id;
 
 			URLValue = URLValue + "&sube_kisa_adi=" + tctSubeAdiKisa.getText();
@@ -504,19 +498,21 @@ public class KurumsalBilgiler extends Composite {
 			URLValue = URLValue + "&ulke="
 					+ cbxUlke.getValue(cbxUlke.getSelectedIndex());
 			URLValue = URLValue + "&il="
-					+ cbxIl.getValue(cbxIl.getSelectedIndex());
+					+ cbxIl.getItemText(cbxIl.getSelectedIndex());
 			URLValue = URLValue + "&ilce="
-					+ cbxIlce.getValue(cbxIlce.getSelectedIndex());
+					+ cbxIlce.getItemText(cbxIlce.getSelectedIndex());
 			URLValue = URLValue + "&semt="
-					+ cbxSemt.getValue(cbxSemt.getSelectedIndex());
-			URLValue = URLValue + "&mahalle_koy="
-					+ cbxMahalleKoy.getValue(cbxMahalleKoy.getSelectedIndex());
+					+ cbxSemt.getItemText(cbxSemt.getSelectedIndex());
+			URLValue = URLValue
+					+ "&mahalle_koy="
+					+ cbxMahalleKoy.getItemText(cbxMahalleKoy
+							.getSelectedIndex());
 			URLValue = URLValue + "&yonetici_adi=" + tctYoneticiAdi.getText();
 			URLValue = URLValue + "&yonetici_tel=" + tctYoneticiTel.getText();
 			URLValue = URLValue + "&mudur=" + tctMudur.getText();
 			URLValue = URLValue + "&mudur_yardimcisi="
 					+ tctMudurYardimcisi.getText();
-			URLValue = URLValue + "&logo=" + tctLogo.getText();
+			// URLValue = URLValue + "&logo=" + tctLogo.getText();
 			URLValue = URLValue + "&telefon=" + tctTelefon.getText();
 			URLValue = URLValue + "&faks=" + tctFaks.getText();
 			URLValue = URLValue + "&email=" + tctEMail.getText();
@@ -543,14 +539,27 @@ public class KurumsalBilgiler extends Composite {
 	}
 
 	public void putDataFromXML(XMLKurumsalBilgiler xml) {
-
 		tctSubeResmiAdi.setText(xml.sube_resmi_adi);
 		tctSubeAdiKisa.setText(xml.sube_kisa_adi);
 		tctAdres.setText(xml.adres);
 		tctEMail.setText(xml.email);
 		tctFaks.setText(xml.faks);
 		tctMudur.setText(xml.mudur);
+		tctMudurYardimcisi.setText(xml.mudur_yardimcisi);
+		tctYoneticiAdi.setText(xml.yonetici_adi);
 		tctYoneticiTel.setText(xml.yonetici_tel);
+		tctSirketAdi.setText(xml.sirket_adi);
+		tctTelefon.setText(xml.telefon);
+		tctVergiDairesi.setText(xml.vergi_dairesi);
+		tctVergiNo.setText(xml.vergi_no);
+
+		cbxUlke.setSelectedIndex(Util
+				.GetLBXSelectedTextIndex(cbxUlke, xml.ulke));
+
+		cbxIl.setItemText(0, xml.il);
+		cbxIlce.setItemText(0, xml.ilce);
+		cbxSemt.setItemText(0, xml.semt);
+		cbxMahalleKoy.setItemText(0, xml.mahalle_koy);
 
 	}
 

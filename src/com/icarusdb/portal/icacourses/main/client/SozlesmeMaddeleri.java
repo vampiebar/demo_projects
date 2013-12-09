@@ -1,5 +1,14 @@
 package com.icarusdb.portal.icacourses.main.client;
 
+import java.util.List;
+
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -8,8 +17,14 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBoxBase;
 
 public class SozlesmeMaddeleri extends Composite {
+	private TextArea tctSozlesmeMaddeleri;
+	public boolean _isInsert = true;
+	public long _id = -1;
 
-	public SozlesmeMaddeleri() {
+	public SozlesmeMaddeleri(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
@@ -31,17 +46,84 @@ public class SozlesmeMaddeleri extends Composite {
 		absolutePanel.add(lblSzlemeMaddelri, 43, 92);
 
 		Button btnKaydet = new Button("New button");
+		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.setText("Kaydet");
 		absolutePanel.add(btnKaydet, 647, 530);
 		btnKaydet.setSize("69px", "36px");
 
-		TextArea tctSozlesmeMaddeleri = new TextArea();
+		tctSozlesmeMaddeleri = new TextArea();
 		absolutePanel.add(tctSozlesmeMaddeleri, 35, 161);
 		tctSozlesmeMaddeleri.setSize("675px", "328px");
 		tctSozlesmeMaddeleri.setStyleName("gwt-TextBox1");
 		tctSozlesmeMaddeleri.setTextAlignment(TextBoxBase.ALIGN_LEFT);
-		tctSozlesmeMaddeleri
-				.setText("    ALYA ÖĞRETİM KURUMLARI TİC LTD ŞTİ.  ÖĞRENCİ KAYIT SÖZLEŞMESİ\r\n\r\n\r\n \tKaydını sildirmek isteyen öğrenciye verilen indirimler iptal edilir. Kaydı silinen  öğrencimizin  velisi, öğrencisinin almış olduğu toplam ders saatini, 60 TL'den çarpılarak  hesaplanacağını  kabul eder. \r\n\r\n\tÖğrencinin almış olduğu hizmetlerin toplam ücreti, ödemiş olduğu ücretten düşülür.  Öğrencinin alacağı ücret çıkarsa kendisine 2 hafta içinde ödeme yapılır. Öğrencinin  vereceği ücret varsa kendisinden tahsil edilir.");
+
+		if (!isDesignTime()) {
+			getSozlesmeMaddeleri(1);
+
+		}
+
+	}
+
+	private void getSozlesmeMaddeleri(long id) {
+		String urlWithParameters = Util.urlBase + "getsozlesmemaddeleri?id="
+				+ id;
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					List<XMLSozlesmeMaddeleri> listXmlSozlesmeMaddeleri = XMLSozlesmeMaddeleri.XML
+							.readList(response.getText());
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					putDataFromXML(listXmlSozlesmeMaddeleri.get(0));
+
+				}
+
+				private void putDataFromXML(XMLSozlesmeMaddeleri xml) {
+					tctSozlesmeMaddeleri.setText(xml.sozlesme);
+
+				}
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private boolean isDesignTime() {
+
+		return false;
+	}
+
+	private class BtnKaydetClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			String URLValue = Util.urlBase + "putsozlesmemaddeleri?";
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&sozlesme=" + tctSozlesmeMaddeleri.getText();
+
+			// Window.alert(URLValue);
+
+			new Util().sendRequest(URLValue,
+					"SÖZLEŞME MADDELERİ BAŞARI İLE KAYIT EDİLDİ",
+					"SÖZLEŞME MADDELERİ KAYIT EDİLEMEDİ");
+		}
 	}
 }

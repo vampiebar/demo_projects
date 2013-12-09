@@ -184,26 +184,19 @@ public class DlgSinifTanimlari extends DialogBox {
 		cbxAlan.setSize("147px", "22px");
 
 		cbxEgitimTuru = new ListBox();
+		cbxEgitimTuru.addItem(" ");
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
-		cbxEgitimTuru.addItem("a");
-		cbxEgitimTuru.addItem("b");
 		absolutePanel.add(cbxEgitimTuru, 186, 161);
 		cbxEgitimTuru.setSize("147px", "22px");
 
 		cbxKursZamani = new ListBox();
-		cbxKursZamani.addItem("HAFTA SONU");
-		cbxKursZamani.addItem("HAFTA İÇİ");
+		cbxKursZamani.addItem(" ");
 		cbxKursZamani.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxKursZamani, 186, 122);
 		cbxKursZamani.setSize("147px", "22px");
 
 		cbxFizikselSinifAdi = new ListBox();
-		cbxFizikselSinifAdi.addItem("A SINIFI");
-		cbxFizikselSinifAdi.addItem("B SINIFI");
-		cbxFizikselSinifAdi.addItem("C SINIFI");
-		cbxFizikselSinifAdi.addItem("D SINIFI");
-		cbxFizikselSinifAdi.addItem("E SINIFI");
-		cbxFizikselSinifAdi.addItem("F SINIFI");
+		cbxFizikselSinifAdi.addItem(" ");
 		cbxFizikselSinifAdi.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxFizikselSinifAdi, 186, 84);
 		cbxFizikselSinifAdi.setSize("147px", "22px");
@@ -232,7 +225,9 @@ public class DlgSinifTanimlari extends DialogBox {
 		btnKapat.setText("Kapat");
 		absolutePanel.add(btnKapat, 556, 497);
 		btnKapat.setSize("78px", "45px");
+
 		if (!isDesignTime()) {
+
 			putFizikselSinifAdiToCbx(cbxFizikselSinifAdi);
 
 			putKursZamaniToCbx(cbxKursZamani);
