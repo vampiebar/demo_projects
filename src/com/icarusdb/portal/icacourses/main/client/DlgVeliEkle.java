@@ -52,45 +52,46 @@ public class DlgVeliEkle extends DialogBox {
 
 		Label lblSoyadı = new Label("Soyadı");
 		lblSoyadı.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSoyadı, 10, 76);
+		absolutePanel.add(lblSoyadı, 10, 70);
 		lblSoyadı.setSize("47px", "18px");
 
 		Label lblTcKimlikNo = new Label("T.C Kimlik No");
 		lblTcKimlikNo.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTcKimlikNo, 10, 111);
+		absolutePanel.add(lblTcKimlikNo, 10, 100);
 
 		Label lblYaknlkDurumu = new Label("Yakınlık Durumu");
 		lblYaknlkDurumu.setStyleName("gwt-Bold");
-		absolutePanel.add(lblYaknlkDurumu, 10, 146);
+		absolutePanel.add(lblYaknlkDurumu, 10, 130);
 
 		Label lbldemeSorumlusu = new Label("Ödeme Sorumlusu");
 		lbldemeSorumlusu.setStyleName("gwt-Bold");
-		absolutePanel.add(lbldemeSorumlusu, 10, 181);
+		absolutePanel.add(lbldemeSorumlusu, 10, 160);
 
 		Label lblCepTel = new Label("Cep Tel");
 		lblCepTel.setStyleName("gwt-Bold");
-		absolutePanel.add(lblCepTel, 10, 216);
+		absolutePanel.add(lblCepTel, 10, 190);
+		lblCepTel.setSize("59px", "16px");
 
 		Label lblITel = new Label("İş Tel");
 		lblITel.setStyleName("gwt-Bold");
-		absolutePanel.add(lblITel, 10, 284);
+		absolutePanel.add(lblITel, 10, 250);
 
 		Label lblEvTel = new Label("Ev Tel");
 		lblEvTel.setStyleName("gwt-Bold");
-		absolutePanel.add(lblEvTel, 10, 251);
+		absolutePanel.add(lblEvTel, 10, 220);
 		lblEvTel.setSize("38px", "18px");
 
 		Label lblEmail = new Label("E-Mail");
 		lblEmail.setStyleName("gwt-Bold");
-		absolutePanel.add(lblEmail, 10, 316);
+		absolutePanel.add(lblEmail, 10, 280);
 
 		Label lblFirma = new Label("Firma");
 		lblFirma.setStyleName("gwt-Bold");
-		absolutePanel.add(lblFirma, 10, 349);
+		absolutePanel.add(lblFirma, 10, 310);
 
 		Label lblSektr = new Label("Sektör");
 		lblSektr.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSektr, 10, 386);
+		absolutePanel.add(lblSektr, 10, 340);
 
 		Label lblNewLabel = new Label("Ünvanı");
 		lblNewLabel.setStyleName("gwt-Bold");
@@ -106,42 +107,42 @@ public class DlgVeliEkle extends DialogBox {
 
 		tctVeliBilgileriTcKimlikNo = new TextBox();
 		tctVeliBilgileriTcKimlikNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVeliBilgileriTcKimlikNo, 165, 107);
-		tctVeliBilgileriTcKimlikNo.setSize("143px", "14px");
+		absolutePanel.add(tctVeliBilgileriTcKimlikNo, 165, 100);
+		tctVeliBilgileriTcKimlikNo.setSize("180px", "14px");
 
 		tctVeliBilgileriAdi = new TextBox();
 		tctVeliBilgileriAdi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctVeliBilgileriAdi, 165, 40);
-		tctVeliBilgileriAdi.setSize("143px", "14px");
+		tctVeliBilgileriAdi.setSize("180px", "14px");
 
 		tctVeliBilgileriSoyadi = new TextBox();
 		tctVeliBilgileriSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVeliBilgileriSoyadi, 165, 76);
-		tctVeliBilgileriSoyadi.setSize("143px", "14px");
+		absolutePanel.add(tctVeliBilgileriSoyadi, 165, 70);
+		tctVeliBilgileriSoyadi.setSize("180px", "14px");
 
 		tctEvTel = new TextBox();
 		tctEvTel.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctEvTel, 165, 251);
+		absolutePanel.add(tctEvTel, 165, 220);
 		tctEvTel.setSize("180px", "14px");
 
 		tctIsTel = new TextBox();
 		tctIsTel.setStylePrimaryName("gwt-TextBox1");
-		absolutePanel.add(tctIsTel, 165, 284);
+		absolutePanel.add(tctIsTel, 165, 250);
 		tctIsTel.setSize("180px", "14px");
 
 		tctEmail = new TextBox();
 		tctEmail.setStylePrimaryName("gwt-TextBox1");
-		absolutePanel.add(tctEmail, 165, 316);
+		absolutePanel.add(tctEmail, 165, 280);
 		tctEmail.setSize("180px", "14px");
 
 		tctFirma = new TextBox();
 		tctFirma.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctFirma, 165, 349);
+		absolutePanel.add(tctFirma, 165, 310);
 		tctFirma.setSize("180px", "14px");
 
 		tctSektor = new TextBox();
 		tctSektor.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSektor, 165, 386);
+		absolutePanel.add(tctSektor, 165, 340);
 		tctSektor.setSize("180px", "14px");
 
 		tctVeliBilgileriAdres = new TextBox();
@@ -161,19 +162,19 @@ public class DlgVeliEkle extends DialogBox {
 
 		tctCepTel = new TextBox();
 		tctCepTel.setStylePrimaryName("gwt-TextBox1");
-		absolutePanel.add(tctCepTel, 165, 216);
+		absolutePanel.add(tctCepTel, 165, 190);
 		tctCepTel.setSize("180px", "14px");
 
 		chxOdemeSorumlusu = new SimpleCheckBox();
-		absolutePanel.add(chxOdemeSorumlusu, 165, 180);
+		absolutePanel.add(chxOdemeSorumlusu, 165, 160);
 
 		cbxYakinlikDurumu = new ListBox();
 		cbxYakinlikDurumu.setStyleName("gwt-ComboBox1");
 		cbxYakinlikDurumu.addItem("Anne");
 		cbxYakinlikDurumu.addItem("Baba");
 		cbxYakinlikDurumu.addItem("Diğer");
-		absolutePanel.add(cbxYakinlikDurumu, 165, 142);
-		cbxYakinlikDurumu.setSize("147px", "22px");
+		absolutePanel.add(cbxYakinlikDurumu, 165, 130);
+		cbxYakinlikDurumu.setSize("182px", "22px");
 
 		btnVeliyiKaydet = new Button("New button");
 		btnVeliyiKaydet.setStyleName("gwt-ButtonSave");
@@ -196,7 +197,7 @@ public class DlgVeliEkle extends DialogBox {
 		tctOgrenciTCKimlikNo = new TextBox();
 		tctOgrenciTCKimlikNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctOgrenciTCKimlikNo, 165, 10);
-		tctOgrenciTCKimlikNo.setSize("143px", "14px");
+		tctOgrenciTCKimlikNo.setSize("180px", "14px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {

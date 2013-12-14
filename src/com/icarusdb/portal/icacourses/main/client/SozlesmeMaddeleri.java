@@ -2,6 +2,8 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.List;
 
+import com.axeiya.gwtckeditor.client.CKConfig;
+import com.axeiya.gwtckeditor.client.CKEditor;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.http.client.Request;
@@ -13,13 +15,14 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBoxBase;
+import com.google.gwt.user.client.ui.SimplePanel;
 
 public class SozlesmeMaddeleri extends Composite {
-	private TextArea tctSozlesmeMaddeleri;
 	public boolean _isInsert = true;
 	public long _id = -1;
+	private SimplePanel smpanHtmlEditor;
+
+	public CKEditor ckhtmlSozlesmeMaddeleri;
 
 	public SozlesmeMaddeleri(boolean isInsert, long id) {
 
@@ -52,15 +55,17 @@ public class SozlesmeMaddeleri extends Composite {
 		absolutePanel.add(btnKaydet, 647, 530);
 		btnKaydet.setSize("69px", "36px");
 
-		tctSozlesmeMaddeleri = new TextArea();
-		absolutePanel.add(tctSozlesmeMaddeleri, 35, 161);
-		tctSozlesmeMaddeleri.setSize("675px", "328px");
-		tctSozlesmeMaddeleri.setStyleName("gwt-TextBox1");
-		tctSozlesmeMaddeleri.setTextAlignment(TextBoxBase.ALIGN_LEFT);
+		smpanHtmlEditor = new SimplePanel();
+		absolutePanel.add(smpanHtmlEditor, 43, 110);
+		smpanHtmlEditor.setSize("760px", "414px");
 
 		if (!isDesignTime()) {
+
 			getSozlesmeMaddeleri(1);
 
+			ckhtmlSozlesmeMaddeleri = new CKEditor(CKConfig.basic);
+
+			smpanHtmlEditor.add(ckhtmlSozlesmeMaddeleri);
 		}
 
 	}
@@ -92,10 +97,6 @@ public class SozlesmeMaddeleri extends Composite {
 
 				}
 
-				private void putDataFromXML(XMLSozlesmeMaddeleri xml) {
-					tctSozlesmeMaddeleri.setText(xml.sozlesme);
-
-				}
 			});
 
 		} catch (RequestException e) {
@@ -111,13 +112,21 @@ public class SozlesmeMaddeleri extends Composite {
 		return false;
 	}
 
+	private void putDataFromXML(XMLSozlesmeMaddeleri xml) {
+
+		// tctSozlesmeMaddeleri.setText(xml.sozlesme);
+		ckhtmlSozlesmeMaddeleri.setHTML(xml.sozlesme);
+
+	}
+
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
 			String URLValue = Util.urlBase + "putsozlesmemaddeleri?";
 
 			URLValue = URLValue + "id=" + _id;
-			URLValue = URLValue + "&sozlesme=" + tctSozlesmeMaddeleri.getText();
+			URLValue = URLValue + "&sozlesme="
+					+ ckhtmlSozlesmeMaddeleri.getHTML();
 
 			// Window.alert(URLValue);
 

@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="lib/validation-api-1.0.0.GA-sources.jar"/>
 	<classpathentry kind="lib" path="lib/validation-api-1.0.0.GA.jar"/>
 	<classpathentry kind="lib" path="lib/gwt-traction-1.5.4.jar"/>
+	<classpathentry kind="lib" path="lib/gwt-ckeditor-0.5.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

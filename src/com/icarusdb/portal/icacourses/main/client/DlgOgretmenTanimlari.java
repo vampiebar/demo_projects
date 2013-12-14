@@ -404,20 +404,19 @@ public class DlgOgretmenTanimlari extends DialogBox {
 				cbxGirdigiDersler, xml.girdigi_dersler));
 
 		chxDersPrograminiGorsun.setValue(xml.ders_programini_gorsun
-				.equalsIgnoreCase("true") ? true : false);
+				.equalsIgnoreCase("t") ? true : false);
 
-		chxdurum.setValue(xml.durum.equalsIgnoreCase("true") ? true : false);
-		chxPazartesi.setValue(xml.pazartesi.equalsIgnoreCase("true") ? true
+		chxdurum.setValue(xml.durum.equalsIgnoreCase("t") ? true : false);
+		chxPazartesi.setValue(xml.pazartesi.equalsIgnoreCase("t") ? true
 				: false);
-		chxSali.setValue(xml.sali.equalsIgnoreCase("true") ? true : false);
-		chxCarsamba.setValue(xml.carsamba.equalsIgnoreCase("true") ? true
+		// Window.alert("1:" + xml.pazartesi);
+		chxSali.setValue(xml.sali.equalsIgnoreCase("t") ? true : false);
+		chxCarsamba.setValue(xml.carsamba.equalsIgnoreCase("t") ? true : false);
+		chxPersembe.setValue(xml.persembe.equalsIgnoreCase("t") ? true : false);
+		chxCuma.setValue(xml.cuma.equalsIgnoreCase("t") ? true : false);
+		chxCumartesi.setValue(xml.cumartesi.equalsIgnoreCase("t") ? true
 				: false);
-		chxPersembe.setValue(xml.persembe.equalsIgnoreCase("true") ? true
-				: false);
-		chxCuma.setValue(xml.cuma.equalsIgnoreCase("true") ? true : false);
-		chxCumartesi.setValue(xml.cumartesi.equalsIgnoreCase("true") ? true
-				: false);
-		chxPazar.setValue(xml.pazar.equalsIgnoreCase("true") ? true : false);
+		chxPazar.setValue(xml.pazar.equalsIgnoreCase("t") ? true : false);
 
 	}
 }

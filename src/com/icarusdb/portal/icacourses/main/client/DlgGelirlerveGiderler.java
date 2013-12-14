@@ -302,7 +302,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 	private class DtpVadeTarihiValueChangeHandler implements
 			ValueChangeHandler<Date> {
 		public void onValueChange(ValueChangeEvent<Date> event) {
-			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+			DateTimeFormat dtf2 = DateTimeFormat.getFormat("yyyy-MM-dd");
 			// Window.alert(dtf.format(dtpVadeTarihi.getValue()));
 		}
 	}

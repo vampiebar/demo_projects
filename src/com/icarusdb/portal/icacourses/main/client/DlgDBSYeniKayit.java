@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -614,13 +615,14 @@ public class DlgDBSYeniKayit extends DialogBox {
 		};
 		grdVeliler.addColumn(textColumn_1, "Yakınlık Durumu");
 
-		TextColumn<XMLVeliler> textColumn = new TextColumn<XMLVeliler>() {
+		Column<XMLVeliler, Boolean> column = new Column<XMLVeliler, Boolean>(
+				new CheckboxCell()) {
 			@Override
-			public String getValue(XMLVeliler object) {
-				return object.odeme_sorumlusu;
+			public Boolean getValue(XMLVeliler object) {
+				return (Boolean) null;
 			}
 		};
-		grdVeliler.addColumn(textColumn, "Ödeme Sorumlusu");
+		grdVeliler.addColumn(column, "Ödeme Sorumlusu");
 
 		TextColumn<XMLVeliler> textColumn_5 = new TextColumn<XMLVeliler>() {
 			@Override

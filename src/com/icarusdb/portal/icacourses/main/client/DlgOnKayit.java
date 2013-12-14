@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
-import com.google.gwt.cell.client.EditTextCell;
+import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -130,8 +130,8 @@ public class DlgOnKayit extends DialogBox {
 
 		Label label_29 = new Label("T.C. Kimlik No ");
 		label_29.setStyleName("gwt-Bold");
-		absolutePanel_2.add(label_29, 10, 58);
-		label_29.setSize("85px", "18px");
+		absolutePanel_2.add(label_29, 10, 62);
+		label_29.setSize("116px", "18px");
 
 		Button btnBilgileriniGetir = new Button("Bilgilerini Getir");
 		btnBilgileriniGetir
@@ -157,7 +157,7 @@ public class DlgOnKayit extends DialogBox {
 
 		Label label_31 = new Label("Medeni Hali");
 		label_31.setStyleName("gwt-Bold");
-		absolutePanel_2.add(label_31, 10, 140);
+		absolutePanel_2.add(label_31, 10, 144);
 		label_31.setSize("85px", "18px");
 
 		cbxCinsiyet = new ListBox();
@@ -176,8 +176,8 @@ public class DlgOnKayit extends DialogBox {
 
 		Label label_32 = new Label("Doğum Tarihi");
 		label_32.setStyleName("gwt-Bold");
-		absolutePanel_2.add(label_32, 10, 174);
-		label_32.setSize("77px", "18px");
+		absolutePanel_2.add(label_32, 10, 178);
+		label_32.setSize("105px", "18px");
 
 		dtpDogumTarihi = new DateBox();
 		dtpDogumTarihi.setStyleName("gwt-TextBox1");
@@ -191,7 +191,7 @@ public class DlgOnKayit extends DialogBox {
 		Label label_33 = new Label("Ev / Cep Telefonu");
 		label_33.setStyleName("gwt-Bold");
 		absolutePanel_2.add(label_33, 10, 212);
-		label_33.setSize("105px", "18px");
+		label_33.setSize("127px", "18px");
 
 		tctEvTelefonu = new TextBox();
 		tctEvTelefonu.setStyleName("gwt-TextBox1");
@@ -200,12 +200,12 @@ public class DlgOnKayit extends DialogBox {
 
 		Label label_34 = new Label("E-Mail");
 		label_34.setStyleName("gwt-Bold");
-		absolutePanel_2.add(label_34, 10, 255);
+		absolutePanel_2.add(label_34, 10, 244);
 		label_34.setSize("37px", "18px");
 
 		tctEmail = new TextBox();
 		tctEmail.setStyleName("gwt-TextBox1");
-		absolutePanel_2.add(tctEmail, 157, 255);
+		absolutePanel_2.add(tctEmail, 157, 244);
 		tctEmail.setSize("232px", "14px");
 
 		tctCepTelefonu = new TextBox();
@@ -215,7 +215,7 @@ public class DlgOnKayit extends DialogBox {
 
 		cptnpnlNewPanel = new CaptionPanel("Okul Bilgileri");
 		cptnpnlNewPanel.setStyleName("gwt-Bold");
-		absolutePanel_2.add(cptnpnlNewPanel, 0, 292);
+		absolutePanel_2.add(cptnpnlNewPanel, 0, 279);
 		cptnpnlNewPanel.setSize("420px", "144px");
 
 		FlexTable flexTable = new FlexTable();
@@ -329,7 +329,7 @@ public class DlgOnKayit extends DialogBox {
 		Label label_5 = new Label("Sokak ve no");
 		label_5.setStyleName("gwt-Bold");
 		absolutePanel_5.add(label_5, 10, 230);
-		label_5.setSize("73px", "18px");
+		label_5.setSize("93px", "18px");
 
 		cbxAdresBilgileriUlke = new ListBox();
 		cbxAdresBilgileriUlke.setStyleName("gwt-ComboBox1");
@@ -499,6 +499,7 @@ public class DlgOnKayit extends DialogBox {
 		Label lblNewLabel_1 = new Label("Kurs İndirim Fiyatı");
 		lblNewLabel_1.setStyleName("gwt-Bold");
 		absolutePanel_4.add(lblNewLabel_1, 25, 195);
+		lblNewLabel_1.setSize("111px", "16px");
 
 		Label lblIndirimTr = new Label("İndirim Türü");
 		absolutePanel_4.add(lblIndirimTr, 25, 234);
@@ -508,14 +509,14 @@ public class DlgOnKayit extends DialogBox {
 		Label lblIndirimMiktar = new Label("İndirim Miktarı");
 		absolutePanel_4.add(lblIndirimMiktar, 25, 268);
 		lblIndirimMiktar.setStyleName("gwt-Bold");
-		lblIndirimMiktar.setSize("101px", "18px");
+		lblIndirimMiktar.setSize("132px", "18px");
 
 		Label lblReferans = new Label("Referans");
-		absolutePanel_4.add(lblReferans, 25, 306);
+		absolutePanel_4.add(lblReferans, 25, 308);
 		lblReferans.setStyleName("gwt-Bold");
 
 		Label lblGrmeTarihi = new Label("Görüşme Tarihi");
-		absolutePanel_4.add(lblGrmeTarihi, 25, 350);
+		absolutePanel_4.add(lblGrmeTarihi, 25, 352);
 		lblGrmeTarihi.setStyleName("gwt-Bold");
 
 		Label lblGrmeTipi = new Label("Görüşme Tipi");
@@ -600,7 +601,7 @@ public class DlgOnKayit extends DialogBox {
 
 		Label label_6 = new Label("Seri No");
 		label_6.setStyleName("gwt-Bold");
-		absolutePanel_8.add(label_6, 10, 4);
+		absolutePanel_8.add(label_6, 10, 8);
 		label_6.setSize("64px", "18px");
 
 		Label label_7 = new Label("Cüzdan No");
@@ -615,17 +616,17 @@ public class DlgOnKayit extends DialogBox {
 
 		Label label_9 = new Label("Ülke");
 		label_9.setStyleName("gwt-Bold");
-		absolutePanel_8.add(label_9, 10, 113);
+		absolutePanel_8.add(label_9, 10, 109);
 		label_9.setSize("43px", "18px");
 
 		Label label_10 = new Label("İl");
 		label_10.setStyleName("gwt-Bold");
 		absolutePanel_8.add(label_10, 10, 148);
-		label_10.setSize("6px", "18px");
+		label_10.setSize("20px", "18px");
 
 		Label label_11 = new Label("İlçe");
 		label_11.setStyleName("gwt-Bold");
-		absolutePanel_8.add(label_11, 10, 182);
+		absolutePanel_8.add(label_11, 10, 186);
 		label_11.setSize("20px", "18px");
 
 		Label label_12 = new Label("Mahalle / Köy");
@@ -636,17 +637,17 @@ public class DlgOnKayit extends DialogBox {
 		Label label_13 = new Label("Cilt No");
 		label_13.setStyleName("gwt-Bold");
 		absolutePanel_8.add(label_13, 10, 268);
-		label_13.setSize("39px", "18px");
+		label_13.setSize("64px", "18px");
 
 		Label label_14 = new Label("Aile Sıra No");
 		label_14.setStyleName("gwt-Bold");
 		absolutePanel_8.add(label_14, 10, 308);
-		label_14.setSize("69px", "18px");
+		label_14.setSize("88px", "18px");
 
 		Label label_15 = new Label("Sıra No");
 		label_15.setStyleName("gwt-Bold");
 		absolutePanel_8.add(label_15, 10, 346);
-		label_15.setSize("43px", "18px");
+		label_15.setSize("64px", "18px");
 
 		tctSeriNo = new TextBox();
 		tctSeriNo.setStyleName("gwt-TextBox1");
@@ -728,7 +729,7 @@ public class DlgOnKayit extends DialogBox {
 
 		Label label_19 = new Label("Kayıt No");
 		flexTable_3.setWidget(2, 0, label_19);
-		label_19.setSize("50px", "18px");
+		label_19.setSize("116px", "18px");
 
 		tctKayitNo = new TextBox();
 		flexTable_3.setWidget(2, 1, tctKayitNo);
@@ -793,14 +794,14 @@ public class DlgOnKayit extends DialogBox {
 		};
 		grdVeliEkle.addColumn(textColumn_2, "Yakınlık Durumu");
 
-		Column<XMLVeliler, String> column_5 = new Column<XMLVeliler, String>(
-				new EditTextCell()) {
+		Column<XMLVeliler, Boolean> column = new Column<XMLVeliler, Boolean>(
+				new CheckboxCell()) {
 			@Override
-			public String getValue(XMLVeliler object) {
-				return object.odeme_sorumlusu;
+			public Boolean getValue(XMLVeliler object) {
+				return (Boolean) null;
 			}
 		};
-		grdVeliEkle.addColumn(column_5, "Ödeme Sorumlusu");
+		grdVeliEkle.addColumn(column, "Ödeme Sorumlusu");
 
 		TextColumn<XMLVeliler> textColumn_3 = new TextColumn<XMLVeliler>() {
 			@Override

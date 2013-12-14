@@ -21,7 +21,9 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.CellPreviewEvent;
 import com.google.gwt.view.client.CellPreviewEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
@@ -29,16 +31,19 @@ import com.google.gwt.view.client.SingleSelectionModel;
 public class OnKayit extends Composite {
 	private CellTable<XMLOnKayit> grdOnKayit;
 	private DlgOnKayit _dlgOnKayit;
+	private TextBox tctAdi;
+	private TextBox tctSoyadi;
+	private TextBox tctTCKimlikNo;
 
 	public OnKayit() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("747px", "651px");
+		absolutePanel.setSize("801px", "651px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 79);
+		absolutePanel.add(horizontalPanel, 10, 136);
 		horizontalPanel.setSize("727px", "156px");
 
 		grdOnKayit = new CellTable<XMLOnKayit>();
@@ -99,19 +104,47 @@ public class OnKayit extends Composite {
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
 		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 471, 30);
+		absolutePanel.add(btnListeyiYenile, 481, 50);
 		btnListeyiYenile.setSize("78px", "48px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 568, 30);
+		absolutePanel.add(btnYeniKayit, 578, 50);
 		btnYeniKayit.setSize("78px", "48px");
 
 		Button btnExceleAktar = new Button("Excel'e Aktar");
 		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 659, 30);
+		absolutePanel.add(btnExceleAktar, 669, 50);
 		btnExceleAktar.setSize("78px", "48px");
+
+		Label lblAd = new Label("Adı");
+		lblAd.setStyleName("gwt-Bold");
+		absolutePanel.add(lblAd, 22, 20);
+
+		Label lblSoyad = new Label("Soyadı");
+		lblSoyad.setStyleName("gwt-Bold");
+		absolutePanel.add(lblSoyad, 22, 50);
+
+		Label lblTcKimlikNo = new Label("T.C Kimlik No");
+		lblTcKimlikNo.setStyleName("gwt-Bold");
+		absolutePanel.add(lblTcKimlikNo, 22, 80);
+		lblTcKimlikNo.setSize("115px", "16px");
+
+		tctAdi = new TextBox();
+		tctAdi.setStyleName("gwt-TextBox1");
+		absolutePanel.add(tctAdi, 159, 17);
+		tctAdi.setSize("198px", "15px");
+
+		tctSoyadi = new TextBox();
+		tctSoyadi.setStyleName("gwt-TextBox1");
+		absolutePanel.add(tctSoyadi, 159, 47);
+		tctSoyadi.setSize("198px", "15px");
+
+		tctTCKimlikNo = new TextBox();
+		tctTCKimlikNo.setStyleName("gwt-TextBox1");
+		absolutePanel.add(tctTCKimlikNo, 159, 77);
+		tctTCKimlikNo.setSize("198px", "15px");
 
 		if (!isDesignTime()) {
 

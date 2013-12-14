@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -601,11 +602,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		absolutePanel_4.add(lblReferans, 10, 292);
 
 		cbxReferans = new ListBox();
-		cbxReferans.addItem("LÜTFEN SEÇİNİZ");
-		cbxReferans.addItem("ESKİ ÖĞRENCİMİZ");
-		cbxReferans.addItem("SMS YOLUYLA");
-		cbxReferans.addItem("GOOGLE");
-		cbxReferans.addItem("ARKADAŞ TAVSİYESİ");
+		cbxReferans.addItem(" ");
 		cbxReferans.setStyleName("gwt-ComboBox1");
 		absolutePanel_4.add(cbxReferans, 162, 292);
 		cbxReferans.setSize("151px", "18px");
@@ -664,13 +661,14 @@ public class KesinKayitBilgileri extends DialogBox {
 		};
 		grdVeliEkle.addColumn(textColumn_2, "Yakınlık Durumu");
 
-		TextColumn<XMLVeliler> textColumn_10 = new TextColumn<XMLVeliler>() {
+		Column<XMLVeliler, Boolean> column_4 = new Column<XMLVeliler, Boolean>(
+				new CheckboxCell()) {
 			@Override
-			public String getValue(XMLVeliler object) {
-				return object.odeme_sorumlusu.toString();
+			public Boolean getValue(XMLVeliler object) {
+				return (Boolean) null;
 			}
 		};
-		grdVeliEkle.addColumn(textColumn_10, "Ödeme Sorumlusu");
+		grdVeliEkle.addColumn(column_4, "Ödeme Sorumlusu");
 
 		TextColumn<XMLVeliler> textColumn_11 = new TextColumn<XMLVeliler>() {
 			@Override
@@ -1117,8 +1115,50 @@ public class KesinKayitBilgileri extends DialogBox {
 
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl, cbxOgrenciBilgileriIl,
 					cbxAdresBilgileriIl);
+			putReferansToCbx(cbxReferans);
 
 			putDataToGrid();
+		}
+
+	}
+
+	private void putReferansToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getreferanslar");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLReferanslar> xmlReferanslar = XMLReferanslar.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlReferanslar.size(); i++) {
+
+						lbxTemp.addItem(xmlReferanslar.get(i).referans_adi_soyadi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
