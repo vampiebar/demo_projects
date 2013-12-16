@@ -1463,9 +1463,6 @@ public class KesinKayitBilgileri extends DialogBox {
 		tctVerilisNedeni.setText(xml.verilis_nedeni);
 		tctKayitNo.setText(xml.kayit_no);
 
-		cbxCinsiyet.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxCinsiyet,
-				xml.cinsiyet));
-
 		cbxSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxSinif,
 				xml.ogrenci_bilgileri_sinif));
 		cbxCinsiyet.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxCinsiyet,

@@ -79,9 +79,9 @@ a:visited {
 }
 
 .gwt-StackPanel {
-	background-color: white;
-	border: 1px solid #AAAAAA;
 	width: 15em;
+	border: 1px solid #AAAAAA;
+	background-color: white;
 }
 
 .gwt-StackPanel .gwt-StackPanelItem {
@@ -451,15 +451,21 @@ color: rgb(255, 255, 255);
 	
 }
 .gwt-MenuButton {
+
 	border-color: rgb(38, 154, 188);
 	font-family: Trebuc;
 	font-weight: bold;
-	border-radius: 4px 4px 4px 4px;
+	background-color: (86, 144, 153);
+	
+
+
 }
 .gwt-MenuButton2 {
 	border-color: rgb(38, 154, 188);
 	font-family: Trebuc;
 	font-weight: bold;
-	border-radius: 4px 4px 4px 4px;
+}
+.gwt-MenuBackground {
+	background-color: lightblue;
 }
 }
