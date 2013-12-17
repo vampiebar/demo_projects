@@ -65,7 +65,7 @@ public class DlgSinavTanimlama extends DialogBox {
 		label_2.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		label_2.setStyleName("gwt-Bold");
 		absolutePanel.add(label_2, 10, 107);
-		label_2.setSize("104px", "18px");
+		label_2.setSize("126px", "18px");
 
 		Label label_3 = new Label("Şablon Seçiniz");
 		label_3.setStyleName("gwt-Bold");

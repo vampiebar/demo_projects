@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.CheckboxCell;
-import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -201,7 +200,7 @@ public class DlgOnKayit extends DialogBox {
 		Label label_34 = new Label("E-Mail");
 		label_34.setStyleName("gwt-Bold");
 		absolutePanel_2.add(label_34, 10, 244);
-		label_34.setSize("37px", "18px");
+		label_34.setSize("85px", "18px");
 
 		tctEmail = new TextBox();
 		tctEmail.setStyleName("gwt-TextBox1");
@@ -350,7 +349,7 @@ public class DlgOnKayit extends DialogBox {
 				.addChangeHandler(new CbxAdresBilgileriIlceChangeHandler());
 		cbxAdresBilgileriIlce.addItem(" ");
 		cbxAdresBilgileriIlce.setStyleName("gwt-ComboBox1");
-		absolutePanel_5.add(cbxAdresBilgileriIlce, 125, 111);
+		absolutePanel_5.add(cbxAdresBilgileriIlce, 125, 107);
 		cbxAdresBilgileriIlce.setSize("146px", "22px");
 
 		cbxSemt = new ListBox();
@@ -499,7 +498,7 @@ public class DlgOnKayit extends DialogBox {
 		Label lblNewLabel_1 = new Label("Kurs İndirim Fiyatı");
 		lblNewLabel_1.setStyleName("gwt-Bold");
 		absolutePanel_4.add(lblNewLabel_1, 25, 195);
-		lblNewLabel_1.setSize("111px", "16px");
+		lblNewLabel_1.setSize("132px", "16px");
 
 		Label lblIndirimTr = new Label("İndirim Türü");
 		absolutePanel_4.add(lblIndirimTr, 25, 234);
@@ -811,20 +810,19 @@ public class DlgOnKayit extends DialogBox {
 		};
 		grdVeliEkle.addColumn(textColumn_3, "Cep Tel");
 
-		Column<XMLVeliler, Number> column_2 = new Column<XMLVeliler, Number>(
-				new NumberCell()) {
+		TextColumn<XMLVeliler> textColumn_5 = new TextColumn<XMLVeliler>() {
 			@Override
-			public Number getValue(XMLVeliler object) {
-				return (Number) null;
+			public String getValue(XMLVeliler object) {
+				return object.toString();
 			}
 		};
-		grdVeliEkle.addColumn(column_2, "İş Tel");
+		grdVeliEkle.addColumn(textColumn_5, "İş Tel");
 
 		Column<XMLVeliler, String> column_3 = new Column<XMLVeliler, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLVeliler object) {
-				return (String) null;
+				return object.is_tel.toString();
 			}
 		};
 		grdVeliEkle.addColumn(column_3, "Düzenle");

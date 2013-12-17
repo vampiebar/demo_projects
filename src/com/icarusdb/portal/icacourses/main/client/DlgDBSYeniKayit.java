@@ -198,7 +198,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		Label lblEmail = new Label("E-Mail");
 		lblEmail.setStyleName("gwt-Bold");
 		vtpanOgrenciBilgileri.add(lblEmail, 10, 242);
-		lblEmail.setSize("37px", "18px");
+		lblEmail.setSize("77px", "18px");
 
 		Label lblOkulBilgisi = new Label("OKUL BİLGİSİ");
 		lblOkulBilgisi.setStyleName("gwt-Bold");
@@ -507,7 +507,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxSemt.setStyleName("gwt-ComboBox1");
 		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
 		cbxSemt.addItem(" ");
-		absolutePanel_2.add(cbxSemt, 125, 144);
+		absolutePanel_2.add(cbxSemt, 125, 150);
 		cbxSemt.setSize("156px", "22px");
 
 		cbxMahalle = new ListBox();
@@ -554,19 +554,19 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOkulDurumu.addItem("Üniversite Mezun");
 		cbxOkulDurumu.addItem("12.Sınıf");
 		cbxOkulDurumu.setStyleName("gwt-ComboBox1");
-		absolutePanel_3.add(cbxOkulDurumu, 126, 21);
+		absolutePanel_3.add(cbxOkulDurumu, 126, 23);
 		cbxOkulDurumu.setSize("132px", "22px");
 
 		cbxAlanbilgisi = new ListBox();
 		cbxAlanbilgisi.addItem(" ");
 		cbxAlanbilgisi.setStyleName("gwt-ComboBox1");
-		absolutePanel_3.add(cbxAlanbilgisi, 126, 64);
+		absolutePanel_3.add(cbxAlanbilgisi, 126, 62);
 		cbxAlanbilgisi.setSize("132px", "22px");
 
 		cbxSinavTarihi = new ListBox();
 		cbxSinavTarihi.addItem(" ");
 		cbxSinavTarihi.setStyleName("gwt-ComboBox1");
-		absolutePanel_3.add(cbxSinavTarihi, 126, 107);
+		absolutePanel_3.add(cbxSinavTarihi, 126, 105);
 		cbxSinavTarihi.setSize("132px", "22px");
 
 		AbsolutePanel absolutePanel_4 = new AbsolutePanel();
@@ -1297,13 +1297,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 					+ cbxOkulDurumu.getValue(cbxOkulDurumu.getSelectedIndex());
 			URLValue = URLValue
 					+ "&alan_bilgisi="
-					+ cbxAlanbilgisi
-							.getValue(cbxAlanbilgisi.getSelectedIndex());
+					+ cbxAlanbilgisi.getItemText(cbxAlanbilgisi
+							.getSelectedIndex());
 
 			URLValue = URLValue
 					+ "&sinav_tarihi="
-					+ cbxSinavTarihi
-							.getValue(cbxSinavTarihi.getSelectedIndex());
+					+ cbxSinavTarihi.getItemText(cbxSinavTarihi
+							.getSelectedIndex());
 
 			// DATEs
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");

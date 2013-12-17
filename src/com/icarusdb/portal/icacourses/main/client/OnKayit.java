@@ -49,7 +49,7 @@ public class OnKayit extends Composite {
 		grdOnKayit = new CellTable<XMLOnKayit>();
 		grdOnKayit.addCellPreviewHandler(new GrdOnKayitHandler());
 		horizontalPanel.add(grdOnKayit);
-		grdOnKayit.setSize("737px", "124px");
+		grdOnKayit.setSize("773px", "124px");
 
 		TextColumn<XMLOnKayit> textColumn_4 = new TextColumn<XMLOnKayit>() {
 			@Override
@@ -104,18 +104,18 @@ public class OnKayit extends Composite {
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
 		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 481, 50);
+		absolutePanel.add(btnListeyiYenile, 517, 50);
 		btnListeyiYenile.setSize("78px", "48px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 578, 50);
+		absolutePanel.add(btnYeniKayit, 614, 50);
 		btnYeniKayit.setSize("78px", "48px");
 
 		Button btnExceleAktar = new Button("Excel'e Aktar");
 		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 669, 50);
+		absolutePanel.add(btnExceleAktar, 705, 50);
 		btnExceleAktar.setSize("78px", "48px");
 
 		Label lblAd = new Label("Adı");
@@ -145,6 +145,11 @@ public class OnKayit extends Composite {
 		tctTCKimlikNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctTCKimlikNo, 159, 77);
 		tctTCKimlikNo.setSize("198px", "15px");
+
+		Button btnAra = new Button("ARA");
+		btnAra.setStyleName("gwt-ButonKapat");
+		absolutePanel.add(btnAra, 423, 50);
+		btnAra.setSize("78px", "48px");
 
 		if (!isDesignTime()) {
 

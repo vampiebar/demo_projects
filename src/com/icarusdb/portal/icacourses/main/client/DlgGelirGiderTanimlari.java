@@ -55,7 +55,7 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 		Label lblGelirGider_1 = new Label("Gelir / Gider Adı");
 		lblGelirGider_1.setStyleName("gwt-Bold");
 		absolutePanel.add(lblGelirGider_1, 10, 112);
-		lblGelirGider_1.setSize("103px", "16px");
+		lblGelirGider_1.setSize("120px", "16px");
 
 		cbxKategoriAdi = new ListBox();
 		cbxKategoriAdi.addItem(" ");
@@ -67,7 +67,7 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 		cbxTipi.addItem("Gelir");
 		cbxTipi.addItem("Gider");
 		cbxTipi.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxTipi, 136, 76);
+		absolutePanel.add(cbxTipi, 136, 78);
 		cbxTipi.setSize("158px", "22px");
 
 		tctGelirGiderAdi = new TextBox();

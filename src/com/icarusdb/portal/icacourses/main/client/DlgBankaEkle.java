@@ -36,7 +36,6 @@ public class DlgBankaEkle extends DialogBox {
 
 		Label lblBankaIlemleriekleme = new Label(
 				"Banka İşlemleri (Ekleme / Düzenleme)");
-		lblBankaIlemleriekleme.setVisible(false);
 		lblBankaIlemleriekleme.setStyleName("gwt-LabelMor");
 		absolutePanel.add(lblBankaIlemleriekleme, 0, 0);
 		lblBankaIlemleriekleme.setSize("596px", "30px");

@@ -163,6 +163,7 @@ public class DBSKayit extends Composite {
 		btnKaydet.setSize("78px", "48px");
 
 		Button btnAra = new Button("Yeni Kayıt");
+
 		btnAra.setStyleName("gwt-ButonKapat");
 		btnAra.setText("Ara");
 		absolutePanel.add(btnAra, 508, 30);

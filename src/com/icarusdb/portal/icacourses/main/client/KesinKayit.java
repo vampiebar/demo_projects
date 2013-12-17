@@ -278,8 +278,51 @@ public class KesinKayit extends Composite {
 					List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
 							.readList(response.getText());
 
-					KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri();
+					KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri(true,
+							-1);
 					dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
+					dlgTemp.tabKesinKayitBilgileri.selectTab(0);
+					dlgTemp.setAnimationEnabled(true);
+					dlgTemp.center();
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	protected void showWithData2(String id) {
+
+		String urlWithParameters = Util.urlBase + "getodemeler?id=" + id;
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLOdemeler> listXmlOdemeler = XMLOdemeler.XML
+							.readList(response.getText());
+
+					KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri(true,
+							-1);
+					dlgTemp.putDataFromXML(listXmlOdemeler.get(0));
 					dlgTemp.tabKesinKayitBilgileri.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
 					dlgTemp.center();

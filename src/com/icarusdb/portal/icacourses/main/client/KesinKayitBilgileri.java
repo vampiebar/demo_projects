@@ -29,6 +29,10 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class KesinKayitBilgileri extends DialogBox {
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+
 	private ListBox cbxMedeniHali;
 	private ListBox cbxCinsiyet;
 	private DateBox dtpDogumTarihi;
@@ -99,7 +103,11 @@ public class KesinKayitBilgileri extends DialogBox {
 	private DateBox dtpTaksideBaslanacakGun;
 	private TextBox tctTaksitSayisi;
 
-	public KesinKayitBilgileri() {
+	public KesinKayitBilgileri(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setGlassStyleName("");
 		setHTML("Kesin Kayıt İşlemleri");
 
@@ -137,7 +145,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label lblOkulBilgisi = new Label("OKUL BİLGİSİ");
 		lblOkulBilgisi.setStyleName("gwt-Bold");
 		absolutePanel_1.add(lblOkulBilgisi, 10, 181);
-		lblOkulBilgisi.setSize("85px", "18px");
+		lblOkulBilgisi.setSize("105px", "18px");
 
 		Label lbllke = new Label("Ülke");
 		lbllke.setStyleName("gwt-Bold");
@@ -152,7 +160,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_3 = new Label("Cinsiyet");
 		label_3.setStyleName("gwt-Bold");
 		absolutePanel_1.add(label_3, 10, 14);
-		label_3.setSize("47px", "18px");
+		label_3.setSize("68px", "18px");
 
 		Label label_4 = new Label("Medeni Hali");
 		label_4.setStyleName("gwt-Bold");
@@ -174,7 +182,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_5 = new Label("Doğum Tarihi");
 		label_5.setStyleName("gwt-Bold");
 		absolutePanel_1.add(label_5, 10, 76);
-		label_5.setSize("77px", "18px");
+		label_5.setSize("128px", "18px");
 
 		dtpDogumTarihi = new DateBox();
 		dtpDogumTarihi.setFormat(new DefaultFormat(DateTimeFormat
@@ -186,7 +194,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_6 = new Label("Ev / Cep Telefonu");
 		label_6.setStyleName("gwt-Bold");
 		absolutePanel_1.add(label_6, 10, 114);
-		label_6.setSize("105px", "18px");
+		label_6.setSize("115px", "18px");
 
 		tctEvTelefonu = new TextBox();
 		tctEvTelefonu.setStyleName("gwt-TextBox1");
@@ -196,7 +204,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_7 = new Label("E-Mail");
 		label_7.setStyleName("gwt-Bold");
 		absolutePanel_1.add(label_7, 10, 157);
-		label_7.setSize("37px", "18px");
+		label_7.setSize("68px", "18px");
 
 		tctEmail = new TextBox();
 		tctEmail.setStyleName("gwt-TextBox1");
@@ -251,6 +259,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label lblNewLabel_1 = new Label("Okul Numarası");
 		lblNewLabel_1.setStyleName("gwt-Bold");
 		absolutePanel_1.add(lblNewLabel_1, 10, 408);
+		lblNewLabel_1.setSize("105px", "16px");
 
 		tctOkulNumarası = new TextBox();
 		tctOkulNumarası.setStyleName("gwt-TextBox1");
@@ -269,6 +278,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		btnNewButton_4.setSize("78px", "49px");
 
 		Button btnNewButton_5 = new Button("Öğrenciyi Kaydet");
+		btnNewButton_5.addClickHandler(new BtnNewButton_5ClickHandler());
 		btnNewButton_5.setStyleName("gwt-ButtonSave");
 		absolutePanel_1.add(btnNewButton_5, 391, 376);
 		btnNewButton_5.setSize("78px", "49px");
@@ -280,12 +290,12 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_11 = new Label("Cüzdan No");
 		label_11.setStyleName("gwt-Bold");
 		absolutePanel_2.add(label_11, 10, 51);
-		label_11.setSize("64px", "18px");
+		label_11.setSize("100px", "18px");
 
 		Label label_12 = new Label("Kayıtlı Oldugu");
 		label_12.setStyleName("gwt-Bold");
 		absolutePanel_2.add(label_12, 10, 88);
-		label_12.setSize("81px", "18px");
+		label_12.setSize("115px", "18px");
 
 		Label label_13 = new Label("Ülke");
 		label_13.setStyleName("gwt-Bold");
@@ -325,7 +335,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_20 = new Label("Cüzdan Bilgileri");
 		label_20.setStyleName("gwt-Bold");
 		absolutePanel_2.add(label_20, 10, 390);
-		label_20.setSize("90px", "18px");
+		label_20.setSize("115px", "18px");
 
 		Label label_21 = new Label("Verildiği Yer");
 		label_21.setStyleName("gwt-Bold");
@@ -402,7 +412,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_23 = new Label("Seri No");
 		label_23.setStyleName("gwt-Bold");
 		absolutePanel_2.add(label_23, 10, 14);
-		label_23.setSize("43px", "18px");
+		label_23.setSize("90px", "18px");
 
 		Label label_24 = new Label("Kayıt No");
 		label_24.setStyleName("gwt-Bold");
@@ -417,13 +427,13 @@ public class KesinKayitBilgileri extends DialogBox {
 		dtpVerilisTarihi = new DateBox();
 		dtpVerilisTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd")));
-		absolutePanel_2.add(dtpVerilisTarihi, 126, 525);
-		dtpVerilisTarihi.setSize("162px", "12px");
+		absolutePanel_2.add(dtpVerilisTarihi, 132, 528);
+		dtpVerilisTarihi.setSize("156px", "12px");
 
 		Label label_25 = new Label("Veriliş Tarihi");
 		label_25.setStyleName("gwt-Bold");
-		absolutePanel_2.add(label_25, 10, 525);
-		label_25.setSize("81px", "18px");
+		absolutePanel_2.add(label_25, 10, 528);
+		label_25.setSize("100px", "18px");
 
 		tabKisiselBilgileri = new AbsolutePanel();
 		tabKisiselBilgileri.setStyleName("gwt-DialogBackGround");
@@ -458,7 +468,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_31 = new Label("Sokak ve no");
 		label_31.setStyleName("gwt-Bold");
 		tabKisiselBilgileri.add(label_31, 10, 240);
-		label_31.setSize("73px", "18px");
+		label_31.setSize("109px", "18px");
 
 		cbxAdresBilgileriUlke = new ListBox();
 		cbxAdresBilgileriUlke.setStyleName("gwt-ComboBox1");
@@ -481,7 +491,7 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		cbxAdresBilgileriIlce.addItem(" ");
 		cbxAdresBilgileriIlce.setStyleName("gwt-ComboBox1");
-		tabKisiselBilgileri.add(cbxAdresBilgileriIlce, 125, 121);
+		tabKisiselBilgileri.add(cbxAdresBilgileriIlce, 125, 111);
 		cbxAdresBilgileriIlce.setSize("146px", "22px");
 
 		cbxSemt = new ListBox();
@@ -532,14 +542,14 @@ public class KesinKayitBilgileri extends DialogBox {
 		cnxKursZamanı.addItem("HAFTA İÇİ");
 		cnxKursZamanı.setStyleName("gwt-ComboBox1");
 		absolutePanel_4.add(cnxKursZamanı, 162, 94);
-		cnxKursZamanı.setSize("151px", "18px");
+		cnxKursZamanı.setSize("151px", "22px");
 
 		cbxAlan = new ListBox();
 		cbxAlan.addItem(" ");
 		cbxAlan.addItem("ALAN YOK");
 		cbxAlan.setStyleName("gwt-ComboBox1");
 		absolutePanel_4.add(cbxAlan, 162, 64);
-		cbxAlan.setSize("151px", "18px");
+		cbxAlan.setSize("151px", "22px");
 
 		cbxEgitimTuru = new ListBox();
 		cbxEgitimTuru.addItem("YGS HAZIRLIK");
@@ -555,13 +565,13 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxEgitimTuru.addItem("3.SINIF TAKVİYE");
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
 		absolutePanel_4.add(cbxEgitimTuru, 162, 29);
-		cbxEgitimTuru.setSize("151px", "18px");
+		cbxEgitimTuru.setSize("151px", "22px");
 
 		cbxSinif = new ListBox();
 		cbxSinif.setStyleName("gwt-ComboBox1");
 		cbxSinif.addItem("1");
 		absolutePanel_4.add(cbxSinif, 162, 122);
-		cbxSinif.setSize("151px", "18px");
+		cbxSinif.setSize("151px", "22px");
 
 		Label lblrenciNumaras = new Label("Öğrenci Numarası");
 		lblrenciNumaras.setStyleName("gwt-Bold");
@@ -571,7 +581,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		tctOgrenciNumarasi = new TextBox();
 		tctOgrenciNumarasi.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(tctOgrenciNumarasi, 162, 154);
-		tctOgrenciNumarasi.setSize("143px", "14px");
+		tctOgrenciNumarasi.setSize("149px", "14px");
 
 		Label lblKursIndirimFiyat = new Label("Kurs / İndirim Fiyatı");
 		lblKursIndirimFiyat.setStyleName("gwt-Bold");
@@ -581,7 +591,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		textBox_1 = new TextBox();
 		textBox_1.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(textBox_1, 162, 187);
-		textBox_1.setSize("143px", "14px");
+		textBox_1.setSize("149px", "14px");
 
 		Label lblInidirmTr = new Label("İnidirm Türü");
 		lblInidirmTr.setStyleName("gwt-Bold");
@@ -602,9 +612,9 @@ public class KesinKayitBilgileri extends DialogBox {
 		absolutePanel_4.add(lblReferans, 10, 292);
 
 		cbxReferans = new ListBox();
-		cbxReferans.addItem(" ");
+		cbxReferans.addItem("  ");
 		cbxReferans.setStyleName("gwt-ComboBox1");
-		absolutePanel_4.add(cbxReferans, 162, 292);
+		absolutePanel_4.add(cbxReferans, 162, 286);
 		cbxReferans.setSize("151px", "18px");
 
 		cbxInidirimMiktari = new ListBox();
@@ -612,7 +622,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxInidirimMiktari.addItem("Pazarlık");
 		cbxInidirimMiktari.setStyleName("gwt-ComboBox1");
 		absolutePanel_4.add(cbxInidirimMiktari, 162, 217);
-		cbxInidirimMiktari.setSize("151px", "18px");
+		cbxInidirimMiktari.setSize("151px", "22px");
 
 		TextBox textBox = new TextBox();
 		textBox.setStyleName("gwt-TextBox1");
@@ -656,7 +666,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		TextColumn<XMLVeliler> textColumn_2 = new TextColumn<XMLVeliler>() {
 			@Override
 			public String getValue(XMLVeliler object) {
-				return object.toString();
+				return object.yakinlik_durumu.toString();
 			}
 		};
 		grdVeliEkle.addColumn(textColumn_2, "Yakınlık Durumu");
@@ -681,7 +691,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		TextColumn<XMLVeliler> textColumn_12 = new TextColumn<XMLVeliler>() {
 			@Override
 			public String getValue(XMLVeliler object) {
-				return object.toString();
+				return object.is_tel.toString();
 			}
 		};
 		grdVeliEkle.addColumn(textColumn_12, "İş Tel");
@@ -716,12 +726,12 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_34 = new Label("Hizmet türü");
 		label_34.setStyleName("gwt-Bold");
 		absolutePanel_7.add(label_34, 10, 23);
-		label_34.setSize("71px", "18px");
+		label_34.setSize("92px", "18px");
 
 		Label label_35 = new Label("Hizmet Adı");
 		label_35.setStyleName("gwt-Bold");
 		absolutePanel_7.add(label_35, 10, 69);
-		label_35.setSize("68px", "18px");
+		label_35.setSize("92px", "18px");
 
 		cbxHizmetTuru = new ListBox();
 		cbxHizmetTuru.addItem("Servis");
@@ -1444,6 +1454,33 @@ public class KesinKayitBilgileri extends DialogBox {
 		}
 	}
 
+	public void putDataFromXML(XMLOdemeler xml) {
+		tctIndirimliTutar.setText(xml.indirimli_tutar);
+		tctHizmetlerinToplamı.setText(xml.hizmetlerin_toplami);
+		tctToplamTutar.setText(xml.toplam_tutar);
+		tctAciklama.setText(xml.aciklama);
+		tctPesinatMiktari.setText(xml.pesinat_miktari);
+		tctTaksitlerinToplami.setText(xml.taksitlerin_toplami);
+		tctSozlesmeDisiKalan.setText(xml.sozlesme_disi_kalan);
+		tctTaksitAciklama.setText(xml.taksit_aciklama);
+		tctTaksitSayisi.setText(xml.taksit_sayisi);
+
+		cbxPesinatOdemeTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxPesinatOdemeTuru, xml.pesinat_odeme_turu));
+		cbxPesinatınYatacagiBanka.setSelectedIndex(Util
+				.GetLBXSelectedTextIndex(cbxPesinatınYatacagiBanka,
+						xml.pesinatin_yatacagi_banka));
+		cbxTaksitinOdemeTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxTaksitinOdemeTuru, xml.taksitin_odeme_turu));
+		cbxTaksitinYapilacagiBanka.setSelectedIndex(Util
+				.GetLBXSelectedTextIndex(cbxTaksitinYapilacagiBanka,
+						xml.taksitin_yatacagi_banka));
+
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+		dtpTaksideBaslanacakGun.setValue(dtf.parse(xml.takside_baslanacak_gun));
+
+	}
+
 	public void putDataFromXML(XMLOnKayit xml) {
 
 		tctAdi.setText(xml.adi);
@@ -1573,7 +1610,8 @@ public class KesinKayitBilgileri extends DialogBox {
 
 			String URLValue = Util.urlBase + "putodemeler?";
 
-			URLValue = URLValue + "indirimli_tutar="
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&indirimli_tutar="
 					+ tctIndirimliTutar.getText();
 			URLValue = URLValue + "&hizmetlerin_toplami="
 					+ tctHizmetlerinToplamı.getText();
@@ -1618,4 +1656,117 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		}
 	}
+
+	private class BtnNewButton_5ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			String URLValue = Util.urlBase + "putonkayit?";
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&adi=" + tctAdi.getText();
+			URLValue = URLValue + "&soyadi=" + tctSoyadi.getText();
+			URLValue = URLValue + "&tc_kimlik_no=" + tctTCKimlikNo.getText();
+			URLValue = URLValue + "&cinsiyet="
+					+ cbxCinsiyet.getValue(cbxCinsiyet.getSelectedIndex());
+			URLValue = URLValue + "&medeni_hali="
+					+ cbxMedeniHali.getValue(cbxMedeniHali.getSelectedIndex());
+			URLValue = URLValue + "&ev_telefonu=" + tctEvTelefonu.getText();
+			URLValue = URLValue + "&cep_telefonu=" + tctCepTelefonu.getText();
+			URLValue = URLValue + "&email=" + tctEmail.getText();
+
+			URLValue = URLValue
+					+ "&ogrenci_bilgileri_ulke="
+					+ cbxOgrenciBilgileriUlke.getValue(cbxOgrenciBilgileriUlke
+							.getSelectedIndex());
+
+			URLValue = URLValue
+					+ "&ogrenci_bilgileri_il="
+					+ cbxOgrenciBilgileriIl.getItemText(cbxOgrenciBilgileriIl
+							.getSelectedIndex());
+
+			URLValue = URLValue
+					+ "&ogrenci_bilgileri_ilce="
+					+ cbxOgrenciBilgileriIlce
+							.getItemText(cbxOgrenciBilgileriIlce
+									.getSelectedIndex());
+			URLValue = URLValue + "&okul="
+					+ cbxOkul.getItemText(cbxOkul.getSelectedIndex());
+
+			URLValue = URLValue
+					+ "&ogrenci_bilgileri_sinif="
+					+ cbxOgrenciBilgileriSinif
+							.getValue(cbxOgrenciBilgileriSinif
+									.getSelectedIndex());
+			//
+			//
+
+			// URLValue = URLValue + "&egitim_turu="
+			// + cbxEgitimTuru.getValue(cbxEgitimTuru.getSelectedIndex());
+			// URLValue = URLValue + "&alan="
+			// + cbxAlan.getValue(cbxAlan.getSelectedIndex());
+			//
+			// URLValue = URLValue + "&aciklama=" + tctAciklama.getText();
+
+			//
+
+			URLValue = URLValue
+					+ "&adres_bilgileri_ulke="
+					+ cbxAdresBilgileriUlke.getValue(cbxAdresBilgileriUlke
+							.getSelectedIndex());
+			URLValue = URLValue
+					+ "&adres_bilgileri_il="
+					+ cbxAdresBilgileriIl.getItemText(cbxAdresBilgileriIl
+							.getSelectedIndex());
+			URLValue = URLValue
+					+ "&adres_bilgileri_ilce="
+					+ cbxAdresBilgileriIlce.getItemText(cbxAdresBilgileriIlce
+							.getSelectedIndex());
+			URLValue = URLValue + "&semt="
+					+ cbxSemt.getItemText(cbxSemt.getSelectedIndex());
+			URLValue = URLValue + "&mahalle="
+					+ cbxMahalle.getItemText(cbxMahalle.getSelectedIndex());
+
+			URLValue = URLValue + "&sokak_ve_no=" + tctSokakveNo.getText();
+
+			URLValue = URLValue + "&seri_no=" + tctSeriNo.getText();
+			URLValue = URLValue + "&cuzdan_no=" + tctCuzdanNo.getText();
+			URLValue = URLValue
+					+ "&ogrenci_kimlik_bilgileri_ulke="
+					+ cbxOgrenciKimlikBilgileriUlke
+							.getValue(cbxOgrenciKimlikBilgileriUlke
+									.getSelectedIndex());
+			URLValue = URLValue
+					+ "&ogrenci_kimlik_bilgileri_il="
+					+ cbxOgrenciKimlikBilgileriIl
+							.getItemText(cbxOgrenciKimlikBilgileriIl
+									.getSelectedIndex());
+			URLValue = URLValue
+					+ "&ogrenci_kimlik_bilgileri_ilce="
+					+ cbxOgrenciKimlikBilgileriIlce
+							.getItemText(cbxOgrenciKimlikBilgileriIlce
+									.getSelectedIndex());
+			URLValue = URLValue + "&mahalle_koy=" + tctMahalleKoy.getText();
+			URLValue = URLValue + "&cilt_no=" + tctCiltNo.getText();
+			URLValue = URLValue + "&aile_sira_no=" + tctAileSiraNo.getText();
+			URLValue = URLValue + "&sira_no=" + tctSiraNo.getText();
+			URLValue = URLValue + "&verildigi_yer=" + tctVerildigiYer.getText();
+			URLValue = URLValue + "&verilis_nedeni="
+					+ tctVerilisNedeni.getText();
+			URLValue = URLValue + "&kayit_no=" + tctKayitNo.getText();
+
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+			URLValue = URLValue + "&dogum_tarihi="
+					+ dtf.format(dtpDogumTarihi.getValue());
+
+			URLValue = URLValue + "&verilis_tarihi="
+					+ dtf.format(dtpVerilisTarihi.getValue());
+
+			// Window.alert(URLValue);
+
+			new Util().sendRequest(URLValue, "", "");
+
+		}
+	}
+
 }

@@ -54,7 +54,7 @@ public class DlgIndirimTuru extends DialogBox {
 		tctIndirimTuru = new TextBox();
 		tctIndirimTuru.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctIndirimTuru, 127, 52);
-		tctIndirimTuru.setSize("149px", "13px");
+		tctIndirimTuru.setSize("149px", "14px");
 
 		tctIndirimMiktari = new TextBox();
 		tctIndirimMiktari.setStyleName("gwt-TextBox1");
