@@ -228,6 +228,7 @@ public class KesinKayit extends Composite {
 				@Override
 				public void onDoubleClick(final DoubleClickEvent event) {
 					XMLOnKayit selected = selectionModel.getSelectedObject();
+
 					if (selected != null) {
 						// DO YOUR STUFF
 
@@ -255,7 +256,7 @@ public class KesinKayit extends Composite {
 
 	}
 
-	protected void showWithData(String id) {
+	protected void showWithData(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getonkayit?id=" + id;
 
@@ -278,8 +279,8 @@ public class KesinKayit extends Composite {
 					List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
 							.readList(response.getText());
 
-					KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri(true,
-							-1);
+					KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri(
+							false, new Long(id).longValue());
 					dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
 					dlgTemp.tabKesinKayitBilgileri.selectTab(0);
 					dlgTemp.setAnimationEnabled(true);
@@ -297,7 +298,7 @@ public class KesinKayit extends Composite {
 
 	}
 
-	protected void showWithData2(String id) {
+	protected void showWithData2(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getodemeler?id=" + id;
 
@@ -341,16 +342,6 @@ public class KesinKayit extends Composite {
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-
-			// tctAdi.setText("");
-			// tctSoyadi.setText("");
-			// tctTCKimlikNo.setText("");
-			//
-			// cbxETuru.setSelectedIndex(0);
-			// cbxAlan.setSelectedIndex(0);
-			// cbxKZamani.setSelectedIndex(0);
-			// cbxSinif.setSelectedIndex(0);
-			// cbxKayitDurumu.setSelectedIndex(0);
 
 			DlgKesinKayitIslemleri dlgTemp = new DlgKesinKayitIslemleri(true,
 					-1);

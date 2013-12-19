@@ -28,9 +28,10 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 	private TextBox tctSoyadi;
 	private AbsolutePanel absolutepanel;
 	public DecoratedTabPanel tabKesinKayitIslemleri;
+	public DialogBox _dlgKesinKayitIslemleri;
 
 	public DlgKesinKayitIslemleri(boolean isInsert, long id) {
-
+		_dlgKesinKayitIslemleri = this;
 		_isInsert = isInsert;
 		_id = id;
 
@@ -155,14 +156,17 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 								// response.getText());
 								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
 										.readList(response.getText());
+
+								//
 								// List<XMLOdemeler> listXmlOdemeler =
 								// XMLOdemeler.XML
 								// .readList(response.getText());
 
 								KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri(
-										true, 1);
-								// dlgTemp.putDataFromXML(listXmlOdemeler.get(0));
+										_isInsert, -1);
+								_dlgKesinKayitIslemleri.hide();
 								dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
+								// dlgTemp.putDataFromXML(listXmlOdemeler.get(0));
 								dlgTemp.center();
 								dlgTemp.tabKesinKayitBilgileri.selectTab(0);
 

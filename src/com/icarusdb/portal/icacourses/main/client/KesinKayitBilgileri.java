@@ -17,6 +17,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -967,6 +968,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		btndemePlanOlutur.setSize("150px", "24px");
 
 		Button btnSzlemeOlutur = new Button("Sözleşme Oluştur");
+		btnSzlemeOlutur.addClickHandler(new BtnSzlemeOluturClickHandler());
 		btnSzlemeOlutur.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_8.add(btnSzlemeOlutur, 453, 454);
 		btnSzlemeOlutur.setSize("150px", "24px");
@@ -1454,33 +1456,6 @@ public class KesinKayitBilgileri extends DialogBox {
 		}
 	}
 
-	public void putDataFromXML(XMLOdemeler xml) {
-		tctIndirimliTutar.setText(xml.indirimli_tutar);
-		tctHizmetlerinToplamı.setText(xml.hizmetlerin_toplami);
-		tctToplamTutar.setText(xml.toplam_tutar);
-		tctAciklama.setText(xml.aciklama);
-		tctPesinatMiktari.setText(xml.pesinat_miktari);
-		tctTaksitlerinToplami.setText(xml.taksitlerin_toplami);
-		tctSozlesmeDisiKalan.setText(xml.sozlesme_disi_kalan);
-		tctTaksitAciklama.setText(xml.taksit_aciklama);
-		tctTaksitSayisi.setText(xml.taksit_sayisi);
-
-		cbxPesinatOdemeTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxPesinatOdemeTuru, xml.pesinat_odeme_turu));
-		cbxPesinatınYatacagiBanka.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxPesinatınYatacagiBanka,
-						xml.pesinatin_yatacagi_banka));
-		cbxTaksitinOdemeTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxTaksitinOdemeTuru, xml.taksitin_odeme_turu));
-		cbxTaksitinYapilacagiBanka.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxTaksitinYapilacagiBanka,
-						xml.taksitin_yatacagi_banka));
-
-		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
-		dtpTaksideBaslanacakGun.setValue(dtf.parse(xml.takside_baslanacak_gun));
-
-	}
-
 	public void putDataFromXML(XMLOnKayit xml) {
 
 		tctAdi.setText(xml.adi);
@@ -1539,6 +1514,33 @@ public class KesinKayitBilgileri extends DialogBox {
 		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
 		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
 		// dtpTaksideBaslanacakGun.setValue(dtf.parse(xml.));
+
+	}
+
+	public void putDataFromXML(XMLOdemeler xml) {
+		tctIndirimliTutar.setText(xml.indirimli_tutar);
+		tctHizmetlerinToplamı.setText(xml.hizmetlerin_toplami);
+		tctToplamTutar.setText(xml.toplam_tutar);
+		tctAciklama.setText(xml.aciklama);
+		tctPesinatMiktari.setText(xml.pesinat_miktari);
+		tctTaksitlerinToplami.setText(xml.taksitlerin_toplami);
+		tctSozlesmeDisiKalan.setText(xml.sozlesme_disi_kalan);
+		tctTaksitAciklama.setText(xml.taksit_aciklama);
+		tctTaksitSayisi.setText(xml.taksit_sayisi);
+
+		cbxPesinatOdemeTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxPesinatOdemeTuru, xml.pesinat_odeme_turu));
+		cbxPesinatınYatacagiBanka.setSelectedIndex(Util
+				.GetLBXSelectedTextIndex(cbxPesinatınYatacagiBanka,
+						xml.pesinatin_yatacagi_banka));
+		cbxTaksitinOdemeTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxTaksitinOdemeTuru, xml.taksitin_odeme_turu));
+		cbxTaksitinYapilacagiBanka.setSelectedIndex(Util
+				.GetLBXSelectedTextIndex(cbxTaksitinYapilacagiBanka,
+						xml.taksitin_yatacagi_banka));
+
+		// DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+		// dtpTaksideBaslanacakGun.setValue(dtf.parse(xml.takside_baslanacak_gun));
 
 	}
 
@@ -1769,4 +1771,76 @@ public class KesinKayitBilgileri extends DialogBox {
 		}
 	}
 
+	private class BtnSzlemeOluturClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			String pathValue = "path=C:/Program___Files/Apache___Software___Foundation/Tomcat 7.0/webapps/ICACourses/reports";
+
+			pathValue = "path=/usr/local/apache-tomcat-7.0.22/icaruswayapps/ICACourses/reports";
+
+			String urlWithParameters = Util.urlBase + "run_report?" + pathValue
+					+ "&jrxmlfile=Sozlesme.jrxml" + "&id=" + _id;
+
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					urlWithParameters);
+
+			Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+			try {
+				Request request = builder.sendRequest(null,
+						new RequestCallback() {
+							public void onError(Request request,
+									Throwable exception) {
+
+							}
+
+							@Override
+							public void onResponseReceived(Request request,
+									Response response) {
+
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
+
+								// List<XMLOnKayit> listXmlOnKayit =
+								// XMLOnKayit.XML
+								// .readList(response.getText());
+
+								// listXmlOnKayit.add(xmlOnKayit);
+
+								// lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
+
+								// Set the total row count. This isn't strictly
+								// necessary, but it affects
+								// paging calculations, so its good habit to
+								// keep the row count up to date.
+								// grdKesinKayit.setRowCount(1, true);
+
+								// Push the data into the widget.
+								// grdKesinKayit.setRowData(0, listXmlOnKayit);
+
+								String url = Window.Location.getHref()
+										.substring(
+												0,
+												Window.Location.getHref()
+														.indexOf("?"));
+								// Window.open(url.replace("Main.html", "")
+								// + "/reports/Sozlesme.pdf",
+								// "_blank", "enabled");
+
+								Window.open(
+										"http://icarusway.com/ICACourses/reports/Sozlesme.pdf",
+										"_blank", "enabled");
+
+							}
+
+						});
+
+			} catch (RequestException e) {
+				// displayError("Couldn't retrieve JSON");
+
+				// Window.alert(e.getMessage() + "ERROR");
+			}
+
+		}
+	}
 }

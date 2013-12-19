@@ -120,16 +120,16 @@ public class Main implements EntryPoint {
 		comboBox.setSize("254px", "26px");
 
 		DecoratedStackPanel decoratedStackPanel = new DecoratedStackPanel();
+		decoratedStackPanel.setStylePrimaryName("gwt-StackPanel");
 		decoratedStackPanel.setStyleName("gwt-StackPanel");
 		verticalPanel.add(decoratedStackPanel);
-		decoratedStackPanel.setSize("254px", "323px");
+		decoratedStackPanel.setSize("254px", "311px");
 
 		vtpanKayitIslemleri = new VerticalPanel();
-		vtpanKayitIslemleri.setBorderWidth(2);
+		vtpanKayitIslemleri.setSpacing(6);
 		vtpanKayitIslemleri.setStyleName("gwt-MenuBackground");
 		vtpanKayitIslemleri
 				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		vtpanKayitIslemleri.setSpacing(6);
 		decoratedStackPanel.add(vtpanKayitIslemleri, "KAYIT İŞLEMLERİ", false);
 		vtpanKayitIslemleri.setSize("241px", "108px");
 
@@ -260,7 +260,7 @@ public class Main implements EntryPoint {
 		btnMenuSablonTanimlari.setWidth("65%");
 
 		vtpanMuhasebe = new VerticalPanel();
-		vtpanMuhasebe.setBorderWidth(4);
+		vtpanMuhasebe.setSpacing(4);
 		vtpanMuhasebe.setStyleName("gwt-MenuBackground");
 		vtpanMuhasebe
 				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -303,8 +303,8 @@ public class Main implements EntryPoint {
 		btnMenuBankaEkle.setWidth("85%");
 
 		vtpanDonemselTanimlar = new VerticalPanel();
+		vtpanDonemselTanimlar.setSpacing(6);
 		vtpanDonemselTanimlar.setStyleName("gwt-MenuBackground");
-		vtpanDonemselTanimlar.setBorderWidth(3);
 		vtpanDonemselTanimlar
 				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		decoratedStackPanel.add(vtpanDonemselTanimlar, "DÖNEMSEL TANIMLAR",
@@ -361,11 +361,10 @@ public class Main implements EntryPoint {
 		btnMenuPersonelTanimlari.setWidth("70%");
 
 		vtpanSabitTanimlamalar = new VerticalPanel();
-		vtpanSabitTanimlamalar.setBorderWidth(3);
 		vtpanSabitTanimlamalar.setStyleName("gwt-MenuBackground");
 		vtpanSabitTanimlamalar
 				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		vtpanSabitTanimlamalar.setSpacing(1);
+		vtpanSabitTanimlamalar.setSpacing(4);
 		decoratedStackPanel.add(vtpanSabitTanimlamalar, "SABİT TANIMLAMALAR",
 				false);
 		vtpanSabitTanimlamalar.setSize("100%", "252px");
@@ -435,12 +434,11 @@ public class Main implements EntryPoint {
 		btnMenuSifreDegistirme.setWidth("85%");
 
 		vtpanDestek = new VerticalPanel();
-		vtpanDestek.setBorderWidth(3);
 		vtpanDestek.setStyleName("gwt-MenuBackground");
 		vtpanDestek.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		vtpanDestek.setSpacing(6);
 		decoratedStackPanel.add(vtpanDestek, "DESTEK", false);
-		vtpanDestek.setSize("100%", "46px");
+		vtpanDestek.setSize("100%", "43px");
 
 		Button btnMenuDestekAlmakIstiyorum = new Button(
 				"Destek Almak İstiyorum");
@@ -451,10 +449,10 @@ public class Main implements EntryPoint {
 		btnMenuDestekAlmakIstiyorum.setWidth("100%");
 
 		vtpanYetki = new VerticalPanel();
-		vtpanYetki.setBorderWidth(3);
+		vtpanYetki.setBorderWidth(0);
 		vtpanYetki.setStyleName("gwt-MenuBackground");
 		vtpanYetki.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		vtpanYetki.setSpacing(6);
+		vtpanYetki.setSpacing(4);
 		decoratedStackPanel.add(vtpanYetki, "YETKİ", false);
 		vtpanYetki.setSize("100%", "44px");
 

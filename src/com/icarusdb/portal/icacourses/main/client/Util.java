@@ -10,10 +10,10 @@ import com.google.gwt.user.client.ui.ListBox;
 
 public class Util {
 
-	static public String urlBase = "http://localhost:9090/ICACoursesWS/jaxrs/genel/";
-
 	// static public String urlBase =
-	// "http://icarusway.com/ICACoursesWS/jaxrs/genel/";
+	// "http://localhost:9090/ICACoursesWS/jaxrs/genel/";
+
+	static public String urlBase = "http://icarusway.com/ICACoursesWS/jaxrs/genel/";
 
 	void sendRequest(String url, String successMsg, String errorMsg) {
 
