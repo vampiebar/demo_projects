@@ -11,6 +11,9 @@ public class XMLOdemeler {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("ogrenci_numarasi")
+	String ogrenci_numarasi;
+
 	@Path("id")
 	String id;
 

@@ -123,7 +123,7 @@ public class KesinKayit extends Composite {
 		Column<XMLOnKayit, ?> textColumn = new TextColumn<XMLOnKayit>() {
 			@Override
 			public String getValue(XMLOnKayit object) {
-				return object.egitim_turu.toString();
+				return object.gorusme_egitim_turu.toString();
 			}
 		};
 		grdKesinKayit.addColumn(textColumn, "Eğitim Türü");

@@ -54,6 +54,9 @@ public class XMLOnKayit {
 	@Path("okul")
 	String okul;
 
+	@Path("okul_numarasi")
+	String okul_numarasi;
+
 	@Path("ogrenci_bilgileri_sinif")
 	String ogrenci_bilgileri_sinif;
 
@@ -75,20 +78,32 @@ public class XMLOnKayit {
 	@Path("sokak_ve_no")
 	String sokak_ve_no;
 
+	@Path("gorusme_egitim_turu")
+	String gorusme_egitim_turu;
+
+	@Path("gorusme_alan")
+	String gorusme_alan;
+
+	@Path("gorusme_kurs_zamani")
+	String gorusme_kurs_zamani;
+
 	@Path("gorusme_sinif")
 	String gorusme_sinif;
 
-	@Path("kurs_indirim_fiyati")
-	String kurs_indirim_fiyati;
+	@Path("gorusme_kurs_indirim_fiyati")
+	String gorusme_kurs_indirim_fiyati;
 
-	@Path("indirim_turu")
-	String indirim_turu;
+	@Path("gorusme_indirim_turu")
+	String gorusme_indirim_turu;
 
-	@Path("indirim_miktari")
-	String indirim_miktari;
+	@Path("gorusme_indirim_sekli")
+	String gorusme_indirim_sekli;
 
-	@Path("referans")
-	String referans;
+	@Path("gorusme_indirim_miktari")
+	String gorusme_indirim_miktari;
+
+	@Path("gorusme_referans")
+	String gorusme_referans;
 
 	@Path("gorusme_tarihi")
 	String gorusme_tarihi;
@@ -104,15 +119,6 @@ public class XMLOnKayit {
 
 	@Path("aciklama")
 	String aciklama;
-
-	@Path("egitim_turu")
-	String egitim_turu;
-
-	@Path("alan")
-	String alan;
-
-	@Path("kurs_zamani")
-	String kurs_zamani;
 
 	@Path("seri_no")
 	String seri_no;
@@ -156,4 +162,33 @@ public class XMLOnKayit {
 	@Path("kesin_kayit_mi")
 	String kesin_kayit_mi;
 
+	@Path("kurs_indirim_fiyati")
+	String kurs_indirim_fiyati;
+
+	@Path("indirim_turu")
+	String indirim_turu;
+
+	@Path("indirim_sekli")
+	String indirim_sekli;
+
+	@Path("indirim_miktari")
+	String indirim_miktari;
+
+	@Path("referans")
+	String referans;
+
+	@Path("egitim_turu")
+	String egitim_turu;
+
+	@Path("alan")
+	String alan;
+
+	@Path("kurs_zamani")
+	String kurs_zamani;
+
+	@Path("ogrenci_numarasi")
+	String ogrenci_numarasi;
+
+	@Path("sinif")
+	String sinif;
 }
