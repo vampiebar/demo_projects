@@ -87,7 +87,7 @@ public class KesinKayitBilgileri extends DialogBox {
 	private ListBox cbxOgrenciBilgileriIl;
 	private ListBox cbxOgrenciBilgileriUlke;
 	private ListBox cbxOgrenciBilgileriSinif;
-	private TextBox tctOkulNumarası;
+	private TextBox tctOkulNumarasi;
 	private CellTable<XMLVeliler> grdVeliEkle;
 	public TabPanel tabKesinKayitBilgileri;
 	private TextBox tctHizmetlerinToplamı;
@@ -263,10 +263,10 @@ public class KesinKayitBilgileri extends DialogBox {
 		absolutePanel_1.add(lblNewLabel_1, 10, 408);
 		lblNewLabel_1.setSize("105px", "16px");
 
-		tctOkulNumarası = new TextBox();
-		tctOkulNumarası.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctOkulNumarası, 157, 408);
-		tctOkulNumarası.setSize("126px", "15px");
+		tctOkulNumarasi = new TextBox();
+		tctOkulNumarasi.setStyleName("gwt-TextBox1");
+		absolutePanel_1.add(tctOkulNumarasi, 157, 408);
+		tctOkulNumarasi.setSize("126px", "15px");
 
 		cbxOkul = new ListBox();
 		cbxOkul.addItem(" ");
@@ -542,7 +542,6 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxKursZamani = new ListBox();
 		cbxKursZamani.addItem("3");
 		cbxKursZamani.addItem("4");
-		cbxKursZamani.addItem(" ");
 		cbxKursZamani.setStyleName("gwt-ComboBox1");
 		absolutePanel_4.add(cbxKursZamani, 162, 94);
 		cbxKursZamani.setSize("151px", "22px");
@@ -571,8 +570,9 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxEgitimTuru.setSize("151px", "22px");
 
 		cbxSinif = new ListBox();
-		cbxSinif.setStyleName("gwt-ComboBox1");
 		cbxSinif.addItem("1");
+		cbxSinif.addItem("2");
+		cbxSinif.setStyleName("gwt-ComboBox1");
 		absolutePanel_4.add(cbxSinif, 162, 122);
 		cbxSinif.setSize("151px", "22px");
 
@@ -612,13 +612,13 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		Label lblReferans = new Label("Referans");
 		lblReferans.setStyleName("gwt-Bold");
-		absolutePanel_4.add(lblReferans, 10, 292);
+		absolutePanel_4.add(lblReferans, 10, 282);
 
 		cbxReferans = new ListBox();
 		cbxReferans.addItem("  1");
 		cbxReferans.addItem("2");
 		cbxReferans.setStyleName("gwt-ComboBox1");
-		absolutePanel_4.add(cbxReferans, 162, 286);
+		absolutePanel_4.add(cbxReferans, 162, 276);
 		cbxReferans.setSize("151px", "18px");
 
 		cbxInidirimTuru = new ListBox();
@@ -1139,6 +1139,52 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	}
 
+	private void putDataToGrid() {
+
+		String urlWithParameters = Util.urlBase + "getveliler";
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					List<XMLVeliler> listXmlVeliler = XMLVeliler.XML
+							.readList(response.getText());
+
+					// Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
+
+					// Window.alert("gun: " + listXmlSaatGirisi.get(0).gun);
+
+					// Set the total row count. This isn't strictly
+					// necessary, but it affects
+					// paging calculations, so its good habit to
+					// keep the row count up to date.
+					grdVeliEkle.setRowCount(1, true);
+
+					// Push the data into the widget.
+					grdVeliEkle.setRowData(0, listXmlVeliler);
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
 	private void putKursZamaniToCbx(final ListBox lbxTemp) {
 
 		lbxTemp.clear();
@@ -1184,6 +1230,7 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		lbxTemp.clear();
 		lbxTemp.addItem("");
+		// lbxTemp.addItem("1");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				Util.urlBase + "getreferanslar");
@@ -1208,52 +1255,6 @@ public class KesinKayitBilgileri extends DialogBox {
 
 						lbxTemp.addItem(xmlReferanslar.get(i).referans_adi_soyadi);
 					}
-
-				}
-
-			});
-
-		} catch (RequestException e) {
-			// displayError("Couldn't retrieve JSON");
-
-			// Window.alert(e.getMessage() + "ERROR");
-		}
-
-	}
-
-	private void putDataToGrid() {
-
-		String urlWithParameters = Util.urlBase + "getveliler";
-
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				urlWithParameters);
-
-		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
-		try {
-			Request request = builder.sendRequest(null, new RequestCallback() {
-				public void onError(Request request, Throwable exception) {
-
-				}
-
-				@Override
-				public void onResponseReceived(Request request,
-						Response response) {
-
-					List<XMLVeliler> listXmlVeliler = XMLVeliler.XML
-							.readList(response.getText());
-
-					// Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
-
-					// Window.alert("gun: " + listXmlSaatGirisi.get(0).gun);
-
-					// Set the total row count. This isn't strictly
-					// necessary, but it affects
-					// paging calculations, so its good habit to
-					// keep the row count up to date.
-					grdVeliEkle.setRowCount(1, true);
-
-					// Push the data into the widget.
-					grdVeliEkle.setRowData(0, listXmlVeliler);
 
 				}
 
@@ -1504,12 +1505,12 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	public void putDataFromXML(XMLOnKayit xml) {
 
+		tctOkulNumarasi.setText(xml.okul_numarasi);
 		tctAdi.setText(xml.adi);
 		tctSoyadi.setText(xml.soyadi);
 		tctTCKimlikNo.setText(xml.tc_kimlik_no);
 		tctEvTelefonu.setText(xml.ev_telefonu);
 		tctCepTelefonu.setText(xml.cep_telefonu);
-		tctOkulNumarası.setText(xml.okul_numarasi);
 		tctEmail.setText(xml.email);
 		tctSokakveNo.setText(xml.sokak_ve_no);
 		tctSeriNo.setText(xml.seri_no);
@@ -1521,12 +1522,10 @@ public class KesinKayitBilgileri extends DialogBox {
 		tctVerildigiYer.setText(xml.verildigi_yer);
 		tctVerilisNedeni.setText(xml.verilis_nedeni);
 		tctKayitNo.setText(xml.kayit_no);
-		tctOgrenciNumarasi.setText(xml.ogrenci_numarasi);
-		tctKursIndirimFiyati.setText(xml.kurs_indirim_fiyati);
-		tctIndirimMiktari.setText(xml.indirim_miktari);
 
-		cbxSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxSinif,
-				xml.ogrenci_bilgileri_sinif));
+		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxEgitimTuru, xml.egitim_turu));
+
 		cbxCinsiyet.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxCinsiyet,
 				xml.cinsiyet));
 		cbxMedeniHali.setSelectedIndex(Util.GetLBXSelectedTextIndex(
@@ -1536,31 +1535,13 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		cbxOgrenciBilgileriSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxOgrenciBilgileriSinif, xml.ogrenci_bilgileri_sinif));
-		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxEgitimTuru, xml.egitim_turu));
-		cbxAlan.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxAlan, xml.alan));
+
 		cbxAdresBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxAdresBilgileriUlke, xml.adres_bilgileri_ulke));
 
 		cbxOgrenciKimlikBilgileriUlke.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriUlke,
 						xml.ogrenci_kimlik_bilgileri_ulke));
-		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxEgitimTuru, xml.egitim_turu));
-		cbxAlan.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxAlan, xml.alan));
-		cbxSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxSinif,
-				xml.sinif));
-		cbxInidirimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxInidirimTuru, xml.indirim_turu));
-		cbxIndirimSekli.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxIndirimSekli, xml.indirim_sekli));
-
-		cbxReferans.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxReferans,
-				xml.referans));
-		cbxKursZamani.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxKursZamani, xml.kurs_zamani));
 
 		// cbxReferans.setItemText(0, xml.referans);
 		// cbxKursZamani.setItemText(0, xml.kurs_zamani);
@@ -1577,14 +1558,15 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxOgrenciKimlikBilgileriIlce.setItemText(0,
 				xml.ogrenci_kimlik_bilgileri_ilce);
 
+		// DateBox
 		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
 		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
-		// dtpTaksideBaslanacakGun.setValue(dtf.parse(xml.));
 
 	}
 
 	public void putDataFromXML(XMLOdemeler xml) {
+
 		tctIndirimliTutar.setText(xml.indirimli_tutar);
 		tctHizmetlerinToplamı.setText(xml.hizmetlerin_toplami);
 		tctToplamTutar.setText(xml.toplam_tutar);
@@ -1609,121 +1591,6 @@ public class KesinKayitBilgileri extends DialogBox {
 		// DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 		// dtpTaksideBaslanacakGun.setValue(dtf.parse(xml.takside_baslanacak_gun));
 
-	}
-
-	private class CbxOgrenciBilgileriIlChangeHandler implements ChangeHandler {
-		public void onChange(ChangeEvent event) {
-			putIlceToCbx(cbxOgrenciBilgileriIl.getSelectedIndex(),
-					cbxOgrenciBilgileriIlce);
-		}
-	}
-
-	private class CbxOgrenciBilgileriIlceChangeHandler implements ChangeHandler {
-		public void onChange(ChangeEvent event) {
-			putOkulToCbx(cbxOgrenciBilgileriIl.getSelectedIndex(),
-					cbxOgrenciBilgileriIlce.getSelectedIndex(), cbxOkul);
-		}
-	}
-
-	private class CbxOgrenciKimlikBilgileriIlChangeHandler_1 implements
-			ChangeHandler {
-		public void onChange(ChangeEvent event) {
-			putIlceToCbx(cbxOgrenciKimlikBilgileriIl.getSelectedIndex(),
-					cbxOgrenciKimlikBilgileriIlce);
-		}
-	}
-
-	private class CbxAdresBilgileriIlChangeHandler implements ChangeHandler {
-		public void onChange(ChangeEvent event) {
-			putIlceToCbx(cbxAdresBilgileriIl.getSelectedIndex(),
-					cbxAdresBilgileriIlce);
-		}
-	}
-
-	private class CbxAdresBilgileriIlceChangeHandler implements ChangeHandler {
-		public void onChange(ChangeEvent event) {
-			putSemtToCbx(cbxAdresBilgileriIl.getItemText(cbxAdresBilgileriIl
-					.getSelectedIndex()),
-					cbxAdresBilgileriIlce.getItemText(cbxAdresBilgileriIlce
-							.getSelectedIndex()), cbxSemt);
-		}
-	}
-
-	private class CbxSemtChangeHandler implements ChangeHandler {
-		public void onChange(ChangeEvent event) {
-			putMahalleToCbx(cbxAdresBilgileriIl.getItemText(cbxAdresBilgileriIl
-					.getSelectedIndex()),
-					cbxAdresBilgileriIlce.getItemText(cbxAdresBilgileriIlce
-							.getSelectedIndex()), cbxSemt.getItemText(cbxSemt
-							.getSelectedIndex()), cbxMahalle);
-
-		}
-	}
-
-	private class BtnVeliEkleClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-			DlgVeliEkle dlgtemp = new DlgVeliEkle(true, -1);
-			dlgtemp.center();
-
-		}
-	}
-
-	private class BtnNewButton_4ClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-			hide();
-		}
-	}
-
-	private class BtnKaydetOdemelerClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-
-			String URLValue = Util.urlBase + "putodemeler?";
-
-			URLValue = URLValue + "id=" + _id;
-			URLValue = URLValue + "&indirimli_tutar="
-					+ tctIndirimliTutar.getText();
-			URLValue = URLValue + "&hizmetlerin_toplami="
-					+ tctHizmetlerinToplamı.getText();
-			URLValue = URLValue + "&toplam_tutar=" + tctToplamTutar.getText();
-			URLValue = URLValue
-					+ "&pesinat_odeme_turu="
-					+ cbxPesinatOdemeTuru.getValue(cbxPesinatOdemeTuru
-							.getSelectedIndex());
-			URLValue = URLValue + "&aciklama=" + tctAciklama.getText();
-			URLValue = URLValue
-					+ "&pesinatin_yatacagi_banka="
-					+ cbxPesinatınYatacagiBanka
-							.getValue(cbxPesinatınYatacagiBanka
-									.getSelectedIndex());
-			URLValue = URLValue + "&pesinat_miktari="
-					+ tctPesinatMiktari.getText();
-			URLValue = URLValue + "&taksitlerin_toplami="
-					+ tctTaksitlerinToplami.getText();
-			URLValue = URLValue + "&sozlesme_disi_kalan="
-					+ tctSozlesmeDisiKalan.getText();
-			URLValue = URLValue
-					+ "&taksitin_odeme_turu="
-					+ cbxTaksitinOdemeTuru.getValue(cbxTaksitinOdemeTuru
-							.getSelectedIndex());
-			URLValue = URLValue + "&taksit_aciklama="
-					+ tctTaksitAciklama.getText();
-			URLValue = URLValue
-					+ "&taksitin_yatacagi_banka="
-					+ cbxTaksitinYapilacagiBanka
-							.getValue(cbxTaksitinYapilacagiBanka
-									.getSelectedIndex());
-			URLValue = URLValue + "&taksit_sayisi=" + tctTaksitSayisi.getText();
-
-			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
-
-			URLValue = URLValue + "&takside_baslanacak_gun="
-					+ dtf.format(dtpTaksideBaslanacakGun.getValue());
-
-			// Window.alert("URL VALUE:  DBS: " + URLValue);
-
-			new Util().sendRequest(URLValue, "", "");
-
-		}
 	}
 
 	private class BtnNewButton_5ClickHandler implements ClickHandler {
@@ -1760,7 +1627,7 @@ public class KesinKayitBilgileri extends DialogBox {
 									.getSelectedIndex());
 			URLValue = URLValue + "&okul="
 					+ cbxOkul.getItemText(cbxOkul.getSelectedIndex());
-			URLValue = URLValue + "&okul_numarasi=" + tctOkulNumarası.getText();
+			URLValue = URLValue + "&okul_numarasi=" + tctOkulNumarasi.getText();
 			URLValue = URLValue
 					+ "&ogrenci_bilgileri_sinif="
 					+ cbxOgrenciBilgileriSinif
@@ -1823,6 +1690,8 @@ public class KesinKayitBilgileri extends DialogBox {
 					+ cbxSinif.getValue(cbxSinif.getSelectedIndex());
 			URLValue = URLValue + "&ogrenci_numarasi="
 					+ tctOgrenciNumarasi.getText();
+			URLValue = URLValue + "&kurs_indirim_fiyati="
+					+ tctKursIndirimFiyati.getText();
 			URLValue = URLValue
 					+ "&indirim_turu="
 					+ cbxInidirimTuru.getValue(cbxInidirimTuru
@@ -1834,7 +1703,7 @@ public class KesinKayitBilgileri extends DialogBox {
 			URLValue = URLValue + "&indirim_miktari="
 					+ tctIndirimMiktari.getText();
 			URLValue = URLValue + "&referans="
-					+ cbxReferans.getItemText(cbxReferans.getSelectedIndex());
+					+ cbxReferans.getValue(cbxReferans.getSelectedIndex());
 
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 
@@ -1844,6 +1713,82 @@ public class KesinKayitBilgileri extends DialogBox {
 			URLValue = URLValue + "&verilis_tarihi="
 					+ dtf.format(dtpVerilisTarihi.getValue());
 
+			// Window.alert(URLValue);
+
+			new Util().sendRequest(URLValue, "", "");
+
+		}
+	}
+
+	private class BtnKaydetOdemelerClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			String URLValue = Util.urlBase + "putodemeler?";
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&indirimli_tutar="
+					+ tctIndirimliTutar.getText();
+			URLValue = URLValue + "&hizmetlerin_toplami="
+					+ tctHizmetlerinToplamı.getText();
+			URLValue = URLValue + "&toplam_tutar=" + tctToplamTutar.getText();
+			URLValue = URLValue
+					+ "&pesinat_odeme_turu="
+					+ cbxPesinatOdemeTuru.getValue(cbxPesinatOdemeTuru
+							.getSelectedIndex());
+			URLValue = URLValue + "&aciklama=" + tctAciklama.getText();
+			URLValue = URLValue
+					+ "&pesinatin_yatacagi_banka="
+					+ cbxPesinatınYatacagiBanka
+							.getValue(cbxPesinatınYatacagiBanka
+									.getSelectedIndex());
+			URLValue = URLValue + "&pesinat_miktari="
+					+ tctPesinatMiktari.getText();
+			URLValue = URLValue + "&taksitlerin_toplami="
+					+ tctTaksitlerinToplami.getText();
+			URLValue = URLValue + "&sozlesme_disi_kalan="
+					+ tctSozlesmeDisiKalan.getText();
+			URLValue = URLValue
+					+ "&taksitin_odeme_turu="
+					+ cbxTaksitinOdemeTuru.getValue(cbxTaksitinOdemeTuru
+							.getSelectedIndex());
+			URLValue = URLValue + "&taksit_aciklama="
+					+ tctTaksitAciklama.getText();
+			URLValue = URLValue
+					+ "&taksitin_yatacagi_banka="
+					+ cbxTaksitinYapilacagiBanka
+							.getValue(cbxTaksitinYapilacagiBanka
+									.getSelectedIndex());
+			URLValue = URLValue + "&taksit_sayisi=" + tctTaksitSayisi.getText();
+
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+			URLValue = URLValue + "&takside_baslanacak_gun="
+					+ dtf.format(dtpTaksideBaslanacakGun.getValue());
+
+			// Window.alert("URL VALUE:  DBS: " + URLValue);
+
+			new Util().sendRequest(URLValue, "", "");
+
+		}
+	}
+
+	private class BtnNewButtonClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			String URLValue = Util.urlBase + "puthizmetler?";
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&hizmet_turu="
+					+ cbxHizmetTuru.getValue(cbxHizmetTuru.getSelectedIndex());
+			URLValue = URLValue + "&hizmet_adi="
+					+ cbxHizmetAdi.getValue(cbxHizmetAdi.getSelectedIndex());
+			URLValue = URLValue + "&miktar=" + tctMiktar.getText();
+			URLValue = URLValue
+					+ "&hizmetler_indirim_turu="
+					+ cbxHizmetlerIndirimTuru.getValue(cbxHizmetlerIndirimTuru
+							.getSelectedIndex());
+			URLValue = URLValue + "&hizmetler_indirim_miktari="
+					+ tctHizmetlerIndirimMiktari.getText();
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");
@@ -1925,27 +1870,66 @@ public class KesinKayitBilgileri extends DialogBox {
 		}
 	}
 
-	private class BtnNewButtonClickHandler implements ClickHandler {
+	private class CbxOgrenciBilgileriIlChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putIlceToCbx(cbxOgrenciBilgileriIl.getSelectedIndex(),
+					cbxOgrenciBilgileriIlce);
+		}
+	}
+
+	private class CbxOgrenciBilgileriIlceChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putOkulToCbx(cbxOgrenciBilgileriIl.getSelectedIndex(),
+					cbxOgrenciBilgileriIlce.getSelectedIndex(), cbxOkul);
+		}
+	}
+
+	private class CbxOgrenciKimlikBilgileriIlChangeHandler_1 implements
+			ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putIlceToCbx(cbxOgrenciKimlikBilgileriIl.getSelectedIndex(),
+					cbxOgrenciKimlikBilgileriIlce);
+		}
+	}
+
+	private class CbxAdresBilgileriIlChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putIlceToCbx(cbxAdresBilgileriIl.getSelectedIndex(),
+					cbxAdresBilgileriIlce);
+		}
+	}
+
+	private class CbxAdresBilgileriIlceChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putSemtToCbx(cbxAdresBilgileriIl.getItemText(cbxAdresBilgileriIl
+					.getSelectedIndex()),
+					cbxAdresBilgileriIlce.getItemText(cbxAdresBilgileriIlce
+							.getSelectedIndex()), cbxSemt);
+		}
+	}
+
+	private class CbxSemtChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putMahalleToCbx(cbxAdresBilgileriIl.getItemText(cbxAdresBilgileriIl
+					.getSelectedIndex()),
+					cbxAdresBilgileriIlce.getItemText(cbxAdresBilgileriIlce
+							.getSelectedIndex()), cbxSemt.getItemText(cbxSemt
+							.getSelectedIndex()), cbxMahalle);
+
+		}
+	}
+
+	private class BtnVeliEkleClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
+			DlgVeliEkle dlgtemp = new DlgVeliEkle(true, -1);
+			dlgtemp.center();
 
-			String URLValue = Util.urlBase + "puthizmetler?";
+		}
+	}
 
-			URLValue = URLValue + "id=" + _id;
-			URLValue = URLValue + "&hizmet_turu="
-					+ cbxHizmetTuru.getValue(cbxHizmetTuru.getSelectedIndex());
-			URLValue = URLValue + "&hizmet_adi="
-					+ cbxHizmetAdi.getValue(cbxHizmetAdi.getSelectedIndex());
-			URLValue = URLValue + "&miktar=" + tctMiktar.getText();
-			URLValue = URLValue
-					+ "&hizmetler_indirim_turu="
-					+ cbxHizmetlerIndirimTuru.getValue(cbxHizmetlerIndirimTuru
-							.getSelectedIndex());
-			URLValue = URLValue + "&hizmetler_indirim_miktari="
-					+ tctHizmetlerIndirimMiktari.getText();
-			Window.alert(URLValue);
-
-			new Util().sendRequest(URLValue, "", "");
-
+	private class BtnNewButton_4ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
 		}
 	}
 }

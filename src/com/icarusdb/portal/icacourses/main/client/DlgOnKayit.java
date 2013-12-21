@@ -813,7 +813,7 @@ public class DlgOnKayit extends DialogBox {
 		TextColumn<XMLVeliler> textColumn_5 = new TextColumn<XMLVeliler>() {
 			@Override
 			public String getValue(XMLVeliler object) {
-				return object.toString();
+				return object.is_tel.toString();
 			}
 		};
 		grdVeliEkle.addColumn(textColumn_5, "İş Tel");
@@ -822,7 +822,7 @@ public class DlgOnKayit extends DialogBox {
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLVeliler object) {
-				return object.is_tel.toString();
+				return "?";
 			}
 		};
 		grdVeliEkle.addColumn(column_3, "Düzenle");
