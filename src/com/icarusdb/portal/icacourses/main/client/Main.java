@@ -48,6 +48,7 @@ public class Main implements EntryPoint {
 	private VerticalPanel vtpanYetki;
 	private Button btnMenuDBSKayit;
 	private Button btnMenuSinifTanimlari;
+	private Button btnEgitimTurutanimlama;
 
 	public void onModuleLoad() {
 		RootPanel rootPanel = RootPanel.get();
@@ -423,6 +424,13 @@ public class Main implements EntryPoint {
 		btnMenuSozlemeMaddeleri.setStyleName("gwt-MenuButton");
 		btnMenuSozlemeMaddeleri
 				.addClickHandler(new BtnMenuSozlemeMaddeleriClickHandler());
+
+		btnEgitimTurutanimlama = new Button("Eğitim Türü Tanimlama");
+		btnEgitimTurutanimlama
+				.addClickHandler(new BtnEgitimTurutanimlamaClickHandler());
+		btnEgitimTurutanimlama.setStyleName("gwt-MenuButton");
+		vtpanSabitTanimlamalar.add(btnEgitimTurutanimlama);
+		btnEgitimTurutanimlama.setWidth("85%");
 		vtpanSabitTanimlamalar.add(btnMenuSozlemeMaddeleri);
 		btnMenuSozlemeMaddeleri.setWidth("85%");
 
@@ -1141,6 +1149,16 @@ public class Main implements EntryPoint {
 			smpanMain.add(new KullaniciTanimlama());
 			scrollToTop();
 
+		}
+	}
+
+	private class BtnEgitimTurutanimlamaClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new EgitimTuruTanimlama());
+			scrollToTop();
 		}
 	}
 }

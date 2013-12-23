@@ -135,7 +135,7 @@ public class DlgKonuTanimlari extends DialogBox {
 		lbxTemp.addItem("");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				Util.urlBase + "getegitimturu");
+				Util.urlBase + "getegitimturutanimlama");
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -150,7 +150,7 @@ public class DlgKonuTanimlari extends DialogBox {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
+					List<XMLEgitimTuruTanimlama> xmlEgitimTuru = XMLEgitimTuruTanimlama.XML
 							.readList(response.getText());
 
 					for (int i = 0; i < xmlEgitimTuru.size(); i++) {

@@ -37,8 +37,6 @@ public class DlgVeliEkle extends DialogBox {
 
 		_isInsert = isInsert;
 		_id = id;
-
-		setAutoHideEnabled(true);
 		setHTML("Veli Bilgileri");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -49,61 +47,70 @@ public class DlgVeliEkle extends DialogBox {
 		Label lblAd = new Label("Adı");
 		lblAd.setStyleName("gwt-Bold");
 		absolutePanel.add(lblAd, 10, 40);
+		lblAd.setSize("36px", "16px");
 
 		Label lblSoyadı = new Label("Soyadı");
 		lblSoyadı.setStyleName("gwt-Bold");
 		absolutePanel.add(lblSoyadı, 10, 70);
-		lblSoyadı.setSize("47px", "18px");
+		lblSoyadı.setSize("105px", "18px");
 
 		Label lblTcKimlikNo = new Label("T.C Kimlik No");
 		lblTcKimlikNo.setStyleName("gwt-Bold");
 		absolutePanel.add(lblTcKimlikNo, 10, 100);
+		lblTcKimlikNo.setSize("105px", "16px");
 
 		Label lblYaknlkDurumu = new Label("Yakınlık Durumu");
 		lblYaknlkDurumu.setStyleName("gwt-Bold");
 		absolutePanel.add(lblYaknlkDurumu, 10, 130);
+		lblYaknlkDurumu.setSize("105px", "16px");
 
 		Label lbldemeSorumlusu = new Label("Ödeme Sorumlusu");
 		lbldemeSorumlusu.setStyleName("gwt-Bold");
 		absolutePanel.add(lbldemeSorumlusu, 10, 160);
+		lbldemeSorumlusu.setSize("105px", "16px");
 
 		Label lblCepTel = new Label("Cep Tel");
 		lblCepTel.setStyleName("gwt-Bold");
 		absolutePanel.add(lblCepTel, 10, 190);
-		lblCepTel.setSize("59px", "16px");
+		lblCepTel.setSize("105px", "16px");
 
 		Label lblITel = new Label("İş Tel");
 		lblITel.setStyleName("gwt-Bold");
 		absolutePanel.add(lblITel, 10, 250);
+		lblITel.setSize("105px", "16px");
 
 		Label lblEvTel = new Label("Ev Tel");
 		lblEvTel.setStyleName("gwt-Bold");
 		absolutePanel.add(lblEvTel, 10, 220);
-		lblEvTel.setSize("38px", "18px");
+		lblEvTel.setSize("105px", "18px");
 
 		Label lblEmail = new Label("E-Mail");
 		lblEmail.setStyleName("gwt-Bold");
 		absolutePanel.add(lblEmail, 10, 280);
+		lblEmail.setSize("105px", "16px");
 
 		Label lblFirma = new Label("Firma");
 		lblFirma.setStyleName("gwt-Bold");
 		absolutePanel.add(lblFirma, 10, 310);
+		lblFirma.setSize("105px", "16px");
 
 		Label lblSektr = new Label("Sektör");
 		lblSektr.setStyleName("gwt-Bold");
 		absolutePanel.add(lblSektr, 10, 340);
+		lblSektr.setSize("105px", "16px");
 
 		Label lblNewLabel = new Label("Ünvanı");
 		lblNewLabel.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel, 10, 417);
+		absolutePanel.add(lblNewLabel, 10, 370);
+		lblNewLabel.setSize("105px", "16px");
 
 		Label lblGrevi = new Label("Görevi");
 		lblGrevi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblGrevi, 10, 459);
+		absolutePanel.add(lblGrevi, 10, 400);
 
 		Label lblAdress = new Label("Adres");
 		lblAdress.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAdress, 10, 497);
+		absolutePanel.add(lblAdress, 10, 430);
 
 		tctVeliBilgileriTcKimlikNo = new TextBox();
 		tctVeliBilgileriTcKimlikNo.setStyleName("gwt-TextBox1");
@@ -147,17 +154,17 @@ public class DlgVeliEkle extends DialogBox {
 
 		tctVeliBilgileriAdres = new TextBox();
 		tctVeliBilgileriAdres.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVeliBilgileriAdres, 165, 497);
+		absolutePanel.add(tctVeliBilgileriAdres, 165, 430);
 		tctVeliBilgileriAdres.setSize("180px", "14px");
 
 		tctGorevi = new TextBox();
 		tctGorevi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctGorevi, 165, 459);
+		absolutePanel.add(tctGorevi, 165, 400);
 		tctGorevi.setSize("180px", "14px");
 
 		tctUnvani = new TextBox();
 		tctUnvani.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctUnvani, 165, 417);
+		absolutePanel.add(tctUnvani, 165, 370);
 		tctUnvani.setSize("180px", "14px");
 
 		tctCepTel = new TextBox();
@@ -193,6 +200,7 @@ public class DlgVeliEkle extends DialogBox {
 		Label lblrenciTcKimlik = new Label("Öğrenci T.C Kimlik No");
 		lblrenciTcKimlik.setStyleName("gwt-Bold");
 		absolutePanel.add(lblrenciTcKimlik, 10, 10);
+		lblrenciTcKimlik.setSize("149px", "16px");
 
 		tctOgrenciTCKimlikNo = new TextBox();
 		tctOgrenciTCKimlikNo.setStyleName("gwt-TextBox1");
@@ -214,8 +222,6 @@ public class DlgVeliEkle extends DialogBox {
 			URLValue = URLValue + "&veli_bilgileri_adi="
 					+ tctVeliBilgileriAdi.getText();
 			URLValue = URLValue + "&veli_bilgileri_soyadi="
-					+ tctVeliBilgileriAdi.getText();
-			URLValue = URLValue + "&veli_bilgileri_adi="
 					+ tctVeliBilgileriSoyadi.getText();
 			URLValue = URLValue + "&veli_bilgileri_tc_kimlik_no="
 					+ tctVeliBilgileriTcKimlikNo.getText();

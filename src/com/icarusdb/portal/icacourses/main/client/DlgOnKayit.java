@@ -11,6 +11,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.http.client.Request;
@@ -22,7 +24,6 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CaptionPanel;
@@ -31,6 +32,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -41,6 +43,8 @@ public class DlgOnKayit extends DialogBox {
 
 	public boolean _isInsert = true;
 	public long _id = -1;
+
+	public DlgVeliEkle _dlgVeliler;
 
 	private TextBox tctAdi;
 	private TextBox tctSoyadi;
@@ -950,10 +954,19 @@ public class DlgOnKayit extends DialogBox {
 					List<XMLVeliler> listXmlVeliler = XMLVeliler.XML
 							.readList(response.getText());
 
-					DlgVeliEkle dlgTemp = new DlgVeliEkle(false, new Long(id)
+					_dlgVeliler = new DlgVeliEkle(false, new Long(id)
 							.longValue());
-					dlgTemp.putDataFromXML(listXmlVeliler.get(0));
-					dlgTemp.center();
+					_dlgVeliler.putDataFromXML(listXmlVeliler.get(0));
+					_dlgVeliler.center();
+					_dlgVeliler.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+						@Override
+						public void onClose(CloseEvent<PopupPanel> event) {
+
+							putDataToGrid();
+
+						}
+					});
 
 				}
 
@@ -969,13 +982,14 @@ public class DlgOnKayit extends DialogBox {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getveliler?tc_kimlik_no="
-				+ tctTCKimlikNo.getText();
+		String urlWithParameters = Util.urlBase + "getveliler?id="
+		// + tctTCKimlikNo.getText();
+				+ _id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
 
-		Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
 				public void onError(Request request, Throwable exception) {
@@ -1514,8 +1528,20 @@ public class DlgOnKayit extends DialogBox {
 	private class ButtonClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			DlgVeliEkle dlgTemp = new DlgVeliEkle(true, -1);
-			dlgTemp.center();
+			_dlgVeliler = new DlgVeliEkle(true, -1);
+			_dlgVeliler.center();
+			_dlgVeliler.setAnimationEnabled(true);
+
+			_dlgVeliler.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
+
+					putDataToGrid();
+
+				}
+			});
+
 		}
 	}
 

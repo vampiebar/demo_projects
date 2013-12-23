@@ -135,7 +135,7 @@ public class DlgUniteTanimlari extends DialogBox {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
+					List<XMLEgitimTuruTanimlama> xmlEgitimTuru = XMLEgitimTuruTanimlama.XML
 							.readList(response.getText());
 
 					for (int i = 0; i < xmlEgitimTuru.size(); i++) {

@@ -8,6 +8,12 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
+import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -24,15 +30,18 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
+import com.google.gwt.view.client.SingleSelectionModel;
 
 public class KesinKayitBilgileri extends DialogBox {
 
 	public boolean _isInsert = true;
 	public long _id = -1;
+	public DlgVeliEkle _dlgVeliler;
 
 	private ListBox cbxMedeniHali;
 	private ListBox cbxCinsiyet;
@@ -124,6 +133,8 @@ public class KesinKayitBilgileri extends DialogBox {
 		lblNewLabel.setSize("437px", "28px");
 
 		tabKesinKayitBilgileri = new TabPanel();
+		tabKesinKayitBilgileri
+				.addSelectionHandler(new TabKesinKayitBilgileriSelectionHandler());
 		absolutePanel.add(tabKesinKayitBilgileri, 0, 121);
 		tabKesinKayitBilgileri.setSize("809px", "715px");
 
@@ -1136,13 +1147,33 @@ public class KesinKayitBilgileri extends DialogBox {
 			// putReferansToCbx(cbxReferans);
 			// putKursZamaniToCbx(cbxKursZamani);
 			putDataToGrid();
+
+			final SingleSelectionModel<XMLVeliler> selectionModel = new SingleSelectionModel<XMLVeliler>();
+
+			grdVeliEkle.setSelectionModel(selectionModel);
+			grdVeliEkle.addDomHandler(new DoubleClickHandler() {
+
+				@Override
+				public void onDoubleClick(final DoubleClickEvent event) {
+					XMLVeliler selected = selectionModel.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+
+			}, DoubleClickEvent.getType());
 		}
 
 	}
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getveliler";
+		String urlWithParameters = Util.urlBase + "getveliler?id=" + _id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -1504,6 +1535,55 @@ public class KesinKayitBilgileri extends DialogBox {
 		}
 	}
 
+	private void showWithData(final String id) {
+
+		String urlWithParameters = Util.urlBase + "getveliler?id=" + id;
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLVeliler> listXmlVeliler = XMLVeliler.XML
+							.readList(response.getText());
+
+					_dlgVeliler = new DlgVeliEkle(false, new Long(id)
+							.longValue());
+					_dlgVeliler.putDataFromXML(listXmlVeliler.get(0));
+					_dlgVeliler.center();
+					_dlgVeliler.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+						@Override
+						public void onClose(CloseEvent<PopupPanel> event) {
+
+							putDataToGrid();
+
+						}
+					});
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
 	public void putDataFromXML(XMLOnKayit xml) {
 
 		tctOkulNumarasi.setText(xml.okul_numarasi);
@@ -1563,6 +1643,18 @@ public class KesinKayitBilgileri extends DialogBox {
 		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
 		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
+	}
+
+	public void putDataFromXML(XMLHizmetler xml) {
+
+		cbxHizmetTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxHizmetTuru, xml.hizmet_turu));
+		cbxHizmetAdi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxHizmetAdi, xml.hizmet_adi));
+		tctMiktar.setText(xml.miktar);
+		cbxHizmetlerIndirimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxHizmetlerIndirimTuru, xml.hizmetler_indirim_turu));
+		tctHizmetlerIndirimMiktari.setText(xml.hizmetler_indirim_miktari);
 
 	}
 
@@ -1589,8 +1681,8 @@ public class KesinKayitBilgileri extends DialogBox {
 				.GetLBXSelectedTextIndex(cbxTaksitinYapilacagiBanka,
 						xml.taksitin_yatacagi_banka));
 
-		// DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
-		// dtpTaksideBaslanacakGun.setValue(dtf.parse(xml.takside_baslanacak_gun));
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+		dtpTaksideBaslanacakGun.setValue(dtf.parse(xml.takside_baslanacak_gun));
 
 	}
 
@@ -1995,8 +2087,20 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	private class BtnVeliEkleClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			DlgVeliEkle dlgtemp = new DlgVeliEkle(true, -1);
-			dlgtemp.center();
+
+			_dlgVeliler = new DlgVeliEkle(true, -1);
+			_dlgVeliler.center();
+			_dlgVeliler.setAnimationEnabled(true);
+
+			_dlgVeliler.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
+
+					putDataToGrid();
+
+				}
+			});
 
 		}
 	}
@@ -2005,6 +2109,93 @@ public class KesinKayitBilgileri extends DialogBox {
 		public void onClick(ClickEvent event) {
 			hide();
 		}
+	}
+
+	private class TabKesinKayitBilgileriSelectionHandler implements
+			SelectionHandler<Integer> {
+		public void onSelection(SelectionEvent<Integer> event) {
+
+			if (event.getSelectedItem() == 7) {
+
+				showWithDataOdemeler(String.valueOf(_id));
+			} else if (event.getSelectedItem() == 6) {
+				showWithDataHizmetler(String.valueOf(_id));
+			}
+
+		}
+	}
+
+	protected void showWithDataOdemeler(final String id) {
+
+		String urlWithParameters = Util.urlBase + "getodemeler?id=" + id;
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLOdemeler> listXmlOdemeler = XMLOdemeler.XML
+							.readList(response.getText());
+
+					putDataFromXML(listXmlOdemeler.get(0));
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	protected void showWithDataHizmetler(final String id) {
+
+		String urlWithParameters = Util.urlBase + "gethizmetler?id=" + id;
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLHizmetler> listXmlHizmetler = XMLHizmetler.XML
+							.readList(response.getText());
+
+					putDataFromXML(listXmlHizmetler.get(0));
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
 	}
 
 }
