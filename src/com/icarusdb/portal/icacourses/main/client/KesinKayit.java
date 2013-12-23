@@ -234,6 +234,27 @@ public class KesinKayit extends Composite {
 
 						// Window.alert("selected id: " + selected.id);
 						showWithData(selected.id);
+						showWithDataOdemeler(selected.id);
+
+					}
+
+				}
+			}, DoubleClickEvent.getType());
+
+			final SingleSelectionModel<XMLOdemeler> selectionModel2 = new SingleSelectionModel<XMLOdemeler>();
+
+			// grdKesinKayit.setSelectionModel2(selectionModel2);
+			grdKesinKayit.addDomHandler(new DoubleClickHandler() {
+
+				@Override
+				public void onDoubleClick(final DoubleClickEvent event) {
+					XMLOdemeler selected = selectionModel2.getSelectedObject();
+
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithDataOdemeler(selected.id);
 
 					}
 
@@ -298,47 +319,47 @@ public class KesinKayit extends Composite {
 
 	}
 
-	// protected void showWithData2(final String id) {
-	//
-	// String urlWithParameters = Util.urlBase + "getodemeler?id=" + id;
-	//
-	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-	// urlWithParameters);
-	//
-	// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
-	// try {
-	// Request request = builder.sendRequest(null, new RequestCallback() {
-	// public void onError(Request request, Throwable exception) {
-	//
-	// }
-	//
-	// @Override
-	// public void onResponseReceived(Request request,
-	// Response response) {
-	//
-	// // Window.alert("AAABBBCCC " + response.getText());
-	//
-	// List<XMLOdemeler> listXmlOdemeler = XMLOdemeler.XML
-	// .readList(response.getText());
-	//
-	// KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri(true,
-	// -1);
-	// dlgTemp.putDataFromXML(listXmlOdemeler.get(0));
-	// dlgTemp.tabKesinKayitBilgileri.selectTab(0);
-	// dlgTemp.setAnimationEnabled(true);
-	// dlgTemp.center();
-	//
-	// }
-	//
-	// });
-	//
-	// } catch (RequestException e) {
-	// // displayError("Couldn't retrieve JSON");
-	//
-	// // Window.alert(e.getMessage() + "ERROR");
-	// }
-	//
-	// }
+	protected void showWithDataOdemeler(final String id) {
+
+		String urlWithParameters = Util.urlBase + "getodemeler?id=" + id;
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLOdemeler> listXmlOdemeler = XMLOdemeler.XML
+							.readList(response.getText());
+
+					KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri(true,
+							-1);
+					dlgTemp.putDataFromXML(listXmlOdemeler.get(0));
+					// dlgTemp.tabKesinKayitBilgileri.selectTab(0);
+					// dlgTemp.setAnimationEnabled(true);
+					// dlgTemp.center();
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {

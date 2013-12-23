@@ -9,6 +9,8 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
+import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.http.client.Request;
@@ -20,6 +22,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CaptionPanel;
@@ -32,6 +35,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
+import com.google.gwt.view.client.SingleSelectionModel;
 
 public class DlgOnKayit extends DialogBox {
 
@@ -859,26 +863,25 @@ public class DlgOnKayit extends DialogBox {
 
 			putDataToGrid();
 
-			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
-			// SingleSelectionModel<XMLVeliEkle>();
-			//
-			// grdVeliEkle.setSelectionModel(selectionModel);
-			// grdVeliEkle.addDomHandler(new DoubleClickHandler() {
-			//
-			// @Override
-			// public void onDoubleClick(final DoubleClickEvent event) {
-			// XMLVeliEkle selected = selectionModel.getSelectedObject();
-			// if (selected != null) {
-			// // DO YOUR STUFF
-			//
-			// // Window.alert("selected id: " + selected.id);
-			// showWithData(selected.id);
-			//
-			// }
-			//
-			// }
-			//
-			// }, DoubleClickEvent.getType());
+			final SingleSelectionModel<XMLVeliler> selectionModel = new SingleSelectionModel<XMLVeliler>();
+
+			grdVeliEkle.setSelectionModel(selectionModel);
+			grdVeliEkle.addDomHandler(new DoubleClickHandler() {
+
+				@Override
+				public void onDoubleClick(final DoubleClickEvent event) {
+					XMLVeliler selected = selectionModel.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+
+			}, DoubleClickEvent.getType());
 		}
 
 	}
@@ -924,48 +927,9 @@ public class DlgOnKayit extends DialogBox {
 
 	}
 
-	// private void showWithData(String id) {
-	//
-	// String urlWithParameters = Util.urlBase + "getveliler?id=" + id;
-	//
-	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-	// urlWithParameters);
-	//
-	// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
-	// try {
-	// Request request = builder.sendRequest(null, new RequestCallback() {
-	// public void onError(Request request, Throwable exception) {
-	//
-	// }
-	//
-	// @Override
-	// public void onResponseReceived(Request request,
-	// Response response) {
-	//
-	// // Window.alert("AAABBBCCC " + response.getText());
-	//
-	// List<XMLVeliEkle> listXmlVeliEkle = XMLVeliEkle.XML
-	// .readList(response.getText());
-	//
-	// DlgVeliEkle dlgTemp = new DlgVeliEkle();
-	// dlgTemp.putDataFromXML(listXmlVeliEkle.get(0));
-	// dlgTemp.center();
-	//
-	// }
-	//
-	// });
-	//
-	// } catch (RequestException e) {
-	// // displayError("Couldn't retrieve JSON");
-	//
-	// // Window.alert(e.getMessage() + "ERROR");
-	// }
-	//
-	// }
+	private void showWithData(final String id) {
 
-	private void putDataToGrid() {
-
-		String urlWithParameters = Util.urlBase + "getveliler";
+		String urlWithParameters = Util.urlBase + "getveliler?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -983,7 +947,48 @@ public class DlgOnKayit extends DialogBox {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLVeliler> listXmlVeliEkle = XMLVeliler.XML
+					List<XMLVeliler> listXmlVeliler = XMLVeliler.XML
+							.readList(response.getText());
+
+					DlgVeliEkle dlgTemp = new DlgVeliEkle(false, new Long(id)
+							.longValue());
+					dlgTemp.putDataFromXML(listXmlVeliler.get(0));
+					dlgTemp.center();
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private void putDataToGrid() {
+
+		String urlWithParameters = Util.urlBase + "getveliler?tc_kimlik_no="
+				+ tctTCKimlikNo.getText();
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLVeliler> listXmlVeliler = XMLVeliler.XML
 							.readList(response.getText());
 
 					// Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
@@ -998,7 +1003,7 @@ public class DlgOnKayit extends DialogBox {
 					grdVeliEkle.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdVeliEkle.setRowData(0, listXmlVeliEkle);
+					grdVeliEkle.setRowData(0, listXmlVeliler);
 
 				}
 

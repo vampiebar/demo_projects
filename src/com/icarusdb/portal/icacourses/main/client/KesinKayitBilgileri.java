@@ -979,6 +979,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		btnSzlemeOlutur.setSize("150px", "24px");
 
 		Button btnNewButton_2 = new Button("Senetleri Oluştur");
+		btnNewButton_2.addClickHandler(new BtnNewButton_2ClickHandler());
 		btnNewButton_2.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_8.add(btnNewButton_2, 453, 483);
 		btnNewButton_2.setSize("150px", "24px");
@@ -1856,7 +1857,80 @@ public class KesinKayitBilgileri extends DialogBox {
 								// Window.open(
 								// "http://icarusway.com/ICACourses/reports/Sozlesme.pdf",
 								// "_blank", "enabled");
-								//
+
+							}
+
+						});
+
+			} catch (RequestException e) {
+				// displayError("Couldn't retrieve JSON");
+
+				// Window.alert(e.getMessage() + "ERROR");
+			}
+
+		}
+	}
+
+	private class BtnNewButton_2ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			String pathValue = "path=C:/Program___Files/Apache___Software___Foundation/Tomcat 7.0/webapps/ICACourses/reports";
+
+			// pathValue =
+			// "path=/usr/local/apache-tomcat-7.0.22/icaruswayapps/ICACourses/reports";
+
+			String urlWithParameters = Util.urlBase + "run_report?" + pathValue
+					+ "&jrxmlfile=Senet.jrxml" + "&id=" + _id;
+
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					urlWithParameters);
+
+			Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+			try {
+				Request request = builder.sendRequest(null,
+						new RequestCallback() {
+							public void onError(Request request,
+									Throwable exception) {
+
+							}
+
+							@Override
+							public void onResponseReceived(Request request,
+									Response response) {
+
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
+
+								// List<XMLOnKayit> listXmlOnKayit =
+								// XMLOnKayit.XML
+								// .readList(response.getText());
+
+								// listXmlOnKayit.add(xmlOnKayit);
+
+								// lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
+
+								// Set the total row count. This isn't strictly
+								// necessary, but it affects
+								// paging calculations, so its good habit to
+								// keep the row count up to date.
+								// grdKesinKayit.setRowCount(1, true);
+
+								// Push the data into the widget.
+								// grdKesinKayit.setRowData(0, listXmlOnKayit);
+
+								String url = Window.Location.getHref()
+										.substring(
+												0,
+												Window.Location.getHref()
+														.indexOf("?"));
+								Window.open(url.replace("Main.html", "")
+										+ "/reports/Senet.pdf", "_blank",
+										"enabled");
+
+								// Window.open(
+								// "http://icarusway.com/ICACourses/reports/Senet.pdf",
+								// "_blank", "enabled");
+
 							}
 
 						});
@@ -1932,4 +2006,5 @@ public class KesinKayitBilgileri extends DialogBox {
 			hide();
 		}
 	}
+
 }
