@@ -40,7 +40,7 @@ public class OnKayit extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("801px", "651px");
+		absolutePanel.setSize("801px", "743px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 136);
@@ -49,7 +49,7 @@ public class OnKayit extends Composite {
 		grdOnKayit = new CellTable<XMLOnKayit>();
 		grdOnKayit.addCellPreviewHandler(new GrdOnKayitHandler());
 		horizontalPanel.add(grdOnKayit);
-		grdOnKayit.setSize("773px", "124px");
+		grdOnKayit.setSize("773px", "156px");
 
 		TextColumn<XMLOnKayit> textColumn_4 = new TextColumn<XMLOnKayit>() {
 			@Override

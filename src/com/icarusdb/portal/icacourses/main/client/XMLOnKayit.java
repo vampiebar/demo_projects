@@ -12,6 +12,39 @@ public class XMLOnKayit {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("sinif_bilgileri_kurs_indirim_fiyati")
+	String sinif_bilgileri_kurs_indirim_fiyati;
+
+	@Path("kurs_indirim_fiyati")
+	String kurs_indirim_fiyati;
+
+	@Path("indirim_turu")
+	String indirim_turu;
+
+	@Path("indirim_sekli")
+	String indirim_sekli;
+
+	@Path("indirim_miktari")
+	String indirim_miktari;
+
+	@Path("referans")
+	String referans;
+
+	@Path("egitim_turu")
+	String egitim_turu;
+
+	@Path("alan")
+	String alan;
+
+	@Path("kurs_zamani")
+	String kurs_zamani;
+
+	@Path("ogrenci_numarasi")
+	String ogrenci_numarasi;
+
+	@Path("sinif")
+	String sinif;
+
 	@Path("id")
 	String id;
 
@@ -162,33 +195,4 @@ public class XMLOnKayit {
 	@Path("kesin_kayit_mi")
 	String kesin_kayit_mi;
 
-	@Path("kurs_indirim_fiyati")
-	String kurs_indirim_fiyati;
-
-	@Path("indirim_turu")
-	String indirim_turu;
-
-	@Path("indirim_sekli")
-	String indirim_sekli;
-
-	@Path("indirim_miktari")
-	String indirim_miktari;
-
-	@Path("referans")
-	String referans;
-
-	@Path("egitim_turu")
-	String egitim_turu;
-
-	@Path("alan")
-	String alan;
-
-	@Path("kurs_zamani")
-	String kurs_zamani;
-
-	@Path("ogrenci_numarasi")
-	String ogrenci_numarasi;
-
-	@Path("sinif")
-	String sinif;
 }

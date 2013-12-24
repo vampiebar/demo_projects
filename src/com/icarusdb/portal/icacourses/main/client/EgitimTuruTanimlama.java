@@ -55,6 +55,14 @@ public class EgitimTuruTanimlama extends Composite {
 		};
 		grdEgitimTuru.addColumn(textColumn, "Eğitim Türü Adı");
 
+		TextColumn<XMLEgitimTuruTanimlama> textColumn_2 = new TextColumn<XMLEgitimTuruTanimlama>() {
+			@Override
+			public String getValue(XMLEgitimTuruTanimlama object) {
+				return object.alan_adi.toString();
+			}
+		};
+		grdEgitimTuru.addColumn(textColumn_2, "Alan Adi");
+
 		Column<XMLEgitimTuruTanimlama, String> column = new Column<XMLEgitimTuruTanimlama, String>(
 				new ButtonCell()) {
 			@Override

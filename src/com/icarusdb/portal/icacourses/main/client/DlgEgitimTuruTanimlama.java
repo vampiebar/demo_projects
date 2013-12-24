@@ -51,13 +51,11 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 		btnKapat.setSize("78px", "45px");
 
 		Label lblAlanAd = new Label("Alan Adı");
-		lblAlanAd.setVisible(false);
 		lblAlanAd.setStyleName("gwt-Bold");
 		absolutePanel.add(lblAlanAd, 10, 96);
 		lblAlanAd.setSize("64px", "16px");
 
 		tctAlanAdi = new TextBox();
-		tctAlanAdi.setVisible(false);
 		absolutePanel.add(tctAlanAdi, 128, 92);
 		tctAlanAdi.setSize("143px", "12px");
 
@@ -66,10 +64,6 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnKaydet, 248, 138);
 		btnKaydet.setSize("78px", "45px");
-
-		Label lblAlanAdText = new Label("alan adı text label vibible false!");
-		lblAlanAdText.setVisible(false);
-		absolutePanel.add(lblAlanAdText, 0, 118);
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -80,6 +74,7 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 
 	public void putDataFromXML(XMLEgitimTuruTanimlama xml) {
 		tctEgitimTuruAdi.setText(xml.egitim_turu_adi);
+		tctAlanAdi.setText(xml.alan_adi);
 
 	}
 
@@ -91,6 +86,7 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 			URLValue = URLValue + "id=" + _id;
 			URLValue = URLValue + "&egitim_turu_adi="
 					+ tctEgitimTuruAdi.getText();
+			URLValue = URLValue + "&alan_adi=" + tctEgitimTuruAdi.getText();
 
 			// Window.alert(URLValue);
 

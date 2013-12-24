@@ -78,6 +78,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 	public DialogBox _dlgDBSYeniKayit;
 	private HorizontalPanel hzpanMenu1;
+	private AbsolutePanel absolutePanel_4;
 
 	public DlgDBSYeniKayit(boolean isInsert, long id) {
 
@@ -569,7 +570,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 		absolutePanel_3.add(cbxSinavTarihi, 126, 105);
 		cbxSinavTarihi.setSize("132px", "22px");
 
-		AbsolutePanel absolutePanel_4 = new AbsolutePanel();
+		absolutePanel_4 = new AbsolutePanel();
+		absolutePanel_4.setVisible(false);
 		absolutePanel_4.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(absolutePanel_4, "Veli Bilgileri", false);
 		absolutePanel_4.setSize("803px", "500px");

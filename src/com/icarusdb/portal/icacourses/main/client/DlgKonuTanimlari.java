@@ -2,6 +2,8 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.List;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.http.client.Request;
@@ -12,6 +14,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -47,27 +50,28 @@ public class DlgKonuTanimlari extends DialogBox {
 
 		Label label = new Label("Eğitim Türü");
 		label.setStyleName("gwt-Bold");
-		absolutePanel.add(label, 10, 44);
+		absolutePanel.add(label, 10, 45);
 		label.setSize("67px", "18px");
 
 		Label label_1 = new Label("Alan");
 		label_1.setStyleName("gwt-Bold");
-		absolutePanel.add(label_1, 11, 78);
+		absolutePanel.add(label_1, 11, 75);
 		label_1.setSize("26px", "18px");
 
 		Label label_2 = new Label("Ders");
 		label_2.setStyleName("gwt-Bold");
-		absolutePanel.add(label_2, 10, 102);
-		label_2.setSize("27px", "25px");
+		absolutePanel.add(label_2, 10, 105);
+		label_2.setSize("27px", "18px");
 
 		Label label_3 = new Label("Ünite Adı");
+		label_3.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		label_3.setStyleName("gwt-Bold");
-		absolutePanel.add(label_3, 10, 133);
+		absolutePanel.add(label_3, 10, 140);
 		label_3.setSize("67px", "18px");
 
 		Label lblKonu = new Label("Konu");
 		lblKonu.setStyleName("gwt-Bold");
-		absolutePanel.add(lblKonu, 10, 170);
+		absolutePanel.add(lblKonu, 10, 175);
 
 		cbxDers = new ListBox();
 		cbxDers.setStyleName("gwt-ComboBox1");
@@ -78,16 +82,16 @@ public class DlgKonuTanimlari extends DialogBox {
 		cbxDers.setSize("151px", "18px");
 
 		cbxAlan = new ListBox();
+		cbxAlan.addItem(" ");
 		cbxAlan.setStyleName("gwt-ComboBox1");
-		cbxAlan.addItem(" 2");
-		cbxAlan.addItem("3");
 		absolutePanel.add(cbxAlan, 122, 75);
 		cbxAlan.setSize("151px", "18px");
 
 		cbxEgitimTuru = new ListBox();
+		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
 		cbxEgitimTuru.addItem(" ");
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxEgitimTuru, 122, 40);
+		absolutePanel.add(cbxEgitimTuru, 122, 45);
 		cbxEgitimTuru.setSize("151px", "18px");
 
 		cbxUniteAdi = new ListBox();
@@ -95,13 +99,13 @@ public class DlgKonuTanimlari extends DialogBox {
 		cbxUniteAdi.addItem("c");
 		cbxUniteAdi.addItem("d");
 		cbxUniteAdi.addItem(" ");
-		absolutePanel.add(cbxUniteAdi, 122, 133);
+		absolutePanel.add(cbxUniteAdi, 122, 140);
 		cbxUniteAdi.setSize("151px", "18px");
 
 		tctKonu = new TextBox();
 		tctKonu.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctKonu, 122, 170);
-		tctKonu.setSize("149px", "14px");
+		absolutePanel.add(tctKonu, 122, 171);
+		tctKonu.setSize("149px", "16px");
 
 		Button btnKaydet = new Button("New button");
 		btnKaydet.setStyleName("gwt-ButtonSave");
@@ -129,13 +133,12 @@ public class DlgKonuTanimlari extends DialogBox {
 		return false;
 	}
 
-	public void putEgitimTuruToCbx(final ListBox lbxTemp) {
-
+	private void putEgitimTuruToCbx(final ListBox lbxTemp) {
 		lbxTemp.clear();
 		lbxTemp.addItem("");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				Util.urlBase + "getegitimturutanimlama");
+				Util.urlBase + "getegitimturu");
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -150,12 +153,54 @@ public class DlgKonuTanimlari extends DialogBox {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLEgitimTuruTanimlama> xmlEgitimTuru = XMLEgitimTuruTanimlama.XML
+					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
 							.readList(response.getText());
 
 					for (int i = 0; i < xmlEgitimTuru.size(); i++) {
 
 						lbxTemp.addItem(xmlEgitimTuru.get(i).egitim_turu_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private void putEgitimTuruAlanToCbx(String egitim_turu_adi,
+			final ListBox lbxTemp) {
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getegitimturutanimlama?egitim_turu_adi="
+						+ egitim_turu_adi);
+		// Window.alert("egitim_turu_adi=" + egitim_turu_adi);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLEgitimTuruTanimlama> xmlEgitimTuruTanimlama = XMLEgitimTuruTanimlama.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlEgitimTuruTanimlama.size(); i++) {
+
+						lbxTemp.addItem(xmlEgitimTuruTanimlama.get(i).alan_adi);
 					}
 
 				}
@@ -181,10 +226,12 @@ public class DlgKonuTanimlari extends DialogBox {
 			String URLValue = Util.urlBase + "putkonutanimlari?";
 
 			URLValue = URLValue + "id=" + _id;
-			URLValue = URLValue + "&egitim_turu_adi="
-					+ cbxEgitimTuru.getValue(cbxEgitimTuru.getSelectedIndex());
+			URLValue = URLValue
+					+ "&egitim_turu_adi="
+					+ cbxEgitimTuru.getItemText(cbxEgitimTuru
+							.getSelectedIndex());
 			URLValue = URLValue + "&alan_adi="
-					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());
+					+ cbxAlan.getItemText(cbxAlan.getSelectedIndex());
 			URLValue = URLValue + "&ders_adi="
 					+ cbxDers.getValue(cbxDers.getSelectedIndex());
 			URLValue = URLValue + "&unite_adi="
@@ -198,15 +245,22 @@ public class DlgKonuTanimlari extends DialogBox {
 	}
 
 	public void putDataFromXML(XMLKonuTanimlari xml) {
-		tctKonu.setText(xml.konu_adi);
-		cbxAlan.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxAlan,
-				xml.alan_adi));
+
+		cbxEgitimTuru.setItemText(0, xml.egitim_turu_adi);
+		cbxAlan.setItemText(0, xml.alan_adi);
 		cbxDers.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxDers,
 				xml.ders_adi));
-		cbxEgitimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxEgitimTuru, xml.egitim_turu_adi));
 		cbxUniteAdi.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxUniteAdi,
 				xml.unite_adi));
+		tctKonu.setText(xml.konu_adi);
+	}
 
+	private class CbxEgitimTuruChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			// Window.alert(cbxEgitimTuru.getSelectedIndex() + "");
+			putEgitimTuruAlanToCbx(
+					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
+					cbxAlan);
+		}
 	}
 }

@@ -5,9 +5,9 @@ import name.pehl.piriti.xml.client.XmlReader;
 
 import com.google.gwt.core.client.GWT;
 
-public class XMLEgitimTuruAlanKategorileri {
+public class XMLEgitimTuru {
 
-	interface VubReader extends XmlReader<XMLEgitimTuruAlanKategorileri> {
+	interface VubReader extends XmlReader<XMLEgitimTuru> {
 	}
 
 	public static final VubReader XML = GWT.create(VubReader.class);

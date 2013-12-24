@@ -474,7 +474,7 @@ public class Main implements EntryPoint {
 
 		smpanMain = new SimplePanel();
 		rootPanel.add(smpanMain, 285, 95);
-		smpanMain.setSize("1007px", "606px");
+		smpanMain.setSize("1007px", "674px");
 
 		Label lblDer = new Label("Dershane Yönetim Sistemi");
 		smpanMain.setWidget(lblDer);

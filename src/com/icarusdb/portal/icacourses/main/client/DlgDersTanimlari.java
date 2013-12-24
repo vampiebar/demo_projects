@@ -71,11 +71,6 @@ public class DlgDersTanimlari extends DialogBox {
 
 		cbxAlan = new ListBox();
 		cbxAlan.addItem(" ");
-		cbxAlan.addItem("ALAN YOK");
-		cbxAlan.addItem("SAYISAL");
-		cbxAlan.addItem("EŞİT AĞIRLIK");
-		cbxAlan.addItem("SÖZEL");
-		cbxAlan.addItem("DİL");
 		cbxAlan.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxAlan, 112, 77);
 		cbxAlan.setSize("151px", "22px");
@@ -96,20 +91,18 @@ public class DlgDersTanimlari extends DialogBox {
 
 		if (!isDesignTime()) {
 
-			putEgitimTuruAlanKategorileriGetEgitimTuruToCbx(cbxEgitimTuru);
+			putEgitimTuruToCbx(cbxEgitimTuru);
 
 		}
 
 	}
 
-	public void putEgitimTuruAlanKategorileriGetEgitimTuruToCbx(
-			final ListBox lbxTemp) {
-
+	private void putEgitimTuruToCbx(final ListBox lbxTemp) {
 		lbxTemp.clear();
 		lbxTemp.addItem("");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				Util.urlBase + "getegitimturualankategorileri");
+				Util.urlBase + "getegitimturu");
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -124,12 +117,12 @@ public class DlgDersTanimlari extends DialogBox {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLEgitimTuruAlanKategorileri> xmlEgitimTuruAlanKategorileri = XMLEgitimTuruAlanKategorileri.XML
+					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
 							.readList(response.getText());
 
-					for (int i = 0; i < xmlEgitimTuruAlanKategorileri.size(); i++) {
+					for (int i = 0; i < xmlEgitimTuru.size(); i++) {
 
-						lbxTemp.addItem(xmlEgitimTuruAlanKategorileri.get(i).egitim_turu_adi);
+						lbxTemp.addItem(xmlEgitimTuru.get(i).egitim_turu_adi);
 					}
 
 				}
@@ -144,16 +137,15 @@ public class DlgDersTanimlari extends DialogBox {
 
 	}
 
-	public void putEgitimTuruAlanKategorileriGetAlanAdiToCbx(
-			int egitim_turu_adi, final ListBox lbxTemp) {
-
+	private void putEgitimTuruAlanToCbx(String egitim_turu_adi,
+			final ListBox lbxTemp) {
 		lbxTemp.clear();
 		lbxTemp.addItem("");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				Util.urlBase + "getegitimturualankategorileri?egitim_turu_adi="
+				Util.urlBase + "getegitimturutanimlama?egitim_turu_adi="
 						+ egitim_turu_adi);
-
+		// Window.alert("egitim_turu_adi=" + egitim_turu_adi);
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
 
@@ -167,12 +159,12 @@ public class DlgDersTanimlari extends DialogBox {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLEgitimTuruAlanKategorileri> xmlegitimturualankategorileri = XMLEgitimTuruAlanKategorileri.XML
+					List<XMLEgitimTuruTanimlama> xmlEgitimTuruTanimlama = XMLEgitimTuruTanimlama.XML
 							.readList(response.getText());
 
-					for (int i = 0; i < xmlegitimturualankategorileri.size(); i++) {
+					for (int i = 0; i < xmlEgitimTuruTanimlama.size(); i++) {
 
-						lbxTemp.addItem(xmlegitimturualankategorileri.get(i).alan_adi);
+						lbxTemp.addItem(xmlEgitimTuruTanimlama.get(i).alan_adi);
 					}
 
 				}
@@ -211,7 +203,7 @@ public class DlgDersTanimlari extends DialogBox {
 					+ cbxEgitimTuru.getItemText(cbxEgitimTuru
 							.getSelectedIndex());
 			URLValue = URLValue + "&alan_adi="
-					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());
+					+ cbxAlan.getItemText(cbxAlan.getSelectedIndex());
 			URLValue = URLValue + "&ders_adi=" + tctDersAdi.getText();
 
 			// Window.alert(URLValue);
@@ -223,16 +215,17 @@ public class DlgDersTanimlari extends DialogBox {
 	}
 
 	public void putDataFromXML(XMLDersTanimlari xml) {
-		tctDersAdi.setText(xml.ders_adi);
-		cbxAlan.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxAlan,
-				xml.alan_adi));
 		cbxEgitimTuru.setItemText(0, xml.egitim_turu_adi);
+		cbxAlan.setItemText(0, xml.alan_adi);
+		tctDersAdi.setText(xml.ders_adi);
 	}
 
 	private class CbxEgitimTuruChangeHandler implements ChangeHandler {
 		public void onChange(ChangeEvent event) {
-			putEgitimTuruAlanKategorileriGetAlanAdiToCbx(
-					cbxEgitimTuru.getSelectedIndex(), cbxAlan);
+			// Window.alert(cbxGorusmeEgitimTuru.getSelectedIndex() + "");
+			putEgitimTuruAlanToCbx(
+					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
+					cbxAlan);
 		}
 	}
 }
