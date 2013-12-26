@@ -29,21 +29,22 @@ public class SifreDegistirme extends Composite {
 		Label lblVarolanifreniziDeitirin = new Label(
 				"Varolan Şifrenizi Değiştirin");
 		lblVarolanifreniziDeitirin.setStyleName("gwt-Bold");
-		absolutePanel.add(lblVarolanifreniziDeitirin, 40, 60);
+		absolutePanel.add(lblVarolanifreniziDeitirin, 26, 60);
 
 		Label lblEskisifre = new Label("Eski Şifre");
 		lblEskisifre.setStyleName("gwt-Bold");
-		absolutePanel.add(lblEskisifre, 40, 98);
+		absolutePanel.add(lblEskisifre, 25, 104);
 		lblEskisifre.setSize("78px", "16px");
 
 		Label lblYeni = new Label("Yeni Şifre");
 		lblYeni.setStyleName("gwt-Bold");
-		absolutePanel.add(lblYeni, 40, 147);
+		absolutePanel.add(lblYeni, 26, 148);
+		lblYeni.setSize("60px", "16px");
 
 		Label lblNewLabel = new Label("Tekrar Yeni Şifre");
 		lblNewLabel.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel, 40, 193);
-		lblNewLabel.setSize("115px", "27px");
+		absolutePanel.add(lblNewLabel, 26, 199);
+		lblNewLabel.setSize("129px", "16px");
 
 		tctEskiSifre = new TextBox();
 		tctEskiSifre.setStyleName("gwt-ComboBox1");

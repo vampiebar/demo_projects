@@ -152,10 +152,11 @@ public class KurumsalBilgiler extends Composite {
 		Label lblIletiimBilgiler = new Label("İletişim Bilgiler");
 		lblIletiimBilgiler.setStyleName("gwt-Bold");
 		absolutePanel.add(lblIletiimBilgiler, 24, 295);
+		lblIletiimBilgiler.setSize("101px", "16px");
 
 		Label lbllke = new Label("Ülke");
 		lbllke.setStyleName("gwt-Bold");
-		absolutePanel.add(lbllke, 25, 339);
+		absolutePanel.add(lbllke, 24, 339);
 
 		Label lblIl = new Label("İl");
 		lblIl.setStyleName("gwt-Bold");
@@ -164,7 +165,7 @@ public class KurumsalBilgiler extends Composite {
 
 		Label lblIle = new Label("İlçe");
 		lblIle.setStyleName("gwt-Bold");
-		absolutePanel.add(lblIle, 24, 406);
+		absolutePanel.add(lblIle, 24, 409);
 		lblIle.setSize("26px", "16px");
 
 		Label lblSemt = new Label("Semt");
@@ -180,34 +181,34 @@ public class KurumsalBilgiler extends Composite {
 		cbxUlke.addItem("TÜRKİYE");
 		cbxUlke.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxUlke, 138, 330);
-		cbxUlke.setSize("168px", "25px");
+		cbxUlke.setSize("168px", "23px");
 
 		cbxIl = new ListBox();
 		cbxIl.addChangeHandler(new CbxIlChangeHandler());
 		cbxIl.addItem(" ");
 		cbxIl.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxIl, 138, 365);
-		cbxIl.setSize("168px", "25px");
+		cbxIl.setSize("168px", "23px");
 
 		cbxIlce = new ListBox();
 		cbxIlce.addChangeHandler(new CbxIlceChangeHandler());
 		cbxIlce.addItem(" ");
 		cbxIlce.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxIlce, 138, 400);
-		cbxIlce.setSize("168px", "25px");
+		cbxIlce.setSize("168px", "23px");
 
 		cbxSemt = new ListBox();
 		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
 		cbxSemt.addItem(" ");
 		cbxSemt.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxSemt, 138, 435);
-		cbxSemt.setSize("168px", "25px");
+		cbxSemt.setSize("168px", "23px");
 
 		cbxMahalleKoy = new ListBox();
 		cbxMahalleKoy.addItem(" ");
 		cbxMahalleKoy.setStyleName("gwt-TextBox1");
 		absolutePanel.add(cbxMahalleKoy, 138, 470);
-		cbxMahalleKoy.setSize("168px", "25px");
+		cbxMahalleKoy.setSize("168px", "23px");
 
 		Label lblTelefon = new Label("Telefon");
 		lblTelefon.setStyleName("gwt-Bold");

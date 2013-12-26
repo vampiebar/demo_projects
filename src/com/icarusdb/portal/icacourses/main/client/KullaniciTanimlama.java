@@ -33,7 +33,7 @@ public class KullaniciTanimlama extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("780px", "449px");
+		absolutePanel.setSize("780px", "590px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
@@ -52,7 +52,7 @@ public class KullaniciTanimlama extends Composite {
 		btnExceleAktar.setSize("78px", "48px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 177);
+		absolutePanel.add(horizontalPanel, 10, 137);
 		horizontalPanel.setSize("760px", "222px");
 
 		grdKullaniciTanimlari = new CellTable<XMLKullaniciTanimlama>();

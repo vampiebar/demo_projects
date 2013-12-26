@@ -74,14 +74,14 @@ public class DlgKonuTanimlari extends DialogBox {
 		absolutePanel.add(lblKonu, 10, 175);
 
 		cbxDers = new ListBox();
-		cbxDers.setStyleName("gwt-ComboBox1");
-		cbxDers.addItem("a");
-		cbxDers.addItem("b");
+		cbxDers.addChangeHandler(new CbxDersChangeHandler());
 		cbxDers.addItem(" ");
+		cbxDers.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxDers, 122, 105);
 		cbxDers.setSize("151px", "18px");
 
 		cbxAlan = new ListBox();
+		cbxAlan.addChangeHandler(new CbxAlanChangeHandler());
 		cbxAlan.addItem(" ");
 		cbxAlan.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxAlan, 122, 75);
@@ -95,10 +95,8 @@ public class DlgKonuTanimlari extends DialogBox {
 		cbxEgitimTuru.setSize("151px", "18px");
 
 		cbxUniteAdi = new ListBox();
-		cbxUniteAdi.setStyleName("gwt-ComboBox1");
-		cbxUniteAdi.addItem("c");
-		cbxUniteAdi.addItem("d");
 		cbxUniteAdi.addItem(" ");
+		cbxUniteAdi.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxUniteAdi, 122, 140);
 		cbxUniteAdi.setSize("151px", "18px");
 
@@ -215,6 +213,99 @@ public class DlgKonuTanimlari extends DialogBox {
 
 	}
 
+	public void putDersAdiToCbx(String egitim_turu_adi, String alan_adi,
+			final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getderstanimlari?egitim_turu_adi="
+						+ egitim_turu_adi + "&alan_adi=" + alan_adi);
+
+		// Window.alert(Util.urlBase + "getpostakodu?il=" + il + "&ilce=" +
+		// ilce);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLDersTanimlari> xmlDersTanimlari = XMLDersTanimlari.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlDersTanimlari.size(); i++) {
+
+						lbxTemp.addItem(xmlDersTanimlari.get(i).ders_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	public void putUniteAdiToCbx(String egitim_turu_adi, String alan_adi,
+			String ders_adi, final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getunitetanimlari?egitim_turu_adi="
+						+ egitim_turu_adi + "&alan_adi=" + alan_adi
+						+ "&ders_adi=" + ders_adi);
+
+		// Window.alert(Util.urlBase + "getpostakodumahalle?il=" + il + "&ilce="
+		// + ilce + "&semt_bucak_belde=" + semt_bucak_belde);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLUniteTanimlari> xmlUniteTanimlari = XMLUniteTanimlari.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlUniteTanimlari.size(); i++) {
+
+						lbxTemp.addItem(xmlUniteTanimlari.get(i).unite_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
 	private class BtnKapatClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
@@ -233,9 +324,9 @@ public class DlgKonuTanimlari extends DialogBox {
 			URLValue = URLValue + "&alan_adi="
 					+ cbxAlan.getItemText(cbxAlan.getSelectedIndex());
 			URLValue = URLValue + "&ders_adi="
-					+ cbxDers.getValue(cbxDers.getSelectedIndex());
+					+ cbxDers.getItemText(cbxDers.getSelectedIndex());
 			URLValue = URLValue + "&unite_adi="
-					+ cbxUniteAdi.getValue(cbxUniteAdi.getSelectedIndex());
+					+ cbxUniteAdi.getItemText(cbxUniteAdi.getSelectedIndex());
 			URLValue = URLValue + "&konu_adi=" + tctKonu.getText();
 
 			// Window.alert(URLValue);
@@ -248,10 +339,8 @@ public class DlgKonuTanimlari extends DialogBox {
 
 		cbxEgitimTuru.setItemText(0, xml.egitim_turu_adi);
 		cbxAlan.setItemText(0, xml.alan_adi);
-		cbxDers.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxDers,
-				xml.ders_adi));
-		cbxUniteAdi.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxUniteAdi,
-				xml.unite_adi));
+		cbxDers.setItemText(0, xml.ders_adi);
+		cbxUniteAdi.setItemText(0, xml.unite_adi);
 		tctKonu.setText(xml.konu_adi);
 	}
 
@@ -261,6 +350,25 @@ public class DlgKonuTanimlari extends DialogBox {
 			putEgitimTuruAlanToCbx(
 					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
 					cbxAlan);
+		}
+	}
+
+	private class CbxAlanChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putDersAdiToCbx(
+					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
+					cbxAlan.getItemText(cbxAlan.getSelectedIndex()), cbxDers);
+		}
+	}
+
+	private class CbxDersChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putUniteAdiToCbx(
+					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
+					cbxAlan.getItemText(cbxAlan.getSelectedIndex()),
+					cbxDers.getItemText(cbxDers.getSelectedIndex()),
+					cbxUniteAdi);
+
 		}
 	}
 }
