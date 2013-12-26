@@ -48,6 +48,7 @@ public class DlgDersTanimlari extends DialogBox {
 		Label lblDersAd = new Label("Eğitim Türü");
 		lblDersAd.setStyleName("gwt-Bold");
 		absolutePanel.add(lblDersAd, 10, 46);
+		lblDersAd.setSize("96px", "16px");
 
 		Label lblAlan = new Label("Alan");
 		lblAlan.setStyleName("gwt-Bold");
@@ -57,6 +58,7 @@ public class DlgDersTanimlari extends DialogBox {
 		Label lblDersAd_1 = new Label("Ders Adı");
 		lblDersAd_1.setStyleName("gwt-Bold");
 		absolutePanel.add(lblDersAd_1, 10, 111);
+		lblDersAd_1.setSize("66px", "16px");
 
 		tctDersAdi = new TextBox();
 		tctDersAdi.setStyleName("gwt-TextBox1");

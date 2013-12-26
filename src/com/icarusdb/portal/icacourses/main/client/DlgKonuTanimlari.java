@@ -50,28 +50,29 @@ public class DlgKonuTanimlari extends DialogBox {
 
 		Label label = new Label("Eğitim Türü");
 		label.setStyleName("gwt-Bold");
-		absolutePanel.add(label, 10, 45);
-		label.setSize("67px", "18px");
+		absolutePanel.add(label, 10, 49);
+		label.setSize("106px", "18px");
 
 		Label label_1 = new Label("Alan");
 		label_1.setStyleName("gwt-Bold");
-		absolutePanel.add(label_1, 11, 75);
-		label_1.setSize("26px", "18px");
+		absolutePanel.add(label_1, 10, 79);
+		label_1.setSize("105px", "18px");
 
 		Label label_2 = new Label("Ders");
 		label_2.setStyleName("gwt-Bold");
-		absolutePanel.add(label_2, 10, 105);
-		label_2.setSize("27px", "18px");
+		absolutePanel.add(label_2, 10, 109);
+		label_2.setSize("106px", "18px");
 
 		Label label_3 = new Label("Ünite Adı");
 		label_3.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		label_3.setStyleName("gwt-Bold");
-		absolutePanel.add(label_3, 10, 140);
-		label_3.setSize("67px", "18px");
+		absolutePanel.add(label_3, 11, 144);
+		label_3.setSize("106px", "18px");
 
 		Label lblKonu = new Label("Konu");
 		lblKonu.setStyleName("gwt-Bold");
 		absolutePanel.add(lblKonu, 10, 175);
+		lblKonu.setSize("106px", "16px");
 
 		cbxDers = new ListBox();
 		cbxDers.addChangeHandler(new CbxDersChangeHandler());

@@ -48,45 +48,47 @@ public class DlgUniteTanimlari extends DialogBox {
 
 		Label lblEitimTr = new Label("Eğitim Türü");
 		lblEitimTr.setStyleName("gwt-Bold");
-		absolutePanel.add(lblEitimTr, 10, 43);
+		absolutePanel.add(lblEitimTr, 10, 46);
+		lblEitimTr.setSize("98px", "16px");
 
 		Label lblAlan = new Label("Alan");
 		lblAlan.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAlan, 10, 80);
+		absolutePanel.add(lblAlan, 10, 78);
+		lblAlan.setSize("98px", "16px");
 
 		Label lblDers = new Label("Ders");
 		lblDers.setStyleName("gwt-Bold");
-		absolutePanel.add(lblDers, 9, 110);
-		lblDers.setSize("27px", "16px");
+		absolutePanel.add(lblDers, 10, 108);
+		lblDers.setSize("99px", "16px");
 
 		Label lblniteAd = new Label("Ünite Adı");
 		lblniteAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblniteAd, 10, 138);
-		lblniteAd.setSize("67px", "16px");
+		absolutePanel.add(lblniteAd, 10, 136);
+		lblniteAd.setSize("98px", "16px");
 
 		tctUniteAdi = new TextBox();
 		tctUniteAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctUniteAdi, 129, 132);
+		absolutePanel.add(tctUniteAdi, 129, 130);
 		tctUniteAdi.setSize("149px", "18px");
 
 		cbxEgitimTuru = new ListBox();
 		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
 		cbxEgitimTuru.addItem(" ");
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxEgitimTuru, 129, 39);
+		absolutePanel.add(cbxEgitimTuru, 129, 40);
 		cbxEgitimTuru.setSize("151px", "18px");
 
 		cbxAlan = new ListBox();
 		cbxAlan.addChangeHandler(new CbxAlanChangeHandler());
 		cbxAlan.addItem(" ");
 		cbxAlan.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxAlan, 129, 74);
+		absolutePanel.add(cbxAlan, 129, 70);
 		cbxAlan.setSize("151px", "18px");
 
 		cbxDers = new ListBox();
 		cbxDers.addItem(" ");
 		cbxDers.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxDers, 129, 104);
+		absolutePanel.add(cbxDers, 129, 100);
 		cbxDers.setSize("151px", "18px");
 
 		Button btnKaydet = new Button("New button");
