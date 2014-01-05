@@ -11,8 +11,12 @@ public class XMLDBSKayit {
 	}
 
 	public static final VubReader XML = GWT.create(VubReader.class);
+
 	@Path("id")
 	String id;
+
+	@Path("adi_soyadi_tckimlik_no")
+	String adi_soyadi_tckimlik_no;
 
 	@Path("adi")
 	String adi;

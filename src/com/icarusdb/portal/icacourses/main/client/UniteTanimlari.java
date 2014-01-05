@@ -105,6 +105,7 @@ public class UniteTanimlari extends Composite {
 			}
 		};
 		grdUnitetanimlari.addColumn(column, "İşlemler");
+
 		if (!isDesignTime()) {
 
 			putDataToGrid();

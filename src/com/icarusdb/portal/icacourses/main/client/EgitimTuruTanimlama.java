@@ -35,6 +35,7 @@ public class EgitimTuruTanimlama extends Composite {
 		absolutePanel.setSize("738px", "650px");
 
 		grdEgitimTuru = new CellTable<XMLEgitimTuruTanimlama>();
+		grdEgitimTuru.setPageStart(2);
 		absolutePanel.add(grdEgitimTuru, 0, 147);
 		grdEgitimTuru.setSize("100%", "154px");
 

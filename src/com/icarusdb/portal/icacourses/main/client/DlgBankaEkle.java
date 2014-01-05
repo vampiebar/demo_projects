@@ -111,6 +111,7 @@ public class DlgBankaEkle extends DialogBox {
 		btnKapat.setSize("78px", "46px");
 
 		if (!isDesignTime()) {
+
 		}
 	}
 

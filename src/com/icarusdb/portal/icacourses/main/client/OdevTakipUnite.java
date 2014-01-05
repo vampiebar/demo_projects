@@ -5,6 +5,10 @@ import java.util.List;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
+import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -19,6 +23,8 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.view.client.SingleSelectionModel;
 
 public class OdevTakipUnite extends Composite {
 	private ListBox cbxEgitimTuru;
@@ -31,6 +37,8 @@ public class OdevTakipUnite extends Composite {
 	private TextColumn<XMLOdevTakipUnite> grdcDersAdi;
 	private TextColumn<XMLOdevTakipUnite> grdcUniteAdi;
 	private Column<XMLOdevTakipUnite, String> grdcIslemler;
+
+	private DlgOdevTakipUnite _dlgOdevTakipUnite;
 
 	public OdevTakipUnite() {
 
@@ -128,14 +136,14 @@ public class OdevTakipUnite extends Composite {
 		grdcIslemler = new Column<XMLOdevTakipUnite, String>(new ButtonCell()) {
 			@Override
 			public String getValue(XMLOdevTakipUnite object) {
-				return (String) null;
+				return "???";
 			}
 		};
 		grdOdevTakipUnite.addColumn(grdcIslemler, "İşlemler");
 
 		Button btnYeniKayit = new Button("ARA");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
+		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.setText("Yeni Kayıt");
 		absolutePanel.add(btnYeniKayit, 434, 30);
 		btnYeniKayit.setSize("78px", "48px");
@@ -154,75 +162,216 @@ public class OdevTakipUnite extends Composite {
 
 		button = new Button("ARA");
 		button.setStyleName("gwt-ButonKapat");
-		button.addClickHandler(new ButtonClickHandler());
 		absolutePanel.add(button, 342, 30);
 		button.setSize("78px", "48px");
+
+		if (!isDesignTime()) {
+
+			putDataToGrid();
+
+			final SingleSelectionModel<XMLOdevTakipUnite> selectionModel = new SingleSelectionModel<XMLOdevTakipUnite>();
+
+			grdOdevTakipUnite.setSelectionModel(selectionModel);
+			grdOdevTakipUnite.addDomHandler(new DoubleClickHandler() {
+
+				@Override
+				public void onDoubleClick(final DoubleClickEvent event) {
+					XMLOdevTakipUnite selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+
+				protected void showWithData(final String id) {
+
+					String urlWithParameters = Util.urlBase
+							+ "getunitetanimlari?id=" + id;
+
+					RequestBuilder builder = new RequestBuilder(
+							RequestBuilder.GET, urlWithParameters);
+
+					// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+					try {
+						Request request = builder.sendRequest(null,
+								new RequestCallback() {
+									public void onError(Request request,
+											Throwable exception) {
+
+									}
+
+									@Override
+									public void onResponseReceived(
+											Request request, Response response) {
+
+										// Window.alert("AAABBBCCC " +
+										// response.getText());
+
+										List<XMLOdevTakipUnite> listXmlOdevTakipUnite = XMLOdevTakipUnite.XML
+												.readList(response.getText());
+
+										_dlgOdevTakipUnite = new DlgOdevTakipUnite(
+												false, new Long(id).longValue());
+										_dlgOdevTakipUnite
+												.putDataFromXML(listXmlOdevTakipUnite
+														.get(0));
+										_dlgOdevTakipUnite
+												.setAnimationEnabled(true);
+										_dlgOdevTakipUnite.center();
+										_dlgOdevTakipUnite
+												.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+													@Override
+													public void onClose(
+															CloseEvent<PopupPanel> event) {
+
+														putDataToGrid();
+
+													}
+												});
+
+									}
+								});
+
+					} catch (RequestException e) {
+						// displayError("Couldn't retrieve JSON");
+
+						// Window.alert(e.getMessage() + "ERROR");
+					}
+
+				}
+
+			}, DoubleClickEvent.getType());
+		}
+
+	}
+
+	private void putDataToGrid() {
+
+		String urlWithParameters = Util.urlBase + "getodevtakipunite";
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLOdevTakipUnite> listXmlOdevTakipUnite = XMLOdevTakipUnite.XML
+							.readList(response.getText());
+
+					// Window.alert("gun: " + listXmlSaatGirisi.get(0).gun);
+
+					// Set the total row count. This isn't strictly
+					// necessary, but it affects
+					// paging calculations, so its good habit to
+					// keep the row count up to date.
+					grdOdevTakipUnite.setRowCount(1, true);
+
+					// Push the data into the widget.
+					grdOdevTakipUnite.setRowData(0, listXmlOdevTakipUnite);
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private boolean isDesignTime() {
+
+		return false;
 	}
 
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
+			_dlgOdevTakipUnite = new DlgOdevTakipUnite(true, -1);
+			_dlgOdevTakipUnite.center();
+			_dlgOdevTakipUnite.setAnimationEnabled(true);
 
-			// cbxEgitimTuru.setSelectedIndex(0);
-			// cbxAlan.setSelectedIndex(0);
-			// cbxDersAdi.setSelectedIndex(0);
+			_dlgOdevTakipUnite.addCloseHandler(new CloseHandler<PopupPanel>() {
 
-			DlgOdevTakipUnite dlgTemp = new DlgOdevTakipUnite();
-			dlgTemp.center();
-			dlgTemp.setAnimationEnabled(true);
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
 
-		}
-	}
+					putDataToGrid();
 
-	private class ButtonClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-
-			String urlWithParameters = Util.urlBase + "getodevtakipunite"
-					+ "?egitim_turu=" + cbxEgitimTuru.getSelectedIndex();
-
-			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-					urlWithParameters);
-			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
-
-			try {
-				Request request = builder.sendRequest(null,
-						new RequestCallback() {
-							public void onError(Request request,
-									Throwable exception) {
-
-							}
-
-							@Override
-							public void onResponseReceived(Request request,
-									Response response) {
-
-								// Window.alert("AAABBBCCC " +
-								// response.getText());
-
-								List<XMLOdevTakipUnite> listXmlOdevTakipUnite = XMLOdevTakipUnite.XML
-										.readList(response.getText());
-
-								// XMLOdevTakipUnite xmlOdevTakipUnite =
-								// XMLOdevTakipUnite.XML
-								// .read(response.getText());
-
-								// lblNewLabel.setText(listxmlOdevTakipUnite
-								// .get(0).egitim_turu);
-
-								grdOdevTakipUnite.setRowCount(1, true);
-
-								// Push the data into the widget.
-								grdOdevTakipUnite.setRowData(0,
-										listXmlOdevTakipUnite);
-							}
-
-						});
-
-			} catch (RequestException e) {
-				// displayError("Couldn't retrieve JSON");
-
-				// Window.alert(e.getMessage() + "ERROR");
-			}
-
+				}
+			});
 		}
 	}
 }
+
+// private class ButtonClickHandler implements ClickHandler {
+// public void onClick(ClickEvent event) {
+//
+// String urlWithParameters = Util.urlBase + "getodevtakipunite"
+// + "?egitim_turu=" + cbxEgitimTuru.getSelectedIndex();
+//
+// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+// urlWithParameters);
+// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
+//
+// try {
+// Request request = builder.sendRequest(null,
+// new RequestCallback() {
+// public void onError(Request request,
+// Throwable exception) {
+//
+// }
+//
+// @Override
+// public void onResponseReceived(Request request,
+// Response response) {
+//
+// // Window.alert("AAABBBCCC " +
+// // response.getText());
+//
+// List<XMLOdevTakipUnite> listXmlOdevTakipUnite = XMLOdevTakipUnite.XML
+// .readList(response.getText());
+//
+// // XMLOdevTakipUnite xmlOdevTakipUnite =
+// // XMLOdevTakipUnite.XML
+// // .read(response.getText());
+//
+// // lblNewLabel.setText(listxmlOdevTakipUnite
+// // .get(0).egitim_turu);
+//
+// grdOdevTakipUnite.setRowCount(1, true);
+//
+// // Push the data into the widget.
+// grdOdevTakipUnite.setRowData(0,
+// listXmlOdevTakipUnite);
+// }
+//
+// });
+//
+// } catch (RequestException e) {
+// // displayError("Couldn't retrieve JSON");
+//
+// // Window.alert(e.getMessage() + "ERROR");
+// }
+//
+// }
+// }
+

@@ -40,8 +40,9 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 		lblNewLabel.setSize("112px", "18px");
 
 		tctEgitimTuruAdi = new TextBox();
-		absolutePanel.add(tctEgitimTuruAdi, 128, 57);
-		tctEgitimTuruAdi.setSize("143px", "12px");
+		tctEgitimTuruAdi.setStyleName("gwt-TextBox1");
+		absolutePanel.add(tctEgitimTuruAdi, 128, 53);
+		tctEgitimTuruAdi.setSize("143px", "18px");
 
 		Button btnKapat = new Button("New button");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
@@ -56,8 +57,9 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 		lblAlanAd.setSize("64px", "16px");
 
 		tctAlanAdi = new TextBox();
-		absolutePanel.add(tctAlanAdi, 128, 92);
-		tctAlanAdi.setSize("143px", "12px");
+		tctAlanAdi.setStyleName("gwt-TextBox1");
+		absolutePanel.add(tctAlanAdi, 128, 90);
+		tctAlanAdi.setSize("143px", "18px");
 
 		Button btnKaydet = new Button("Kaydet");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());

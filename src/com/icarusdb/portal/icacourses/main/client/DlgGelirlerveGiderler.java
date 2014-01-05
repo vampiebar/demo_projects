@@ -3,6 +3,8 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.Date;
 import java.util.List;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -139,6 +141,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		cbxGelirler.setSize("157px", "22px");
 
 		cbxOdemeTuru = new ListBox();
+		cbxOdemeTuru.addChangeHandler(new CbxOdemeTuruChangeHandler());
 		cbxOdemeTuru.addItem("Senet");
 		cbxOdemeTuru.addItem("Kredi Kartı");
 		cbxOdemeTuru.addItem("Çek");
@@ -149,17 +152,14 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		cbxOdemeTuru.setSize("157px", "22px");
 
 		cbxBanka = new ListBox();
+		cbxBanka.addItem(" ");
 		cbxBanka.setStyleName("gwt-ComboBox1");
-		cbxBanka.addItem(" a");
-		cbxBanka.addItem("b");
 		absolutePanel.add(cbxBanka, 155, 199);
 		cbxBanka.setSize("157px", "22px");
 
 		cbxCek = new ListBox();
+		cbxCek.addItem(" ");
 		cbxCek.setStyleName("gwt-ComboBox1");
-		cbxCek.addItem(" 1");
-		cbxCek.addItem("1");
-		cbxCek.addItem("3");
 		absolutePanel.add(cbxCek, 155, 238);
 		cbxCek.setSize("278px", "22px");
 
@@ -175,7 +175,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		tctMiktar = new TextBox();
 		tctMiktar.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctMiktar, 155, 275);
-		tctMiktar.setSize("136px", "14px");
+		tctMiktar.setSize("156px", "14px");
 
 		dtpTarih = new DateBox();
 		dtpTarih.setStyleName("gwt-TextBox1");
@@ -183,7 +183,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		dtpTarih.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd HH:mm:ss")));
 		absolutePanel.add(dtpTarih, 155, 308);
-		dtpTarih.setSize("136px", "16px");
+		dtpTarih.setSize("156px", "16px");
 
 		tctAciklama = new LongBox();
 		tctAciklama.setStyleName("gwt-TextBox1");
@@ -193,8 +193,52 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		if (!isDesignTime()) {
 
 			putKategoriAdiToCbx(cbxKategoriler);
+			putBankalarToCbx(cbxBanka);
 
 		}
+	}
+
+	private void putBankalarToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("Lütfen Seçiniz");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getbankaekle");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("getgelirlervegiderler " +
+					// response.getText());
+
+					List<XMLBankaEkle> xmlBankaEkle = XMLBankaEkle.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlBankaEkle.size(); i++) {
+
+						lbxTemp.addItem(xmlBankaEkle.get(i).banka_adi);
+
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
 	}
 
 	private void putKategoriAdiToCbx(final ListBox lbxTemp) {
@@ -267,7 +311,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 			URLValue = URLValue + "&odeme_turu="
 					+ cbxOdemeTuru.getValue(cbxOdemeTuru.getSelectedIndex());
 			URLValue = URLValue + "&banka="
-					+ cbxBanka.getValue(cbxBanka.getSelectedIndex());
+					+ cbxBanka.getItemText(cbxBanka.getSelectedIndex());
 			URLValue = URLValue + "&cek="
 					+ cbxCek.getValue(cbxCek.getSelectedIndex());
 			URLValue = URLValue + "&miktar=" + tctMiktar.getText();
@@ -328,6 +372,20 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		DateTimeFormat dtf2 = DateTimeFormat.getFormat("yyyy-MM-dd");
 
 		dtpVadeTarihi.setValue(dtf2.parse(xml.vade_tarihi));
+
+	}
+
+	private class CbxOdemeTuruChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			if (cbxOdemeTuru.getSelectedIndex() == 1) {
+				cbxBanka.setEnabled(false);
+				cbxCek.setEnabled(false);
+				dtpVadeTarihi.setEnabled(false);
+			} else if (cbxOdemeTuru.getSelectedIndex() == 2) {
+				cbxBanka.setEnabled(true);
+			}
+			// cbxBanka.setEnabled(cbxOdemeTuru.getSelectedIndex() == 1);
+		}
 
 	}
 }

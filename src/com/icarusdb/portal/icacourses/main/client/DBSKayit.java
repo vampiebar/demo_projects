@@ -25,9 +25,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class DBSKayit extends Composite {
-	private TextBox tctAdi;
-	private TextBox tctTCKimlikNo;
-	private TextBox tctSoyadi;
+	private TextBox tctAranacakAnahtarKelime;
 	private CellTable<XMLDBSKayit> grdDBSKayit;
 	private DlgDBSYeniKayit _dlgDbsYeniKayit;
 
@@ -39,42 +37,25 @@ public class DBSKayit extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		horizontalPanel.add(absolutePanel);
-		absolutePanel.setSize("853px", "651px");
+		absolutePanel.setSize("900px", "651px");
 
-		Label lblNewLabel = new Label("Adı");
+		Label lblNewLabel = new Label("Aranacak Anahtar Kelime");
 		lblNewLabel.setStyleName("gwt-Bold");
 		absolutePanel.add(lblNewLabel, 10, 30);
+		lblNewLabel.setSize("175px", "16px");
 
-		tctAdi = new TextBox();
-		tctAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAdi, 166, 30);
-		tctAdi.setSize("230px", "16px");
-
-		Label lblSoyad = new Label("Soyadı");
-		lblSoyad.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSoyad, 10, 60);
-
-		Label lblNewLabel_1 = new Label("T.C Kimlik No");
-		lblNewLabel_1.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_1, 10, 90);
-
-		tctSoyadi = new TextBox();
-		tctSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSoyadi, 166, 60);
-		tctSoyadi.setSize("230px", "16px");
-
-		tctTCKimlikNo = new TextBox();
-		tctTCKimlikNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctTCKimlikNo, 166, 90);
-		tctTCKimlikNo.setSize("230px", "16px");
+		tctAranacakAnahtarKelime = new TextBox();
+		tctAranacakAnahtarKelime.setStyleName("gwt-TextBox1");
+		absolutePanel.add(tctAranacakAnahtarKelime, 191, 30);
+		tctAranacakAnahtarKelime.setSize("200px", "17px");
 
 		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel_1, 21, 158);
-		horizontalPanel_1.setSize("817px", "174px");
+		absolutePanel.add(horizontalPanel_1, 10, 143);
+		horizontalPanel_1.setSize("890px", "174px");
 
 		grdDBSKayit = new CellTable<XMLDBSKayit>();
 		horizontalPanel_1.add(grdDBSKayit);
-		grdDBSKayit.setSize("100%", "146px");
+		grdDBSKayit.setSize("100%", "100%");
 
 		TextColumn<XMLDBSKayit> textColumn_5 = new TextColumn<XMLDBSKayit>() {
 			@Override
@@ -163,6 +144,7 @@ public class DBSKayit extends Composite {
 		btnKaydet.setSize("78px", "48px");
 
 		Button btnAra = new Button("Yeni Kayıt");
+		btnAra.addClickHandler(new BtnAraClickHandler());
 
 		btnAra.setStyleName("gwt-ButonKapat");
 		btnAra.setText("Ara");
@@ -372,4 +354,59 @@ public class DBSKayit extends Composite {
 	//
 	// }
 
+	private class BtnAraClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			String urlWithParameters = Util.urlBase + "getdbskayit"
+					+ "?adi_soyadi_tc_kimlik_no="
+					+ tctAranacakAnahtarKelime.getText();
+
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					urlWithParameters);
+
+			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+			try {
+				Request request = builder.sendRequest(null,
+						new RequestCallback() {
+							public void onError(Request request,
+									Throwable exception) {
+
+							}
+
+							@Override
+							public void onResponseReceived(Request request,
+									Response response) {
+
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
+
+								List<XMLDBSKayit> listXmlDbsKayit = XMLDBSKayit.XML
+										.readList(response.getText());
+
+								// listXmlOnKayit.add(xmlOnKayit);
+
+								// lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
+
+								// Set the total row count. This isn't strictly
+								// necessary, but it affects
+								// paging calculations, so its good habit to
+								// keep the row count up to date.
+								grdDBSKayit.setRowCount(1, true);
+
+								// Push the data into the widget.
+								grdDBSKayit.setRowData(0, listXmlDbsKayit);
+
+							}
+
+						});
+
+			} catch (RequestException e) {
+				// displayError("Couldn't retrieve JSON");
+
+				// Window.alert(e.getMessage() + "ERROR");
+			}
+
+		}
+	}
 }

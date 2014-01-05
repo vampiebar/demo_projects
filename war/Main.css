@@ -27,10 +27,14 @@ body {
 
 a {	
 	color: darkblue;
+	
+	
 }
 
 a:visited {	
 	color: darkblue; 
+	
+	
 }
 
 
@@ -80,20 +84,82 @@ a:visited {
 
 .gwt-StackPanel {
 	width: 15em;
-	border: 1px solid #AAAAAA;
-	background-color: white;
+	border: 1px solid #D9D9D9;
+	background-color: #D9D9D9;
+	
+    
 }
 
 .gwt-StackPanel .gwt-StackPanelItem {
-	background-image: url(blue_gradient.gif);
+    background-image: url(blue_gradient.gif); 
 	background-repeat: repeat-x;
-	background-color: #EEEEEE;
+	background-color: #D9D9D9;
 	cursor: pointer;
-	cursor: hand;
+	cursor: hand; 
+	height: 25px;
+	background: none repeat scroll 0% 0% #D9D9D9 !important;
+	
+
 }
 
 .gwt-StackPanel .gwt-StackPanelItem-selected {
+border-bottom-color: rgb(0, 0, 0);
+border-bottom-style: none;
+border-bottom-width: 0px;
+border-image-outset: 0px;
+border-image-repeat: stretch;
+border-image-slice: 100%;
+border-image-source: none;
+border-image-width: 1;
+border-left-color: rgb(0, 0, 0);
+border-left-style: none;
+border-left-width: 5px;
+border-right-color: rgb(0, 0, 0);
+border-right-style: none;
+border-right-width: 5px;
+border-top-color: rgb(0, 0, 0);
+border-top-style: none;
+border-top-width: 5px;
+box-sizing: border-box;
+color: rgb(0, 0, 0);
+direction: ltr;
+display: block;
+font-family: 'Open+Sans', sans-serif;
+font-size: 13px;
+height: 28px;
+line-height: 18px;
+list-style-image: none;
+list-style-position: outside;
+list-style-type: none;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+padding-bottom: 0px;
+padding-left: 0px;
+padding-right: 0px;
+padding-top: 0px;
+text-align: left;
+width: 255px;
+font-family:'Open+Sans', sans-serif;
+/* background: none repeat scroll 0% 0% rgb(217, 217, 217) !important; */
+background: none repeat scroll 0% 0% #007AFF !important;
+color: White;
+
+position: relative;
+
+/* background: #D9D9D9 !important; */
 }
+
+ .gwt-StackPanel .gwt-StackPanelContent {
+
+	background: none repeat scroll 0% 0% ButtonFace !important;
+	background-color: ButtonFace;
+    
+	
+}
+ 
+
 
 .gwt-TabPanel {
 	
@@ -328,8 +394,16 @@ a:visited {
     background-color: rgb(66, 139, 202);
     border-color: rgb(53, 126, 189);
      text-decoration: none;
-    
+   
 }
+
+.gwt-ButtonSave:hover {
+
+background-color: #0066ff;
+
+
+}	
+
 .gwt-LabelMor {
 	color: rgb(255, 255, 255);
 	border: 72);
@@ -385,9 +459,44 @@ box-shadow: 0 2px 4px #BBB inset;
 	font-family: Trebuc, c, cursive;
 	
 }
+.gwt-TextBox1:focus{
+    outline: none;
+    box-shadow: 0px 0px 5px #61C5FA;
+    border:2px solid #5AB0DB;
+}
+
+.gwt-TextBox1:hover {
+    border: 1px solid #007AFF;
+    border-radius: 0px;
+}
+
+/* .gwt-TextBox1:focus:hover{
+    outline: none;
+    box-shadow: 0px 0px 5px #61C5FA;
+    border:1px solid red;
+    border-radius:0;
+    
+}  */
+
 .gwt-ComboBox1 {
 	font-family: Trebuc, c, cursive;
+	
+	
 }
+
+.gwt-ComboBox1:focus{
+    outline: none;
+    box-shadow: 0px 0px 5px #61C5FA;
+    border:2px solid #5AB0DB;
+}
+
+.gwt-ComboBox1:hover {
+    border: 1px solid #007AFF;
+    border-radius: 0px;
+}
+
+
+
 .gwt-DialogBackGround {
 	background-color: ButtonFace;
 }
@@ -396,21 +505,31 @@ background-color: rgb(92, 184, 92);
     cursor: pointer;
     border-radius: 4px 4px 4px 4px;
     	 color: rgb(255, 255, 255);
-    
-    
-   
+      
 }
 
+.gwt-ButonYeniKayit:hover {
+	
+background-color: green;
+
+      
+}
 .gwt-ButonKapat {
 color: rgb(255, 255, 255);
 background-color: rgb(210, 50, 45);
 border-color: rgb(172, 41, 37);
 border-radius: 4px 4px 4px 4px;
 cursor: pointer;
-	
+}	
+
+.gwt-ButonKapat:hover {
+
+background-color: red;
 
 
-}
+}	
+
+
 .gwt-ButtonExcel'eAktar {
 }
 .gwt-ButtonListeyiYenile {
@@ -427,9 +546,20 @@ color: rgb(255, 255, 255);
 	cursor: pointer;
 	 color: rgb(255, 255, 255);
 	 border-radius: 4px 4px 4px 4px;
+	  border-color: darkgrey;
 }
+
+.gwt-ButtonExceleAktar:hover {
+	background-color: darkgrey;
+	
+}
+
+
+
 .gwt-ButtonAra {
+	
 }
+
 .gwt-ButtonRaporAl {
 }
 .gwt-HzPan {
@@ -452,22 +582,153 @@ color: rgb(255, 255, 255);
 }
 .gwt-MenuButton {
 
-	border-color: rgb(38, 154, 188);
+	/* border-color: rgb(38, 154, 188);
 	font-family: Trebuc;
 	font-weight: bold;
-	background-color: (86, 144, 153);
-	
+	background-color: (86, 144, 153); */
+	/* 
+-webkit-background-clip: border-box;
+-webkit-background-origin: padding-box;
+-webkit-background-size: auto;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgb(217, 217, 217);
+background-image: none;
+background-origin: padding-box;
+background-size: auto;
+border-bottom-color: rgb(0, 0, 0);
+border-bottom-style: none;
+border-bottom-width: 0px;
+border-top-color: rgb(200, 199, 204);
+box-sizing: border-box;
+color: rgb(0, 0, 0);
+cursor: auto;
+direction: ltr;
+display: block;
+font-family: 'Open+Sans', sans-serif;
+font-size: 14px;
+font-weight: 300;
+height: 25px;
+line-height: 20px;
+list-style-image: none;
+list-style-position: outside;
+list-style-type: none;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+outline-color: rgb(0, 0, 0);
+outline-style: none;
+outline-width: 0px;
+padding-bottom: 0px;
+padding-left: 0px;
+padding-right: 0px;
+padding-top: 0px;
+text-decoration: none solid rgb(0, 0, 0);
+width: 225px;
+font-family:
+ box-shadow: 1px 0 0 0 #FFFFFF; */
 
-	
 
+-webkit-background-clip: border-box;
+-webkit-background-origin: padding-box;
+-webkit-background-size: auto;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgba(0, 0, 0, 0);
+background-image: none;
+background-origin: padding-box;
+background-size: auto;
+box-sizing: border-box;
+color: rgb(51, 51, 51);
+direction: ltr;
+display: list-item;
+font-family: sans-serif, Arial, Verdana, 'Trebuchet MS';
+font-size: 13px;
+height: 30px;
+line-height: 17px;
+list-style-image: none;
+list-style-position: outside;
+list-style-type: none;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 1px;
+padding-bottom: 0px;
+padding-left: 0px;
+padding-right: 0px;
+padding-top: 0px;
+/* text-align: left; */
+width: 225px;
+font-family:sans-serif, Arial, Verdana, 'Trebuchet MS';
+	font-weight: bold;
 
 }
+
+.gwt-MenuButton:active {
+
+	font-weight: bold;
+	height:wwpx; 
+width: 275px; 
+-moz-box-shadow: 0 2px 4px #bbb inset; 
+-webkit-box-shadow: 0 2px 4px #BBB inset; 
+box-shadow: 0 2px 4px #BBB inset; 
+-moz-border-radius: 3px; 
+-webkit-border-radius: 3px; 
+	color: black;
+	border: 1px solid #B9BDC1;
+	font-size: 14px;
+	font-style: normal;
+	font-family: Trebuc, c, cursive;
+	background: none repeat scroll 0% 0% rgb(217, 217, 217) !important;
+
+}
+
+
+.gwt-MenuButton:hover {
+
+	background: none repeat scroll 0% 0% #D9D9D9 !important;
+	cursor : pointer;
+	text-decoration: none solid rgb(0, 0, 0);
+	
+}
+
+.gwt-MenuButton:focus {
+	/* 
+	background: none repeat scroll 0% 0% rgb(217, 217, 217) !important;
+	
+	color: red;
+ */
+background: none repeat scroll 0% 0% #D9D9D9 !important;
+	cursor : pointer;
+	text-decoration: none solid rgb(0, 0, 0);
+
+}
+
+.gwt-MenuButton[disabled] {
+  background: none repeat scroll 0% 0% #D9D9D9 !important;
+	cursor : pointer;
+	text-decoration: none solid rgb(0, 0, 0);
+}
+.gwt-MenuButton[disabled]:hover {
+ background: none repeat scroll 0% 0% #D9D9D9 !important;
+	cursor : pointer;
+	text-decoration: none solid rgb(0, 0, 0);
+}
+
+
+/* .gwt-MenuButton[disabled]:hover {
+background: #D9D9D9 !important;
+}  */
+
 .gwt-MenuButton2 {
 	border-color: rgb(38, 154, 188);
 	font-family: Trebuc;
 	font-weight: bold;
 }
 .gwt-MenuBackground {
-	background-color: lightblue;
+	/* background-color: lightblue; */
+	background-color: ButtonFace;
+	
 }
 }

@@ -31,16 +31,14 @@ import com.google.gwt.view.client.SingleSelectionModel;
 public class OnKayit extends Composite {
 	private CellTable<XMLOnKayit> grdOnKayit;
 	private DlgOnKayit _dlgOnKayit;
-	private TextBox tctAdi;
-	private TextBox tctSoyadi;
-	private TextBox tctTCKimlikNo;
+	private TextBox tctAranacakAnahtarKelime;
 
 	public OnKayit() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("801px", "743px");
+		absolutePanel.setSize("900px", "743px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 136);
@@ -49,7 +47,7 @@ public class OnKayit extends Composite {
 		grdOnKayit = new CellTable<XMLOnKayit>();
 		grdOnKayit.addCellPreviewHandler(new GrdOnKayitHandler());
 		horizontalPanel.add(grdOnKayit);
-		grdOnKayit.setSize("773px", "156px");
+		grdOnKayit.setSize("890px", "156px");
 
 		TextColumn<XMLOnKayit> textColumn_4 = new TextColumn<XMLOnKayit>() {
 			@Override
@@ -104,51 +102,35 @@ public class OnKayit extends Composite {
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
 		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 517, 50);
+		absolutePanel.add(btnListeyiYenile, 600, 51);
 		btnListeyiYenile.setSize("78px", "48px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 614, 50);
+		absolutePanel.add(btnYeniKayit, 697, 51);
 		btnYeniKayit.setSize("78px", "48px");
 
 		Button btnExceleAktar = new Button("Excel'e Aktar");
 		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 705, 50);
+		absolutePanel.add(btnExceleAktar, 788, 51);
 		btnExceleAktar.setSize("78px", "48px");
 
-		Label lblAd = new Label("Adı");
+		Label lblAd = new Label("Aranacak Anahtar Kelime");
 		lblAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAd, 22, 20);
+		absolutePanel.add(lblAd, 10, 30);
+		lblAd.setSize("177px", "16px");
 
-		Label lblSoyad = new Label("Soyadı");
-		lblSoyad.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSoyad, 22, 50);
+		tctAranacakAnahtarKelime = new TextBox();
 
-		Label lblTcKimlikNo = new Label("T.C Kimlik No");
-		lblTcKimlikNo.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTcKimlikNo, 22, 80);
-		lblTcKimlikNo.setSize("115px", "16px");
-
-		tctAdi = new TextBox();
-		tctAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAdi, 159, 17);
-		tctAdi.setSize("198px", "15px");
-
-		tctSoyadi = new TextBox();
-		tctSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSoyadi, 159, 47);
-		tctSoyadi.setSize("198px", "15px");
-
-		tctTCKimlikNo = new TextBox();
-		tctTCKimlikNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctTCKimlikNo, 159, 77);
-		tctTCKimlikNo.setSize("198px", "15px");
+		tctAranacakAnahtarKelime.setStyleName("gwt-TextBox1");
+		absolutePanel.add(tctAranacakAnahtarKelime, 193, 27);
+		tctAranacakAnahtarKelime.setSize("200px", "17px");
 
 		Button btnAra = new Button("ARA");
+		btnAra.addClickHandler(new BtnAraClickHandler());
 		btnAra.setStyleName("gwt-ButonKapat");
-		absolutePanel.add(btnAra, 423, 50);
+		absolutePanel.add(btnAra, 506, 51);
 		btnAra.setSize("78px", "48px");
 
 		if (!isDesignTime()) {
@@ -308,6 +290,61 @@ public class OnKayit extends Composite {
 			// "click".equals(event.getNativeEvent().getType());
 
 			// Window.alert("Click : " + event.getNativeEvent().getType());
+
+		}
+	}
+
+	private class BtnAraClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			String urlWithParameters = Util.urlBase + "getonkayit"
+					+ "?adi_soyadi_tc_kimlik_no="
+					+ tctAranacakAnahtarKelime.getText();
+
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					urlWithParameters);
+
+			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+			try {
+				Request request = builder.sendRequest(null,
+						new RequestCallback() {
+							public void onError(Request request,
+									Throwable exception) {
+
+							}
+
+							@Override
+							public void onResponseReceived(Request request,
+									Response response) {
+
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
+
+								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
+										.readList(response.getText());
+
+								// listXmlOnKayit.add(xmlOnKayit);
+
+								// lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
+
+								// Set the total row count. This isn't strictly
+								// necessary, but it affects
+								// paging calculations, so its good habit to
+								// keep the row count up to date.
+								grdOnKayit.setRowCount(1, true);
+
+								// Push the data into the widget.
+								grdOnKayit.setRowData(0, listXmlOnKayit);
+
+							}
+
+						});
+
+			} catch (RequestException e) {
+				// displayError("Couldn't retrieve JSON");
+
+				// Window.alert(e.getMessage() + "ERROR");
+			}
 
 		}
 	}
