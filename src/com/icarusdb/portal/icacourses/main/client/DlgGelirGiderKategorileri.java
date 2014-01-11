@@ -18,6 +18,8 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 	private TextBox tctKategoriAdi;
 
 	public DlgGelirGiderKategorileri(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -27,7 +29,7 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("632px", "387px");
+		absolutePanel.setSize("492px", "387px");
 
 		Label lblGelirgiderKategoriIlemleri = new Label(
 				"Gelir/Gider Kategori İşlemleri (Ekleme / Düzenleme)");
@@ -47,13 +49,13 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 		btnKaydet = new Button("Kaydet");
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		absolutePanel.add(btnKaydet, 320, 98);
+		absolutePanel.add(btnKaydet, 110, 116);
 		btnKaydet.setSize("78px", "43px");
 
 		btnKapat = new Button("Kapat");
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel.add(btnKapat, 422, 98);
+		absolutePanel.add(btnKapat, 212, 116);
 		btnKapat.setSize("78px", "43px");
 	}
 

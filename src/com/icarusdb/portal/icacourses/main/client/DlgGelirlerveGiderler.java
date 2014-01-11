@@ -42,6 +42,8 @@ public class DlgGelirlerveGiderler extends DialogBox {
 	private DateBox dtpVadeTarihi;
 
 	public DlgGelirlerveGiderler(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;

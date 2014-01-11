@@ -31,6 +31,8 @@ public class DlgKonuTanimlari extends DialogBox {
 	private TextBox tctKonu;
 
 	public DlgKonuTanimlari(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -40,7 +42,7 @@ public class DlgKonuTanimlari extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("527px", "373px");
+		absolutePanel.setSize("498px", "373px");
 
 		Label lblDersIlemleriekleme = new Label(
 				"Ders İşlemleri (Ekleme / Düzenleme)");
@@ -66,7 +68,7 @@ public class DlgKonuTanimlari extends DialogBox {
 		Label label_3 = new Label("Ünite Adı");
 		label_3.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		label_3.setStyleName("gwt-Bold");
-		absolutePanel.add(label_3, 11, 144);
+		absolutePanel.add(label_3, 10, 144);
 		label_3.setSize("106px", "18px");
 
 		Label lblKonu = new Label("Konu");
@@ -110,14 +112,14 @@ public class DlgKonuTanimlari extends DialogBox {
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 310, 203);
+		absolutePanel.add(btnKaydet, 268, 232);
 		btnKaydet.setSize("78px", "45px");
 
 		Button btnKapat = new Button("New button");
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 394, 203);
+		absolutePanel.add(btnKapat, 352, 232);
 		btnKapat.setSize("78px", "45px");
 		if (!isDesignTime()) {
 

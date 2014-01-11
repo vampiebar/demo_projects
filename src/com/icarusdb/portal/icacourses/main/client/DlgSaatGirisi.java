@@ -29,6 +29,8 @@ public class DlgSaatGirisi extends DialogBox {
 	public DecoratedTabPanel tabSaatGirisi;
 
 	public DlgSaatGirisi(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -36,6 +38,7 @@ public class DlgSaatGirisi extends DialogBox {
 		setHTML("Ders Dağıtım Saat İşlemleri");
 
 		tabSaatGirisi = new DecoratedTabPanel();
+		tabSaatGirisi.setAnimationEnabled(true);
 		setWidget(tabSaatGirisi);
 		tabSaatGirisi.setSize("351px", "256px");
 
@@ -77,7 +80,7 @@ public class DlgSaatGirisi extends DialogBox {
 		dtpBaslangicSaati = new DateBox();
 		dtpBaslangicSaati.setStyleName("gwt-TextBox1");
 		dtpBaslangicSaati.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("HH:mm:ss")));
+				.getMediumTimeFormat()));
 		dtpBaslangicSaati
 				.addValueChangeHandler(new DtpBaslangicSaatiValueChangeHandler());
 		absolutePanel.add(dtpBaslangicSaati, 134, 30);

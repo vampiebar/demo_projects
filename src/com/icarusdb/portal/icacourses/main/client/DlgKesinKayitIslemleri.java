@@ -31,6 +31,7 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 	public DialogBox _dlgKesinKayitIslemleri;
 
 	public DlgKesinKayitIslemleri(boolean isInsert, long id) {
+		setGlassEnabled(true);
 		_dlgKesinKayitIslemleri = this;
 		_isInsert = isInsert;
 		_id = id;

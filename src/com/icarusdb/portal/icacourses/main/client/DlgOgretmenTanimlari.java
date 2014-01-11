@@ -52,6 +52,8 @@ public class DlgOgretmenTanimlari extends DialogBox {
 	public DecoratedTabPanel tabOgretmenIslemleri;
 
 	public DlgOgretmenTanimlari(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -418,6 +420,46 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		}
 	}
 
+	private void putBransToCbx(String egitim_turu_adi, final ListBox lbxTemp) {
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getderstanimlari?egitim_turu_adi="
+						+ egitim_turu_adi);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLDersTanimlari> xmlDersTanimlari = XMLDersTanimlari.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlDersTanimlari.size(); i++) {
+
+						lbxTemp.addItem(xmlDersTanimlari.get(i).ders_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+	}
+
 	private class BtnKapatClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
@@ -513,6 +555,10 @@ public class DlgOgretmenTanimlari extends DialogBox {
 			putDersBilgisiToCbx(
 					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
 					cbxGirdigiDersler);
+
+			putBransToCbx(
+					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
+					cbxBrans);
 
 		}
 	}

@@ -86,10 +86,14 @@ a:visited {
 	width: 15em;
 	border: 1px solid #D9D9D9;
 	background-color: #D9D9D9;
-	
     
 }
 
+.gwt-StackPanelHeader:hover {
+	background-color: red;
+	color:red;
+    
+}
 .gwt-StackPanel .gwt-StackPanelItem {
     background-image: url(blue_gradient.gif); 
 	background-repeat: repeat-x;
@@ -156,7 +160,6 @@ position: relative;
 	background: none repeat scroll 0% 0% ButtonFace !important;
 	background-color: ButtonFace;
     
-	
 }
  
 
@@ -722,13 +725,13 @@ background: #D9D9D9 !important;
 }  */
 
 .gwt-MenuButton2 {
-	border-color: rgb(38, 154, 188);
-	font-family: Trebuc;
-	font-weight: bold;
+	color: darkgrey;
 }
 .gwt-MenuBackground {
 	/* background-color: lightblue; */
 	background-color: ButtonFace;
 	
+}
+.gwt-cellTable {
 }
 }

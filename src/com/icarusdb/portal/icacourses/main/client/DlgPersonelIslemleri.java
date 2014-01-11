@@ -28,6 +28,8 @@ public class DlgPersonelIslemleri extends DialogBox {
 	private TextBox tctTelefonu2;
 
 	public DlgPersonelIslemleri(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;

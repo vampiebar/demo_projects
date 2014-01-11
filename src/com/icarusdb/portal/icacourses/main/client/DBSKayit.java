@@ -128,19 +128,20 @@ public class DBSKayit extends Composite {
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 592, 30);
+		absolutePanel.add(btnYeniKayit, 611, 30);
 		btnYeniKayit.setSize("78px", "48px");
 
 		Button btnExceleAktar = new Button("Excel'e Aktar");
 		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 760, 30);
+		absolutePanel.add(btnExceleAktar, 695, 30);
 		btnExceleAktar.setSize("78px", "48px");
 
 		Button btnKaydet = new Button("Yeni Kayıt");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		// btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 676, 30);
+		absolutePanel.add(btnKaydet, 779, 30);
 		btnKaydet.setSize("78px", "48px");
 
 		Button btnAra = new Button("Yeni Kayıt");
@@ -148,7 +149,7 @@ public class DBSKayit extends Composite {
 
 		btnAra.setStyleName("gwt-ButonKapat");
 		btnAra.setText("Ara");
-		absolutePanel.add(btnAra, 508, 30);
+		absolutePanel.add(btnAra, 527, 30);
 		btnAra.setSize("78px", "48px");
 
 		if (!isDesignTime()) {

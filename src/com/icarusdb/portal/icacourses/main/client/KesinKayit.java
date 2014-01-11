@@ -25,9 +25,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class KesinKayit extends Composite {
-	private TextBox tctAdi;
-	private TextBox tctSoyadi;
-	private TextBox tctTCKimlikNo;
+	private TextBox tctAranacakAnahtarKelime;
 	private CellTable<XMLOnKayit> grdKesinKayit;
 	private Column<XMLOnKayit, ?> grdcAdi;
 	private Column<XMLOnKayit, ?> grdcSoyadi;
@@ -38,49 +36,36 @@ public class KesinKayit extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("911px", "651px");
+		absolutePanel.setSize("900px", "750px");
 
-		Label lblAdsoyad = new Label("Adı Soyadı");
+		Label lblAdsoyad = new Label("Aranacak Anahtar Kelime");
 		lblAdsoyad.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAdsoyad, 22, 33);
-		lblAdsoyad.setSize("83px", "16px");
+		absolutePanel.add(lblAdsoyad, 10, 30);
+		lblAdsoyad.setSize("186px", "16px");
 
-		tctAdi = new TextBox();
-		tctAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAdi, 133, 33);
-		tctAdi.setSize("143px", "16px");
-
-		tctSoyadi = new TextBox();
-		tctSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSoyadi, 295, 33);
-		tctSoyadi.setSize("149px", "16px");
-
-		Label lblTcKimlikNo = new Label("T.C Kimlik No ");
-		lblTcKimlikNo.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTcKimlikNo, 22, 68);
-
-		tctTCKimlikNo = new TextBox();
-		tctTCKimlikNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctTCKimlikNo, 133, 64);
-		tctTCKimlikNo.setSize("142px", "16px");
+		tctAranacakAnahtarKelime = new TextBox();
+		tctAranacakAnahtarKelime.setStyleName("gwt-TextBox1");
+		absolutePanel.add(tctAranacakAnahtarKelime, 191, 30);
+		tctAranacakAnahtarKelime.setSize("200px", "17px");
 
 		btnAra = new Button("ARA");
 		btnAra.setStyleName("gwt-ButonKapat");
 		btnAra.addClickHandler(new BtnAraClickHandler());
-		absolutePanel.add(btnAra, 493, 33);
+		absolutePanel.add(btnAra, 536, 30);
 		btnAra.setSize("78px", "48px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 590, 33);
+		absolutePanel.add(btnYeniKayit, 620, 30);
 		btnYeniKayit.setSize("78px", "48px");
 
 		Button btnKaydet = new Button("Excel'e Aktar");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 681, 33);
+		absolutePanel.add(btnKaydet, 788, 30);
 		btnKaydet.setSize("78px", "48px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
@@ -183,7 +168,7 @@ public class KesinKayit extends Composite {
 
 		Button button = new Button("Excel'e Aktar");
 		button.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(button, 773, 33);
+		absolutePanel.add(button, 704, 30);
 		button.setSize("78px", "48px");
 
 		// private class BtnKaydetClickHandler implements ClickHandler {
@@ -254,6 +239,53 @@ public class KesinKayit extends Composite {
 
 	private void putDataToGrid() {
 
+		String urlWithParameters = Util.urlBase + "getonkayit"
+				+ "?kesin_kayit_mi=TRUE";
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " +
+					// response.getText());
+
+					List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
+							.readList(response.getText());
+
+					// listXmlOnKayit.add(xmlOnKayit);
+
+					// lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
+
+					// Set the total row count. This isn't strictly
+					// necessary, but it affects
+					// paging calculations, so its good habit to
+					// keep the row count up to date.
+					grdKesinKayit.setRowCount(1, true);
+
+					// Push the data into the widget.
+					grdKesinKayit.setRowData(0, listXmlOnKayit);
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
 	}
 
 	protected void showWithData(final String id) {
@@ -312,8 +344,10 @@ public class KesinKayit extends Composite {
 	private class BtnAraClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			String urlWithParameters = Util.urlBase + "getonkayit"
-					+ "?kesin_kayit_mi=TRUE";
+			String urlWithParameters = Util.urlBase
+					+ "getonkayit?kesin_kayit_mi=TRUE"
+					+ "&adi_soyadi_tc_kimlik_no="
+					+ tctAranacakAnahtarKelime.getText();
 
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 					urlWithParameters);

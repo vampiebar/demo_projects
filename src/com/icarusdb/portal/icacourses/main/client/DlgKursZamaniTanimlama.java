@@ -16,6 +16,8 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 	private TextBox tctKursZamani;
 
 	public DlgKursZamaniTanimlama(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -46,20 +48,20 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 334, 91);
+		absolutePanel.add(btnKaydet, 335, 109);
 		btnKaydet.setSize("78px", "45px");
 
 		Button btnKapat = new Button("New button");
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 418, 91);
+		absolutePanel.add(btnKapat, 419, 109);
 		btnKapat.setSize("78px", "45px");
 
 		Button btnYeniKaydet = new Button("New button");
 		btnYeniKaydet.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKaydet.setText("Yeni Kayıt");
-		absolutePanel.add(btnYeniKaydet, 250, 91);
+		absolutePanel.add(btnYeniKaydet, 251, 109);
 		btnYeniKaydet.setSize("78px", "45px");
 	}
 

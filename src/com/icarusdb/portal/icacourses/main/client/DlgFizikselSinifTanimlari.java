@@ -16,6 +16,8 @@ public class DlgFizikselSinifTanimlari extends DialogBox {
 	private TextBox tctFizikselSinifAdi;
 
 	public DlgFizikselSinifTanimlari(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;

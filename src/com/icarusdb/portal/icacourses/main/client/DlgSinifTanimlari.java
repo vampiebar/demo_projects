@@ -44,6 +44,8 @@ public class DlgSinifTanimlari extends DialogBox {
 	private TextBox tctSinifAdi;
 
 	public DlgSinifTanimlari(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -111,7 +113,7 @@ public class DlgSinifTanimlari extends DialogBox {
 
 		Label lblFiyat = new Label("Fiyatı");
 		lblFiyat.setStyleName("gwt-Bold");
-		absolutePanel.add(lblFiyat, 10, 410);
+		absolutePanel.add(lblFiyat, 10, 412);
 
 		Label lblBalangTarihi = new Label("Başlangıç Tarihi");
 		lblBalangTarihi.setStyleName("gwt-Bold");
@@ -129,8 +131,8 @@ public class DlgSinifTanimlari extends DialogBox {
 				.addValueChangeHandler(new DtpBaslangicTarihiValueChangeHandler());
 		dtpBaslangicTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd")));
-		absolutePanel.add(dtpBaslangicTarihi, 186, 443);
-		dtpBaslangicTarihi.setSize("143px", "14px");
+		absolutePanel.add(dtpBaslangicTarihi, 186, 439);
+		dtpBaslangicTarihi.setSize("143px", "16px");
 
 		dtpBitisTarihi = new DateBox();
 		dtpBitisTarihi.setStyleName("gwt-TextBox1");
@@ -138,33 +140,33 @@ public class DlgSinifTanimlari extends DialogBox {
 				.addValueChangeHandler(new DptBitisTarihiValueChangeHandler());
 		dtpBitisTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd")));
-		absolutePanel.add(dtpBitisTarihi, 186, 477);
-		dtpBitisTarihi.setSize("143px", "14px");
+		absolutePanel.add(dtpBitisTarihi, 186, 473);
+		dtpBitisTarihi.setSize("143px", "16px");
 
 		tctFiyati = new TextBox();
 		tctFiyati.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctFiyati, 186, 414);
-		tctFiyati.setSize("143px", "14px");
+		absolutePanel.add(tctFiyati, 186, 408);
+		tctFiyati.setSize("143px", "16px");
 
 		tctOzelDersSayisi = new TextBox();
 		tctOzelDersSayisi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctOzelDersSayisi, 186, 385);
-		tctOzelDersSayisi.setSize("143px", "14px");
+		absolutePanel.add(tctOzelDersSayisi, 186, 377);
+		tctOzelDersSayisi.setSize("143px", "16px");
 
 		tctBtisiNumarasi = new TextBox();
 		tctBtisiNumarasi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctBtisiNumarasi, 186, 349);
-		tctBtisiNumarasi.setSize("143px", "14px");
+		absolutePanel.add(tctBtisiNumarasi, 186, 341);
+		tctBtisiNumarasi.setSize("143px", "16px");
 
 		tctBaslangicNumarasi = new TextBox();
 		tctBaslangicNumarasi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctBaslangicNumarasi, 186, 309);
-		tctBaslangicNumarasi.setSize("143px", "14px");
+		absolutePanel.add(tctBaslangicNumarasi, 186, 305);
+		tctBaslangicNumarasi.setSize("143px", "16px");
 
 		tctSinifKontenjani = new TextBox();
 		tctSinifKontenjani.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSinifKontenjani, 186, 278);
-		tctSinifKontenjani.setSize("143px", "14px");
+		absolutePanel.add(tctSinifKontenjani, 186, 270);
+		tctSinifKontenjani.setSize("143px", "16px");
 
 		cbxDanismanOgretmen = new ListBox();
 		cbxDanismanOgretmen.addItem("İlhami YILDIZ");
@@ -212,7 +214,7 @@ public class DlgSinifTanimlari extends DialogBox {
 		tctSinifAdi = new TextBox();
 		tctSinifAdi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctSinifAdi, 186, 47);
-		tctSinifAdi.setSize("143px", "14px");
+		tctSinifAdi.setSize("143px", "16px");
 
 		Button btnYeniKayit = new Button("New button");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");

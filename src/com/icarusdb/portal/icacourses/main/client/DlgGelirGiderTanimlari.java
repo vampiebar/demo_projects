@@ -26,6 +26,8 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 	private TextBox tctGelirGiderAdi;
 
 	public DlgGelirGiderTanimlari(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -46,34 +48,34 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 		Label lblKategoriAdı = new Label("Kategori Adı");
 		lblKategoriAdı.setStyleName("gwt-Bold");
 		absolutePanel.add(lblKategoriAdı, 10, 50);
-		lblKategoriAdı.setSize("92px", "28px");
+		lblKategoriAdı.setSize("92px", "16px");
 
 		Label lblTipi = new Label("Tipi");
 		lblTipi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTipi, 10, 84);
+		absolutePanel.add(lblTipi, 10, 85);
 
 		Label lblGelirGider_1 = new Label("Gelir / Gider Adı");
 		lblGelirGider_1.setStyleName("gwt-Bold");
-		absolutePanel.add(lblGelirGider_1, 10, 112);
+		absolutePanel.add(lblGelirGider_1, 10, 120);
 		lblGelirGider_1.setSize("120px", "16px");
 
 		cbxKategoriAdi = new ListBox();
 		cbxKategoriAdi.addItem(" ");
 		cbxKategoriAdi.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxKategoriAdi, 136, 46);
+		absolutePanel.add(cbxKategoriAdi, 136, 48);
 		cbxKategoriAdi.setSize("158px", "22px");
 
 		cbxTipi = new ListBox();
 		cbxTipi.addItem("Gelir");
 		cbxTipi.addItem("Gider");
 		cbxTipi.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxTipi, 136, 78);
+		absolutePanel.add(cbxTipi, 136, 83);
 		cbxTipi.setSize("158px", "22px");
 
 		tctGelirGiderAdi = new TextBox();
 		tctGelirGiderAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctGelirGiderAdi, 136, 110);
-		tctGelirGiderAdi.setSize("156px", "14px");
+		absolutePanel.add(tctGelirGiderAdi, 136, 117);
+		tctGelirGiderAdi.setSize("156px", "16px");
 
 		Button btnKaydet = new Button("New button");
 		btnKaydet.setStyleName("gwt-ButtonSave");

@@ -28,6 +28,8 @@ public class DlgOdevTakipUnite extends DialogBox {
 	public long _id = -1;
 
 	public DlgOdevTakipUnite(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -73,6 +75,7 @@ public class DlgOdevTakipUnite extends DialogBox {
 		cbxEgitimTuru.setSize("163px", "22px");
 
 		cbxAlan = new ListBox();
+		cbxAlan.addChangeHandler(new CbxAlanChangeHandler());
 
 		cbxAlan.addItem(" ");
 		cbxAlan.setStyleName("gwt-ComboBox1");
@@ -80,7 +83,7 @@ public class DlgOdevTakipUnite extends DialogBox {
 		cbxAlan.setSize("163px", "22px");
 
 		cbxDers = new ListBox();
-		cbxDers.addItem(" 1");
+		cbxDers.addItem(" ");
 		cbxDers.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxDers, 118, 131);
 		cbxDers.setSize("163px", "22px");
@@ -261,7 +264,7 @@ public class DlgOdevTakipUnite extends DialogBox {
 			URLValue = URLValue + "&alan="
 					+ cbxAlan.getItemText(cbxAlan.getSelectedIndex());
 			URLValue = URLValue + "&ders="
-					+ cbxDers.getValue(cbxDers.getSelectedIndex());
+					+ cbxDers.getItemText(cbxDers.getSelectedIndex());
 
 			URLValue = URLValue + "&unite=" + tctUnite.getText();
 
@@ -275,10 +278,7 @@ public class DlgOdevTakipUnite extends DialogBox {
 
 		cbxEgitimTuru.setItemText(0, xml.egitim_turu);
 		cbxAlan.setItemText(0, xml.alan);
-		// cbxDers.setItemText(0, xml.ders);
-
-		cbxDers.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxDers, xml.ders));
+		cbxDers.setItemText(0, xml.ders);
 
 		tctUnite.setText(xml.unite);
 	}
@@ -292,11 +292,11 @@ public class DlgOdevTakipUnite extends DialogBox {
 		}
 	}
 
-	// private class CbxAlanChangeHandler implements ChangeHandler {
-	// public void onChange(ChangeEvent event) {
-	// putDersAdiToCbx(
-	// cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
-	// cbxAlan.getItemText(cbxAlan.getSelectedIndex()), cbxDers);
-	// }
-	// }
+	private class CbxAlanChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putDersAdiToCbx(
+					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
+					cbxAlan.getItemText(cbxAlan.getSelectedIndex()), cbxDers);
+		}
+	}
 }

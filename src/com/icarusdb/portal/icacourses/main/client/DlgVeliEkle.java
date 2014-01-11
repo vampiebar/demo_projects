@@ -34,6 +34,8 @@ public class DlgVeliEkle extends DialogBox {
 	private TextBox tctOgrenciTCKimlikNo;
 
 	public DlgVeliEkle(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;

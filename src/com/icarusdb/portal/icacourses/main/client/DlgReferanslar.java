@@ -16,6 +16,8 @@ public class DlgReferanslar extends DialogBox {
 	private TextBox tctReferansAdiSoyadi;
 
 	public DlgReferanslar(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;

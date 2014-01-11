@@ -1,5 +1,7 @@
 package com.icarusdb.portal.icacourses.main.client;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
@@ -24,6 +26,7 @@ public class DlgBankaEkle extends DialogBox {
 	private Button btnKapat;
 
 	public DlgBankaEkle(boolean isInsert, long id) {
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -62,12 +65,15 @@ public class DlgBankaEkle extends DialogBox {
 
 		Label lblVadeTarihi = new Label("Vade Tarihi");
 		lblVadeTarihi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblVadeTarihi, 10, 273);
+		absolutePanel.add(lblVadeTarihi, 10, 271);
 
 		cbxBankaninOdemeSekli = new ListBox();
+		cbxBankaninOdemeSekli.setStyleName("gwt-ComboBox1");
+		cbxBankaninOdemeSekli
+				.addChangeHandler(new CbxBankaninOdemeSekliChangeHandler());
 		cbxBankaninOdemeSekli.addItem("Ertesi Gün");
 		cbxBankaninOdemeSekli.addItem("Vadeli");
-		absolutePanel.add(cbxBankaninOdemeSekli, 243, 225);
+		absolutePanel.add(cbxBankaninOdemeSekli, 246, 223);
 		cbxBankaninOdemeSekli.setSize("198px", "22px");
 
 		Label label = new Label("");
@@ -94,8 +100,9 @@ public class DlgBankaEkle extends DialogBox {
 		tctIBANNo.setSize("246px", "14px");
 
 		tctVadeTarihi = new TextBox();
+		tctVadeTarihi.setText("0");
 		tctVadeTarihi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVadeTarihi, 246, 273);
+		absolutePanel.add(tctVadeTarihi, 249, 269);
 		tctVadeTarihi.setSize("193px", "14px");
 
 		btnKaydet = new Button("Kaydet");
@@ -161,6 +168,15 @@ public class DlgBankaEkle extends DialogBox {
 
 			new Util().sendRequest(URLValue, "BANKA BİLGİLERİ KAYIT EDİLDİ",
 					"BANKA BİLGİLERİ KAYIT EDİLEMEDİ");
+		}
+	}
+
+	private class CbxBankaninOdemeSekliChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+
+			if (cbxBankaninOdemeSekli.getSelectedIndex() == 1) {
+				tctVadeTarihi.setEnabled(false);
+			}
 		}
 	}
 }

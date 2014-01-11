@@ -29,6 +29,8 @@ public class DlgUniteTanimlari extends DialogBox {
 	private TextBox tctUniteAdi;
 
 	public DlgUniteTanimlari(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;

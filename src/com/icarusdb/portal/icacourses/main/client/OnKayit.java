@@ -38,7 +38,7 @@ public class OnKayit extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("900px", "743px");
+		absolutePanel.setSize("900px", "750px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 136);
@@ -124,7 +124,7 @@ public class OnKayit extends Composite {
 		tctAranacakAnahtarKelime = new TextBox();
 
 		tctAranacakAnahtarKelime.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAranacakAnahtarKelime, 193, 27);
+		absolutePanel.add(tctAranacakAnahtarKelime, 191, 30);
 		tctAranacakAnahtarKelime.setSize("200px", "17px");
 
 		Button btnAra = new Button("ARA");
@@ -149,7 +149,11 @@ public class OnKayit extends Composite {
 						// DO YOUR STUFF
 
 						// Window.alert("selected id: " + selected.id);
+						// Window.alert("selected tc: " +
+						// selected.tc_kimlik_no);
+
 						showWithData(selected.id);
+						showWithData(selected.tc_kimlik_no);
 
 					}
 

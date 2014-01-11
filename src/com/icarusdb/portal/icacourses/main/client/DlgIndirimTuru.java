@@ -19,6 +19,8 @@ public class DlgIndirimTuru extends DialogBox {
 	private TextBox tctIndirimMiktari;
 
 	public DlgIndirimTuru(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;

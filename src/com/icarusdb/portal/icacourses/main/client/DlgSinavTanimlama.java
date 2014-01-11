@@ -40,6 +40,8 @@ public class DlgSinavTanimlama extends DialogBox {
 	private ListBox cbxDakika;
 
 	public DlgSinavTanimlama(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -79,10 +81,10 @@ public class DlgSinavTanimlama extends DialogBox {
 
 		tctSinavAdi = new TextBox();
 		tctSinavAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSinavAdi, 345, 41);
+		absolutePanel.add(tctSinavAdi, 334, 41);
 		tctSinavAdi.setSize("143px", "14px");
 
-		Label label_4 = new Label("-");
+		Label label_4 = new Label("      -");
 		absolutePanel.add(label_4, 325, 41);
 		label_4.setSize("14px", "18px");
 

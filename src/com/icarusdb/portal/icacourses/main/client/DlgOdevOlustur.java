@@ -33,12 +33,13 @@ public class DlgOdevOlustur extends DialogBox {
 	private ListBox cbxUnite;
 	private TextBox tctSoruSayisi;
 	private AbsolutePanel absolutePanel;
-	public DecoratedTabPanel tabOdevBilgileri;
+	public DecoratedTabPanel tabOdevOlustur;
 
 	public boolean _isInsert = true;
 	public long _id = -1;
 
 	public DlgOdevOlustur(boolean isInsert, long id) {
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -49,13 +50,14 @@ public class DlgOdevOlustur extends DialogBox {
 		setWidget(absolutePanel);
 		absolutePanel.setSize("625px", "449px");
 
-		tabOdevBilgileri = new DecoratedTabPanel();
-		absolutePanel.add(tabOdevBilgileri, 10, 32);
-		tabOdevBilgileri.setSize("640px", "449px");
+		tabOdevOlustur = new DecoratedTabPanel();
+		tabOdevOlustur.setAnimationEnabled(true);
+		absolutePanel.add(tabOdevOlustur, 10, 32);
+		tabOdevOlustur.setSize("640px", "449px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
-		tabOdevBilgileri.add(absolutePanel_1, "Ödev Bilgileri", false);
+		tabOdevOlustur.add(absolutePanel_1, "Ödev Bilgileri", false);
 		absolutePanel_1.setSize("607px", "373px");
 
 		Label lbldevAd = new Label("Ödev Adı");
@@ -91,7 +93,7 @@ public class DlgOdevOlustur extends DialogBox {
 		tctOdevAdi = new TextBox();
 		tctOdevAdi.setStyleName("gwt-TextBox1");
 		absolutePanel_1.add(tctOdevAdi, 111, 10);
-		tctOdevAdi.setSize("149px", "14px");
+		tctOdevAdi.setSize("149px", "16px");
 
 		cbxEgitimTuru = new ListBox();
 		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
@@ -101,28 +103,30 @@ public class DlgOdevOlustur extends DialogBox {
 		cbxEgitimTuru.setSize("151px", "22px");
 
 		cbxAlan = new ListBox();
+		cbxAlan.addChangeHandler(new CbxAlanChangeHandler());
 		cbxAlan.addItem(" ");
 		cbxAlan.setStyleName("gwt-ComboBox1");
 		absolutePanel_1.add(cbxAlan, 111, 82);
 		cbxAlan.setSize("151px", "22px");
 
 		cbxDers = new ListBox();
-		cbxDers.addItem(" q");
+		cbxDers.addChangeHandler(new CbxDersChangeHandler());
+		cbxDers.addItem(" ");
 		cbxDers.setStyleName("gwt-ComboBox1");
 		absolutePanel_1.add(cbxDers, 111, 117);
 		cbxDers.setSize("151px", "22px");
 
 		cbxUnite = new ListBox();
+
+		cbxUnite.addItem(" ");
 		cbxUnite.setStyleName("gwt-ComboBox1");
-		cbxUnite.addItem("1");
-		cbxUnite.addItem("2 ");
 		absolutePanel_1.add(cbxUnite, 111, 155);
 		cbxUnite.setSize("151px", "22px");
 
 		tctSoruSayisi = new TextBox();
 		tctSoruSayisi.setStyleName("gwt-TextBox1");
 		absolutePanel_1.add(tctSoruSayisi, 111, 195);
-		tctSoruSayisi.setSize("149px", "14px");
+		tctSoruSayisi.setSize("149px", "16px");
 
 		Button btnKaydet = new Button("Kaydet");
 		btnKaydet.setStyleName("gwt-ButtonSave");
@@ -132,7 +136,7 @@ public class DlgOdevOlustur extends DialogBox {
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
-		tabOdevBilgileri.add(absolutePanel_2, "Ödev Cevapları", false);
+		tabOdevOlustur.add(absolutePanel_2, "Ödev Cevapları", false);
 		absolutePanel_2.setSize("605px", "375px");
 
 		CellTable<Object> grdOdevCevaplari = new CellTable<Object>();
@@ -182,7 +186,7 @@ public class DlgOdevOlustur extends DialogBox {
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
-		tabOdevBilgileri.add(absolutePanel_3, "Dosya Ekle", false);
+		tabOdevOlustur.add(absolutePanel_3, "Dosya Ekle", false);
 		absolutePanel_3.setSize("624px", "391px");
 
 		Label lblDosyaAklama = new Label("Dosya Açıklama");
@@ -372,6 +376,52 @@ public class DlgOdevOlustur extends DialogBox {
 
 	}
 
+	public void putUniteAdiToCbx(String egitim_turu, String alan, String ders,
+			final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getodevtakipunite?egitim_turu=" + egitim_turu
+						+ "&alan=" + alan + "&ders=" + ders);
+
+		// Window.alert(Util.urlBase + "getpostakodu?il=" + il + "&ilce=" +
+		// ilce);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLOdevTakipUnite> xmlOdevTakipUnite = XMLOdevTakipUnite.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlOdevTakipUnite.size(); i++) {
+
+						lbxTemp.addItem(xmlOdevTakipUnite.get(i).unite);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
 	private boolean isDesignTime() {
 
 		return false;
@@ -396,9 +446,9 @@ public class DlgOdevOlustur extends DialogBox {
 			URLValue = URLValue + "&alan="
 					+ cbxAlan.getItemText(cbxAlan.getSelectedIndex());
 			URLValue = URLValue + "&ders="
-					+ cbxDers.getValue(cbxDers.getSelectedIndex());
+					+ cbxDers.getItemText(cbxDers.getSelectedIndex());
 			URLValue = URLValue + "&unite="
-					+ cbxUnite.getValue(cbxUnite.getSelectedIndex());
+					+ cbxUnite.getItemText(cbxUnite.getSelectedIndex());
 			URLValue = URLValue + "&soru_sayisi=" + tctSoruSayisi.getText();
 
 			// Window.alert(URLValue);
@@ -410,16 +460,17 @@ public class DlgOdevOlustur extends DialogBox {
 
 	public void putDataFromXML(XMLOdevOlustur xml) {
 		tctSoruSayisi.setText(xml.soru_sayisi);
+		tctOdevAdi.setText(xml.odev_adi);
 
 		cbxEgitimTuru.setItemText(0, xml.egitim_turu);
 		cbxAlan.setItemText(0, xml.alan);
-		// cbxDers.setItemText(0, xml.ders);
-		// cbxUnite.setItemText(0, xml.unite);
+		cbxDers.setItemText(0, xml.ders);
+		cbxUnite.setItemText(0, xml.unite);
 
-		cbxDers.setSelectedIndex(Util
-				.GetLBXSelectedTextIndex(cbxDers, xml.ders));
-		cbxUnite.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxUnite,
-				xml.unite));
+		// cbxDers.setSelectedIndex(Util
+		// .GetLBXSelectedTextIndex(cbxDers, xml.ders));
+		// cbxUnite.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxUnite,
+		// xml.unite));
 
 	}
 
@@ -439,4 +490,20 @@ public class DlgOdevOlustur extends DialogBox {
 	// cbxAlan.getItemText(cbxAlan.getSelectedIndex()), cbxDers);
 	// }
 	// }
+	private class CbxAlanChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putDersAdiToCbx(
+					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
+					cbxAlan.getItemText(cbxAlan.getSelectedIndex()), cbxDers);
+		}
+	}
+
+	private class CbxDersChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putUniteAdiToCbx(
+					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
+					cbxAlan.getItemText(cbxAlan.getSelectedIndex()),
+					cbxDers.getItemText(cbxDers.getSelectedIndex()), cbxUnite);
+		}
+	}
 }

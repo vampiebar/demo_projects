@@ -49,6 +49,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	private ListBox cbxDakika;
 
 	public DlgDBSSinavTanimla(boolean isInsert, long id) {
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -202,8 +203,9 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		hzpanOtherBuilding.setWidth("100%");
 
 		FlexTable flexTable_1 = new FlexTable();
+		flexTable_1.setBorderWidth(0);
 		hzpanOtherBuilding.add(flexTable_1);
-		flexTable_1.setSize("100%", "111px");
+		flexTable_1.setSize("366px", "111px");
 
 		Label lblNewLabel_1 = new Label("Ülke");
 		lblNewLabel_1.setStyleName("gwt-Bold");
@@ -213,7 +215,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxUlke.setStyleName("gwt-ComboBox1");
 		cbxUlke.addItem("Türkiye");
 		flexTable_1.setWidget(0, 1, cbxUlke);
-		cbxUlke.setWidth("138px");
+		cbxUlke.setWidth("140px");
 
 		Label lblNewLabel_2 = new Label("İl");
 		lblNewLabel_2.setStyleName("gwt-Bold");
@@ -224,7 +226,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxIl.addItem(" ");
 		cbxIl.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(1, 1, cbxIl);
-		cbxIl.setWidth("50%");
+		cbxIl.setWidth("140px");
 
 		Label lblNewLabel_3 = new Label("İlçe");
 		lblNewLabel_3.setStyleName("gwt-Bold");
@@ -235,7 +237,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxIlce.addItem(" ");
 		cbxIlce.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(2, 1, cbxIlce);
-		cbxIlce.setWidth("50%");
+		cbxIlce.setWidth("140px");
 
 		Label lblNewLabel_4 = new Label("Semt");
 		lblNewLabel_4.setStyleName("gwt-Bold");
@@ -246,7 +248,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxSemt.addItem(" ");
 		cbxSemt.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(3, 1, cbxSemt);
-		cbxSemt.setWidth("50%");
+		cbxSemt.setWidth("140px");
 
 		Label lblMahalleky = new Label("Mahalle / Köy");
 		lblMahalleky.setStyleName("gwt-Bold");
@@ -256,7 +258,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxMahalleKoy.addItem(" ");
 		cbxMahalleKoy.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(4, 1, cbxMahalleKoy);
-		cbxMahalleKoy.setWidth("50%");
+		cbxMahalleKoy.setWidth("140px");
 
 		Label lblAdres = new Label("Adres");
 		lblAdres.setStyleName("gwt-Bold");
@@ -266,7 +268,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		tctAdres = new TextBox();
 		tctAdres.setStyleName("gwt-TextBox1");
 		flexTable_1.setWidget(5, 1, tctAdres);
-		tctAdres.setSize("60%", "54px");
+		tctAdres.setSize("95%", "54px");
 		flexTable_1.getCellFormatter().setVerticalAlignment(5, 0,
 				HasVerticalAlignment.ALIGN_TOP);
 		flexTable_1.getCellFormatter().setHorizontalAlignment(0, 0,

@@ -81,6 +81,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private AbsolutePanel absolutePanel_4;
 
 	public DlgDBSYeniKayit(boolean isInsert, long id) {
+		setGlassEnabled(true);
 
 		_dlgDBSYeniKayit = this;
 		_isInsert = isInsert;
@@ -93,8 +94,9 @@ public class DlgDBSYeniKayit extends DialogBox {
 		VerticalPanel vtpanMain = new VerticalPanel();
 
 		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
+		decoratedTabPanel.setAnimationEnabled(true);
 		setWidget(vtpanMain);
-		decoratedTabPanel.setSize("742px", "622px");
+		decoratedTabPanel.setSize("750px", "625px");
 
 		vtpanMain.add(decoratedTabPanel);
 
@@ -103,7 +105,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		vtpanOgrenciBilgileri = new AbsolutePanel();
 		vtpanOgrenciBilgileri.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(hzpanMain, "Öğrenci Bilgileri", false);
-		vtpanOgrenciBilgileri.setSize("736px", "524px");
+		vtpanOgrenciBilgileri.setSize("774px", "600px");
 
 		hzpanMain.add(vtpanOgrenciBilgileri);
 
@@ -309,7 +311,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		verticalPanel_1.add(absolutePanel);
-		absolutePanel.setSize("706px", "648px");
+		absolutePanel.setSize("774px", "600px");
 
 		Label lblSeriNo = new Label("Seri No");
 		lblSeriNo.setStyleName("gwt-Bold");
@@ -455,7 +457,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
 		verticalPanel_2.add(absolutePanel_2);
-		absolutePanel_2.setSize("651px", "427px");
+		absolutePanel_2.setSize("774px", "600px");
 
 		Label lblNewLabel_13 = new Label("Ülke");
 		lblNewLabel_13.setStyleName("gwt-Bold");
@@ -478,9 +480,10 @@ public class DlgDBSYeniKayit extends DialogBox {
 		lblNewLabel_17.setStyleName("gwt-Bold");
 		absolutePanel_2.add(lblNewLabel_17, 10, 197);
 
-		Label lblNewLabel_18 = new Label("Sokak ve no");
+		Label lblNewLabel_18 = new Label("Sokak ve No");
 		lblNewLabel_18.setStyleName("gwt-Bold");
 		absolutePanel_2.add(lblNewLabel_18, 10, 237);
+		lblNewLabel_18.setSize("89px", "16px");
 
 		cbxAdresBilgileriUlke = new ListBox();
 		cbxAdresBilgileriUlke.setStyleName("gwt-ComboBox1");
@@ -525,7 +528,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(absolutePanel_3, "Sınav Bilgileri", false);
-		absolutePanel_3.setSize("667px", "433px");
+		absolutePanel_3.setSize("774px", "600px");
 
 		Label lblNewLabel_19 = new Label("Okul Durumu");
 		lblNewLabel_19.setStyleName("gwt-Bold");
@@ -574,14 +577,16 @@ public class DlgDBSYeniKayit extends DialogBox {
 		absolutePanel_4.setVisible(false);
 		absolutePanel_4.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(absolutePanel_4, "Veli Bilgileri", false);
-		absolutePanel_4.setSize("803px", "500px");
+		absolutePanel_4.setSize("774px", "600px");
 
 		Button btnVeliEkle = new Button("Veli Ekle");
+		btnVeliEkle.setVisible(false);
 		btnVeliEkle.addClickHandler(new BtnVeliEkleClickHandler());
 		btnVeliEkle.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel_4.add(btnVeliEkle, 10, 10);
 
 		grdVeliler = new CellTable<XMLVeliler>();
+		grdVeliler.setVisible(false);
 		absolutePanel_4.add(grdVeliler, 0, 42);
 		grdVeliler.setSize("715px", "174px");
 

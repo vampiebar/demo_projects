@@ -115,11 +115,10 @@ public class KesinKayitBilgileri extends DialogBox {
 	private TextBox tctIndirimMiktari;
 
 	public KesinKayitBilgileri(boolean isInsert, long id) {
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
-
-		setGlassStyleName("");
 		setHTML("Kesin Kayıt İşlemleri");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -133,6 +132,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		lblNewLabel.setSize("437px", "28px");
 
 		tabKesinKayitBilgileri = new TabPanel();
+		tabKesinKayitBilgileri.setAnimationEnabled(true);
 		tabKesinKayitBilgileri
 				.addSelectionHandler(new TabKesinKayitBilgileriSelectionHandler());
 		absolutePanel.add(tabKesinKayitBilgileri, 10, 121);
@@ -144,11 +144,13 @@ public class KesinKayitBilgileri extends DialogBox {
 		absolutePanel_1.setSize("713px", "467px");
 
 		cbxOgrenciBilgileriUlke = new ListBox();
+		cbxOgrenciBilgileriUlke.setStyleName("gwt-ComboBox1");
 		cbxOgrenciBilgileriUlke.addItem("Türkiye");
 		absolutePanel_1.add(cbxOgrenciBilgileriUlke, 157, 216);
 		cbxOgrenciBilgileriUlke.setSize("128px", "22px");
 
 		cbxOgrenciBilgileriIl = new ListBox();
+		cbxOgrenciBilgileriIl.setStyleName("gwt-ComboBox1");
 		cbxOgrenciBilgileriIl
 				.addChangeHandler(new CbxOgrenciBilgileriIlChangeHandler());
 		cbxOgrenciBilgileriIl.addItem(" ");
@@ -181,12 +183,14 @@ public class KesinKayitBilgileri extends DialogBox {
 		label_4.setSize("85px", "18px");
 
 		cbxCinsiyet = new ListBox();
+		cbxCinsiyet.setStyleName("gwt-ComboBox1");
 		cbxCinsiyet.addItem("Erkek");
 		cbxCinsiyet.addItem("Kız");
 		absolutePanel_1.add(cbxCinsiyet, 157, 10);
 		cbxCinsiyet.setSize("128px", "22px");
 
 		cbxMedeniHali = new ListBox();
+		cbxMedeniHali.setStyleName("gwt-ComboBox1");
 		cbxMedeniHali.addItem("Evli");
 		cbxMedeniHali.addItem("Bekar");
 		absolutePanel_1.add(cbxMedeniHali, 157, 42);
@@ -235,6 +239,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		label_8.setSize("20px", "18px");
 
 		cbxOgrenciBilgileriIlce = new ListBox();
+		cbxOgrenciBilgileriIlce.setStyleName("gwt-ComboBox1");
 		cbxOgrenciBilgileriIlce
 				.addChangeHandler(new CbxOgrenciBilgileriIlceChangeHandler());
 		cbxOgrenciBilgileriIlce.addItem(" ");
@@ -252,6 +257,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		label_10.setSize("26px", "18px");
 
 		cbxOgrenciBilgileriSinif = new ListBox();
+		cbxOgrenciBilgileriSinif.setStyleName("gwt-ComboBox1");
 		cbxOgrenciBilgileriSinif.addItem("1.Sınıf");
 		cbxOgrenciBilgileriSinif.addItem("2.Sınıf");
 		cbxOgrenciBilgileriSinif.addItem("3.Sınıf");
@@ -280,6 +286,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		tctOkulNumarasi.setSize("126px", "15px");
 
 		cbxOkul = new ListBox();
+		cbxOkul.setStyleName("gwt-ComboBox1");
 		cbxOkul.addItem(" ");
 		absolutePanel_1.add(cbxOkul, 157, 323);
 		cbxOkul.setSize("258px", "22px");
@@ -551,8 +558,8 @@ public class KesinKayitBilgileri extends DialogBox {
 		lblSnf.setSize("67px", "18px");
 
 		cbxKursZamani = new ListBox();
-		cbxKursZamani.addItem("3");
-		cbxKursZamani.addItem("4");
+		cbxKursZamani.addChangeHandler(new CbxKursZamaniChangeHandler());
+		cbxKursZamani.addItem(" ");
 		cbxKursZamani.setStyleName("gwt-ComboBox1");
 		absolutePanel_4.add(cbxKursZamani, 162, 94);
 		cbxKursZamani.setSize("166px", "22px");
@@ -572,8 +579,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxEgitimTuru.setSize("166px", "22px");
 
 		cbxSinif = new ListBox();
-		cbxSinif.addItem("1");
-		cbxSinif.addItem("2");
+		cbxSinif.addItem(" ");
 		cbxSinif.setStyleName("gwt-ComboBox1");
 		absolutePanel_4.add(cbxSinif, 162, 122);
 		cbxSinif.setSize("166px", "22px");
@@ -623,6 +629,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxReferans.setSize("166px", "22px");
 
 		cbxIndirimTuru = new ListBox();
+		cbxIndirimTuru.addChangeHandler(new CbxIndirimTuruChangeHandler());
 		cbxIndirimTuru.addItem("İndirim Yok ");
 		cbxIndirimTuru.addItem("Pazarlık");
 		cbxIndirimTuru.setStyleName("gwt-ComboBox1");
@@ -1138,7 +1145,7 @@ public class KesinKayitBilgileri extends DialogBox {
 			putKursZamaniToCbx(cbxKursZamani);
 			putDataToGrid();
 			putEgitimTuruToCbx(cbxEgitimTuru);
-
+			putIndirimTuruToCbx(cbxIndirimTuru);
 			final SingleSelectionModel<XMLVeliler> selectionModel = new SingleSelectionModel<XMLVeliler>();
 
 			grdVeliEkle.setSelectionModel(selectionModel);
@@ -1152,12 +1159,92 @@ public class KesinKayitBilgileri extends DialogBox {
 
 						// Window.alert("selected id: " + selected.id);
 						showWithData(selected.id);
+						showWithData(selected.ogrenci_tc_kimlik_no);
 
 					}
 
 				}
 
 			}, DoubleClickEvent.getType());
+		}
+
+	}
+
+	private void putIndirimTuruToCbx(final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getindirimturu");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLIndirimTuru> xmlIndirimTuru = XMLIndirimTuru.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlIndirimTuru.size(); i++) {
+
+						lbxTemp.addItem(xmlIndirimTuru.get(i).indirim_turu);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	public void putIndirimMiktariToCbx(String itemText,
+			final TextBox lbxTextBox, String indirim_turu) {
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getindirimturu?indirim_turu=" + indirim_turu);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLIndirimTuru> xmlIndirimTuru = XMLIndirimTuru.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlIndirimTuru.size(); i++) {
+
+						lbxTextBox.setText((xmlIndirimTuru.get(i).indirim_miktari));
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -1596,6 +1683,49 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	}
 
+	private void putSinifAdiToCbx(String egitim_turu, String alan,
+			String kurs_zamani, final ListBox lbxTemp) {
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getsiniftanimlari?egitim_turu=" + egitim_turu
+						+ "&alan=" + alan + "&kurs_zamani=" + kurs_zamani);
+
+		// Window.alert("egitim_turu_adi=" + egitim_turu_adi);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLSinifTanimlari> xmlSinifTanimlari = XMLSinifTanimlari.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlSinifTanimlari.size(); i++) {
+
+						lbxTemp.addItem(xmlSinifTanimlari.get(i).sinif_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
 	// Implement the following method exactly as-is
 	private static final boolean isDesignTime() {
 		// return Beans.isDesignTime(); // GWT 2.4 and above
@@ -1921,7 +2051,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		public void onClick(ClickEvent event) {
 
 			String URLValue = Util.urlBase + "putodemeler?";
-
+			_id = -1;
 			URLValue = URLValue + "id=" + _id;
 			URLValue = URLValue + "&indirimli_tutar="
 					+ tctIndirimliTutar.getText();
@@ -2222,10 +2352,12 @@ public class KesinKayitBilgileri extends DialogBox {
 			if (event.getSelectedItem() == 7) {
 
 				showWithDataOdemeler(String.valueOf(_id));
-			} else if (event.getSelectedItem() == 6) {
-				showWithDataHizmetler(String.valueOf(_id));
+
 			} else if (event.getSelectedItem() == 4) {
 				showWithDataSinif(String.valueOf(_id));
+			} else if (event.getSelectedItem() == 6) {
+				showWithDataHizmetler(String.valueOf(_id));
+
 			}
 			// } else if (event.getSelectedItem() == 1) {
 			// showWithDataOkulNumarasi(String.valueOf(_id));
@@ -2274,7 +2406,7 @@ public class KesinKayitBilgileri extends DialogBox {
 	protected void showWithDataSinif(final String id) {
 
 		String urlWithParameters = Util.urlBase + "getkesinkayitbilgileri?id="
-				+ id;
+				+ _id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -2345,9 +2477,10 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	}
 
-	protected void showWithDataHizmetler(final String id) {
+	protected void showWithDataHizmetler(final String ogrenci_tc_kimlik_no) {
 
-		String urlWithParameters = Util.urlBase + "gethizmetler?id=" + id;
+		String urlWithParameters = Util.urlBase
+				+ "gethizmetler?ogrenci_tc_kimlik_no=" + ogrenci_tc_kimlik_no;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -2390,4 +2523,24 @@ public class KesinKayitBilgileri extends DialogBox {
 					cbxAlan);
 		}
 	}
+
+	private class CbxKursZamaniChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putSinifAdiToCbx(
+					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
+					cbxAlan.getItemText(cbxAlan.getSelectedIndex()),
+					cbxKursZamani.getItemText(cbxKursZamani.getSelectedIndex()),
+					cbxSinif);
+
+		}
+	}
+
+	private class CbxIndirimTuruChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putIndirimMiktariToCbx(cbxIndirimTuru.getItemText(cbxIndirimTuru
+					.getSelectedIndex()), tctIndirimMiktari, null);
+
+		}
+	}
+
 }

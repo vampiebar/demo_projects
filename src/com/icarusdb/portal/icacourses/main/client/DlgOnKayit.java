@@ -98,8 +98,10 @@ public class DlgOnKayit extends DialogBox {
 	private TextBox tctGorusmeKursIndirimFiyati;
 
 	public DialogBox _dlgonkayit;
+	private TextBox tctGorusmeIndirimSekli;
 
 	public DlgOnKayit(boolean isInsert, long id) {
+		setGlassEnabled(true);
 
 		_dlgonkayit = this;
 		_isInsert = isInsert;
@@ -113,6 +115,7 @@ public class DlgOnKayit extends DialogBox {
 		verticalpanel.setSize("854px", "737px");
 
 		tabOnKayit = new DecoratedTabPanel();
+		tabOnKayit.setAnimationEnabled(true);
 		verticalpanel.add(tabOnKayit);
 		tabOnKayit.setSize("462px", "705px");
 
@@ -468,6 +471,7 @@ public class DlgOnKayit extends DialogBox {
 		flexTable_1.setWidget(1, 0, lblAlan);
 
 		cbxGorusmeAlan = new ListBox();
+		// cbxGorusmeAlan.addChangeHandler(new CbxGorusmeAlanChangeHandler());
 		cbxGorusmeAlan.addItem(" ");
 		flexTable_1.setWidget(1, 1, cbxGorusmeAlan);
 		cbxGorusmeAlan.setStyleName("gwt-ComboBox1");
@@ -478,6 +482,8 @@ public class DlgOnKayit extends DialogBox {
 		flexTable_1.setWidget(2, 0, lblKursZaman);
 
 		cbxGorusmeKursZamani = new ListBox();
+		cbxGorusmeKursZamani
+				.addChangeHandler(new CbxGorusmeKursZamaniChangeHandler());
 		cbxGorusmeKursZamani.addItem(" ");
 		flexTable_1.setWidget(2, 1, cbxGorusmeKursZamani);
 		cbxGorusmeKursZamani.setStyleName("gwt-ComboBox1");
@@ -488,10 +494,9 @@ public class DlgOnKayit extends DialogBox {
 		flexTable_1.setWidget(3, 0, lblSnf);
 
 		cbxGorusmeSinif = new ListBox();
+		cbxGorusmeSinif.addItem(" ");
 		flexTable_1.setWidget(3, 1, cbxGorusmeSinif);
 		cbxGorusmeSinif.setStyleName("gwt-ComboBox1");
-		cbxGorusmeSinif.addItem("a");
-		cbxGorusmeSinif.addItem("b");
 		cbxGorusmeSinif.setSize("140px", "18px");
 
 		Label lblNewLabel_1 = new Label("Kurs İndirim Fiyatı");
@@ -554,12 +559,13 @@ public class DlgOnKayit extends DialogBox {
 		tctGorusmeReferans.setSize("138px", "14px");
 
 		dtpGorusmeTarihi = new DateBox();
+		dtpGorusmeTarihi.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(dtpGorusmeTarihi, 163, 350);
 		dtpGorusmeTarihi
 				.addValueChangeHandler(new DtpGorusmeTarihiValueChangeHandler());
 		dtpGorusmeTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy.MM.dd")));
-		dtpGorusmeTarihi.setSize("136px", "12px");
+		dtpGorusmeTarihi.setSize("136px", "15px");
 
 		cbxGorusmeTipi = new ListBox();
 		absolutePanel_4.add(cbxGorusmeTipi, 163, 395);
@@ -591,6 +597,11 @@ public class DlgOnKayit extends DialogBox {
 		tctGorusmeKursIndirimFiyati.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(tctGorusmeKursIndirimFiyati, 163, 191);
 		tctGorusmeKursIndirimFiyati.setSize("138px", "14px");
+
+		tctGorusmeIndirimSekli = new TextBox();
+		tctGorusmeIndirimSekli.setStyleName("gwt-TextBox1");
+		absolutePanel_4.add(tctGorusmeIndirimSekli, 240, 266);
+		tctGorusmeIndirimSekli.setSize("143px", "16px");
 
 		AbsolutePanel absolutePanel_8 = new AbsolutePanel();
 		absolutePanel_8.setStyleName("gwt-DialogBackGround");
@@ -1007,7 +1018,8 @@ public class DlgOnKayit extends DialogBox {
 
 	private void showWithData(final String id) {
 
-		String urlWithParameters = Util.urlBase + "getveliler?id=" + id;
+		String urlWithParameters = Util.urlBase + "getveliler?tc_kimlik_no="
+				+ tctTCKimlikNo.getText();
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -1328,6 +1340,49 @@ public class DlgOnKayit extends DialogBox {
 
 	}
 
+	private void putSinifAdiToCbx(String egitim_turu, String alan,
+			String kurs_zamani, final ListBox lbxTemp) {
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getsiniftanimlari?egitim_turu=" + egitim_turu
+						+ "&alan=" + alan + "&kurs_zamani=" + kurs_zamani);
+
+		// Window.alert("egitim_turu_adi=" + egitim_turu_adi);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLSinifTanimlari> xmlSinifTanimlari = XMLSinifTanimlari.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlSinifTanimlari.size(); i++) {
+
+						lbxTemp.addItem(xmlSinifTanimlari.get(i).sinif_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
 	// Implement the following method exactly as-is
 	private static final boolean isDesignTime() {
 		// return Beans.isDesignTime(); // GWT 2.4 and above
@@ -1360,6 +1415,7 @@ public class DlgOnKayit extends DialogBox {
 		tctGorusmeKursIndirimFiyati.setText(xml.gorusme_kurs_indirim_fiyati);
 		tctGorusmeYuzdesi.setText(xml.gorusme_yuzdesi);
 		tctMahalleKoy.setText(xml.mahalle_koy);
+		tctGorusmeIndirimSekli.setText(xml.gorusme_indirim_sekli);
 
 		cbxCinsiyet.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxCinsiyet,
 				xml.cinsiyet));
@@ -1486,6 +1542,9 @@ public class DlgOnKayit extends DialogBox {
 					+ cbxGorusmeIndirimMiktari
 							.getValue(cbxGorusmeIndirimMiktari
 									.getSelectedIndex());
+			URLValue = URLValue + "&gorusme_indirim_sekli="
+					+ tctGorusmeIndirimSekli.getText();
+
 			URLValue = URLValue + "&gorusme_referans="
 					+ tctGorusmeReferans.getText();
 			URLValue = URLValue
@@ -1727,6 +1786,28 @@ public class DlgOnKayit extends DialogBox {
 					cbxGorusmeEgitimTuru.getItemText(cbxGorusmeEgitimTuru
 							.getSelectedIndex()), cbxGorusmeAlan);
 
+		}
+	}
+
+	// private class CbxGorusmeAlanChangeHandler implements ChangeHandler {
+	// public void onChange(ChangeEvent event) {
+	// putSinifAdiToCbx(
+	// cbxGorusmeEgitimTuru.getItemText(cbxGorusmeEgitimTuru
+	// .getSelectedIndex()),
+	// cbxGorusmeAlan.getItemText(cbxGorusmeAlan
+	// .getSelectedIndex()), cbxGorusmeSinif);
+
+	// }
+	// }
+	private class CbxGorusmeKursZamaniChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putSinifAdiToCbx(
+					cbxGorusmeEgitimTuru.getItemText(cbxGorusmeEgitimTuru
+							.getSelectedIndex()),
+					cbxGorusmeAlan.getItemText(cbxGorusmeAlan
+							.getSelectedIndex()),
+					cbxGorusmeKursZamani.getItemText(cbxGorusmeKursZamani
+							.getSelectedIndex()), cbxGorusmeSinif);
 		}
 	}
 }

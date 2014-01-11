@@ -19,6 +19,8 @@ public class DlgHizmetTanimla extends DialogBox {
 	private TextBox tctBirimFiyati;
 
 	public DlgHizmetTanimla(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;

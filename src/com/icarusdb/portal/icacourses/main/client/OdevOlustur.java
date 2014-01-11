@@ -3,6 +3,8 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -125,7 +127,7 @@ public class OdevOlustur extends Composite {
 		grdcIslemler = new Column<XMLOdevOlustur, String>(new ButtonCell()) {
 			@Override
 			public String getValue(XMLOdevOlustur object) {
-				return "??";
+				return "İşlemler";
 			}
 		};
 		grdOdevOlustur.addColumn(grdcIslemler, "İşlemler");
@@ -151,12 +153,14 @@ public class OdevOlustur extends Composite {
 		btnExceleAktar.setSize("78px", "48px");
 
 		Button btnAra = new Button("ARA");
+		btnAra.addClickHandler(new BtnAraClickHandler());
 		btnAra.setStyleName("gwt-ButonKapat");
 
 		absolutePanel.add(btnAra, 346, 42);
 		btnAra.setSize("78px", "48px");
 
 		cbxEgitimTuru = new ListBox();
+		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
 		cbxEgitimTuru.addItem("Lütfen Seçiniz");
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxEgitimTuru, 106, 16);
@@ -164,6 +168,7 @@ public class OdevOlustur extends Composite {
 
 		if (!isDesignTime()) {
 
+			putEgitimTuruToCbx(cbxEgitimTuru);
 			putDataToGrid();
 
 			final SingleSelectionModel<XMLOdevOlustur> selectionModel = new SingleSelectionModel<XMLOdevOlustur>();
@@ -189,6 +194,89 @@ public class OdevOlustur extends Composite {
 
 	}
 
+	private void putEgitimTuruToCbx(final ListBox lbxTemp) {
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getegitimturu");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLEgitimTuru> xmlEgitimTuru = XMLEgitimTuru.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlEgitimTuru.size(); i++) {
+
+						lbxTemp.addItem(xmlEgitimTuru.get(i).egitim_turu_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private void putEgitimTuruAlanToCbx(String egitim_turu_adi,
+			final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getegitimturutanimlama?egitim_turu_adi="
+						+ egitim_turu_adi);
+		// Window.alert("egitim_turu_adi=" + egitim_turu_adi);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLEgitimTuruTanimlama> xmlEgitimTuruTanimlama = XMLEgitimTuruTanimlama.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlEgitimTuruTanimlama.size(); i++) {
+
+						lbxTemp.addItem(xmlEgitimTuruTanimlama.get(i).alan_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
 	private void putDataToGrid() {
 
 		String urlWithParameters = Util.urlBase + "getodevolustur";
@@ -210,7 +298,7 @@ public class OdevOlustur extends Composite {
 
 					// Window.alert("AAABBBCCC " + response.getText());
 
-					List<XMLOdevOlustur> listxmlOdevOlustur = XMLOdevOlustur.XML
+					List<XMLOdevOlustur> listXmlOdevOlustur = XMLOdevOlustur.XML
 							.readList(response.getText());
 
 					// Window.alert("gun: " + listXmlSaatGirisi.get(0).gun);
@@ -222,7 +310,7 @@ public class OdevOlustur extends Composite {
 					grdOdevOlustur.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdOdevOlustur.setRowData(0, listxmlOdevOlustur);
+					grdOdevOlustur.setRowData(0, listXmlOdevOlustur);
 
 				}
 
@@ -296,7 +384,7 @@ public class OdevOlustur extends Composite {
 			_dlgOdevOlustur = new DlgOdevOlustur(true, -1);
 			_dlgOdevOlustur.center();
 			_dlgOdevOlustur.setAnimationEnabled(true);
-			_dlgOdevOlustur.tabOdevBilgileri.selectTab(0);
+			_dlgOdevOlustur.tabOdevOlustur.selectTab(0);
 
 			_dlgOdevOlustur.addCloseHandler(new CloseHandler<PopupPanel>() {
 
@@ -307,6 +395,72 @@ public class OdevOlustur extends Composite {
 
 				}
 			});
+		}
+	}
+
+	private class CbxEgitimTuruChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putEgitimTuruAlanToCbx(
+					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
+					cbxAlan);
+		}
+	}
+
+	private class BtnAraClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			// String urlWithParameters = Util.urlBase + "getodevolustur?"
+			// + "egitim_turu=" + cbxEgitimTuru.getSelectedIndex()
+			// + "&alan=" + cbxAlan.getSelectedIndex();
+			//
+			// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+			// urlWithParameters);
+			//
+			// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
+			//
+			// try {
+			// Request request = builder.sendRequest(null,
+			// new RequestCallback() {
+			// public void onError(Request request,
+			// Throwable exception) {
+			//
+			// }
+			//
+			// @Override
+			// public void onResponseReceived(Request request,
+			// Response response) {
+			//
+			// // Window.alert("AAABBBCCC " +
+			// // response.getText());
+			//
+			// List<XMLOdevOlustur> listXmlOdevOlustur = XMLOdevOlustur.XML
+			// .readList(response.getText());
+			//
+			// // listXmlOnKayit.add(xmlOnKayit);
+			//
+			// // lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
+			//
+			// // Set the total row count. This isn't strictly
+			// // necessary, but it affects
+			// // paging calculations, so its good habit to
+			// // keep the row count up to date.
+			// grdOdevOlustur.setRowCount(1, true);
+			//
+			// // Push the data into the widget.
+			// grdOdevOlustur
+			// .setRowData(0, listXmlOdevOlustur);
+			//
+			// }
+			//
+			// });
+			//
+			// } catch (RequestException e) {
+			// // displayError("Couldn't retrieve JSON");
+			//
+			// // Window.alert(e.getMessage() + "ERROR");
+			// }
+			//
+			// }
 		}
 	}
 }

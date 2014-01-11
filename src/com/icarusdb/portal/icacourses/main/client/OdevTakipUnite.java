@@ -191,7 +191,7 @@ public class OdevTakipUnite extends Composite {
 				protected void showWithData(final String id) {
 
 					String urlWithParameters = Util.urlBase
-							+ "getunitetanimlari?id=" + id;
+							+ "getodevtakipunite?id=" + id;
 
 					RequestBuilder builder = new RequestBuilder(
 							RequestBuilder.GET, urlWithParameters);

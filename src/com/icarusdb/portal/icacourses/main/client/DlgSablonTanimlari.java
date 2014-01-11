@@ -18,6 +18,7 @@ public class DlgSablonTanimlari extends DialogBox {
 	private ListBox cbxSinavTuru;
 
 	public DlgSablonTanimlari(boolean isInsert, long id) {
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;

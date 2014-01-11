@@ -6,6 +6,7 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -22,6 +23,8 @@ public class DlgKullaniciTanimlama extends DialogBox {
 	public DecoratedTabPanel tabKullaniciTanimlama;
 
 	public DlgKullaniciTanimlama(boolean isInsert, long id) {
+		setAnimationEnabled(true);
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -49,51 +52,55 @@ public class DlgKullaniciTanimlama extends DialogBox {
 				.add(absolutePanel_1, "Kullanıcı Bilgileri", false);
 		absolutePanel_1.setSize("462px", "268px");
 
+		FlexTable flexTable = new FlexTable();
+		absolutePanel_1.add(flexTable, 10, 10);
+		flexTable.setSize("278px", "165px");
+
 		Label lblKullancKodu = new Label("Kullanıcı Kodu");
+		flexTable.setWidget(0, 0, lblKullancKodu);
 		lblKullancKodu.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblKullancKodu, 10, 10);
-
-		Label lblAd = new Label("Adı");
-		lblAd.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblAd, 10, 34);
-
-		Label lblSoyad = new Label("Soyadı");
-		lblSoyad.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblSoyad, 10, 61);
-
-		Label lblifre = new Label("Şifre");
-		lblifre.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblifre, 10, 95);
-
-		Label lblifreTekrar = new Label("Şifre Tekrar");
-		lblifreTekrar.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblifreTekrar, 10, 130);
-		lblifreTekrar.setSize("87px", "23px");
 
 		tctKullaniciKodu = new TextBox();
+		flexTable.setWidget(0, 1, tctKullaniciKodu);
 		tctKullaniciKodu.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctKullaniciKodu, 118, 10);
-		tctKullaniciKodu.setSize("143px", "14px");
+		tctKullaniciKodu.setSize("143px", "16px");
+
+		Label lblAd = new Label("Adı");
+		flexTable.setWidget(1, 0, lblAd);
+		lblAd.setStyleName("gwt-Bold");
 
 		tctAdi = new TextBox();
+		flexTable.setWidget(1, 1, tctAdi);
 		tctAdi.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctAdi, 118, 34);
-		tctAdi.setSize("143px", "14px");
+		tctAdi.setSize("143px", "16px");
+
+		Label lblSoyad = new Label("Soyadı");
+		flexTable.setWidget(2, 0, lblSoyad);
+		lblSoyad.setStyleName("gwt-Bold");
 
 		tctSoyadi = new TextBox();
+		flexTable.setWidget(2, 1, tctSoyadi);
 		tctSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctSoyadi, 118, 61);
-		tctSoyadi.setSize("143px", "14px");
+		tctSoyadi.setSize("143px", "16px");
+
+		Label lblifre = new Label("Şifre");
+		flexTable.setWidget(3, 0, lblifre);
+		lblifre.setStyleName("gwt-Bold");
 
 		tctSifre = new TextBox();
+		flexTable.setWidget(3, 1, tctSifre);
 		tctSifre.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctSifre, 118, 95);
-		tctSifre.setSize("143px", "14px");
+		tctSifre.setSize("143px", "16px");
+
+		Label lblifreTekrar = new Label("Şifre Tekrar");
+		flexTable.setWidget(4, 0, lblifreTekrar);
+		lblifreTekrar.setStyleName("gwt-Bold");
+		lblifreTekrar.setSize("87px", "23px");
 
 		tctSifretekrar = new TextBox();
+		flexTable.setWidget(4, 1, tctSifretekrar);
 		tctSifretekrar.setStyleName("gwt-TextBox1");
-		absolutePanel_1.add(tctSifretekrar, 118, 130);
-		tctSifretekrar.setSize("143px", "14px");
+		tctSifretekrar.setSize("143px", "16px");
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		tabKullaniciTanimlama.add(absolutePanel_2, "Yetkileri", false);

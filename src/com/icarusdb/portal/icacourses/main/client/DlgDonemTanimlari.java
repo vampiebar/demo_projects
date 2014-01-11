@@ -27,6 +27,7 @@ public class DlgDonemTanimlari extends DialogBox {
 	private ListBox cbxVarsayilanDonem;
 
 	public DlgDonemTanimlari(boolean isInsert, long id) {
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;

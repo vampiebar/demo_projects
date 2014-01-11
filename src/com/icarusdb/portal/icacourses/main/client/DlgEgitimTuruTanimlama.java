@@ -17,6 +17,7 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 	private TextBox tctAlanAdi;
 
 	public DlgEgitimTuruTanimlama(boolean isInsert, long id) {
+		setGlassEnabled(true);
 
 		_isInsert = isInsert;
 		_id = id;
@@ -26,7 +27,7 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("483px", "347px");
+		absolutePanel.setSize("483px", "367px");
 
 		Label lblEitimTrIlemleri = new Label(
 				"Eğitim Türü İşlemleri (Ekleme / Düzenleme");
