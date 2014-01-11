@@ -32,6 +32,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TabPanel;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
@@ -64,7 +65,6 @@ public class KesinKayitBilgileri extends DialogBox {
 	private TextBox tctSeriNo;
 	private ListBox cbxAdresBilgileriUlke;
 	private ListBox cbxAdresBilgileriIl;
-	private TextBox tctSokakveNo;
 	private ListBox cbxMahalle;
 	private ListBox cbxSemt;
 	private ListBox cbxAdresBilgileriIlce;
@@ -113,6 +113,7 @@ public class KesinKayitBilgileri extends DialogBox {
 	private DateBox dtpTaksideBaslanacakGun;
 	private TextBox tctTaksitSayisi;
 	private TextBox tctIndirimMiktari;
+	private TextArea tctSokakveNo;
 
 	public KesinKayitBilgileri(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -528,10 +529,10 @@ public class KesinKayitBilgileri extends DialogBox {
 		tabKisiselBilgileri.add(cbxMahalle, 125, 196);
 		cbxMahalle.setSize("193px", "22px");
 
-		tctSokakveNo = new TextBox();
-		tctSokakveNo.setStyleName("gwt-TextBox1");
+		tctSokakveNo = new TextArea();
+		tctSokakveNo.setStyleName("gwt-TextAreaResible");
 		tabKisiselBilgileri.add(tctSokakveNo, 125, 240);
-		tctSokakveNo.setSize("191px", "52px");
+		tctSokakveNo.setSize("187px", "50px");
 
 		AbsolutePanel absolutePanel_4 = new AbsolutePanel();
 		tabKesinKayitBilgileri.add(absolutePanel_4, "Sınıfı", false);
@@ -746,6 +747,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		label_35.setSize("92px", "18px");
 
 		cbxHizmetTuru = new ListBox();
+		cbxHizmetTuru.addChangeHandler(new CbxHizmetTuruChangeHandler());
 		cbxHizmetTuru.addItem("Servis");
 		cbxHizmetTuru.addItem("Ders");
 		cbxHizmetTuru.addItem("Diğer");
@@ -754,8 +756,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxHizmetTuru.setSize("151px", "22px");
 
 		cbxHizmetAdi = new ListBox();
-		cbxHizmetAdi.addItem(" 1");
-		cbxHizmetAdi.addItem("2");
+		cbxHizmetAdi.addItem(" ");
 		cbxHizmetAdi.setStyleName("gwt-ComboBox1");
 		absolutePanel_7.add(cbxHizmetAdi, 108, 65);
 		cbxHizmetAdi.setSize("151px", "22px");
@@ -772,18 +773,18 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxHizmetlerIndirimTuru.setStyleName("gwt-ComboBox1");
 		cbxHizmetlerIndirimTuru.addItem("Para");
 		cbxHizmetlerIndirimTuru.addItem("Yüzde");
-		absolutePanel_7.add(cbxHizmetlerIndirimTuru, 108, 144);
-		cbxHizmetlerIndirimTuru.setSize("67px", "22px");
+		absolutePanel_7.add(cbxHizmetlerIndirimTuru, 108, 142);
+		cbxHizmetlerIndirimTuru.setSize("67px", "23px");
 
 		tctHizmetlerIndirimMiktari = new TextBox();
 		tctHizmetlerIndirimMiktari.setStyleName("gwt-TextBox1");
-		absolutePanel_7.add(tctHizmetlerIndirimMiktari, 181, 148);
-		tctHizmetlerIndirimMiktari.setSize("149px", "14px");
+		absolutePanel_7.add(tctHizmetlerIndirimMiktari, 185, 144);
+		tctHizmetlerIndirimMiktari.setSize("149px", "16px");
 
 		tctMiktar = new TextBox();
 		tctMiktar.setStyleName("gwt-TextBox1");
-		absolutePanel_7.add(tctMiktar, 108, 105);
-		tctMiktar.setSize("149px", "14px");
+		absolutePanel_7.add(tctMiktar, 108, 103);
+		tctMiktar.setSize("149px", "16px");
 
 		cellTable = new CellTable<XMLHizmetTanimla>();
 		absolutePanel_7.add(cellTable, 10, 199);
@@ -1105,21 +1106,21 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		tctAdi = new TextBox();
 		tctAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAdi, 131, 56);
+		absolutePanel.add(tctAdi, 131, 58);
 		tctAdi.setSize("144px", "14px");
 
 		tctSoyadi = new TextBox();
 		tctSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSoyadi, 131, 87);
+		absolutePanel.add(tctSoyadi, 131, 84);
 		tctSoyadi.setSize("144px", "14px");
 
 		Label lblAd = new Label("Adı");
 		lblAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAd, 10, 56);
+		absolutePanel.add(lblAd, 10, 60);
 
 		Label lblSoyad = new Label("Soyadı");
 		lblSoyad.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSoyad, 10, 87);
+		absolutePanel.add(lblSoyad, 10, 85);
 		lblSoyad.setSize("51px", "18px");
 
 		Image image = new Image("images/resimyok.png");
@@ -1128,14 +1129,18 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		Label lblTcKimlikNo = new Label("T.C Kimlik No");
 		lblTcKimlikNo.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTcKimlikNo, 10, 34);
+		absolutePanel.add(lblTcKimlikNo, 10, 35);
 		lblTcKimlikNo.setSize("115px", "18px");
 
 		tctTCKimlikNo = new TextBox();
 		tctTCKimlikNo.setReadOnly(true);
 		tctTCKimlikNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctTCKimlikNo, 131, 32);
+		absolutePanel.add(tctTCKimlikNo, 131, 33);
 		tctTCKimlikNo.setSize("144px", "14px");
+
+		TextBox textBox = new TextBox();
+		textBox.setStyleName("gwt-Textlogin");
+		absolutePanel.add(textBox, 307, 58);
 
 		if (!isDesignTime()) {
 
@@ -1146,6 +1151,7 @@ public class KesinKayitBilgileri extends DialogBox {
 			putDataToGrid();
 			putEgitimTuruToCbx(cbxEgitimTuru);
 			putIndirimTuruToCbx(cbxIndirimTuru);
+
 			final SingleSelectionModel<XMLVeliler> selectionModel = new SingleSelectionModel<XMLVeliler>();
 
 			grdVeliEkle.setSelectionModel(selectionModel);
@@ -1166,6 +1172,47 @@ public class KesinKayitBilgileri extends DialogBox {
 				}
 
 			}, DoubleClickEvent.getType());
+		}
+
+	}
+
+	private void putHizmetAdiToCbx(String hizmet_turu, final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "gethizmettanimla?hizmet_turu=" + hizmet_turu);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLHizmetTanimla> xmlHizmetTanimla = XMLHizmetTanimla.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlHizmetTanimla.size(); i++) {
+
+						lbxTemp.addItem(xmlHizmetTanimla.get(i).hizmet_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -2128,8 +2175,7 @@ public class KesinKayitBilgileri extends DialogBox {
 
 			String pathValue = "path=C:/Program___Files/Apache___Software___Foundation/Tomcat 7.0/webapps/ICACourses/reports";
 
-			// pathValue =
-			// "path=/usr/local/apache-tomcat-7.0.22/icaruswayapps/ICACourses/reports";
+			pathValue = "path=/usr/local/apache-tomcat-7.0.22/icaruswayapps/ICACourses/reports";
 
 			String urlWithParameters = Util.urlBase + "run_report?" + pathValue
 					+ "&jrxmlfile=Sozlesme.jrxml" + "&id=" + _id;
@@ -2176,13 +2222,13 @@ public class KesinKayitBilgileri extends DialogBox {
 												0,
 												Window.Location.getHref()
 														.indexOf("?"));
-								Window.open(url.replace("Main.html", "")
-										+ "/reports/Sozlesme.pdf", "_blank",
-										"enabled");
+								// Window.open(url.replace("Main.html", "")
+								// + "/reports/Sozlesme.pdf", "_blank",
+								// "enabled");
 
-								// Window.open(
-								// "http://icarusway.com/ICACourses/reports/Sozlesme.pdf",
-								// "_blank", "enabled");
+								Window.open(
+										"http://icarusway.com/ICACourses/reports/Sozlesme.pdf",
+										"_blank", "enabled");
 
 							}
 
@@ -2201,8 +2247,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		public void onClick(ClickEvent event) {
 			String pathValue = "path=C:/Program___Files/Apache___Software___Foundation/Tomcat 7.0/webapps/ICACourses/reports";
 
-			// pathValue =
-			// "path=/usr/local/apache-tomcat-7.0.22/icaruswayapps/ICACourses/reports";
+			pathValue = "path=/usr/local/apache-tomcat-7.0.22/icaruswayapps/ICACourses/reports";
 
 			String urlWithParameters = Util.urlBase + "run_report?" + pathValue
 					+ "&jrxmlfile=Senet.jrxml" + "&id=" + _id;
@@ -2249,13 +2294,13 @@ public class KesinKayitBilgileri extends DialogBox {
 												0,
 												Window.Location.getHref()
 														.indexOf("?"));
-								Window.open(url.replace("Main.html", "")
-										+ "/reports/Senet.pdf", "_blank",
-										"enabled");
+								// Window.open(url.replace("Main.html", "")
+								// + "/reports/Senet.pdf", "_blank",
+								// "enabled");
 
-								// Window.open(
-								// "http://icarusway.com/ICACourses/reports/Senet.pdf",
-								// "_blank", "enabled");
+								Window.open(
+										"http://icarusway.com/ICACourses/reports/Senet.pdf",
+										"_blank", "enabled");
 
 							}
 
@@ -2543,4 +2588,11 @@ public class KesinKayitBilgileri extends DialogBox {
 		}
 	}
 
+	private class CbxHizmetTuruChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putHizmetAdiToCbx(
+					cbxHizmetTuru.getItemText(cbxHizmetTuru.getSelectedIndex()),
+					cbxHizmetAdi);
+		}
+	}
 }

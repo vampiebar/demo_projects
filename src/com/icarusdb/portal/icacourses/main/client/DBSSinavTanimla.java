@@ -114,7 +114,11 @@ public class DBSSinavTanimla extends Composite {
 		Column<XMLDBSSinavTanimla, ?> textColumn_3 = new TextColumn<XMLDBSSinavTanimla>() {
 			@Override
 			public String getValue(XMLDBSSinavTanimla object) {
-				return object.adres.toString();
+				if (object.adres != null) {
+					return object.adres.toString();
+
+				}
+				return "";
 			}
 		};
 		grdDBSSinavTanimla.addColumn(textColumn_3, "Adres");

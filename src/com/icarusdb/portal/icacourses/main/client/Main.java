@@ -79,23 +79,6 @@ public class Main implements EntryPoint {
 				HasHorizontalAlignment.ALIGN_RIGHT);
 		horizontalPanel_1.setSize("635px", "29px");
 
-		Image image_3 = new Image("WEB-INF/profile.png");
-		horizontalPanel_1.add(image_3);
-		image_3.setSize("24px", "22px");
-		horizontalPanel_1.setCellWidth(image_3, "475");
-
-		Button btnNewButton = new Button("Mesajlar");
-		btnNewButton.setStyleName("gwt-SuggestBoxPopup");
-		horizontalPanel_1.add(btnNewButton);
-
-		Image image = new Image("images/exit.png");
-		horizontalPanel_1.add(image);
-		horizontalPanel_1.setCellVerticalAlignment(image,
-				HasVerticalAlignment.ALIGN_BOTTOM);
-		horizontalPanel_1.setCellHorizontalAlignment(image,
-				HasHorizontalAlignment.ALIGN_RIGHT);
-		image.setSize("20px", "24px");
-
 		Button lblNewLabel = new Button("Çıkış");
 		lblNewLabel.addClickHandler(new LblNewLabelClickHandler());
 		lblNewLabel.setStyleName("gwt-ButonKapat");
@@ -563,6 +546,17 @@ public class Main implements EntryPoint {
 		lblDer.setSize("165px", "34px");
 		lblDer.setStylePrimaryName("gwt-LabelNew");
 		lblDer.setStyleName("body");
+
+		if (!isDesignTime()) {
+			DlgLogIn dlgTemp = new DlgLogIn();
+			dlgTemp.center();
+
+		}
+	}
+
+	private boolean isDesignTime() {
+
+		return false;
 	}
 
 	// private class TreeKayitIslemleriSelectionHandler implements

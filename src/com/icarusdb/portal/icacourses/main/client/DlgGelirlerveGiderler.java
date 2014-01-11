@@ -154,18 +154,21 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		cbxOdemeTuru.setSize("157px", "22px");
 
 		cbxBanka = new ListBox();
+		cbxBanka.setEnabled(false);
 		cbxBanka.addItem(" ");
 		cbxBanka.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxBanka, 155, 199);
 		cbxBanka.setSize("157px", "22px");
 
 		cbxCek = new ListBox();
+		cbxCek.setEnabled(false);
 		cbxCek.addItem(" ");
 		cbxCek.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxCek, 155, 238);
 		cbxCek.setSize("278px", "22px");
 
 		dtpVadeTarihi = new DateBox();
+		dtpVadeTarihi.setEnabled(false);
 		dtpVadeTarihi.setStyleName("gwt-TextBox1");
 		dtpVadeTarihi
 				.addValueChangeHandler(new DtpVadeTarihiValueChangeHandler());
@@ -379,14 +382,34 @@ public class DlgGelirlerveGiderler extends DialogBox {
 
 	private class CbxOdemeTuruChangeHandler implements ChangeHandler {
 		public void onChange(ChangeEvent event) {
-			if (cbxOdemeTuru.getSelectedIndex() == 1) {
+			if (cbxOdemeTuru.getSelectedIndex() == 3) {
 				cbxBanka.setEnabled(false);
 				cbxCek.setEnabled(false);
 				dtpVadeTarihi.setEnabled(false);
+
 			} else if (cbxOdemeTuru.getSelectedIndex() == 2) {
+
+				cbxBanka.setEnabled(false);
+				cbxCek.setEnabled(false);
+				dtpVadeTarihi.setEnabled(true);
+
+			} else if (cbxOdemeTuru.getSelectedIndex() == 1) {
 				cbxBanka.setEnabled(true);
+				cbxCek.setEnabled(false);
+				dtpVadeTarihi.setEnabled(false);
+
+			} else if (cbxOdemeTuru.getSelectedIndex() == 0) {
+				cbxBanka.setEnabled(false);
+				cbxCek.setEnabled(false);
+				dtpVadeTarihi.setEnabled(false);
+
+			} else if (cbxOdemeTuru.getSelectedIndex() == 4) {
+				cbxBanka.setEnabled(true);
+				cbxCek.setEnabled(false);
+				dtpVadeTarihi.setEnabled(false);
+
 			}
-			// cbxBanka.setEnabled(cbxOdemeTuru.getSelectedIndex() == 1);
+
 		}
 
 	}

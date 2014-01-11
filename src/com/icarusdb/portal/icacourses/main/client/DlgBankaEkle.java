@@ -100,6 +100,7 @@ public class DlgBankaEkle extends DialogBox {
 		tctIBANNo.setSize("246px", "14px");
 
 		tctVadeTarihi = new TextBox();
+		tctVadeTarihi.setEnabled(false);
 		tctVadeTarihi.setText("0");
 		tctVadeTarihi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctVadeTarihi, 249, 269);
@@ -175,7 +176,11 @@ public class DlgBankaEkle extends DialogBox {
 		public void onChange(ChangeEvent event) {
 
 			if (cbxBankaninOdemeSekli.getSelectedIndex() == 1) {
+				tctVadeTarihi.setEnabled(true);
+
+			} else if (cbxBankaninOdemeSekli.getSelectedIndex() == 0) {
 				tctVadeTarihi.setEnabled(false);
+				tctVadeTarihi.setText("0");
 			}
 		}
 	}

@@ -203,19 +203,21 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		hzpanOtherBuilding.setWidth("100%");
 
 		FlexTable flexTable_1 = new FlexTable();
+		flexTable_1.setCellPadding(2);
 		flexTable_1.setBorderWidth(0);
 		hzpanOtherBuilding.add(flexTable_1);
-		flexTable_1.setSize("366px", "111px");
+		flexTable_1.setSize("392px", "111px");
 
 		Label lblNewLabel_1 = new Label("Ülke");
 		lblNewLabel_1.setStyleName("gwt-Bold");
 		flexTable_1.setWidget(0, 0, lblNewLabel_1);
+		lblNewLabel_1.setWidth("105px");
 
 		cbxUlke = new ListBox();
 		cbxUlke.setStyleName("gwt-ComboBox1");
 		cbxUlke.addItem("Türkiye");
 		flexTable_1.setWidget(0, 1, cbxUlke);
-		cbxUlke.setWidth("140px");
+		cbxUlke.setWidth("65%");
 
 		Label lblNewLabel_2 = new Label("İl");
 		lblNewLabel_2.setStyleName("gwt-Bold");
@@ -226,7 +228,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxIl.addItem(" ");
 		cbxIl.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(1, 1, cbxIl);
-		cbxIl.setWidth("140px");
+		cbxIl.setWidth("65%");
 
 		Label lblNewLabel_3 = new Label("İlçe");
 		lblNewLabel_3.setStyleName("gwt-Bold");
@@ -237,7 +239,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxIlce.addItem(" ");
 		cbxIlce.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(2, 1, cbxIlce);
-		cbxIlce.setWidth("140px");
+		cbxIlce.setWidth("65%");
 
 		Label lblNewLabel_4 = new Label("Semt");
 		lblNewLabel_4.setStyleName("gwt-Bold");
@@ -248,7 +250,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxSemt.addItem(" ");
 		cbxSemt.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(3, 1, cbxSemt);
-		cbxSemt.setWidth("140px");
+		cbxSemt.setWidth("65%");
 
 		Label lblMahalleky = new Label("Mahalle / Köy");
 		lblMahalleky.setStyleName("gwt-Bold");
@@ -258,7 +260,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxMahalleKoy.addItem(" ");
 		cbxMahalleKoy.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(4, 1, cbxMahalleKoy);
-		cbxMahalleKoy.setWidth("140px");
+		cbxMahalleKoy.setWidth("249px");
 
 		Label lblAdres = new Label("Adres");
 		lblAdres.setStyleName("gwt-Bold");
@@ -557,10 +559,11 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxDakika.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxDakika,
 				xml.dakika));
 
-		cbxIl.setItemText(0, xml.il);
-		cbxIlce.setItemText(0, xml.ilce);
-		cbxSemt.setItemText(0, xml.semt);
-		cbxMahalleKoy.setItemText(0, xml.mahalle_koy);
+		cbxIl.setItemText(0, (xml.il == null) ? "" : xml.il);
+		cbxIlce.setItemText(0, (xml.ilce == null) ? "" : xml.ilce);
+		cbxSemt.setItemText(0, (xml.semt == null) ? "" : xml.semt);
+		cbxMahalleKoy.setItemText(0, (xml.mahalle_koy == null) ? ""
+				: xml.mahalle_koy);
 
 		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 		dtpSinavTarihi.setValue(dtf.parse(xml.sinav_tarihi));
