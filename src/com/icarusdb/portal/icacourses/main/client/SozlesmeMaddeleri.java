@@ -11,6 +11,8 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.http.client.URL;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -66,6 +68,7 @@ public class SozlesmeMaddeleri extends Composite {
 			ckhtmlSozlesmeMaddeleri = new CKEditor(CKConfig.basic);
 
 			smpanHtmlEditor.add(ckhtmlSozlesmeMaddeleri);
+
 		}
 
 	}
@@ -121,14 +124,13 @@ public class SozlesmeMaddeleri extends Composite {
 
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-
+			String URL2 = URL.encode(ckhtmlSozlesmeMaddeleri.getHTML());
 			String URLValue = Util.urlBase + "putsozlesmemaddeleri?";
 
 			URLValue = URLValue + "id=" + _id;
-			URLValue = URLValue + "&sozlesme="
-					+ ckhtmlSozlesmeMaddeleri.getHTML();
+			URLValue = URLValue + "&sozlesme=" + URL2;
 
-			// Window.alert(URLValue);
+			Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue,
 					"SÖZLEŞME MADDELERİ BAŞARI İLE KAYIT EDİLDİ",

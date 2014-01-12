@@ -102,15 +102,22 @@ public class PersonelTanimlari extends Composite {
 		TextColumn<XMLPersonelTanimlari> textColumn_5 = new TextColumn<XMLPersonelTanimlari>() {
 			@Override
 			public String getValue(XMLPersonelTanimlari object) {
-				return object.telefonu_2.toString();
+				if (object.telefonu_2 != null) {
+					return object.telefonu_2.toString();
+
+				}
+				return "";
 			}
+
 		};
+
 		grdPersonelTanimlari.addColumn(textColumn_5, "2. Tel");
 
 		Column<XMLPersonelTanimlari, ?> column = new Column<XMLPersonelTanimlari, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLPersonelTanimlari object) {
+
 				return (String) null;
 			}
 		};

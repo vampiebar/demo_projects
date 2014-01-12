@@ -34,6 +34,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.SimpleCheckBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -99,6 +100,7 @@ public class DlgOnKayit extends DialogBox {
 
 	public DialogBox _dlgonkayit;
 	private TextBox tctGorusmeIndirimSekli;
+	private SimpleCheckBox chxKesinKayitMi;
 
 	public DlgOnKayit(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -148,7 +150,7 @@ public class DlgOnKayit extends DialogBox {
 		btnBilgileriniGetir
 				.addClickHandler(new BtnBilgileriniGetirClickHandler());
 		btnBilgileriniGetir.setStyleName("gwt-ButonYeniKayit");
-		absolutePanel_2.add(btnBilgileriniGetir, 304, 62);
+		absolutePanel_2.add(btnBilgileriniGetir, 299, 58);
 		btnBilgileriniGetir.setSize("127px", "22px");
 
 		tctSoyadi = new TextBox();
@@ -306,6 +308,13 @@ public class DlgOnKayit extends DialogBox {
 		cbxOgrenciBilgileriSinif.addItem("Üniversite Mezun");
 		cbxOgrenciBilgileriSinif.addItem("12.Sınıf");
 		cbxOgrenciBilgileriSinif.setSize("135px", "22px");
+
+		chxKesinKayitMi = new SimpleCheckBox();
+		absolutePanel_2.add(chxKesinKayitMi, 157, 86);
+
+		Label lblKesinKayit = new Label("Kesin Kayit");
+		lblKesinKayit.setStyleName("gwt-Bold");
+		absolutePanel_2.add(lblKesinKayit, 10, 86);
 
 		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
 		absolutePanel_5.setStyleName("gwt-DialogBackGround");
@@ -1467,6 +1476,10 @@ public class DlgOnKayit extends DialogBox {
 		cbxOgrenciKimlikBilgileriIlce.setItemText(0,
 				xml.ogrenci_kimlik_bilgileri_ilce);
 
+		chxKesinKayitMi
+				.setValue(xml.kesin_kayit_mi.equalsIgnoreCase("t") ? true
+						: false);
+
 		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 
 		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
@@ -1603,6 +1616,8 @@ public class DlgOnKayit extends DialogBox {
 			URLValue = URLValue + "&verilis_nedeni="
 					+ tctVerilisNedeni.getText();
 			URLValue = URLValue + "&kayit_no=" + tctKayitNo.getText();
+			URLValue = URLValue + "&kesin_kayit_mi="
+					+ chxKesinKayitMi.getValue().toString();
 
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 

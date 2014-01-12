@@ -59,7 +59,7 @@ public class SaatGirisi extends Composite {
 		column = new TextColumn<XMLSaatGirisi>() {
 			@Override
 			public String getValue(XMLSaatGirisi object) {
-				return (object.baslangic_saati);
+				return (object.baslangic_saat);
 			}
 		};
 		grdSaatGirisi.addColumn(column, "Başlangıç Saati");
@@ -67,7 +67,7 @@ public class SaatGirisi extends Composite {
 		column_1 = new TextColumn<XMLSaatGirisi>() {
 			@Override
 			public String getValue(XMLSaatGirisi object) {
-				return (object.bitis_saati);
+				return (object.bitis_saat);
 			}
 		};
 		grdSaatGirisi.addColumn(column_1, "Bitiş Saati");

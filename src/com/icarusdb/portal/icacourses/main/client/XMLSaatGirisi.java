@@ -15,16 +15,22 @@ public class XMLSaatGirisi {
 	@Path("id")
 	String id;
 
-	@Path("baslangic_saati")
-	String baslangic_saati;
-
-	@Path("bitis_saati")
-	String bitis_saati;
-
 	@Path("gun")
 	String gun;
 
 	@Path("aciklama")
 	String aciklama;
+
+	@Path("baslangic_saat")
+	String baslangic_saat;
+
+	@Path("baslangic_dakika")
+	String baslangic_dakika;
+
+	@Path("bitis_saat")
+	String bitis_saat;
+
+	@Path("bitis_dakika")
+	String bitis_dakika;
 
 }

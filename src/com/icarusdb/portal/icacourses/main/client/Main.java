@@ -548,8 +548,8 @@ public class Main implements EntryPoint {
 		lblDer.setStyleName("body");
 
 		if (!isDesignTime()) {
-			DlgLogIn dlgTemp = new DlgLogIn();
-			dlgTemp.center();
+			// DlgLogIn dlgTemp = new DlgLogIn();
+			// dlgTemp.center();
 
 		}
 	}

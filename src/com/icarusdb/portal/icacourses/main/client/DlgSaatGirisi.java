@@ -1,21 +1,15 @@
 package com.icarusdb.portal.icacourses.main.client;
 
-import java.util.Date;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.datepicker.client.DateBox;
-import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DlgSaatGirisi extends DialogBox {
 
@@ -24,12 +18,13 @@ public class DlgSaatGirisi extends DialogBox {
 
 	private TextBox tctAciklama;
 	private ListBox cbxGun;
-	private DateBox dtpBaslangicSaati;
-	private DateBox dtpBitisSaati;
 	public DecoratedTabPanel tabSaatGirisi;
+	private ListBox cbxBitisSaat;
+	private ListBox cbxBitisDakika;
+	private ListBox cbxBaslangicDakika;
+	private ListBox cbxBaslangicSaat;
 
 	public DlgSaatGirisi(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -77,24 +72,6 @@ public class DlgSaatGirisi extends DialogBox {
 		absolutePanel.add(btnKapat, 422, 207);
 		btnKapat.setSize("78px", "43px");
 
-		dtpBaslangicSaati = new DateBox();
-		dtpBaslangicSaati.setStyleName("gwt-TextBox1");
-		dtpBaslangicSaati.setFormat(new DefaultFormat(DateTimeFormat
-				.getMediumTimeFormat()));
-		dtpBaslangicSaati
-				.addValueChangeHandler(new DtpBaslangicSaatiValueChangeHandler());
-		absolutePanel.add(dtpBaslangicSaati, 134, 30);
-		dtpBaslangicSaati.setSize("143px", "14px");
-
-		dtpBitisSaati = new DateBox();
-		dtpBitisSaati.setStyleName("gwt-TextBox1");
-		dtpBitisSaati.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("HH:mm:ss")));
-		dtpBitisSaati
-				.addValueChangeHandler(new DtpBitisSaatiValueChangeHandler());
-		absolutePanel.add(dtpBitisSaati, 134, 72);
-		dtpBitisSaati.setSize("143px", "14px");
-
 		cbxGun = new ListBox();
 		cbxGun.setStyleName("gwt-ComboBox1");
 		cbxGun.addItem("Pazartesi");
@@ -104,13 +81,217 @@ public class DlgSaatGirisi extends DialogBox {
 		cbxGun.addItem("Cuma");
 		cbxGun.addItem("Cumartesi");
 		cbxGun.addItem("Pazar");
-		absolutePanel.add(cbxGun, 136, 108);
+		absolutePanel.add(cbxGun, 128, 108);
 		cbxGun.setSize("143px", "22px");
 
 		tctAciklama = new TextBox();
 		tctAciklama.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAciklama, 134, 150);
+		absolutePanel.add(tctAciklama, 128, 150);
 		tctAciklama.setSize("143px", "14px");
+
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		absolutePanel.add(horizontalPanel, 126, 26);
+		horizontalPanel.setSize("184px", "24px");
+
+		cbxBaslangicSaat = new ListBox();
+		cbxBaslangicSaat.addItem("00");
+		cbxBaslangicSaat.addItem("01");
+		cbxBaslangicSaat.addItem("02");
+		cbxBaslangicSaat.addItem("03");
+		cbxBaslangicSaat.addItem("04");
+		cbxBaslangicSaat.addItem("05");
+		cbxBaslangicSaat.addItem("06");
+		cbxBaslangicSaat.addItem("07");
+		cbxBaslangicSaat.addItem("08");
+		cbxBaslangicSaat.addItem("09");
+		cbxBaslangicSaat.addItem("10");
+		cbxBaslangicSaat.addItem("11");
+		cbxBaslangicSaat.addItem("12");
+		cbxBaslangicSaat.addItem("13");
+		cbxBaslangicSaat.addItem("14");
+		cbxBaslangicSaat.addItem("15");
+		cbxBaslangicSaat.addItem("16");
+		cbxBaslangicSaat.addItem("17");
+		cbxBaslangicSaat.addItem("18");
+		cbxBaslangicSaat.addItem("19");
+		cbxBaslangicSaat.addItem("20");
+		cbxBaslangicSaat.addItem("21");
+		cbxBaslangicSaat.addItem("22");
+		cbxBaslangicSaat.addItem("23");
+		horizontalPanel.add(cbxBaslangicSaat);
+		horizontalPanel.setCellWidth(cbxBaslangicSaat, "50");
+		cbxBaslangicSaat.setSize("42px", "23px");
+
+		Label label = new Label(":");
+		horizontalPanel.add(label);
+		label.setStyleName("gwt-Bold");
+		label.setSize("6px", "16px");
+
+		cbxBaslangicDakika = new ListBox();
+		cbxBaslangicDakika.addItem("00");
+		cbxBaslangicDakika.addItem("01");
+		cbxBaslangicDakika.addItem("02");
+		cbxBaslangicDakika.addItem("03");
+		cbxBaslangicDakika.addItem("04");
+		cbxBaslangicDakika.addItem("05");
+		cbxBaslangicDakika.addItem("06");
+		cbxBaslangicDakika.addItem("07");
+		cbxBaslangicDakika.addItem("08");
+		cbxBaslangicDakika.addItem("09");
+		cbxBaslangicDakika.addItem("10");
+		cbxBaslangicDakika.addItem("11");
+		cbxBaslangicDakika.addItem("12");
+		cbxBaslangicDakika.addItem("13");
+		cbxBaslangicDakika.addItem("14");
+		cbxBaslangicDakika.addItem("15");
+		cbxBaslangicDakika.addItem("16");
+		cbxBaslangicDakika.addItem("17");
+		cbxBaslangicDakika.addItem("18");
+		cbxBaslangicDakika.addItem("19");
+		cbxBaslangicDakika.addItem("20");
+		cbxBaslangicDakika.addItem("21");
+		cbxBaslangicDakika.addItem("22");
+		cbxBaslangicDakika.addItem("23");
+		cbxBaslangicDakika.addItem("24");
+		cbxBaslangicDakika.addItem("25");
+		cbxBaslangicDakika.addItem("26");
+		cbxBaslangicDakika.addItem("27");
+		cbxBaslangicDakika.addItem("28");
+		cbxBaslangicDakika.addItem("29");
+		cbxBaslangicDakika.addItem("30");
+		cbxBaslangicDakika.addItem("31");
+		cbxBaslangicDakika.addItem("32");
+		cbxBaslangicDakika.addItem("33");
+		cbxBaslangicDakika.addItem("34");
+		cbxBaslangicDakika.addItem("35");
+		cbxBaslangicDakika.addItem("36");
+		cbxBaslangicDakika.addItem("37");
+		cbxBaslangicDakika.addItem("38");
+		cbxBaslangicDakika.addItem("39");
+		cbxBaslangicDakika.addItem("40");
+		cbxBaslangicDakika.addItem("41");
+		cbxBaslangicDakika.addItem("42");
+		cbxBaslangicDakika.addItem("43");
+		cbxBaslangicDakika.addItem("44");
+		cbxBaslangicDakika.addItem("45");
+		cbxBaslangicDakika.addItem("46");
+		cbxBaslangicDakika.addItem("47");
+		cbxBaslangicDakika.addItem("48");
+		cbxBaslangicDakika.addItem("49");
+		cbxBaslangicDakika.addItem("50");
+		cbxBaslangicDakika.addItem("51");
+		cbxBaslangicDakika.addItem("52");
+		cbxBaslangicDakika.addItem("53");
+		cbxBaslangicDakika.addItem("54");
+		cbxBaslangicDakika.addItem("55");
+		cbxBaslangicDakika.addItem("56");
+		cbxBaslangicDakika.addItem("57");
+		cbxBaslangicDakika.addItem("58");
+		cbxBaslangicDakika.addItem("59");
+		horizontalPanel.add(cbxBaslangicDakika);
+		cbxBaslangicDakika.setSize("42px", "23px");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		absolutePanel.add(horizontalPanel_1, 128, 68);
+		horizontalPanel_1.setSize("184px", "24px");
+
+		cbxBitisSaat = new ListBox();
+		cbxBitisSaat.addItem("00");
+		cbxBitisSaat.addItem("01");
+		cbxBitisSaat.addItem("02");
+		cbxBitisSaat.addItem("03");
+		cbxBitisSaat.addItem("04");
+		cbxBitisSaat.addItem("05");
+		cbxBitisSaat.addItem("06");
+		cbxBitisSaat.addItem("07");
+		cbxBitisSaat.addItem("08");
+		cbxBitisSaat.addItem("09");
+		cbxBitisSaat.addItem("10");
+		cbxBitisSaat.addItem("11");
+		cbxBitisSaat.addItem("12");
+		cbxBitisSaat.addItem("13");
+		cbxBitisSaat.addItem("14");
+		cbxBitisSaat.addItem("15");
+		cbxBitisSaat.addItem("16");
+		cbxBitisSaat.addItem("17");
+		cbxBitisSaat.addItem("18");
+		cbxBitisSaat.addItem("19");
+		cbxBitisSaat.addItem("20");
+		cbxBitisSaat.addItem("21");
+		cbxBitisSaat.addItem("22");
+		cbxBitisSaat.addItem("23");
+		horizontalPanel_1.add(cbxBitisSaat);
+		horizontalPanel_1.setCellWidth(cbxBitisSaat, "50");
+		cbxBitisSaat.setSize("42px", "23px");
+
+		Label label_1 = new Label(":");
+		label_1.setStyleName("gwt-Bold");
+		horizontalPanel_1.add(label_1);
+		label_1.setSize("5px", "16px");
+
+		cbxBitisDakika = new ListBox();
+		cbxBitisDakika.addItem("00");
+		cbxBitisDakika.addItem("01");
+		cbxBitisDakika.addItem("02");
+		cbxBitisDakika.addItem("03");
+		cbxBitisDakika.addItem("04");
+		cbxBitisDakika.addItem("05");
+		cbxBitisDakika.addItem("06");
+		cbxBitisDakika.addItem("07");
+		cbxBitisDakika.addItem("08");
+		cbxBitisDakika.addItem("09");
+		cbxBitisDakika.addItem("10");
+		cbxBitisDakika.addItem("11");
+		cbxBitisDakika.addItem("12");
+		cbxBitisDakika.addItem("13");
+		cbxBitisDakika.addItem("14");
+		cbxBitisDakika.addItem("15");
+		cbxBitisDakika.addItem("16");
+		cbxBitisDakika.addItem("17");
+		cbxBitisDakika.addItem("18");
+		cbxBitisDakika.addItem("19");
+		cbxBitisDakika.addItem("20");
+		cbxBitisDakika.addItem("21");
+		cbxBitisDakika.addItem("22");
+		cbxBitisDakika.addItem("23");
+		cbxBitisDakika.addItem("24");
+		cbxBitisDakika.addItem("25");
+		cbxBitisDakika.addItem("26");
+		cbxBitisDakika.addItem("27");
+		cbxBitisDakika.addItem("28");
+		cbxBitisDakika.addItem("29");
+		cbxBitisDakika.addItem("30");
+		cbxBitisDakika.addItem("31");
+		cbxBitisDakika.addItem("32");
+		cbxBitisDakika.addItem("33");
+		cbxBitisDakika.addItem("34");
+		cbxBitisDakika.addItem("35");
+		cbxBitisDakika.addItem("36");
+		cbxBitisDakika.addItem("37");
+		cbxBitisDakika.addItem("38");
+		cbxBitisDakika.addItem("39");
+		cbxBitisDakika.addItem("40");
+		cbxBitisDakika.addItem("41");
+		cbxBitisDakika.addItem("42");
+		cbxBitisDakika.addItem("43");
+		cbxBitisDakika.addItem("44");
+		cbxBitisDakika.addItem("45");
+		cbxBitisDakika.addItem("46");
+		cbxBitisDakika.addItem("47");
+		cbxBitisDakika.addItem("48");
+		cbxBitisDakika.addItem("49");
+		cbxBitisDakika.addItem("50");
+		cbxBitisDakika.addItem("51");
+		cbxBitisDakika.addItem("52");
+		cbxBitisDakika.addItem("53");
+		cbxBitisDakika.addItem("54");
+		cbxBitisDakika.addItem("55");
+		cbxBitisDakika.addItem("56");
+		cbxBitisDakika.addItem("57");
+		cbxBitisDakika.addItem("58");
+		cbxBitisDakika.addItem("59");
+		horizontalPanel_1.add(cbxBitisDakika);
+		cbxBitisDakika.setSize("42px", "23px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
@@ -156,22 +337,6 @@ public class DlgSaatGirisi extends DialogBox {
 		}
 	}
 
-	private class DtpBaslangicSaatiValueChangeHandler implements
-			ValueChangeHandler<Date> {
-		public void onValueChange(ValueChangeEvent<Date> event) {
-			DateTimeFormat dtf = DateTimeFormat.getFormat("HH:mm:ss");
-			// Window.alert(dtf.format(dtpBaslangicSaati.getValue()));
-		}
-	}
-
-	private class DtpBitisSaatiValueChangeHandler implements
-			ValueChangeHandler<Date> {
-		public void onValueChange(ValueChangeEvent<Date> event) {
-			DateTimeFormat dtf = DateTimeFormat.getFormat("HH:mm:ss");
-			// .alert(dtf.format(dtpBitisSaati.getValue()));
-		}
-	}
-
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putsaatgirisi?";
@@ -181,17 +346,24 @@ public class DlgSaatGirisi extends DialogBox {
 					+ cbxGun.getValue(cbxGun.getSelectedIndex());
 			URLValue = URLValue + "&aciklama=" + tctAciklama.getText();
 
-			DateTimeFormat dtf = DateTimeFormat.getFormat("HH:mm:ss");
-
-			URLValue = URLValue + "&baslangic_saati="
-					+ dtf.format(dtpBaslangicSaati.getValue());
-
-			URLValue = URLValue + "&bitis_saati="
-					+ dtf.format(dtpBitisSaati.getValue());
+			URLValue = URLValue
+					+ "&baslangic_saat="
+					+ cbxBaslangicSaat.getValue(cbxBaslangicSaat
+							.getSelectedIndex());
+			URLValue = URLValue
+					+ "&baslangic_dakika="
+					+ cbxBaslangicDakika.getValue(cbxBaslangicDakika
+							.getSelectedIndex());
+			URLValue = URLValue + "&bitis_saat="
+					+ cbxBitisSaat.getValue(cbxBitisSaat.getSelectedIndex());
+			URLValue = URLValue
+					+ "&bitis_dakika="
+					+ cbxBitisDakika
+							.getValue(cbxBitisDakika.getSelectedIndex());
 
 			// Window.alert(URLValue);
 
-			new Util().sendRequest(URLValue, "", "");
+			new Util().sendRequest(URLValue, "1", "1");
 
 		}
 	}
@@ -199,11 +371,14 @@ public class DlgSaatGirisi extends DialogBox {
 	public void putDataFromXML(XMLSaatGirisi xml) {
 		tctAciklama.setText(xml.aciklama);
 		cbxGun.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxGun, xml.gun));
-
-		DateTimeFormat dtf = DateTimeFormat.getFormat("HH:mm:ss");
-
-		dtpBaslangicSaati.setValue(dtf.parse(xml.baslangic_saati));
-		dtpBitisSaati.setValue(dtf.parse(xml.bitis_saati));
+		cbxBaslangicSaat.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxBaslangicSaat, xml.baslangic_saat));
+		cbxBaslangicDakika.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxBaslangicDakika, xml.baslangic_dakika));
+		cbxBitisSaat.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxBitisSaat, xml.bitis_saat));
+		cbxBitisDakika.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxBitisDakika, xml.bitis_dakika));
 
 	}
 }
