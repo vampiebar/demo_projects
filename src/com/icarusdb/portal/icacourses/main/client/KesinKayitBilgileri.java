@@ -84,9 +84,9 @@ public class KesinKayitBilgileri extends DialogBox {
 	private TextBox tctMiktar;
 	private Button btnNewButton;
 	private Button btnNewButton_1;
-	private CellTable<XMLHizmetTanimla> cellTable;
+	private CellTable<XMLHizmetTanimla> grdHizmetler;
 	private TextBox tctAciklama;
-	private AbsolutePanel tabKisiselBilgileri;
+	private AbsolutePanel tabAdresi;
 	private ListBox cbxOkul;
 	private AbsolutePanel absolutePanel_2;
 	private TextBox tctAdi;
@@ -114,6 +114,8 @@ public class KesinKayitBilgileri extends DialogBox {
 	private TextBox tctTaksitSayisi;
 	private TextBox tctIndirimMiktari;
 	private TextArea tctSokakveNo;
+	private Button btnOgrenciyiKaydet;
+	private Button btnKimligiKaydet;
 
 	public KesinKayitBilgileri(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -298,11 +300,12 @@ public class KesinKayitBilgileri extends DialogBox {
 		absolutePanel_1.add(btnNewButton_4, 482, 377);
 		btnNewButton_4.setSize("78px", "49px");
 
-		Button btnNewButton_5 = new Button("Öğrenciyi Kaydet");
-		btnNewButton_5.addClickHandler(new BtnNewButton_5ClickHandler());
-		btnNewButton_5.setStyleName("gwt-ButtonSave");
-		absolutePanel_1.add(btnNewButton_5, 391, 376);
-		btnNewButton_5.setSize("78px", "49px");
+		btnOgrenciyiKaydet = new Button("Öğrenciyi Kaydet");
+		btnOgrenciyiKaydet
+				.addClickHandler(new BtnOgrenciyiKaydetClickHandler());
+		btnOgrenciyiKaydet.setStyleName("gwt-ButtonSave");
+		absolutePanel_1.add(btnOgrenciyiKaydet, 391, 376);
+		btnOgrenciyiKaydet.setSize("78px", "49px");
 
 		absolutePanel_2 = new AbsolutePanel();
 		tabKesinKayitBilgileri.add(absolutePanel_2, "Kimlik Bilgileri", false);
@@ -456,45 +459,56 @@ public class KesinKayitBilgileri extends DialogBox {
 		absolutePanel_2.add(label_25, 10, 528);
 		label_25.setSize("100px", "18px");
 
-		tabKisiselBilgileri = new AbsolutePanel();
-		tabKisiselBilgileri.setStyleName("gwt-DialogBackGround");
-		tabKesinKayitBilgileri.add(tabKisiselBilgileri, "Adresi", false);
-		tabKisiselBilgileri.setSize("592px", "487px");
+		btnKimligiKaydet = new Button("Kimliği Kaydet");
+		btnKimligiKaydet.addClickHandler(new BtnKimligiKaydetClickHandler());
+		btnKimligiKaydet.setStyleName("gwt-ButtonSave");
+		absolutePanel_2.add(btnKimligiKaydet, 342, 496);
+		btnKimligiKaydet.setSize("78px", "49px");
+
+		Button btnKapat2 = new Button("Kapat");
+		btnKapat2.setStyleName("gwt-ButonKapat");
+		absolutePanel_2.add(btnKapat2, 433, 497);
+		btnKapat2.setSize("78px", "49px");
+
+		tabAdresi = new AbsolutePanel();
+		tabAdresi.setStyleName("gwt-DialogBackGround");
+		tabKesinKayitBilgileri.add(tabAdresi, "Adresi", false);
+		tabAdresi.setSize("592px", "487px");
 
 		Label label_26 = new Label("Ülke");
 		label_26.setStyleName("gwt-Bold");
-		tabKisiselBilgileri.add(label_26, 10, 28);
+		tabAdresi.add(label_26, 10, 28);
 		label_26.setSize("26px", "18px");
 
 		Label label_27 = new Label("İl");
 		label_27.setStyleName("gwt-Bold");
-		tabKisiselBilgileri.add(label_27, 10, 71);
+		tabAdresi.add(label_27, 10, 71);
 		label_27.setSize("26px", "18px");
 
 		Label label_28 = new Label("İlçe");
 		label_28.setStyleName("gwt-Bold");
-		tabKisiselBilgileri.add(label_28, 10, 115);
+		tabAdresi.add(label_28, 10, 115);
 		label_28.setSize("20px", "18px");
 
 		Label label_29 = new Label("Semt");
 		label_29.setStyleName("gwt-Bold");
-		tabKisiselBilgileri.add(label_29, 10, 159);
+		tabAdresi.add(label_29, 10, 159);
 		label_29.setSize("31px", "18px");
 
 		Label label_30 = new Label("Mahalle");
 		label_30.setStyleName("gwt-Bold");
-		tabKisiselBilgileri.add(label_30, 10, 200);
+		tabAdresi.add(label_30, 10, 200);
 		label_30.setSize("45px", "18px");
 
 		Label label_31 = new Label("Sokak ve no");
 		label_31.setStyleName("gwt-Bold");
-		tabKisiselBilgileri.add(label_31, 10, 240);
+		tabAdresi.add(label_31, 10, 240);
 		label_31.setSize("109px", "18px");
 
 		cbxAdresBilgileriUlke = new ListBox();
 		cbxAdresBilgileriUlke.setStyleName("gwt-ComboBox1");
 		cbxAdresBilgileriUlke.addItem("Türkiye");
-		tabKisiselBilgileri.add(cbxAdresBilgileriUlke, 125, 20);
+		tabAdresi.add(cbxAdresBilgileriUlke, 125, 20);
 		cbxAdresBilgileriUlke.setSize("146px", "22px");
 
 		cbxAdresBilgileriIl = new ListBox();
@@ -503,7 +517,7 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		cbxAdresBilgileriIl.addItem(" ");
 		cbxAdresBilgileriIl.setStyleName("gwt-ComboBox1");
-		tabKisiselBilgileri.add(cbxAdresBilgileriIl, 125, 67);
+		tabAdresi.add(cbxAdresBilgileriIl, 125, 67);
 		cbxAdresBilgileriIl.setSize("146px", "22px");
 
 		cbxAdresBilgileriIlce = new ListBox();
@@ -512,7 +526,7 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		cbxAdresBilgileriIlce.addItem(" ");
 		cbxAdresBilgileriIlce.setStyleName("gwt-ComboBox1");
-		tabKisiselBilgileri.add(cbxAdresBilgileriIlce, 125, 111);
+		tabAdresi.add(cbxAdresBilgileriIlce, 125, 111);
 		cbxAdresBilgileriIlce.setSize("146px", "22px");
 
 		cbxSemt = new ListBox();
@@ -520,19 +534,30 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		cbxSemt.addItem(" ");
 		cbxSemt.setStyleName("gwt-ComboBox1");
-		tabKisiselBilgileri.add(cbxSemt, 125, 155);
+		tabAdresi.add(cbxSemt, 125, 155);
 		cbxSemt.setSize("146px", "22px");
 
 		cbxMahalle = new ListBox();
 		cbxMahalle.addItem(" ");
 		cbxMahalle.setStyleName("gwt-ComboBox1");
-		tabKisiselBilgileri.add(cbxMahalle, 125, 196);
+		tabAdresi.add(cbxMahalle, 125, 196);
 		cbxMahalle.setSize("193px", "22px");
 
 		tctSokakveNo = new TextArea();
 		tctSokakveNo.setStyleName("gwt-TextAreaResible");
-		tabKisiselBilgileri.add(tctSokakveNo, 125, 240);
+		tabAdresi.add(tctSokakveNo, 125, 240);
 		tctSokakveNo.setSize("187px", "50px");
+
+		Button btnAdresiKaydet = new Button("Adresi Kaydet");
+		btnAdresiKaydet.addClickHandler(new BtnAdresiKaydetClickHandler());
+		btnAdresiKaydet.setStyleName("gwt-ButtonSave");
+		tabAdresi.add(btnAdresiKaydet, 348, 330);
+		btnAdresiKaydet.setSize("78px", "49px");
+
+		Button button_1 = new Button("Kapat");
+		button_1.setStyleName("gwt-ButonKapat");
+		tabAdresi.add(button_1, 439, 331);
+		button_1.setSize("78px", "49px");
 
 		AbsolutePanel absolutePanel_4 = new AbsolutePanel();
 		tabKesinKayitBilgileri.add(absolutePanel_4, "Sınıfı", false);
@@ -641,6 +666,17 @@ public class KesinKayitBilgileri extends DialogBox {
 		tctIndirimMiktari.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(tctIndirimMiktari, 241, 249);
 		tctIndirimMiktari.setSize("85px", "17px");
+
+		Button btnSinifiKaydet = new Button("Sınıfı Kaydet");
+		btnSinifiKaydet.addClickHandler(new BtnSinifiKaydetClickHandler());
+		btnSinifiKaydet.setStyleName("gwt-ButtonSave");
+		absolutePanel_4.add(btnSinifiKaydet, 363, 331);
+		btnSinifiKaydet.setSize("78px", "49px");
+
+		Button btnKapat4 = new Button("Kapat");
+		btnKapat4.setStyleName("gwt-ButonKapat");
+		absolutePanel_4.add(btnKapat4, 454, 332);
+		btnKapat4.setSize("78px", "49px");
 
 		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
 		tabKesinKayitBilgileri.add(absolutePanel_5, "DBS Sonuç", false);
@@ -786,30 +822,30 @@ public class KesinKayitBilgileri extends DialogBox {
 		absolutePanel_7.add(tctMiktar, 108, 103);
 		tctMiktar.setSize("149px", "16px");
 
-		cellTable = new CellTable<XMLHizmetTanimla>();
-		absolutePanel_7.add(cellTable, 10, 199);
-		cellTable.setSize("725px", "201px");
+		grdHizmetler = new CellTable<XMLHizmetTanimla>();
+		absolutePanel_7.add(grdHizmetler, 10, 199);
+		grdHizmetler.setSize("725px", "201px");
 
 		TextColumn<XMLHizmetTanimla> textColumn_3 = new TextColumn<XMLHizmetTanimla>() {
 			public String getValue(XMLHizmetTanimla object) {
-				return (String) null;
+				return (object.hizmet_adi);
 			}
 		};
-		cellTable.addColumn(textColumn_3, "Hizmet Adı");
+		grdHizmetler.addColumn(textColumn_3, "Hizmet Adı");
 
 		TextColumn<XMLHizmetTanimla> textColumn_4 = new TextColumn<XMLHizmetTanimla>() {
 			public String getValue(XMLHizmetTanimla object) {
-				return (String) null;
+				return (object.birim_fiyati);
 			}
 		};
-		cellTable.addColumn(textColumn_4, "Birim Fiyatı");
+		grdHizmetler.addColumn(textColumn_4, "Birim Fiyatı");
 
 		TextColumn<XMLHizmetTanimla> textColumn_5 = new TextColumn<XMLHizmetTanimla>() {
 			public String getValue(XMLHizmetTanimla object) {
-				return (String) null;
+				return "";
 			}
 		};
-		cellTable.addColumn(textColumn_5, "Miktar");
+		grdHizmetler.addColumn(textColumn_5, "Miktar");
 
 		TextColumn<XMLHizmetTanimla> textColumn_6 = new TextColumn<XMLHizmetTanimla>() {
 			@Override
@@ -817,7 +853,7 @@ public class KesinKayitBilgileri extends DialogBox {
 				return object.toString();
 			}
 		};
-		cellTable.addColumn(textColumn_6, "İnidirim Şekli");
+		grdHizmetler.addColumn(textColumn_6, "İnidirim Şekli");
 
 		TextColumn<XMLHizmetTanimla> textColumn_7 = new TextColumn<XMLHizmetTanimla>() {
 			@Override
@@ -825,7 +861,7 @@ public class KesinKayitBilgileri extends DialogBox {
 				return object.toString();
 			}
 		};
-		cellTable.addColumn(textColumn_7, "İnidirm Miktarı");
+		grdHizmetler.addColumn(textColumn_7, "İnidirm Miktarı");
 
 		TextColumn<XMLHizmetTanimla> textColumn_8 = new TextColumn<XMLHizmetTanimla>() {
 			@Override
@@ -833,7 +869,7 @@ public class KesinKayitBilgileri extends DialogBox {
 				return object.toString();
 			}
 		};
-		cellTable.addColumn(textColumn_8, "Toplam  Fiyat");
+		grdHizmetler.addColumn(textColumn_8, "Toplam  Fiyat");
 
 		Column<XMLHizmetTanimla, String> column_2 = new Column<XMLHizmetTanimla, String>(
 				new ButtonCell()) {
@@ -842,7 +878,7 @@ public class KesinKayitBilgileri extends DialogBox {
 				return (String) null;
 			}
 		};
-		cellTable.addColumn(column_2, "İşlemler");
+		grdHizmetler.addColumn(column_2, "İşlemler");
 
 		btnNewButton = new Button("Hizmeti Ekle");
 		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
@@ -1138,17 +1174,15 @@ public class KesinKayitBilgileri extends DialogBox {
 		absolutePanel.add(tctTCKimlikNo, 131, 33);
 		tctTCKimlikNo.setSize("144px", "14px");
 
-		TextBox textBox = new TextBox();
-		textBox.setStyleName("gwt-Textlogin");
-		absolutePanel.add(textBox, 307, 58);
-
 		if (!isDesignTime()) {
 
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl, cbxOgrenciBilgileriIl,
 					cbxAdresBilgileriIl);
 			putReferansToCbx(cbxReferans);
 			putKursZamaniToCbx(cbxKursZamani);
-			putDataToGrid();
+			putVelilerToGrid();
+			putHizmetlerToGrid();
+
 			putEgitimTuruToCbx(cbxEgitimTuru);
 			putIndirimTuruToCbx(cbxIndirimTuru);
 
@@ -1296,7 +1330,7 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	}
 
-	private void putDataToGrid() {
+	private void putVelilerToGrid() {
 
 		String urlWithParameters = Util.urlBase + "getveliler?id=" + _id;
 
@@ -1329,6 +1363,52 @@ public class KesinKayitBilgileri extends DialogBox {
 
 					// Push the data into the widget.
 					grdVeliEkle.setRowData(0, listXmlVeliler);
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private void putHizmetlerToGrid() {
+
+		String urlWithParameters = Util.urlBase + "gethizmetler?id=" + _id;
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					List<XMLHizmetTanimla> listXmlHizmetTanimla = XMLHizmetTanimla.XML
+							.readList(response.getText());
+
+					// Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
+
+					// Window.alert("gun: " + listXmlSaatGirisi.get(0).gun);
+
+					// Set the total row count. This isn't strictly
+					// necessary, but it affects
+					// paging calculations, so its good habit to
+					// keep the row count up to date.
+					grdHizmetler.setRowCount(1, true);
+
+					// Push the data into the widget.
+					grdHizmetler.setRowData(0, listXmlHizmetTanimla);
 
 				}
 
@@ -1817,7 +1897,7 @@ public class KesinKayitBilgileri extends DialogBox {
 						@Override
 						public void onClose(CloseEvent<PopupPanel> event) {
 
-							putDataToGrid();
+							putVelilerToGrid();
 
 						}
 					});
@@ -1965,7 +2045,7 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	}
 
-	private class BtnNewButton_5ClickHandler implements ClickHandler {
+	private class BtnOgrenciyiKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
 			String URLValue = Util.urlBase + "putkesinkayitbilgileri?";
@@ -2376,7 +2456,7 @@ public class KesinKayitBilgileri extends DialogBox {
 				@Override
 				public void onClose(CloseEvent<PopupPanel> event) {
 
-					putDataToGrid();
+					putVelilerToGrid();
 
 				}
 			});
@@ -2593,6 +2673,30 @@ public class KesinKayitBilgileri extends DialogBox {
 			putHizmetAdiToCbx(
 					cbxHizmetTuru.getItemText(cbxHizmetTuru.getSelectedIndex()),
 					cbxHizmetAdi);
+		}
+	}
+
+	private class BtnKimligiKaydetClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			btnOgrenciyiKaydet.click();
+
+		}
+	}
+
+	private class BtnAdresiKaydetClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			btnOgrenciyiKaydet.click();
+
+		}
+	}
+
+	private class BtnSinifiKaydetClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			btnOgrenciyiKaydet.click();
+
 		}
 	}
 }

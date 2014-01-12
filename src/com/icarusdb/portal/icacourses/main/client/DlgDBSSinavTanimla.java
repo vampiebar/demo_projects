@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -44,9 +45,9 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	private ListBox cbxSemt;
 	private ListBox cbxIlce;
 	private ListBox cbxIl;
-	private TextBox tctAdres;
 	private ListBox cbxSaat;
 	private ListBox cbxDakika;
+	private TextArea tctAdres;
 
 	public DlgDBSSinavTanimla(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -135,15 +136,16 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		dtpSinavTarihi.setSize("172px", "14px");
 
 		cbxSaat = new ListBox();
-		cbxSaat.addItem("1");
-		cbxSaat.addItem("2");
-		cbxSaat.addItem("3");
-		cbxSaat.addItem("4");
-		cbxSaat.addItem("5");
-		cbxSaat.addItem("6");
-		cbxSaat.addItem("7");
-		cbxSaat.addItem("8");
-		cbxSaat.addItem("9");
+		cbxSaat.addItem("00");
+		cbxSaat.addItem("01");
+		cbxSaat.addItem("02");
+		cbxSaat.addItem("03");
+		cbxSaat.addItem("04");
+		cbxSaat.addItem("05");
+		cbxSaat.addItem("06");
+		cbxSaat.addItem("07");
+		cbxSaat.addItem("08");
+		cbxSaat.addItem("09");
 		cbxSaat.addItem("10");
 		cbxSaat.addItem("11");
 		cbxSaat.addItem("12");
@@ -158,7 +160,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxSaat.addItem("21");
 		cbxSaat.addItem("22");
 		cbxSaat.addItem("23");
-		cbxSaat.addItem("00");
+		cbxSaat.setStyleName("gwt-ComboBox1");
 		horizontalPanel_3.add(cbxSaat);
 
 		Label lblNewLabel_5 = new Label(":");
@@ -169,6 +171,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		lblNewLabel_5.setSize("14px", "23px");
 
 		cbxDakika = new ListBox();
+		cbxDakika.setStyleName("gwt-ComboBox1");
 		cbxDakika.addItem("00");
 		cbxDakika.addItem("15");
 		cbxDakika.addItem("30");
@@ -182,7 +185,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		tctKota = new TextBox();
 		flexTable.setWidget(3, 1, tctKota);
 		tctKota.setStyleName("gwt-TextBox1");
-		tctKota.setSize("172px", "14px");
+		tctKota.setSize("174px", "14px");
 
 		Label lblSinavYeri = new Label("Sınav Yeri");
 		flexTable.setWidget(4, 0, lblSinavYeri);
@@ -211,13 +214,13 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		Label lblNewLabel_1 = new Label("Ülke");
 		lblNewLabel_1.setStyleName("gwt-Bold");
 		flexTable_1.setWidget(0, 0, lblNewLabel_1);
-		lblNewLabel_1.setWidth("105px");
+		lblNewLabel_1.setWidth("137px");
 
 		cbxUlke = new ListBox();
 		cbxUlke.setStyleName("gwt-ComboBox1");
 		cbxUlke.addItem("Türkiye");
 		flexTable_1.setWidget(0, 1, cbxUlke);
-		cbxUlke.setWidth("65%");
+		cbxUlke.setWidth("70%");
 
 		Label lblNewLabel_2 = new Label("İl");
 		lblNewLabel_2.setStyleName("gwt-Bold");
@@ -228,7 +231,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxIl.addItem(" ");
 		cbxIl.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(1, 1, cbxIl);
-		cbxIl.setWidth("65%");
+		cbxIl.setWidth("176px");
 
 		Label lblNewLabel_3 = new Label("İlçe");
 		lblNewLabel_3.setStyleName("gwt-Bold");
@@ -239,7 +242,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxIlce.addItem(" ");
 		cbxIlce.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(2, 1, cbxIlce);
-		cbxIlce.setWidth("65%");
+		cbxIlce.setWidth("70%");
 
 		Label lblNewLabel_4 = new Label("Semt");
 		lblNewLabel_4.setStyleName("gwt-Bold");
@@ -250,7 +253,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxSemt.addItem(" ");
 		cbxSemt.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(3, 1, cbxSemt);
-		cbxSemt.setWidth("65%");
+		cbxSemt.setWidth("70%");
 
 		Label lblMahalleky = new Label("Mahalle / Köy");
 		lblMahalleky.setStyleName("gwt-Bold");
@@ -266,15 +269,15 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		lblAdres.setStyleName("gwt-Bold");
 		flexTable_1.setWidget(5, 0, lblAdres);
 		lblAdres.setWidth("20%");
-
-		tctAdres = new TextBox();
-		tctAdres.setStyleName("gwt-TextBox1");
-		flexTable_1.setWidget(5, 1, tctAdres);
-		tctAdres.setSize("95%", "54px");
 		flexTable_1.getCellFormatter().setVerticalAlignment(5, 0,
 				HasVerticalAlignment.ALIGN_TOP);
 		flexTable_1.getCellFormatter().setHorizontalAlignment(0, 0,
 				HasHorizontalAlignment.ALIGN_LEFT);
+
+		tctAdres = new TextArea();
+		flexTable_1.setWidget(5, 1, tctAdres);
+		tctAdres.setStyleName("gwt-TextAreaResible");
+		tctAdres.setWidth("95%");
 
 		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
 		horizontalPanel_2.setSpacing(6);
@@ -491,7 +494,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 			String URLValue = Util.urlBase + "putdbssinavtanimla?";
 
 			URLValue = URLValue + "id=" + _id;
-			URLValue = URLValue + "&okul_adi="
+			URLValue = URLValue + "&okul_durumu="
 					+ cbxOkulDurumu.getValue(cbxOkulDurumu.getSelectedIndex());
 			URLValue = URLValue + "&alan_bilgisi="
 					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());
@@ -549,7 +552,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		hzpanOtherBuilding.setVisible((cbxSinavYeri.getSelectedIndex() == 1));
 
 		cbxOkulDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxOkulDurumu, xml.okul_adi));
+				cbxOkulDurumu, xml.okul_durumu));
 
 		cbxUlke.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxUlke, xml.ulke));

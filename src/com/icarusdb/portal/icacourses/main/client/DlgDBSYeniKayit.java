@@ -27,6 +27,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -68,7 +69,6 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private ListBox cbxAdresBilgileriIlce;
 	private ListBox cbxSemt;
 	private ListBox cbxMahalle;
-	private TextBox tctSokakveNo;
 	private ListBox cbxOkulDurumu;
 	private ListBox cbxAlanbilgisi;
 	private ListBox cbxSinavTarihi;
@@ -79,6 +79,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 	public DialogBox _dlgDBSYeniKayit;
 	private HorizontalPanel hzpanMenu1;
 	private AbsolutePanel absolutePanel_4;
+	private TextArea tctSokakveNo;
 
 	public DlgDBSYeniKayit(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -520,10 +521,10 @@ public class DlgDBSYeniKayit extends DialogBox {
 		absolutePanel_2.add(cbxMahalle, 125, 191);
 		cbxMahalle.setSize("220px", "22px");
 
-		tctSokakveNo = new TextBox();
-		tctSokakveNo.setStyleName("gwt-TextBox1");
-		absolutePanel_2.add(tctSokakveNo, 125, 237);
-		tctSokakveNo.setSize("218px", "48px");
+		tctSokakveNo = new TextArea();
+		tctSokakveNo.setStyleName("gwt-TextAreaResible");
+		absolutePanel_2.add(tctSokakveNo, 125, 240);
+		tctSokakveNo.setSize("220px", "53px");
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
@@ -557,11 +558,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOkulDurumu.addItem("Lise Mezun");
 		cbxOkulDurumu.addItem("Üniversite Mezun");
 		cbxOkulDurumu.addItem("12.Sınıf");
+		cbxOkulDurumu.addChangeHandler(new CbxOkulDurumuChangeHandler());
 		cbxOkulDurumu.setStyleName("gwt-ComboBox1");
 		absolutePanel_3.add(cbxOkulDurumu, 126, 23);
 		cbxOkulDurumu.setSize("132px", "22px");
 
 		cbxAlanbilgisi = new ListBox();
+		cbxAlanbilgisi.addChangeHandler(new CbxAlanbilgisiChangeHandler());
 		cbxAlanbilgisi.addItem(" ");
 		cbxAlanbilgisi.setStyleName("gwt-ComboBox1");
 		absolutePanel_3.add(cbxAlanbilgisi, 126, 62);
@@ -673,8 +676,6 @@ public class DlgDBSYeniKayit extends DialogBox {
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl, cbxOgrenciBilgileriIl,
 					cbxAdresBilgileriIl);
 
-			putSinavTarihleriToCbx(cbxSinavTarihi);
-			putAlanBilgisiToCbx(cbxAlanbilgisi);
 			putDataToGrid();
 
 			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
@@ -699,12 +700,12 @@ public class DlgDBSYeniKayit extends DialogBox {
 		}
 	}
 
-	private void putAlanBilgisiToCbx(final ListBox lbxTemp) {
+	private void putAlanBilgisiToCbx(String okul_durumu, final ListBox lbxTemp) {
 		lbxTemp.clear();
 		lbxTemp.addItem("");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				Util.urlBase + "getdbssinavtanimla");
+				Util.urlBase + "getdbssinavtanimla?okul_durumu=" + okul_durumu);
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -740,13 +741,15 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 	}
 
-	private void putSinavTarihleriToCbx(final ListBox lbxTemp) {
+	private void putSinavTarihleriToCbx(String okul_durumu,
+			String alan_bilgisi, final ListBox lbxTemp) {
 
 		lbxTemp.clear();
 		lbxTemp.addItem("");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				Util.urlBase + "getdbssinavtanimla");
+				Util.urlBase + "getdbssinavtanimla?okul_durumu=" + okul_durumu
+						+ "&alan_bilgisi=" + alan_bilgisi);
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -1455,6 +1458,24 @@ public class DlgDBSYeniKayit extends DialogBox {
 				// Window.alert(e.getMessage() + "ERROR");
 			}
 
+		}
+	}
+
+	private class CbxOkulDurumuChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putAlanBilgisiToCbx(
+					cbxOkulDurumu.getItemText(cbxOkulDurumu.getSelectedIndex()),
+					cbxAlanbilgisi);
+
+		}
+	}
+
+	private class CbxAlanbilgisiChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
+			putSinavTarihleriToCbx(cbxOkulDurumu.getItemText(cbxOkulDurumu
+					.getSelectedIndex()), cbxAlanbilgisi
+					.getItemText(cbxAlanbilgisi.getSelectedIndex()),
+					cbxSinavTarihi);
 		}
 	}
 }

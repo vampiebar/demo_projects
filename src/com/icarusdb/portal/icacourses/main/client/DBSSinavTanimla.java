@@ -70,7 +70,7 @@ public class DBSSinavTanimla extends Composite {
 
 		Column<XMLDBSSinavTanimla, ?> textColumn = new TextColumn<XMLDBSSinavTanimla>() {
 			public String getValue(XMLDBSSinavTanimla object) {
-				return object.okul_adi.toString();
+				return object.okul_durumu.toString();
 			}
 		};
 		grdDBSSinavTanimla.addColumn(textColumn, "Okul Adı");

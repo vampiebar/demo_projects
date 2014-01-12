@@ -12,7 +12,6 @@ import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -128,9 +127,16 @@ public class SozlesmeMaddeleri extends Composite {
 			String URLValue = Util.urlBase + "putsozlesmemaddeleri?";
 
 			URLValue = URLValue + "id=" + _id;
-			URLValue = URLValue + "&sozlesme=" + URL2;
+			URLValue = URLValue
+					+ "&sozlesme="
+					+ URL2.replace("&Ccedil;", "___C___")
+							.replace("&ccedil;", "___c___")
+							.replace("&Uuml;", "___U___")
+							.replace("&uuml;", "___u___")
+							.replace("&Ouml;", "___O___")
+							.replace("&ouml;", "___o___");
 
-			Window.alert(URLValue);
+			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue,
 					"SÖZLEŞME MADDELERİ BAŞARI İLE KAYIT EDİLDİ",

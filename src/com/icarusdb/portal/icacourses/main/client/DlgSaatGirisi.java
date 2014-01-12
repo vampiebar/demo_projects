@@ -94,6 +94,7 @@ public class DlgSaatGirisi extends DialogBox {
 		horizontalPanel.setSize("184px", "24px");
 
 		cbxBaslangicSaat = new ListBox();
+		cbxBaslangicSaat.setStyleName("gwt-ComboBox1");
 		cbxBaslangicSaat.addItem("00");
 		cbxBaslangicSaat.addItem("01");
 		cbxBaslangicSaat.addItem("02");
@@ -120,7 +121,7 @@ public class DlgSaatGirisi extends DialogBox {
 		cbxBaslangicSaat.addItem("23");
 		horizontalPanel.add(cbxBaslangicSaat);
 		horizontalPanel.setCellWidth(cbxBaslangicSaat, "50");
-		cbxBaslangicSaat.setSize("42px", "23px");
+		cbxBaslangicSaat.setSize("45px", "23px");
 
 		Label label = new Label(":");
 		horizontalPanel.add(label);
@@ -128,6 +129,7 @@ public class DlgSaatGirisi extends DialogBox {
 		label.setSize("6px", "16px");
 
 		cbxBaslangicDakika = new ListBox();
+		cbxBaslangicDakika.setStyleName("gwt-ComboBox1");
 		cbxBaslangicDakika.addItem("00");
 		cbxBaslangicDakika.addItem("01");
 		cbxBaslangicDakika.addItem("02");
@@ -189,13 +191,14 @@ public class DlgSaatGirisi extends DialogBox {
 		cbxBaslangicDakika.addItem("58");
 		cbxBaslangicDakika.addItem("59");
 		horizontalPanel.add(cbxBaslangicDakika);
-		cbxBaslangicDakika.setSize("42px", "23px");
+		cbxBaslangicDakika.setSize("45px", "23px");
 
 		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel_1, 128, 68);
 		horizontalPanel_1.setSize("184px", "24px");
 
 		cbxBitisSaat = new ListBox();
+		cbxBitisSaat.setStyleName("gwt-ComboBox1");
 		cbxBitisSaat.addItem("00");
 		cbxBitisSaat.addItem("01");
 		cbxBitisSaat.addItem("02");
@@ -222,7 +225,7 @@ public class DlgSaatGirisi extends DialogBox {
 		cbxBitisSaat.addItem("23");
 		horizontalPanel_1.add(cbxBitisSaat);
 		horizontalPanel_1.setCellWidth(cbxBitisSaat, "50");
-		cbxBitisSaat.setSize("42px", "23px");
+		cbxBitisSaat.setSize("45px", "23px");
 
 		Label label_1 = new Label(":");
 		label_1.setStyleName("gwt-Bold");
@@ -230,6 +233,7 @@ public class DlgSaatGirisi extends DialogBox {
 		label_1.setSize("5px", "16px");
 
 		cbxBitisDakika = new ListBox();
+		cbxBitisDakika.setStyleName("gwt-ComboBox1");
 		cbxBitisDakika.addItem("00");
 		cbxBitisDakika.addItem("01");
 		cbxBitisDakika.addItem("02");
@@ -291,7 +295,7 @@ public class DlgSaatGirisi extends DialogBox {
 		cbxBitisDakika.addItem("58");
 		cbxBitisDakika.addItem("59");
 		horizontalPanel_1.add(cbxBitisDakika);
-		cbxBitisDakika.setSize("42px", "23px");
+		cbxBitisDakika.setSize("45px", "23px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");

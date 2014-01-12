@@ -15,8 +15,8 @@ public class XMLDBSSinavTanimla {
 	@Path("id")
 	String id;
 
-	@Path("okul_adi")
-	String okul_adi;
+	@Path("okul_durumu")
+	String okul_durumu;
 
 	@Path("alan_bilgisi")
 	String alan_bilgisi;

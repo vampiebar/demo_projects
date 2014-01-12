@@ -40,7 +40,6 @@ public class DlgSinavTanimlama extends DialogBox {
 	private ListBox cbxDakika;
 
 	public DlgSinavTanimlama(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -127,15 +126,16 @@ public class DlgSinavTanimlama extends DialogBox {
 		lblNewLabel.setSize("541px", "28px");
 
 		cbxSaat = new ListBox();
-		cbxSaat.addItem("1");
-		cbxSaat.addItem("2");
-		cbxSaat.addItem("3");
-		cbxSaat.addItem("4");
-		cbxSaat.addItem("5");
-		cbxSaat.addItem("6");
-		cbxSaat.addItem("7");
-		cbxSaat.addItem("8");
-		cbxSaat.addItem("9");
+		cbxSaat.addItem("00");
+		cbxSaat.addItem("01");
+		cbxSaat.addItem("02");
+		cbxSaat.addItem("03");
+		cbxSaat.addItem("04");
+		cbxSaat.addItem("05");
+		cbxSaat.addItem("06");
+		cbxSaat.addItem("07");
+		cbxSaat.addItem("08");
+		cbxSaat.addItem("09");
 		cbxSaat.addItem("10");
 		cbxSaat.addItem("11");
 		cbxSaat.addItem("12");
@@ -150,9 +150,8 @@ public class DlgSinavTanimlama extends DialogBox {
 		cbxSaat.addItem("21");
 		cbxSaat.addItem("22");
 		cbxSaat.addItem("23");
-		cbxSaat.addItem("00");
 		cbxSaat.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxSaat, 345, 71);
+		absolutePanel.add(cbxSaat, 345, 72);
 		cbxSaat.setSize("43px", "22px");
 
 		Label label_5 = new Label(":");
@@ -168,7 +167,7 @@ public class DlgSinavTanimlama extends DialogBox {
 		cbxDakika.addItem("30");
 		cbxDakika.addItem("45");
 		cbxDakika.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxDakika, 396, 71);
+		absolutePanel.add(cbxDakika, 396, 72);
 		cbxDakika.setSize("43px", "22px");
 		if (!isDesignTime()) {
 
