@@ -52,28 +52,28 @@ public class DlgKonuTanimlari extends DialogBox {
 
 		Label label = new Label("Eğitim Türü");
 		label.setStyleName("gwt-Bold");
-		absolutePanel.add(label, 10, 49);
+		absolutePanel.add(label, 10, 47);
 		label.setSize("106px", "18px");
 
 		Label label_1 = new Label("Alan");
 		label_1.setStyleName("gwt-Bold");
-		absolutePanel.add(label_1, 10, 79);
+		absolutePanel.add(label_1, 10, 77);
 		label_1.setSize("105px", "18px");
 
 		Label label_2 = new Label("Ders");
 		label_2.setStyleName("gwt-Bold");
-		absolutePanel.add(label_2, 10, 109);
+		absolutePanel.add(label_2, 10, 107);
 		label_2.setSize("106px", "18px");
 
 		Label label_3 = new Label("Ünite Adı");
 		label_3.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		label_3.setStyleName("gwt-Bold");
-		absolutePanel.add(label_3, 10, 144);
+		absolutePanel.add(label_3, 10, 142);
 		label_3.setSize("106px", "18px");
 
 		Label lblKonu = new Label("Konu");
 		lblKonu.setStyleName("gwt-Bold");
-		absolutePanel.add(lblKonu, 10, 175);
+		absolutePanel.add(lblKonu, 10, 173);
 		lblKonu.setSize("106px", "16px");
 
 		cbxDers = new ListBox();

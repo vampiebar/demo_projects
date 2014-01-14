@@ -86,7 +86,8 @@ public class OnKayit extends Composite {
 				new CheckboxCell()) {
 			@Override
 			public Boolean getValue(XMLOnKayit object) {
-				return (Boolean) null;
+				return object.kesin_kayit_mi.equalsIgnoreCase("t") ? true
+						: false;
 			}
 		};
 		grdOnKayit.addColumn(column, "Kesin Kayit Mı?");

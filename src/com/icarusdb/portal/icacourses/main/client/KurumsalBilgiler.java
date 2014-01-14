@@ -242,7 +242,7 @@ public class KurumsalBilgiler extends Composite {
 		tctEMail.setSize("234px", "16px");
 
 		tctAdres = new TextArea();
-		tctAdres.setStyleName("gwt-TextBox1");
+		tctAdres.setStyleName("gwt-TextAreaResible");
 		absolutePanel.add(tctAdres, 458, 445);
 		tctAdres.setSize("236px", "61px");
 

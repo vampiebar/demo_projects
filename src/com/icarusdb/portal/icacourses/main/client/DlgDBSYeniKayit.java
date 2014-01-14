@@ -235,20 +235,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		vtpanOgrenciBilgileri.add(lblNewLabel_4, 10, 457);
 
 		cbxOgrenciBilgileriSinif = new ListBox();
-		cbxOgrenciBilgileriSinif.addItem("1.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("2.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("3.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("4.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("5.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("6.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("7.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("8.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("9.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("10.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("11.Sınıf");
-		cbxOgrenciBilgileriSinif.addItem("Lise Mezun");
-		cbxOgrenciBilgileriSinif.addItem("Üniversite Mezun");
-		cbxOgrenciBilgileriSinif.addItem("12.Sınıf");
+		cbxOgrenciBilgileriSinif.addItem(" ");
 		cbxOgrenciBilgileriSinif.setStyleName("gwt-ComboBox1");
 		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriSinif, 157, 453);
 		cbxOgrenciBilgileriSinif.setSize("138px", "22px");
@@ -544,20 +531,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		absolutePanel_3.add(lblNewLabel_21, 22, 111);
 
 		cbxOkulDurumu = new ListBox();
-		cbxOkulDurumu.addItem("1.Sınıf");
-		cbxOkulDurumu.addItem("2.Sınıf");
-		cbxOkulDurumu.addItem("3.Sınıf");
-		cbxOkulDurumu.addItem("4.Sınıf");
-		cbxOkulDurumu.addItem("5.Sınıf");
-		cbxOkulDurumu.addItem("6.Sınıf");
-		cbxOkulDurumu.addItem("7.Sınıf");
-		cbxOkulDurumu.addItem("8.Sınıf");
-		cbxOkulDurumu.addItem("9.Sınıf");
-		cbxOkulDurumu.addItem("10.Sınıf");
-		cbxOkulDurumu.addItem("11.Sınıf");
-		cbxOkulDurumu.addItem("Lise Mezun");
-		cbxOkulDurumu.addItem("Üniversite Mezun");
-		cbxOkulDurumu.addItem("12.Sınıf");
+		cbxOkulDurumu.addItem(" ");
 		cbxOkulDurumu.addChangeHandler(new CbxOkulDurumuChangeHandler());
 		cbxOkulDurumu.setStyleName("gwt-ComboBox1");
 		absolutePanel_3.add(cbxOkulDurumu, 126, 23);
@@ -675,6 +649,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl, cbxOgrenciBilgileriIl,
 					cbxAdresBilgileriIl);
+			putOKulDurumuToCbx(cbxOkulDurumu, cbxOgrenciBilgileriSinif);
 
 			putDataToGrid();
 
@@ -698,6 +673,53 @@ public class DlgDBSYeniKayit extends DialogBox {
 			// }
 			// }, DoubleClickEvent.getType());
 		}
+	}
+
+	private void putOKulDurumuToCbx(final ListBox lbxTemp,
+			final ListBox lbxTemp2) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("");
+
+		lbxTemp2.clear();
+		lbxTemp2.addItem("");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getokulsinifbilgisi");
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("getdbssinavtanimla " + response.getText());
+
+					List<XMLOkulSinifBilgisi> xmlOkulSinifBilgisi = XMLOkulSinifBilgisi.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlOkulSinifBilgisi.size(); i++) {
+
+						lbxTemp.addItem(xmlOkulSinifBilgisi.get(i).okul_durumu);
+
+						lbxTemp2.addItem(xmlOkulSinifBilgisi.get(i).okul_durumu);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
 	}
 
 	private void putAlanBilgisiToCbx(String okul_durumu, final ListBox lbxTemp) {
@@ -1187,10 +1209,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriUlke,
 						xml.ogrenci_kimlik_bilgileri_ulke));
 
-		cbxOgrenciBilgileriSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxOgrenciBilgileriSinif, xml.sinif));
-		cbxOkulDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxOkulDurumu, xml.okul_durumu));
+		cbxOgrenciBilgileriSinif.setItemText(0, xml.sinif);
+		cbxOkulDurumu.setItemText(0, xml.okul_durumu);
 		cbxAlanbilgisi.setItemText(0, xml.alan_bilgisi);
 		cbxSinavTarihi.setItemText(0, xml.sinav_tarihi);
 
@@ -1259,7 +1279,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 			URLValue = URLValue
 					+ "&sinif="
 					+ cbxOgrenciBilgileriSinif
-							.getValue(cbxOgrenciBilgileriSinif
+							.getItemText(cbxOgrenciBilgileriSinif
 									.getSelectedIndex());
 			URLValue = URLValue + "&seri_no=" + tctSeriNo.getText();
 			URLValue = URLValue + "&cuzdan_no=" + tctCuzdanNo.getText();
@@ -1303,8 +1323,10 @@ public class DlgDBSYeniKayit extends DialogBox {
 			URLValue = URLValue + "&mahalle="
 					+ cbxMahalle.getItemText(cbxMahalle.getSelectedIndex());
 			URLValue = URLValue + "&sokak_ve_no=" + tctSokakveNo.getText();
-			URLValue = URLValue + "&okul_durumu="
-					+ cbxOkulDurumu.getValue(cbxOkulDurumu.getSelectedIndex());
+			URLValue = URLValue
+					+ "&okul_durumu="
+					+ cbxOkulDurumu.getItemText(cbxOkulDurumu
+							.getSelectedIndex());
 			URLValue = URLValue
 					+ "&alan_bilgisi="
 					+ cbxAlanbilgisi.getItemText(cbxAlanbilgisi

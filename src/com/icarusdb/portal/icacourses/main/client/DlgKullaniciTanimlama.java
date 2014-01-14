@@ -34,7 +34,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("490px", "445px");
+		absolutePanel.setSize("540px", "519px");
 
 		Label lblKullancIlemlerieklemedzenleme = new Label(
 				"Kullanıcı İşlemleri (Ekleme/Düzenleme)");
@@ -44,7 +44,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 
 		tabKullaniciTanimlama = new DecoratedTabPanel();
 		absolutePanel.add(tabKullaniciTanimlama, 10, 38);
-		tabKullaniciTanimlama.setSize("470px", "300px");
+		tabKullaniciTanimlama.setSize("476px", "314px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
@@ -54,7 +54,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 
 		FlexTable flexTable = new FlexTable();
 		absolutePanel_1.add(flexTable, 10, 10);
-		flexTable.setSize("278px", "165px");
+		flexTable.setSize("302px", "184px");
 
 		Label lblKullancKodu = new Label("Kullanıcı Kodu");
 		flexTable.setWidget(0, 0, lblKullancKodu);

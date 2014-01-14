@@ -50,6 +50,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	private TextArea tctAdres;
 
 	public DlgDBSSinavTanimla(boolean isInsert, long id) {
+		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -263,7 +264,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxMahalleKoy.addItem(" ");
 		cbxMahalleKoy.setStyleName("gwt-ComboBox1");
 		flexTable_1.setWidget(4, 1, cbxMahalleKoy);
-		cbxMahalleKoy.setWidth("249px");
+		cbxMahalleKoy.setWidth("250px");
 
 		Label lblAdres = new Label("Adres");
 		lblAdres.setStyleName("gwt-Bold");
@@ -277,7 +278,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		tctAdres = new TextArea();
 		flexTable_1.setWidget(5, 1, tctAdres);
 		tctAdres.setStyleName("gwt-TextAreaResible");
-		tctAdres.setWidth("95%");
+		tctAdres.setWidth("246px");
 
 		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
 		horizontalPanel_2.setSpacing(6);

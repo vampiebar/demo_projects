@@ -190,11 +190,9 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		cbxEgitimTuru.setSize("143px", "20px");
 
 		cbxBrans = new ListBox();
+		cbxBrans.addItem(" ");
 		verticalPanel_1.add(cbxBrans);
 		cbxBrans.setStyleName("gwt-ComboBox1");
-		cbxBrans.addItem("a");
-		cbxBrans.addItem("2");
-		cbxBrans.addItem("1 ");
 		cbxBrans.setSize("143px", "20px");
 
 		cbxGirdigiDersler = new ListBox();

@@ -63,7 +63,7 @@ public class DlgDonemTanimlari extends DialogBox {
 		tctDonemAdi = new TextBox();
 		tctDonemAdi.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctDonemAdi, 186, 48);
-		tctDonemAdi.setSize("147px", "14px");
+		tctDonemAdi.setSize("147px", "15px");
 
 		dtpBaslangicTarihi = new DateBox();
 		dtpBaslangicTarihi.setStyleName("gwt-TextBox1");
@@ -72,7 +72,7 @@ public class DlgDonemTanimlari extends DialogBox {
 		dtpBaslangicTarihi
 				.addValueChangeHandler(new DtpDonemBaslangicTarihiValueChangeHandler());
 		absolutePanel.add(dtpBaslangicTarihi, 186, 83);
-		dtpBaslangicTarihi.setSize("147px", "12px");
+		dtpBaslangicTarihi.setSize("147px", "15px");
 
 		dtpBitisTarihi = new DateBox();
 		dtpBitisTarihi.setStyleName("gwt-TextBox1");
@@ -81,14 +81,14 @@ public class DlgDonemTanimlari extends DialogBox {
 		dtpBitisTarihi
 				.addValueChangeHandler(new DtpDonemBitisTarihiValueChangeHandler());
 		absolutePanel.add(dtpBitisTarihi, 186, 119);
-		dtpBitisTarihi.setSize("147px", "14px");
+		dtpBitisTarihi.setSize("147px", "15px");
 
 		cbxVarsayilanDonem = new ListBox();
 		cbxVarsayilanDonem.setStyleName("gwt-ComboBox1");
 		cbxVarsayilanDonem.addItem("Varsayılan Dönem");
 		cbxVarsayilanDonem.addItem("Normal Dönem");
 		absolutePanel.add(cbxVarsayilanDonem, 186, 160);
-		cbxVarsayilanDonem.setSize("147px", "18px");
+		cbxVarsayilanDonem.setSize("147px", "22px");
 
 		Button btnKaydet = new Button("New button");
 		btnKaydet.setStyleName("gwt-ButtonSave");

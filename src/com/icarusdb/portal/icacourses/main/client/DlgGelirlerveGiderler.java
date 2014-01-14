@@ -20,7 +20,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.LongBox;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
@@ -29,8 +29,6 @@ public class DlgGelirlerveGiderler extends DialogBox {
 
 	public boolean _isInsert = true;
 	public long _id = -1;
-
-	private LongBox tctAciklama;
 	private DateBox dtpTarih;
 	private TextBox tctMiktar;
 	private ListBox cbxCek;
@@ -40,6 +38,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 	private ListBox cbxKategoriler;
 	private ListBox cbxİslemTipi;
 	private DateBox dtpVadeTarihi;
+	private TextArea tctAciklama;
 
 	public DlgGelirlerveGiderler(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -53,7 +52,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("632px", "512px");
+		absolutePanel.setSize("632px", "529px");
 
 		Label lblNewLabel = new Label(
 				"Gelir / Gider Giriş İşlemleri ( Ekleme / Düzenleme )");
@@ -101,14 +100,14 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 371, 402);
+		absolutePanel.add(btnKaydet, 371, 427);
 		btnKaydet.setSize("78px", "46px");
 
 		Button btnKapat = new Button("New button");
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 481, 402);
+		absolutePanel.add(btnKapat, 481, 427);
 		btnKapat.setSize("78px", "46px");
 
 		cbxİslemTipi = new ListBox();
@@ -180,7 +179,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		tctMiktar = new TextBox();
 		tctMiktar.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctMiktar, 155, 275);
-		tctMiktar.setSize("156px", "14px");
+		tctMiktar.setSize("155px", "14px");
 
 		dtpTarih = new DateBox();
 		dtpTarih.setStyleName("gwt-TextBox1");
@@ -188,12 +187,12 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		dtpTarih.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd HH:mm:ss")));
 		absolutePanel.add(dtpTarih, 155, 308);
-		dtpTarih.setSize("156px", "16px");
+		dtpTarih.setSize("155px", "16px");
 
-		tctAciklama = new LongBox();
-		tctAciklama.setStyleName("gwt-TextBox1");
+		tctAciklama = new TextArea();
+		tctAciklama.setStyleName("gwt-TextAreaResible");
 		absolutePanel.add(tctAciklama, 155, 349);
-		tctAciklama.setSize("188px", "48px");
+		tctAciklama.setSize("275px", "50px");
 
 		if (!isDesignTime()) {
 

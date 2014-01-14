@@ -35,6 +35,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.SimpleCheckBox;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -66,7 +67,6 @@ public class DlgOnKayit extends DialogBox {
 	private ListBox cbxAdresBilgileriIlce;
 	private ListBox cbxSemt;
 	private ListBox cbxMahalle;
-	private TextBox tctSokakveNo;
 	private TextBox tctAileSiraNo;
 	private TextBox tctSiraNo;
 	private TextBox tctVerildigiYer;
@@ -101,6 +101,7 @@ public class DlgOnKayit extends DialogBox {
 	public DialogBox _dlgonkayit;
 	private TextBox tctGorusmeIndirimSekli;
 	private SimpleCheckBox chxKesinKayitMi;
+	private TextArea tctSokakveNo;
 
 	public DlgOnKayit(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -387,10 +388,10 @@ public class DlgOnKayit extends DialogBox {
 		absolutePanel_5.add(cbxMahalle, 125, 186);
 		cbxMahalle.setSize("209px", "22px");
 
-		tctSokakveNo = new TextBox();
-		tctSokakveNo.setStyleName("gwt-TextBox1");
-		absolutePanel_5.add(tctSokakveNo, 125, 230);
-		tctSokakveNo.setSize("207px", "48px");
+		tctSokakveNo = new TextArea();
+		tctSokakveNo.setStyleName("gwt-TextAreaResible");
+		absolutePanel_5.add(tctSokakveNo, 125, 232);
+		tctSokakveNo.setSize("203px", "49px");
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");

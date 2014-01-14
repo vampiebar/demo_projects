@@ -50,22 +50,22 @@ public class DlgUniteTanimlari extends DialogBox {
 
 		Label lblEitimTr = new Label("Eğitim Türü");
 		lblEitimTr.setStyleName("gwt-Bold");
-		absolutePanel.add(lblEitimTr, 10, 46);
+		absolutePanel.add(lblEitimTr, 10, 44);
 		lblEitimTr.setSize("98px", "16px");
 
 		Label lblAlan = new Label("Alan");
 		lblAlan.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAlan, 10, 78);
+		absolutePanel.add(lblAlan, 10, 76);
 		lblAlan.setSize("98px", "16px");
 
 		Label lblDers = new Label("Ders");
 		lblDers.setStyleName("gwt-Bold");
-		absolutePanel.add(lblDers, 10, 108);
+		absolutePanel.add(lblDers, 10, 106);
 		lblDers.setSize("99px", "16px");
 
 		Label lblniteAd = new Label("Ünite Adı");
 		lblniteAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblniteAd, 10, 136);
+		absolutePanel.add(lblniteAd, 10, 134);
 		lblniteAd.setSize("98px", "16px");
 
 		tctUniteAdi = new TextBox();
