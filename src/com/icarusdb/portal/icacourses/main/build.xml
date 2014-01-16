@@ -45,6 +45,7 @@
 			<fileset file="C:\projects\GIT\icacourses\lib\validation-api-1.0.0.GA.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\gwt-traction-1.5.4.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\gwt-ckeditor-0.5.jar"/>
+			<fileset file="C:\projects\GIT\icacourses\lib\gwtupload-1.0.0.jar"/>
 		</copy>		
 	</target>
 
@@ -74,6 +75,7 @@
 				<pathelement location="C:/projects/GIT/icacourses/lib/validation-api-1.0.0.GA.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/gwt-traction-1.5.4.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/gwt-ckeditor-0.5.jar" />
+				<pathelement location="C:/projects/GIT/icacourses/lib/gwtupload-1.0.0.jar" />
 				<pathelement location="C:/projects/Tools/gwt-2.5.1/gwt-dev.jar" />
 			</classpath>
 			<arg value="-style"/>

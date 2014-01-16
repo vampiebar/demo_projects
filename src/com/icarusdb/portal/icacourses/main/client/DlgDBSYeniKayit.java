@@ -150,6 +150,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		tctSoyadi.setSize("232px", "14px");
 
 		tctTCKimlikNo = new TextBox();
+		tctTCKimlikNo.setMaxLength(11);
 		tctTCKimlikNo.setStyleName("gwt-TextBox1");
 		vtpanOgrenciBilgileri.add(tctTCKimlikNo, 157, 56);
 		tctTCKimlikNo.setSize("126px", "14px");
@@ -188,13 +189,15 @@ public class DlgDBSYeniKayit extends DialogBox {
 		dtpDogumTarihi
 				.addValueChangeHandler(new DtpDogumTarihiValueChangeHandler());
 		vtpanOgrenciBilgileri.add(dtpDogumTarihi, 157, 172);
-		dtpDogumTarihi.setSize("124px", "14px");
+		dtpDogumTarihi.setSize("126px", "14px");
 
 		Label lblEvCep = new Label("Ev / Cep Telefonu");
 		lblEvCep.setStyleName("gwt-Bold");
 		vtpanOgrenciBilgileri.add(lblEvCep, 10, 206);
 
 		tctEvTelefonu = new TextBox();
+		tctEvTelefonu.setMaxLength(10);
+
 		tctEvTelefonu.setStyleName("gwt-TextBox1");
 		vtpanOgrenciBilgileri.add(tctEvTelefonu, 157, 206);
 		tctEvTelefonu.setSize("126px", "14px");
@@ -238,13 +241,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOgrenciBilgileriSinif.addItem(" ");
 		cbxOgrenciBilgileriSinif.setStyleName("gwt-ComboBox1");
 		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriSinif, 157, 453);
-		cbxOgrenciBilgileriSinif.setSize("138px", "22px");
+		cbxOgrenciBilgileriSinif.setSize("153px", "22px");
 
 		cbxOgrenciBilgileriUlke = new ListBox();
 		cbxOgrenciBilgileriUlke.setStyleName("gwt-ComboBox1");
 		cbxOgrenciBilgileriUlke.addItem("Türkiye");
 		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriUlke, 157, 308);
-		cbxOgrenciBilgileriUlke.setSize("138px", "22px");
+		cbxOgrenciBilgileriUlke.setSize("153px", "22px");
 
 		cbxOgrenciBilgileriIl = new ListBox();
 		cbxOgrenciBilgileriIl
@@ -263,6 +266,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		cbxOgrenciBilgileriIlce.setSize("153px", "22px");
 
 		tctCepTelefonu = new TextBox();
+		tctCepTelefonu.setMaxLength(10);
 		tctCepTelefonu.setStyleName("gwt-TextBox1");
 		vtpanOgrenciBilgileri.add(tctCepTelefonu, 304, 206);
 		tctCepTelefonu.setSize("143px", "14px");
@@ -371,11 +375,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 		absolutePanel.add(lblNewLabel_12, 10, 547);
 
 		tctSeriNo = new TextBox();
+		tctSeriNo.setMaxLength(4);
 		tctSeriNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctSeriNo, 130, 18);
 		tctSeriNo.setSize("158px", "14px");
 
 		tctCuzdanNo = new TextBox();
+		tctCuzdanNo.setMaxLength(10);
 		tctCuzdanNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctCuzdanNo, 130, 55);
 		tctCuzdanNo.setSize("158px", "14px");
@@ -651,7 +657,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 					cbxAdresBilgileriIl);
 			putOKulDurumuToCbx(cbxOkulDurumu, cbxOgrenciBilgileriSinif);
 
-			putDataToGrid();
+			// putDataToGrid();
 
 			// final SingleSelectionModel<XMLVeliEkle> selectionModel = new
 			// SingleSelectionModel<XMLVeliEkle>();
@@ -809,54 +815,54 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 	}
 
-	private void putDataToGrid() {
-
-		String urlWithParameters = Util.urlBase + "getveliler";
-
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				urlWithParameters);
-
-		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
-		try {
-			Request request = builder.sendRequest(null, new RequestCallback() {
-				public void onError(Request request, Throwable exception) {
-
-				}
-
-				@Override
-				public void onResponseReceived(Request request,
-						Response response) {
-
-					// Window.alert("AAABBBCCC " + response.getText());
-
-					List<XMLVeliler> listXmlVeliler = XMLVeliler.XML
-							.readList(response.getText());
-
-					// Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
-
-					// Window.alert("veli_bilgileri_adi: "
-					// + listXmlVeliEkle.get(0).veli_bilgileri_adi);
-
-					// Set the total row count. This isn't strictly
-					// necessary, but it affects
-					// paging calculations, so its good habit to
-					// keep the row count up to date.
-					grdVeliler.setRowCount(1, true);
-
-					// Push the data into the widget.
-					grdVeliler.setRowData(0, listXmlVeliler);
-
-				}
-
-			});
-
-		} catch (RequestException e) {
-			// displayError("Couldn't retrieve JSON");
-
-			// Window.alert(e.getMessage() + "ERROR");
-		}
-
-	}
+	// private void putDataToGrid() {
+	//
+	// String urlWithParameters = Util.urlBase + "getveliler";
+	//
+	// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+	// urlWithParameters);
+	//
+	// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
+	// try {
+	// Request request = builder.sendRequest(null, new RequestCallback() {
+	// public void onError(Request request, Throwable exception) {
+	//
+	// }
+	//
+	// @Override
+	// public void onResponseReceived(Request request,
+	// Response response) {
+	//
+	// // Window.alert("AAABBBCCC " + response.getText());
+	//
+	// List<XMLVeliler> listXmlVeliler = XMLVeliler.XML
+	// .readList(response.getText());
+	//
+	// // Window.alert("SIZE DBSKAYIT: " + listXmlDBSKayit.);
+	//
+	// // Window.alert("veli_bilgileri_adi: "
+	// // + listXmlVeliEkle.get(0).veli_bilgileri_adi);
+	//
+	// // Set the total row count. This isn't strictly
+	// // necessary, but it affects
+	// // paging calculations, so its good habit to
+	// // keep the row count up to date.
+	// grdVeliler.setRowCount(1, true);
+	//
+	// // Push the data into the widget.
+	// grdVeliler.setRowData(0, listXmlVeliler);
+	//
+	// }
+	//
+	// });
+	//
+	// } catch (RequestException e) {
+	// // displayError("Couldn't retrieve JSON");
+	//
+	// // Window.alert(e.getMessage() + "ERROR");
+	// }
+	//
+	// }
 
 	// protected void showWithData(String id) {
 	//
@@ -1500,4 +1506,5 @@ public class DlgDBSYeniKayit extends DialogBox {
 					cbxSinavTarihi);
 		}
 	}
+
 }

@@ -372,6 +372,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		label_22.setSize("100px", "18px");
 
 		tctCuzdanNo = new TextBox();
+		tctCuzdanNo.setMaxLength(10);
 		tctCuzdanNo.setStyleName("gwt-TextBox1");
 		absolutePanel_2.add(tctCuzdanNo, 130, 47);
 		tctCuzdanNo.setSize("160px", "14px");
@@ -429,6 +430,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxOgrenciKimlikBilgileriIlce.setSize("162px", "22px");
 
 		tctSeriNo = new TextBox();
+		tctSeriNo.setMaxLength(4);
 		tctSeriNo.setStyleName("gwt-TextBox1");
 		absolutePanel_2.add(tctSeriNo, 130, 10);
 		tctSeriNo.setSize("160px", "14px");
@@ -446,13 +448,14 @@ public class KesinKayitBilgileri extends DialogBox {
 		tctKayitNo = new TextBox();
 		tctKayitNo.setStyleName("gwt-TextBox1");
 		absolutePanel_2.add(tctKayitNo, 130, 497);
-		tctKayitNo.setSize("158px", "14px");
+		tctKayitNo.setSize("160px", "14px");
 
 		dtpVerilisTarihi = new DateBox();
+		dtpVerilisTarihi.setStyleName("gwt-TextBox1");
 		dtpVerilisTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd")));
 		absolutePanel_2.add(dtpVerilisTarihi, 132, 528);
-		dtpVerilisTarihi.setSize("156px", "12px");
+		dtpVerilisTarihi.setSize("158px", "14px");
 
 		Label label_25 = new Label("Veriliş Tarihi");
 		label_25.setStyleName("gwt-Bold");
@@ -724,7 +727,8 @@ public class KesinKayitBilgileri extends DialogBox {
 				new CheckboxCell()) {
 			@Override
 			public Boolean getValue(XMLVeliler object) {
-				return (Boolean) null;
+				return object.odeme_sorumlusu.equalsIgnoreCase("t") ? true
+						: false;
 			}
 		};
 		grdVeliEkle.addColumn(column_4, "Ödeme Sorumlusu");
@@ -1178,6 +1182,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		lblTcKimlikNo.setSize("115px", "18px");
 
 		tctTCKimlikNo = new TextBox();
+		tctTCKimlikNo.setMaxLength(11);
 		tctTCKimlikNo.setReadOnly(true);
 		tctTCKimlikNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctTCKimlikNo, 131, 33);

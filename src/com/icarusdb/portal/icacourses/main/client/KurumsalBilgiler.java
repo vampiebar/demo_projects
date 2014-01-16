@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -43,6 +44,8 @@ public class KurumsalBilgiler extends Composite {
 	private TextBox tctFaks;
 	private TextBox tctEMail;
 	private TextArea tctAdres;
+	private FileUpload fileUpload;
+	private SimplePanel simplePanel;
 
 	public KurumsalBilgiler(boolean isInsert, long id) {
 
@@ -252,9 +255,13 @@ public class KurumsalBilgiler extends Composite {
 		absolutePanel.add(btnKaydet, 605, 541);
 		btnKaydet.setSize("78px", "48px");
 
-		FileUpload fileUpload = new FileUpload();
+		fileUpload = new FileUpload();
 		absolutePanel.add(fileUpload, 499, 241);
 		fileUpload.setSize("217px", "22px");
+
+		simplePanel = new SimplePanel();
+		absolutePanel.add(simplePanel, 521, 295);
+		simplePanel.setSize("82px", "46px");
 
 		if (!isDesignTime()) {
 			getKurumsalBilgiler(1);

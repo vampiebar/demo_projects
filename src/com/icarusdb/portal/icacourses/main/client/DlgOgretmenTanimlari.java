@@ -168,6 +168,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		verticalPanel_1.add(lblVerilmedi);
 
 		tctTCKimlikNo = new TextBox();
+		tctTCKimlikNo.setMaxLength(11);
 		verticalPanel_1.add(tctTCKimlikNo);
 		tctTCKimlikNo.setStyleName("gwt-TextBox1");
 		tctTCKimlikNo.setSize("143px", "14px");

@@ -40,6 +40,7 @@ public class DlgSinavTanimlama extends DialogBox {
 	private ListBox cbxDakika;
 
 	public DlgSinavTanimlama(boolean isInsert, long id) {
+		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -96,6 +97,7 @@ public class DlgSinavTanimlama extends DialogBox {
 		dtpTarih.setSize("152px", "14px");
 
 		tctSOnKitapcikNo = new TextBox();
+		tctSOnKitapcikNo.setMaxLength(1);
 		tctSOnKitapcikNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctSOnKitapcikNo, 165, 107);
 		tctSOnKitapcikNo.setSize("152px", "14px");

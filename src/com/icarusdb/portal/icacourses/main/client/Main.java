@@ -50,6 +50,7 @@ public class Main implements EntryPoint {
 	private Label btnMenuDBSKayit;
 	private Label btnMenuSinifTanimlari;
 	private Label btnEgitimTurutanimlama;
+	private Image ImgLogo;
 
 	public void onModuleLoad() {
 		RootPanel rootPanel = RootPanel.get();
@@ -65,9 +66,9 @@ public class Main implements EntryPoint {
 		horizontalPanel.add(horizontalPanel_2);
 		horizontalPanel_2.setSize("148px", "74px");
 
-		Image image_2 = new Image("images/1.gif");
-		horizontalPanel_2.add(image_2, 23, 10);
-		image_2.setSize("115px", "43px");
+		ImgLogo = new Image("images/1.gif");
+		horizontalPanel_2.add(ImgLogo, 23, 10);
+		ImgLogo.setSize("115px", "43px");
 
 		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
 		horizontalPanel_1

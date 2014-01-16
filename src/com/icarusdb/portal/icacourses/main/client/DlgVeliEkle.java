@@ -34,7 +34,6 @@ public class DlgVeliEkle extends DialogBox {
 	private TextBox tctOgrenciTCKimlikNo;
 
 	public DlgVeliEkle(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -117,6 +116,7 @@ public class DlgVeliEkle extends DialogBox {
 		lblAdress.setSize("95px", "16px");
 
 		tctVeliBilgileriTcKimlikNo = new TextBox();
+		tctVeliBilgileriTcKimlikNo.setMaxLength(11);
 		tctVeliBilgileriTcKimlikNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctVeliBilgileriTcKimlikNo, 181, 100);
 		tctVeliBilgileriTcKimlikNo.setSize("180px", "14px");
@@ -132,11 +132,13 @@ public class DlgVeliEkle extends DialogBox {
 		tctVeliBilgileriSoyadi.setSize("180px", "14px");
 
 		tctEvTel = new TextBox();
+		tctEvTel.setMaxLength(10);
 		tctEvTel.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctEvTel, 181, 220);
 		tctEvTel.setSize("180px", "14px");
 
 		tctIsTel = new TextBox();
+		tctIsTel.setMaxLength(10);
 		tctIsTel.setStylePrimaryName("gwt-TextBox1");
 		absolutePanel.add(tctIsTel, 181, 250);
 		tctIsTel.setSize("180px", "14px");
@@ -172,6 +174,7 @@ public class DlgVeliEkle extends DialogBox {
 		tctUnvani.setSize("180px", "14px");
 
 		tctCepTel = new TextBox();
+		tctCepTel.setMaxLength(10);
 		tctCepTel.setStylePrimaryName("gwt-TextBox1");
 		absolutePanel.add(tctCepTel, 181, 190);
 		tctCepTel.setSize("180px", "14px");
@@ -207,6 +210,7 @@ public class DlgVeliEkle extends DialogBox {
 		lblrenciTcKimlik.setSize("165px", "16px");
 
 		tctOgrenciTCKimlikNo = new TextBox();
+		tctOgrenciTCKimlikNo.setMaxLength(11);
 		tctOgrenciTCKimlikNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctOgrenciTCKimlikNo, 181, 10);
 		tctOgrenciTCKimlikNo.setSize("180px", "14px");
@@ -272,6 +276,10 @@ public class DlgVeliEkle extends DialogBox {
 		tctVeliBilgileriSoyadi.setText(xml.veli_bilgileri_soyadi);
 		tctVeliBilgileriTcKimlikNo.setText(xml.veli_bilgileri_tc_kimlik_no);
 		tctOgrenciTCKimlikNo.setText(xml.ogrenci_tc_kimlik_no);
+
+		chxOdemeSorumlusu
+				.setValue(xml.odeme_sorumlusu.equalsIgnoreCase("t") ? true
+						: false);
 
 	}
 }

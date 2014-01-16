@@ -11,7 +11,7 @@
 	
 	
 	
- 
+  <inherits name="gwtupload.GWTUpload"/>
 	
 	
 	
