@@ -36,20 +36,17 @@ public class KullaniciTanimlama extends Composite {
 		absolutePanel.setSize("780px", "590px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 459, 34);
 		btnYeniKayit.setSize("78px", "48px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
+		btnListeyiYenile.setText("");
+		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
 		absolutePanel.add(btnListeyiYenile, 556, 34);
 		btnListeyiYenile.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 647, 34);
-		btnExceleAktar.setSize("78px", "48px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 109);

@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -124,14 +126,23 @@ public class DBSSinavTanimla extends Composite {
 		grdDBSSinavTanimla.addColumn(textColumn_3, "Adres");
 		grdDBSSinavTanimla.setColumnWidth(textColumn_3, "57px");
 
-		Column<XMLDBSSinavTanimla, ?> column = new Column<XMLDBSSinavTanimla, String>(
+		Column<XMLDBSSinavTanimla, String> column_4 = new Column<XMLDBSSinavTanimla, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLDBSSinavTanimla object) {
-				return (String) null;
+				return "Düzenle";
 			}
 		};
-		grdDBSSinavTanimla.addColumn(column, "İşlemler");
+		grdDBSSinavTanimla.addColumn(column_4, "Düzenle");
+
+		Column<XMLDBSSinavTanimla, String> column_2 = new Column<XMLDBSSinavTanimla, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLDBSSinavTanimla object) {
+				return "Sil";
+			}
+		};
+		grdDBSSinavTanimla.addColumn(column_2, "Sil");
 
 		if (!isDesignTime()) {
 
@@ -156,7 +167,35 @@ public class DBSSinavTanimla extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+			column_4.setFieldUpdater(new FieldUpdater<XMLDBSSinavTanimla, String>() {
+
+				@Override
+				public void update(int index, XMLDBSSinavTanimla object,
+						String value) {
+
+					XMLDBSSinavTanimla selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_2.setFieldUpdater(new FieldUpdater<XMLDBSSinavTanimla, String>() {
+
+			@Override
+			public void update(int index, XMLDBSSinavTanimla object,
+					String value) {
+				Window.confirm("Kayit Silinecektir Emin Misiniz");
+
+			}
+		});
 
 	}
 

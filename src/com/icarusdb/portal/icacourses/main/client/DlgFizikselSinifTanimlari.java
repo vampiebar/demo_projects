@@ -58,6 +58,11 @@ public class DlgFizikselSinifTanimlari extends DialogBox {
 		btnKapat.setText("Kapat");
 		absolutePanel.add(btnKapat, 358, 83);
 		btnKapat.setSize("78px", "45px");
+
+		Button btnYeniKayit = new Button("New button");
+		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
+		absolutePanel.add(btnYeniKayit, 182, 83);
+		btnYeniKayit.setSize("78px", "45px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -85,5 +90,11 @@ public class DlgFizikselSinifTanimlari extends DialogBox {
 
 		tctFizikselSinifAdi.setText(xml.fiziksel_sinif_adi);
 
+	}
+
+	private class BtnYeniKayitClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			tctFizikselSinifAdi.setText("");
+		}
 	}
 }

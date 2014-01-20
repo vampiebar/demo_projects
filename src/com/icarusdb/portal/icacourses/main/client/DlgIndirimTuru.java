@@ -78,6 +78,7 @@ public class DlgIndirimTuru extends DialogBox {
 		btnKapat.setSize("78px", "45px");
 
 		Button btnYeniKAyit = new Button("New button");
+		btnYeniKAyit.addClickHandler(new BtnYeniKAyitClickHandler());
 		btnYeniKAyit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKAyit.setText("Yeni Kayıt");
 		absolutePanel.add(btnYeniKAyit, 282, 187);
@@ -120,5 +121,14 @@ public class DlgIndirimTuru extends DialogBox {
 		tctIndirimTuru.setText(xml.indirim_turu);
 		cbxIndirimSekli.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxIndirimSekli, xml.indirim_sekli));
+	}
+
+	private class BtnYeniKAyitClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			tctIndirimMiktari.setText("");
+			tctIndirimTuru.setText("");
+			cbxIndirimSekli.setSelectedIndex(0);
+
+		}
 	}
 }

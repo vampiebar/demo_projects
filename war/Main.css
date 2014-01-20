@@ -792,6 +792,12 @@ background: #D9D9D9 !important;
 .gwt-DialogBox .dialogContent {
 	background-color: ButtonFace;
 }
+.gwt-BilgileriniGetir {
+background-color: rgb(92, 184, 92);
+    cursor: pointer;
+    border-radius: 4px 4px 4px 4px;
+    	 color: rgb(255, 255, 255);
+}
 
 
 }

@@ -37,20 +37,17 @@ public class GelirGiderKategorileri extends Composite {
 		absolutePanel.setSize("807px", "750px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
+		btnListeyiYenile.setText("");
+		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
 		absolutePanel.add(btnListeyiYenile, 545, 46);
 		btnListeyiYenile.setSize("78px", "48px");
 
 		btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 46);
 		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 634, 46);
-		btnExceleAktar.setSize("78px", "48px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 0, 168);

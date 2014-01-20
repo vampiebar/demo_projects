@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -78,13 +80,23 @@ public class BankaEkle extends Composite {
 		};
 		grdBankaEkle.addColumn(textColumn, "Banka Adı");
 
-		column = new Column<XMLBankaEkle, String>(new ButtonCell()) {
+		Column<XMLBankaEkle, String> column_4 = new Column<XMLBankaEkle, String>(
+				new ButtonCell()) {
 			@Override
 			public String getValue(XMLBankaEkle object) {
-				return (String) null;
+				return "Düzenle";
 			}
 		};
-		grdBankaEkle.addColumn(column, "İşlemler");
+		grdBankaEkle.addColumn(column, "Düzenle");
+
+		Column<XMLBankaEkle, String> column_1 = new Column<XMLBankaEkle, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLBankaEkle object) {
+				return "Sil";
+			}
+		};
+		grdBankaEkle.addColumn(column_1, "Sil");
 
 		if (!isDesignTime()) {
 
@@ -108,7 +120,33 @@ public class BankaEkle extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column_4.setFieldUpdater(new FieldUpdater<XMLBankaEkle, String>() {
+
+				@Override
+				public void update(int index, XMLBankaEkle object, String value) {
+
+					XMLBankaEkle selected = selectionModel.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLBankaEkle, String>() {
+
+			@Override
+			public void update(int index, XMLBankaEkle object, String value) {
+				Window.confirm("Kayit Silinecektir Emin Misiniz");
+
+			}
+		});
 
 	}
 

@@ -35,21 +35,12 @@ public class HizmetTanimla extends Composite {
 		initWidget(absolutePanel);
 		absolutePanel.setSize("808px", "750px");
 
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 545, 29);
-		btnListeyiYenile.setSize("78px", "48px");
-
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 29);
 		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 634, 29);
-		btnExceleAktar.setSize("78px", "48px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 156);
@@ -74,6 +65,18 @@ public class HizmetTanimla extends Composite {
 			}
 		};
 		grdHizmetTanimla.addColumn(textColumn, "Hizmet Adı");
+
+		TextColumn<XMLHizmetTanimla> textColumn_3 = new TextColumn<XMLHizmetTanimla>() {
+			@Override
+			public String getValue(XMLHizmetTanimla object) {
+				if (object.guzergah != null) {
+					return object.guzergah.toString();
+
+				}
+				return "";
+			}
+		};
+		grdHizmetTanimla.addColumn(textColumn_3, "Güzergah");
 
 		Column<XMLHizmetTanimla, ?> textColumn_1 = new TextColumn<XMLHizmetTanimla>() {
 			@Override

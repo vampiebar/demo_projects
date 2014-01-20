@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -105,6 +106,24 @@ public class UniteTanimlari extends Composite {
 			}
 		};
 		grdUnitetanimlari.addColumn(column, "İşlemler");
+
+		ButtonCell previewButton = new ButtonCell();
+		Column<XMLUniteTanimlari, String> preview = new Column<XMLUniteTanimlari, String>(
+				previewButton) {
+			@Override
+			public String getValue(XMLUniteTanimlari object) {
+				return "Preview";
+			}
+		};
+
+		grdUnitetanimlari.addColumn(preview, "düzenle");
+		preview.setFieldUpdater(new FieldUpdater<XMLUniteTanimlari, String>() {
+			@Override
+			public void update(int index, XMLUniteTanimlari object, String value) {
+				// The user clicked on the button for the passed auction.
+
+			}
+		});
 
 		if (!isDesignTime()) {
 

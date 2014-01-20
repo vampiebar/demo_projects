@@ -12,6 +12,12 @@ public class XMLOnKayit {
 
 	public static final VubReader XML = GWT.create(VubReader.class);
 
+	@Path("kayit_silinsin_mi")
+	String kayit_silinsin_mi;
+
+	@Path("silme_sebebi")
+	String silme_sebebi;
+
 	@Path("sinif_bilgileri_kurs_indirim_fiyati")
 	String sinif_bilgileri_kurs_indirim_fiyati;
 

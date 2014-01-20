@@ -194,15 +194,15 @@ public class DlgVeliEkle extends DialogBox {
 		btnVeliyiKaydet.setStyleName("gwt-ButtonSave");
 		btnVeliyiKaydet.addClickHandler(new BtnVeliyiKaydetClickHandler());
 		btnVeliyiKaydet.setText("Veliyi Kaydet");
-		absolutePanel.add(btnVeliyiKaydet, 357, 522);
-		btnVeliyiKaydet.setSize("78px", "55px");
+		absolutePanel.add(btnVeliyiKaydet, 352, 522);
+		btnVeliyiKaydet.setSize("83px", "64px");
 
 		btnKapat = new Button("New button");
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		btnKapat.setText("Kapat");
+		btnKapat.setText("");
 		absolutePanel.add(btnKapat, 445, 522);
-		btnKapat.setSize("78px", "55px");
+		btnKapat.setSize("83px", "64px");
 
 		Label lblrenciTcKimlik = new Label("Öğrenci T.C Kimlik No");
 		lblrenciTcKimlik.setStyleName("gwt-Bold");

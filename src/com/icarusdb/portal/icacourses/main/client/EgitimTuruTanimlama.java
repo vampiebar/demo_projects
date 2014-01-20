@@ -75,20 +75,17 @@ public class EgitimTuruTanimlama extends Composite {
 		grdEgitimTuru.addColumn(column, "İşlemler");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		absolutePanel.add(btnYeniKayit, 342, 65);
 		btnYeniKayit.setSize("78px", "48px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
+		btnListeyiYenile.setText("");
+		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
 		absolutePanel.add(btnListeyiYenile, 437, 65);
 		btnListeyiYenile.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 526, 65);
-		btnExceleAktar.setSize("78px", "48px");
 
 		if (!isDesignTime()) {
 

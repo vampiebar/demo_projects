@@ -28,7 +28,6 @@ public class DlgDersTanimlari extends DialogBox {
 	private TextBox tctDersAdi;
 
 	public DlgDersTanimlari(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -92,6 +91,12 @@ public class DlgDersTanimlari extends DialogBox {
 		btnKapat.setText("Kapat");
 		absolutePanel.add(btnKapat, 196, 166);
 		btnKapat.setSize("78px", "45px");
+
+		Button btnNewButton = new Button("New button");
+		btnNewButton.setText("Yeni Kayıt");
+		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
+		absolutePanel.add(btnNewButton, 28, 166);
+		btnNewButton.setSize("78px", "45px");
 
 		if (!isDesignTime()) {
 
@@ -230,6 +235,16 @@ public class DlgDersTanimlari extends DialogBox {
 			putEgitimTuruAlanToCbx(
 					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
 					cbxAlan);
+		}
+	}
+
+	private class BtnNewButtonClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			cbxAlan.clear();
+			cbxEgitimTuru.clear();
+			tctDersAdi.setText("");
+			putEgitimTuruToCbx(cbxEgitimTuru);
+
 		}
 	}
 }

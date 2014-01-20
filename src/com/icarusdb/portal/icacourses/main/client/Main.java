@@ -81,9 +81,12 @@ public class Main implements EntryPoint {
 		horizontalPanel_1.setSize("635px", "29px");
 
 		Button lblNewLabel = new Button("Çıkış");
+		lblNewLabel.setText("");
+		lblNewLabel.setTitle("Çıkış");
 		lblNewLabel.addClickHandler(new LblNewLabelClickHandler());
 		lblNewLabel.setStyleName("gwt-ButonKapat");
 		horizontalPanel_1.add(lblNewLabel);
+		lblNewLabel.setSize("26px", "21px");
 
 		VerticalPanel verticalPanel = new VerticalPanel();
 		verticalPanel.setStyleName("gwt-DialogBackGround");
@@ -492,6 +495,13 @@ public class Main implements EntryPoint {
 		btnEgitimTurutanimlama.setStyleName("gwt-MenuButton");
 		vtpanSabitTanimlamalar.add(btnEgitimTurutanimlama);
 		btnEgitimTurutanimlama.setSize("100%", "25px");
+
+		Label lblServisTanimlama = new Label("Servis Tanimlama");
+		lblServisTanimlama
+				.addClickHandler(new LblServisTanimlamaClickHandler());
+		lblServisTanimlama.setStyleName("gwt-MenuButton");
+		vtpanSabitTanimlamalar.add(lblServisTanimlama);
+		lblServisTanimlama.setSize("100%", "25px");
 		vtpanSabitTanimlamalar.add(btnMenuSozlemeMaddeleri);
 		btnMenuSozlemeMaddeleri.setSize("100%", "25px");
 
@@ -1236,6 +1246,15 @@ public class Main implements EntryPoint {
 			smpanMain.clear();
 
 			smpanMain.add(new EgitimTuruTanimlama());
+			scrollToTop();
+		}
+	}
+
+	private class LblServisTanimlamaClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			smpanMain.clear();
+
+			smpanMain.add(new ServisTanimlama());
 			scrollToTop();
 		}
 	}

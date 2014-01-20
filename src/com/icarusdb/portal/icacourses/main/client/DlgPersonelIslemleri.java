@@ -107,6 +107,7 @@ public class DlgPersonelIslemleri extends DialogBox {
 		dtpIseGirisTarihi.setSize("151px", "14px");
 
 		Button btnYenikayit = new Button("New button");
+		btnYenikayit.addClickHandler(new BtnYenikayitClickHandler());
 		btnYenikayit.setStyleName("gwt-ButonYeniKayit");
 		btnYenikayit.setText("Yeni Kayıt");
 		absolutePanel.add(btnYenikayit, 304, 281);
@@ -174,6 +175,20 @@ public class DlgPersonelIslemleri extends DialogBox {
 
 		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 		dtpIseGirisTarihi.setValue(dtf.parse(xml.ise_giris_tarihi));
+
+	}
+
+	private class BtnYenikayitClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			tctAdiSoyadi.setText("");
+			tctGorevi.setText("");
+			tctTelefonu1.setText("");
+			tctTelefonu2.setText("");
+			tctUcreti.setText("");
+			dtpIseGirisTarihi.setValue(null);
+
+		}
 
 	}
 }

@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -90,26 +92,33 @@ public class GelirlerveGiderler extends Composite {
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLGelirlerveGiderler object) {
-				return (String) null;
+				return "Düzenle";
 			}
 		};
-		grdGelirlerveGiderler.addColumn(column_4, "İşlemler");
+
+		grdGelirlerveGiderler.addColumn(column_4, "Düzenle");
+
+		Column<XMLGelirlerveGiderler, String> column_2 = new Column<XMLGelirlerveGiderler, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLGelirlerveGiderler object) {
+				return "Sil";
+			}
+		};
+		grdGelirlerveGiderler.addColumn(column_2, "Sil");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
+		btnListeyiYenile.setText("");
+		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
 		absolutePanel.add(btnListeyiYenile, 580, 75);
 		btnListeyiYenile.setSize("78px", "48px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 485, 75);
 		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 669, 75);
-		btnExceleAktar.setSize("78px", "48px");
 
 		if (!isDesignTime()) {
 
@@ -134,7 +143,36 @@ public class GelirlerveGiderler extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column_4.setFieldUpdater(new FieldUpdater<XMLGelirlerveGiderler, String>() {
+
+				@Override
+				public void update(int index, XMLGelirlerveGiderler object,
+						String value) {
+
+					XMLGelirlerveGiderler selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_2.setFieldUpdater(new FieldUpdater<XMLGelirlerveGiderler, String>() {
+
+			@Override
+			public void update(int index, XMLGelirlerveGiderler object,
+					String value) {
+				Window.confirm("Kayit Silinecektir Emin Misiniz?");
+
+			}
+		});
 
 	}
 
@@ -193,7 +231,8 @@ public class GelirlerveGiderler extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getgelirlervegiderler";
+		String urlWithParameters = Util.urlBase
+				+ "getgelirlervegiderler?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

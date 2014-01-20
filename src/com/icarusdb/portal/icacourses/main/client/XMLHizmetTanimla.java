@@ -24,4 +24,7 @@ public class XMLHizmetTanimla {
 	@Path("birim_fiyati")
 	String birim_fiyati;
 
+	@Path("guzergah")
+	String guzergah;
+
 }

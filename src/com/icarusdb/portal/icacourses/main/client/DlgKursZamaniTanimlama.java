@@ -54,13 +54,14 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 		Button btnKapat = new Button("New button");
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		btnKapat.setText("Kapat");
+		btnKapat.setText("");
 		absolutePanel.add(btnKapat, 419, 109);
 		btnKapat.setSize("78px", "45px");
 
 		Button btnYeniKaydet = new Button("New button");
+		btnYeniKaydet.addClickHandler(new BtnYeniKaydetClickHandler());
 		btnYeniKaydet.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKaydet.setText("Yeni Kayıt");
+		btnYeniKaydet.setText("");
 		absolutePanel.add(btnYeniKaydet, 251, 109);
 		btnYeniKaydet.setSize("78px", "45px");
 	}
@@ -87,5 +88,12 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 	public void putDataFromXML(XMLKursZamaniTanimlama xml) {
 		tctKursZamani.setText(xml.kurs_zamani);
 
+	}
+
+	private class BtnYeniKaydetClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			tctKursZamani.setText("");
+
+		}
 	}
 }

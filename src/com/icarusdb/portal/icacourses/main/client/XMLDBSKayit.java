@@ -15,6 +15,12 @@ public class XMLDBSKayit {
 	@Path("id")
 	String id;
 
+	@Path("kayit_silinsin_mi")
+	String kayit_silinsin_mi;
+
+	@Path("silme_sebebi")
+	String silme_sebebi;
+
 	@Path("adi_soyadi_tckimlik_no")
 	String adi_soyadi_tckimlik_no;
 

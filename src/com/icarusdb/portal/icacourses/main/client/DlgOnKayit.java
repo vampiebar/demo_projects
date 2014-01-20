@@ -90,7 +90,6 @@ public class DlgOnKayit extends DialogBox {
 	private TextBox tctGorusmeReferans;
 	private ListBox cbxGorusmeIndirimturu;
 	private ListBox cbxGorusmeIndirimMiktari;
-	private TextBox tctAciklama;
 	private TextBox tctGorusmeYuzdesi;
 	private CellTable<XMLVeliler> grdVeliEkle;
 	private ListBox cbxOkul;
@@ -102,6 +101,9 @@ public class DlgOnKayit extends DialogBox {
 	private TextBox tctGorusmeIndirimSekli;
 	private SimpleCheckBox chxKesinKayitMi;
 	private TextArea tctSokakveNo;
+	private TextBox tctSilmeSebebi;
+	private SimpleCheckBox chxKayitSilinsinMi;
+	private TextArea tctAciklama;
 
 	public DlgOnKayit(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -115,7 +117,7 @@ public class DlgOnKayit extends DialogBox {
 
 		VerticalPanel verticalpanel = new VerticalPanel();
 		setWidget(verticalpanel);
-		verticalpanel.setSize("854px", "737px");
+		verticalpanel.setSize("854px", "779px");
 
 		tabOnKayit = new DecoratedTabPanel();
 		tabOnKayit.setAnimationEnabled(true);
@@ -125,7 +127,7 @@ public class DlgOnKayit extends DialogBox {
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
 		tabOnKayit.add(absolutePanel_2, "Öğrenci Bilgileri", false);
-		absolutePanel_2.setSize("840px", "667px");
+		absolutePanel_2.setSize("840px", "650px");
 
 		Label label_27 = new Label("Adı");
 		label_27.setStyleName("gwt-Bold");
@@ -319,6 +321,23 @@ public class DlgOnKayit extends DialogBox {
 		Label lblKesinKayit = new Label("Kesin Kayit");
 		lblKesinKayit.setStyleName("gwt-Bold");
 		absolutePanel_2.add(lblKesinKayit, 10, 86);
+
+		chxKayitSilinsinMi = new SimpleCheckBox();
+		absolutePanel_2.add(chxKayitSilinsinMi, 157, 468);
+
+		Label lblKayitSilinsinMi = new Label("Kayit Silinsin Mi?");
+		lblKayitSilinsinMi.setStyleName("gwt-Bold");
+		absolutePanel_2.add(lblKayitSilinsinMi, 14, 468);
+		lblKayitSilinsinMi.setSize("112px", "16px");
+
+		Label lblSilmeSebebi = new Label("Silme Sebebi");
+		lblSilmeSebebi.setStyleName("gwt-Bold");
+		absolutePanel_2.add(lblSilmeSebebi, 14, 512);
+
+		tctSilmeSebebi = new TextBox();
+		tctSilmeSebebi.setStyleName("gwt-TextBox1");
+		absolutePanel_2.add(tctSilmeSebebi, 157, 508);
+		tctSilmeSebebi.setSize("165px", "16px");
 
 		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
 		absolutePanel_5.setStyleName("gwt-DialogBackGround");
@@ -601,11 +620,6 @@ public class DlgOnKayit extends DialogBox {
 		absolutePanel_4.add(tctGorusmeYuzdesi, 163, 480);
 		tctGorusmeYuzdesi.setSize("150px", "14px");
 
-		tctAciklama = new TextBox();
-		tctAciklama.setStyleName("gwt-TextBox1");
-		absolutePanel_4.add(tctAciklama, 163, 520);
-		tctAciklama.setSize("264px", "58px");
-
 		tctGorusmeKursIndirimFiyati = new TextBox();
 		tctGorusmeKursIndirimFiyati.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(tctGorusmeKursIndirimFiyati, 163, 191);
@@ -615,6 +629,11 @@ public class DlgOnKayit extends DialogBox {
 		tctGorusmeIndirimSekli.setStyleName("gwt-TextBox1");
 		absolutePanel_4.add(tctGorusmeIndirimSekli, 240, 266);
 		tctGorusmeIndirimSekli.setSize("73px", "16px");
+
+		tctAciklama = new TextArea();
+		tctAciklama.setStyleName("gwt-TextAreaResible");
+		absolutePanel_4.add(tctAciklama, 163, 520);
+		tctAciklama.setSize("238px", "61px");
 
 		AbsolutePanel absolutePanel_8 = new AbsolutePanel();
 		absolutePanel_8.setStyleName("gwt-DialogBackGround");
@@ -870,13 +889,14 @@ public class DlgOnKayit extends DialogBox {
 		btnYeniOgrenci.setStyleName("gwt-ButtonSave");
 		btnYeniOgrenci.addClickHandler(new BtnYeniOgrenciClickHandler());
 		absolutePanel_1.add(btnYeniOgrenci, 10, 10);
-		btnYeniOgrenci.setSize("78px", "48px");
+		btnYeniOgrenci.setSize("80px", "63px");
 
 		Button btnKapat1 = new Button("Kapat");
+		btnKapat1.setText("");
 		btnKapat1.setStyleName("gwt-ButonKapat");
 		btnKapat1.addClickHandler(new BtnKapat1ClickHandler());
 		absolutePanel_1.add(btnKapat1, 103, 10);
-		btnKapat1.setSize("78px", "48px");
+		btnKapat1.setSize("80px", "63px");
 
 		if (!isDesignTime()) {
 			putIlToCbx(cbxOgrenciBilgileriIl, cbxAdresBilgileriIl,
@@ -1431,6 +1451,7 @@ public class DlgOnKayit extends DialogBox {
 		tctGorusmeYuzdesi.setText(xml.gorusme_yuzdesi);
 		tctMahalleKoy.setText(xml.mahalle_koy);
 		tctGorusmeIndirimSekli.setText(xml.gorusme_indirim_sekli);
+		tctSilmeSebebi.setText(xml.silme_sebebi);
 
 		cbxCinsiyet.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxCinsiyet,
 				xml.cinsiyet));
@@ -1485,6 +1506,10 @@ public class DlgOnKayit extends DialogBox {
 
 		chxKesinKayitMi
 				.setValue(xml.kesin_kayit_mi.equalsIgnoreCase("t") ? true
+						: false);
+
+		chxKayitSilinsinMi
+				.setValue(xml.kayit_silinsin_mi.equalsIgnoreCase("t") ? true
 						: false);
 
 		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
@@ -1626,6 +1651,11 @@ public class DlgOnKayit extends DialogBox {
 			URLValue = URLValue + "&kesin_kayit_mi="
 					+ chxKesinKayitMi.getValue().toString();
 
+			URLValue = URLValue + "&kayit_silinsin_mi="
+					+ chxKayitSilinsinMi.getValue().toString();
+
+			URLValue = URLValue + "&silme_sebebi=" + tctSilmeSebebi.getText();
+
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 
 			URLValue = URLValue + "&dogum_tarihi="
@@ -1673,6 +1703,7 @@ public class DlgOnKayit extends DialogBox {
 
 	private class BtnKapat1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
+
 			hide();
 		}
 	}
@@ -1757,7 +1788,47 @@ public class DlgOnKayit extends DialogBox {
 
 	private class BtnBilgileriniGetirClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			String urlWithParameters = Util.urlBase + "getonkayit"
+			// String urlWithParameters = Util.urlBase + "getonkayit"
+			// + "?tc_kimlik_no=" + tctTCKimlikNo.getText();
+			//
+			// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+			// urlWithParameters);
+			// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
+			//
+			// try {
+			// Request request = builder.sendRequest(null,
+			// new RequestCallback() {
+			// public void onError(Request request,
+			// Throwable exception) {
+			//
+			// }
+			//
+			// @Override
+			// public void onResponseReceived(Request request,
+			// Response response) {
+			//
+			// // Window.alert("AAABBBCCC " +
+			// // response.getText());
+			// List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
+			// .readList(response.getText());
+			//
+			// DlgOnKayit dlgTemp = new DlgOnKayit(_isInsert,
+			// -1);
+			// _dlgonkayit.hide();
+			// dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
+			// dlgTemp.center();
+			// dlgTemp.tabOnKayit.selectTab(0);
+			//
+			// }
+			//
+			// });
+			//
+			// } catch (RequestException e) {
+			// // displayError("Couldn't retrieve JSON");
+			//
+			// // Window.alert(e.getMessage() + "ERROR");
+			// }
+			String urlWithParameters = Util.urlBase + "getdbskayit"
 					+ "?tc_kimlik_no=" + tctTCKimlikNo.getText();
 
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
@@ -1778,15 +1849,28 @@ public class DlgOnKayit extends DialogBox {
 
 								// Window.alert("AAABBBCCC " +
 								// response.getText());
-								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
+								List<XMLDBSKayit> listXmlDBSKayit = XMLDBSKayit.XML
 										.readList(response.getText());
+
+								_dlgonkayit.hide();
 
 								DlgOnKayit dlgTemp = new DlgOnKayit(_isInsert,
 										-1);
-								_dlgonkayit.hide();
-								dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
-								dlgTemp.center();
 								dlgTemp.tabOnKayit.selectTab(0);
+
+								dlgTemp.putDataFromXML(listXmlDBSKayit.get(0));
+								dlgTemp.center();
+
+								dlgTemp.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+									@Override
+									public void onClose(
+											CloseEvent<PopupPanel> event) {
+
+										putDataToGrid();
+
+									}
+								});
 
 							}
 
@@ -1831,5 +1915,76 @@ public class DlgOnKayit extends DialogBox {
 					cbxGorusmeKursZamani.getItemText(cbxGorusmeKursZamani
 							.getSelectedIndex()), cbxGorusmeSinif);
 		}
+	}
+
+	protected void putDataFromXML(XMLDBSKayit xml) {
+		tctAdi.setText(xml.adi);
+		tctSoyadi.setText(xml.soyadi);
+		tctTCKimlikNo.setText(xml.tc_kimlik_no);
+		tctEvTelefonu.setText(xml.ev_telefonu);
+		tctCepTelefonu.setText(xml.cep_telefonu);
+		tctEmail.setText(xml.email);
+
+		tctSokakveNo.setText(xml.sokak_ve_no);
+		tctSeriNo.setText(xml.seri_no);
+		tctCuzdanNo.setText(xml.cuzdan_no);
+		tctMahalleKoy.setText(xml.mahalle_koy);
+		tctCiltNo.setText(xml.cilt_no);
+		tctAileSiraNo.setText(xml.aile_sira_no);
+		tctSiraNo.setText(xml.sira_no);
+		tctVerildigiYer.setText(xml.verildigi_yer);
+		tctVerilisNedeni.setText(xml.verilis_nedeni);
+		tctKayitNo.setText(xml.kayit_no);
+
+		tctMahalleKoy.setText(xml.mahalle_koy);
+
+		cbxCinsiyet.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxCinsiyet,
+				xml.cinsiyet));
+		cbxMedeniHali.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxMedeniHali, xml.medeni_hali));
+		cbxOgrenciBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxOgrenciBilgileriUlke, xml.ogrenci_bilgileri_ulke));
+		// cbxOgrenciBilgileriIl.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxOgrenciBilgileriIl, xml.ogrenci_bilgileri_il));
+		// cbxOgrenciBilgileriIlce.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxOgrenciBilgileriIlce, xml.ogrenci_bilgileri_ilce));
+		// cbxOkul.setSelectedIndex(Util
+		// .GetLBXSelectedTextIndex(cbxOkul, xml.okul));
+		cbxOgrenciBilgileriSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxOgrenciBilgileriSinif, xml.sinif));
+
+		// cbxGorusmeSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxGorusmeSinif, xml.gorusme_sinif));
+
+		cbxAdresBilgileriUlke.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxAdresBilgileriUlke, xml.adres_bilgileri_ulke));
+		cbxOgrenciKimlikBilgileriUlke.setSelectedIndex(Util
+				.GetLBXSelectedTextIndex(cbxOgrenciBilgileriUlke,
+						xml.ogrenci_kimlik_bilgileri_ulke));
+
+		cbxOgrenciKimlikBilgileriIl.setItemText(0,
+				xml.ogrenci_kimlik_bilgileri_il);
+		cbxOgrenciBilgileriIl.setItemText(0, xml.ogrenci_bilgileri_il);
+		cbxOgrenciBilgileriIlce.setItemText(0, xml.ogrenci_bilgileri_ilce);
+		cbxOkul.setItemText(0, xml.okul);
+
+		cbxAdresBilgileriIl.setItemText(0, xml.adres_bilgileri_il);
+		cbxAdresBilgileriIlce.setItemText(0, xml.adres_bilgileri_ilce);
+		cbxSemt.setItemText(0, xml.semt);
+		cbxMahalle.setItemText(0, xml.mahalle);
+		cbxOgrenciKimlikBilgileriIl.setItemText(0,
+				xml.ogrenci_kimlik_bilgileri_il);
+		cbxOgrenciKimlikBilgileriIlce.setItemText(0,
+				xml.ogrenci_kimlik_bilgileri_ilce);
+
+		// chxKesinKayitMi
+		// .setValue(xml.kesin_kayit_mi.equalsIgnoreCase("t") ? true
+		// : false);
+
+		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
+		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
+
 	}
 }

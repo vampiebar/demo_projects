@@ -86,20 +86,17 @@ public class GelirGiderTanimlari extends Composite {
 		grdGelirgiderTanimnlari.addColumn(column, "İşlemler");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
+		btnListeyiYenile.setText("");
+		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
 		absolutePanel.add(btnListeyiYenile, 597, 50);
 		btnListeyiYenile.setSize("78px", "48px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 502, 50);
 		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 686, 50);
-		btnExceleAktar.setSize("78px", "48px");
 
 		if (!isDesignTime()) {
 

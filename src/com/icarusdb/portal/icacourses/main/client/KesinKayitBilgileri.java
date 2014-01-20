@@ -116,6 +116,7 @@ public class KesinKayitBilgileri extends DialogBox {
 	private Button btnKimligiKaydet;
 	private TextArea tctAciklama;
 	private TextArea tctTaksitAciklama;
+	private Column<XMLVeliler, String> column_1;
 
 	public KesinKayitBilgileri(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -295,17 +296,18 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxOkul.setSize("258px", "22px");
 
 		Button btnNewButton_4 = new Button("Kapat");
+		btnNewButton_4.setText("");
 		btnNewButton_4.addClickHandler(new BtnNewButton_4ClickHandler());
 		btnNewButton_4.setStyleName("gwt-ButonKapat");
 		absolutePanel_1.add(btnNewButton_4, 482, 377);
-		btnNewButton_4.setSize("78px", "49px");
+		btnNewButton_4.setSize("80px", "60px");
 
 		btnOgrenciyiKaydet = new Button("Öğrenciyi Kaydet");
 		btnOgrenciyiKaydet
 				.addClickHandler(new BtnOgrenciyiKaydetClickHandler());
 		btnOgrenciyiKaydet.setStyleName("gwt-ButtonSave");
 		absolutePanel_1.add(btnOgrenciyiKaydet, 391, 376);
-		btnOgrenciyiKaydet.setSize("78px", "49px");
+		btnOgrenciyiKaydet.setSize("80px", "60px");
 
 		absolutePanel_2 = new AbsolutePanel();
 		tabKesinKayitBilgileri.add(absolutePanel_2, "Kimlik Bilgileri", false);
@@ -469,6 +471,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		btnKimligiKaydet.setSize("78px", "49px");
 
 		Button btnKapat2 = new Button("Kapat");
+		btnKapat2.setText("");
 		btnKapat2.setStyleName("gwt-ButonKapat");
 		absolutePanel_2.add(btnKapat2, 433, 497);
 		btnKapat2.setSize("78px", "49px");
@@ -558,6 +561,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		btnAdresiKaydet.setSize("78px", "49px");
 
 		Button button_1 = new Button("Kapat");
+		button_1.setText("");
 		button_1.setStyleName("gwt-ButonKapat");
 		tabAdresi.add(button_1, 439, 331);
 		button_1.setSize("78px", "49px");
@@ -677,6 +681,8 @@ public class KesinKayitBilgileri extends DialogBox {
 		btnSinifiKaydet.setSize("78px", "49px");
 
 		Button btnKapat4 = new Button("Kapat");
+		btnKapat4.addClickHandler(new BtnKapat4ClickHandler());
+		btnKapat4.setText("");
 		btnKapat4.setStyleName("gwt-ButonKapat");
 		absolutePanel_4.add(btnKapat4, 454, 332);
 		btnKapat4.setSize("78px", "49px");
@@ -758,8 +764,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		};
 		grdVeliEkle.addColumn(column, "Düzenle");
 
-		Column<XMLVeliler, String> column_1 = new Column<XMLVeliler, String>(
-				new ButtonCell()) {
+		column_1 = new Column<XMLVeliler, String>(new ButtonCell()) {
 			@Override
 			public String getValue(XMLVeliler object) {
 				return (String) null;
@@ -768,7 +773,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		grdVeliEkle.addColumn(column_1, "Sil");
 
 		Button btnVeliEkle = new Button("Veli Ekle");
-		btnVeliEkle.setStyleName("gwt-ButonYeniKayit");
+		btnVeliEkle.setStyleName("gwt-BilgileriniGetir");
 		btnVeliEkle.addClickHandler(new BtnVeliEkleClickHandler());
 		absolutePanel_6.add(btnVeliEkle, 10, 21);
 
@@ -2804,5 +2809,11 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		}
 
+	}
+
+	private class BtnKapat4ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

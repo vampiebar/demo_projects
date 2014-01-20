@@ -49,24 +49,18 @@ public class KesinKayit extends Composite {
 		tctAranacakAnahtarKelime.setSize("200px", "17px");
 
 		btnAra = new Button("ARA");
-		btnAra.setStyleName("gwt-ButonKapat");
+		btnAra.setText("");
+		btnAra.setStyleName("gwt-ButtonAra");
 		btnAra.addClickHandler(new BtnAraClickHandler());
-		absolutePanel.add(btnAra, 536, 30);
-		btnAra.setSize("78px", "48px");
+		absolutePanel.add(btnAra, 550, 30);
+		btnAra.setSize("90px", "65px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 620, 30);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnKaydet = new Button("Excel'e Aktar");
-		btnKaydet.setVisible(false);
-		btnKaydet.setStyleName("gwt-ButtonSave");
-
-		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 788, 30);
-		btnKaydet.setSize("78px", "48px");
+		absolutePanel.add(btnYeniKayit, 650, 30);
+		btnYeniKayit.setSize("90px", "65px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 151);
@@ -165,11 +159,6 @@ public class KesinKayit extends Composite {
 			}
 		};
 		grdKesinKayit.addColumn(textColumn_5, "İşlemler");
-
-		Button button = new Button("Excel'e Aktar");
-		button.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(button, 704, 30);
-		button.setSize("78px", "48px");
 
 		// private class BtnKaydetClickHandler implements ClickHandler {
 		// public void onClick(ClickEvent event) {

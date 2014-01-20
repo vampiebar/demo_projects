@@ -36,20 +36,17 @@ public class FizikselSinifTanimlari extends Composite {
 		absolutePanel.setSize("807px", "750px");
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
+		btnListeyiYenile.setText("");
 		btnListeyiYenile.setStyleName("gwt-ButtonSave");
 		absolutePanel.add(btnListeyiYenile, 545, 38);
 		btnListeyiYenile.setSize("78px", "48px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 38);
 		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 634, 38);
-		btnExceleAktar.setSize("78px", "48px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 165);

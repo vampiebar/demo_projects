@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -95,10 +97,19 @@ public class DersTanimlari extends Composite {
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLDersTanimlari object) {
-				return (String) null;
+				return "Düzenle";
 			}
 		};
-		grdDersTanimlari.addColumn(column, "İşlemler");
+		grdDersTanimlari.addColumn(column, "Düzenle");
+
+		Column<XMLDersTanimlari, String> column_1 = new Column<XMLDersTanimlari, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLDersTanimlari object) {
+				return "Sil";
+			}
+		};
+		grdDersTanimlari.addColumn(column_1, "Sil");
 
 		if (!isDesignTime()) {
 
@@ -123,7 +134,34 @@ public class DersTanimlari extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+			column.setFieldUpdater(new FieldUpdater<XMLDersTanimlari, String>() {
+
+				@Override
+				public void update(int index, XMLDersTanimlari object,
+						String value) {
+
+					XMLDersTanimlari selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLDersTanimlari, String>() {
+
+			@Override
+			public void update(int index, XMLDersTanimlari object, String value) {
+				Window.confirm("Kayit Silinecektir Emin Misiniz");
+
+			}
+		});
 
 	}
 

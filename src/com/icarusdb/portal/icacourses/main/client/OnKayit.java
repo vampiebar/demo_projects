@@ -2,6 +2,7 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.List;
 
+import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -92,30 +93,21 @@ public class OnKayit extends Composite {
 		};
 		grdOnKayit.addColumn(column, "Kesin Kayit Mı?");
 
-		TextColumn<XMLOnKayit> textColumn_2 = new TextColumn<XMLOnKayit>() {
+		Column<XMLOnKayit, String> column_1 = new Column<XMLOnKayit, String>(
+				new ButtonCell()) {
 			@Override
 			public String getValue(XMLOnKayit object) {
-				return "İşlemler";
+				return "Düzenle";
 			}
 		};
+		grdOnKayit.addColumn(column_1, "İşlemler");
 
-		grdOnKayit.addColumn(textColumn_2, "İşlemler");
-
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 600, 51);
-		btnListeyiYenile.setSize("78px", "48px");
-
-		Button btnYeniKayit = new Button("Yeni Kayıt");
+		Button btnYeniKayit = new Button("Yeni Kayit");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 697, 51);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 788, 51);
-		btnExceleAktar.setSize("78px", "48px");
+		absolutePanel.add(btnYeniKayit, 607, 51);
+		btnYeniKayit.setSize("90px", "65px");
 
 		Label lblAd = new Label("Aranacak Anahtar Kelime");
 		lblAd.setStyleName("gwt-Bold");
@@ -128,11 +120,12 @@ public class OnKayit extends Composite {
 		absolutePanel.add(tctAranacakAnahtarKelime, 191, 30);
 		tctAranacakAnahtarKelime.setSize("200px", "17px");
 
-		Button btnAra = new Button("ARA");
+		Button btnAra = new Button("Ara");
+		btnAra.setText("");
 		btnAra.addClickHandler(new BtnAraClickHandler());
-		btnAra.setStyleName("gwt-ButonKapat");
+		btnAra.setStyleName("gwt-ButtonAra");
 		absolutePanel.add(btnAra, 506, 51);
-		btnAra.setSize("78px", "48px");
+		btnAra.setSize("90px", "65px");
 
 		if (!isDesignTime()) {
 
@@ -217,7 +210,8 @@ public class OnKayit extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getonkayit";
+		String urlWithParameters = Util.urlBase
+				+ "getonkayit?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -258,7 +252,6 @@ public class OnKayit extends Composite {
 
 			// Window.alert(e.getMessage() + "ERROR");
 		}
-
 	}
 
 	// Implement the following method exactly as-is

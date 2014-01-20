@@ -45,6 +45,7 @@ public class DlgReferanslar extends DialogBox {
 		tctReferansAdiSoyadi.setSize("149px", "14px");
 
 		Button btnYeniKayit = new Button("New button");
+		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.setText("Yeni Kayıt");
 		absolutePanel.add(btnYeniKayit, 266, 117);
@@ -90,5 +91,11 @@ public class DlgReferanslar extends DialogBox {
 
 		tctReferansAdiSoyadi.setText(xml.referans_adi_soyadi);
 
+	}
+
+	private class BtnYeniKayitClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			tctReferansAdiSoyadi.setText("");
+		}
 	}
 }

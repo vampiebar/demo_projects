@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.SimpleCheckBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -39,9 +40,10 @@ public class DlgGelirlerveGiderler extends DialogBox {
 	private ListBox cbxİslemTipi;
 	private DateBox dtpVadeTarihi;
 	private TextArea tctAciklama;
+	private SimpleCheckBox chxKayitSilinsinMi;
+	private Label lblKayitSilinsinMi;
 
 	public DlgGelirlerveGiderler(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -101,14 +103,14 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
 		absolutePanel.add(btnKaydet, 371, 427);
-		btnKaydet.setSize("78px", "46px");
+		btnKaydet.setSize("83px", "56px");
 
 		Button btnKapat = new Button("New button");
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		btnKapat.setText("Kapat");
+		btnKapat.setText("");
 		absolutePanel.add(btnKapat, 481, 427);
-		btnKapat.setSize("78px", "46px");
+		btnKapat.setSize("83px", "56px");
 
 		cbxİslemTipi = new ListBox();
 		cbxİslemTipi.addItem("Gelir");
@@ -193,6 +195,14 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		tctAciklama.setStyleName("gwt-TextAreaResible");
 		absolutePanel.add(tctAciklama, 155, 349);
 		tctAciklama.setSize("275px", "50px");
+
+		chxKayitSilinsinMi = new SimpleCheckBox();
+		chxKayitSilinsinMi.setVisible(false);
+		absolutePanel.add(chxKayitSilinsinMi, 166, 476);
+
+		lblKayitSilinsinMi = new Label("Kayit Silinsin Mi ?");
+		lblKayitSilinsinMi.setVisible(false);
+		absolutePanel.add(lblKayitSilinsinMi, 10, 476);
 
 		if (!isDesignTime()) {
 
@@ -300,7 +310,8 @@ public class DlgGelirlerveGiderler extends DialogBox {
 
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			String URLValue = Util.urlBase + "putgelirlervegiderler?";
+			String URLValue = Util.urlBase
+					+ "putgelirlervegiderler?kayit_silinsin_mi=FALSE";
 
 			URLValue = URLValue + "id=" + _id;
 

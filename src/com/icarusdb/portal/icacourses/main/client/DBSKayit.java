@@ -2,6 +2,7 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.List;
 
+import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -14,6 +15,7 @@ import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -117,40 +119,37 @@ public class DBSKayit extends Composite {
 		};
 		grdDBSKayit.addColumn(textColumn_4, "Oluşturma Tarih Saat");
 
-		TextColumn<XMLDBSKayit> textColumn_3 = new TextColumn<XMLDBSKayit>() {
+		Column<XMLDBSKayit, String> column = new Column<XMLDBSKayit, String>(
+				new ButtonCell()) {
 			@Override
 			public String getValue(XMLDBSKayit object) {
-				return "İşlemler";
+				return "Düzenle";
 			}
 		};
-		grdDBSKayit.addColumn(textColumn_3, "İşlemler");
+		grdDBSKayit.addColumn(column, "İşlemler");
 
-		Button btnYeniKayit = new Button("Yeni Kayıt");
+		Button btnYeniKayit = new Button("");
+		btnYeniKayit.setTitle("qwewewq");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 611, 30);
-		btnYeniKayit.setSize("78px", "48px");
+		absolutePanel.add(btnYeniKayit, 607, 30);
+		btnYeniKayit.setSize("90px", "65px");
 
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 695, 30);
-		btnExceleAktar.setSize("78px", "48px");
-
-		Button btnKaydet = new Button("Yeni Kayıt");
-		btnKaydet.setVisible(false);
-		btnKaydet.setStyleName("gwt-ButtonSave");
-		// btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 779, 30);
-		btnKaydet.setSize("78px", "48px");
-
-		Button btnAra = new Button("Yeni Kayıt");
+		Button btnAra = new Button("");
+		btnAra.setTitle("Ara");
 		btnAra.addClickHandler(new BtnAraClickHandler());
 
-		btnAra.setStyleName("gwt-ButonKapat");
-		btnAra.setText("Ara");
-		absolutePanel.add(btnAra, 527, 30);
-		btnAra.setSize("78px", "48px");
+		btnAra.setStyleName("gwt-ButtonAra");
+		btnAra.setText("");
+		absolutePanel.add(btnAra, 513, 30);
+		btnAra.setSize("90px", "65px");
+
+		Button btnNewButton = new Button("New button");
+		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
+		btnNewButton.setText("Silinmiş Kayıtları Göster");
+		absolutePanel.add(btnNewButton, 191, 57);
+		btnNewButton.setSize("202px", "21px");
 
 		if (!isDesignTime()) {
 
@@ -167,13 +166,16 @@ public class DBSKayit extends Composite {
 					if (selected != null) {
 						// DO YOUR STUFF
 
-						// Window.alert("selected id: " + selected.id);
+						// Window.alert("selected id: " +
+						// selected.tc_kimlik_no);
 						showWithData(selected.id);
+						// showWithData(selected.tc_kimlik_no);
 
 					}
 
 				}
 			}, DoubleClickEvent.getType());
+
 		}
 
 	}
@@ -230,7 +232,8 @@ public class DBSKayit extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getdbskayit";
+		String urlWithParameters = Util.urlBase
+				+ "getdbskayit?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -361,6 +364,61 @@ public class DBSKayit extends Composite {
 			String urlWithParameters = Util.urlBase + "getdbskayit"
 					+ "?adi_soyadi_tc_kimlik_no="
 					+ tctAranacakAnahtarKelime.getText();
+
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					urlWithParameters);
+
+			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+			try {
+				Request request = builder.sendRequest(null,
+						new RequestCallback() {
+							public void onError(Request request,
+									Throwable exception) {
+
+							}
+
+							@Override
+							public void onResponseReceived(Request request,
+									Response response) {
+
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
+
+								List<XMLDBSKayit> listXmlDbsKayit = XMLDBSKayit.XML
+										.readList(response.getText());
+
+								// listXmlOnKayit.add(xmlOnKayit);
+
+								// lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
+
+								// Set the total row count. This isn't strictly
+								// necessary, but it affects
+								// paging calculations, so its good habit to
+								// keep the row count up to date.
+								grdDBSKayit.setRowCount(1, true);
+
+								// Push the data into the widget.
+								grdDBSKayit.setRowData(0, listXmlDbsKayit);
+
+							}
+
+						});
+
+			} catch (RequestException e) {
+				// displayError("Couldn't retrieve JSON");
+
+				// Window.alert(e.getMessage() + "ERROR");
+			}
+
+		}
+	}
+
+	private class BtnNewButtonClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			String urlWithParameters = Util.urlBase + "getdbskayit"
+					+ "?kayit_silinsin_mi=TRUE";
 
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 					urlWithParameters);
