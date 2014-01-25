@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -29,6 +30,7 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 	private AbsolutePanel absolutepanel;
 	public DecoratedTabPanel tabKesinKayitIslemleri;
 	public DialogBox _dlgKesinKayitIslemleri;
+	private Button btnOgrenciBilgileriniKaydet;
 
 	public DlgKesinKayitIslemleri(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -93,19 +95,30 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 		absolutepanel.add(btnBilgileriniGetir, 305, 35);
 		btnBilgileriniGetir.setSize("109px", "22px");
 
-		Button btnOgrenciBilgileriniKaydet = new Button("New button");
+		btnOgrenciBilgileriniKaydet = new Button("New button");
+		btnOgrenciBilgileriniKaydet.setVisible(false);
 		btnOgrenciBilgileriniKaydet.setStyleName("gwt-ButtonSave");
 		btnOgrenciBilgileriniKaydet
 				.addClickHandler(new BtnOgrenciBilgileriniKaydetClickHandler());
 		btnOgrenciBilgileriniKaydet.setText("Öğrenci Bilgilerini Kaydet");
-		absolutepanel.add(btnOgrenciBilgileriniKaydet, 127, 165);
+		absolutepanel.add(btnOgrenciBilgileriniKaydet, 107, 292);
 		btnOgrenciBilgileriniKaydet.setSize("181px", "22px");
 
 		Button btnKapat = new Button("Kapat");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutepanel.add(btnKapat, 127, 193);
+		absolutepanel.add(btnKapat, 107, 320);
 		btnKapat.setSize("181px", "24px");
+
+		Image image = new Image("kaydet-1.png");
+		absolutepanel.add(image, 157, 172);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutepanel.add(image_1, 245, 172);
+		image_1.setSize("72px", "66px");
 	}
 
 	private class BtnOgrenciBilgileriniKaydetClickHandler implements
@@ -184,4 +197,9 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 		}
 	}
 
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
 }

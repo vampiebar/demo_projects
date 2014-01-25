@@ -14,6 +14,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -26,6 +27,7 @@ public class DlgOdevTakipUnite extends DialogBox {
 
 	public boolean _isInsert = true;
 	public long _id = -1;
+	private Button btnKaydet;
 
 	public DlgOdevTakipUnite(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -93,17 +95,29 @@ public class DlgOdevTakipUnite extends DialogBox {
 		absolutePanel.add(tctUnite, 118, 170);
 		tctUnite.setSize("161px", "16px");
 
-		Button btnKaydet = new Button("Kaydet");
+		btnKaydet = new Button("Kaydet");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		absolutePanel.add(btnKaydet, 324, 218);
+		absolutePanel.add(btnKaydet, 216, 322);
 		btnKaydet.setSize("78px", "43px");
 
 		Button btnKapat = new Button("Kapat");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel.add(btnKapat, 416, 218);
+		absolutePanel.add(btnKapat, 308, 322);
 		btnKapat.setSize("78px", "43px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 227, 222);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 315, 222);
+		image_1.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
 
@@ -297,6 +311,18 @@ public class DlgOdevTakipUnite extends DialogBox {
 			putDersAdiToCbx(
 					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
 					cbxAlan.getItemText(cbxAlan.getSelectedIndex()), cbxDers);
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
 		}
 	}
 }

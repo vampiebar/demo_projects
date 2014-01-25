@@ -69,10 +69,20 @@ public class EgitimTuruTanimlama extends Composite {
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLEgitimTuruTanimlama object) {
-				return (String) null;
+				return "Düzenle";
 			}
 		};
-		grdEgitimTuru.addColumn(column, "İşlemler");
+		grdEgitimTuru.addColumn(column, "Düzenle");
+
+		Column<XMLEgitimTuruTanimlama, String> column_1 = new Column<XMLEgitimTuruTanimlama, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLEgitimTuruTanimlama object) {
+				return "Sil";
+			}
+		};
+		grdEgitimTuru.addColumn(column_1, "Sil");
+		grdEgitimTuru.setColumnWidth(column_1, "135px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setText("");

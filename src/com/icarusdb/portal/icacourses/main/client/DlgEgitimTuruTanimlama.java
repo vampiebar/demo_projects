@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -15,6 +16,7 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 
 	private TextBox tctEgitimTuruAdi;
 	private TextBox tctAlanAdi;
+	private Button btnKaydet;
 
 	public DlgEgitimTuruTanimlama(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -46,10 +48,11 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 		tctEgitimTuruAdi.setSize("143px", "18px");
 
 		Button btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
 		btnKapat.setStyleName("gwt-ButonKapat");
-		absolutePanel.add(btnKapat, 345, 138);
+		absolutePanel.add(btnKapat, 313, 232);
 		btnKapat.setSize("78px", "45px");
 
 		Label lblAlanAd = new Label("Alan Adı");
@@ -62,11 +65,23 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 		absolutePanel.add(tctAlanAdi, 128, 90);
 		tctAlanAdi.setSize("143px", "18px");
 
-		Button btnKaydet = new Button("Kaydet");
+		btnKaydet = new Button("Kaydet");
+		btnKaydet.setVisible(false);
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnKaydet, 248, 138);
+		absolutePanel.add(btnKaydet, 216, 232);
 		btnKaydet.setSize("78px", "45px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 205, 129);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		image_1.setAltText("aedasda");
+		absolutePanel.add(image_1, 293, 129);
+		image_1.setSize("72px", "66px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -94,6 +109,18 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
 		}
 	}
 }

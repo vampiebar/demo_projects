@@ -18,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -36,21 +37,12 @@ public class UniteTanimlari extends Composite {
 		initWidget(absolutePanel);
 		absolutePanel.setSize("800px", "445px");
 
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 545, 73);
-		btnListeyiYenile.setSize("78px", "48px");
-
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 73);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 634, 73);
-		btnExceleAktar.setSize("78px", "48px");
+		btnYeniKayit.setSize("85px", "56px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 200);
@@ -98,32 +90,23 @@ public class UniteTanimlari extends Composite {
 		};
 		grdUnitetanimlari.addColumn(textColumn_3, "Ünite Adı");
 
-		Column<XMLUniteTanimlari, ?> column = new Column<XMLUniteTanimlari, String>(
+		Column<XMLUniteTanimlari, String> column = new Column<XMLUniteTanimlari, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLUniteTanimlari object) {
 				return (String) null;
 			}
 		};
-		grdUnitetanimlari.addColumn(column, "İşlemler");
+		grdUnitetanimlari.addColumn(column, "Düzenle");
 
-		ButtonCell previewButton = new ButtonCell();
-		Column<XMLUniteTanimlari, String> preview = new Column<XMLUniteTanimlari, String>(
-				previewButton) {
+		Column<XMLUniteTanimlari, String> column_1 = new Column<XMLUniteTanimlari, String>(
+				new ButtonCell()) {
 			@Override
 			public String getValue(XMLUniteTanimlari object) {
-				return "Preview";
+				return (String) null;
 			}
 		};
-
-		grdUnitetanimlari.addColumn(preview, "düzenle");
-		preview.setFieldUpdater(new FieldUpdater<XMLUniteTanimlari, String>() {
-			@Override
-			public void update(int index, XMLUniteTanimlari object, String value) {
-				// The user clicked on the button for the passed auction.
-
-			}
-		});
+		grdUnitetanimlari.addColumn(column_1, "Sil");
 
 		if (!isDesignTime()) {
 
@@ -148,7 +131,35 @@ public class UniteTanimlari extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column.setFieldUpdater(new FieldUpdater<XMLUniteTanimlari, String>() {
+
+				@Override
+				public void update(int index, XMLUniteTanimlari object,
+						String value) {
+
+					XMLUniteTanimlari selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLUniteTanimlari, String>() {
+
+			@Override
+			public void update(int index, XMLUniteTanimlari object, String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

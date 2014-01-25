@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -16,6 +17,8 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 	private Button btnKaydet;
 	private Button btnKapat;
 	private TextBox tctKategoriAdi;
+	private Image image;
+	private Image image_1;
 
 	public DlgGelirGiderKategorileri(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -47,16 +50,29 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 		tctKategoriAdi.setSize("143px", "14px");
 
 		btnKaydet = new Button("Kaydet");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		absolutePanel.add(btnKaydet, 110, 116);
+		absolutePanel.add(btnKaydet, 110, 181);
 		btnKaydet.setSize("78px", "43px");
 
 		btnKapat = new Button("Kapat");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel.add(btnKapat, 212, 116);
+		absolutePanel.add(btnKapat, 212, 181);
 		btnKapat.setSize("78px", "43px");
+
+		image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 120, 87);
+		image.setSize("72px", "66px");
+
+		image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		image_1.setAltText("aedasda");
+		absolutePanel.add(image_1, 202, 87);
+		image_1.setSize("72px", "66px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -82,5 +98,17 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 
 		tctKategoriAdi.setText(xml.kategori_adi);
 
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

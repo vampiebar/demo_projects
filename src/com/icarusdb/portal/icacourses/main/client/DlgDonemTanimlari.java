@@ -10,6 +10,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -25,6 +26,8 @@ public class DlgDonemTanimlari extends DialogBox {
 	private DateBox dtpBaslangicTarihi;
 	private DateBox dtpBitisTarihi;
 	private ListBox cbxVarsayilanDonem;
+	private Image imgKaydet;
+	private Button btnKaydet;
 
 	public DlgDonemTanimlari(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -90,19 +93,32 @@ public class DlgDonemTanimlari extends DialogBox {
 		absolutePanel.add(cbxVarsayilanDonem, 186, 160);
 		cbxVarsayilanDonem.setSize("147px", "22px");
 
-		Button btnKaydet = new Button("New button");
+		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 327, 204);
+		absolutePanel.add(btnKaydet, 312, 287);
 		btnKaydet.setSize("78px", "45px");
 
 		Button btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 411, 204);
+		absolutePanel.add(btnKapat, 396, 287);
 		btnKapat.setSize("78px", "45px");
+
+		imgKaydet = new Image("kaydet-1.png");
+		imgKaydet.addClickHandler(new ImgKaydetClickHandler());
+		absolutePanel.add(imgKaydet, 312, 197);
+		imgKaydet.setSize("72px", "66px");
+
+		Image imgKapat = new Image("kapat-1.png");
+		imgKapat.addClickHandler(new ImgKapatClickHandler());
+		imgKapat.setAltText("aedasda");
+		absolutePanel.add(imgKapat, 396, 197);
+		imgKapat.setSize("72px", "66px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -162,5 +178,17 @@ public class DlgDonemTanimlari extends DialogBox {
 		dtpBaslangicTarihi.setValue(dtf.parse(xml.baslangic_tarihi));
 		dtpBitisTarihi.setValue(dtf.parse(xml.bitis_tarihi));
 
+	}
+
+	private class ImgKaydetClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class ImgKapatClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

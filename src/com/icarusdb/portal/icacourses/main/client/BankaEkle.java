@@ -39,21 +39,12 @@ public class BankaEkle extends Composite {
 		initWidget(absolutePanel);
 		absolutePanel.setSize("795px", "750px");
 
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 545, 70);
-		btnListeyiYenile.setSize("78px", "48px");
-
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 70);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 634, 70);
-		btnExceleAktar.setSize("78px", "48px");
+		btnYeniKayit.setSize("81px", "58px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 197);
@@ -80,7 +71,7 @@ public class BankaEkle extends Composite {
 		};
 		grdBankaEkle.addColumn(textColumn, "Banka Adı");
 
-		Column<XMLBankaEkle, String> column_4 = new Column<XMLBankaEkle, String>(
+		Column<XMLBankaEkle, String> column = new Column<XMLBankaEkle, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLBankaEkle object) {
@@ -88,6 +79,7 @@ public class BankaEkle extends Composite {
 			}
 		};
 		grdBankaEkle.addColumn(column, "Düzenle");
+		grdBankaEkle.setColumnWidth(column, "142px");
 
 		Column<XMLBankaEkle, String> column_1 = new Column<XMLBankaEkle, String>(
 				new ButtonCell()) {
@@ -97,6 +89,7 @@ public class BankaEkle extends Composite {
 			}
 		};
 		grdBankaEkle.addColumn(column_1, "Sil");
+		grdBankaEkle.setColumnWidth(column_1, "166px");
 
 		if (!isDesignTime()) {
 
@@ -121,7 +114,7 @@ public class BankaEkle extends Composite {
 				}
 			}, DoubleClickEvent.getType());
 
-			column_4.setFieldUpdater(new FieldUpdater<XMLBankaEkle, String>() {
+			column.setFieldUpdater(new FieldUpdater<XMLBankaEkle, String>() {
 
 				@Override
 				public void update(int index, XMLBankaEkle object, String value) {

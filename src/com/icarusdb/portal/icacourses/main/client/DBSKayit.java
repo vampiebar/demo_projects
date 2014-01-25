@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -129,7 +130,7 @@ public class DBSKayit extends Composite {
 		grdDBSKayit.addColumn(column, "İşlemler");
 
 		Button btnYeniKayit = new Button("");
-		btnYeniKayit.setTitle("qwewewq");
+
 		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
@@ -176,8 +177,23 @@ public class DBSKayit extends Composite {
 				}
 			}, DoubleClickEvent.getType());
 
-		}
+			column.setFieldUpdater(new FieldUpdater<XMLDBSKayit, String>() {
 
+				@Override
+				public void update(int index, XMLDBSKayit object, String value) {
+
+					XMLDBSKayit selected = selectionModel.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
+		}
 	}
 
 	protected void showWithData(final String id) {

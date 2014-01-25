@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -35,18 +37,12 @@ public class IndirimTuru extends Composite {
 		initWidget(absolutePanel);
 		absolutePanel.setSize("809px", "750px");
 
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setText("");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
-		absolutePanel.add(btnListeyiYenile, 545, 27);
-		btnListeyiYenile.setSize("78px", "48px");
-
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 27);
-		btnYeniKayit.setSize("78px", "48px");
+		btnYeniKayit.setSize("84px", "64px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 154);
@@ -73,14 +69,25 @@ public class IndirimTuru extends Composite {
 		};
 		grdIndirimTuru.addColumn(textColumn, "İndirim Türü");
 
-		Column<XMLIndirimTuru, ?> column_1 = new Column<XMLIndirimTuru, String>(
+		Column<XMLIndirimTuru, String> column = new Column<XMLIndirimTuru, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLIndirimTuru object) {
 				return (String) null;
 			}
 		};
-		grdIndirimTuru.addColumn(column_1, "İşlemler");
+		grdIndirimTuru.addColumn(column, "Düzenle");
+		grdIndirimTuru.setColumnWidth(column, "129px");
+
+		Column<XMLIndirimTuru, String> column_1 = new Column<XMLIndirimTuru, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLIndirimTuru object) {
+				return (String) null;
+			}
+		};
+		grdIndirimTuru.addColumn(column_1, "Sil");
+		grdIndirimTuru.setColumnWidth(column_1, "118px");
 
 		if (!isDesignTime()) {
 
@@ -105,7 +112,35 @@ public class IndirimTuru extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column.setFieldUpdater(new FieldUpdater<XMLIndirimTuru, String>() {
+
+				@Override
+				public void update(int index, XMLIndirimTuru object,
+						String value) {
+
+					XMLIndirimTuru selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLIndirimTuru, String>() {
+
+			@Override
+			public void update(int index, XMLIndirimTuru object, String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

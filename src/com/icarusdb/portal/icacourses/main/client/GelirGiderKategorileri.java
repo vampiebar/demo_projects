@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -35,12 +37,6 @@ public class GelirGiderKategorileri extends Composite {
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
 		absolutePanel.setSize("807px", "750px");
-
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setText("");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
-		absolutePanel.add(btnListeyiYenile, 545, 46);
-		btnListeyiYenile.setSize("78px", "48px");
 
 		btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setText("");
@@ -74,14 +70,25 @@ public class GelirGiderKategorileri extends Composite {
 		};
 		grdGelirGiderKategorileri.addColumn(textColumn, "Kategori Adı");
 
-		Column<XMLGelirGiderKategorileri, ?> column = new Column<XMLGelirGiderKategorileri, String>(
+		Column<XMLGelirGiderKategorileri, String> column = new Column<XMLGelirGiderKategorileri, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLGelirGiderKategorileri object) {
 				return (String) null;
 			}
 		};
-		grdGelirGiderKategorileri.addColumn(column, "İşlemler");
+		grdGelirGiderKategorileri.addColumn(column, "Düzenle");
+		grdGelirGiderKategorileri.setColumnWidth(column, "170px");
+
+		Column<XMLGelirGiderKategorileri, String> column_1 = new Column<XMLGelirGiderKategorileri, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLGelirGiderKategorileri object) {
+				return (String) null;
+			}
+		};
+		grdGelirGiderKategorileri.addColumn(column_1, "Sil");
+		grdGelirGiderKategorileri.setColumnWidth(column_1, "164px");
 
 		if (!isDesignTime()) {
 
@@ -107,7 +114,36 @@ public class GelirGiderKategorileri extends Composite {
 				}
 			}, DoubleClickEvent.getType());
 
+			column.setFieldUpdater(new FieldUpdater<XMLGelirGiderKategorileri, String>() {
+
+				@Override
+				public void update(int index, XMLGelirGiderKategorileri object,
+						String value) {
+
+					XMLGelirGiderKategorileri selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLGelirGiderKategorileri, String>() {
+
+			@Override
+			public void update(int index, XMLGelirGiderKategorileri object,
+					String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
+
 	}
 
 	protected void showWithData(final String id) {

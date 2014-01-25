@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -37,6 +38,7 @@ public class DlgOdevOlustur extends DialogBox {
 
 	public boolean _isInsert = true;
 	public long _id = -1;
+	private Button btnKaydet;
 
 	public DlgOdevOlustur(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -128,11 +130,22 @@ public class DlgOdevOlustur extends DialogBox {
 		absolutePanel_1.add(tctSoruSayisi, 111, 195);
 		tctSoruSayisi.setSize("149px", "16px");
 
-		Button btnKaydet = new Button("Kaydet");
+		btnKaydet = new Button("Kaydet");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		absolutePanel_1.add(btnKaydet, 150, 238);
+		absolutePanel_1.add(btnKaydet, 147, 308);
 		btnKaydet.setSize("78px", "43px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel_1.add(image, 119, 235);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel_1.add(image_1, 207, 235);
+		image_1.setSize("72px", "66px");
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
@@ -504,6 +517,18 @@ public class DlgOdevOlustur extends DialogBox {
 					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
 					cbxAlan.getItemText(cbxAlan.getSelectedIndex()),
 					cbxDers.getItemText(cbxDers.getSelectedIndex()), cbxUnite);
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
 		}
 	}
 }

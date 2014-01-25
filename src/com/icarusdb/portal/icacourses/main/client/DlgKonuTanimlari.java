@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -29,6 +30,7 @@ public class DlgKonuTanimlari extends DialogBox {
 	private ListBox cbxDers;
 	private ListBox cbxUniteAdi;
 	private TextBox tctKonu;
+	private Button btnKaydet;
 
 	public DlgKonuTanimlari(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -108,19 +110,31 @@ public class DlgKonuTanimlari extends DialogBox {
 		absolutePanel.add(tctKonu, 122, 171);
 		tctKonu.setSize("149px", "16px");
 
-		Button btnKaydet = new Button("New button");
+		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 268, 232);
+		absolutePanel.add(btnKaydet, 122, 318);
 		btnKaydet.setSize("78px", "45px");
 
 		Button btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 352, 232);
+		absolutePanel.add(btnKapat, 206, 318);
 		btnKapat.setSize("78px", "45px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 226, 221);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 314, 221);
+		image_1.setSize("72px", "66px");
 		if (!isDesignTime()) {
 
 			putEgitimTuruToCbx(cbxEgitimTuru);
@@ -372,6 +386,18 @@ public class DlgKonuTanimlari extends DialogBox {
 					cbxDers.getItemText(cbxDers.getSelectedIndex()),
 					cbxUniteAdi);
 
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
 		}
 	}
 }

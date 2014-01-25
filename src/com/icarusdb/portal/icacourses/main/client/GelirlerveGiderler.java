@@ -169,7 +169,7 @@ public class GelirlerveGiderler extends Composite {
 			@Override
 			public void update(int index, XMLGelirlerveGiderler object,
 					String value) {
-				Window.confirm("Kayit Silinecektir Emin Misiniz?");
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
 
 			}
 		});

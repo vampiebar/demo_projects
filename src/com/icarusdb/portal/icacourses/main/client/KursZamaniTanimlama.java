@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -34,12 +36,6 @@ public class KursZamaniTanimlama extends Composite {
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
 		absolutePanel.setSize("806px", "417px");
-
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setText("");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
-		absolutePanel.add(btnListeyiYenile, 545, 36);
-		btnListeyiYenile.setSize("78px", "48px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setText("");
@@ -73,14 +69,25 @@ public class KursZamaniTanimlama extends Composite {
 		grdKursZamaniTanimlama.addColumn(textColumn_3, "Kurs Zamanı");
 		grdKursZamaniTanimlama.setColumnWidth(textColumn_3, "335px");
 
-		Column<XMLKursZamaniTanimlama, ?> column = new Column<XMLKursZamaniTanimlama, String>(
+		Column<XMLKursZamaniTanimlama, String> column = new Column<XMLKursZamaniTanimlama, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLKursZamaniTanimlama object) {
 				return (String) null;
 			}
 		};
-		grdKursZamaniTanimlama.addColumn(column, "İşlemler");
+		grdKursZamaniTanimlama.addColumn(column, "Düzenle");
+		grdKursZamaniTanimlama.setColumnWidth(column, "148px");
+
+		Column<XMLKursZamaniTanimlama, String> column_1 = new Column<XMLKursZamaniTanimlama, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLKursZamaniTanimlama object) {
+				return (String) null;
+			}
+		};
+		grdKursZamaniTanimlama.addColumn(column_1, "Sil");
+		grdKursZamaniTanimlama.setColumnWidth(column_1, "127px");
 
 		if (!isDesignTime()) {
 
@@ -105,7 +112,35 @@ public class KursZamaniTanimlama extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+			column.setFieldUpdater(new FieldUpdater<XMLKursZamaniTanimlama, String>() {
+
+				@Override
+				public void update(int index, XMLKursZamaniTanimlama object,
+						String value) {
+
+					XMLKursZamaniTanimlama selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLKursZamaniTanimlama, String>() {
+
+			@Override
+			public void update(int index, XMLKursZamaniTanimlama object,
+					String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

@@ -296,18 +296,30 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxOkul.setSize("258px", "22px");
 
 		Button btnNewButton_4 = new Button("Kapat");
+		btnNewButton_4.setVisible(false);
 		btnNewButton_4.setText("");
 		btnNewButton_4.addClickHandler(new BtnNewButton_4ClickHandler());
 		btnNewButton_4.setStyleName("gwt-ButonKapat");
-		absolutePanel_1.add(btnNewButton_4, 482, 377);
+		absolutePanel_1.add(btnNewButton_4, 510, 275);
 		btnNewButton_4.setSize("80px", "60px");
 
 		btnOgrenciyiKaydet = new Button("Öğrenciyi Kaydet");
+		btnOgrenciyiKaydet.setVisible(false);
 		btnOgrenciyiKaydet
 				.addClickHandler(new BtnOgrenciyiKaydetClickHandler());
 		btnOgrenciyiKaydet.setStyleName("gwt-ButtonSave");
-		absolutePanel_1.add(btnOgrenciyiKaydet, 391, 376);
+		absolutePanel_1.add(btnOgrenciyiKaydet, 419, 274);
 		btnOgrenciyiKaydet.setSize("80px", "60px");
+
+		Image image_1 = new Image("kaydet-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel_1.add(image_1, 406, 375);
+		image_1.setSize("72px", "66px");
+
+		Image image_2 = new Image("kapat-1.png");
+		image_2.addClickHandler(new Image_2ClickHandler());
+		absolutePanel_1.add(image_2, 494, 375);
+		image_2.setSize("72px", "66px");
 
 		absolutePanel_2 = new AbsolutePanel();
 		tabKesinKayitBilgileri.add(absolutePanel_2, "Kimlik Bilgileri", false);
@@ -465,16 +477,28 @@ public class KesinKayitBilgileri extends DialogBox {
 		label_25.setSize("100px", "18px");
 
 		btnKimligiKaydet = new Button("Kimliği Kaydet");
+		btnKimligiKaydet.setVisible(false);
 		btnKimligiKaydet.addClickHandler(new BtnKimligiKaydetClickHandler());
 		btnKimligiKaydet.setStyleName("gwt-ButtonSave");
-		absolutePanel_2.add(btnKimligiKaydet, 342, 496);
+		absolutePanel_2.add(btnKimligiKaydet, 327, 413);
 		btnKimligiKaydet.setSize("78px", "49px");
 
 		Button btnKapat2 = new Button("Kapat");
+		btnKapat2.setVisible(false);
 		btnKapat2.setText("");
 		btnKapat2.setStyleName("gwt-ButonKapat");
-		absolutePanel_2.add(btnKapat2, 433, 497);
+		absolutePanel_2.add(btnKapat2, 418, 414);
 		btnKapat2.setSize("78px", "49px");
+
+		Image image_3 = new Image("kaydet-1.png");
+		image_3.addClickHandler(new Image_3ClickHandler());
+		absolutePanel_2.add(image_3, 336, 484);
+		image_3.setSize("72px", "66px");
+
+		Image image_4 = new Image("kapat-1.png");
+		image_4.addClickHandler(new Image_4ClickHandler());
+		absolutePanel_2.add(image_4, 424, 484);
+		image_4.setSize("72px", "66px");
 
 		tabAdresi = new AbsolutePanel();
 		tabAdresi.setStyleName("gwt-DialogBackGround");
@@ -555,16 +579,28 @@ public class KesinKayitBilgileri extends DialogBox {
 		tctSokakveNo.setSize("187px", "50px");
 
 		Button btnAdresiKaydet = new Button("Adresi Kaydet");
+		btnAdresiKaydet.setVisible(false);
 		btnAdresiKaydet.addClickHandler(new BtnAdresiKaydetClickHandler());
 		btnAdresiKaydet.setStyleName("gwt-ButtonSave");
-		tabAdresi.add(btnAdresiKaydet, 348, 330);
+		tabAdresi.add(btnAdresiKaydet, 343, 200);
 		btnAdresiKaydet.setSize("78px", "49px");
 
 		Button button_1 = new Button("Kapat");
+		button_1.setVisible(false);
 		button_1.setText("");
 		button_1.setStyleName("gwt-ButonKapat");
-		tabAdresi.add(button_1, 439, 331);
+		tabAdresi.add(button_1, 434, 201);
 		button_1.setSize("78px", "49px");
+
+		Image image_5 = new Image("kaydet-1.png");
+		image_5.addClickHandler(new Image_5ClickHandler());
+		tabAdresi.add(image_5, 339, 300);
+		image_5.setSize("72px", "66px");
+
+		Image image_6 = new Image("kapat-1.png");
+		image_6.addClickHandler(new Image_6ClickHandler());
+		tabAdresi.add(image_6, 427, 300);
+		image_6.setSize("72px", "66px");
 
 		AbsolutePanel absolutePanel_4 = new AbsolutePanel();
 		tabKesinKayitBilgileri.add(absolutePanel_4, "Sınıfı", false);
@@ -675,17 +711,29 @@ public class KesinKayitBilgileri extends DialogBox {
 		tctIndirimMiktari.setSize("85px", "17px");
 
 		Button btnSinifiKaydet = new Button("Sınıfı Kaydet");
+		btnSinifiKaydet.setVisible(false);
 		btnSinifiKaydet.addClickHandler(new BtnSinifiKaydetClickHandler());
 		btnSinifiKaydet.setStyleName("gwt-ButtonSave");
-		absolutePanel_4.add(btnSinifiKaydet, 363, 331);
+		absolutePanel_4.add(btnSinifiKaydet, 363, 223);
 		btnSinifiKaydet.setSize("78px", "49px");
 
 		Button btnKapat4 = new Button("Kapat");
+		btnKapat4.setVisible(false);
 		btnKapat4.addClickHandler(new BtnKapat4ClickHandler());
 		btnKapat4.setText("");
 		btnKapat4.setStyleName("gwt-ButonKapat");
-		absolutePanel_4.add(btnKapat4, 454, 332);
+		absolutePanel_4.add(btnKapat4, 454, 224);
 		btnKapat4.setSize("78px", "49px");
+
+		Image image_7 = new Image("kaydet-1.png");
+		image_7.addClickHandler(new Image_7ClickHandler());
+		absolutePanel_4.add(image_7, 331, 341);
+		image_7.setSize("72px", "66px");
+
+		Image image_8 = new Image("kapat-1.png");
+		image_8.addClickHandler(new Image_8ClickHandler());
+		absolutePanel_4.add(image_8, 419, 341);
+		image_8.setSize("72px", "66px");
 
 		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
 		tabKesinKayitBilgileri.add(absolutePanel_5, "DBS Sonuç", false);
@@ -776,6 +824,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		btnVeliEkle.setStyleName("gwt-BilgileriniGetir");
 		btnVeliEkle.addClickHandler(new BtnVeliEkleClickHandler());
 		absolutePanel_6.add(btnVeliEkle, 10, 21);
+		btnVeliEkle.setSize("76px", "32px");
 
 		AbsolutePanel absolutePanel_7 = new AbsolutePanel();
 		tabKesinKayitBilgileri.add(absolutePanel_7, "Hizmetleri", false);
@@ -890,16 +939,28 @@ public class KesinKayitBilgileri extends DialogBox {
 		grdHizmetler.addColumn(column_2, "İşlemler");
 
 		btnNewButton = new Button("Hizmeti Ekle");
+		btnNewButton.setVisible(false);
 		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
 		btnNewButton.setStyleName("gwt-ButtonSave");
-		absolutePanel_7.add(btnNewButton, 492, 117);
+		absolutePanel_7.add(btnNewButton, 478, 23);
 		btnNewButton.setSize("78px", "50px");
 
 		btnNewButton_1 = new Button("Kapat");
+		btnNewButton_1.setVisible(false);
 		btnNewButton_1.setStyleName("gwt-ButonKapat");
 		btnNewButton_1.addClickHandler(new BtnNewButton_1ClickHandler());
-		absolutePanel_7.add(btnNewButton_1, 590, 117);
+		absolutePanel_7.add(btnNewButton_1, 576, 23);
 		btnNewButton_1.setSize("78px", "50px");
+
+		Image image_9 = new Image("kaydet-1.png");
+		image_9.addClickHandler(new Image_9ClickHandler());
+		absolutePanel_7.add(image_9, 478, 98);
+		image_9.setSize("72px", "66px");
+
+		Image image_10 = new Image("kapat-1.png");
+		image_10.addClickHandler(new Image_10ClickHandler());
+		absolutePanel_7.add(image_10, 566, 98);
+		image_10.setSize("72px", "66px");
 
 		AbsolutePanel absolutePanel_8 = new AbsolutePanel();
 		tabKesinKayitBilgileri.add(absolutePanel_8, "Ödemeleri", false);
@@ -2812,6 +2873,66 @@ public class KesinKayitBilgileri extends DialogBox {
 	}
 
 	private class BtnKapat4ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnOgrenciyiKaydet.click();
+		}
+	}
+
+	private class Image_2ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
+
+	private class Image_3ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKimligiKaydet.click();
+		}
+	}
+
+	private class Image_4ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
+
+	private class Image_5ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKimligiKaydet.click();
+		}
+	}
+
+	private class Image_6ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
+
+	private class Image_7ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKimligiKaydet.click();
+		}
+	}
+
+	private class Image_8ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
+
+	private class Image_9ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnNewButton.click();
+		}
+	}
+
+	private class Image_10ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
 		}

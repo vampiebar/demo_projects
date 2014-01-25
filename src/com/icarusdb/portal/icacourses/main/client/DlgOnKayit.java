@@ -31,6 +31,7 @@ import com.google.gwt.user.client.ui.CaptionPanel;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
@@ -104,6 +105,7 @@ public class DlgOnKayit extends DialogBox {
 	private TextBox tctSilmeSebebi;
 	private SimpleCheckBox chxKayitSilinsinMi;
 	private TextArea tctAciklama;
+	private Button btnYeniOgrenci;
 
 	public DlgOnKayit(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -885,18 +887,30 @@ public class DlgOnKayit extends DialogBox {
 		verticalpanel.add(absolutePanel_1);
 		absolutePanel_1.setSize("191px", "67px");
 
-		Button btnYeniOgrenci = new Button("Yeni Öğrenci");
+		btnYeniOgrenci = new Button("Yeni Öğrenci");
+		btnYeniOgrenci.setVisible(false);
 		btnYeniOgrenci.setStyleName("gwt-ButtonSave");
 		btnYeniOgrenci.addClickHandler(new BtnYeniOgrenciClickHandler());
-		absolutePanel_1.add(btnYeniOgrenci, 10, 10);
+		absolutePanel_1.add(btnYeniOgrenci, 220, 10);
 		btnYeniOgrenci.setSize("80px", "63px");
 
 		Button btnKapat1 = new Button("Kapat");
+		btnKapat1.setVisible(false);
 		btnKapat1.setText("");
 		btnKapat1.setStyleName("gwt-ButonKapat");
 		btnKapat1.addClickHandler(new BtnKapat1ClickHandler());
-		absolutePanel_1.add(btnKapat1, 103, 10);
+		absolutePanel_1.add(btnKapat1, 313, 10);
 		btnKapat1.setSize("80px", "63px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel_1.add(image, 10, 0);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel_1.add(image_1, 98, 0);
+		image_1.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
 			putIlToCbx(cbxOgrenciBilgileriIl, cbxAdresBilgileriIl,
@@ -1986,5 +2000,17 @@ public class DlgOnKayit extends DialogBox {
 		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
 		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
 
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnYeniOgrenci.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

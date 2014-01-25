@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -138,18 +139,31 @@ public class DlgServisTanimlama extends DialogBox {
 		tctAracSahibininTelefonu.setSize("168px", "15px");
 
 		Button btnNewButton = new Button("New button");
+		btnNewButton.setVisible(false);
 		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
 		btnNewButton.setStyleName("gwt-ButonKapat");
 		btnNewButton.setText("");
-		absolutePanel.add(btnNewButton, 198, 341);
+		absolutePanel.add(btnNewButton, 397, 273);
 		btnNewButton.setSize("78px", "46px");
 
 		btnKaydet = new Button("New button");
+		btnKaydet.setStyleName("gwt-ButtonSave");
+		btnKaydet.setVisible(false);
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 106, 338);
+		absolutePanel.add(btnKaydet, 305, 270);
 		btnKaydet.setSize("78px", "49px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 217, 336);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 305, 336);
+		image_1.setSize("72px", "66px");
 	}
 
 	private class BtnNewButtonClickHandler implements ClickHandler {
@@ -198,4 +212,15 @@ public class DlgServisTanimlama extends DialogBox {
 
 	}
 
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
 }

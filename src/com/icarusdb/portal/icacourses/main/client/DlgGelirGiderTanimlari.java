@@ -12,6 +12,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -24,6 +25,7 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 	private ListBox cbxKategoriAdi;
 	private ListBox cbxTipi;
 	private TextBox tctGelirGiderAdi;
+	private Button btnKaydet;
 
 	public DlgGelirGiderTanimlari(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -77,19 +79,32 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 		absolutePanel.add(tctGelirGiderAdi, 136, 117);
 		tctGelirGiderAdi.setSize("156px", "16px");
 
-		Button btnKaydet = new Button("New button");
+		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 435, 164);
+		absolutePanel.add(btnKaydet, 276, 260);
 		btnKaydet.setSize("78px", "48px");
 
 		Button btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 539, 164);
+		absolutePanel.add(btnKapat, 380, 260);
 		btnKapat.setSize("78px", "48px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 276, 166);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		image_1.setAltText("aedasda");
+		absolutePanel.add(image_1, 354, 166);
+		image_1.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
 
@@ -176,5 +191,17 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 		cbxTipi.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxTipi, xml.tipi));
 
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

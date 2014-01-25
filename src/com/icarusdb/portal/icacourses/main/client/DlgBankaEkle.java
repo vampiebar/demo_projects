@@ -7,6 +7,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -107,16 +108,29 @@ public class DlgBankaEkle extends DialogBox {
 		tctVadeTarihi.setSize("193px", "14px");
 
 		btnKaydet = new Button("Kaydet");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		absolutePanel.add(btnKaydet, 274, 312);
+		absolutePanel.add(btnKaydet, 77, 314);
 		btnKaydet.setSize("78px", "46px");
 
 		btnKapat = new Button("Kapat");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel.add(btnKapat, 366, 312);
+		absolutePanel.add(btnKapat, 169, 314);
 		btnKapat.setSize("78px", "46px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 290, 310);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		image_1.setAltText("aedasda");
+		absolutePanel.add(image_1, 372, 310);
+		image_1.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
 
@@ -182,6 +196,18 @@ public class DlgBankaEkle extends DialogBox {
 				tctVadeTarihi.setEnabled(false);
 				tctVadeTarihi.setText("0");
 			}
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
 		}
 	}
 }

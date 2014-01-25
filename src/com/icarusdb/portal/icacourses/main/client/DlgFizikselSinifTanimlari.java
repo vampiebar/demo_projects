@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -46,23 +47,37 @@ public class DlgFizikselSinifTanimlari extends DialogBox {
 		tctFizikselSinifAdi.setSize("143px", "14px");
 
 		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 274, 83);
+		absolutePanel.add(btnKaydet, 237, 177);
 		btnKaydet.setSize("78px", "45px");
 
 		btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 358, 83);
+		absolutePanel.add(btnKapat, 321, 177);
 		btnKapat.setSize("78px", "45px");
 
 		Button btnYeniKayit = new Button("New button");
+		btnYeniKayit.setText("Yeni Kayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 182, 83);
+		absolutePanel.add(btnYeniKayit, 125, 105);
 		btnYeniKayit.setSize("78px", "45px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 219, 94);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		image_1.setAltText("aedasda");
+		absolutePanel.add(image_1, 302, 94);
+		image_1.setSize("72px", "66px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -95,6 +110,18 @@ public class DlgFizikselSinifTanimlari extends DialogBox {
 	private class BtnYeniKayitClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			tctFizikselSinifAdi.setText("");
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
 		}
 	}
 }

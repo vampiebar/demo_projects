@@ -18,6 +18,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.SimpleCheckBox;
@@ -42,6 +43,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 	private TextArea tctAciklama;
 	private SimpleCheckBox chxKayitSilinsinMi;
 	private Label lblKayitSilinsinMi;
+	private Button btnKaydet;
 
 	public DlgGelirlerveGiderler(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -98,18 +100,20 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		lblAklama.setStyleName("gwt-Bold");
 		absolutePanel.add(lblAklama, 10, 349);
 
-		Button btnKaydet = new Button("New button");
+		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 371, 427);
+		absolutePanel.add(btnKaydet, 180, 425);
 		btnKaydet.setSize("83px", "56px");
 
 		Button btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("");
-		absolutePanel.add(btnKapat, 481, 427);
+		absolutePanel.add(btnKapat, 290, 425);
 		btnKapat.setSize("83px", "56px");
 
 		cbxİslemTipi = new ListBox();
@@ -203,6 +207,17 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		lblKayitSilinsinMi = new Label("Kayit Silinsin Mi ?");
 		lblKayitSilinsinMi.setVisible(false);
 		absolutePanel.add(lblKayitSilinsinMi, 10, 476);
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 432, 425);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		image_1.setAltText("aedasda");
+		absolutePanel.add(image_1, 514, 425);
+		image_1.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
 
@@ -422,5 +437,17 @@ public class DlgGelirlerveGiderler extends DialogBox {
 
 		}
 
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

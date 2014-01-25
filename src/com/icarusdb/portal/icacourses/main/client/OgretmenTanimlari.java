@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -18,6 +19,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -36,21 +38,11 @@ public class OgretmenTanimlari extends Composite {
 		initWidget(absolutePanel);
 		absolutePanel.setSize("797px", "453px");
 
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 545, 62);
-		btnListeyiYenile.setSize("78px", "48px");
-
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 62);
 		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 634, 62);
-		btnExceleAktar.setSize("78px", "48px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 189);
@@ -69,14 +61,14 @@ public class OgretmenTanimlari extends Composite {
 		grdOgretmenTanimlari.addColumn(textColumn_1, "İD");
 		grdOgretmenTanimlari.setColumnWidth(textColumn_1, "19px");
 
-		Column<XMLOgretmenTanimlari, ?> column_1 = new Column<XMLOgretmenTanimlari, Number>(
+		Column<XMLOgretmenTanimlari, ?> column_6 = new Column<XMLOgretmenTanimlari, Number>(
 				new NumberCell()) {
 			@Override
 			public Number getValue(XMLOgretmenTanimlari object) {
 				return (Number) null;
 			}
 		};
-		grdOgretmenTanimlari.addColumn(column_1, "Öğretmen Özel No");
+		grdOgretmenTanimlari.addColumn(column_6, "Öğretmen Özel No");
 
 		TextColumn<XMLOgretmenTanimlari> column_2 = new TextColumn<XMLOgretmenTanimlari>() {
 			@Override
@@ -92,6 +84,7 @@ public class OgretmenTanimlari extends Composite {
 			}
 		};
 		grdOgretmenTanimlari.addColumn(textColumn, "Öğretmen Adı Soyadı");
+		grdOgretmenTanimlari.setColumnWidth(textColumn, "145px");
 
 		TextColumn<XMLOgretmenTanimlari> column_3 = new TextColumn<XMLOgretmenTanimlari>() {
 			@Override
@@ -109,14 +102,23 @@ public class OgretmenTanimlari extends Composite {
 		};
 		grdOgretmenTanimlari.addColumn(column_4, "Ev Tel.");
 
-		Column<XMLOgretmenTanimlari, ?> column = new Column<XMLOgretmenTanimlari, String>(
+		Column<XMLOgretmenTanimlari, String> column = new Column<XMLOgretmenTanimlari, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLOgretmenTanimlari object) {
 				return (String) null;
 			}
 		};
-		grdOgretmenTanimlari.addColumn(column, "İşlemler");
+		grdOgretmenTanimlari.addColumn(column, "Düzenle");
+
+		Column<XMLOgretmenTanimlari, String> column_1 = new Column<XMLOgretmenTanimlari, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLOgretmenTanimlari object) {
+				return (String) null;
+			}
+		};
+		grdOgretmenTanimlari.addColumn(column_1, "Sil");
 
 		if (!isDesignTime()) {
 
@@ -141,7 +143,36 @@ public class OgretmenTanimlari extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column.setFieldUpdater(new FieldUpdater<XMLOgretmenTanimlari, String>() {
+
+				@Override
+				public void update(int index, XMLOgretmenTanimlari object,
+						String value) {
+
+					XMLOgretmenTanimlari selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLOgretmenTanimlari, String>() {
+
+			@Override
+			public void update(int index, XMLOgretmenTanimlari object,
+					String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

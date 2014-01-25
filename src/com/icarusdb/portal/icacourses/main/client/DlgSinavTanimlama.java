@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -38,6 +39,8 @@ public class DlgSinavTanimlama extends DialogBox {
 	private ListBox cbxSablonSeciniz;
 	private ListBox cbxSaat;
 	private ListBox cbxDakika;
+	private Image image;
+	private Image image_1;
 
 	public DlgSinavTanimlama(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -109,17 +112,19 @@ public class DlgSinavTanimlama extends DialogBox {
 		cbxSablonSeciniz.setSize("154px", "22px");
 
 		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 295, 239);
+		absolutePanel.add(btnKaydet, 287, 312);
 		btnKaydet.setSize("78px", "50px");
 
 		btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 401, 239);
+		absolutePanel.add(btnKapat, 393, 312);
 		btnKapat.setSize("78px", "50px");
 
 		Label lblNewLabel = new Label("Sınav Tanımlama (Ekleme / Düzenleme)");
@@ -171,6 +176,16 @@ public class DlgSinavTanimlama extends DialogBox {
 		cbxDakika.setStyleName("gwt-ComboBox1");
 		absolutePanel.add(cbxDakika, 396, 72);
 		cbxDakika.setSize("43px", "22px");
+
+		image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 240, 191);
+		image.setSize("72px", "66px");
+
+		image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 328, 191);
+		image_1.setSize("72px", "66px");
 		if (!isDesignTime()) {
 
 			putSablonAdiToCbx(cbxSablonSeciniz);
@@ -282,5 +297,17 @@ public class DlgSinavTanimlama extends DialogBox {
 
 		dtpTarih.setValue(dtf.parse(xml.tarih));
 
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

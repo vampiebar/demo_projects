@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -19,6 +20,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -36,11 +38,12 @@ public class OdevOlustur extends Composite {
 	private TextColumn<XMLOdevOlustur> grdcAlan;
 	private TextColumn<XMLOdevOlustur> grdcEgitimTuru;
 	private TextColumn<XMLOdevOlustur> grdcOdevAdi;
-	private Column<XMLOdevOlustur, String> grdcIslemler;
+	private Column<XMLOdevOlustur, String> column;
 
 	private DlgOdevOlustur _dlgOdevOlustur;
 	private ListBox cbxEgitimTuru;
 	private TextColumn<XMLOdevOlustur> textColumn;
+	private Column<XMLOdevOlustur, String> column_1;
 
 	public OdevOlustur() {
 
@@ -124,37 +127,34 @@ public class OdevOlustur extends Composite {
 		};
 		grdOdevOlustur.addColumn(textColumn, "Soru Sayısı");
 
-		grdcIslemler = new Column<XMLOdevOlustur, String>(new ButtonCell()) {
+		column = new Column<XMLOdevOlustur, String>(new ButtonCell()) {
 			@Override
 			public String getValue(XMLOdevOlustur object) {
 				return "İşlemler";
 			}
 		};
-		grdOdevOlustur.addColumn(grdcIslemler, "İşlemler");
+		grdOdevOlustur.addColumn(column, "Düzenle");
+
+		column_1 = new Column<XMLOdevOlustur, String>(new ButtonCell()) {
+			@Override
+			public String getValue(XMLOdevOlustur object) {
+				return (String) null;
+			}
+		};
+		grdOdevOlustur.addColumn(column_1, "Sil");
 
 		Button btnYeniKayit = new Button("ARA");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler1());
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 
-		btnYeniKayit.setText("Yeni Kayit");
+		btnYeniKayit.setText("");
 		absolutePanel.add(btnYeniKayit, 441, 42);
 		btnYeniKayit.setSize("78px", "48px");
 
-		Button btnKaydet = new Button("Yeni Kayıt");
-		btnKaydet.setStyleName("gwt-ButtonSave");
-
-		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 531, 42);
-		btnKaydet.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 621, 42);
-		btnExceleAktar.setSize("78px", "48px");
-
 		Button btnAra = new Button("ARA");
+		btnAra.setText("");
 		btnAra.addClickHandler(new BtnAraClickHandler());
-		btnAra.setStyleName("gwt-ButonKapat");
+		btnAra.setStyleName("gwt-ButtonAra");
 
 		absolutePanel.add(btnAra, 346, 42);
 		btnAra.setSize("78px", "48px");
@@ -190,7 +190,35 @@ public class OdevOlustur extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column.setFieldUpdater(new FieldUpdater<XMLOdevOlustur, String>() {
+
+				@Override
+				public void update(int index, XMLOdevOlustur object,
+						String value) {
+
+					XMLOdevOlustur selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLOdevOlustur, String>() {
+
+			@Override
+			public void update(int index, XMLOdevOlustur object, String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

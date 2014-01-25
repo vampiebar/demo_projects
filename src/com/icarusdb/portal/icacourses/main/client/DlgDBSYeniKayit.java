@@ -27,6 +27,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.SimpleCheckBox;
@@ -87,6 +88,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private SimpleCheckBox chxKayitSilinsinMi;
 	private TextBox tctSilmeSebebi;
 	public AbsolutePanel vtpanKayitSilme;
+	private Button btnKapat5;
+	private Button btnOgrenciyiKaydet5;
 
 	public DlgDBSYeniKayit(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -104,6 +107,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
 		decoratedTabPanel.setAnimationEnabled(true);
 		setWidget(vtpanMain);
+		vtpanMain.setHeight("724px");
 		decoratedTabPanel.setSize("750px", "625px");
 
 		vtpanMain.add(decoratedTabPanel);
@@ -118,8 +122,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		hzpanMain.add(vtpanOgrenciBilgileri);
 
 		hzpanMenu1 = new HorizontalPanel();
-		// vtpanOgrenciBilgileri.add(hzpanMenu1, 472, 452);
-		hzpanMenu1.setSize("254px", "72px");
+		hzpanMenu1.setSize("314px", "72px");
 		vtpanMain.add(hzpanMenu1);
 
 		// hzpanMain.add(hzpanMenu1);
@@ -282,21 +285,34 @@ public class DlgDBSYeniKayit extends DialogBox {
 		btnYeniKayit5.setText("");
 		hzpanMenu1.add(btnYeniKayit5);
 		btnYeniKayit5.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit5.setSize("80px", "63px");
+		btnYeniKayit5.setSize("90px", "72px");
 
-		Button btnOgrenciyiKaydet5 = new Button("Öğrenciyi Kaydet");
+		btnOgrenciyiKaydet5 = new Button("Öğrenciyi Kaydet");
+		btnOgrenciyiKaydet5.setVisible(false);
+
+		Image imgKapat5 = new Image("kapat-1.png");
+		imgKapat5.addClickHandler(new ImgKapat5ClickHandler());
+
+		Image imgKaydet = new Image("kaydet-1.png");
+		imgKaydet.addClickHandler(new ImgKaydetClickHandler());
+		hzpanMenu1.add(imgKaydet);
+		imgKaydet.setSize("72px", "66px");
+		hzpanMenu1.add(imgKapat5);
+		imgKapat5.setSize("72px", "66px");
+		btnOgrenciyiKaydet5.setText("");
 		hzpanMenu1.add(btnOgrenciyiKaydet5);
 		btnOgrenciyiKaydet5.setStyleName("gwt-ButtonSave");
 		btnOgrenciyiKaydet5
 				.addClickHandler(new BtnOgrenciyiKaydet5ClickHandler());
-		btnOgrenciyiKaydet5.setSize("80px", "63px");
+		btnOgrenciyiKaydet5.setSize("50px", "67px");
 
-		Button btnKapat5 = new Button("Kapat");
+		btnKapat5 = new Button("Kapat");
+		btnKapat5.setVisible(false);
 		btnKapat5.setText("");
 		hzpanMenu1.add(btnKapat5);
 		btnKapat5.setStyleName("gwt-ButonKapat");
 		btnKapat5.addClickHandler(new BtnKapat5ClickHandler_1());
-		btnKapat5.setSize("80px", "63px");
+		btnKapat5.setSize("52px", "70px");
 
 		cbxOkul = new ListBox();
 		cbxOkul.setStyleName("gwt-ComboBox1");
@@ -1545,4 +1561,15 @@ public class DlgDBSYeniKayit extends DialogBox {
 		}
 	}
 
+	private class ImgKapat5ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKapat5.click();
+		}
+	}
+
+	private class ImgKaydetClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnOgrenciyiKaydet5.click();
+		}
+	}
 }

@@ -73,21 +73,18 @@ public class SablonTaninmlari extends Composite {
 		grdSablonTanimlari.addColumn(grdcIslemler, "İşlemler");
 
 		Button btnAra = new Button("ARA");
-		btnAra.setStyleName("gwt-ButonKapat");
+		btnAra.setText("");
+		btnAra.setStyleName("gwt-ButtonAra");
 		btnAra.addClickHandler(new BtnAraClickHandler());
 		absolutePanel.add(btnAra, 494, 43);
-		btnAra.setSize("78px", "48px");
+		btnAra.setSize("78px", "62px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 591, 43);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 682, 43);
-		btnExceleAktar.setSize("78px", "48px");
+		btnYeniKayit.setSize("78px", "62px");
 
 		Label label = new Label("Şablon Adı");
 		label.setStyleName("gwt-Bold");

@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -14,6 +15,7 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 	public long _id = -1;
 
 	private TextBox tctKursZamani;
+	private Button btnKaydet;
 
 	public DlgKursZamaniTanimlama(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -44,26 +46,38 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 		absolutePanel.add(tctKursZamani, 126, 44);
 		tctKursZamani.setSize("143px", "17px");
 
-		Button btnKaydet = new Button("New button");
+		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 335, 109);
+		absolutePanel.add(btnKaydet, 275, 245);
 		btnKaydet.setSize("78px", "45px");
 
 		Button btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("");
-		absolutePanel.add(btnKapat, 419, 109);
+		absolutePanel.add(btnKapat, 359, 245);
 		btnKapat.setSize("78px", "45px");
 
 		Button btnYeniKaydet = new Button("New button");
 		btnYeniKaydet.addClickHandler(new BtnYeniKaydetClickHandler());
 		btnYeniKaydet.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKaydet.setText("");
-		absolutePanel.add(btnYeniKaydet, 251, 109);
-		btnYeniKaydet.setSize("78px", "45px");
+		absolutePanel.add(btnYeniKaydet, 222, 109);
+		btnYeniKaydet.setSize("78px", "66px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 314, 109);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 402, 109);
+		image_1.setSize("72px", "66px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -94,6 +108,18 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 		public void onClick(ClickEvent event) {
 			tctKursZamani.setText("");
 
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
 		}
 	}
 }

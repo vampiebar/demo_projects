@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.CheckboxCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -153,6 +154,22 @@ public class OnKayit extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+			column_1.setFieldUpdater(new FieldUpdater<XMLOnKayit, String>() {
+
+				@Override
+				public void update(int index, XMLOnKayit object, String value) {
+
+					XMLOnKayit selected = selectionModel.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
 
 	}

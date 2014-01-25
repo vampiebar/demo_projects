@@ -156,6 +156,7 @@ public class Main implements EntryPoint {
 		vtpanOgrenciIsleri.setSize("100%", "56px");
 
 		Label btnNewButton_4 = new Label("Öğrenci Kayıtları");
+		btnNewButton_4.addClickHandler(new BtnNewButton_4ClickHandler());
 		btnNewButton_4
 				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		btnNewButton_4.setStyleName("gwt-MenuButton");
@@ -1256,6 +1257,17 @@ public class Main implements EntryPoint {
 
 			smpanMain.add(new ServisTanimlama());
 			scrollToTop();
+		}
+	}
+
+	private class BtnNewButton_4ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			smpanMain.clear();
+
+			smpanMain.add(new DlgOgrenciKayitlari());
+			scrollToTop();
+
 		}
 	}
 }

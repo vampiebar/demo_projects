@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -35,18 +37,12 @@ public class FizikselSinifTanimlari extends Composite {
 		initWidget(absolutePanel);
 		absolutePanel.setSize("807px", "750px");
 
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setText("");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 545, 38);
-		btnListeyiYenile.setSize("78px", "48px");
-
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 38);
-		btnYeniKayit.setSize("78px", "48px");
+		btnYeniKayit.setSize("85px", "58px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 165);
@@ -71,17 +67,27 @@ public class FizikselSinifTanimlari extends Composite {
 			}
 		};
 		grdFizikselSinifTanimlari.addColumn(textColumn, "Fiziksel Sınıf Adı");
-		grdFizikselSinifTanimlari.setColumnWidth(textColumn, "265px");
+		grdFizikselSinifTanimlari.setColumnWidth(textColumn, "328px");
 
-		Column<XMLFizikselSinifTanimlari, ?> column = new Column<XMLFizikselSinifTanimlari, String>(
+		Column<XMLFizikselSinifTanimlari, String> column = new Column<XMLFizikselSinifTanimlari, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLFizikselSinifTanimlari object) {
 				return (String) null;
 			}
 		};
-		grdFizikselSinifTanimlari.addColumn(column, "İşlemler");
-		grdFizikselSinifTanimlari.setColumnWidth(column, "227px");
+		grdFizikselSinifTanimlari.addColumn(column, "Düzenle");
+		grdFizikselSinifTanimlari.setColumnWidth(column, "148px");
+
+		Column<XMLFizikselSinifTanimlari, String> column_1 = new Column<XMLFizikselSinifTanimlari, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLFizikselSinifTanimlari object) {
+				return (String) null;
+			}
+		};
+		grdFizikselSinifTanimlari.addColumn(column_1, "Sil");
+		grdFizikselSinifTanimlari.setColumnWidth(column_1, "142px");
 
 		if (!isDesignTime()) {
 
@@ -107,7 +113,35 @@ public class FizikselSinifTanimlari extends Composite {
 				}
 			}, DoubleClickEvent.getType());
 
+			column.setFieldUpdater(new FieldUpdater<XMLFizikselSinifTanimlari, String>() {
+
+				@Override
+				public void update(int index, XMLFizikselSinifTanimlari object,
+						String value) {
+
+					XMLFizikselSinifTanimlari selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLFizikselSinifTanimlari, String>() {
+
+			@Override
+			public void update(int index, XMLFizikselSinifTanimlari object,
+					String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

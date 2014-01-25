@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -21,6 +22,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 	private TextBox tctSifre;
 	private TextBox tctSifretekrar;
 	public DecoratedTabPanel tabKullaniciTanimlama;
+	private Button btnKaydet;
 
 	public DlgKullaniciTanimlama(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -106,19 +108,31 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		tabKullaniciTanimlama.add(absolutePanel_2, "Yetkileri", false);
 		absolutePanel_2.setSize("455px", "264px");
 
-		Button tctKaydet = new Button("New button");
-		tctKaydet.setStyleName("gwt-ButtonSave");
-		tctKaydet.addClickHandler(new TctKaydetClickHandler());
-		tctKaydet.setText("Kaydet");
-		absolutePanel.add(tctKaydet, 244, 354);
-		tctKaydet.setSize("78px", "47px");
+		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
+		btnKaydet.setStyleName("gwt-ButtonSave");
+		btnKaydet.addClickHandler(new TctKaydetClickHandler());
+		btnKaydet.setText("Kaydet");
+		absolutePanel.add(btnKaydet, 248, 441);
+		btnKaydet.setSize("78px", "47px");
 
 		Button tctKapat = new Button("New button");
+		tctKapat.setVisible(false);
 		tctKapat.setStyleName("gwt-ButonKapat");
 		tctKapat.addClickHandler(new TctKapatClickHandler());
 		tctKapat.setText("Kapat");
-		absolutePanel.add(tctKapat, 340, 354);
+		absolutePanel.add(tctKapat, 344, 441);
 		tctKapat.setSize("78px", "47px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 248, 358);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 336, 358);
+		image_1.setSize("72px", "66px");
 	}
 
 	private class TctKapatClickHandler implements ClickHandler {
@@ -152,5 +166,17 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		tctSifretekrar.setText(xml.sifre_tekrar);
 		tctSoyadi.setText(xml.soyadi);
 
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

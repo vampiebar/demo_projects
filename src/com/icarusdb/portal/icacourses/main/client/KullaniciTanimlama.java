@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -39,14 +41,8 @@ public class KullaniciTanimlama extends Composite {
 		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 459, 34);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setText("");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
-		absolutePanel.add(btnListeyiYenile, 556, 34);
-		btnListeyiYenile.setSize("78px", "48px");
+		absolutePanel.add(btnYeniKayit, 459, 23);
+		btnYeniKayit.setSize("85px", "62px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 109);
@@ -56,14 +52,14 @@ public class KullaniciTanimlama extends Composite {
 		horizontalPanel.add(grdKullaniciTanimlari);
 		grdKullaniciTanimlari.setSize("100%", "100%");
 
-		TextColumn<XMLKullaniciTanimlama> column = new TextColumn<XMLKullaniciTanimlama>() {
+		TextColumn<XMLKullaniciTanimlama> column_6 = new TextColumn<XMLKullaniciTanimlama>() {
 			@Override
 			public String getValue(XMLKullaniciTanimlama object) {
 				return (object.kullanici_kodu);
 			}
 		};
-		grdKullaniciTanimlari.addColumn(column, "Kullanıcı Kodu");
-		grdKullaniciTanimlari.setColumnWidth(column, "124px");
+		grdKullaniciTanimlari.addColumn(column_6, "Kullanıcı Kodu");
+		grdKullaniciTanimlari.setColumnWidth(column_6, "124px");
 
 		Column<XMLKullaniciTanimlama, ?> textColumn = new TextColumn<XMLKullaniciTanimlama>() {
 			@Override
@@ -81,22 +77,33 @@ public class KullaniciTanimlama extends Composite {
 		};
 		grdKullaniciTanimlari.addColumn(textColumn_1, "Soyadı");
 
-		TextColumn<XMLKullaniciTanimlama> column_1 = new TextColumn<XMLKullaniciTanimlama>() {
+		TextColumn<XMLKullaniciTanimlama> column_4 = new TextColumn<XMLKullaniciTanimlama>() {
 			@Override
 			public String getValue(XMLKullaniciTanimlama object) {
 				return (object.sifre);
 			}
 		};
-		grdKullaniciTanimlari.addColumn(column_1, "Şifre");
+		grdKullaniciTanimlari.addColumn(column_4, "Şifre");
 
-		Column<XMLKullaniciTanimlama, ?> column_2 = new Column<XMLKullaniciTanimlama, String>(
+		Column<XMLKullaniciTanimlama, String> column = new Column<XMLKullaniciTanimlama, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLKullaniciTanimlama object) {
 				return (String) null;
 			}
 		};
-		grdKullaniciTanimlari.addColumn(column_2, "İşlemler");
+		grdKullaniciTanimlari.addColumn(column, "Düzenle");
+		grdKullaniciTanimlari.setColumnWidth(column, "123px");
+
+		Column<XMLKullaniciTanimlama, String> column_1 = new Column<XMLKullaniciTanimlama, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLKullaniciTanimlama object) {
+				return (String) null;
+			}
+		};
+		grdKullaniciTanimlari.addColumn(column_1, "Sil");
+		grdKullaniciTanimlari.setColumnWidth(column_1, "114px");
 		if (!isDesignTime()) {
 
 			putDataToGrid();
@@ -119,7 +126,35 @@ public class KullaniciTanimlama extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+			column.setFieldUpdater(new FieldUpdater<XMLKullaniciTanimlama, String>() {
+
+				@Override
+				public void update(int index, XMLKullaniciTanimlama object,
+						String value) {
+
+					XMLKullaniciTanimlama selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLKullaniciTanimlama, String>() {
+
+			@Override
+			public void update(int index, XMLKullaniciTanimlama object,
+					String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

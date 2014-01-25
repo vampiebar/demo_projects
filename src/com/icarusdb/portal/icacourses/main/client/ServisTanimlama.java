@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -36,11 +38,12 @@ public class ServisTanimlama extends Composite {
 		absolutePanel.setSize("635px", "566px");
 
 		Button btnYenikayit = new Button("New button");
+		btnYenikayit.setStyleName("gwt-ButonYeniKayit");
 		btnYenikayit.addClickHandler(new BtnYenikayitClickHandler());
 
-		btnYenikayit.setText("Yeni Kayit");
+		btnYenikayit.setText("");
 		absolutePanel.add(btnYenikayit, 339, 35);
-		btnYenikayit.setSize("78px", "47px");
+		btnYenikayit.setSize("78px", "56px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 124);
@@ -82,7 +85,16 @@ public class ServisTanimlama extends Composite {
 				return (String) null;
 			}
 		};
-		grdServisTanimlama.addColumn(column, "İşlemler");
+		grdServisTanimlama.addColumn(column, "Düzenle");
+
+		Column<XMLServisTanimlama, String> column_1 = new Column<XMLServisTanimlama, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLServisTanimlama object) {
+				return (String) null;
+			}
+		};
+		grdServisTanimlama.addColumn(column_1, "Sil");
 
 		if (!isDesignTime()) {
 
@@ -107,7 +119,36 @@ public class ServisTanimlama extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column.setFieldUpdater(new FieldUpdater<XMLServisTanimlama, String>() {
+
+				@Override
+				public void update(int index, XMLServisTanimlama object,
+						String value) {
+
+					XMLServisTanimlama selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLServisTanimlama, String>() {
+
+			@Override
+			public void update(int index, XMLServisTanimlama object,
+					String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

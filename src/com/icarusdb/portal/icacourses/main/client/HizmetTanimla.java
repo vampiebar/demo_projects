@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -40,7 +42,7 @@ public class HizmetTanimla extends Composite {
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 29);
-		btnYeniKayit.setSize("78px", "48px");
+		btnYeniKayit.setSize("84px", "64px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 156);
@@ -86,22 +88,33 @@ public class HizmetTanimla extends Composite {
 		};
 		grdHizmetTanimla.addColumn(textColumn_1, "Grup Adı");
 
-		TextColumn<XMLHizmetTanimla> column_1 = new TextColumn<XMLHizmetTanimla>() {
+		TextColumn<XMLHizmetTanimla> column_3 = new TextColumn<XMLHizmetTanimla>() {
 			@Override
 			public String getValue(XMLHizmetTanimla object) {
 				return (object.birim_fiyati);
 			}
 		};
-		grdHizmetTanimla.addColumn(column_1, "Fiyatı");
+		grdHizmetTanimla.addColumn(column_3, "Fiyatı");
 
-		Column<XMLHizmetTanimla, ?> column = new Column<XMLHizmetTanimla, String>(
+		Column<XMLHizmetTanimla, String> column = new Column<XMLHizmetTanimla, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLHizmetTanimla object) {
 				return (String) null;
 			}
 		};
-		grdHizmetTanimla.addColumn(column, "İşlemler");
+		grdHizmetTanimla.addColumn(column, "Düzenle");
+		grdHizmetTanimla.setColumnWidth(column, "117px");
+
+		Column<XMLHizmetTanimla, String> column_1 = new Column<XMLHizmetTanimla, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLHizmetTanimla object) {
+				return (String) null;
+			}
+		};
+		grdHizmetTanimla.addColumn(column_1, "Sil");
+		grdHizmetTanimla.setColumnWidth(column_1, "90px");
 
 		if (!isDesignTime()) {
 
@@ -126,7 +139,34 @@ public class HizmetTanimla extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+			column.setFieldUpdater(new FieldUpdater<XMLHizmetTanimla, String>() {
+
+				@Override
+				public void update(int index, XMLHizmetTanimla object,
+						String value) {
+
+					XMLHizmetTanimla selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLHizmetTanimla, String>() {
+
+			@Override
+			public void update(int index, XMLHizmetTanimla object, String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

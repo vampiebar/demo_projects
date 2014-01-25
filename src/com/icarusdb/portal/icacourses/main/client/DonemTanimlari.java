@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.CheckboxCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -18,6 +19,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -68,13 +70,13 @@ public class DonemTanimlari extends Composite {
 		};
 		grdDonemTanimlari.addColumn(textColumn, "Dönem Adı");
 
-		TextColumn<XMLDonemTanimlari> column = new TextColumn<XMLDonemTanimlari>() {
+		TextColumn<XMLDonemTanimlari> column_6 = new TextColumn<XMLDonemTanimlari>() {
 			@Override
 			public String getValue(XMLDonemTanimlari object) {
 				return (object.baslangic_tarihi);
 			}
 		};
-		grdDonemTanimlari.addColumn(column, "Başlangıç Tarihi");
+		grdDonemTanimlari.addColumn(column_6, "Başlangıç Tarihi");
 
 		TextColumn<XMLDonemTanimlari> column_2 = new TextColumn<XMLDonemTanimlari>() {
 			@Override
@@ -94,14 +96,23 @@ public class DonemTanimlari extends Composite {
 		grdDonemTanimlari.addColumn(column_3, "Varsayılan Dönem");
 		grdDonemTanimlari.setColumnWidth(column_3, "158px");
 
-		Column<XMLDonemTanimlari, ?> column_1 = new Column<XMLDonemTanimlari, String>(
+		Column<XMLDonemTanimlari, String> column = new Column<XMLDonemTanimlari, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLDonemTanimlari object) {
 				return (String) null;
 			}
 		};
-		grdDonemTanimlari.addColumn(column_1, "İşlemler");
+		grdDonemTanimlari.addColumn(column, "Düzenle");
+
+		Column<XMLDonemTanimlari, String> column_1 = new Column<XMLDonemTanimlari, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLDonemTanimlari object) {
+				return (String) null;
+			}
+		};
+		grdDonemTanimlari.addColumn(column_1, "Sil");
 
 		if (!isDesignTime()) {
 
@@ -127,7 +138,34 @@ public class DonemTanimlari extends Composite {
 				}
 			}, DoubleClickEvent.getType());
 
+			column.setFieldUpdater(new FieldUpdater<XMLDonemTanimlari, String>() {
+
+				@Override
+				public void update(int index, XMLDonemTanimlari object,
+						String value) {
+
+					XMLDonemTanimlari selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLDonemTanimlari, String>() {
+
+			@Override
+			public void update(int index, XMLDonemTanimlari object, String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

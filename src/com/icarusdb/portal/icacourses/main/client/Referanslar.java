@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -35,21 +37,12 @@ public class Referanslar extends Composite {
 		initWidget(absolutePanel);
 		absolutePanel.setSize("808px", "750px");
 
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 545, 56);
-		btnListeyiYenile.setSize("78px", "48px");
-
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 56);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 634, 56);
-		btnExceleAktar.setSize("78px", "48px");
+		btnYeniKayit.setSize("88px", "58px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 183);
@@ -76,14 +69,25 @@ public class Referanslar extends Composite {
 		grdReferanslar.addColumn(textColumn, "Referans Adı Soyadı");
 		grdReferanslar.setColumnWidth(textColumn, "394px");
 
-		Column<XMLReferanslar, ?> column = new Column<XMLReferanslar, String>(
+		Column<XMLReferanslar, String> column = new Column<XMLReferanslar, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLReferanslar object) {
 				return (String) null;
 			}
 		};
-		grdReferanslar.addColumn(column, "İşlemler");
+		grdReferanslar.addColumn(column, "Düzenle");
+		grdReferanslar.setColumnWidth(column, "148px");
+
+		Column<XMLReferanslar, String> column_1 = new Column<XMLReferanslar, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLReferanslar object) {
+				return (String) null;
+			}
+		};
+		grdReferanslar.addColumn(column_1, "Sil");
+		grdReferanslar.setColumnWidth(column_1, "121px");
 
 		if (!isDesignTime()) {
 
@@ -108,7 +112,35 @@ public class Referanslar extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column.setFieldUpdater(new FieldUpdater<XMLReferanslar, String>() {
+
+				@Override
+				public void update(int index, XMLReferanslar object,
+						String value) {
+
+					XMLReferanslar selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLReferanslar, String>() {
+
+			@Override
+			public void update(int index, XMLReferanslar object, String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

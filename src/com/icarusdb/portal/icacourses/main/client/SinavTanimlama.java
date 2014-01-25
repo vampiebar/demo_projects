@@ -2,6 +2,8 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.List;
 
+import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -16,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -28,13 +31,14 @@ import com.google.gwt.view.client.SingleSelectionModel;
 public class SinavTanimlama extends Composite {
 	private CellTable<XMLSinavTanimlama> grdSinavTanimlama;
 	private TextColumn<XMLSinavTanimlama> textColumn;
-	private Column<XMLSinavTanimlama, String> column_1;
+	private Column<XMLSinavTanimlama, String> column_2;
 	private TextColumn<XMLSinavTanimlama> textColumn_1;
-	private TextColumn<XMLSinavTanimlama> textColumn_2;
 	private Button btnYeniKayit;
 	private ListBox cbxSinavTuru;
 	private TextColumn<XMLSinavTanimlama> textColumn_3;
 	private DlgSinavTanimlama _dlgSinavTanimlama;
+	private Column<XMLSinavTanimlama, String> column_1;
+	private Column<XMLSinavTanimlama, String> column;
 
 	public SinavTanimlama() {
 
@@ -67,13 +71,13 @@ public class SinavTanimlama extends Composite {
 		};
 		grdSinavTanimlama.addColumn(textColumn, "Sınav Adı");
 
-		column_1 = new TextColumn<XMLSinavTanimlama>() {
+		column_2 = new TextColumn<XMLSinavTanimlama>() {
 			@Override
 			public String getValue(XMLSinavTanimlama object) {
 				return (object.tarih + " " + object.saat + ":" + object.dakika);
 			}
 		};
-		grdSinavTanimlama.addColumn(column_1, "Sınav Tarihi");
+		grdSinavTanimlama.addColumn(column_2, "Sınav Tarihi");
 
 		textColumn_1 = new TextColumn<XMLSinavTanimlama>() {
 			public String getValue(XMLSinavTanimlama object) {
@@ -82,28 +86,30 @@ public class SinavTanimlama extends Composite {
 		};
 		grdSinavTanimlama.addColumn(textColumn_1, "Son Kitapçık No");
 
-		textColumn_2 = new TextColumn<XMLSinavTanimlama>() {
+		column = new Column<XMLSinavTanimlama, String>(new ButtonCell()) {
+			@Override
 			public String getValue(XMLSinavTanimlama object) {
-				return (String) null;
+				return "Düzenle";
 			}
 		};
-		grdSinavTanimlama.addColumn(textColumn_2, "İşlemler");
+		grdSinavTanimlama.addColumn(column, "Düzenle");
+		grdSinavTanimlama.setColumnWidth(column, "105px");
 
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 491, 42);
-		btnListeyiYenile.setSize("78px", "48px");
+		column_1 = new Column<XMLSinavTanimlama, String>(new ButtonCell()) {
+			@Override
+			public String getValue(XMLSinavTanimlama object) {
+				return "Sil";
+			}
+		};
+		grdSinavTanimlama.addColumn(column_1, "Sil");
+		grdSinavTanimlama.setColumnWidth(column_1, "101px");
 
 		btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 588, 42);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 679, 42);
-		btnExceleAktar.setSize("78px", "48px");
+		btnYeniKayit.setSize("85px", "56px");
 
 		Label lblSnavTuru = new Label("Sınav Türü");
 		lblSnavTuru.setStyleName("gwt-Bold");
@@ -138,7 +144,35 @@ public class SinavTanimlama extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column.setFieldUpdater(new FieldUpdater<XMLSinavTanimlama, String>() {
+
+				@Override
+				public void update(int index, XMLSinavTanimlama object,
+						String value) {
+
+					XMLSinavTanimlama selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLSinavTanimlama, String>() {
+
+			@Override
+			public void update(int index, XMLSinavTanimlama object, String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

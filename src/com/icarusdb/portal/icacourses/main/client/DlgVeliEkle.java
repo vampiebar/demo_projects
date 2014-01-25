@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.SimpleCheckBox;
@@ -32,6 +33,8 @@ public class DlgVeliEkle extends DialogBox {
 	private TextBox tctVeliBilgileriAdres;
 	private SimpleCheckBox chxOdemeSorumlusu;
 	private TextBox tctOgrenciTCKimlikNo;
+	private Image image;
+	private Image image_1;
 
 	public DlgVeliEkle(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -191,17 +194,19 @@ public class DlgVeliEkle extends DialogBox {
 		cbxYakinlikDurumu.setSize("182px", "22px");
 
 		btnVeliyiKaydet = new Button("New button");
+		btnVeliyiKaydet.setVisible(false);
 		btnVeliyiKaydet.setStyleName("gwt-ButtonSave");
 		btnVeliyiKaydet.addClickHandler(new BtnVeliyiKaydetClickHandler());
 		btnVeliyiKaydet.setText("Veliyi Kaydet");
-		absolutePanel.add(btnVeliyiKaydet, 352, 522);
+		absolutePanel.add(btnVeliyiKaydet, 410, 400);
 		btnVeliyiKaydet.setSize("83px", "64px");
 
 		btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("");
-		absolutePanel.add(btnKapat, 445, 522);
+		absolutePanel.add(btnKapat, 503, 400);
 		btnKapat.setSize("83px", "64px");
 
 		Label lblrenciTcKimlik = new Label("Öğrenci T.C Kimlik No");
@@ -214,6 +219,17 @@ public class DlgVeliEkle extends DialogBox {
 		tctOgrenciTCKimlikNo.setStyleName("gwt-TextBox1");
 		absolutePanel.add(tctOgrenciTCKimlikNo, 181, 10);
 		tctOgrenciTCKimlikNo.setSize("180px", "14px");
+
+		image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 361, 506);
+		image.setSize("72px", "66px");
+
+		image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		image_1.setAltText("aedasda");
+		absolutePanel.add(image_1, 446, 506);
+		image_1.setSize("72px", "66px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -281,5 +297,17 @@ public class DlgVeliEkle extends DialogBox {
 				.setValue(xml.odeme_sorumlusu.equalsIgnoreCase("t") ? true
 						: false);
 
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnVeliyiKaydet.click();
+		}
 	}
 }

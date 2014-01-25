@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -35,21 +37,12 @@ public class SinifTanimlari extends Composite {
 		initWidget(absolutePanel);
 		absolutePanel.setSize("809px", "439px");
 
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setStyleName("gwt-ButtonSave");
-		absolutePanel.add(btnListeyiYenile, 560, 44);
-		btnListeyiYenile.setSize("78px", "48px");
-
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 465, 44);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 649, 44);
-		btnExceleAktar.setSize("78px", "48px");
+		btnYeniKayit.setSize("84px", "62px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 25, 171);
@@ -92,13 +85,13 @@ public class SinifTanimlari extends Composite {
 		};
 		grdSinifTanimlari.addColumn(textColumn_3, "Alan Adı");
 
-		TextColumn<XMLSinifTanimlari> column_1 = new TextColumn<XMLSinifTanimlari>() {
+		TextColumn<XMLSinifTanimlari> column_5 = new TextColumn<XMLSinifTanimlari>() {
 			@Override
 			public String getValue(XMLSinifTanimlari object) {
 				return (object.fiyati);
 			}
 		};
-		grdSinifTanimlari.addColumn(column_1, "Fiyatı");
+		grdSinifTanimlari.addColumn(column_5, "Fiyatı");
 
 		TextColumn<XMLSinifTanimlari> column_2 = new TextColumn<XMLSinifTanimlari>() {
 			@Override
@@ -116,14 +109,23 @@ public class SinifTanimlari extends Composite {
 		};
 		grdSinifTanimlari.addColumn(column_3, "Bitiş Tarihi");
 
-		Column<XMLSinifTanimlari, ?> column = new Column<XMLSinifTanimlari, String>(
+		Column<XMLSinifTanimlari, String> column = new Column<XMLSinifTanimlari, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLSinifTanimlari object) {
 				return (String) null;
 			}
 		};
-		grdSinifTanimlari.addColumn(column, "İşlemler");
+		grdSinifTanimlari.addColumn(column, "Düzenle");
+
+		Column<XMLSinifTanimlari, String> column_1 = new Column<XMLSinifTanimlari, String>(
+				new ButtonCell()) {
+			@Override
+			public String getValue(XMLSinifTanimlari object) {
+				return (String) null;
+			}
+		};
+		grdSinifTanimlari.addColumn(column_1, "Sil");
 
 		if (!isDesignTime()) {
 
@@ -148,7 +150,35 @@ public class SinifTanimlari extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column.setFieldUpdater(new FieldUpdater<XMLSinifTanimlari, String>() {
+
+				@Override
+				public void update(int index, XMLSinifTanimlari object,
+						String value) {
+
+					XMLSinifTanimlari selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
+
+		column_1.setFieldUpdater(new FieldUpdater<XMLSinifTanimlari, String>() {
+
+			@Override
+			public void update(int index, XMLSinifTanimlari object, String value) {
+				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+			}
+		});
 
 	}
 

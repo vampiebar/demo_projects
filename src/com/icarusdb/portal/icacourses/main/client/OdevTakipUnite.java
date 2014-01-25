@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -36,9 +38,10 @@ public class OdevTakipUnite extends Composite {
 	private TextColumn<XMLOdevTakipUnite> grdcalanAdi;
 	private TextColumn<XMLOdevTakipUnite> grdcDersAdi;
 	private TextColumn<XMLOdevTakipUnite> grdcUniteAdi;
-	private Column<XMLOdevTakipUnite, String> grdcIslemler;
+	private Column<XMLOdevTakipUnite, String> column;
 
 	private DlgOdevTakipUnite _dlgOdevTakipUnite;
+	private Column<XMLOdevTakipUnite, String> column_1;
 
 	public OdevTakipUnite() {
 
@@ -133,37 +136,34 @@ public class OdevTakipUnite extends Composite {
 		};
 		grdOdevTakipUnite.addColumn(grdcUniteAdi, "Ünite Adı");
 
-		grdcIslemler = new Column<XMLOdevTakipUnite, String>(new ButtonCell()) {
+		column = new Column<XMLOdevTakipUnite, String>(new ButtonCell()) {
 			@Override
 			public String getValue(XMLOdevTakipUnite object) {
 				return "???";
 			}
 		};
-		grdOdevTakipUnite.addColumn(grdcIslemler, "İşlemler");
+		grdOdevTakipUnite.addColumn(column, "Düzenle");
+
+		column_1 = new Column<XMLOdevTakipUnite, String>(new ButtonCell()) {
+			@Override
+			public String getValue(XMLOdevTakipUnite object) {
+				return (String) null;
+			}
+		};
+		grdOdevTakipUnite.addColumn(column_1, "Sil");
 
 		Button btnYeniKayit = new Button("ARA");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit.setText("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		absolutePanel.add(btnYeniKayit, 434, 30);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnKaydet = new Button("Yeni Kayıt");
-		btnKaydet.setStyleName("gwt-ButtonSave");
-
-		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 531, 30);
-		btnKaydet.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnExceleAktar, 622, 30);
-		btnExceleAktar.setSize("78px", "48px");
+		btnYeniKayit.setSize("91px", "66px");
 
 		button = new Button("ARA");
-		button.setStyleName("gwt-ButonKapat");
+		button.setText("");
+		button.setStyleName("gwt-ButtonAra");
 		absolutePanel.add(button, 342, 30);
-		button.setSize("78px", "48px");
+		button.setSize("86px", "66px");
 
 		if (!isDesignTime()) {
 
@@ -183,8 +183,36 @@ public class OdevTakipUnite extends Composite {
 
 						// Window.alert("selected id: " + selected.id);
 						showWithData(selected.id);
+						column.setFieldUpdater(new FieldUpdater<XMLOdevTakipUnite, String>() {
 
+							@Override
+							public void update(int index,
+									XMLOdevTakipUnite object, String value) {
+
+								XMLOdevTakipUnite selected = selectionModel
+										.getSelectedObject();
+								if (selected != null) {
+									// DO YOUR STUFF
+
+									// Window.alert("selected id: " +
+									// selected.id);
+									showWithData(selected.id);
+
+								}
+
+							}
+						});
 					}
+
+					column_1.setFieldUpdater(new FieldUpdater<XMLOdevTakipUnite, String>() {
+
+						@Override
+						public void update(int index, XMLOdevTakipUnite object,
+								String value) {
+							Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+						}
+					});
 
 				}
 

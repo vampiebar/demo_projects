@@ -18,6 +18,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -42,6 +43,7 @@ public class DlgSinifTanimlari extends DialogBox {
 	private ListBox cbxKursZamani;
 	private ListBox cbxFizikselSinifAdi;
 	private TextBox tctSinifAdi;
+	private Button btnKaydet;
 
 	public DlgSinifTanimlari(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -220,21 +222,34 @@ public class DlgSinifTanimlari extends DialogBox {
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.setText("Yeni Kayıt");
 		absolutePanel.add(btnYeniKayit, 388, 497);
-		btnYeniKayit.setSize("78px", "45px");
+		btnYeniKayit.setSize("78px", "68px");
 
-		Button btnKaydet = new Button("New button");
+		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 472, 497);
+		absolutePanel.add(btnKaydet, 485, 414);
 		btnKaydet.setSize("78px", "45px");
 
 		Button btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 556, 497);
+		absolutePanel.add(btnKapat, 569, 414);
 		btnKapat.setSize("78px", "45px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 480, 497);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		image_1.setAltText("aedasda");
+		absolutePanel.add(image_1, 569, 497);
+		image_1.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
 
@@ -516,6 +531,18 @@ public class DlgSinifTanimlari extends DialogBox {
 			putEgitimTuruAlanToCbx(
 					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
 					cbxAlan);
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
 		}
 	}
 }

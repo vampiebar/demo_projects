@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.SimpleCheckBox;
@@ -50,6 +51,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 	private SimpleCheckBox chxCumartesi;
 	private SimpleCheckBox chxPazar;
 	public DecoratedTabPanel tabOgretmenIslemleri;
+	private Button btnKaydet;
 
 	public DlgOgretmenTanimlari(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -62,7 +64,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		setWidget(absolutePanel);
-		absolutePanel.setSize("700px", "524px");
+		absolutePanel.setSize("700px", "535px");
 
 		tabOgretmenIslemleri = new DecoratedTabPanel();
 		absolutePanel.add(tabOgretmenIslemleri, 0, 32);
@@ -309,19 +311,31 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		absolutePanel.add(absolutePanel_2, 399, -33);
 		absolutePanel_2.setSize("258px", "567px");
 
-		Button btnKaydet = new Button("New button");
+		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel_2.add(btnKaydet, 90, 500);
+		absolutePanel_2.add(btnKaydet, 53, 395);
 		btnKaydet.setSize("78px", "47px");
 
 		Button btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel_2.add(btnKapat, 174, 500);
+		absolutePanel_2.add(btnKapat, 137, 395);
 		btnKapat.setSize("78px", "47px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel_2.add(image, 55, 491);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel_2.add(image_1, 143, 491);
+		image_1.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
 
@@ -559,6 +573,18 @@ public class DlgOgretmenTanimlari extends DialogBox {
 					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
 					cbxBrans);
 
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
 		}
 	}
 }

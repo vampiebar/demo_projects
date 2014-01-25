@@ -10,6 +10,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -26,6 +27,7 @@ public class DlgPersonelIslemleri extends DialogBox {
 	private TextBox tctUcreti;
 	private TextBox tctTelefonu1;
 	private TextBox tctTelefonu2;
+	private Button btnKaydet;
 
 	public DlgPersonelIslemleri(boolean isInsert, long id) {
 		setAnimationEnabled(true);
@@ -109,23 +111,35 @@ public class DlgPersonelIslemleri extends DialogBox {
 		Button btnYenikayit = new Button("New button");
 		btnYenikayit.addClickHandler(new BtnYenikayitClickHandler());
 		btnYenikayit.setStyleName("gwt-ButonYeniKayit");
-		btnYenikayit.setText("Yeni Kayıt");
-		absolutePanel.add(btnYenikayit, 304, 281);
-		btnYenikayit.setSize("78px", "45px");
+		btnYenikayit.setText("");
+		absolutePanel.add(btnYenikayit, 297, 271);
+		btnYenikayit.setSize("78px", "66px");
 
-		Button btnKaydet = new Button("New button");
+		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 388, 281);
+		absolutePanel.add(btnKaydet, 405, 158);
 		btnKaydet.setSize("78px", "45px");
 
 		Button btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 472, 281);
+		absolutePanel.add(btnKapat, 489, 158);
 		btnKapat.setSize("78px", "45px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 390, 271);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 478, 271);
+		image_1.setSize("72px", "66px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -190,5 +204,17 @@ public class DlgPersonelIslemleri extends DialogBox {
 
 		}
 
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

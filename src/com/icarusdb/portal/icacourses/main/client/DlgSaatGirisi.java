@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -23,6 +24,7 @@ public class DlgSaatGirisi extends DialogBox {
 	private ListBox cbxBitisDakika;
 	private ListBox cbxBaslangicDakika;
 	private ListBox cbxBaslangicSaat;
+	private Button btnKaydet;
 
 	public DlgSaatGirisi(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -60,16 +62,18 @@ public class DlgSaatGirisi extends DialogBox {
 		absolutePanel.add(lblAklama, 10, 150);
 		lblAklama.setSize("54px", "18px");
 
-		Button btnKaydet = new Button("Kaydet");
+		btnKaydet = new Button("Kaydet");
+		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		absolutePanel.add(btnKaydet, 326, 207);
+		absolutePanel.add(btnKaydet, 237, 271);
 		btnKaydet.setSize("78px", "43px");
 
 		Button btnKapat = new Button("Kapat");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel.add(btnKapat, 422, 207);
+		absolutePanel.add(btnKapat, 333, 271);
 		btnKapat.setSize("78px", "43px");
 
 		cbxGun = new ListBox();
@@ -297,6 +301,17 @@ public class DlgSaatGirisi extends DialogBox {
 		horizontalPanel_1.add(cbxBitisDakika);
 		cbxBitisDakika.setSize("45px", "23px");
 
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+
+		absolutePanel.add(image, 237, 184);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 325, 184);
+		image_1.setSize("72px", "66px");
+
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
 		tabSaatGirisi.add(absolutePanel_1, "Kopyalama İşlemi", false);
@@ -384,5 +399,17 @@ public class DlgSaatGirisi extends DialogBox {
 		cbxBitisDakika.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxBitisDakika, xml.bitis_dakika));
 
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

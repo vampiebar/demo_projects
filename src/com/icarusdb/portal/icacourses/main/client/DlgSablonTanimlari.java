@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -16,6 +17,7 @@ public class DlgSablonTanimlari extends DialogBox {
 
 	private TextBox tctSablonAdi;
 	private ListBox cbxSinavTuru;
+	private Button btnSablonuKaydet;
 
 	public DlgSablonTanimlari(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -54,7 +56,8 @@ public class DlgSablonTanimlari extends DialogBox {
 		absolutePanel.add(btnParametreDegeriEkle, 10, 119);
 		btnParametreDegeriEkle.setSize("169px", "22px");
 
-		Button btnSablonuKaydet = new Button("New button");
+		btnSablonuKaydet = new Button("New button");
+		btnSablonuKaydet.setVisible(false);
 		btnSablonuKaydet.setStyleName("gwt-ButtonSave");
 		btnSablonuKaydet.addClickHandler(new BtnSablonuKaydetClickHandler());
 		btnSablonuKaydet.setText("Şablonu Kaydet");
@@ -62,6 +65,7 @@ public class DlgSablonTanimlari extends DialogBox {
 		btnSablonuKaydet.setSize("78px", "45px");
 
 		Button btnKapat = new Button("New button");
+		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
@@ -87,6 +91,16 @@ public class DlgSablonTanimlari extends DialogBox {
 		btnSinavaAitBilgileriYukle.setText("Sınava Ait Bilgileri Yükle");
 		absolutePanel.add(btnSinavaAitBilgileriYukle, 260, 193);
 		btnSinavaAitBilgileriYukle.setSize("186px", "23px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 427, 285);
+		image.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 515, 285);
+		image_1.setSize("72px", "66px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -115,5 +129,17 @@ public class DlgSablonTanimlari extends DialogBox {
 		cbxSinavTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxSinavTuru, xml.sinav_turu));
 
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnSablonuKaydet.click();
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }
