@@ -30,6 +30,8 @@ public class DBSSinavTanimla extends Composite {
 	private CellTable<XMLDBSSinavTanimla> grdDBSSinavTanimla;
 	private DlgDBSSinavTanimla _dlgDbsSinavTanimla;
 
+	// public long _id = -1;
+
 	public DBSSinavTanimla() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
@@ -183,9 +185,24 @@ public class DBSSinavTanimla extends Composite {
 			@Override
 			public void update(int index, XMLDBSSinavTanimla object,
 					String value) {
-				Window.confirm("Kayit Silinecektir Emin Misiniz");
+				// Window.confirm("Kayit Silinecektir Emin Misiniz");
 
+				Boolean x = Window.confirm("Kayit Silinecektir, Emin Misiniz");
+				if (x == true) {
+
+					// String URLValue = Util.urlBase + "putdbssinavtanimla?";
+					//
+					// URLValue = URLValue + "id=" + _id;
+					// URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+					// Window.alert(URLValue);
+
+					// new Util().sendRequest(URLValue,
+					// "SINAV BİLGİSİ KAYIT EDİLDİ",
+					// "SINAV BİLGİSİ KAYIT EDİLEMEDİ");
+				}
 			}
+
 		});
 
 	}
@@ -245,7 +262,8 @@ public class DBSSinavTanimla extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getdbssinavtanimla";
+		String urlWithParameters = Util.urlBase
+				+ "getdbssinavtanimla?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

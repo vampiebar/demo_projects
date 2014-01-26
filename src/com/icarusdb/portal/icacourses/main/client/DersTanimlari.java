@@ -31,7 +31,11 @@ public class DersTanimlari extends Composite {
 
 	private DlgDersTanimlari _dlgDersTanimlari;
 
+	// public long _id = -1;
+
 	public DersTanimlari() {
+
+		// _id = id;
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
@@ -149,8 +153,32 @@ public class DersTanimlari extends Composite {
 
 			@Override
 			public void update(int index, XMLDersTanimlari object, String value) {
-				Window.confirm("Kayit Silinecektir Emin Misiniz");
 
+				Boolean x = Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+				if (x == true) {
+					SingleSelectionModel<XMLDersTanimlari> selectionModel = new SingleSelectionModel<XMLDersTanimlari>();
+					XMLDersTanimlari selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+						// String URLValue = Util.urlBase + "putderstanimlari?";
+						//
+						// URLValue = URLValue + "id=" + selected.id;
+						// URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+						//
+						// // Window.alert(URLValue);
+						//
+						// new Util().sendRequest(URLValue,
+						// "DERS BİLGİSİ KAYIT EDİLDİ",
+						// "DERS BİLGİSİ KAYIT EDİLEMEDİ");
+					}
+
+				}
 			}
 		});
 
@@ -210,7 +238,8 @@ public class DersTanimlari extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getderstanimlari";
+		String urlWithParameters = Util.urlBase
+				+ "getderstanimlari?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

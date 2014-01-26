@@ -15,6 +15,7 @@ import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 
@@ -24,6 +25,7 @@ public class SozlesmeMaddeleri extends Composite {
 	private SimplePanel smpanHtmlEditor;
 
 	public CKEditor ckhtmlSozlesmeMaddeleri;
+	private Button btnKaydet;
 
 	public SozlesmeMaddeleri(boolean isInsert, long id) {
 
@@ -49,16 +51,21 @@ public class SozlesmeMaddeleri extends Composite {
 		lblSzlemeMaddelri.setStyleName("gwt-Bold");
 		absolutePanel.add(lblSzlemeMaddelri, 43, 92);
 
-		Button btnKaydet = new Button("New button");
+		btnKaydet = new Button("New button");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 647, 530);
+		absolutePanel.add(btnKaydet, 520, 541);
 		btnKaydet.setSize("69px", "36px");
 
 		smpanHtmlEditor = new SimplePanel();
 		absolutePanel.add(smpanHtmlEditor, 43, 110);
 		smpanHtmlEditor.setSize("760px", "414px");
+
+		Image image = new Image("kaydet-1.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 629, 530);
+		image.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
 
@@ -141,6 +148,12 @@ public class SozlesmeMaddeleri extends Composite {
 			new Util().sendRequest(URLValue,
 					"SÖZLEŞME MADDELERİ BAŞARI İLE KAYIT EDİLDİ",
 					"SÖZLEŞME MADDELERİ KAYIT EDİLEMEDİ");
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			btnKaydet.click();
 		}
 	}
 }

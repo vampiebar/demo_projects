@@ -21,6 +21,7 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -34,6 +35,7 @@ public class OnKayit extends Composite {
 	private CellTable<XMLOnKayit> grdOnKayit;
 	private DlgOnKayit _dlgOnKayit;
 	private TextBox tctAranacakAnahtarKelime;
+	private CheckBox chxSilinmisKayitlariGoster;
 
 	public OnKayit() {
 
@@ -127,6 +129,13 @@ public class OnKayit extends Composite {
 		btnAra.setStyleName("gwt-ButtonAra");
 		absolutePanel.add(btnAra, 506, 51);
 		btnAra.setSize("90px", "65px");
+
+		chxSilinmisKayitlariGoster = new CheckBox("New check box");
+		chxSilinmisKayitlariGoster
+				.addClickHandler(new ChxSilinmisKayitlariGosterClickHandler());
+		chxSilinmisKayitlariGoster.setHTML("Silinmiş Kayıtları Goster");
+		absolutePanel.add(chxSilinmisKayitlariGoster, 191, 66);
+		chxSilinmisKayitlariGoster.setSize("202px", "19px");
 
 		if (!isDesignTime()) {
 
@@ -361,6 +370,113 @@ public class OnKayit extends Composite {
 				// Window.alert(e.getMessage() + "ERROR");
 			}
 
+		}
+	}
+
+	private class ChxSilinmisKayitlariGosterClickHandler implements
+			ClickHandler {
+		public void onClick(ClickEvent event) {
+			if (chxSilinmisKayitlariGoster.getValue() == true) {
+
+				String urlWithParameters = Util.urlBase
+						+ "getonkayit?kayit_silinsin_mi=TRUE";
+
+				RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+						urlWithParameters);
+
+				// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+				try {
+					Request request = builder.sendRequest(null,
+							new RequestCallback() {
+								public void onError(Request request,
+										Throwable exception) {
+
+								}
+
+								@Override
+								public void onResponseReceived(Request request,
+										Response response) {
+
+									// Window.alert("AAABBBCCC " +
+									// response.getText());
+
+									List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
+											.readList(response.getText());
+
+									// Window.alert("gun: " +
+									// listXmlSaatGirisi.get(0).gun);
+
+									// Set the total row count. This isn't
+									// strictly
+									// necessary, but it affects
+									// paging calculations, so its good habit to
+									// keep the row count up to date.
+									grdOnKayit.setRowCount(1, true);
+
+									// Push the data into the widget.
+									grdOnKayit.setRowData(0, listXmlOnKayit);
+
+								}
+
+							});
+
+				} catch (RequestException e) {
+					// displayError("Couldn't retrieve JSON");
+
+					// Window.alert(e.getMessage() + "ERROR");
+				}
+			}
+
+			else {
+
+				String urlWithParameters = Util.urlBase
+						+ "getonkayit?kayit_silinsin_mi=FALSE";
+
+				RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+						urlWithParameters);
+
+				// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+				try {
+					Request request = builder.sendRequest(null,
+							new RequestCallback() {
+								public void onError(Request request,
+										Throwable exception) {
+
+								}
+
+								@Override
+								public void onResponseReceived(Request request,
+										Response response) {
+
+									// Window.alert("AAABBBCCC " +
+									// response.getText());
+
+									List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
+											.readList(response.getText());
+
+									// Window.alert("gun: " +
+									// listXmlSaatGirisi.get(0).gun);
+
+									// Set the total row count. This isn't
+									// strictly
+									// necessary, but it affects
+									// paging calculations, so its good habit to
+									// keep the row count up to date.
+									grdOnKayit.setRowCount(1, true);
+
+									// Push the data into the widget.
+									grdOnKayit.setRowData(0, listXmlOnKayit);
+
+								}
+
+							});
+
+				} catch (RequestException e) {
+					// displayError("Couldn't retrieve JSON");
+
+					// Window.alert(e.getMessage() + "ERROR");
+				}
+			}
 		}
 	}
 }

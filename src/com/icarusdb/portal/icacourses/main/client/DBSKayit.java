@@ -20,6 +20,7 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -31,6 +32,9 @@ public class DBSKayit extends Composite {
 	private TextBox tctAranacakAnahtarKelime;
 	private CellTable<XMLDBSKayit> grdDBSKayit;
 	private DlgDBSYeniKayit _dlgDbsYeniKayit;
+	private Button btnAra;
+	private CheckBox chxSilinmisKayitlariGoster;
+	private Button btnNewButton;
 
 	public DBSKayit() {
 
@@ -137,7 +141,7 @@ public class DBSKayit extends Composite {
 		absolutePanel.add(btnYeniKayit, 607, 30);
 		btnYeniKayit.setSize("90px", "65px");
 
-		Button btnAra = new Button("");
+		btnAra = new Button("");
 		btnAra.setTitle("Ara");
 		btnAra.addClickHandler(new BtnAraClickHandler());
 
@@ -146,11 +150,18 @@ public class DBSKayit extends Composite {
 		absolutePanel.add(btnAra, 513, 30);
 		btnAra.setSize("90px", "65px");
 
-		Button btnNewButton = new Button("New button");
+		btnNewButton = new Button("New button");
+		btnNewButton.setVisible(false);
 		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
 		btnNewButton.setText("Silinmiş Kayıtları Göster");
-		absolutePanel.add(btnNewButton, 191, 57);
+		absolutePanel.add(btnNewButton, 191, 81);
 		btnNewButton.setSize("202px", "21px");
+
+		chxSilinmisKayitlariGoster = new CheckBox("Silinmiş Kayıtları Göster");
+		chxSilinmisKayitlariGoster
+				.addClickHandler(new ChxSilinmisKayitlariGosterClickHandler());
+		absolutePanel.add(chxSilinmisKayitlariGoster, 191, 55);
+		chxSilinmisKayitlariGoster.setSize("186px", "20px");
 
 		if (!isDesignTime()) {
 
@@ -482,6 +493,67 @@ public class DBSKayit extends Composite {
 				// Window.alert(e.getMessage() + "ERROR");
 			}
 
+		}
+	}
+
+	private class ChxSilinmisKayitlariGosterClickHandler implements
+			ClickHandler {
+		public void onClick(ClickEvent event) {
+			if (chxSilinmisKayitlariGoster.getValue() == true) {
+				btnNewButton.click();
+			}
+
+			else {
+				String urlWithParameters = Util.urlBase + "getdbskayit"
+						+ "?kayit_silinsin_mi=FALSE";
+
+				RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+						urlWithParameters);
+
+				// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+				try {
+					Request request = builder.sendRequest(null,
+							new RequestCallback() {
+								public void onError(Request request,
+										Throwable exception) {
+
+								}
+
+								@Override
+								public void onResponseReceived(Request request,
+										Response response) {
+
+									// Window.alert("AAABBBCCC " +
+									// response.getText());
+
+									List<XMLDBSKayit> listXmlDbsKayit = XMLDBSKayit.XML
+											.readList(response.getText());
+
+									// listXmlOnKayit.add(xmlOnKayit);
+
+									// lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
+
+									// Set the total row count. This isn't
+									// strictly
+									// necessary, but it affects
+									// paging calculations, so its good habit to
+									// keep the row count up to date.
+									grdDBSKayit.setRowCount(1, true);
+
+									// Push the data into the widget.
+									grdDBSKayit.setRowData(0, listXmlDbsKayit);
+
+								}
+
+							});
+
+				} catch (RequestException e) {
+					// displayError("Couldn't retrieve JSON");
+
+					// Window.alert(e.getMessage() + "ERROR");
+				}
+			}
 		}
 	}
 }

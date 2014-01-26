@@ -63,10 +63,11 @@ public class DlgFizikselSinifTanimlari extends DialogBox {
 		btnKapat.setSize("78px", "45px");
 
 		Button btnYeniKayit = new Button("New button");
-		btnYeniKayit.setText("Yeni Kayit");
+		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
+		btnYeniKayit.setText("");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 125, 105);
-		btnYeniKayit.setSize("78px", "45px");
+		absolutePanel.add(btnYeniKayit, 119, 94);
+		btnYeniKayit.setSize("87px", "66px");
 
 		Image image = new Image("kaydet-1.png");
 		image.addClickHandler(new ImageClickHandler());

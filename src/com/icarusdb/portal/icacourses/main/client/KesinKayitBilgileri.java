@@ -2111,7 +2111,7 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	public void putDataFromXMLOkulNumarasi(XMLOnKayit xml) {
 
-		tctOgrenciNumarasi.setText(xml.okul_numarasi);
+		tctOkulNumarasi.setText(xml.okul_numarasi);
 	}
 
 	public void putDataFromXMLSinif(XMLOnKayit xml) {
@@ -2119,11 +2119,11 @@ public class KesinKayitBilgileri extends DialogBox {
 		cbxEgitimTuru.setItemText(0, xml.egitim_turu);
 		cbxAlan.setItemText(0, xml.alan);
 		cbxKursZamani.setItemText(0, xml.kurs_zamani);
-
+		cbxSinif.setItemText(0, xml.sinif);
 		// cbxKursZamani.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 		// cbxKursZamani, xml.kurs_zamani));
-		cbxSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxSinif,
-				xml.sinif));
+		// cbxSinif.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxSinif,
+		// xml.sinif));
 		tctOgrenciNumarasi.setText(xml.ogrenci_numarasi);
 		tctKursIndirimFiyati.setText(xml.sinif_bilgileri_kurs_indirim_fiyati);
 		cbxIndirimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
@@ -2604,19 +2604,18 @@ public class KesinKayitBilgileri extends DialogBox {
 			SelectionHandler<Integer> {
 		public void onSelection(SelectionEvent<Integer> event) {
 
-			if (event.getSelectedItem() == 7) {
+			if (event.getSelectedItem() == 4) {
+				showWithDataSinif(String.valueOf(_id));
+			} else if (event.getSelectedItem() == 7) {
 
 				showWithDataOdemeler(String.valueOf(_id));
-
-			} else if (event.getSelectedItem() == 4) {
-				showWithDataSinif(String.valueOf(_id));
 			} else if (event.getSelectedItem() == 6) {
 				showWithDataHizmetler(String.valueOf(_id));
 
+			} else if (event.getSelectedItem() == 0) {
+
+				showWithDataOkulNumarasi(String.valueOf(_id));
 			}
-			// } else if (event.getSelectedItem() == 1) {
-			// showWithDataOkulNumarasi(String.valueOf(_id));
-			// }
 		}
 	}
 
@@ -2732,10 +2731,9 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	}
 
-	protected void showWithDataHizmetler(final String ogrenci_tc_kimlik_no) {
+	protected void showWithDataHizmetler(final String id) {
 
-		String urlWithParameters = Util.urlBase
-				+ "gethizmetler?ogrenci_tc_kimlik_no=" + ogrenci_tc_kimlik_no;
+		String urlWithParameters = Util.urlBase + "gethizmetler?id=" + id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

@@ -329,7 +329,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	public void putIlToCbx(final ListBox lbxTemp) {
 
 		lbxTemp.clear();
-		lbxTemp.addItem("");
+		lbxTemp.addItem(" ");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				Util.urlBase + "getil");
@@ -370,7 +370,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	public void putIlceToCbx(int il_id, final ListBox lbxTemp) {
 
 		lbxTemp.clear();
-		lbxTemp.addItem("");
+		lbxTemp.addItem(" ");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				Util.urlBase + "getilce?il_id=" + il_id);
@@ -411,7 +411,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	public void putSemtToCbx(String il, String ilce, final ListBox lbxTemp) {
 
 		lbxTemp.clear();
-		lbxTemp.addItem("");
+		lbxTemp.addItem(" ");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				Util.urlBase + "getpostakodu?il=" + il + "&ilce=" + ilce);
@@ -456,7 +456,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 			String semt_bucak_belde, final ListBox lbxTemp) {
 
 		lbxTemp.clear();
-		lbxTemp.addItem("");
+		lbxTemp.addItem(" ");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				Util.urlBase + "getpostakodumahalle?il=" + il + "&ilce=" + ilce
@@ -624,7 +624,43 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	private class ImageClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			btnKaydet.click();
+			String URLValue = Util.urlBase + "putdbssinavtanimla?";
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&okul_durumu="
+					+ cbxOkulDurumu.getValue(cbxOkulDurumu.getSelectedIndex());
+			URLValue = URLValue + "&alan_bilgisi="
+					+ cbxAlan.getValue(cbxAlan.getSelectedIndex());
+			URLValue = URLValue + "&kota=" + tctKota.getText();
+			URLValue = URLValue + "&sinav_yeri="
+					+ cbxSinavYeri.getValue(cbxSinavYeri.getSelectedIndex());
+			URLValue = URLValue + "&ulke="
+					+ cbxUlke.getItemText(cbxUlke.getSelectedIndex());
+			URLValue = URLValue + "&il="
+					+ cbxIl.getItemText(cbxIl.getSelectedIndex());
+			URLValue = URLValue + "&ilce="
+					+ cbxIlce.getItemText(cbxIlce.getSelectedIndex());
+			URLValue = URLValue + "&semt="
+					+ cbxSemt.getItemText(cbxSemt.getSelectedIndex());
+			URLValue = URLValue
+					+ "&mahalle_koy="
+					+ cbxMahalleKoy.getItemText(cbxMahalleKoy
+							.getSelectedIndex());
+			URLValue = URLValue + "&adres=" + tctAdres.getText();
+			URLValue = URLValue + "&saat="
+					+ cbxSaat.getValue(cbxSaat.getSelectedIndex());
+			URLValue = URLValue + "&dakika="
+					+ cbxDakika.getValue(cbxDakika.getSelectedIndex());
+
+			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
+
+			URLValue = URLValue + "&sinav_tarihi="
+					+ dtf.format(dtpSinavTarihi.getValue());
+
+			// Window.alert(URLValue);
+
+			new Util().sendRequest(URLValue, "SINAV BİLGİSİ KAYIT EDİLDİ",
+					"SINAV BİLGİSİ KAYIT EDİLEMEDİ");
 		}
 	}
 

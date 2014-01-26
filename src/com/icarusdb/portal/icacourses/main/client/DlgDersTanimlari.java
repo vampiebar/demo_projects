@@ -30,6 +30,7 @@ public class DlgDersTanimlari extends DialogBox {
 	private Button btnKaydet;
 
 	public DlgDersTanimlari(boolean isInsert, long id) {
+		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -97,10 +98,11 @@ public class DlgDersTanimlari extends DialogBox {
 		btnKapat.setSize("78px", "45px");
 
 		Button btnNewButton = new Button("New button");
-		btnNewButton.setText("Yeni Kayıt");
+		btnNewButton.setStyleName("gwt-ButonYeniKayit");
+		btnNewButton.setText("");
 		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
-		absolutePanel.add(btnNewButton, 20, 164);
-		btnNewButton.setSize("78px", "45px");
+		absolutePanel.add(btnNewButton, 23, 155);
+		btnNewButton.setSize("78px", "66px");
 
 		Image image = new Image("kaydet-1.png");
 		image.addClickHandler(new ImageClickHandler());
@@ -229,6 +231,7 @@ public class DlgDersTanimlari extends DialogBox {
 			URLValue = URLValue + "&alan_adi="
 					+ cbxAlan.getItemText(cbxAlan.getSelectedIndex());
 			URLValue = URLValue + "&ders_adi=" + tctDersAdi.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 
@@ -274,4 +277,5 @@ public class DlgDersTanimlari extends DialogBox {
 			btnKaydet.click();
 		}
 	}
+
 }
