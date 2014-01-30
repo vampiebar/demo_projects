@@ -559,6 +559,8 @@ public class DlgDBSSinavTanimla extends DialogBox {
 
 	public void putDataFromXML(XMLDBSSinavTanimla xml) {
 
+		cbxOkulDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxOkulDurumu, xml.okul_durumu));
 		tctKota.setText(xml.kota);
 		tctAdres.setText(xml.adres);
 		cbxAlan.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxAlan,
@@ -567,9 +569,6 @@ public class DlgDBSSinavTanimla extends DialogBox {
 				cbxSinavYeri, xml.sinav_yeri));
 
 		hzpanOtherBuilding.setVisible((cbxSinavYeri.getSelectedIndex() == 1));
-
-		cbxOkulDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxOkulDurumu, xml.okul_durumu));
 
 		cbxUlke.setSelectedIndex(Util
 				.GetLBXSelectedTextIndex(cbxUlke, xml.ulke));

@@ -66,21 +66,21 @@ public class DersTanimlari extends Composite {
 		grdDersTanimlari.addColumn(textColumn_3, "İD");
 		grdDersTanimlari.setColumnWidth(textColumn_3, "32px");
 
-		Column<XMLDersTanimlari, String> textColumn = new TextColumn<XMLDersTanimlari>() {
+		final Column<XMLDersTanimlari, String> textColumn = new TextColumn<XMLDersTanimlari>() {
 			public String getValue(XMLDersTanimlari object) {
 				return object.egitim_turu_adi.toString();
 			}
 		};
 		grdDersTanimlari.addColumn(textColumn, "Eğitim Türü Adı");
 
-		Column<XMLDersTanimlari, String> textColumn_1 = new TextColumn<XMLDersTanimlari>() {
+		final Column<XMLDersTanimlari, String> textColumn_1 = new TextColumn<XMLDersTanimlari>() {
 			public String getValue(XMLDersTanimlari object) {
 				return object.alan_adi.toString();
 			}
 		};
 		grdDersTanimlari.addColumn(textColumn_1, "Alan Adı");
 
-		Column<XMLDersTanimlari, String> textColumn_2 = new TextColumn<XMLDersTanimlari>() {
+		final Column<XMLDersTanimlari, String> textColumn_2 = new TextColumn<XMLDersTanimlari>() {
 			@Override
 			public String getValue(XMLDersTanimlari object) {
 				return object.ders_adi.toString();
@@ -113,12 +113,14 @@ public class DersTanimlari extends Composite {
 			final SingleSelectionModel<XMLDersTanimlari> selectionModel = new SingleSelectionModel<XMLDersTanimlari>();
 
 			grdDersTanimlari.setSelectionModel(selectionModel);
+
 			grdDersTanimlari.addDomHandler(new DoubleClickHandler() {
 
 				@Override
 				public void onDoubleClick(final DoubleClickEvent event) {
 					XMLDersTanimlari selected = selectionModel
 							.getSelectedObject();
+
 					if (selected != null) {
 						// DO YOUR STUFF
 
@@ -132,8 +134,7 @@ public class DersTanimlari extends Composite {
 			column.setFieldUpdater(new FieldUpdater<XMLDersTanimlari, String>() {
 
 				@Override
-				public void update(int index, XMLDersTanimlari object,
-						String value) {
+				public void update(int index, XMLDersTanimlari object, String id) {
 
 					XMLDersTanimlari selected = selectionModel
 							.getSelectedObject();
@@ -147,40 +148,60 @@ public class DersTanimlari extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLDersTanimlari, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLDersTanimlari, String>() {
 
-			@Override
-			public void update(int index, XMLDersTanimlari object, String value) {
-
-				Boolean x = Window.confirm("Kayit Silinecektir, Emin Misiniz?");
-
-				if (x == true) {
-					SingleSelectionModel<XMLDersTanimlari> selectionModel = new SingleSelectionModel<XMLDersTanimlari>();
+				@Override
+				public void update(int index, XMLDersTanimlari object,
+						String value) {
 					XMLDersTanimlari selected = selectionModel
 							.getSelectedObject();
-					if (selected != null) {
-						// DO YOUR STUFF
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
-						// Window.alert("selected id: " + selected.id);
-						showWithData(selected.id);
+					if (x == true) {
 
-						// String URLValue = Util.urlBase + "putderstanimlari?";
-						//
-						// URLValue = URLValue + "id=" + selected.id;
-						// URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
-						//
-						// // Window.alert(URLValue);
-						//
-						// new Util().sendRequest(URLValue,
-						// "DERS BİLGİSİ KAYIT EDİLDİ",
-						// "DERS BİLGİSİ KAYIT EDİLEMEDİ");
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putderstanimlari?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&egitim_turu_adi="
+									+ textColumn.getValue(selected);
+							URLValue = URLValue + "&alan_adi="
+									+ textColumn_1.getValue(selected);
+							URLValue = URLValue + "&ders_adi="
+									+ textColumn_2.getValue(selected);
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+							_dlgDersTanimlari
+									.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+										@Override
+										public void onClose(
+												CloseEvent<PopupPanel> event) {
+
+											putDataToGrid();
+
+										}
+									});
+						}
 					}
-
 				}
-			}
-		});
+			});
+
+		}// design time
 
 	}
 

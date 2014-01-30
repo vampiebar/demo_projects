@@ -80,14 +80,6 @@ public class Main implements EntryPoint {
 				HasHorizontalAlignment.ALIGN_RIGHT);
 		horizontalPanel_1.setSize("635px", "29px");
 
-		Button lblNewLabel = new Button("Çıkış");
-		lblNewLabel.setText("");
-		lblNewLabel.setTitle("Çıkış");
-		lblNewLabel.addClickHandler(new LblNewLabelClickHandler());
-		lblNewLabel.setStyleName("gwt-ButonKapat");
-		horizontalPanel_1.add(lblNewLabel);
-		lblNewLabel.setSize("26px", "21px");
-
 		VerticalPanel verticalPanel = new VerticalPanel();
 		verticalPanel.setStyleName("gwt-DialogBackGround");
 		verticalPanel.setSpacing(10);
@@ -127,6 +119,10 @@ public class Main implements EntryPoint {
 		btnMenuDBSKayit
 				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		btnMenuDBSKayit.addClickHandler(new BtnMenuDBSKayitClickHandler());
+
+		Button btnNewButton = new Button("New button");
+		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
+		vtpanKayitIslemleri.add(btnNewButton);
 		btnMenuDBSKayit.setStyleName("gwt-MenuButton");
 		vtpanKayitIslemleri.add(btnMenuDBSKayit);
 		vtpanKayitIslemleri.setCellHeight(btnMenuDBSKayit, "25");
@@ -571,284 +567,6 @@ public class Main implements EntryPoint {
 		return false;
 	}
 
-	// private class TreeKayitIslemleriSelectionHandler implements
-	// SelectionHandler<TreeItem> {
-	// public void onSelection(SelectionEvent<TreeItem> event) {
-	//
-	// smpanMain.clear();
-	//
-	// TreeItem item = event.getSelectedItem();
-	//
-	// if (item == tritmDBSKayit) {
-	//
-	// smpanMain.add(new DBSKayit());
-	// scrollToTop();
-	//
-	// } else if (item == tritmOnKayit) {
-	//
-	// smpanMain.add(new OnKayit());
-	// scrollToTop();
-	//
-	// }
-	//
-	// else if (item == tritmKesinKayit) {
-	// smpanMain.add(new KesinKayit());
-	// scrollToTop();
-	// }
-	//
-	// }
-	// }
-	//
-	// private class TreeDersDagitimSelectionHandler implements
-	// SelectionHandler<TreeItem> {
-	// public void onSelection(SelectionEvent<TreeItem> event) {
-	//
-	// smpanMain.clear();
-	//
-	// TreeItem item = event.getSelectedItem();
-	//
-	// if (item == tritmDersDagitimSistemi) {
-	// scrollToTop();
-	// smpanMain.add(new DersDagitimSistemi());
-	// } else if (item == tritmYetkiTanimlama) {
-	// smpanMain.add(new YetkiTanimlama());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmSaatGirisi) {
-	// smpanMain.add(new SaatGirisi());
-	// scrollToTop();
-	//
-	// }
-	//
-	// }
-	// }
-	//
-	// private class TreeOdevTakipSelectionHandler implements
-	// SelectionHandler<TreeItem> {
-	// public void onSelection(SelectionEvent<TreeItem> event) {
-	//
-	// smpanMain.clear();
-	//
-	// TreeItem item = event.getSelectedItem();
-	//
-	// if (item == tritmOdevolustur) {
-	// smpanMain.add(new OdevOlustur());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmCevapadedibelirle) {
-	// smpanMain.add(new CevapAdediBelirle());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmOdevtakipUnite) {
-	// smpanMain.add(new OdevTakipUnite());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmatanmisodevler) {
-	// smpanMain.add(new AtanmisOdevler());
-	// scrollToTop();
-	// }
-	//
-	// }
-	//
-	// }
-	//
-	// private class TritmSinavDegerlendirmeSelectionHandler implements
-	// SelectionHandler<TreeItem> {
-	// public void onSelection(SelectionEvent<TreeItem> event) {
-	//
-	// smpanMain.clear();
-	//
-	// TreeItem item = event.getSelectedItem();
-	//
-	// if (item == tritmsinavtanimlama) {
-	// smpanMain.add(new SinavTanimlama());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmSablontanimlari) {
-	// smpanMain.add(new SablonTaninmlari());
-	// scrollToTop();
-	// }
-	//
-	// }
-	// }
-	//
-	// private class TritmmuhasebeSelectionHandler implements
-	// SelectionHandler<TreeItem> {
-	// public void onSelection(SelectionEvent<TreeItem> event) {
-	//
-	// smpanMain.clear();
-	//
-	// TreeItem item = event.getSelectedItem();
-	//
-	// if (item == tritmgelirvegiderler) {
-	// smpanMain.add(new GelirlerveGiderler());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmkasahareketleri) {
-	// smpanMain.add(new KasaHareketleri());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmgelirgidertanimlari) {
-	// smpanMain.add(new GelirGiderTanimlari());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmgelirgiderkategorileri) {
-	// smpanMain.add(new GelirGiderKategorileri());
-	// scrollToTop();
-	//
-	// }
-	//
-	// else if (item == tritmbankaekle) {
-	//
-	// smpanMain.add(new BankaEkle());
-	// scrollToTop();
-	// }
-	//
-	// }
-	// }
-	//
-	// private class TritmDonemseltanimlarSelectionHandler implements
-	// SelectionHandler<TreeItem> {
-	// public void onSelection(SelectionEvent<TreeItem> event) {
-	// smpanMain.clear();
-	//
-	// TreeItem item = event.getSelectedItem();
-	//
-	// if (item == tritmDBSSinavTanimla) {
-	// smpanMain.add(new DBSSinavTanimla());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmOgretmenTanimlari) {
-	// smpanMain.add(new OgretmenTanimlari());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmSinifTanimlari) {
-	// smpanMain.add(new SinifTanimlari());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmIndirimturu) {
-	// smpanMain.add(new IndirimTuru());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmHizmettanimla) {
-	// smpanMain.add(new HizmetTanimla());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmreferanslar) {
-	// smpanMain.add(new Referanslar());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmpersoneltanimlari) {
-	// smpanMain.add(new PersonelTanimlari());
-	// scrollToTop();
-	// }
-	// }
-	//
-	// }
-	//
-	// private class TritmSabittanimlamalarSelectionHandler implements
-	// SelectionHandler<TreeItem> {
-	// public void onSelection(SelectionEvent<TreeItem> event) {
-	// smpanMain.clear();
-	//
-	// TreeItem item = event.getSelectedItem();
-	//
-	// if (item == tritmkurumsalbilgiler) {
-	// smpanMain.add(new KurumsalBilgiler());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmdönemtanimlari) {
-	// smpanMain.add(new DonemTanimlari());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmderstanimlari) {
-	// smpanMain.add(new DersTanimlari());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmUnitetanimlari) {
-	// smpanMain.add(new UniteTanimlari());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmKonutanimlari) {
-	// smpanMain.add(new KonuTanimlari());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmFizikselsiniftanimlari) {
-	// smpanMain.add(new FizikselSinifTanimlari());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmKurszamanitanimlari) {
-	// smpanMain.add(new KursZamaniTanimlama());
-	// scrollToTop();
-	// }
-	//
-	// else if (item == tritmsifredegistirme) {
-	// smpanMain.add(new SifreDegistirme());
-	// scrollToTop();
-	//
-	// } else if (item == tritmsozlesmemaddeleri) {
-	// smpanMain.add(new SozlesmeMaddeleri());
-	// scrollToTop();
-	// }
-	// }
-	//
-	// }
-	//
-	// private class TritmDestekSelectionHandler implements
-	// SelectionHandler<TreeItem> {
-	// public void onSelection(SelectionEvent<TreeItem> event) {
-	// smpanMain.clear();
-	//
-	// TreeItem item = event.getSelectedItem();
-	//
-	// if (item == tritmDestekAlmakIstiyorum) {
-	// smpanMain.add(new DestekAlmakIstiyorum());
-	// scrollToTop();
-	//
-	// }
-	// }
-	// }
-	//
-	// private class TritmYetkiSelectionHandler implements
-	// SelectionHandler<TreeItem> {
-	// public void onSelection(SelectionEvent<TreeItem> event) {
-	// smpanMain.clear();
-	//
-	// TreeItem item = event.getSelectedItem();
-	//
-	// if (item == tritmkullanicitanimlama) {
-	// smpanMain.add(new KullaniciTanimlama());
-	// scrollToTop();
-	// }
-	// }
-	// }
-
-	private class LblNewLabelClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-
-		}
-	}
-
 	public static native void scrollToTop() /*-{
 											$wnd.scroll(0, 0);
 											}-*/;
@@ -1265,9 +983,17 @@ public class Main implements EntryPoint {
 
 			smpanMain.clear();
 
-			smpanMain.add(new DlgOgrenciKayitlari());
+			smpanMain.add(new OgrenciKayitlari());
 			scrollToTop();
 
+		}
+	}
+
+	private class BtnNewButtonClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			smpanMain.clear();
+			smpanMain.add(new OgrenciIsleri());
+			scrollToTop();
 		}
 	}
 }

@@ -54,7 +54,7 @@ public class GelirGiderTanimlari extends Composite {
 		grdGelirgiderTanimnlari.addColumn(textColumn_3, "İD");
 		grdGelirgiderTanimnlari.setColumnWidth(textColumn_3, "68px");
 
-		Column<XMLGelirGiderTanimlari, ?> textColumn = new TextColumn<XMLGelirGiderTanimlari>() {
+		final Column<XMLGelirGiderTanimlari, ?> textColumn = new TextColumn<XMLGelirGiderTanimlari>() {
 			@Override
 			public String getValue(XMLGelirGiderTanimlari object) {
 				return object.tipi.toString();
@@ -62,7 +62,7 @@ public class GelirGiderTanimlari extends Composite {
 		};
 		grdGelirgiderTanimnlari.addColumn(textColumn, "Açıklama");
 
-		Column<XMLGelirGiderTanimlari, ?> textColumn_1 = new TextColumn<XMLGelirGiderTanimlari>() {
+		final Column<XMLGelirGiderTanimlari, ?> textColumn_1 = new TextColumn<XMLGelirGiderTanimlari>() {
 			@Override
 			public String getValue(XMLGelirGiderTanimlari object) {
 				return object.kategori_adi.toString();
@@ -70,7 +70,7 @@ public class GelirGiderTanimlari extends Composite {
 		};
 		grdGelirgiderTanimnlari.addColumn(textColumn_1, "Kategori Adı");
 
-		TextColumn<XMLGelirGiderTanimlari> textColumn_2 = new TextColumn<XMLGelirGiderTanimlari>() {
+		final TextColumn<XMLGelirGiderTanimlari> textColumn_2 = new TextColumn<XMLGelirGiderTanimlari>() {
 			@Override
 			public String getValue(XMLGelirGiderTanimlari object) {
 				return object.gelir_gider_adi.toString();
@@ -144,17 +144,48 @@ public class GelirGiderTanimlari extends Composite {
 
 				}
 			});
+			column_1.setFieldUpdater(new FieldUpdater<XMLGelirGiderTanimlari, String>() {
+
+				@Override
+				public void update(int index, XMLGelirGiderTanimlari object,
+						String value) {
+					XMLGelirGiderTanimlari selected = selectionModel
+							.getSelectedObject();
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putgelirgidertanimlari?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "tipi="
+									+ textColumn.getValue(selected);
+							URLValue = URLValue + "kategori_adi="
+									+ textColumn_1.getValue(selected);
+							URLValue = URLValue + "gelir_gider_adi="
+									+ textColumn_2.getValue(selected);
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util()
+									.sendRequest(URLValue,
+											"BAŞARIYLA KAYIT EDİLDİ",
+											"KAYIT EDİLEMEDİ");
+						}
+					}
+				}
+			});
 		}
-
-		column_1.setFieldUpdater(new FieldUpdater<XMLGelirGiderTanimlari, String>() {
-
-			@Override
-			public void update(int index, XMLGelirGiderTanimlari object,
-					String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
-
-			}
-		});
 
 	}
 
@@ -213,7 +244,8 @@ public class GelirGiderTanimlari extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getgelirgidertanimlari";
+		String urlWithParameters = Util.urlBase
+				+ "getgelirgidertanimlari?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

@@ -1,6 +1,17 @@
 package com.icarusdb.portal.icacourses.main.client;
 
+import java.util.List;
+
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
@@ -50,8 +61,16 @@ public class DlgOgrenciKayitlari extends DialogBox {
 	private Label lblVeliEmail;
 	private Label lblOdemeSorumlusuYakinligi;
 	private Label lblVeliAdresi;
+	public TabPanel tabOgrenciIsleri;
 
-	public DlgOgrenciKayitlari() {
+	public boolean _isInsert = true;
+	public long _id = -1;
+
+	public DlgOgrenciKayitlari(boolean isInsert, long id) {
+
+		_isInsert = isInsert;
+		_id = id;
+
 		setGlassEnabled(true);
 		setHTML("Öğrenci Kayitlari");
 
@@ -63,14 +82,16 @@ public class DlgOgrenciKayitlari extends DialogBox {
 		verticalPanel.add(verticalPanel_1);
 		verticalPanel_1.setSize("100%", "100%");
 
-		TabPanel tabPanel = new TabPanel();
-		verticalPanel_1.add(tabPanel);
-		tabPanel.setSize("839px", "100%");
+		tabOgrenciIsleri = new TabPanel();
+		tabOgrenciIsleri
+				.addSelectionHandler(new TabOgrenciIsleriSelectionHandler());
+		verticalPanel_1.add(tabOgrenciIsleri);
+		tabOgrenciIsleri.setSize("839px", "100%");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
-		tabPanel.add(absolutePanel, "Kişisel Bilgileri", false);
-		absolutePanel.setSize("100%", "494px");
+		tabOgrenciIsleri.add(absolutePanel, "Kişisel Bilgileri", false);
+		absolutePanel.setSize("837px", "494px");
 
 		Label lblKiiselBilgiler = new Label("Kişisel Bilgiler");
 		lblKiiselBilgiler.setStyleName("gwt-LabelMor");
@@ -133,6 +154,7 @@ public class DlgOgrenciKayitlari extends DialogBox {
 		lblNewLabel_7.setSize("65px", "18px");
 
 		Button vtbOgrenciBelgesi = new Button("New button");
+		vtbOgrenciBelgesi.addClickHandler(new VtbOgrenciBelgesiClickHandler());
 		vtbOgrenciBelgesi.setText("Öğrenci Belgesi");
 		absolutePanel.add(vtbOgrenciBelgesi, 64, 443);
 		vtbOgrenciBelgesi.setSize("133px", "24px");
@@ -197,7 +219,7 @@ public class DlgOgrenciKayitlari extends DialogBox {
 		lblOkulu.setSize("189px", "18px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
-		tabPanel.add(absolutePanel_1, "Sınıf Bilgileri", false);
+		tabOgrenciIsleri.add(absolutePanel_1, "Sınıf Bilgileri", false);
 		absolutePanel_1.setSize("100%", "452px");
 
 		Label lblSnfBilgileri = new Label("Sınıf Bilgileri");
@@ -347,7 +369,7 @@ public class DlgOgrenciKayitlari extends DialogBox {
 		lblGuzergah.setSize("202px", "18px");
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
-		tabPanel.add(absolutePanel_2, "Velileri", false);
+		tabOgrenciIsleri.add(absolutePanel_2, "Velileri", false);
 		absolutePanel_2.setSize("100%", "531px");
 
 		Label lblVeliBilgileri = new Label("Veli Bilgileri");
@@ -492,7 +514,7 @@ public class DlgOgrenciKayitlari extends DialogBox {
 		lblVeliAdresi.setSize("205px", "108px");
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
-		tabPanel.add(absolutePanel_3, "Rehberlik", false);
+		tabOgrenciIsleri.add(absolutePanel_3, "Rehberlik", false);
 		absolutePanel_3.setSize("100%", "458px");
 
 		Label lblRehberlik = new Label("Rehberlik");
@@ -505,7 +527,7 @@ public class DlgOgrenciKayitlari extends DialogBox {
 		absolutePanel_3.add(lblYaplanGrmeler, 10, 54);
 
 		AbsolutePanel absolutePanel_4 = new AbsolutePanel();
-		tabPanel.add(absolutePanel_4, "Sınavlar", false);
+		tabOgrenciIsleri.add(absolutePanel_4, "Sınavlar", false);
 		absolutePanel_4.setSize("100%", "510px");
 
 		Label lblYgsSnavlar = new Label("YGS Sınavları");
@@ -673,7 +695,7 @@ public class DlgOgrenciKayitlari extends DialogBox {
 		cellTable_1.addColumn(column_1, "Karne Al");
 
 		AbsolutePanel absolutePanel_5 = new AbsolutePanel();
-		tabPanel.add(absolutePanel_5, "Muhasebe", false);
+		tabOgrenciIsleri.add(absolutePanel_5, "Muhasebe", false);
 		absolutePanel_5.setSize("844px", "451px");
 
 		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
@@ -813,5 +835,138 @@ public class DlgOgrenciKayitlari extends DialogBox {
 		Button btndemePlanYazdr = new Button("Ödeme Planı Yazdır");
 		absolutePanel_5.add(btndemePlanYazdr, 665, 20);
 		btndemePlanYazdr.setSize("108px", "40px");
+	}
+
+	public void putDataFromXML(XMLOnKayit xml) {
+
+		lblTCKilmikNo.setText(xml.tc_kimlik_no);
+		lblAdiSoyadi.setText(xml.adi + xml.soyadi);
+
+	}
+
+	private class TabOgrenciIsleriSelectionHandler implements
+			SelectionHandler<Integer> {
+		public void onSelection(SelectionEvent<Integer> event) {
+
+			if (event.getSelectedItem() == 0) {
+				showWithDataKisiselBilgiler(String.valueOf(_id));
+			} else if (event.getSelectedItem() == 2) {
+
+				showWithDataSinifBilgileri(String.valueOf(_id));
+			}
+		}
+
+		private void showWithDataSinifBilgileri(String id) {
+			String urlWithParameters = Util.urlBase
+					+ "getkesinkayitbilgileri?id=" + id;
+
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					urlWithParameters);
+
+			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+			try {
+				Request request = builder.sendRequest(null,
+						new RequestCallback() {
+							public void onError(Request request,
+									Throwable exception) {
+
+							}
+
+							@Override
+							public void onResponseReceived(Request request,
+									Response response) {
+
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
+
+								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
+										.readList(response.getText());
+
+								putDataFromXMLSinifBilgileri(listXmlOnKayit
+										.get(0));
+							}
+
+						});
+
+			} catch (RequestException e) {
+				// displayError("Couldn't retrieve JSON");
+
+				// Window.alert(e.getMessage() + "ERROR");
+			}
+
+		}
+
+		private void showWithDataKisiselBilgiler(String id) {
+
+			String urlWithParameters = Util.urlBase
+					+ "getkesinkayitbilgileri?id=" + id;
+
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					urlWithParameters);
+
+			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+			try {
+				Request request = builder.sendRequest(null,
+						new RequestCallback() {
+							public void onError(Request request,
+									Throwable exception) {
+
+							}
+
+							@Override
+							public void onResponseReceived(Request request,
+									Response response) {
+
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
+
+								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
+										.readList(response.getText());
+
+								putDataFromXMLKisiselBilgileri(listXmlOnKayit
+										.get(0));
+							}
+
+						});
+
+			} catch (RequestException e) {
+				// displayError("Couldn't retrieve JSON");
+
+				// Window.alert(e.getMessage() + "ERROR");
+			}
+
+		}
+
+		private void putDataFromXMLKisiselBilgileri(XMLOnKayit xml) {
+			lblTCKilmikNo.setText(xml.tc_kimlik_no);
+			lblAdiSoyadi.setText(xml.adi + " " + xml.soyadi);
+			lblDogumYeri.setText(xml.dogum_tarihi);
+			lblCinsiyeti.setText(xml.cinsiyet);
+			lblEvTelefonu.setText(xml.ev_telefonu);
+			lblCepTelefonu.setText(xml.cep_telefonu);
+			lblEmail.setText(xml.email);
+			lblEvAdresi.setText("");
+			lblOkulu.setText(xml.okul);
+			lblOkulNo.setText(xml.okul_numarasi);
+			lblDogumYeri.setText(xml.ogrenci_kimlik_bilgileri_ilce);
+			lblDogumTarihi.setText(xml.dogum_tarihi);
+
+		}
+
+		private void putDataFromXMLSinifBilgileri(XMLOnKayit xml) {
+
+			lblEgitimTuru.setText(xml.egitim_turu);
+			lblAlani.setText(xml.alan);
+			lblKursZamani.setText(xml.kurs_zamani);
+			lblSinifi.setText(xml.sinif);
+			lblOgrenciNo.setText(xml.ogrenci_numarasi);
+
+		}
+	}
+
+	private class VtbOgrenciBelgesiClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
 	}
 }

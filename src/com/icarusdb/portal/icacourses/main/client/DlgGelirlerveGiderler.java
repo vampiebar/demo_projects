@@ -386,7 +386,9 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		tctMiktar.setText(xml.miktar);
 		cbxBanka.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxBanka,
 				xml.banka));
-		cbxCek.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxCek, xml.cek));
+		// cbxCek.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxCek,
+		// xml.cek));
+		cbxCek.setItemText(0, (xml.cek == null) ? "" : xml.cek);
 		cbxGelirler.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxGelirler,
 				xml.gelirler));
 		cbxİslemTipi.setSelectedIndex(Util.GetLBXSelectedTextIndex(

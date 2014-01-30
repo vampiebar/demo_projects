@@ -61,7 +61,7 @@ public class FizikselSinifTanimlari extends Composite {
 		grdFizikselSinifTanimlari.addColumn(textColumn_1, "İD");
 		grdFizikselSinifTanimlari.setColumnWidth(textColumn_1, "56px");
 
-		Column<XMLFizikselSinifTanimlari, ?> textColumn = new TextColumn<XMLFizikselSinifTanimlari>() {
+		final Column<XMLFizikselSinifTanimlari, ?> textColumn = new TextColumn<XMLFizikselSinifTanimlari>() {
 			public String getValue(XMLFizikselSinifTanimlari object) {
 				return object.fiziksel_sinif_adi.toString();
 			}
@@ -131,18 +131,45 @@ public class FizikselSinifTanimlari extends Composite {
 
 				}
 			});
+			column_1.setFieldUpdater(new FieldUpdater<XMLFizikselSinifTanimlari, String>() {
+
+				@Override
+				public void update(int index, XMLFizikselSinifTanimlari object,
+						String id) {
+
+					XMLFizikselSinifTanimlari selected = selectionModel
+							.getSelectedObject();
+
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putfizikselsiniftanimlari?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&fiziksel_sinif_adi="
+									+ textColumn.getValue(selected);
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+						}
+					}
+				}
+			});
 		}
-
-		column_1.setFieldUpdater(new FieldUpdater<XMLFizikselSinifTanimlari, String>() {
-
-			@Override
-			public void update(int index, XMLFizikselSinifTanimlari object,
-					String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
-
-			}
-		});
-
 	}
 
 	protected void showWithData(final String id) {
@@ -200,7 +227,8 @@ public class FizikselSinifTanimlari extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getfizikselsiniftanimlari";
+		String urlWithParameters = Util.urlBase
+				+ "getfizikselsiniftanimlari?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

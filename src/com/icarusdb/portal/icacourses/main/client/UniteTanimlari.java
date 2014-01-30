@@ -115,6 +115,7 @@ public class UniteTanimlari extends Composite {
 			final SingleSelectionModel<XMLUniteTanimlari> selectionModel = new SingleSelectionModel<XMLUniteTanimlari>();
 
 			grdUnitetanimlari.setSelectionModel(selectionModel);
+
 			grdUnitetanimlari.addDomHandler(new DoubleClickHandler() {
 
 				@Override
@@ -140,6 +141,7 @@ public class UniteTanimlari extends Composite {
 
 					XMLUniteTanimlari selected = selectionModel
 							.getSelectedObject();
+
 					if (selected != null) {
 						// DO YOUR STUFF
 

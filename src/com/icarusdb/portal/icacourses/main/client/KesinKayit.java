@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -89,15 +90,15 @@ public class KesinKayit extends Composite {
 		grdKesinKayit.addColumn(grdcSoyadi, "Soyadı");
 		grdKesinKayit.setColumnWidth(grdcSoyadi, "68px");
 
-		Column<XMLOnKayit, ?> column = new TextColumn<XMLOnKayit>() {
+		Column<XMLOnKayit, ?> column_5 = new TextColumn<XMLOnKayit>() {
 
 			@Override
 			public String getValue(XMLOnKayit object) {
 				return (object.tc_kimlik_no);
 			}
 		};
-		grdKesinKayit.addColumn(column, "TC Kimlik No");
-		grdKesinKayit.setColumnWidth(column, "103px");
+		grdKesinKayit.addColumn(column_5, "TC Kimlik No");
+		grdKesinKayit.setColumnWidth(column_5, "103px");
 
 		Column<XMLOnKayit, ?> textColumn = new TextColumn<XMLOnKayit>() {
 			@Override
@@ -152,13 +153,14 @@ public class KesinKayit extends Composite {
 		grdKesinKayit.addColumn(column_3, "Şifre Sıfırla");
 		grdKesinKayit.setColumnWidth(column_3, "54px");
 
-		Column<XMLOnKayit, ?> textColumn_5 = new TextColumn<XMLOnKayit>() {
+		Column<XMLOnKayit, String> column = new Column<XMLOnKayit, String>(
+				new ButtonCell()) {
 			@Override
 			public String getValue(XMLOnKayit object) {
-				return "İşlemler";
+				return "Düzenle";
 			}
 		};
-		grdKesinKayit.addColumn(textColumn_5, "İşlemler");
+		grdKesinKayit.addColumn(column, "İşlemler");
 
 		// private class BtnKaydetClickHandler implements ClickHandler {
 		// public void onClick(ClickEvent event) {
@@ -213,10 +215,22 @@ public class KesinKayit extends Composite {
 
 				}
 			}, DoubleClickEvent.getType());
+			column.setFieldUpdater(new FieldUpdater<XMLOnKayit, String>() {
 
-			// btnAra Clicked
-			// new BtnAraClickHandler().onClick(null);
+				@Override
+				public void update(int index, XMLOnKayit object, String value) {
 
+					XMLOnKayit selected = selectionModel.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
 
 	}

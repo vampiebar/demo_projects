@@ -54,7 +54,7 @@ public class BankaEkle extends Composite {
 		horizontalPanel.add(grdBankaEkle);
 		grdBankaEkle.setSize("100%", "100%");
 
-		TextColumn<XMLBankaEkle> textColumn_1 = new TextColumn<XMLBankaEkle>() {
+		final TextColumn<XMLBankaEkle> textColumn_1 = new TextColumn<XMLBankaEkle>() {
 			@Override
 			public String getValue(XMLBankaEkle object) {
 				return object.id.toString();
@@ -130,17 +130,42 @@ public class BankaEkle extends Composite {
 
 				}
 			});
+			column_1.setFieldUpdater(new FieldUpdater<XMLBankaEkle, String>() {
+
+				@Override
+				public void update(int index, XMLBankaEkle object, String value) {
+
+					XMLBankaEkle selected = selectionModel.getSelectedObject();
+
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							showWithData(selected.id);
+
+							String URLValue = Util.urlBase + "putbankaekle?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&banka_adi="
+									+ textColumn.getValue(selected);
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+						}
+					}
+				}
+			});
 		}
-
-		column_1.setFieldUpdater(new FieldUpdater<XMLBankaEkle, String>() {
-
-			@Override
-			public void update(int index, XMLBankaEkle object, String value) {
-				Window.confirm("Kayit Silinecektir Emin Misiniz");
-
-			}
-		});
-
 	}
 
 	protected void showWithData(final String id) {
@@ -196,7 +221,8 @@ public class BankaEkle extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getbankaekle";
+		String urlWithParameters = Util.urlBase
+				+ "getbankaekle?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

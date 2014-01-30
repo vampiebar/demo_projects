@@ -62,7 +62,7 @@ public class GelirGiderKategorileri extends Composite {
 		grdGelirGiderKategorileri.addColumn(textColumn_1, "İD");
 		grdGelirGiderKategorileri.setColumnWidth(textColumn_1, "51px");
 
-		Column<XMLGelirGiderKategorileri, ?> textColumn = new TextColumn<XMLGelirGiderKategorileri>() {
+		final Column<XMLGelirGiderKategorileri, ?> textColumn = new TextColumn<XMLGelirGiderKategorileri>() {
 			@Override
 			public String getValue(XMLGelirGiderKategorileri object) {
 				return object.kategori_adi.toString();
@@ -132,17 +132,43 @@ public class GelirGiderKategorileri extends Composite {
 
 				}
 			});
+			column_1.setFieldUpdater(new FieldUpdater<XMLGelirGiderKategorileri, String>() {
+
+				@Override
+				public void update(int index, XMLGelirGiderKategorileri object,
+						String value) {
+					XMLGelirGiderKategorileri selected = selectionModel
+							.getSelectedObject();
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putgelirgiderkategorileri?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "egitim_turu_adi="
+									+ textColumn.getValue(selected);
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+						}
+					}
+				}
+			});
 		}
-
-		column_1.setFieldUpdater(new FieldUpdater<XMLGelirGiderKategorileri, String>() {
-
-			@Override
-			public void update(int index, XMLGelirGiderKategorileri object,
-					String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
-
-			}
-		});
 
 	}
 
@@ -202,7 +228,8 @@ public class GelirGiderKategorileri extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getgelirgiderkategorileri";
+		String urlWithParameters = Util.urlBase
+				+ "getgelirgiderkategorileri?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
