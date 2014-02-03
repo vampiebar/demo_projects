@@ -379,6 +379,7 @@ public class DlgSaatGirisi extends DialogBox {
 					+ "&bitis_dakika="
 					+ cbxBitisDakika
 							.getValue(cbxBitisDakika.getSelectedIndex());
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

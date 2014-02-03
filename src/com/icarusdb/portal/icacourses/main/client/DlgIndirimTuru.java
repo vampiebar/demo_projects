@@ -125,6 +125,7 @@ public class DlgIndirimTuru extends DialogBox {
 							.getSelectedIndex());
 			URLValue = URLValue + "&indirim_miktari="
 					+ tctIndirimMiktari.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");

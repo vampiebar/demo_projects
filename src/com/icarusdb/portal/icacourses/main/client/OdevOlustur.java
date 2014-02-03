@@ -209,17 +209,58 @@ public class OdevOlustur extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLOdevOlustur, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLOdevOlustur, String>() {
 
-			@Override
-			public void update(int index, XMLOdevOlustur object, String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLOdevOlustur object,
+						String value) {
+					XMLOdevOlustur selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase + "putodevolustur?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&odev_adi="
+									+ object.odev_adi.toString();
+							URLValue = URLValue + "&egitim_turu="
+									+ object.egitim_turu.toString();
+							URLValue = URLValue + "&alan="
+									+ object.alan.toString();
+							URLValue = URLValue + "&ders="
+									+ object.ders.toString();
+							URLValue = URLValue + "&unite="
+									+ object.unite.toString();
+							URLValue = URLValue + "&soru_sayisi="
+									+ object.soru_sayisi.toString();
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						// putDataToGrid();
+					}
+
+				}
+			});
+
+		}// design time
 	}
 
 	private void putEgitimTuruToCbx(final ListBox lbxTemp) {
@@ -307,7 +348,8 @@ public class OdevOlustur extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getodevolustur";
+		String urlWithParameters = Util.urlBase
+				+ "getodevolustur?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -380,6 +422,7 @@ public class OdevOlustur extends Composite {
 					_dlgOdevOlustur.putDataFromXML(listXmlOdevOlustur.get(0));
 					_dlgOdevOlustur.setAnimationEnabled(true);
 					_dlgOdevOlustur.center();
+					_dlgOdevOlustur.tabOdevOlustur.selectTab(0);
 					_dlgOdevOlustur
 							.addCloseHandler(new CloseHandler<PopupPanel>() {
 

@@ -117,6 +117,7 @@ public class DlgSablonTanimlari extends DialogBox {
 			URLValue = URLValue + "&sablon_adi=" + tctSablonAdi.getText();
 			URLValue = URLValue + "&sinav_turu="
 					+ cbxSinavTuru.getValue(cbxSinavTuru.getSelectedIndex());
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

@@ -262,7 +262,7 @@ public class DlgSinavTanimlama extends DialogBox {
 					+ cbxSaat.getValue(cbxSaat.getSelectedIndex());
 			URLValue = URLValue + "&dakika="
 					+ cbxDakika.getValue(cbxDakika.getSelectedIndex());
-
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 
 			URLValue = URLValue + "&tarih=" + dtf.format(dtpTarih.getValue());

@@ -190,6 +190,7 @@ public class DlgServisTanimlama extends DialogBox {
 			URLValue = URLValue + "&arac_plakasi=" + tctAracPlakası.getText();
 			URLValue = URLValue + "&kapasitesi=" + tctKapasitesi.getText();
 			URLValue = URLValue + "&yolcu_sayisi=" + tctYolcuSayisi.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

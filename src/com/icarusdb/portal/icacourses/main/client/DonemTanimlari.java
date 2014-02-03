@@ -156,16 +156,54 @@ public class DonemTanimlari extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLDonemTanimlari, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLDonemTanimlari, String>() {
 
-			@Override
-			public void update(int index, XMLDonemTanimlari object, String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLDonemTanimlari object,
+						String value) {
+					XMLDonemTanimlari selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putdonemtanimlari?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&donem_adi="
+									+ object.donem_adi.toString();
+							URLValue = URLValue + "&baslangic_tarihi="
+									+ object.baslangic_tarihi.toString();
+							URLValue = URLValue + "&bitis_tarihi="
+									+ object.bitis_tarihi.toString();
+							URLValue = URLValue + "&varsayilan_donem="
+									+ object.varsayilan_donem.toString();
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DÖNEM BİLGİSİ KAYIT EDİLDİ",
+									"DÖNEM BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+					}
+
+				}
+			});
+		}// design time
 
 	}
 
@@ -223,7 +261,8 @@ public class DonemTanimlari extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getdonemtanimlari";
+		String urlWithParameters = Util.urlBase
+				+ "getdonemtanimlari?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

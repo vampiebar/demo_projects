@@ -346,6 +346,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 					+ cbxCek.getValue(cbxCek.getSelectedIndex());
 			URLValue = URLValue + "&miktar=" + tctMiktar.getText();
 			URLValue = URLValue + "&aciklama=" + tctAciklama.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			DateTimeFormat dtf = DateTimeFormat
 					.getFormat("yyyy-MM-dd HH:mm:ss");
@@ -404,6 +405,34 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		DateTimeFormat dtf2 = DateTimeFormat.getFormat("yyyy-MM-dd");
 
 		dtpVadeTarihi.setValue(dtf2.parse(xml.vade_tarihi));
+
+		if (cbxOdemeTuru.getSelectedIndex() == 3) {
+			cbxBanka.setEnabled(false);
+			cbxCek.setEnabled(false);
+			dtpVadeTarihi.setEnabled(false);
+
+		} else if (cbxOdemeTuru.getSelectedIndex() == 2) {
+
+			cbxBanka.setEnabled(false);
+			cbxCek.setEnabled(false);
+			dtpVadeTarihi.setEnabled(true);
+
+		} else if (cbxOdemeTuru.getSelectedIndex() == 1) {
+			cbxBanka.setEnabled(true);
+			cbxCek.setEnabled(false);
+			dtpVadeTarihi.setEnabled(false);
+
+		} else if (cbxOdemeTuru.getSelectedIndex() == 0) {
+			cbxBanka.setEnabled(false);
+			cbxCek.setEnabled(false);
+			dtpVadeTarihi.setEnabled(false);
+
+		} else if (cbxOdemeTuru.getSelectedIndex() == 4) {
+			cbxBanka.setEnabled(true);
+			cbxCek.setEnabled(false);
+			dtpVadeTarihi.setEnabled(false);
+
+		}
 
 	}
 

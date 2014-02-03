@@ -522,6 +522,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 			URLValue = URLValue + "&cumartesi="
 					+ chxCumartesi.getValue().toString();
 			URLValue = URLValue + "&pazar=" + chxPazar.getValue().toString();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

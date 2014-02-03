@@ -160,18 +160,18 @@ public class GelirGiderTanimlari extends Composite {
 							// DO YOUR STUFF
 
 							// Window.alert("selected id: " + selected.id);
-							showWithData(selected.id);
+							// showWithData(selected.id);
 
 							String URLValue = Util.urlBase
 									+ "putgelirgidertanimlari?";
 
 							URLValue = URLValue + "id=" + selected.id;
-							URLValue = URLValue + "tipi="
+							URLValue = URLValue + "&tipi="
 									+ textColumn.getValue(selected);
-							URLValue = URLValue + "kategori_adi="
+							URLValue = URLValue + "&kategori_adi="
 									+ textColumn_1.getValue(selected);
-							URLValue = URLValue + "gelir_gider_adi="
-									+ textColumn_2.getValue(selected);
+							URLValue = URLValue + "&gelir_gider_adi="
+									+ object.gelir_gider_adi.toString();
 
 							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
 

@@ -699,8 +699,6 @@ public class DlgDBSYeniKayit extends DialogBox {
 					cbxAdresBilgileriIl);
 			putOKulDurumuToCbx(cbxOkulDurumu, cbxOgrenciBilgileriSinif);
 
-			putDataToGrid();
-
 			final SingleSelectionModel<XMLVeliler> selectionModel = new SingleSelectionModel<XMLVeliler>();
 
 			grdVeliler.setSelectionModel(selectionModel);
@@ -856,15 +854,16 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 	}
 
-	private void putDataToGrid() {
+	private void putDataToGrid(String tc_kimlik_no) {
 
 		String urlWithParameters = Util.urlBase
-				+ "getveliler?ogrenci_tc_kimlik_no=" + tctTCKimlikNo.getText();
+				+ "getveliler?ogrenci_tc_kimlik_no=" + tc_kimlik_no;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
 
 		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
 				public void onError(Request request, Throwable exception) {
@@ -1227,6 +1226,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 	}
 
 	public void putDataFromXML(XMLDBSKayit xml) {
+
 		tctAdi.setText(xml.adi);
 		tctSoyadi.setText(xml.soyadi);
 		tctTCKimlikNo.setText(xml.tc_kimlik_no);
@@ -1286,6 +1286,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
 		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
+
+		putDataToGrid(tctTCKimlikNo.getText());
 
 	}
 
@@ -1395,6 +1397,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 					+ chxKayitSilinsinMi.getValue().toString();
 
 			URLValue = URLValue + "&silme_sebebi=" + tctSilmeSebebi.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// DATEs
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");

@@ -40,8 +40,8 @@ public class OgrenciKayitlari extends Composite {
 
 		Label lblAranacakAnahtarKelime = new Label("Aranacak Anahtar Kelime");
 		lblAranacakAnahtarKelime.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAranacakAnahtarKelime, 37, 38);
-		lblAranacakAnahtarKelime.setSize("156px", "16px");
+		absolutePanel.add(lblAranacakAnahtarKelime, 30, 38);
+		lblAranacakAnahtarKelime.setSize("171px", "16px");
 
 		tctAranacakAnahtarKelime = new TextBox();
 		tctAranacakAnahtarKelime.setStyleName("gwt-TextBox1");
@@ -90,7 +90,7 @@ public class OgrenciKayitlari extends Composite {
 		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
 		btnNewButton.setStyleName("gwt-ButtonAra");
 		absolutePanel.add(btnNewButton, 608, 10);
-		btnNewButton.setSize("93px", "61px");
+		btnNewButton.setSize("93px", "68px");
 
 		if (!isDesignTime()) {
 

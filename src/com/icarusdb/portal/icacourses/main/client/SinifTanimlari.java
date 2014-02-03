@@ -35,22 +35,22 @@ public class SinifTanimlari extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("809px", "439px");
+		absolutePanel.setSize("908px", "439px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 465, 44);
-		btnYeniKayit.setSize("84px", "62px");
+		btnYeniKayit.setSize("90px", "73px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 25, 171);
-		horizontalPanel.setSize("774px", "75px");
+		horizontalPanel.setSize("100%", "75px");
 
 		grdSinifTanimlari = new CellTable<XMLSinifTanimlari>();
 		horizontalPanel.add(grdSinifTanimlari);
-		grdSinifTanimlari.setSize("100%", "100%");
+		grdSinifTanimlari.setSize("884px", "100%");
 
 		TextColumn<XMLSinifTanimlari> textColumn = new TextColumn<XMLSinifTanimlari>() {
 			@Override
@@ -169,17 +169,74 @@ public class SinifTanimlari extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLSinifTanimlari, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLSinifTanimlari, String>() {
 
-			@Override
-			public void update(int index, XMLSinifTanimlari object, String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLSinifTanimlari object,
+						String value) {
+					XMLSinifTanimlari selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putsiniftanimlari?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&sinif_adi="
+									+ object.sinif_adi.toString();
+							URLValue = URLValue + "&fiziksel_sinif_adi="
+									+ object.fiziksel_sinif_adi.toString();
+							URLValue = URLValue + "&kurs_zamani="
+									+ object.kurs_zamani.toString();
+							URLValue = URLValue + "&egitim_turu="
+									+ object.egitim_turu.toString();
+							URLValue = URLValue + "&alan="
+									+ object.alan.toString();
+							URLValue = URLValue + "&dan_ogretmen="
+									+ object.dan_ogretmen.toString();
+							URLValue = URLValue + "&sinif_kontenjani="
+									+ object.sinif_kontenjani.toString();
+							URLValue = URLValue + "&baslangic_numarasi="
+									+ object.baslangic_numarasi.toString();
+							URLValue = URLValue + "&bitis_numarasi="
+									+ object.bitis_numarasi.toString();
+							URLValue = URLValue + "&ozel_ders_sayisi="
+									+ object.ozel_ders_sayisi.toString();
+							URLValue = URLValue + "&fiyati="
+									+ object.fiyati.toString();
+							URLValue = URLValue + "&baslangic_tarihi="
+									+ object.baslangic_tarihi.toString();
+							URLValue = URLValue + "&bitis_tarihi="
+									+ object.bitis_tarihi.toString();
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"SINIF BİLGİSİ KAYIT EDİLDİ",
+									"SINIF BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						// putDataToGrid();
+					}
+
+				}
+			});
+
+		}// design time
 	}
 
 	protected void showWithData(final String id) {
@@ -236,7 +293,8 @@ public class SinifTanimlari extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getsiniftanimlari";
+		String urlWithParameters = Util.urlBase
+				+ "getsiniftanimlari?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

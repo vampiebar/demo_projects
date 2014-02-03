@@ -616,6 +616,14 @@ public class DlgDBSSinavTanimla extends DialogBox {
 
 			hzpanOtherBuilding
 					.setVisible((cbxSinavYeri.getSelectedIndex() == 1));
+			// if (cbxSinavYeri.getSelectedIndex() == 0) {
+			// cbxIl.setItemText(0, "");
+			// cbxIlce.setItemText(0, "");
+			// cbxSemt.setItemText(0, "");
+			// cbxMahalleKoy.setItemText(0, "");
+			// tctAdres.setText("");
+			//
+			// }
 
 		}
 	}
@@ -650,7 +658,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 					+ cbxSaat.getValue(cbxSaat.getSelectedIndex());
 			URLValue = URLValue + "&dakika="
 					+ cbxDakika.getValue(cbxDakika.getSelectedIndex());
-
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 
 			URLValue = URLValue + "&sinav_tarihi="

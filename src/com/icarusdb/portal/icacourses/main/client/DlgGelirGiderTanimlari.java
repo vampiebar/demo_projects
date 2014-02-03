@@ -177,7 +177,7 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 					+ cbxTipi.getValue(cbxTipi.getSelectedIndex());
 			URLValue = URLValue + "&gelir_gider_adi="
 					+ tctGelirGiderAdi.getText();
-
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");

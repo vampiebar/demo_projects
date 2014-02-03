@@ -146,14 +146,23 @@ public class BankaEkle extends Composite {
 							// DO YOUR STUFF
 
 							// Window.alert("selected id: " + selected.id);
-							showWithData(selected.id);
+							// showWithData(selected.id);
 
 							String URLValue = Util.urlBase + "putbankaekle?";
 
 							URLValue = URLValue + "id=" + selected.id;
 							URLValue = URLValue + "&banka_adi="
 									+ textColumn.getValue(selected);
-
+							URLValue = URLValue + "&banka_sube="
+									+ object.banka_sube.toString();
+							URLValue = URLValue + "&hesap_no="
+									+ object.hesap_no.toString();
+							URLValue = URLValue + "&iban_no="
+									+ object.iban_no.toString();
+							URLValue = URLValue + "&bankanin_odeme_sekli="
+									+ object.bankanin_odeme_sekli.toString();
+							URLValue = URLValue + "&vade_tarihi="
+									+ object.vade_tarihi.toString();
 							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
 
 							// Window.alert(URLValue);
@@ -161,11 +170,17 @@ public class BankaEkle extends Composite {
 							new Util().sendRequest(URLValue,
 									"DERS BİLGİSİ KAYIT EDİLDİ",
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
 						}
+
+						putDataToGrid();
 					}
+
+					// putDataToGrid();
 				}
 			});
-		}
+
+		}// design time
 	}
 
 	protected void showWithData(final String id) {

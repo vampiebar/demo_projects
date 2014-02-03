@@ -165,7 +165,7 @@ public class DersTanimlari extends Composite {
 							// DO YOUR STUFF
 
 							// Window.alert("selected id: " + selected.id);
-							showWithData(selected.id);
+							// showWithData(selected.id);
 
 							String URLValue = Util.urlBase
 									+ "putderstanimlari?";
@@ -185,19 +185,11 @@ public class DersTanimlari extends Composite {
 							new Util().sendRequest(URLValue,
 									"DERS BİLGİSİ KAYIT EDİLDİ",
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
-							_dlgDersTanimlari
-									.addCloseHandler(new CloseHandler<PopupPanel>() {
 
-										@Override
-										public void onClose(
-												CloseEvent<PopupPanel> event) {
-
-											putDataToGrid();
-
-										}
-									});
 						}
+
 					}
+
 				}
 			});
 

@@ -130,18 +130,50 @@ public class KursZamaniTanimlama extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLKursZamaniTanimlama, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLKursZamaniTanimlama, String>() {
 
-			@Override
-			public void update(int index, XMLKursZamaniTanimlama object,
-					String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLKursZamaniTanimlama object,
+						String value) {
+					XMLKursZamaniTanimlama selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putkurszamanitanimlama?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&kurs_zamani="
+									+ object.kurs_zamani.toString();
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						// putDataToGrid();
+					}
+
+				}
+			});
+
+		}// design time
 	}
 
 	protected void showWithData(final String id) {
@@ -199,7 +231,8 @@ public class KursZamaniTanimlama extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getkurszamanitanimlama";
+		String urlWithParameters = Util.urlBase
+				+ "getkurszamanitanimlama?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

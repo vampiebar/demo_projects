@@ -139,7 +139,7 @@ public class OdevTakipUnite extends Composite {
 		column = new Column<XMLOdevTakipUnite, String>(new ButtonCell()) {
 			@Override
 			public String getValue(XMLOdevTakipUnite object) {
-				return "???";
+				return "Düzenle";
 			}
 		};
 		grdOdevTakipUnite.addColumn(column, "Düzenle");
@@ -147,7 +147,7 @@ public class OdevTakipUnite extends Composite {
 		column_1 = new Column<XMLOdevTakipUnite, String>(new ButtonCell()) {
 			@Override
 			public String getValue(XMLOdevTakipUnite object) {
-				return (String) null;
+				return "Sil";
 			}
 		};
 		grdOdevTakipUnite.addColumn(column_1, "Sil");
@@ -202,18 +202,60 @@ public class OdevTakipUnite extends Composite {
 
 							}
 						});
-					}
 
-					column_1.setFieldUpdater(new FieldUpdater<XMLOdevTakipUnite, String>() {
+						column_1.setFieldUpdater(new FieldUpdater<XMLOdevTakipUnite, String>() {
 
-						@Override
-						public void update(int index, XMLOdevTakipUnite object,
-								String value) {
-							Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+							@Override
+							public void update(int index,
+									XMLOdevTakipUnite object, String value) {
+								XMLOdevTakipUnite selected = selectionModel
+										.getSelectedObject();
 
-						}
-					});
+								Boolean x = Window
+										.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+								if (x == true) {
+
+									if (selected != null) {
+										// DO YOUR STUFF
+
+										// Window.alert("selected id: " +
+										// selected.id);
+										// showWithData(selected.id);
+
+										String URLValue = Util.urlBase
+												+ "putodevtakipunite?";
+
+										URLValue = URLValue + "id="
+												+ selected.id;
+
+										URLValue = URLValue + "&egitim_turu="
+												+ object.egitim_turu.toString();
+										URLValue = URLValue + "&alan="
+												+ object.alan.toString();
+										URLValue = URLValue + "&ders="
+												+ object.ders.toString();
+										URLValue = URLValue + "&unite="
+												+ object.unite.toString();
+
+										URLValue = URLValue
+												+ "&kayit_silinsin_mi=TRUE";
+
+										// Window.alert(URLValue);
+
+										new Util().sendRequest(URLValue,
+												"DERS BİLGİSİ KAYIT EDİLDİ",
+												"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+									}
+
+									// putDataToGrid();
+								}
+
+							}
+						});
+
+					}// design time
 				}
 
 				protected void showWithData(final String id) {
@@ -281,7 +323,8 @@ public class OdevTakipUnite extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getodevtakipunite";
+		String urlWithParameters = Util.urlBase
+				+ "getodevtakipunite?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

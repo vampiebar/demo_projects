@@ -268,6 +268,7 @@ public class DlgVeliEkle extends DialogBox {
 					+ tctVeliBilgileriAdres.getText();
 			URLValue = URLValue + "&ogrenci_tc_kimlik_no="
 					+ tctOgrenciTCKimlikNo.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

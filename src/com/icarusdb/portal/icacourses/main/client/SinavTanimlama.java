@@ -163,17 +163,62 @@ public class SinavTanimlama extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLSinavTanimlama, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLSinavTanimlama, String>() {
 
-			@Override
-			public void update(int index, XMLSinavTanimlama object, String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLSinavTanimlama object,
+						String value) {
+					XMLSinavTanimlama selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putsinavtanimlama?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&sinav_no="
+									+ object.sinav_no.toString();
+							URLValue = URLValue + "&sinav_adi="
+									+ object.sinav_adi.toString();
+							URLValue = URLValue + "&tarih="
+									+ object.tarih.toString();
+							URLValue = URLValue + "&saat="
+									+ object.saat.toString();
+							URLValue = URLValue + "&dakika="
+									+ object.dakika.toString();
+							URLValue = URLValue + "&son_kitapcik_no="
+									+ object.son_kitapcik_no.toString();
+							URLValue = URLValue + "&sablon_seciniz="
+									+ object.sablon_seciniz.toString();
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						putDataToGrid();
+					}
+
+					putDataToGrid();
+				}
+			});
+
+		}// design time
 	}
 
 	protected void showWithData(final String id) {
@@ -230,7 +275,8 @@ public class SinavTanimlama extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getsinavtanimlama";
+		String urlWithParameters = Util.urlBase
+				+ "getsinavtanimlama?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

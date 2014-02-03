@@ -463,7 +463,7 @@ public class DlgOdevOlustur extends DialogBox {
 			URLValue = URLValue + "&unite="
 					+ cbxUnite.getItemText(cbxUnite.getSelectedIndex());
 			URLValue = URLValue + "&soru_sayisi=" + tctSoruSayisi.getText();
-
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");

@@ -148,13 +148,13 @@ public class GelirGiderKategorileri extends Composite {
 							// DO YOUR STUFF
 
 							// Window.alert("selected id: " + selected.id);
-							showWithData(selected.id);
+							// showWithData(selected.id);
 
 							String URLValue = Util.urlBase
 									+ "putgelirgiderkategorileri?";
 
 							URLValue = URLValue + "id=" + selected.id;
-							URLValue = URLValue + "egitim_turu_adi="
+							URLValue = URLValue + "&egitim_turu_adi="
 									+ textColumn.getValue(selected);
 
 							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";

@@ -92,6 +92,7 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 
 			URLValue = URLValue + "id=" + _id;
 			URLValue = URLValue + "&kurs_zamani=" + tctKursZamani.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

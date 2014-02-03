@@ -471,6 +471,8 @@ public class DlgSinifTanimlari extends DialogBox {
 					+ tctOzelDersSayisi.getText();
 			URLValue = URLValue + "&fiyati=" + tctFiyati.getText();
 
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
+
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 
 			URLValue = URLValue + "&baslangic_tarihi="

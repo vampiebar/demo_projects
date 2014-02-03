@@ -19,6 +19,7 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -31,13 +32,14 @@ public class KesinKayit extends Composite {
 	private Column<XMLOnKayit, ?> grdcAdi;
 	private Column<XMLOnKayit, ?> grdcSoyadi;
 	private Button btnAra;
+	private CheckBox chxSilinmisKayitlariGoster;
 
 	public KesinKayit() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("900px", "750px");
+		absolutePanel.setSize("916px", "750px");
 
 		Label lblAdsoyad = new Label("Aranacak Anahtar Kelime");
 		lblAdsoyad.setStyleName("gwt-Bold");
@@ -65,12 +67,12 @@ public class KesinKayit extends Composite {
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 151);
-		horizontalPanel.setSize("758px", "164px");
+		horizontalPanel.setSize("100%", "164px");
 
 		grdKesinKayit = new CellTable<XMLOnKayit>();
 
 		horizontalPanel.add(grdKesinKayit);
-		grdKesinKayit.setSize("758px", "170px");
+		grdKesinKayit.setSize("100%", "170px");
 
 		grdcAdi = new TextColumn<XMLOnKayit>() {
 			@Override
@@ -88,7 +90,7 @@ public class KesinKayit extends Composite {
 			}
 		};
 		grdKesinKayit.addColumn(grdcSoyadi, "Soyadı");
-		grdKesinKayit.setColumnWidth(grdcSoyadi, "68px");
+		grdKesinKayit.setColumnWidth(grdcSoyadi, "71px");
 
 		Column<XMLOnKayit, ?> column_5 = new TextColumn<XMLOnKayit>() {
 
@@ -111,7 +113,12 @@ public class KesinKayit extends Composite {
 		Column<XMLOnKayit, ?> textColumn_3 = new TextColumn<XMLOnKayit>() {
 			@Override
 			public String getValue(XMLOnKayit object) {
-				return "???";
+
+				if (object.sinif != null) {
+					return object.sinif.toString();
+
+				}
+				return "";
 			}
 		};
 		grdKesinKayit.addColumn(textColumn_3, "Sınıf Adı");
@@ -161,6 +168,9 @@ public class KesinKayit extends Composite {
 			}
 		};
 		grdKesinKayit.addColumn(column, "İşlemler");
+
+		chxSilinmisKayitlariGoster = new CheckBox("Silinmiş Kayitlari Göster");
+		absolutePanel.add(chxSilinmisKayitlariGoster, 191, 65);
 
 		// private class BtnKaydetClickHandler implements ClickHandler {
 		// public void onClick(ClickEvent event) {

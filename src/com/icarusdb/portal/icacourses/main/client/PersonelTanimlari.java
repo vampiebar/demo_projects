@@ -166,18 +166,59 @@ public class PersonelTanimlari extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLPersonelTanimlari, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLPersonelTanimlari, String>() {
 
-			@Override
-			public void update(int index, XMLPersonelTanimlari object,
-					String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLPersonelTanimlari object,
+						String value) {
+					XMLPersonelTanimlari selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putpersoneltanimlari?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&adi_soyadi="
+									+ object.adi_soyadi.toString();
+							URLValue = URLValue + "&gorevi="
+									+ object.gorevi.toString();
+							URLValue = URLValue + "&ise_giris_tarihi="
+									+ object.ise_giris_tarihi.toString();
+							URLValue = URLValue + "&ucreti="
+									+ object.ucreti.toString();
+							URLValue = URLValue + "&telefonu_1="
+									+ object.telefonu_1.toString();
+							URLValue = URLValue + "&telefonu_2="
+									+ object.telefonu_2.toString();
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						// putDataToGrid();
+					}
+
+				}
+			});
+
+		}// design time
 	}
 
 	protected void showWithData(final String id) {
@@ -235,7 +276,8 @@ public class PersonelTanimlari extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getpersoneltanimlari";
+		String urlWithParameters = Util.urlBase
+				+ "getpersoneltanimlari?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

@@ -284,6 +284,7 @@ public class DlgUniteTanimlari extends DialogBox {
 					+ cbxDers.getItemText(cbxDers.getSelectedIndex());
 
 			URLValue = URLValue + "&unite_adi=" + tctUniteAdi.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

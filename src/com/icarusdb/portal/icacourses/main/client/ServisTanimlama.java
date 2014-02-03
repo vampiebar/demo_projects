@@ -138,18 +138,68 @@ public class ServisTanimlama extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLServisTanimlama, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLServisTanimlama, String>() {
 
-			@Override
-			public void update(int index, XMLServisTanimlama object,
-					String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLServisTanimlama object,
+						String value) {
+					XMLServisTanimlama selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putservistanimlama?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&kodu="
+									+ object.kodu.toString();
+							URLValue = URLValue + "&guzergah="
+									+ object.guzergah.toString();
+							URLValue = URLValue + "&servis_ucreti="
+									+ object.servis_ucreti.toString();
+							URLValue = URLValue + "&sofor_adi="
+									+ object.sofor_adi.toString();
+							URLValue = URLValue + "&soforun_telefonu="
+									+ object.soforun_telefonu.toString();
+							URLValue = URLValue + "&arac_sahibi="
+									+ object.arac_sahibi.toString();
+							URLValue = URLValue + "&arac_sahibinin_telefonu="
+									+ object.arac_sahibinin_telefonu.toString();
+							URLValue = URLValue + "&arac_plakasi="
+									+ object.arac_plakasi.toString();
+							URLValue = URLValue + "&kapasitesi="
+									+ object.kapasitesi.toString();
+							URLValue = URLValue + "&yolcu_sayisi="
+									+ object.yolcu_sayisi.toString();
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"SERVİS BİLGİSİ KAYIT EDİLDİ",
+									"SERVİS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+					}
+
+					// putDataToGrid();
+				}
+			});
+
+		}// design time
 	}
 
 	private boolean isDesignTime() {
@@ -159,7 +209,8 @@ public class ServisTanimlama extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getservistanimlama";
+		String urlWithParameters = Util.urlBase
+				+ "getservistanimlama?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

@@ -39,7 +39,7 @@ public class OgrenciIsleri extends Composite {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		verticalPanel.add(absolutePanel);
-		absolutePanel.setSize("811px", "465px");
+		absolutePanel.setSize("975px", "465px");
 
 		Label lblrenciDersDatm = new Label("Öğrenci Ders Dağıtım İşlemler");
 		absolutePanel.add(lblrenciDersDatm, 10, 10);
@@ -68,7 +68,7 @@ public class OgrenciIsleri extends Composite {
 
 		flxDersDagitim = new FlexTable();
 		absolutePanel.add(flxDersDagitim, 10, 139);
-		flxDersDagitim.setSize("791px", "256px");
+		flxDersDagitim.setSize("932px", "256px");
 
 		String strTemplate = "_NO_. Ders _TIME1_-_TIME2_";
 

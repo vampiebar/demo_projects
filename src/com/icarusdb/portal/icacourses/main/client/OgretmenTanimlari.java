@@ -39,10 +39,11 @@ public class OgretmenTanimlari extends Composite {
 		absolutePanel.setSize("797px", "453px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
+		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 450, 62);
-		btnYeniKayit.setSize("78px", "48px");
+		btnYeniKayit.setSize("91px", "70px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		absolutePanel.add(horizontalPanel, 10, 189);
@@ -106,7 +107,7 @@ public class OgretmenTanimlari extends Composite {
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLOgretmenTanimlari object) {
-				return (String) null;
+				return "Düzenle";
 			}
 		};
 		grdOgretmenTanimlari.addColumn(column, "Düzenle");
@@ -115,7 +116,7 @@ public class OgretmenTanimlari extends Composite {
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLOgretmenTanimlari object) {
-				return (String) null;
+				return "Sil";
 			}
 		};
 		grdOgretmenTanimlari.addColumn(column_1, "Sil");
@@ -162,18 +163,92 @@ public class OgretmenTanimlari extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLOgretmenTanimlari, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLOgretmenTanimlari, String>() {
 
-			@Override
-			public void update(int index, XMLOgretmenTanimlari object,
-					String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLOgretmenTanimlari object,
+						String value) {
+					Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+					XMLOgretmenTanimlari selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putogretmentanimlari?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&tc_kimlik_no="
+									+ object.tc_kimlik_no.toString();
+							URLValue = URLValue + "&adi_soyadi="
+									+ object.adi_soyadi.toString();
+							URLValue = URLValue + "&girdigi_ders_bilgisi="
+									+ object.girdigi_ders_bilgisi.toString();
+							URLValue = URLValue + "&egitim_turu="
+									+ object.egitim_turu.toString();
+							URLValue = URLValue + "&brans="
+									+ object.brans.toString();
+							URLValue = URLValue + "&girdigi_dersler="
+									+ object.girdigi_dersler.toString();
+							URLValue = URLValue + "&ucreti="
+									+ object.ucreti.toString();
+							URLValue = URLValue + "&ev_telefonu="
+									+ object.ev_telefonu.toString();
+							URLValue = URLValue + "&cep_telefonu="
+									+ object.cep_telefonu.toString();
+							URLValue = URLValue + "&cep_telefonu_2="
+									+ object.cep_telefonu_2.toString();
+							URLValue = URLValue + "&email="
+									+ object.email.toString();
+							URLValue = URLValue + "&sigorta_gun_sayisi="
+									+ object.sigorta_gun_sayisi.toString();
+							URLValue = URLValue + "&ders_programini_gorsun="
+									+ object.ders_programini_gorsun.toString();
+							URLValue = URLValue + "&durum="
+									+ object.durum.toString();
+							URLValue = URLValue + "&pazartesi="
+									+ object.pazartesi.toString();
+							URLValue = URLValue + "&pazartesi="
+									+ object.pazartesi.toString();
+							URLValue = URLValue + "&sali="
+									+ object.sali.toString();
+							URLValue = URLValue + "&carsamba="
+									+ object.carsamba.toString();
+							URLValue = URLValue + "&persembe="
+									+ object.persembe.toString();
+							URLValue = URLValue + "&cuma="
+									+ object.cuma.toString();
+							URLValue = URLValue + "&cumartesi="
+									+ object.cumartesi.toString();
+							URLValue = URLValue + "&pazar="
+									+ object.pazar.toString();
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						// putDataToGrid();
+					}
+
+				}
+			});
+
+		}// design time
 	}
 
 	protected void showWithData(final String id) {
@@ -231,7 +306,8 @@ public class OgretmenTanimlari extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getogretmentanimlari";
+		String urlWithParameters = Util.urlBase
+				+ "getogretmentanimlari?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

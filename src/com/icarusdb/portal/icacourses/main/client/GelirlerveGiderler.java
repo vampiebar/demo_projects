@@ -107,18 +107,12 @@ public class GelirlerveGiderler extends Composite {
 		};
 		grdGelirlerveGiderler.addColumn(column_2, "Sil");
 
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setText("");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
-		absolutePanel.add(btnListeyiYenile, 580, 75);
-		btnListeyiYenile.setSize("78px", "48px");
-
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		absolutePanel.add(btnYeniKayit, 485, 75);
-		btnYeniKayit.setSize("78px", "48px");
+		btnYeniKayit.setSize("88px", "70px");
 
 		if (!isDesignTime()) {
 
@@ -162,18 +156,68 @@ public class GelirlerveGiderler extends Composite {
 
 				}
 			});
-		}
 
-		column_2.setFieldUpdater(new FieldUpdater<XMLGelirlerveGiderler, String>() {
+			column_2.setFieldUpdater(new FieldUpdater<XMLGelirlerveGiderler, String>() {
 
-			@Override
-			public void update(int index, XMLGelirlerveGiderler object,
-					String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLGelirlerveGiderler object,
+						String value) {
+					XMLGelirlerveGiderler selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putgelirlervegiderler?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&islem_tipi="
+									+ object.islem_tipi.toString();
+							URLValue = URLValue + "&kategoriler="
+									+ object.kategoriler.toString();
+							URLValue = URLValue + "&gelirler="
+									+ object.gelirler.toString();
+							URLValue = URLValue + "&odeme_turu="
+									+ object.odeme_turu.toString();
+							URLValue = URLValue + "&banka="
+									+ object.banka.toString();
+							URLValue = URLValue + "&cek="
+									+ object.cek.toString();
+							URLValue = URLValue + "&vade_tarihi="
+									+ object.vade_tarihi.toString();
+							URLValue = URLValue + "&miktar="
+									+ object.miktar.toString();
+							URLValue = URLValue + "&tarih="
+									+ object.tarih.toString();
+							URLValue = URLValue + "&aciklama="
+									+ object.aciklama.toString();
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						putDataToGrid();
+					}
+
+					putDataToGrid();
+				}
+			});
+
+		}// design time
 	}
 
 	protected void showWithData(final String id) {

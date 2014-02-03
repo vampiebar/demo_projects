@@ -98,15 +98,11 @@ public class AtanmisOdevler extends Composite {
 		grdAtanmisOdevler.addColumn(column_1, "");
 
 		Button btnAra = new Button("ARA");
-		btnAra.setStyleName("gwt-ButtonSave");
+		btnAra.setText("");
+		btnAra.setStyleName("gwt-ButtonAra");
 		btnAra.addClickHandler(new BtnAraClickHandler());
-		absolutePanel.add(btnAra, 448, 48);
-		btnAra.setSize("78px", "48px");
-
-		Button btnExceleAktar = new Button("Excel'e Aktar");
-		btnExceleAktar.setStyleName("gwt-ButonYeniKayit");
-		absolutePanel.add(btnExceleAktar, 540, 48);
-		btnExceleAktar.setSize("78px", "48px");
+		absolutePanel.add(btnAra, 434, 24);
+		btnAra.setSize("93px", "70px");
 	}
 
 	private class BtnAraClickHandler implements ClickHandler {

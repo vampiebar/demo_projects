@@ -281,6 +281,7 @@ public class DlgOdevTakipUnite extends DialogBox {
 					+ cbxDers.getItemText(cbxDers.getSelectedIndex());
 
 			URLValue = URLValue + "&unite=" + tctUnite.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

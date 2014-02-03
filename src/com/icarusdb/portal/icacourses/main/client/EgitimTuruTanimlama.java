@@ -3,6 +3,7 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -17,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -26,6 +28,8 @@ import com.google.gwt.view.client.SingleSelectionModel;
 public class EgitimTuruTanimlama extends Composite {
 	private CellTable<XMLEgitimTuruTanimlama> grdEgitimTuru;
 	public DlgEgitimTuruTanimlama _dlgEgitimTuruTanimlama;
+	private Column<XMLEgitimTuruTanimlama, String> column;
+	private Column<XMLEgitimTuruTanimlama, String> column_1;
 
 	public EgitimTuruTanimlama() {
 
@@ -65,8 +69,7 @@ public class EgitimTuruTanimlama extends Composite {
 		};
 		grdEgitimTuru.addColumn(textColumn_2, "Alan Adi");
 
-		Column<XMLEgitimTuruTanimlama, String> column = new Column<XMLEgitimTuruTanimlama, String>(
-				new ButtonCell()) {
+		column = new Column<XMLEgitimTuruTanimlama, String>(new ButtonCell()) {
 			@Override
 			public String getValue(XMLEgitimTuruTanimlama object) {
 				return "Düzenle";
@@ -74,8 +77,7 @@ public class EgitimTuruTanimlama extends Composite {
 		};
 		grdEgitimTuru.addColumn(column, "Düzenle");
 
-		Column<XMLEgitimTuruTanimlama, String> column_1 = new Column<XMLEgitimTuruTanimlama, String>(
-				new ButtonCell()) {
+		column_1 = new Column<XMLEgitimTuruTanimlama, String>(new ButtonCell()) {
 			@Override
 			public String getValue(XMLEgitimTuruTanimlama object) {
 				return "Sil";
@@ -88,14 +90,8 @@ public class EgitimTuruTanimlama extends Composite {
 		btnYeniKayit.setText("");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
-		absolutePanel.add(btnYeniKayit, 342, 65);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setText("");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
-		absolutePanel.add(btnListeyiYenile, 437, 65);
-		btnListeyiYenile.setSize("78px", "48px");
+		absolutePanel.add(btnYeniKayit, 347, 47);
+		btnYeniKayit.setSize("86px", "64px");
 
 		if (!isDesignTime()) {
 
@@ -120,72 +116,134 @@ public class EgitimTuruTanimlama extends Composite {
 
 				}
 
-				private void showWithData(final String id) {
+			}, DoubleClickEvent.getType());
 
-					String urlWithParameters = Util.urlBase
-							+ "getegitimturutanimlama?id=" + id;
+			column.setFieldUpdater(new FieldUpdater<XMLEgitimTuruTanimlama, String>() {
 
-					RequestBuilder builder = new RequestBuilder(
-							RequestBuilder.GET, urlWithParameters);
+				@Override
+				public void update(int index, XMLEgitimTuruTanimlama object,
+						String value) {
 
-					// Window.alert("URL TO GET VALUES: " + urlWithParameters);
-					try {
-						Request request = builder.sendRequest(null,
-								new RequestCallback() {
-									public void onError(Request request,
-											Throwable exception) {
+					XMLEgitimTuruTanimlama selected = selectionModel
+							.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
 
-									}
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
 
-									@Override
-									public void onResponseReceived(
-											Request request, Response response) {
-
-										// Window.alert("AAABBBCCC " +
-										// response.getText());
-
-										List<XMLEgitimTuruTanimlama> listXmlegitimTuru = XMLEgitimTuruTanimlama.XML
-												.readList(response.getText());
-
-										_dlgEgitimTuruTanimlama = new DlgEgitimTuruTanimlama(
-												false, new Long(id).longValue());
-										_dlgEgitimTuruTanimlama
-												.putDataFromXML(listXmlegitimTuru
-														.get(0));
-										// dlgTemp.tabOnKayit.selectTab(0);
-										_dlgEgitimTuruTanimlama
-												.setAnimationEnabled(true);
-										_dlgEgitimTuruTanimlama.center();
-										_dlgEgitimTuruTanimlama
-												.addCloseHandler(new CloseHandler<PopupPanel>() {
-
-													@Override
-													public void onClose(
-															CloseEvent<PopupPanel> event) {
-
-														putDataToGrid();
-
-													}
-												});
-
-									}
-								});
-
-					} catch (RequestException e) {
-						// displayError("Couldn't retrieve JSON");
-
-						// Window.alert(e.getMessage() + "ERROR");
 					}
 
 				}
-			}, DoubleClickEvent.getType());
+
+			});
+
+			column_1.setFieldUpdater(new FieldUpdater<XMLEgitimTuruTanimlama, String>() {
+
+				@Override
+				public void update(int index, XMLEgitimTuruTanimlama object,
+						String value) {
+
+					XMLEgitimTuruTanimlama selected = selectionModel
+							.getSelectedObject();
+
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putegitimturutanimlama?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&egitim_turu_adi="
+									+ object.egitim_turu_adi.toString();
+							URLValue = URLValue + "&alan_adi="
+									+ object.alan_adi.toString();
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						// putDataToGrid();
+					}
+
+				}
+			});
+
+		}// design time
+	}
+
+	private void showWithData(final String id) {
+
+		String urlWithParameters = Util.urlBase + "getegitimturutanimlama?id="
+				+ id;
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " +
+					// response.getText());
+
+					List<XMLEgitimTuruTanimlama> listXmlegitimTuru = XMLEgitimTuruTanimlama.XML
+							.readList(response.getText());
+
+					_dlgEgitimTuruTanimlama = new DlgEgitimTuruTanimlama(false,
+							new Long(id).longValue());
+					_dlgEgitimTuruTanimlama.putDataFromXML(listXmlegitimTuru
+							.get(0));
+					// dlgTemp.tabOnKayit.selectTab(0);
+					_dlgEgitimTuruTanimlama.setAnimationEnabled(true);
+					_dlgEgitimTuruTanimlama.center();
+					_dlgEgitimTuruTanimlama
+							.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+								@Override
+								public void onClose(CloseEvent<PopupPanel> event) {
+
+									putDataToGrid();
+
+								}
+							});
+
+				}
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getegitimturutanimlama";
+		String urlWithParameters = Util.urlBase
+				+ "getegitimturutanimlama?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

@@ -345,6 +345,7 @@ public class DlgKonuTanimlari extends DialogBox {
 			URLValue = URLValue + "&unite_adi="
 					+ cbxUniteAdi.getItemText(cbxUniteAdi.getSelectedIndex());
 			URLValue = URLValue + "&konu_adi=" + tctKonu.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

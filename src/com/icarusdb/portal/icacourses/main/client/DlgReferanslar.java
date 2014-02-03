@@ -93,6 +93,7 @@ public class DlgReferanslar extends DialogBox {
 			URLValue = URLValue + "id=" + _id;
 			URLValue = URLValue + "&referans_adi_soyadi="
 					+ tctReferansAdiSoyadi.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

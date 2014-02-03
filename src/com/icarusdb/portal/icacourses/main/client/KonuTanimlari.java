@@ -157,17 +157,58 @@ public class KonuTanimlari extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLKonuTanimlari, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLKonuTanimlari, String>() {
 
-			@Override
-			public void update(int index, XMLKonuTanimlari object, String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLKonuTanimlari object,
+						String value) {
+					XMLKonuTanimlari selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase
+									+ "putkonutanimlari?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&egitim_turu_adi="
+									+ object.egitim_turu_adi.toString();
+							URLValue = URLValue + "&alan_adi="
+									+ object.alan_adi.toString();
+							URLValue = URLValue + "&ders_adi="
+									+ object.ders_adi.toString();
+							URLValue = URLValue + "&unite_adi="
+									+ object.unite_adi.toString();
+							URLValue = URLValue + "&konu_adi="
+									+ object.konu_adi.toString();
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						// putDataToGrid();
+					}
+
+				}
+			});
+
+		}// design time
 	}
 
 	protected void showWithData(final String id) {
@@ -223,7 +264,8 @@ public class KonuTanimlari extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getkonutanimlari";
+		String urlWithParameters = Util.urlBase
+				+ "getkonutanimlari?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

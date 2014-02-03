@@ -158,6 +158,7 @@ public class DlgPersonelIslemleri extends DialogBox {
 			URLValue = URLValue + "&ucreti=" + tctUcreti.getText();
 			URLValue = URLValue + "&telefonu_1=" + tctTelefonu1.getText();
 			URLValue = URLValue + "&telefonu_2=" + tctTelefonu2.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 

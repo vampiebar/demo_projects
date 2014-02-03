@@ -9,6 +9,7 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -166,8 +167,8 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 							public void onResponseReceived(Request request,
 									Response response) {
 
-								// Window.alert("AAABBBCCC " +
-								// response.getText());
+								Window.alert("AAABBBCCC1235 "
+										+ response.getText());
 								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
 										.readList(response.getText());
 
@@ -179,8 +180,15 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 								KesinKayitBilgileri dlgTemp = new KesinKayitBilgileri(
 										_isInsert, -1);
 								_dlgKesinKayitIslemleri.hide();
-								dlgTemp.putDataFromXML(listXmlOnKayit.get(0));
-								// dlgTemp.putDataFromXML(listXmlOdemeler.get(0));
+
+								if (listXmlOnKayit != null) {
+
+									dlgTemp.putDataFromXML(listXmlOnKayit
+											.get(0));
+								} else {
+
+								}
+
 								dlgTemp.center();
 								dlgTemp.tabKesinKayitBilgileri.selectTab(0);
 

@@ -137,6 +137,7 @@ public class DlgDonemTanimlari extends DialogBox {
 					+ "&varsayilan_donem="
 					+ cbxVarsayilanDonem.getValue(cbxVarsayilanDonem
 							.getSelectedIndex());
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 

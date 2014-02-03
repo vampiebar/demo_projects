@@ -95,6 +95,7 @@ public class DlgFizikselSinifTanimlari extends DialogBox {
 			URLValue = URLValue + "id=" + _id;
 			URLValue = URLValue + "&fiziksel_sinif_adi="
 					+ tctFizikselSinifAdi.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

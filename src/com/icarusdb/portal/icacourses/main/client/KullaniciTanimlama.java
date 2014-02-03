@@ -159,12 +159,23 @@ public class KullaniciTanimlama extends Composite {
 							// DO YOUR STUFF
 
 							// Window.alert("selected id: " + selected.id);
-							showWithData(selected.id);
+							// showWithData(selected.id);
 
 							String URLValue = Util.urlBase
 									+ "putkullanicitanimlama?";
 
 							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&kullanici_kodu="
+									+ object.kullanici_kodu.toString();
+							URLValue = URLValue + "&adi="
+									+ object.adi.toString();
+							URLValue = URLValue + "&soyadi="
+									+ object.soyadi.toString();
+							URLValue = URLValue + "&sifre="
+									+ object.sifre.toString();
+							URLValue = URLValue + "&sifre_tekrar="
+									+ object.sifre_tekrar.toString();
+
 							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
 
 							// Window.alert(URLValue);
@@ -236,7 +247,8 @@ public class KullaniciTanimlama extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getkullanicitanimlama";
+		String urlWithParameters = Util.urlBase
+				+ "getkullanicitanimlama?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

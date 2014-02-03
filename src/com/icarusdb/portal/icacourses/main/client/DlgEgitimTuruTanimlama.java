@@ -105,6 +105,7 @@ public class DlgEgitimTuruTanimlama extends DialogBox {
 			URLValue = URLValue + "&egitim_turu_adi="
 					+ tctEgitimTuruAdi.getText();
 			URLValue = URLValue + "&alan_adi=" + tctEgitimTuruAdi.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

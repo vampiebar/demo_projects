@@ -87,6 +87,7 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 
 			URLValue = URLValue + "id=" + _id;
 			URLValue = URLValue + "&kategori_adi=" + tctKategoriAdi.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			// Window.alert(URLValue);
 

@@ -24,7 +24,6 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CaptionPanel;
@@ -869,7 +868,7 @@ public class DlgOnKayit extends DialogBox {
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLVeliler object) {
-				return "?";
+				return "Düzenle";
 			}
 		};
 		grdVeliEkle.addColumn(column_3, "Düzenle");
@@ -917,8 +916,6 @@ public class DlgOnKayit extends DialogBox {
 					cbxOgrenciKimlikBilgileriIl);
 			putGorusmeKursZamaniToCbx(cbxGorusmeKursZamani);
 			putEgitimTuruToCbx(cbxGorusmeEgitimTuru);
-
-			putDataToGrid();
 
 			final SingleSelectionModel<XMLVeliler> selectionModel = new SingleSelectionModel<XMLVeliler>();
 
@@ -1098,7 +1095,7 @@ public class DlgOnKayit extends DialogBox {
 						@Override
 						public void onClose(CloseEvent<PopupPanel> event) {
 
-							putDataToGrid();
+							putDataToGrid(tctTCKimlikNo.getText());
 
 						}
 					});
@@ -1115,16 +1112,17 @@ public class DlgOnKayit extends DialogBox {
 
 	}
 
-	private void putDataToGrid() {
+	private void putDataToGrid(String tc_kimlik_no) {
 
-		String urlWithParameters = Util.urlBase + "getveliler?id="
-		// + tctTCKimlikNo.getText();
-				+ _id;
+		String urlWithParameters = Util.urlBase
+				+ "getveliler?ogrenci_tc_kimlik_no=" + tc_kimlik_no;
+		// + _id;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
 
 		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
 				public void onError(Request request, Throwable exception) {
@@ -1532,6 +1530,8 @@ public class DlgOnKayit extends DialogBox {
 		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
 		dtpGorusmeTarihi.setValue(dtf.parse(xml.gorusme_tarihi));
 
+		putDataToGrid(tctTCKimlikNo.getText());
+
 	}
 
 	private class BtnYeniOgrenciClickHandler implements ClickHandler {
@@ -1669,6 +1669,7 @@ public class DlgOnKayit extends DialogBox {
 					+ chxKayitSilinsinMi.getValue().toString();
 
 			URLValue = URLValue + "&silme_sebebi=" + tctSilmeSebebi.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 
@@ -1728,13 +1729,13 @@ public class DlgOnKayit extends DialogBox {
 			_dlgVeliler = new DlgVeliEkle(true, -1);
 			_dlgVeliler.center();
 			_dlgVeliler.setAnimationEnabled(true);
-			Window.alert("id= " + _id);
+			// Window.alert("id= " + _id);
 			_dlgVeliler.addCloseHandler(new CloseHandler<PopupPanel>() {
 
 				@Override
 				public void onClose(CloseEvent<PopupPanel> event) {
 
-					putDataToGrid();
+					putDataToGrid(tctTCKimlikNo.getText());
 
 				}
 			});
@@ -1881,7 +1882,7 @@ public class DlgOnKayit extends DialogBox {
 									public void onClose(
 											CloseEvent<PopupPanel> event) {
 
-										putDataToGrid();
+										putDataToGrid(tctTCKimlikNo.getText());
 
 									}
 								});

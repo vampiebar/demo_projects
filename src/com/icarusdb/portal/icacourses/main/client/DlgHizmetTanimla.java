@@ -200,6 +200,8 @@ public class DlgHizmetTanimla extends DialogBox {
 			URLValue = URLValue + "&birim_fiyati=" + tctBirimFiyati.getText();
 			URLValue = URLValue + "&guzergah="
 					+ cbxGuzergah.getItemText(cbxGuzergah.getSelectedIndex());
+
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");

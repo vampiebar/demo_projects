@@ -146,17 +146,57 @@ public class SaatGirisi extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLSaatGirisi, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLSaatGirisi, String>() {
 
-			@Override
-			public void update(int index, XMLSaatGirisi object, String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLSaatGirisi object, String value) {
 
-			}
-		});
+					XMLSaatGirisi selected = selectionModel.getSelectedObject();
 
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase + "putsaatgirisi?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&baslangic_saat="
+									+ object.baslangic_saat.toString();
+							URLValue = URLValue + "&bitis_saat="
+									+ object.bitis_saat.toString();
+							URLValue = URLValue + "&baslangic_dakika="
+									+ object.baslangic_dakika.toString();
+							URLValue = URLValue + "&bitis_dakika="
+									+ object.bitis_dakika.toString();
+							URLValue = URLValue + "&gun="
+									+ object.gun.toString();
+							URLValue = URLValue + "&aciklama="
+									+ object.aciklama.toString();
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						// putDataToGrid();
+					}
+
+				}
+			});
+
+		}// design time
 	}
 
 	protected void showWithData(final String id) {
@@ -212,7 +252,8 @@ public class SaatGirisi extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getsaatgirisi";
+		String urlWithParameters = Util.urlBase
+				+ "getsaatgirisi?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

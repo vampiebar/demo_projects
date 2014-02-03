@@ -131,17 +131,53 @@ public class IndirimTuru extends Composite {
 
 				}
 			});
-		}
 
-		column_1.setFieldUpdater(new FieldUpdater<XMLIndirimTuru, String>() {
+			column_1.setFieldUpdater(new FieldUpdater<XMLIndirimTuru, String>() {
 
-			@Override
-			public void update(int index, XMLIndirimTuru object, String value) {
-				Window.confirm("Kayit Silinecektir, Emin Misiniz?");
+				@Override
+				public void update(int index, XMLIndirimTuru object,
+						String value) {
+					XMLIndirimTuru selected = selectionModel
+							.getSelectedObject();
 
-			}
-		});
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
 
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase + "putindirimturu?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&indirim_turu="
+									+ object.indirim_turu.toString();
+							URLValue = URLValue + "&indirim_sekli="
+									+ object.indirim_sekli.toString();
+							URLValue = URLValue + "&indirim_miktari="
+									+ object.indirim_miktari.toString();
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util().sendRequest(URLValue,
+									"DERS BİLGİSİ KAYIT EDİLDİ",
+									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+						}
+
+						// putDataToGrid();
+					}
+
+				}
+			});
+
+		}// design time
 	}
 
 	protected void showWithData(final String id) {
@@ -197,7 +233,8 @@ public class IndirimTuru extends Composite {
 
 	private void putDataToGrid() {
 
-		String urlWithParameters = Util.urlBase + "getindirimturu";
+		String urlWithParameters = Util.urlBase
+				+ "getindirimturu?kayit_silinsin_mi=FALSE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

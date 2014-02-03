@@ -152,6 +152,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 			URLValue = URLValue + "&soyadi=" + tctSoyadi.getText();
 			URLValue = URLValue + "&sifre=" + tctSifre.getText();
 			URLValue = URLValue + "&sifre_tekrar=" + tctSifretekrar.getText();
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");

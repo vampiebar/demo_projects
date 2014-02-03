@@ -1282,6 +1282,7 @@ public class KesinKayitBilgileri extends DialogBox {
 						// Window.alert("selected id: " + selected.id);
 						showWithData(selected.id);
 						showWithData(selected.ogrenci_tc_kimlik_no);
+						putHizmetlerToGrid();
 
 					}
 
@@ -2107,6 +2108,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
 		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
+
 	}
 
 	public void putDataFromXMLOkulNumarasi(XMLOnKayit xml) {
