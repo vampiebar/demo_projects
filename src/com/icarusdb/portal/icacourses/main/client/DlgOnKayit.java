@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.CheckboxCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -24,6 +25,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CaptionPanel;
@@ -799,14 +801,14 @@ public class DlgOnKayit extends DialogBox {
 		absolutePanel_7.setSize("840px", "712px");
 
 		Button button = new Button("Veli Ekle");
-		button.setStyleName("gwt-ButonYeniKayit");
+		button.setStyleName("gwt-BilgileriniGetir");
 		button.addClickHandler(new ButtonClickHandler());
 		absolutePanel_7.add(button, 10, 10);
 		button.setSize("76px", "24px");
 
 		grdVeliEkle = new CellTable<XMLVeliler>();
 		absolutePanel_7.add(grdVeliEkle, 10, 54);
-		grdVeliEkle.setSize("715px", "174px");
+		grdVeliEkle.setSize("820px", "192px");
 
 		TextColumn<XMLVeliler> textColumn_4 = new TextColumn<XMLVeliler>() {
 			@Override
@@ -838,7 +840,7 @@ public class DlgOnKayit extends DialogBox {
 		};
 		grdVeliEkle.addColumn(textColumn_2, "Yakınlık Durumu");
 
-		Column<XMLVeliler, Boolean> column = new Column<XMLVeliler, Boolean>(
+		Column<XMLVeliler, Boolean> column_5 = new Column<XMLVeliler, Boolean>(
 				new CheckboxCell()) {
 			@Override
 			public Boolean getValue(XMLVeliler object) {
@@ -846,7 +848,7 @@ public class DlgOnKayit extends DialogBox {
 						: false;
 			}
 		};
-		grdVeliEkle.addColumn(column, "Ödeme Sorumlusu");
+		grdVeliEkle.addColumn(column_5, "Ödeme Sorumlusu");
 
 		TextColumn<XMLVeliler> textColumn_3 = new TextColumn<XMLVeliler>() {
 			@Override
@@ -864,23 +866,28 @@ public class DlgOnKayit extends DialogBox {
 		};
 		grdVeliEkle.addColumn(textColumn_5, "İş Tel");
 
-		Column<XMLVeliler, String> column_3 = new Column<XMLVeliler, String>(
+		Column<XMLVeliler, String> column = new Column<XMLVeliler, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLVeliler object) {
 				return "Düzenle";
 			}
 		};
-		grdVeliEkle.addColumn(column_3, "Düzenle");
+		grdVeliEkle.addColumn(column, "Düzenle");
 
-		Column<XMLVeliler, String> column_4 = new Column<XMLVeliler, String>(
+		Column<XMLVeliler, String> column_1 = new Column<XMLVeliler, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLVeliler object) {
-				return (String) null;
+				return "Sil";
 			}
 		};
-		grdVeliEkle.addColumn(column_4, "Sil");
+		grdVeliEkle.addColumn(column_1, "Sil");
+
+		Image imgKapat2 = new Image("kapat-1.png");
+		imgKapat2.addClickHandler(new ImgKapat2ClickHandler());
+		absolutePanel_7.add(imgKapat2, 469, 273);
+		imgKapat2.setSize("72px", "66px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		verticalpanel.add(absolutePanel_1);
@@ -936,6 +943,86 @@ public class DlgOnKayit extends DialogBox {
 				}
 
 			}, DoubleClickEvent.getType());
+			column.setFieldUpdater(new FieldUpdater<XMLVeliler, String>() {
+
+				@Override
+				public void update(int index, XMLVeliler object, String value) {
+
+					XMLVeliler selected = selectionModel.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
+			column_1.setFieldUpdater(new FieldUpdater<XMLVeliler, String>() {
+
+				@Override
+				public void update(int index, XMLVeliler object, String value) {
+					XMLVeliler selected = selectionModel.getSelectedObject();
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase + "putveliler?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&ogrenci_tc_kimlik_no="
+									+ object.ogrenci_tc_kimlik_no.toString();
+							URLValue = URLValue + "&veli_bilgileri_adi="
+									+ object.veli_bilgileri_adi.toString();
+							URLValue = URLValue + "&veli_bilgileri_soyadi="
+									+ object.veli_bilgileri_soyadi.toString();
+							URLValue = URLValue
+									+ "&veli_bilgileri_tc_kimlik_no="
+									+ object.veli_bilgileri_tc_kimlik_no
+											.toString();
+							URLValue = URLValue + "&yakinlik_durumu="
+									+ object.yakinlik_durumu.toString();
+							URLValue = URLValue + "&odeme_sorumlusu="
+									+ object.odeme_sorumlusu.toString();
+							URLValue = URLValue + "&cep_tel="
+									+ object.cep_tel.toString();
+							URLValue = URLValue + "&ev_tel="
+									+ object.ev_tel.toString();
+							URLValue = URLValue + "&is_tel="
+									+ object.is_tel.toString();
+							URLValue = URLValue + "&e_mail="
+									+ object.e_mail.toString();
+							URLValue = URLValue + "&firma="
+									+ object.firma.toString();
+							URLValue = URLValue + "&sektor="
+									+ object.sektor.toString();
+							URLValue = URLValue + "&unvani="
+									+ object.unvani.toString();
+							URLValue = URLValue + "&gorevi="
+									+ object.gorevi.toString();
+							URLValue = URLValue + "&veli_bilgileri_adres="
+									+ object.veli_bilgileri_adres.toString();
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util()
+									.sendRequest(URLValue,
+											"BAŞARIYLA KAYIT EDİLDİ",
+											"KAYIT EDİLEMEDİ");
+						}
+					}
+				}
+			});
 		}
 
 	}
@@ -1115,8 +1202,8 @@ public class DlgOnKayit extends DialogBox {
 	private void putDataToGrid(String tc_kimlik_no) {
 
 		String urlWithParameters = Util.urlBase
-				+ "getveliler?ogrenci_tc_kimlik_no=" + tc_kimlik_no;
-		// + _id;
+				+ "getveliler?kayit_silinsin_mi=FALSE"
+				+ "&ogrenci_tc_kimlik_no=" + tc_kimlik_no;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -1726,11 +1813,10 @@ public class DlgOnKayit extends DialogBox {
 	private class ButtonClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			_dlgVeliler = new DlgVeliEkle(true, -1);
-			_dlgVeliler.center();
-			_dlgVeliler.setAnimationEnabled(true);
-			// Window.alert("id= " + _id);
-			_dlgVeliler.addCloseHandler(new CloseHandler<PopupPanel>() {
+			DlgVeliEkle dlgTemp = new DlgVeliEkle(true, -1);
+			dlgTemp.center();
+			dlgTemp.setAnimationEnabled(true);
+			dlgTemp.addCloseHandler(new CloseHandler<PopupPanel>() {
 
 				@Override
 				public void onClose(CloseEvent<PopupPanel> event) {
@@ -2010,6 +2096,12 @@ public class DlgOnKayit extends DialogBox {
 	}
 
 	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
+		}
+	}
+
+	private class ImgKapat2ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
 		}

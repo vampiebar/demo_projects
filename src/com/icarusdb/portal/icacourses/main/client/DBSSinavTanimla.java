@@ -1,5 +1,6 @@
 package com.icarusdb.portal.icacourses.main.client;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
@@ -28,6 +29,9 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalSplitPanelImages;
+import com.google.gwt.view.client.Range;
+import com.google.gwt.view.client.RangeChangeEvent;
+import com.google.gwt.view.client.RangeChangeEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class DBSSinavTanimla extends Composite {
@@ -48,20 +52,22 @@ public class DBSSinavTanimla extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("791px", "455px");
+		absolutePanel.setSize("791px", "461px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
 		btnYeniKayit.setText("");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 450, 32);
-		btnYeniKayit.setSize("89px", "64px");
+		absolutePanel.add(btnYeniKayit, 451, 21);
+		btnYeniKayit.setSize("89px", "68px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 159);
+		absolutePanel.add(horizontalPanel, 10, 102);
 		horizontalPanel.setSize("774px", "75px");
 
 		grdDBSSinavTanimla = new CellTable<XMLDBSSinavTanimla>();
+		grdDBSSinavTanimla
+				.addRangeChangeHandler(new GrdDBSSinavTanimlaHandler());
 		horizontalPanel.add(grdDBSSinavTanimla);
 		grdDBSSinavTanimla.setSize("100%", "100%");
 
@@ -98,7 +104,7 @@ public class DBSSinavTanimla extends Composite {
 			}
 		};
 		grdDBSSinavTanimla.addColumn(column_1, "Sınav Tarihi");
-		grdDBSSinavTanimla.setColumnWidth(column_1, "135px");
+		grdDBSSinavTanimla.setColumnWidth(column_1, "95px");
 
 		TextColumn<XMLDBSSinavTanimla> textColumn_5 = new TextColumn<XMLDBSSinavTanimla>() {
 			@Override
@@ -168,6 +174,8 @@ public class DBSSinavTanimla extends Composite {
 		if (!isDesignTime()) {
 
 			putDataToGrid();
+
+			// List <ForumMessage> AllMessages=populated from an rpc;
 
 			final SingleSelectionModel<XMLDBSSinavTanimla> selectionModel = new SingleSelectionModel<XMLDBSSinavTanimla>();
 
@@ -243,15 +251,22 @@ public class DBSSinavTanimla extends Composite {
 									+ object.sinav_yeri.toString();
 							URLValue = URLValue + "&ulke="
 									+ object.ulke.toString();
-							URLValue = URLValue + "&il=" + object.il.toString();
-							URLValue = URLValue + "&ilce="
-									+ object.ilce.toString();
-							URLValue = URLValue + "&semt="
-									+ object.semt.toString();
-							URLValue = URLValue + "&mahalle_koy="
-									+ object.mahalle_koy.toString();
-							URLValue = URLValue + "&adres="
-									+ object.adres.toString();
+							URLValue = URLValue + "&il="
+									+ ((object.il == null) ? "" : object.il);
+							URLValue = URLValue
+									+ "&ilce="
+									+ ((object.ilce == null) ? "" : object.ilce);
+							URLValue = URLValue
+									+ "&semt="
+									+ ((object.semt == null) ? "" : object.semt);
+							URLValue = URLValue
+									+ "&mahalle_koy="
+									+ ((object.mahalle_koy) == null ? ""
+											: object.mahalle_koy);
+							URLValue = URLValue
+									+ "&adres="
+									+ ((object.adres == null) ? ""
+											: object.adres);
 							URLValue = URLValue + "&saat="
 									+ object.saat.toString();
 							URLValue = URLValue + "&dakika="
@@ -265,7 +280,7 @@ public class DBSSinavTanimla extends Composite {
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
 
 						}
-
+						// putDataToGrid();
 						// putDataToGrid();
 					}
 
@@ -418,4 +433,18 @@ public class DBSSinavTanimla extends Composite {
 	// resources.getImageResource();
 	// }
 	// };
+	private class GrdDBSSinavTanimlaHandler implements Handler {
+		public void onRangeChange(RangeChangeEvent event) {
+
+			Range range = grdDBSSinavTanimla.getVisibleRange();
+			int start = range.getStart();
+			int length = range.getLength();
+
+			List<XMLDBSSinavTanimla> toSet = new ArrayList<XMLDBSSinavTanimla>(
+					length);
+			for (int i = start; i < start + length && i < toSet.size(); i++)
+				toSet.add((XMLDBSSinavTanimla) toSet.get(i));
+			grdDBSSinavTanimla.setRowData(start, toSet);
+		}
+	}
 }

@@ -5,12 +5,15 @@ import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.CheckboxCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.http.client.Request;
@@ -22,6 +25,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
@@ -30,6 +34,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.SimpleCheckBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
@@ -42,6 +47,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 	public boolean _isInsert = true;
 	public long _id = -1;
+
+	public DlgVeliEkle _dlgVeliler;
 
 	private TextBox tctAdi;
 	private TextBox tctSoyadi;
@@ -281,12 +288,6 @@ public class DlgDBSYeniKayit extends DialogBox {
 		vtpanOgrenciBilgileri.add(tctCepTelefonu, 304, 206);
 		tctCepTelefonu.setSize("143px", "14px");
 
-		Button btnYeniKayit5 = new Button("");
-		btnYeniKayit5.setText("");
-		hzpanMenu1.add(btnYeniKayit5);
-		btnYeniKayit5.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit5.setSize("90px", "72px");
-
 		btnOgrenciyiKaydet5 = new Button("Öğrenciyi Kaydet");
 		btnOgrenciyiKaydet5.setVisible(false);
 
@@ -295,6 +296,13 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 		Image imgKaydet = new Image("kaydet-1.png");
 		imgKaydet.addClickHandler(new ImgKaydetClickHandler());
+
+		Button btnYeniKayit5 = new Button("");
+		btnYeniKayit5.setVisible(false);
+		btnYeniKayit5.setText("");
+		hzpanMenu1.add(btnYeniKayit5);
+		btnYeniKayit5.setStyleName("gwt-ButonYeniKayit");
+		btnYeniKayit5.setSize("90px", "72px");
 		hzpanMenu1.add(imgKaydet);
 		imgKaydet.setSize("72px", "66px");
 		hzpanMenu1.add(imgKapat5);
@@ -607,13 +615,18 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 		Button btnVeliEkle = new Button("Veli Ekle");
 		btnVeliEkle.addClickHandler(new BtnVeliEkleClickHandler());
-		btnVeliEkle.setStyleName("gwt-ButonYeniKayit");
-		absolutePanel_4.add(btnVeliEkle, 10, 10);
+		btnVeliEkle.setStyleName("gwt-BilgileriniGetir");
+		absolutePanel_4.add(btnVeliEkle, 405, 243);
+		btnVeliEkle.setSize("72px", "66px");
+
+		VerticalPanel horizontalPanel = new VerticalPanel();
+		absolutePanel_4.add(horizontalPanel, 10, 31);
+		horizontalPanel.setSize("754px", "192px");
 
 		grdVeliler = new CellTable<XMLVeliler>();
+		horizontalPanel.add(grdVeliler);
 		grdVeliler.setVisible(true);
-		absolutePanel_4.add(grdVeliler, 0, 42);
-		grdVeliler.setSize("715px", "174px");
+		grdVeliler.setSize("100%", "100%");
 
 		TextColumn<XMLVeliler> textColumn_4 = new TextColumn<XMLVeliler>() {
 			@Override
@@ -676,7 +689,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLVeliler object) {
-				return (String) null;
+				return "Düzenle";
 			}
 		};
 		grdVeliler.addColumn(column_3, "Düzenle");
@@ -685,15 +698,22 @@ public class DlgDBSYeniKayit extends DialogBox {
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLVeliler object) {
-				return (String) null;
+				return "Sil";
 			}
 		};
 		grdVeliler.addColumn(column_4, "Sil");
 
-		// Set Default page
+		Image imgKapat6 = new Image("kapat-1.png");
+		imgKapat6.addClickHandler(new ImgKapat6ClickHandler());
+		absolutePanel_4.add(imgKapat6, 489, 243);
+		imgKapat6.setSize("72px", "66px");
+
+		// // Set Default page
 		decoratedTabPanel.selectTab(0);
 
 		if (!isDesignTime()) {
+
+			putDataToGrid(tctTCKimlikNo.getText());
 
 			putIlToCbx(cbxOgrenciKimlikBilgileriIl, cbxOgrenciBilgileriIl,
 					cbxAdresBilgileriIl);
@@ -717,7 +737,89 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 				}
 			}, DoubleClickEvent.getType());
+
+			column_3.setFieldUpdater(new FieldUpdater<XMLVeliler, String>() {
+
+				@Override
+				public void update(int index, XMLVeliler object, String value) {
+
+					XMLVeliler selected = selectionModel.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
+			column_4.setFieldUpdater(new FieldUpdater<XMLVeliler, String>() {
+
+				@Override
+				public void update(int index, XMLVeliler object, String value) {
+					XMLVeliler selected = selectionModel.getSelectedObject();
+					Boolean x = Window
+							.confirm("Kayit Silinecektir, Emin Misiniz?");
+
+					if (x == true) {
+
+						if (selected != null) {
+							// DO YOUR STUFF
+
+							// Window.alert("selected id: " + selected.id);
+							// showWithData(selected.id);
+
+							String URLValue = Util.urlBase + "putveliler?";
+
+							URLValue = URLValue + "id=" + selected.id;
+							URLValue = URLValue + "&ogrenci_tc_kimlik_no="
+									+ object.ogrenci_tc_kimlik_no.toString();
+							URLValue = URLValue + "&veli_bilgileri_adi="
+									+ object.veli_bilgileri_adi.toString();
+							URLValue = URLValue + "&veli_bilgileri_soyadi="
+									+ object.veli_bilgileri_soyadi.toString();
+							URLValue = URLValue
+									+ "&veli_bilgileri_tc_kimlik_no="
+									+ object.veli_bilgileri_tc_kimlik_no
+											.toString();
+							URLValue = URLValue + "&yakinlik_durumu="
+									+ object.yakinlik_durumu.toString();
+							URLValue = URLValue + "&odeme_sorumlusu="
+									+ object.odeme_sorumlusu.toString();
+							URLValue = URLValue + "&cep_tel="
+									+ object.cep_tel.toString();
+							URLValue = URLValue + "&ev_tel="
+									+ object.ev_tel.toString();
+							URLValue = URLValue + "&is_tel="
+									+ object.is_tel.toString();
+							URLValue = URLValue + "&e_mail="
+									+ object.e_mail.toString();
+							URLValue = URLValue + "&firma="
+									+ object.firma.toString();
+							URLValue = URLValue + "&sektor="
+									+ object.sektor.toString();
+							URLValue = URLValue + "&unvani="
+									+ object.unvani.toString();
+							URLValue = URLValue + "&gorevi="
+									+ object.gorevi.toString();
+							URLValue = URLValue + "&veli_bilgileri_adres="
+									+ object.veli_bilgileri_adres.toString();
+
+							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+
+							// Window.alert(URLValue);
+
+							new Util()
+									.sendRequest(URLValue,
+											"BAŞARIYLA KAYIT EDİLDİ",
+											"KAYIT EDİLEMEDİ");
+						}
+					}
+				}
+			});
 		}
+
 	}
 
 	private void putOKulDurumuToCbx(final ListBox lbxTemp,
@@ -857,7 +959,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private void putDataToGrid(String tc_kimlik_no) {
 
 		String urlWithParameters = Util.urlBase
-				+ "getveliler?ogrenci_tc_kimlik_no=" + tc_kimlik_no;
+				+ "getveliler?kayit_silinsin_mi=FALSE"
+				+ "&ogrenci_tc_kimlik_no=" + tc_kimlik_no;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -928,10 +1031,19 @@ public class DlgDBSYeniKayit extends DialogBox {
 					List<XMLVeliler> listXmlVeliler = XMLVeliler.XML
 							.readList(response.getText());
 
-					DlgVeliEkle dlgTemp = new DlgVeliEkle(false, new Long(id)
+					_dlgVeliler = new DlgVeliEkle(false, new Long(id)
 							.longValue());
-					dlgTemp.putDataFromXML(listXmlVeliler.get(0));
-					dlgTemp.center();
+					_dlgVeliler.putDataFromXML(listXmlVeliler.get(0));
+					_dlgVeliler.center();
+					_dlgVeliler.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+						@Override
+						public void onClose(CloseEvent<PopupPanel> event) {
+
+							putDataToGrid(tctTCKimlikNo.getText());
+
+						}
+					});
 
 				}
 
@@ -1494,6 +1606,16 @@ public class DlgDBSYeniKayit extends DialogBox {
 			DlgVeliEkle dlgTemp = new DlgVeliEkle(true, -1);
 			dlgTemp.center();
 			dlgTemp.setAnimationEnabled(true);
+			dlgTemp.addCloseHandler(new CloseHandler<PopupPanel>() {
+
+				@Override
+				public void onClose(CloseEvent<PopupPanel> event) {
+
+					putDataToGrid(tctTCKimlikNo.getText());
+
+				}
+			});
+
 		}
 	}
 
@@ -1573,6 +1695,12 @@ public class DlgDBSYeniKayit extends DialogBox {
 	private class ImgKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			btnOgrenciyiKaydet5.click();
+		}
+	}
+
+	private class ImgKapat6ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			hide();
 		}
 	}
 }

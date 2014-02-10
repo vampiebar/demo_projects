@@ -320,8 +320,9 @@ public class OnKayit extends Composite {
 
 	private class BtnAraClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			String urlWithParameters = Util.urlBase + "getonkayit"
-					+ "?adi_soyadi_tc_kimlik_no="
+			String urlWithParameters = Util.urlBase
+					+ "getonkayit?kayit_silinsin_mi=FALSE"
+					+ "&adi_soyadi_tc_kimlik_no="
 					+ tctAranacakAnahtarKelime.getText();
 
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,

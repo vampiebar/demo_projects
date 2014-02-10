@@ -1,6 +1,5 @@
 package com.icarusdb.portal.icacourses.main.client;
 
-import com.axeiya.gwtckeditor.client.CKConfig;
 import com.axeiya.gwtckeditor.client.CKEditor;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -34,6 +33,7 @@ public class DlgLogIn extends DialogBox {
 		verticalPanel.setSize("335px", "317px");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
+		absolutePanel.setStyleName("gwt-Loginbackground");
 		verticalPanel.add(absolutePanel);
 		absolutePanel.setSize("573px", "504px");
 
@@ -67,9 +67,8 @@ public class DlgLogIn extends DialogBox {
 
 		btnGirisYap = new Button("New button");
 		verticalPanel_1.add(btnGirisYap, 28, 149);
-		btnGirisYap.setStyleName("gwt-ButonKapat");
 		btnGirisYap.setText("GİRİŞ YAP");
-		btnGirisYap.setSize("100px", "26px");
+		btnGirisYap.setSize("100px", "27px");
 
 		chckbxKullaniciKoduHatirla = new CheckBox("Beni Hatırla");
 		chckbxKullaniciKoduHatirla.setHTML("Kullanıcı Kodunu Hatırla");
@@ -78,9 +77,8 @@ public class DlgLogIn extends DialogBox {
 		Button btnIptal = new Button("New button");
 		btnIptal.addClickHandler(new BtnIptalClickHandler());
 		btnIptal.setText("İPTAL");
-		btnIptal.setStyleName("gwt-ButtonSave");
 		verticalPanel_1.add(btnIptal, 142, 149);
-		btnIptal.setSize("100px", "26px");
+		btnIptal.setSize("100px", "27px");
 
 		chckbxifreyiHatrla = new CheckBox("Şifreyi Hatırla");
 		verticalPanel_1.add(chckbxifreyiHatrla, 0, 121);
@@ -91,10 +89,10 @@ public class DlgLogIn extends DialogBox {
 
 		if (!isDesignTime()) {
 
-			ckhtmlLogIn = new CKEditor(CKConfig.basic);
-			ckhtmlLogIn.setSize("100%", "100%");
-
-			smpanHtmlEditor.add(ckhtmlLogIn);
+			// ckhtmlLogIn = new CKEditor(CKConfig.basic);
+			// ckhtmlLogIn.setSize("100%", "100%");
+			//
+			// smpanHtmlEditor.add(ckhtmlLogIn);
 
 		}
 	}

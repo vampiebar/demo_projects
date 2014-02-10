@@ -294,6 +294,11 @@ public class DlgVeliEkle extends DialogBox {
 		tctVeliBilgileriTcKimlikNo.setText(xml.veli_bilgileri_tc_kimlik_no);
 		tctOgrenciTCKimlikNo.setText(xml.ogrenci_tc_kimlik_no);
 
+		tctOgrenciTCKimlikNo.setReadOnly(true);
+
+		cbxYakinlikDurumu.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+				cbxYakinlikDurumu, xml.yakinlik_durumu));
+
 		chxOdemeSorumlusu
 				.setValue(xml.odeme_sorumlusu.equalsIgnoreCase("t") ? true
 						: false);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.CheckboxCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -117,6 +118,7 @@ public class KesinKayitBilgileri extends DialogBox {
 	private TextArea tctAciklama;
 	private TextArea tctTaksitAciklama;
 	private Column<XMLVeliler, String> column_1;
+	private Column<XMLVeliler, String> column;
 
 	public KesinKayitBilgileri(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -174,7 +176,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_2 = new Label("İl");
 		label_2.setStyleName("gwt-Bold");
 		absolutePanel_1.add(label_2, 10, 252);
-		label_2.setSize("26px", "18px");
+		label_2.setSize("68px", "18px");
 
 		Label label_3 = new Label("Cinsiyet");
 		label_3.setStyleName("gwt-Bold");
@@ -240,7 +242,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_8 = new Label("İlçe");
 		label_8.setStyleName("gwt-Bold");
 		absolutePanel_1.add(label_8, 10, 288);
-		label_8.setSize("20px", "18px");
+		label_8.setSize("40px", "18px");
 
 		cbxOgrenciBilgileriIlce = new ListBox();
 		cbxOgrenciBilgileriIlce.setStyleName("gwt-ComboBox1");
@@ -258,7 +260,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		Label label_10 = new Label("Sınıf");
 		label_10.setStyleName("gwt-Bold");
 		absolutePanel_1.add(label_10, 10, 365);
-		label_10.setSize("26px", "18px");
+		label_10.setSize("40px", "18px");
 
 		cbxOgrenciBilgileriSinif = new ListBox();
 		cbxOgrenciBilgileriSinif.setStyleName("gwt-ComboBox1");
@@ -744,7 +746,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		absolutePanel_6.setSize("805px", "462px");
 
 		grdVeliEkle = new CellTable<XMLVeliler>();
-		absolutePanel_6.add(grdVeliEkle, 10, 64);
+		absolutePanel_6.add(grdVeliEkle, 10, 68);
 		grdVeliEkle.setSize("715px", "174px");
 
 		TextColumn<XMLVeliler> textColumn_9 = new TextColumn<XMLVeliler>() {
@@ -803,8 +805,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		};
 		grdVeliEkle.addColumn(textColumn_12, "İş Tel");
 
-		Column<XMLVeliler, String> column = new Column<XMLVeliler, String>(
-				new ButtonCell()) {
+		column = new Column<XMLVeliler, String>(new ButtonCell()) {
 			@Override
 			public String getValue(XMLVeliler object) {
 				return (String) null;
@@ -1260,7 +1261,7 @@ public class KesinKayitBilgileri extends DialogBox {
 					cbxAdresBilgileriIl);
 			putReferansToCbx(cbxReferans);
 			putKursZamaniToCbx(cbxKursZamani);
-			putVelilerToGrid();
+
 			putHizmetlerToGrid();
 
 			putEgitimTuruToCbx(cbxEgitimTuru);
@@ -1281,14 +1282,30 @@ public class KesinKayitBilgileri extends DialogBox {
 
 						// Window.alert("selected id: " + selected.id);
 						showWithData(selected.id);
-						showWithData(selected.ogrenci_tc_kimlik_no);
-						putHizmetlerToGrid();
+						// showWithData(selected.ogrenci_tc_kimlik_no);
 
 					}
 
 				}
 
 			}, DoubleClickEvent.getType());
+
+			column.setFieldUpdater(new FieldUpdater<XMLVeliler, String>() {
+
+				@Override
+				public void update(int index, XMLVeliler object, String value) {
+
+					XMLVeliler selected = selectionModel.getSelectedObject();
+					if (selected != null) {
+						// DO YOUR STUFF
+
+						// Window.alert("selected id: " + selected.id);
+						showWithData(selected.id);
+
+					}
+
+				}
+			});
 		}
 
 	}
@@ -1461,9 +1478,10 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	}
 
-	private void putVelilerToGrid() {
+	private void putVelilerToGrid(String tc_kimlik_no) {
 
-		String urlWithParameters = Util.urlBase + "getveliler?id=" + _id;
+		String urlWithParameters = Util.urlBase
+				+ "getveliler?ogrenci_tc_kimlik_no=" + tc_kimlik_no;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -2028,7 +2046,7 @@ public class KesinKayitBilgileri extends DialogBox {
 						@Override
 						public void onClose(CloseEvent<PopupPanel> event) {
 
-							putVelilerToGrid();
+							putVelilerToGrid(tctTCKimlikNo.getText());
 
 						}
 					});
@@ -2109,6 +2127,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		dtpDogumTarihi.setValue(dtf.parse(xml.dogum_tarihi));
 		dtpVerilisTarihi.setValue(dtf.parse(xml.verilis_tarihi));
 
+		putVelilerToGrid(tctTCKimlikNo.getText());
 	}
 
 	public void putDataFromXMLOkulNumarasi(XMLOnKayit xml) {
@@ -2140,8 +2159,9 @@ public class KesinKayitBilgileri extends DialogBox {
 
 		cbxHizmetTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxHizmetTuru, xml.hizmet_turu));
-		cbxHizmetAdi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
-				cbxHizmetAdi, xml.hizmet_adi));
+		cbxHizmetAdi.setItemText(0, xml.hizmet_adi);
+		// cbxHizmetAdi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
+		// cbxHizmetAdi, xml.hizmet_adi));
 		tctMiktar.setText(xml.miktar);
 		cbxHizmetlerIndirimTuru.setSelectedIndex(Util.GetLBXSelectedTextIndex(
 				cbxHizmetlerIndirimTuru, xml.hizmetler_indirim_turu));
@@ -2346,6 +2366,9 @@ public class KesinKayitBilgileri extends DialogBox {
 									.getSelectedIndex());
 			URLValue = URLValue + "&taksit_sayisi=" + tctTaksitSayisi.getText();
 
+			URLValue = URLValue + "&ogrenci_numarasi="
+					+ tctTCKimlikNo.getText();
+
 			DateTimeFormat dtf = DateTimeFormat.getFormat("yyyy-MM-dd");
 
 			URLValue = URLValue + "&takside_baslanacak_gun="
@@ -2367,7 +2390,7 @@ public class KesinKayitBilgileri extends DialogBox {
 			URLValue = URLValue + "&hizmet_turu="
 					+ cbxHizmetTuru.getValue(cbxHizmetTuru.getSelectedIndex());
 			URLValue = URLValue + "&hizmet_adi="
-					+ cbxHizmetAdi.getValue(cbxHizmetAdi.getSelectedIndex());
+					+ cbxHizmetAdi.getItemText(cbxHizmetAdi.getSelectedIndex());
 			URLValue = URLValue + "&miktar=" + tctMiktar.getText();
 			URLValue = URLValue
 					+ "&hizmetler_indirim_turu="
@@ -2375,7 +2398,10 @@ public class KesinKayitBilgileri extends DialogBox {
 							.getSelectedIndex());
 			URLValue = URLValue + "&hizmetler_indirim_miktari="
 					+ tctHizmetlerIndirimMiktari.getText();
-			// Window.alert(URLValue);
+
+			URLValue = URLValue + "&ogrenci_numarasi="
+					+ tctTCKimlikNo.getText();
+			Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");
 
@@ -2579,22 +2605,39 @@ public class KesinKayitBilgileri extends DialogBox {
 	private class BtnVeliEkleClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			_dlgVeliler = new DlgVeliEkle(true, -1);
-			_dlgVeliler.center();
-			_dlgVeliler.setAnimationEnabled(true);
-
-			_dlgVeliler.addCloseHandler(new CloseHandler<PopupPanel>() {
+			DlgVeliEkle dlgTemp = new DlgVeliEkle(true, -1);
+			dlgTemp.center();
+			dlgTemp.setAnimationEnabled(true);
+			dlgTemp.addCloseHandler(new CloseHandler<PopupPanel>() {
 
 				@Override
 				public void onClose(CloseEvent<PopupPanel> event) {
 
-					putVelilerToGrid();
+					putVelilerToGrid(tctTCKimlikNo.getText());
 
 				}
 			});
 
 		}
 	}
+
+	//
+	// _dlgVeliler = new DlgVeliEkle(true, -1);
+	// _dlgVeliler.center();
+	// _dlgVeliler.setAnimationEnabled(true);
+	//
+	// _dlgVeliler.addCloseHandler(new CloseHandler<PopupPanel>() {
+	//
+	// @Override
+	// public void onClose(CloseEvent<PopupPanel> event) {
+	//
+	// putVelilerToGrid(tctTCKimlikNo.getText());
+	//
+	// }
+	// });
+	//
+	// }
+	// }
 
 	private class BtnNewButton_4ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
@@ -2733,9 +2776,10 @@ public class KesinKayitBilgileri extends DialogBox {
 
 	}
 
-	protected void showWithDataHizmetler(final String id) {
+	protected void showWithDataHizmetler(final String tc_kimlik_no) {
 
-		String urlWithParameters = Util.urlBase + "gethizmetler?id=" + id;
+		String urlWithParameters = Util.urlBase
+				+ "gethizmetler?ogrenci_numarasi=" + tc_kimlik_no;
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);

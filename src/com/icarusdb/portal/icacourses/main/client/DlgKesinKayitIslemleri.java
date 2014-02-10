@@ -9,7 +9,6 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -66,22 +65,26 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 		absolutepanel.add(chxTCKimlikNoSorgulama, 127, 65);
 
 		Label lblAd = new Label("Adı");
+		lblAd.setVisible(false);
 		lblAd.setStyleName("gwt-Bold");
-		absolutepanel.add(lblAd, 10, 103);
+		absolutepanel.add(lblAd, 10, 188);
 		lblAd.setSize("45px", "18px");
 
 		Label lblSoyad = new Label("Soyadı");
+		lblSoyad.setVisible(false);
 		lblSoyad.setStyleName("gwt-Bold");
-		absolutepanel.add(lblSoyad, 10, 137);
+		absolutepanel.add(lblSoyad, 10, 222);
 
 		tctAdi = new TextBox();
+		tctAdi.setVisible(false);
 		tctAdi.setStyleName("gwt-TextBox1");
-		absolutepanel.add(tctAdi, 127, 103);
+		absolutepanel.add(tctAdi, 127, 188);
 		tctAdi.setSize("205px", "14px");
 
 		tctSoyadi = new TextBox();
+		tctSoyadi.setVisible(false);
 		tctSoyadi.setStyleName("gwt-TextBox1");
-		absolutepanel.add(tctSoyadi, 127, 137);
+		absolutepanel.add(tctSoyadi, 127, 222);
 		tctSoyadi.setSize("205px", "14px");
 
 		tctTCKimlikNo = new TextBox();
@@ -113,12 +116,14 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 		btnKapat.setSize("181px", "24px");
 
 		Image image = new Image("kaydet-1.png");
-		absolutepanel.add(image, 157, 172);
+		image.setVisible(false);
+		absolutepanel.add(image, 102, 102);
 		image.setSize("72px", "66px");
 
 		Image image_1 = new Image("kapat-1.png");
+		image_1.setStyleName("gwt-ImageKapat");
 		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutepanel.add(image_1, 245, 172);
+		absolutepanel.add(image_1, 180, 102);
 		image_1.setSize("72px", "66px");
 	}
 
@@ -167,8 +172,8 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 							public void onResponseReceived(Request request,
 									Response response) {
 
-								Window.alert("AAABBBCCC1235 "
-										+ response.getText());
+								// Window.alert("AAABBBCCC1235 "
+								// + response.getText());
 								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
 										.readList(response.getText());
 

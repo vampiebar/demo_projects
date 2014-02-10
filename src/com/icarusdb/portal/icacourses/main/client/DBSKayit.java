@@ -388,8 +388,9 @@ public class DBSKayit extends Composite {
 	private class BtnAraClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			String urlWithParameters = Util.urlBase + "getdbskayit"
-					+ "?adi_soyadi_tc_kimlik_no="
+			String urlWithParameters = Util.urlBase
+					+ "getdbskayit?kayit_silinsin_mi=FALSE"
+					+ "&adi_soyadi_tc_kimlik_no="
 					+ tctAranacakAnahtarKelime.getText();
 
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,

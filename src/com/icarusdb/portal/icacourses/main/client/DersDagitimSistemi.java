@@ -13,6 +13,7 @@ import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
 public class DersDagitimSistemi extends Composite {
 	private SimplePanel smpanCalendar;
+	private DateBox dtpTarihSeciniz;
 
 	public DersDagitimSistemi() {
 
@@ -38,33 +39,35 @@ public class DersDagitimSistemi extends Composite {
 		absolutePanel_1.add(lblDersDatmIlemler, 20, 10);
 
 		Button btnListeyiYenile = new Button("Listeyi Yenile");
+		btnListeyiYenile.setText("");
 		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
 		absolutePanel.add(btnListeyiYenile, 509, 49);
-		btnListeyiYenile.setSize("78px", "48px");
+		btnListeyiYenile.setSize("91px", "75px");
 
 		Button btnRaporAl = new Button("Rapor Al");
+		btnRaporAl.setText("");
 		btnRaporAl.setStyleName("gwt-ButtonExceleAktar");
 		absolutePanel.add(btnRaporAl, 606, 49);
-		btnRaporAl.setSize("78px", "48px");
+		btnRaporAl.setSize("97px", "75px");
 
 		Label lblTarihSeiniz = new Label("Tarih Seçiniz...");
 		lblTarihSeiniz.setStyleName("gwt-Bold");
 		absolutePanel.add(lblTarihSeiniz, 10, 121);
 		lblTarihSeiniz.setSize("104px", "26px");
 
-		DateBox dptTarihSeciniz = new DateBox();
-		dptTarihSeciniz.setStyleName("gwt-TextBox1");
-		dptTarihSeciniz.setFormat(new DefaultFormat(DateTimeFormat
-				.getShortDateFormat()));
-		dptTarihSeciniz.setValue(new Date(1378037602295L));
-		absolutePanel.add(dptTarihSeciniz, 120, 121);
-		dptTarihSeciniz.setSize("143px", "17px");
+		dtpTarihSeciniz = new DateBox();
+		dtpTarihSeciniz.setStyleName("gwt-TextBox1");
+		dtpTarihSeciniz.setFormat(new DefaultFormat(DateTimeFormat
+				.getFormat("dd-MM-yyyy")));
+		absolutePanel.add(dtpTarihSeciniz, 120, 121);
+		dtpTarihSeciniz.setSize("143px", "17px");
 
 		smpanCalendar = new SimplePanel();
 		absolutePanel.add(smpanCalendar, 10, 153);
 		smpanCalendar.setSize("800px", "347px");
 
 		if (!isDesignTime()) {
+			dtpTarihSeciniz.setValue(new Date());
 
 			// smpanCalendar.add(calendar);
 		}

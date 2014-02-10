@@ -40,6 +40,17 @@ a:visited {
 	
 	
 }
+.gwt-ImageKapat:HOVER{
+
+}
+.gwt-GridDelete {
+	
+	background-image: url("error.png");
+	/* background-color: red; */
+	background-position: center;
+	background-repeat: no-repeat;
+	
+}
 .gwt-TextBoxLogInKullanıcı{
 	background-image: url(profile.png);
 	background-repeat: no-repeat;
@@ -841,8 +852,5 @@ background: none repeat scroll 0% 0% #D9D9D9 !important;
     	 color: rgb(255, 255, 255);
       
 }
-.gwt-Ders {
-	background-color: powderblue;
-}
-.gwt-GridDelete {
+.gwt-Loginbackground {
 }

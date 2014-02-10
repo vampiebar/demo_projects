@@ -84,10 +84,11 @@ public class DestekAlmakIstiyorum extends Composite {
 		absolutePanel_2.add(lblMesajnz, 10, 111);
 
 		Button btnKaydet = new Button("Kaydet");
+		btnKaydet.setText("");
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		absolutePanel_2.add(btnKaydet, 188, 228);
-		btnKaydet.setSize("78px", "46px");
+		btnKaydet.setSize("78px", "59px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");

@@ -219,8 +219,9 @@ public class OgrenciKayitlari extends Composite {
 
 	private class BtnNewButtonClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			String urlWithParameters = Util.urlBase + "getonkayit"
-					+ "?adi_soyadi_tc_kimlik_no="
+			String urlWithParameters = Util.urlBase
+					+ "getonkayit?kesin_kayit_mi=TRUE"
+					+ "&adi_soyadi_tc_kimlik_no="
 					+ tctAranacakAnahtarKelime.getText();
 
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,

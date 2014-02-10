@@ -223,7 +223,8 @@ public class DlgGelirlerveGiderler extends DialogBox {
 
 			putKategoriAdiToCbx(cbxKategoriler);
 			putBankalarToCbx(cbxBanka);
-
+			// dtpTarih.setValue(new Date());
+			dtpTarih.setValue(new Date());
 		}
 	}
 

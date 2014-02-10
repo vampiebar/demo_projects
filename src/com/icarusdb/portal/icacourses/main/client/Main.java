@@ -940,8 +940,9 @@ public class Main implements EntryPoint {
 		public void onClick(ClickEvent event) {
 
 			smpanMain.clear();
-
-			smpanMain.add(new DestekAlmakIstiyorum());
+			DestekAlmakIstiyorum dlgTemp = new DestekAlmakIstiyorum();
+			dlgTemp.tabDestekAlmakIstiyorum.selectTab(0);
+			smpanMain.add(dlgTemp);
 
 			scrollToTop();
 

@@ -200,7 +200,7 @@ public class OgrenciIsleri extends Composite {
 						flxDersDagitim.setWidget(i + 1, 0, new CmpstDers(
 								listXmlOgretmenTanimlari.get(i).adi_soyadi));
 
-						for (int j = 1; j < 12; j++) {
+						for (int j = 1; j <= 12; j++) {
 
 							final PanDers panDers = new PanDers(lstStartTimes
 									.get(j - 1), lstStopTimes.get(j - 1));

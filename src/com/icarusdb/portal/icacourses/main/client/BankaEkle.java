@@ -173,7 +173,7 @@ public class BankaEkle extends Composite {
 
 						}
 
-						putDataToGrid();
+						// putDataToGrid();
 					}
 
 					// putDataToGrid();
