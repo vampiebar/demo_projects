@@ -12,6 +12,12 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.event.logical.shared.CloseEvent;
 import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -30,6 +36,9 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -97,6 +106,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 	public AbsolutePanel vtpanKayitSilme;
 	private Button btnKapat5;
 	private Button btnOgrenciyiKaydet5;
+	private Image imgKaydet;
+	private Image imgKapat5;
 
 	public DlgDBSYeniKayit(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -114,8 +125,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 		DecoratedTabPanel decoratedTabPanel = new DecoratedTabPanel();
 		decoratedTabPanel.setAnimationEnabled(true);
 		setWidget(vtpanMain);
-		vtpanMain.setHeight("724px");
-		decoratedTabPanel.setSize("750px", "625px");
+		vtpanMain.setSize("788px", "556px");
+		decoratedTabPanel.setSize("750px", "496px");
 
 		vtpanMain.add(decoratedTabPanel);
 
@@ -124,185 +135,35 @@ public class DlgDBSYeniKayit extends DialogBox {
 		vtpanOgrenciBilgileri = new AbsolutePanel();
 		vtpanOgrenciBilgileri.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(hzpanMain, "Öğrenci Bilgileri", false);
-		vtpanOgrenciBilgileri.setSize("774px", "600px");
+		vtpanOgrenciBilgileri.setSize("774px", "450px");
 
 		hzpanMain.add(vtpanOgrenciBilgileri);
 
 		hzpanMenu1 = new HorizontalPanel();
-		hzpanMenu1.setSize("314px", "72px");
+		hzpanMenu1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		hzpanMenu1.setSize("784px", "72px");
 		vtpanMain.add(hzpanMenu1);
-
-		// hzpanMain.add(hzpanMenu1);
-
-		Label lblNewLabel = new Label("Adı");
-		lblNewLabel.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblNewLabel, 10, 4);
-		lblNewLabel.setSize("133px", "18px");
-
-		Label lblNewLabel_1 = new Label("Soyadi");
-		lblNewLabel_1.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblNewLabel_1, 10, 28);
-		lblNewLabel_1.setSize("203px", "18px");
-
-		tctAdi = new TextBox();
-		tctAdi.setStyleName("gwt-TextBox1");
-		vtpanOgrenciBilgileri.add(tctAdi, 157, 4);
-		tctAdi.setSize("232px", "14px");
-
-		Label lblTcKimlikNo = new Label("T.C. Kimlik No ");
-		lblTcKimlikNo.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblTcKimlikNo, 10, 52);
-
-		Button btnBilgileriniGetir = new Button("Bilgilerini Getir");
-		btnBilgileriniGetir
-				.addClickHandler(new BtnBilgileriniGetirClickHandler());
-
-		btnBilgileriniGetir.setStyleName("gwt-ButonYeniKayit");
-		vtpanOgrenciBilgileri.add(btnBilgileriniGetir, 298, 52);
-		btnBilgileriniGetir.setSize("113px", "22px");
-
-		tctSoyadi = new TextBox();
-		tctSoyadi.setStyleName("gwt-TextBox1");
-		vtpanOgrenciBilgileri.add(tctSoyadi, 157, 28);
-		tctSoyadi.setSize("232px", "14px");
-
-		tctTCKimlikNo = new TextBox();
-		tctTCKimlikNo.setMaxLength(11);
-		tctTCKimlikNo.setStyleName("gwt-TextBox1");
-		vtpanOgrenciBilgileri.add(tctTCKimlikNo, 157, 56);
-		tctTCKimlikNo.setSize("126px", "14px");
-
-		Label lblCinsiyet = new Label("Cinsiyet");
-		lblCinsiyet.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblCinsiyet, 10, 106);
-
-		Label lblMedeniHali = new Label("Medeni Hali");
-		lblMedeniHali.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblMedeniHali, 10, 134);
-		lblMedeniHali.setSize("85px", "18px");
-
-		cbxCinsiyet = new ListBox();
-		cbxCinsiyet.setStyleName("gwt-ComboBox1");
-		cbxCinsiyet.addItem("Erkek");
-		cbxCinsiyet.addItem("Kız");
-		vtpanOgrenciBilgileri.add(cbxCinsiyet, 157, 102);
-		cbxCinsiyet.setSize("128px", "22px");
-
-		cbxMedeniHali = new ListBox();
-		cbxMedeniHali.setStyleName("gwt-ComboBox1");
-		cbxMedeniHali.addItem("Bekar");
-		cbxMedeniHali.addItem("Evli");
-		vtpanOgrenciBilgileri.add(cbxMedeniHali, 157, 134);
-		cbxMedeniHali.setSize("128px", "22px");
-
-		Label lblDoumTarihi = new Label("Doğum Tarihi");
-		lblDoumTarihi.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblDoumTarihi, 10, 168);
-
-		dtpDogumTarihi = new DateBox();
-		dtpDogumTarihi.setStyleName("gwt-TextBox1");
-		dtpDogumTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy-MM-dd")));
-		dtpDogumTarihi
-				.addValueChangeHandler(new DtpDogumTarihiValueChangeHandler());
-		vtpanOgrenciBilgileri.add(dtpDogumTarihi, 157, 172);
-		dtpDogumTarihi.setSize("126px", "14px");
-
-		Label lblEvCep = new Label("Ev / Cep Telefonu");
-		lblEvCep.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblEvCep, 10, 206);
-
-		tctEvTelefonu = new TextBox();
-		tctEvTelefonu.setMaxLength(10);
-
-		tctEvTelefonu.setStyleName("gwt-TextBox1");
-		vtpanOgrenciBilgileri.add(tctEvTelefonu, 157, 206);
-		tctEvTelefonu.setSize("126px", "14px");
-
-		Label lblEmail = new Label("E-Mail");
-		lblEmail.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblEmail, 10, 242);
-		lblEmail.setSize("77px", "18px");
-
-		Label lblOkulBilgisi = new Label("OKUL BİLGİSİ");
-		lblOkulBilgisi.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblOkulBilgisi, 10, 273);
-
-		tctEmail = new TextBox();
-		tctEmail.setStyleName("gwt-TextBox1");
-		vtpanOgrenciBilgileri.add(tctEmail, 157, 242);
-		tctEmail.setSize("232px", "14px");
-
-		Label lblUlke = new Label("Ulke");
-		lblUlke.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblUlke, 10, 308);
-
-		Label label = new Label("İl");
-		label.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(label, 10, 344);
-		label.setSize("26px", "18px");
-
-		Label lblNewLabel_2 = new Label("İlçe");
-		lblNewLabel_2.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblNewLabel_2, 10, 380);
-
-		Label lblNewLabel_3 = new Label("Okul");
-		lblNewLabel_3.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblNewLabel_3, 10, 419);
-
-		Label lblNewLabel_4 = new Label("Sınıf");
-		lblNewLabel_4.setStyleName("gwt-Bold");
-		vtpanOgrenciBilgileri.add(lblNewLabel_4, 10, 457);
-
-		cbxOgrenciBilgileriSinif = new ListBox();
-		cbxOgrenciBilgileriSinif.addItem(" ");
-		cbxOgrenciBilgileriSinif.setStyleName("gwt-ComboBox1");
-		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriSinif, 157, 453);
-		cbxOgrenciBilgileriSinif.setSize("153px", "22px");
-
-		cbxOgrenciBilgileriUlke = new ListBox();
-		cbxOgrenciBilgileriUlke.setStyleName("gwt-ComboBox1");
-		cbxOgrenciBilgileriUlke.addItem("Türkiye");
-		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriUlke, 157, 308);
-		cbxOgrenciBilgileriUlke.setSize("153px", "22px");
-
-		cbxOgrenciBilgileriIl = new ListBox();
-		cbxOgrenciBilgileriIl
-				.addChangeHandler(new CbxOgrenciBilgileriIlChangeHandler());
-		cbxOgrenciBilgileriIl.addItem(" ");
-		cbxOgrenciBilgileriIl.setStyleName("gwt-ComboBox1");
-		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriIl, 157, 345);
-		cbxOgrenciBilgileriIl.setSize("153px", "22px");
-
-		cbxOgrenciBilgileriIlce = new ListBox();
-		cbxOgrenciBilgileriIlce
-				.addChangeHandler(new CbxOgrenciBilgileriIlceChangeHandler());
-		cbxOgrenciBilgileriIlce.addItem(" ");
-		cbxOgrenciBilgileriIlce.setStyleName("gwt-ComboBox1");
-		vtpanOgrenciBilgileri.add(cbxOgrenciBilgileriIlce, 157, 380);
-		cbxOgrenciBilgileriIlce.setSize("153px", "22px");
-
-		tctCepTelefonu = new TextBox();
-		tctCepTelefonu.setMaxLength(10);
-		tctCepTelefonu.setStyleName("gwt-TextBox1");
-		vtpanOgrenciBilgileri.add(tctCepTelefonu, 304, 206);
-		tctCepTelefonu.setSize("143px", "14px");
 
 		btnOgrenciyiKaydet5 = new Button("Öğrenciyi Kaydet");
 		btnOgrenciyiKaydet5.setVisible(false);
 
-		Image imgKapat5 = new Image("kapat-1.png");
+		imgKapat5 = new Image("kapat-1.png");
+		imgKapat5.addMouseOutHandler(new ImgKapat5MouseOutHandler());
+		imgKapat5.addMouseOverHandler(new ImgKapat5MouseOverHandler());
 		imgKapat5.addClickHandler(new ImgKapat5ClickHandler());
 
-		Image imgKaydet = new Image("kaydet-1.png");
+		imgKaydet = new Image("kaydet-1.png");
+		imgKaydet.addMouseOutHandler(new ImgKaydetMouseOutHandler());
+		imgKaydet.addMouseOverHandler(new ImgKaydetMouseOverHandler());
 		imgKaydet.addClickHandler(new ImgKaydetClickHandler());
 
 		Button btnYeniKayit5 = new Button("");
 		btnYeniKayit5.setVisible(false);
 		btnYeniKayit5.setText("");
 		hzpanMenu1.add(btnYeniKayit5);
+		hzpanMenu1.setCellWidth(btnYeniKayit5, "600");
 		btnYeniKayit5.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit5.setSize("90px", "72px");
+		btnYeniKayit5.setSize("25px", "72px");
 		hzpanMenu1.add(imgKaydet);
 		imgKaydet.setSize("72px", "66px");
 		hzpanMenu1.add(imgKapat5);
@@ -312,7 +173,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		btnOgrenciyiKaydet5.setStyleName("gwt-ButtonSave");
 		btnOgrenciyiKaydet5
 				.addClickHandler(new BtnOgrenciyiKaydet5ClickHandler());
-		btnOgrenciyiKaydet5.setSize("50px", "67px");
+		btnOgrenciyiKaydet5.setSize("26px", "67px");
 
 		btnKapat5 = new Button("Kapat");
 		btnKapat5.setVisible(false);
@@ -320,32 +181,207 @@ public class DlgDBSYeniKayit extends DialogBox {
 		hzpanMenu1.add(btnKapat5);
 		btnKapat5.setStyleName("gwt-ButonKapat");
 		btnKapat5.addClickHandler(new BtnKapat5ClickHandler_1());
-		btnKapat5.setSize("52px", "70px");
+		btnKapat5.setSize("23px", "70px");
+
+		FlexTable flexTable = new FlexTable();
+		vtpanOgrenciBilgileri.add(flexTable, 10, 10);
+		flexTable.setSize("492px", "433px");
+
+		// hzpanMain.add(hzpanMenu1);
+
+		Label lblNewLabel = new Label("Adı");
+		flexTable.setWidget(0, 0, lblNewLabel);
+		lblNewLabel.setStyleName("gwt-Bold");
+		lblNewLabel.setSize("200px", "18px");
+
+		tctAdi = new TextBox();
+		tctAdi.setMaxLength(30);
+		flexTable.setWidget(0, 1, tctAdi);
+		tctAdi.setStyleName("gwt-TextBox1");
+		tctAdi.setSize("232px", "14px");
+
+		Label lblNewLabel_1 = new Label("Soyadi");
+		flexTable.setWidget(1, 0, lblNewLabel_1);
+		lblNewLabel_1.setStyleName("gwt-Bold");
+		lblNewLabel_1.setSize("203px", "18px");
+
+		tctSoyadi = new TextBox();
+		tctSoyadi.setMaxLength(30);
+		flexTable.setWidget(1, 1, tctSoyadi);
+		tctSoyadi.setStyleName("gwt-TextBox1");
+		tctSoyadi.setSize("232px", "14px");
+
+		Label lblTcKimlikNo = new Label("T.C. Kimlik No ");
+		flexTable.setWidget(2, 0, lblTcKimlikNo);
+		lblTcKimlikNo.setWidth("170px");
+		lblTcKimlikNo.setStyleName("gwt-Bold");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		flexTable.setWidget(2, 1, horizontalPanel_2);
+		flexTable.getCellFormatter().setWidth(2, 1, "");
+		horizontalPanel_2.setWidth("100%");
+
+		tctTCKimlikNo = new TextBox();
+		tctTCKimlikNo.addKeyPressHandler(new TctTCKimlikNoKeyPressHandler());
+		horizontalPanel_2.add(tctTCKimlikNo);
+		horizontalPanel_2.setCellWidth(tctTCKimlikNo, "100");
+		tctTCKimlikNo.setMaxLength(11);
+		tctTCKimlikNo.setStyleName("gwt-TextBox1");
+		tctTCKimlikNo.setSize("126px", "14px");
+
+		Button btnBilgileriniGetir = new Button("Bilgilerini Getir");
+		horizontalPanel_2.add(btnBilgileriniGetir);
+		btnBilgileriniGetir
+				.addClickHandler(new BtnBilgileriniGetirClickHandler());
+
+		btnBilgileriniGetir.setStyleName("gwt-BilgileriniGetir");
+		btnBilgileriniGetir.setSize("113px", "22px");
+
+		Label lblCinsiyet = new Label("Cinsiyet");
+		flexTable.setWidget(3, 0, lblCinsiyet);
+		lblCinsiyet.setStyleName("gwt-Bold");
+
+		cbxCinsiyet = new ListBox();
+		flexTable.setWidget(3, 1, cbxCinsiyet);
+		cbxCinsiyet.setStyleName("gwt-ComboBox1");
+		cbxCinsiyet.addItem("Erkek");
+		cbxCinsiyet.addItem("Kız");
+		cbxCinsiyet.setSize("128px", "22px");
+
+		Label lblMedeniHali = new Label("Medeni Hali");
+		flexTable.setWidget(4, 0, lblMedeniHali);
+		lblMedeniHali.setStyleName("gwt-Bold");
+		lblMedeniHali.setSize("181px", "18px");
+
+		cbxMedeniHali = new ListBox();
+		flexTable.setWidget(4, 1, cbxMedeniHali);
+		cbxMedeniHali.setStyleName("gwt-ComboBox1");
+		cbxMedeniHali.addItem("Bekar");
+		cbxMedeniHali.addItem("Evli");
+		cbxMedeniHali.setSize("128px", "22px");
+
+		Label lblDoumTarihi = new Label("Doğum Tarihi");
+		flexTable.setWidget(5, 0, lblDoumTarihi);
+		lblDoumTarihi.setStyleName("gwt-Bold");
+
+		dtpDogumTarihi = new DateBox();
+		flexTable.setWidget(5, 1, dtpDogumTarihi);
+		dtpDogumTarihi.setStyleName("gwt-TextBox1");
+		dtpDogumTarihi.setFormat(new DefaultFormat(DateTimeFormat
+				.getFormat("yyyy-MM-dd")));
+		dtpDogumTarihi
+				.addValueChangeHandler(new DtpDogumTarihiValueChangeHandler());
+		dtpDogumTarihi.setSize("126px", "14px");
+
+		Label lblEvCep = new Label("Ev / Cep Telefonu");
+		flexTable.setWidget(6, 0, lblEvCep);
+		lblEvCep.setStyleName("gwt-Bold");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		flexTable.setWidget(6, 1, horizontalPanel_1);
+		horizontalPanel_1.setSize("292px", "21px");
+
+		tctEvTelefonu = new TextBox();
+		tctEvTelefonu.addKeyPressHandler(new TctEvTelefonuKeyPressHandler());
+		horizontalPanel_1.add(tctEvTelefonu);
+		tctEvTelefonu.setMaxLength(10);
+
+		tctEvTelefonu.setStyleName("gwt-TextBox1");
+		tctEvTelefonu.setSize("126px", "14px");
+
+		tctCepTelefonu = new TextBox();
+		tctCepTelefonu.addKeyPressHandler(new TctCepTelefonuKeyPressHandler());
+		horizontalPanel_1.add(tctCepTelefonu);
+		tctCepTelefonu.setMaxLength(10);
+		tctCepTelefonu.setStyleName("gwt-TextBox1");
+		tctCepTelefonu.setSize("143px", "14px");
+
+		Label lblEmail = new Label("E-Mail");
+		flexTable.setWidget(7, 0, lblEmail);
+		lblEmail.setStyleName("gwt-Bold");
+		lblEmail.setSize("77px", "18px");
+
+		tctEmail = new TextBox();
+		tctEmail.addKeyPressHandler(new TctEmailKeyPressHandler());
+		tctEmail.setMaxLength(30);
+		flexTable.setWidget(7, 1, tctEmail);
+		tctEmail.setStyleName("gwt-TextBox1");
+		tctEmail.setSize("232px", "14px");
+
+		Label lblOkulBilgisi = new Label("OKUL BİLGİSİ");
+		flexTable.setWidget(8, 0, lblOkulBilgisi);
+		lblOkulBilgisi.setStyleName("gwt-Bold");
+
+		Label lblUlke = new Label("Ulke");
+		flexTable.setWidget(9, 0, lblUlke);
+		lblUlke.setStyleName("gwt-Bold");
+
+		cbxOgrenciBilgileriUlke = new ListBox();
+		flexTable.setWidget(9, 1, cbxOgrenciBilgileriUlke);
+		cbxOgrenciBilgileriUlke.setStyleName("gwt-ComboBox1");
+		cbxOgrenciBilgileriUlke.addItem("Türkiye");
+		cbxOgrenciBilgileriUlke.setSize("153px", "22px");
+
+		Label label = new Label("İl");
+		flexTable.setWidget(10, 0, label);
+		label.setStyleName("gwt-Bold");
+		label.setSize("26px", "18px");
+
+		cbxOgrenciBilgileriIl = new ListBox();
+		flexTable.setWidget(10, 1, cbxOgrenciBilgileriIl);
+		cbxOgrenciBilgileriIl
+				.addChangeHandler(new CbxOgrenciBilgileriIlChangeHandler());
+		cbxOgrenciBilgileriIl.addItem(" ");
+		cbxOgrenciBilgileriIl.setStyleName("gwt-ComboBox1");
+		cbxOgrenciBilgileriIl.setSize("153px", "22px");
+
+		Label lblNewLabel_2 = new Label("İlçe");
+		flexTable.setWidget(11, 0, lblNewLabel_2);
+		lblNewLabel_2.setStyleName("gwt-Bold");
+
+		cbxOgrenciBilgileriIlce = new ListBox();
+		flexTable.setWidget(11, 1, cbxOgrenciBilgileriIlce);
+		cbxOgrenciBilgileriIlce
+				.addChangeHandler(new CbxOgrenciBilgileriIlceChangeHandler());
+		cbxOgrenciBilgileriIlce.addItem(" ");
+		cbxOgrenciBilgileriIlce.setStyleName("gwt-ComboBox1");
+		cbxOgrenciBilgileriIlce.setSize("153px", "22px");
+
+		Label lblNewLabel_3 = new Label("Okul");
+		flexTable.setWidget(12, 0, lblNewLabel_3);
+		lblNewLabel_3.setStyleName("gwt-Bold");
 
 		cbxOkul = new ListBox();
+		flexTable.setWidget(12, 1, cbxOkul);
 		cbxOkul.setStyleName("gwt-ComboBox1");
 		cbxOkul.addItem(" ");
-		vtpanOgrenciBilgileri.add(cbxOkul, 157, 419);
 		cbxOkul.setSize("292px", "22px");
 
-		AbsolutePanel vtpanKayitSilme = new AbsolutePanel();
-		vtpanOgrenciBilgileri.add(vtpanKayitSilme, 10, 533);
-		vtpanKayitSilme.setSize("401px", "57px");
+		Label lblNewLabel_4 = new Label("Sınıf");
+		flexTable.setWidget(13, 0, lblNewLabel_4);
+		lblNewLabel_4.setStyleName("gwt-Bold");
 
-		Label lblSilmeSebebi = new Label("Silme Sebebi");
-		vtpanKayitSilme.add(lblSilmeSebebi, 0, 10);
-		lblSilmeSebebi.setStyleName("gwt-Bold");
-
-		tctSilmeSebebi = new TextBox();
-		vtpanKayitSilme.add(tctSilmeSebebi, 148, 10);
-		tctSilmeSebebi.setSize("143px", "14px");
+		cbxOgrenciBilgileriSinif = new ListBox();
+		flexTable.setWidget(13, 1, cbxOgrenciBilgileriSinif);
+		cbxOgrenciBilgileriSinif.addItem(" ");
+		cbxOgrenciBilgileriSinif.setStyleName("gwt-ComboBox1");
+		cbxOgrenciBilgileriSinif.setSize("153px", "22px");
 
 		Label lblNewLabel_22 = new Label("Kayit Silinsin mi?");
-		vtpanOgrenciBilgileri.add(lblNewLabel_22, 10, 505);
+		flexTable.setWidget(14, 0, lblNewLabel_22);
 		lblNewLabel_22.setStyleName("gwt-Bold");
 
 		chxKayitSilinsinMi = new SimpleCheckBox();
-		vtpanOgrenciBilgileri.add(chxKayitSilinsinMi, 157, 505);
+		flexTable.setWidget(14, 1, chxKayitSilinsinMi);
+
+		Label lblSilmeSebebi = new Label("Silme Sebebi");
+		flexTable.setWidget(15, 0, lblSilmeSebebi);
+		lblSilmeSebebi.setWidth("154px");
+		lblSilmeSebebi.setStyleName("gwt-Bold");
+
+		tctSilmeSebebi = new TextBox();
+		flexTable.setWidget(15, 1, tctSilmeSebebi);
+		tctSilmeSebebi.setSize("143px", "14px");
 
 		VerticalPanel verticalPanel_1 = new VerticalPanel();
 		decoratedTabPanel.add(verticalPanel_1, "Öğrenci Kimlik Bilgileri",
@@ -355,272 +391,289 @@ public class DlgDBSYeniKayit extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		verticalPanel_1.add(absolutePanel);
-		absolutePanel.setSize("774px", "600px");
+		absolutePanel.setSize("774px", "450px");
+
+		FlexTable flexTable_1 = new FlexTable();
+		absolutePanel.add(flexTable_1, 10, 10);
+		flexTable_1.setSize("309px", "264px");
 
 		Label lblSeriNo = new Label("Seri No");
+		flexTable_1.setWidget(0, 0, lblSeriNo);
 		lblSeriNo.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSeriNo, 10, 22);
-
-		Label lblCzdanNo = new Label("Cüzdan No");
-		lblCzdanNo.setStyleName("gwt-Bold");
-		absolutePanel.add(lblCzdanNo, 10, 59);
-
-		Label lblNewLabel_5 = new Label("Kayıtlı Oldugu");
-		lblNewLabel_5.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_5, 10, 96);
-
-		Label lblIl = new Label("Ülke");
-		lblIl.setStyleName("gwt-Bold");
-		absolutePanel.add(lblIl, 10, 131);
-		lblIl.setSize("43px", "18px");
-
-		Label lblNewLabel_6 = new Label("İl");
-		lblNewLabel_6.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_6, 10, 166);
-		lblNewLabel_6.setSize("20px", "16px");
-
-		Label lblNewLabel_7 = new Label("İlçe");
-		lblNewLabel_7.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_7, 10, 200);
-
-		Label lblNewLabel_8 = new Label("Mahalle / Köy");
-		lblNewLabel_8.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_8, 10, 245);
-
-		Label lblNewLabel_9 = new Label("Cilt No");
-		lblNewLabel_9.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_9, 10, 286);
-
-		Label lblNewLabel_10 = new Label("Aile Sıra No");
-		lblNewLabel_10.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_10, 10, 326);
-
-		Label lblSraNo = new Label("Sıra No");
-		lblSraNo.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSraNo, 10, 364);
-
-		Label lblCzdanBilgileri = new Label("Cüzdan Bilgileri");
-		lblCzdanBilgileri.setStyleName("gwt-Bold");
-		absolutePanel.add(lblCzdanBilgileri, 10, 398);
-
-		Label lblVerildiiYer = new Label("Verildiği Yer");
-		lblVerildiiYer.setStyleName("gwt-Bold");
-		absolutePanel.add(lblVerildiiYer, 10, 436);
-
-		Label lblVeriliNedeni = new Label("Veriliş Nedeni");
-		lblVeriliNedeni.setStyleName("gwt-Bold");
-		absolutePanel.add(lblVeriliNedeni, 10, 474);
-
-		Label lblNewLabel_11 = new Label("Kayıt No");
-		lblNewLabel_11.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_11, 10, 509);
-
-		dtpVerilisTarihi = new DateBox();
-		dtpVerilisTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy-MM-dd")));
-		dtpVerilisTarihi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(dtpVerilisTarihi, 130, 545);
-		dtpVerilisTarihi.setSize("158px", "14px");
-
-		Label lblNewLabel_12 = new Label("Veriliş Tarihi");
-		lblNewLabel_12.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_12, 10, 547);
 
 		tctSeriNo = new TextBox();
+		tctSeriNo.addKeyPressHandler(new TctSeriNoKeyPressHandler());
+		flexTable_1.setWidget(0, 1, tctSeriNo);
 		tctSeriNo.setMaxLength(4);
 		tctSeriNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSeriNo, 130, 18);
 		tctSeriNo.setSize("158px", "14px");
 
+		Label lblCzdanNo = new Label("Cüzdan No");
+		flexTable_1.setWidget(1, 0, lblCzdanNo);
+		lblCzdanNo.setStyleName("gwt-Bold");
+
 		tctCuzdanNo = new TextBox();
+		tctCuzdanNo.addKeyPressHandler(new TctCuzdanNoKeyPressHandler());
+		flexTable_1.setWidget(1, 1, tctCuzdanNo);
 		tctCuzdanNo.setMaxLength(10);
 		tctCuzdanNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctCuzdanNo, 130, 55);
 		tctCuzdanNo.setSize("158px", "14px");
 
-		tctMahalleKoy = new TextBox();
-		tctMahalleKoy.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctMahalleKoy, 130, 243);
-		tctMahalleKoy.setSize("158px", "14px");
+		Label lblNewLabel_5 = new Label("Kayıtlı Oldugu");
+		flexTable_1.setWidget(2, 0, lblNewLabel_5);
+		lblNewLabel_5.setStyleName("gwt-Bold");
 
-		tctCiltNo = new TextBox();
-		tctCiltNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctCiltNo, 130, 284);
-		tctCiltNo.setSize("158px", "14px");
-
-		tctAileSiraNo = new TextBox();
-		tctAileSiraNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAileSiraNo, 130, 324);
-		tctAileSiraNo.setSize("158px", "14px");
-
-		tctSiraNo = new TextBox();
-		tctSiraNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSiraNo, 130, 362);
-		tctSiraNo.setSize("158px", "14px");
-
-		tctVerildigiYer = new TextBox();
-		tctVerildigiYer.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVerildigiYer, 130, 434);
-		tctVerildigiYer.setSize("158px", "14px");
-
-		tctVerilisNedeni = new TextBox();
-		tctVerilisNedeni.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVerilisNedeni, 130, 472);
-		tctVerilisNedeni.setSize("158px", "14px");
-
-		tctKayitNo = new TextBox();
-		tctKayitNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctKayitNo, 130, 507);
-		tctKayitNo.setSize("158px", "14px");
+		Label lblIl = new Label("Ülke");
+		flexTable_1.setWidget(3, 0, lblIl);
+		lblIl.setStyleName("gwt-Bold");
+		lblIl.setSize("43px", "18px");
 
 		cbxOgrenciKimlikBilgileriUlke = new ListBox();
+		flexTable_1.setWidget(3, 1, cbxOgrenciKimlikBilgileriUlke);
 		cbxOgrenciKimlikBilgileriUlke.setStyleName("gwt-ComboBox1");
 		cbxOgrenciKimlikBilgileriUlke.addItem("Türkiye");
-		absolutePanel.add(cbxOgrenciKimlikBilgileriUlke, 130, 127);
 		cbxOgrenciKimlikBilgileriUlke.setSize("162px", "22px");
 
+		Label lblNewLabel_6 = new Label("İl");
+		flexTable_1.setWidget(4, 0, lblNewLabel_6);
+		lblNewLabel_6.setStyleName("gwt-Bold");
+		lblNewLabel_6.setSize("20px", "16px");
+
 		cbxOgrenciKimlikBilgileriIl = new ListBox();
+		flexTable_1.setWidget(4, 1, cbxOgrenciKimlikBilgileriIl);
 		cbxOgrenciKimlikBilgileriIl.setStyleName("gwt-ComboBox1");
 		cbxOgrenciKimlikBilgileriIl
 				.addChangeHandler(new CbxOgrenciKimlikBilgileriIlChangeHandler());
 		cbxOgrenciKimlikBilgileriIl.addItem(" ");
-		absolutePanel.add(cbxOgrenciKimlikBilgileriIl, 130, 160);
 		cbxOgrenciKimlikBilgileriIl.setSize("162px", "22px");
 
+		Label lblNewLabel_7 = new Label("İlçe");
+		flexTable_1.setWidget(5, 0, lblNewLabel_7);
+		lblNewLabel_7.setStyleName("gwt-Bold");
+
 		cbxOgrenciKimlikBilgileriIlce = new ListBox();
+		flexTable_1.setWidget(5, 1, cbxOgrenciKimlikBilgileriIlce);
 		cbxOgrenciKimlikBilgileriIlce.setStyleName("gwt-ComboBox1");
 		cbxOgrenciKimlikBilgileriIlce.addItem(" ");
-		absolutePanel.add(cbxOgrenciKimlikBilgileriIlce, 130, 194);
 		cbxOgrenciKimlikBilgileriIlce.setSize("162px", "22px");
+
+		Label lblNewLabel_8 = new Label("Mahalle / Köy");
+		flexTable_1.setWidget(6, 0, lblNewLabel_8);
+		lblNewLabel_8.setStyleName("gwt-Bold");
+
+		tctMahalleKoy = new TextBox();
+		flexTable_1.setWidget(6, 1, tctMahalleKoy);
+		tctMahalleKoy.setStyleName("gwt-TextBox1");
+		tctMahalleKoy.setSize("158px", "14px");
+
+		Label lblNewLabel_9 = new Label("Cilt No");
+		flexTable_1.setWidget(7, 0, lblNewLabel_9);
+		lblNewLabel_9.setStyleName("gwt-Bold");
+
+		tctCiltNo = new TextBox();
+		tctCiltNo.addKeyPressHandler(new TctCiltNoKeyPressHandler());
+		flexTable_1.setWidget(7, 1, tctCiltNo);
+		tctCiltNo.setStyleName("gwt-TextBox1");
+		tctCiltNo.setSize("158px", "14px");
+
+		Label lblNewLabel_10 = new Label("Aile Sıra No");
+		flexTable_1.setWidget(8, 0, lblNewLabel_10);
+		lblNewLabel_10.setStyleName("gwt-Bold");
+
+		tctAileSiraNo = new TextBox();
+		tctAileSiraNo.addKeyPressHandler(new TctAileSiraNoKeyPressHandler());
+		flexTable_1.setWidget(8, 1, tctAileSiraNo);
+		tctAileSiraNo.setStyleName("gwt-TextBox1");
+		tctAileSiraNo.setSize("158px", "14px");
+
+		Label lblSraNo = new Label("Sıra No");
+		flexTable_1.setWidget(9, 0, lblSraNo);
+		lblSraNo.setStyleName("gwt-Bold");
+
+		tctSiraNo = new TextBox();
+		tctSiraNo.addKeyPressHandler(new TctSiraNoKeyPressHandler());
+		flexTable_1.setWidget(9, 1, tctSiraNo);
+		tctSiraNo.setStyleName("gwt-TextBox1");
+		tctSiraNo.setSize("158px", "14px");
+
+		Label lblCzdanBilgileri = new Label("Cüzdan Bilgileri");
+		flexTable_1.setWidget(10, 0, lblCzdanBilgileri);
+		lblCzdanBilgileri.setStyleName("gwt-Bold");
+
+		Label lblVerildiiYer = new Label("Verildiği Yer");
+		flexTable_1.setWidget(11, 0, lblVerildiiYer);
+		lblVerildiiYer.setStyleName("gwt-Bold");
+
+		tctVerildigiYer = new TextBox();
+		flexTable_1.setWidget(11, 1, tctVerildigiYer);
+		tctVerildigiYer.setStyleName("gwt-TextBox1");
+		tctVerildigiYer.setSize("158px", "14px");
+
+		Label lblVeriliNedeni = new Label("Veriliş Nedeni");
+		flexTable_1.setWidget(12, 0, lblVeriliNedeni);
+		lblVeriliNedeni.setStyleName("gwt-Bold");
+
+		tctVerilisNedeni = new TextBox();
+		flexTable_1.setWidget(12, 1, tctVerilisNedeni);
+		tctVerilisNedeni.setStyleName("gwt-TextBox1");
+		tctVerilisNedeni.setSize("158px", "14px");
+
+		Label lblNewLabel_11 = new Label("Kayıt No");
+		flexTable_1.setWidget(13, 0, lblNewLabel_11);
+		lblNewLabel_11.setStyleName("gwt-Bold");
+
+		tctKayitNo = new TextBox();
+		tctKayitNo.addKeyPressHandler(new TctKayitNoKeyPressHandler());
+		flexTable_1.setWidget(13, 1, tctKayitNo);
+		tctKayitNo.setStyleName("gwt-TextBox1");
+		tctKayitNo.setSize("158px", "14px");
+
+		Label lblNewLabel_12 = new Label("Veriliş Tarihi");
+		flexTable_1.setWidget(14, 0, lblNewLabel_12);
+		lblNewLabel_12.setStyleName("gwt-Bold");
+
+		dtpVerilisTarihi = new DateBox();
+		flexTable_1.setWidget(14, 1, dtpVerilisTarihi);
+		dtpVerilisTarihi.setFormat(new DefaultFormat(DateTimeFormat
+				.getFormat("yyyy-MM-dd")));
+		dtpVerilisTarihi.setStyleName("gwt-TextBox1");
+		dtpVerilisTarihi.setSize("158px", "14px");
 
 		VerticalPanel verticalPanel_2 = new VerticalPanel();
 		decoratedTabPanel.add(verticalPanel_2, "Adres Bilgileri", false);
 		verticalPanel_2.setSize("166px", "218px");
 
-		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
-		verticalPanel_2.add(absolutePanel_1);
-
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
 		verticalPanel_2.add(absolutePanel_2);
-		absolutePanel_2.setSize("774px", "600px");
+		absolutePanel_2.setSize("774px", "450px");
+
+		FlexTable flexTable_3 = new FlexTable();
+		absolutePanel_2.add(flexTable_3, 10, 10);
+		flexTable_3.setSize("327px", "213px");
 
 		Label lblNewLabel_13 = new Label("Ülke");
+		flexTable_3.setWidget(0, 0, lblNewLabel_13);
 		lblNewLabel_13.setStyleName("gwt-Bold");
-		absolutePanel_2.add(lblNewLabel_13, 10, 25);
-
-		Label lblNewLabel_14 = new Label("İl");
-		lblNewLabel_14.setStyleName("gwt-Bold");
-		absolutePanel_2.add(lblNewLabel_14, 10, 68);
-		lblNewLabel_14.setSize("26px", "18px");
-
-		Label lblNewLabel_15 = new Label("İlçe");
-		lblNewLabel_15.setStyleName("gwt-Bold");
-		absolutePanel_2.add(lblNewLabel_15, 10, 112);
-
-		Label lblNewLabel_16 = new Label("Semt");
-		lblNewLabel_16.setStyleName("gwt-Bold");
-		absolutePanel_2.add(lblNewLabel_16, 10, 156);
-
-		Label lblNewLabel_17 = new Label("Mahalle");
-		lblNewLabel_17.setStyleName("gwt-Bold");
-		absolutePanel_2.add(lblNewLabel_17, 10, 197);
-
-		Label lblNewLabel_18 = new Label("Sokak ve No");
-		lblNewLabel_18.setStyleName("gwt-Bold");
-		absolutePanel_2.add(lblNewLabel_18, 10, 237);
-		lblNewLabel_18.setSize("89px", "16px");
 
 		cbxAdresBilgileriUlke = new ListBox();
+		flexTable_3.setWidget(0, 1, cbxAdresBilgileriUlke);
 		cbxAdresBilgileriUlke.setStyleName("gwt-ComboBox1");
 		cbxAdresBilgileriUlke.addItem("Türkiye");
-		absolutePanel_2.add(cbxAdresBilgileriUlke, 125, 17);
 		cbxAdresBilgileriUlke.setSize("156px", "22px");
 
+		Label lblNewLabel_14 = new Label("İl");
+		flexTable_3.setWidget(1, 0, lblNewLabel_14);
+		lblNewLabel_14.setStyleName("gwt-Bold");
+		lblNewLabel_14.setSize("26px", "18px");
+
 		cbxAdresBilgileriIl = new ListBox();
+		flexTable_3.setWidget(1, 1, cbxAdresBilgileriIl);
 		cbxAdresBilgileriIl.setStyleName("gwt-ComboBox1");
 		cbxAdresBilgileriIl
 				.addChangeHandler(new CbxAdresBilgileriIlChangeHandler());
 		cbxAdresBilgileriIl.addItem(" ");
-		absolutePanel_2.add(cbxAdresBilgileriIl, 125, 64);
 		cbxAdresBilgileriIl.setSize("156px", "22px");
 
+		Label lblNewLabel_15 = new Label("İlçe");
+		flexTable_3.setWidget(2, 0, lblNewLabel_15);
+		lblNewLabel_15.setStyleName("gwt-Bold");
+
 		cbxAdresBilgileriIlce = new ListBox();
+		flexTable_3.setWidget(2, 1, cbxAdresBilgileriIlce);
 		cbxAdresBilgileriIlce.setStyleName("gwt-ComboBox1");
 		cbxAdresBilgileriIlce
 				.addChangeHandler(new CbxAdresBilgileriIlceChangeHandler());
 		cbxAdresBilgileriIlce.addItem(" ");
-		absolutePanel_2.add(cbxAdresBilgileriIlce, 125, 106);
 		cbxAdresBilgileriIlce.setSize("156px", "22px");
 
+		Label lblNewLabel_16 = new Label("Semt");
+		flexTable_3.setWidget(3, 0, lblNewLabel_16);
+		lblNewLabel_16.setStyleName("gwt-Bold");
+
 		cbxSemt = new ListBox();
+		flexTable_3.setWidget(3, 1, cbxSemt);
 		cbxSemt.setStyleName("gwt-ComboBox1");
 		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
 		cbxSemt.addItem(" ");
-		absolutePanel_2.add(cbxSemt, 125, 150);
 		cbxSemt.setSize("156px", "22px");
 
+		Label lblNewLabel_17 = new Label("Mahalle");
+		flexTable_3.setWidget(4, 0, lblNewLabel_17);
+		lblNewLabel_17.setStyleName("gwt-Bold");
+
 		cbxMahalle = new ListBox();
+		flexTable_3.setWidget(4, 1, cbxMahalle);
 		cbxMahalle.setStyleName("gwt-ComboBox1");
 		cbxMahalle.addItem(" ");
-		absolutePanel_2.add(cbxMahalle, 125, 191);
 		cbxMahalle.setSize("220px", "22px");
 
+		Label lblNewLabel_18 = new Label("Sokak ve No");
+		flexTable_3.setWidget(5, 0, lblNewLabel_18);
+		lblNewLabel_18.setStyleName("gwt-Bold");
+		lblNewLabel_18.setSize("89px", "16px");
+
 		tctSokakveNo = new TextArea();
+		flexTable_3.setWidget(5, 1, tctSokakveNo);
 		tctSokakveNo.setStyleName("gwt-TextAreaResible");
-		absolutePanel_2.add(tctSokakveNo, 125, 240);
 		tctSokakveNo.setSize("220px", "53px");
+		flexTable_3.getCellFormatter().setVerticalAlignment(5, 0,
+				HasVerticalAlignment.ALIGN_TOP);
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(absolutePanel_3, "Sınav Bilgileri", false);
-		absolutePanel_3.setSize("774px", "600px");
+		absolutePanel_3.setSize("774px", "450px");
+
+		FlexTable flexTable_4 = new FlexTable();
+		absolutePanel_3.add(flexTable_4, 10, 10);
+		flexTable_4.setSize("265px", "80px");
 
 		Label lblNewLabel_19 = new Label("Okul Durumu");
+		flexTable_4.setWidget(0, 0, lblNewLabel_19);
 		lblNewLabel_19.setStyleName("gwt-Bold");
-		absolutePanel_3.add(lblNewLabel_19, 22, 29);
-
-		Label lblNewLabel_20 = new Label("Alan Bilgisi");
-		lblNewLabel_20.setStyleName("gwt-Bold");
-		absolutePanel_3.add(lblNewLabel_20, 22, 68);
-
-		Label lblNewLabel_21 = new Label("Sınav Tarihi");
-		lblNewLabel_21.setStyleName("gwt-Bold");
-		absolutePanel_3.add(lblNewLabel_21, 22, 111);
 
 		cbxOkulDurumu = new ListBox();
+		flexTable_4.setWidget(0, 1, cbxOkulDurumu);
 		cbxOkulDurumu.addItem(" ");
 		cbxOkulDurumu.addChangeHandler(new CbxOkulDurumuChangeHandler());
 		cbxOkulDurumu.setStyleName("gwt-ComboBox1");
-		absolutePanel_3.add(cbxOkulDurumu, 126, 23);
 		cbxOkulDurumu.setSize("132px", "22px");
 
+		Label lblNewLabel_20 = new Label("Alan Bilgisi");
+		flexTable_4.setWidget(1, 0, lblNewLabel_20);
+		lblNewLabel_20.setStyleName("gwt-Bold");
+
 		cbxAlanbilgisi = new ListBox();
+		flexTable_4.setWidget(1, 1, cbxAlanbilgisi);
 		cbxAlanbilgisi.addChangeHandler(new CbxAlanbilgisiChangeHandler());
 		cbxAlanbilgisi.addItem(" ");
 		cbxAlanbilgisi.setStyleName("gwt-ComboBox1");
-		absolutePanel_3.add(cbxAlanbilgisi, 126, 62);
 		cbxAlanbilgisi.setSize("132px", "22px");
 
+		Label lblNewLabel_21 = new Label("Sınav Tarihi");
+		flexTable_4.setWidget(2, 0, lblNewLabel_21);
+		lblNewLabel_21.setStyleName("gwt-Bold");
+
 		cbxSinavTarihi = new ListBox();
+		flexTable_4.setWidget(2, 1, cbxSinavTarihi);
 		cbxSinavTarihi.addItem(" ");
 		cbxSinavTarihi.setStyleName("gwt-ComboBox1");
-		absolutePanel_3.add(cbxSinavTarihi, 126, 105);
 		cbxSinavTarihi.setSize("132px", "22px");
 
 		absolutePanel_4 = new AbsolutePanel();
 		absolutePanel_4.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(absolutePanel_4, "Veli Bilgileri", false);
-		absolutePanel_4.setSize("774px", "600px");
+		absolutePanel_4.setSize("774px", "450px");
 
 		Button btnVeliEkle = new Button("Veli Ekle");
 		btnVeliEkle.addClickHandler(new BtnVeliEkleClickHandler());
-		btnVeliEkle.setStyleName("gwt-BilgileriniGetir");
-		absolutePanel_4.add(btnVeliEkle, 405, 243);
-		btnVeliEkle.setSize("72px", "66px");
+		btnVeliEkle.setStyleName("gwt-YeniKayit2");
+		absolutePanel_4.add(btnVeliEkle, 10, 10);
+		btnVeliEkle.setSize("120px", "30px");
 
 		VerticalPanel horizontalPanel = new VerticalPanel();
-		absolutePanel_4.add(horizontalPanel, 10, 31);
+		absolutePanel_4.add(horizontalPanel, 10, 46);
 		horizontalPanel.setSize("754px", "192px");
 
 		grdVeliler = new CellTable<XMLVeliler>();
@@ -702,11 +755,6 @@ public class DlgDBSYeniKayit extends DialogBox {
 			}
 		};
 		grdVeliler.addColumn(column_4, "Sil");
-
-		Image imgKapat6 = new Image("kapat-1.png");
-		imgKapat6.addClickHandler(new ImgKapat6ClickHandler());
-		absolutePanel_4.add(imgKapat6, 489, 243);
-		imgKapat6.setSize("72px", "66px");
 
 		// // Set Default page
 		decoratedTabPanel.selectTab(0);
@@ -1698,9 +1746,188 @@ public class DlgDBSYeniKayit extends DialogBox {
 		}
 	}
 
-	private class ImgKapat6ClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-			hide();
+	private class ImgKaydetMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			imgKaydet.setUrl("kaydet-2.png");
+		}
+	}
+
+	private class ImgKaydetMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+			imgKaydet.setUrl("kaydet-1.png");
+		}
+	}
+
+	private class ImgKapat5MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+			imgKapat5.setUrl("kapat-2.png");
+		}
+	}
+
+	private class ImgKapat5MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+			imgKapat5.setUrl("kapat-1.png");
+		}
+	}
+
+	private class TctTCKimlikNoKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctTCKimlikNo.getText();
+			if (!input.matches("[0-9]*")) {
+				tctTCKimlikNo.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctTCKimlikNo.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctEvTelefonuKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctEvTelefonu.getText();
+			if (!input.matches("[0-9]*")) {
+				tctEvTelefonu.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctEvTelefonu.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctCepTelefonuKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctCepTelefonu.getText();
+			if (!input.matches("[0-9]*")) {
+				tctCepTelefonu.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctCepTelefonu.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctSiraNoKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctSiraNo.getText();
+			if (!input.matches("[0-9]*")) {
+				tctSiraNo.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctSiraNo.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctCiltNoKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctCiltNo.getText();
+			if (!input.matches("[0-9]*")) {
+				tctCiltNo.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctCiltNo.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctCuzdanNoKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctCuzdanNo.getText();
+			if (!input.matches("[0-9]*")) {
+				tctCuzdanNo.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctCuzdanNo.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctAileSiraNoKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctAileSiraNo.getText();
+			if (!input.matches("[0-9]*")) {
+				tctAileSiraNo.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctAileSiraNo.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctSeriNoKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctSeriNo.getText();
+			if (!input.matches("[0-9]*")) {
+				tctSeriNo.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctSeriNo.setStyleName("gwt-TextBox1");
+		}
+	}
+
+	private class TctKayitNoKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctKayitNo.getText();
+			if (!input.matches("[0-9]*")) {
+				tctKayitNo.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctKayitNo.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctEmailKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctEmail.getText();
+			if (!input
+					.matches("^([a-zA-Z0-9_.\\-+])+@(([a-zA-Z0-9\\-])+\\.)+[a-zA-Z0-9]{2,4}$")) {
+				tctEmail.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctEmail.setStyleName("gwt-TextBox1");
+
 		}
 	}
 }

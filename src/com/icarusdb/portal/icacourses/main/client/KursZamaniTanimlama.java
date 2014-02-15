@@ -22,8 +22,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class KursZamaniTanimlama extends Composite {
@@ -35,18 +38,39 @@ public class KursZamaniTanimlama extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("806px", "417px");
+		absolutePanel.setSize("100%", "417px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "50");
+		horizontalPanel_2.setSize("100%", "33px");
+
+		Label lblKursZamanTanmlama = new Label("Kurs Zamanı Tanımlama");
+		horizontalPanel_2.add(lblKursZamanTanmlama);
+		lblKursZamanTanmlama.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1.setSpacing(15);
+		horizontalPanel_1.setSize("100%", "46px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
+		horizontalPanel_1.add(btnYeniKayit);
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 450, 36);
-		btnYeniKayit.setSize("78px", "48px");
+		btnYeniKayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 163);
-		horizontalPanel.setSize("774px", "75px");
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSize("100%", "75px");
 
 		grdKursZamaniTanimlama = new CellTable<XMLKursZamaniTanimlama>();
 		horizontalPanel.add(grdKursZamaniTanimlama);

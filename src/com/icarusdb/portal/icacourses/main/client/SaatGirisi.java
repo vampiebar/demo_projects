@@ -22,8 +22,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class SaatGirisi extends Composite {
@@ -41,11 +44,40 @@ public class SaatGirisi extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("781px", "450px");
+		absolutePanel.setSize("100%", "750px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		horizontalPanel_1
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_1.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "50");
+		horizontalPanel_1.setSize("100%", "33px");
+
+		Label lblSaatGirii = new Label("Saat Girişi");
+		horizontalPanel_1.add(lblSaatGirii);
+		lblSaatGirii.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2.setSpacing(15);
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "30");
+		horizontalPanel_2.setWidth("100%");
+
+		Button btnYeniKayit = new Button("Yeni Kayıt");
+		horizontalPanel_2.add(btnYeniKayit);
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
+		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
+		btnYeniKayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 103);
-		horizontalPanel.setSize("761px", "301px");
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSpacing(10);
+		horizontalPanel.setSize("100%", "212px");
 
 		grdSaatGirisi = new CellTable<XMLSaatGirisi>();
 		horizontalPanel.add(grdSaatGirisi);
@@ -83,30 +115,23 @@ public class SaatGirisi extends Composite {
 		};
 		grdSaatGirisi.addColumn(textColumn, "Açıklama");
 
-		Column<XMLSaatGirisi, String> column = new Column<XMLSaatGirisi, String>(
+		Column<XMLSaatGirisi, String> column_2 = new Column<XMLSaatGirisi, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLSaatGirisi object) {
 				return (String) null;
 			}
 		};
-		grdSaatGirisi.addColumn(column, "Düzenle");
+		grdSaatGirisi.addColumn(column_2, "Düzenle");
 
-		Column<XMLSaatGirisi, String> column_1 = new Column<XMLSaatGirisi, String>(
+		Column<XMLSaatGirisi, String> column_1_1 = new Column<XMLSaatGirisi, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLSaatGirisi object) {
 				return (String) null;
 			}
 		};
-		grdSaatGirisi.addColumn(column_1, "Sil");
-
-		Button btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 485, 31);
-		btnYeniKayit.setSize("90px", "66px");
+		grdSaatGirisi.addColumn(column_1_1, "Sil");
 
 		if (!isDesignTime()) {
 
@@ -130,7 +155,7 @@ public class SaatGirisi extends Composite {
 				}
 			}, DoubleClickEvent.getType());
 
-			column.setFieldUpdater(new FieldUpdater<XMLSaatGirisi, String>() {
+			column_2.setFieldUpdater(new FieldUpdater<XMLSaatGirisi, String>() {
 
 				@Override
 				public void update(int index, XMLSaatGirisi object, String value) {
@@ -147,54 +172,62 @@ public class SaatGirisi extends Composite {
 				}
 			});
 
-			column_1.setFieldUpdater(new FieldUpdater<XMLSaatGirisi, String>() {
+			column_1_1
+					.setFieldUpdater(new FieldUpdater<XMLSaatGirisi, String>() {
 
-				@Override
-				public void update(int index, XMLSaatGirisi object, String value) {
+						@Override
+						public void update(int index, XMLSaatGirisi object,
+								String value) {
 
-					XMLSaatGirisi selected = selectionModel.getSelectedObject();
+							XMLSaatGirisi selected = selectionModel
+									.getSelectedObject();
 
-					Boolean x = Window
-							.confirm("Kayit Silinecektir, Emin Misiniz?");
+							Boolean x = Window
+									.confirm("Kayit Silinecektir, Emin Misiniz?");
 
-					if (x == true) {
+							if (x == true) {
 
-						if (selected != null) {
-							// DO YOUR STUFF
+								if (selected != null) {
+									// DO YOUR STUFF
 
-							// Window.alert("selected id: " + selected.id);
-							// showWithData(selected.id);
+									// Window.alert("selected id: " +
+									// selected.id);
+									// showWithData(selected.id);
 
-							String URLValue = Util.urlBase + "putsaatgirisi?";
+									String URLValue = Util.urlBase
+											+ "putsaatgirisi?";
 
-							URLValue = URLValue + "id=" + selected.id;
-							URLValue = URLValue + "&baslangic_saat="
-									+ object.baslangic_saat.toString();
-							URLValue = URLValue + "&bitis_saat="
-									+ object.bitis_saat.toString();
-							URLValue = URLValue + "&baslangic_dakika="
-									+ object.baslangic_dakika.toString();
-							URLValue = URLValue + "&bitis_dakika="
-									+ object.bitis_dakika.toString();
-							URLValue = URLValue + "&gun="
-									+ object.gun.toString();
-							URLValue = URLValue + "&aciklama="
-									+ object.aciklama.toString();
-							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
+									URLValue = URLValue + "id=" + selected.id;
+									URLValue = URLValue + "&baslangic_saat="
+											+ object.baslangic_saat.toString();
+									URLValue = URLValue + "&bitis_saat="
+											+ object.bitis_saat.toString();
+									URLValue = URLValue
+											+ "&baslangic_dakika="
+											+ object.baslangic_dakika
+													.toString();
+									URLValue = URLValue + "&bitis_dakika="
+											+ object.bitis_dakika.toString();
+									URLValue = URLValue + "&gun="
+											+ object.gun.toString();
+									URLValue = URLValue + "&aciklama="
+											+ object.aciklama.toString();
+									URLValue = URLValue
+											+ "&kayit_silinsin_mi=TRUE";
 
-							// Window.alert(URLValue);
+									// Window.alert(URLValue);
 
-							new Util().sendRequest(URLValue,
-									"DERS BİLGİSİ KAYIT EDİLDİ",
-									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+									new Util().sendRequest(URLValue,
+											"DERS BİLGİSİ KAYIT EDİLDİ",
+											"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+								}
+
+								// putDataToGrid();
+							}
 
 						}
-
-						// putDataToGrid();
-					}
-
-				}
-			});
+					});
 
 		}// design time
 	}

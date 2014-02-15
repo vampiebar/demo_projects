@@ -22,8 +22,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class FizikselSinifTanimlari extends Composite {
@@ -35,22 +38,44 @@ public class FizikselSinifTanimlari extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("807px", "750px");
+		absolutePanel.setSize("100%", "750px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "50");
+		horizontalPanel_2.setSize("100%", "33px");
+
+		Label lblFizikselSnfTanmlar = new Label("Fiziksel Sınıf Tanımları");
+		horizontalPanel_2.add(lblFizikselSnfTanmlar);
+		lblFizikselSnfTanmlar.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1.setSpacing(15);
+		horizontalPanel_1.setSize("100%", "42px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
+		horizontalPanel_1.add(btnYeniKayit);
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 450, 38);
-		btnYeniKayit.setSize("85px", "58px");
+		btnYeniKayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 165);
-		horizontalPanel.setSize("774px", "75px");
+		horizontalPanel.setSpacing(10);
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSize("100%", "75px");
 
 		grdFizikselSinifTanimlari = new CellTable<XMLFizikselSinifTanimlari>();
 		horizontalPanel.add(grdFizikselSinifTanimlari);
-		grdFizikselSinifTanimlari.setSize("773px", "100%");
+		grdFizikselSinifTanimlari.setSize("100%", "100%");
 
 		TextColumn<XMLFizikselSinifTanimlari> textColumn_1 = new TextColumn<XMLFizikselSinifTanimlari>() {
 			@Override

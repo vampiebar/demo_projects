@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -12,6 +16,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -26,9 +31,10 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 	private ListBox cbxTipi;
 	private TextBox tctGelirGiderAdi;
 	private Button btnKaydet;
+	private Image image;
+	private Image image_1;
 
 	public DlgGelirGiderTanimlari(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -39,45 +45,7 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("691px", "470px");
-
-		Label lblGelirGider = new Label(
-				"Gelir / Gider Tanımı ( Ekleme / Düzenleme ) ");
-		lblGelirGider.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblGelirGider, 0, 0);
-		lblGelirGider.setSize("691px", "28px");
-
-		Label lblKategoriAdı = new Label("Kategori Adı");
-		lblKategoriAdı.setStyleName("gwt-Bold");
-		absolutePanel.add(lblKategoriAdı, 10, 50);
-		lblKategoriAdı.setSize("92px", "16px");
-
-		Label lblTipi = new Label("Tipi");
-		lblTipi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTipi, 10, 85);
-
-		Label lblGelirGider_1 = new Label("Gelir / Gider Adı");
-		lblGelirGider_1.setStyleName("gwt-Bold");
-		absolutePanel.add(lblGelirGider_1, 10, 120);
-		lblGelirGider_1.setSize("120px", "16px");
-
-		cbxKategoriAdi = new ListBox();
-		cbxKategoriAdi.addItem(" ");
-		cbxKategoriAdi.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxKategoriAdi, 136, 48);
-		cbxKategoriAdi.setSize("158px", "22px");
-
-		cbxTipi = new ListBox();
-		cbxTipi.addItem("Gelir");
-		cbxTipi.addItem("Gider");
-		cbxTipi.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxTipi, 136, 83);
-		cbxTipi.setSize("158px", "22px");
-
-		tctGelirGiderAdi = new TextBox();
-		tctGelirGiderAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctGelirGiderAdi, 136, 117);
-		tctGelirGiderAdi.setSize("156px", "16px");
+		absolutePanel.setSize("677px", "429px");
 
 		btnKaydet = new Button("New button");
 		btnKaydet.setVisible(false);
@@ -95,16 +63,56 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 		absolutePanel.add(btnKapat, 380, 260);
 		btnKapat.setSize("78px", "48px");
 
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		image.addMouseOverHandler(new ImageMouseOverHandler());
+		image.addMouseOutHandler(new ImageMouseOutHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 276, 166);
+		absolutePanel.add(image, 367, 108);
 		image.setSize("72px", "66px");
 
-		Image image_1 = new Image("kapat-1.png");
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
 		image_1.setAltText("aedasda");
-		absolutePanel.add(image_1, 354, 166);
+		absolutePanel.add(image_1, 445, 108);
 		image_1.setSize("72px", "66px");
+
+		FlexTable flexTable = new FlexTable();
+		absolutePanel.add(flexTable, 0, 0);
+		flexTable.setSize("288px", "56px");
+
+		Label lblKategoriAdı = new Label("Kategori Adı");
+		flexTable.setWidget(0, 0, lblKategoriAdı);
+		lblKategoriAdı.setStyleName("gwt-Bold");
+		lblKategoriAdı.setSize("92px", "16px");
+
+		cbxKategoriAdi = new ListBox();
+		flexTable.setWidget(0, 1, cbxKategoriAdi);
+		cbxKategoriAdi.addItem(" ");
+		cbxKategoriAdi.setStyleName("gwt-ComboBox1");
+		cbxKategoriAdi.setSize("158px", "22px");
+
+		Label lblTipi = new Label("Tipi");
+		flexTable.setWidget(1, 0, lblTipi);
+		lblTipi.setStyleName("gwt-Bold");
+
+		cbxTipi = new ListBox();
+		flexTable.setWidget(1, 1, cbxTipi);
+		cbxTipi.addItem("Gelir");
+		cbxTipi.addItem("Gider");
+		cbxTipi.setStyleName("gwt-ComboBox1");
+		cbxTipi.setSize("158px", "22px");
+
+		Label lblGelirGider_1 = new Label("Gelir / Gider Adı");
+		flexTable.setWidget(2, 0, lblGelirGider_1);
+		lblGelirGider_1.setStyleName("gwt-Bold");
+		lblGelirGider_1.setSize("120px", "16px");
+
+		tctGelirGiderAdi = new TextBox();
+		flexTable.setWidget(2, 1, tctGelirGiderAdi);
+		tctGelirGiderAdi.setStyleName("gwt-TextBox1");
+		tctGelirGiderAdi.setSize("156px", "16px");
 
 		if (!isDesignTime()) {
 
@@ -202,6 +210,38 @@ public class DlgGelirGiderTanimlari extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
 		}
 	}
 }

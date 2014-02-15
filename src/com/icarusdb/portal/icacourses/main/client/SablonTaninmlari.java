@@ -19,10 +19,12 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class SablonTaninmlari extends Composite {
@@ -37,15 +39,64 @@ public class SablonTaninmlari extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("785px", "403px");
+		absolutePanel.setSize("100%", "403px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "50");
+		horizontalPanel_2.setSize("100%", "33px");
+
+		Label lblSablonTanmlar = new Label("Şablon Tanımları");
+		horizontalPanel_2.add(lblSablonTanmlar);
+		lblSablonTanmlar.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		horizontalPanel_1.setSpacing(15);
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_1.setSize("100%", "21px");
+
+		Label label = new Label("Şablon Adı");
+		horizontalPanel_1.add(label);
+		horizontalPanel_1.setCellWidth(label, "10");
+		label.setStyleName("gwt-Bold");
+		label.setSize("81px", "16px");
+
+		tctSablonAdi = new TextBox();
+		horizontalPanel_1.add(tctSablonAdi);
+		tctSablonAdi.setStyleName("gwt-ComboBox1");
+		tctSablonAdi.setSize("140px", "16px");
+
+		HorizontalPanel horizontalPanel_3 = new HorizontalPanel();
+		horizontalPanel_3.setSpacing(15);
+		verticalPanel.add(horizontalPanel_3);
+		verticalPanel.setCellHeight(horizontalPanel_3, "30");
+		horizontalPanel_3.setWidth("100%");
+
+		Button btnYeniKayit = new Button("Yeni Kayıt");
+		horizontalPanel_3.add(btnYeniKayit);
+		btnYeniKayit.setText("Yeni Kayit");
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
+		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
+		btnYeniKayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 23, 138);
-		horizontalPanel.setSize("727px", "156px");
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSpacing(10);
+		horizontalPanel.setSize("100%", "156px");
 
 		grdSablonTanimlari = new CellTable<XMLSablonTanimlari>();
 		horizontalPanel.add(grdSablonTanimlari);
-		grdSablonTanimlari.setSize("737px", "124px");
+		grdSablonTanimlari.setSize("100%", "100%");
 
 		TextColumn<XMLSablonTanimlari> textColumn = new TextColumn<XMLSablonTanimlari>() {
 			@Override
@@ -56,45 +107,21 @@ public class SablonTaninmlari extends Composite {
 		grdSablonTanimlari.addColumn(textColumn, "İD");
 		grdSablonTanimlari.setColumnWidth(textColumn, "51px");
 
-		Column<XMLSablonTanimlari, String> grdcSablon = new TextColumn<XMLSablonTanimlari>() {
+		Column<XMLSablonTanimlari, String> grdcSablon_1 = new TextColumn<XMLSablonTanimlari>() {
 			@Override
 			public String getValue(XMLSablonTanimlari object) {
 				return object.sablon_adi.toString();
 			}
 		};
 
-		grdSablonTanimlari.addColumn(grdcSablon, "Şablon Adı");
-		Column<XMLSablonTanimlari, String> grdcIslemler = new TextColumn<XMLSablonTanimlari>() {
+		grdSablonTanimlari.addColumn(grdcSablon_1, "Şablon Adı");
+		Column<XMLSablonTanimlari, String> grdcIslemler_1 = new TextColumn<XMLSablonTanimlari>() {
 			@Override
 			public String getValue(XMLSablonTanimlari object) {
 				return "İşlemler";
 			}
 		};
-		grdSablonTanimlari.addColumn(grdcIslemler, "İşlemler");
-
-		Button btnAra = new Button("ARA");
-		btnAra.setText("");
-		btnAra.setStyleName("gwt-ButtonAra");
-		btnAra.addClickHandler(new BtnAraClickHandler());
-		absolutePanel.add(btnAra, 494, 43);
-		btnAra.setSize("78px", "62px");
-
-		Button btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 591, 43);
-		btnYeniKayit.setSize("78px", "62px");
-
-		Label label = new Label("Şablon Adı");
-		label.setStyleName("gwt-Bold");
-		absolutePanel.add(label, 35, 38);
-		label.setSize("78px", "16px");
-
-		tctSablonAdi = new TextBox();
-		tctSablonAdi.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(tctSablonAdi, 137, 38);
-		tctSablonAdi.setSize("140px", "16px");
+		grdSablonTanimlari.addColumn(grdcIslemler_1, "İşlemler");
 
 		if (!isDesignTime()) {
 
@@ -203,62 +230,5 @@ public class SablonTaninmlari extends Composite {
 					});
 		}
 
-	}
-
-	private class BtnAraClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-
-			String urlWithParameters = Util.urlBase + "getsablontanimlari"
-					+ "?sablon_adi=" + tctSablonAdi.getText();
-
-			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-					urlWithParameters);
-
-			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
-
-			try {
-				Request request = builder.sendRequest(null,
-						new RequestCallback() {
-							public void onError(Request request,
-									Throwable exception) {
-
-							}
-
-							@Override
-							public void onResponseReceived(Request request,
-									Response response) {
-
-								// Window.alert("AAABBBCCC " +
-								// response.getText());
-
-								List<XMLSablonTanimlari> listxmlSablonTanimlari = XMLSablonTanimlari.XML
-										.readList(response.getText());
-
-								// listXmlOnKayit.add(xmlOnKayit);
-
-								// lblNewLabel.setText(listxmlSablonTanimlari
-								// .get(0).sablon_adi);
-
-								// Set the total row count. This isn't strictly
-								// necessary, but it affects
-								// paging calculations, so its good habit to
-								// keep the row count up to date.
-								grdSablonTanimlari.setRowCount(1, true);
-
-								// Push the data into the widget.
-								grdSablonTanimlari.setRowData(0,
-										listxmlSablonTanimlari);
-
-							}
-
-						});
-
-			} catch (RequestException e) {
-				// displayError("Couldn't retrieve JSON");
-
-				// Window.alert(e.getMessage() + "ERROR");
-			}
-
-		}
 	}
 }

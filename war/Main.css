@@ -1,19 +1,19 @@
-@font-face {
+/* @font-face {
     font-family: 'Trebuc';
     src: url('trebuc.ttf');
     src: local('Trebuc'),
-         local('Trebuc'),
+         local('Trebuc'),	
          url('trebuc.ttf') format('truetype');
 }
  
-/* Bold declaration only for non-IE browsers */
+Bold declaration only for non-IE browsers
 @font-face {
     font-family: 'Trebuc Bold';
     src: local('Trebuc Bold'),
          local('Trebuc-Bold'),
          url('trebucbd.ttf') format('truetype');
     font-weight: bold;
-}
+} */
 .active {
 font-color:#000000
 text-decoration: none;
@@ -23,26 +23,62 @@ body {
 	color: black;
 	margin: 5px;
 	font-size: small;
-	font-family: Trebuc, Arial, sans-serif;
-
-
-
+	font-family:  Arial, sans-serif;
 }
 
 a {	
 	color: darkblue;
-	
-	
 }
 
 a:visited {	
 	color: darkblue; 
-	
-	
 }
 .gwt-ImageKapat:HOVER{
 
 }
+
+.gwt-Loginbackground {
+	
+}
+.gwt-YeniKayit2 {
+	background-color: rgb(56, 136, 0);
+
+color: rgb(255, 255, 255);
+cursor: pointer;
+direction: ltr;
+display: inline-block;
+
+	
+background-image: url("plus.png");
+background-repeat: no-repeat;
+background-position: 85px;
+text-align: left;
+padding-right: 0px;
+padding-left: 5px;
+width: 123px;
+height: 30px;
+
+	}
+
+.gwt-YeniKayit2:HOVER {
+	
+	background-color: limegreen;
+}
+	
+	
+
+.gwt-TextBoxError {
+	
+	
+	border: 1px solid red;
+	
+	background-image: url("warning.png");
+background-position: right;
+background-repeat: no-repeat;
+
+}	
+
+
 .gwt-GridDelete {
 	
 	background-image: url("error.png");
@@ -51,15 +87,15 @@ a:visited {
 	background-repeat: no-repeat;
 	
 }
-.gwt-TextBoxLogInKullanıcı{
-	background-image: url(profile.png);
+.gwt-TextBoxLogInKullanÄ±cÄ±{
+	
 	background-repeat: no-repeat;
 background-position: right;
 	
 }
 
 .gwt-TextBoxLoginSifre {
-	background-image: url(arrow-down.gif);
+	
 	background-repeat: no-repeat;
 background-position: right;
 
@@ -71,16 +107,16 @@ background-position: right;
 .gwt-TextAreaResible {
 	height:wwpx; 
 width: 275px; 
--moz-box-shadow: 0 2px 4px #bbb inset; 
+/* -moz-box-shadow: 0 2px 4px #bbb inset; 
 -webkit-box-shadow: 0 2px 4px #BBB inset; 
 box-shadow: 0 2px 4px #BBB inset; 
 -moz-border-radius: 3px; 
--webkit-border-radius: 3px; 
+-webkit-border-radius: 3px;  */
 	color: black;
 	border: 1px solid #B9BDC1;
 	font-size: 14px;
 	font-style: normal;
-	font-family: Trebuc, c, cursive;
+	font-family: arial,sans-serif;
 	
 	/*
 	max-height: 50;
@@ -92,7 +128,7 @@ box-shadow: 0 2px 4px #BBB inset;
 
 .gwt-TextAreaResible:focus{
     outline: none;
-    box-shadow: 0px 0px 5px #61C5FA;
+   /*  box-shadow: 0px 0px 5px #61C5FA; */
     border:2px solid #5AB0DB;
 }
 
@@ -121,7 +157,7 @@ box-shadow: 0 2px 4px #BBB inset;
 
 .gwt-MenuBar {
 	background-color: #C3D9FF;
-	cursor: default;
+	cursor: default;f
 }
 
 .gwt-MenuItem {
@@ -143,273 +179,62 @@ box-shadow: 0 2px 4px #BBB inset;
 }
 
 .gwt-Tree .gwt-TreeItem-selected {
-	background-color: #C3D9FF;
+	background-color: border:1px solid rgb(200, 199, 204);;
 }
+
+
+
+
+
+
+
+
+
 
 .gwt-StackPanel {
-	width: 15em;
-	border: 1px solid #D9D9D9;
-	background-color: #FFFFFF;
-}
-
-
-.gwt-StackPanelHeader:hover {
-	background-color: red;
-	color:red;
-    
+  border-bottom: 1px solid #bbbbbb;
+  
+  
 }
 .gwt-StackPanel .gwt-StackPanelItem {
-	background-color: #F7F7F7;
-	cursor: pointer;
-	cursor: hand;
-	height: 25px;
-	background-attachment: scroll;
-	background-position: 0% 0%;
-}
+/* padding: 3px;
+  border-bottom: 0px;
+  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px; */
+   border: 1px solid #bbbbbb;
+    cursor: pointer;
+/*   background-color: rgb(200, 199, 204); */  
+ background-color: rgb(245, 245, 245);
+ 
+/*  font-weight: bold; */
+    font-size: 1.3em;
+    color: black;
+    height: 35px;
+  
+  
+  }
 
 .gwt-StackPanel .gwt-StackPanelItem-selected {
-	/* border-bottom-color: rgb(0, 0, 0);
-	border-bottom-style: none;
-	border-bottom-width: 0px;
-	border-image-outset: 0px;
-	border-image-repeat: stretch;
-	border-image-slice: 100%;
-	border-image-source: none;
-	border-image-width: 1;
-	border-left-color: rgb(0, 0, 0);
-	border-left-style: none;
-	border-left-width: 5px;
-	border-right-color: rgb(0, 0, 0);
-	border-right-style: none;
-	border-right-width: 5px;
-	border-top-color: rgb(0, 0, 0);
-	border-top-style: none;
-	border-top-width: 5px;
-	box-sizing: border-box;
-	color: rgb(0, 0, 0);
-	direction: ltr;
-	display: block;
-	font-family: 'Open+Sans', sans-serif;
-	font-size: 13px;
-	height: 28px;
-	line-height: 18px;
-	list-style-image: none;
-	list-style-position: outside;
-	list-style-type: none;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	margin-right: 0px;
-	margin-top: 0px;
-	padding-bottom: 0px;
-	padding-left: 0px;
-	padding-right: 0px;
-	padding-top: 0px;
-	text-align: left;
-	width: 255px;
-	font-family: 'Open+Sans', sans-serif;
-	color: White;
-	position: relative;
-	background-attachment: scroll;
-	background-color: #000066;
-	background-image: none;
-	background-repeat: repeat;
-	background-position: 0% 0%; */
-/* background: #D9D9D9 !important; */
-
-background-color: red;
-
-
-}
-
- .gwt-StackPanel .gwt-StackPanelContent {
-	background-color: #F4F4F4;
-	background-attachment: scroll;
-	background-image: none;
-	background-repeat: repeat;
-	background-position: 0% 0%; 
 	
+	background-color: rgb(0, 122, 255);
+	color: white;
+	height: 35px;
+
+	}
+	.gwt-StackPanel .gwt-StackPanelHeader-hovering {
+  background: #d3def6 url(images/hborder.png) repeat-x 0px -1464px;
 }
-
-
-
-
-.gwt-TabPanel {
+ 
 	
+.gwt-StackPanel .gwt-StackPanelContent {
+  border: 1px solid #bbbbbb;
+  border-bottom: 0px;
+  background: rgb(245, 245, 245);
+  padding: 2px 2px 10px 5px;
+ 
 }
 
-.gwt-TabPanelBottom {
-	border-left: 1px solid #87b3ff;
-	border-right: 1px solid #87b3ff;
-	border-bottom: 1px solid #87b3ff;
-}
 
-.gwt-TabBar {
-	font-size: smaller;
-}
 
-.gwt-TabBar .gwt-TabBarFirst {
-	height: 100%;
-	border-bottom: 1px solid #87b3ff;
-	border-right: 1px solid #87b3ff;
-	padding-left: 3px;
-}
-
-.gwt-TabBar .gwt-TabBarRest {
-	border-bottom: 1px solid #87b3ff;
-	padding-right: 3px;
-}
-
-.gwt-TabBar .gwt-TabBarItem {
-	border-top: 1px solid #87b3ff;
-	border-bottom: 1px solid #87b3ff;
-	padding: 2px;
-	cursor: hand;
-	white-space: nowrap;
-	border-right: 1px solid #87b3ff;
-}
-
-.gwt-TabBar .gwt-TabBarItem-selected {
-	font-weight: bold;
-	background-color: #e8eef7;
-	border-top: 1px solid #87b3ff;
-	border-right: 1px solid #87b3ff;
-	border-bottom: 1px solid #e8eef7;
-	padding: 2px;
-	cursor: default;
-	white-space: nowrap;
-}
-
-.gwt-PushButton-up {
-  background-color: #C3D9FF;
-  padding: 2px;
-  border: 2px solid transparent;
-  border-color: #E8F1FF rgb(157, 174, 205) rgb(157, 174, 205) rgb(232, 241, 255);
-  cursor: pointer;
-  cursor: hand;
-}
-
-.gwt-PushButton-up-hovering {
-  background-color: #C3D9FF;
-  padding: 2px;
-  border: 2px solid transparent;
-  border-color: #E8F1FF rgb(157, 174, 205) rgb(157, 174, 205) rgb(232, 241, 255);
-  cursor: pointer;
-  cursor: hand;
-}
-
-.gwt-PushButton-down {
-  background-color: #C3D9FF;
-  padding: 2px;
-  border: 2px solid transparent;
-  border-color: #9DAECD rgb(232, 241, 255) rgb(232, 241, 255) rgb(157, 174, 205);
-  cursor: pointer;
-  cursor: hand;
-}
-
-.gwt-PushButton-down-hovering {
-  background-color: #C3D9FF;
-  padding: 2px;
-  border: 2px solid transparent;
-  border-color: #9DAECD rgb(232, 241, 255) rgb(232, 241, 255) rgb(157, 174, 205);
-  cursor: pointer;
-  cursor: hand;
-}
-
-.gwt-ToggleButton-up {
-  background-color: #C3D9FF;
-  padding: 2px;
-  border: 2px solid transparent;
-  border-color: #E8F1FF rgb(157, 174, 205) rgb(157, 174, 205) rgb(232, 241, 255);
-  cursor: pointer;
-  cursor: hand;
-}
-
-.gwt-ToggleButton-up-hovering {
-  background-color: #C3D9FF;
-  padding: 2px;
-  border: 2px solid transparent;
-  border-color: #E8F1FF rgb(157, 174, 205) rgb(157, 174, 205) rgb(232, 241, 255);
-  cursor: pointer;
-  cursor: hand;
-}
-
-.gwt-ToggleButton-down {
-  background-color: #C3D9FF;
-  padding: 2px;
-  background-color: #E8F1FF;
-  border: 2px solid transparent;
-  border-color: #9DAECD rgb(232, 241, 255) rgb(232, 241, 255) rgb(157, 174, 205);
-  cursor: pointer;
-  cursor: hand;
-}
-
-.gwt-ToggleButton-down-hovering {
-  background-color: #C3D9FF;
-  padding: 2px;
-  background-color: #E8F1FF;
-  border: 2px solid transparent;
-  border-color: #9DAECD rgb(232, 241, 255) rgb(232, 241, 255) rgb(157, 174, 205);
-  cursor: pointer;
-  cursor: hand;
-}
-
-.gwt-RichTextArea {
-  border: 1px solid black;
-  background-color: white;
-}
-
-.gwt-RichTextToolbar {
-  background-color: #C3D9FF;
-  padding: 2px;
-}
-
-.gwt-RichTextToolbar .gwt-PushButton-up {
-  margin-right: 2px;
-  border: 1px solid #C3D9FF;
-}
-
-.gwt-RichTextToolbar .gwt-PushButton-up-hovering {
-  margin-right: 2px;
-  border: 1px solid #C3D9FF;
-  border-color: #E8F1FF rgb(157, 174, 205) rgb(157, 174, 205) rgb(232, 241, 255);
-}
-
-.gwt-RichTextToolbar .gwt-PushButton-down {
-  margin-right: 2px;
-  border: 1px solid #C3D9FF;
-  border-color: #9DAECD rgb(232, 241, 255) rgb(232, 241, 255) rgb(157, 174, 205);
-}
-
-.gwt-RichTextToolbar .gwt-PushButton-down-hovering {
-  margin-right: 2px;
-  border: 1px solid #C3D9FF;
-  border-color: #9DAECD rgb(232, 241, 255) rgb(232, 241, 255) rgb(157, 174, 205);
-}
-
-.gwt-RichTextToolbar .gwt-ToggleButton-up {
-  margin-right: 2px;
-  border: 1px solid #C3D9FF;
-}
-
-.gwt-RichTextToolbar .gwt-ToggleButton-up-hovering {
-  margin-right: 2px;
-  border: 1px solid #C3D9FF;
-  border-color: #E8F1FF rgb(157, 174, 205) rgb(157, 174, 205) rgb(232, 241, 255);
-}
-
-.gwt-RichTextToolbar .gwt-ToggleButton-down {
-  margin-right: 2px;
-  background-color: #E8F1FF;
-  border: 1px solid #C3D9FF;
-  border-color: #9DAECD rgb(232, 241, 255) rgb(232, 241, 255) rgb(157, 174, 205);
-}
-
-.gwt-RichTextToolbar .gwt-ToggleButton-down-hovering {
-  margin-right: 2px;
-  background-color: #E8F1FF;
-  border: 1px solid #C3D9FF;
-  border-color: #9DAECD rgb(232, 241, 255) rgb(232, 241, 255) rgb(157, 174, 205);
-}
 
 .gwt-HorizontalSplitPanel {
 	border: 8px solid #C3D9FF;
@@ -434,18 +259,6 @@ background-color: red;
 	cursor: move;
 }
 
-.gwt-SuggestBoxPopup {
-	border: 2px solid #C3D9FF;
-}
-
-.gwt-SuggestBoxPopup .item {
-	padding: 2px;
-}
-
-.gwt-SuggestBoxPopup .item-selected {
-	background-color: #C3D9FF;
-	padding: 2px;
-}
 
 .gwt-DisclosurePanel {
 	border: 2px solid #C3D9FF;
@@ -482,14 +295,27 @@ background-color: #0066ff;
 }	
 
 .gwt-LabelMor {
-	color: rgb(255, 255, 255);
-	border: 72);
+	color: rgb(0, 122, 255);
+	border:1px solid rgb(200, 199, 204);
 	font-weight: bold;
-	background-color: dimgray;
+	background-color: rgb(245, 245, 245);
+	/* text-align: center; */
+	
+	
+}
+
+.gwt-LabelMor2 {
+	color: rgb(0, 122, 255);
+	border:1px solid rgb(200, 199, 204);
+	font-weight: bold;
+	background-color: rgb(245, 245, 245);
+	/* text-align: center; */
+	padding-left: 20px;
+	
 }
 .gwt-Bold {
 	font-style: normal;
-	font-family: Trebuc;
+	font-family: arial,sans-serif;
 	font-weight: bold;
 }
 .gwt-11111 {
@@ -510,6 +336,7 @@ text-align: center;
 transition: all 0.3s ease 0s;
 color: rgb(51, 51, 51);
 }
+
 .gwt-2222 {
 	color: rgb(255, 255, 255);
 	border-top: 142);
@@ -519,30 +346,34 @@ color: rgb(51, 51, 51);
 	background-color: rgb(50, 118, 177);
 	background-image: none;
 }
+
 .gwt-RichTextToolbar-new {
 }
+
 .gwt-TextBox1 {
-height:wwpx; 
+/* height:wwpx;  */
 width: 275px; 
--moz-box-shadow: 0 2px 4px #bbb inset; 
+/* -moz-box-shadow: 0 2px 4px #bbb inset; 
 -webkit-box-shadow: 0 2px 4px #BBB inset; 
 box-shadow: 0 2px 4px #BBB inset; 
 -moz-border-radius: 3px; 
--webkit-border-radius: 3px; 
+-webkit-border-radius: 3px;  */
 	color: black;
 	border: 1px solid #B9BDC1;
-	font-size: 14px;
-	font-style: normal;
-	font-family: Trebuc, c, cursive;
+	/* font-size: 14px;
+	font-style: normal; */
+	font-family: arial,sans-serif;
 	
 }
 
 .gwt-TextBox1-readonly {
-  color: darkgrey;
+  color: grey;
+  
 }
+
 .gwt-TextBox1:focus{
     outline: none;
-    box-shadow: 0px 0px 5px #61C5FA;
+  /*   box-shadow: 0px 0px 5px #61C5FA; */
     border:2px solid #5AB0DB;
 }
 
@@ -560,14 +391,14 @@ box-shadow: 0 2px 4px #BBB inset;
 }  */
 
 .gwt-ComboBox1 {
-	font-family: Trebuc, c, cursive;
+	font-family: arial,sans-serif;
 	
 	
 }
 
 .gwt-ComboBox1:focus{
     outline: none;
-    box-shadow: 0px 0px 5px #61C5FA;
+   /*  box-shadow: 0px 0px 5px #61C5FA; */
     border:2px solid #5AB0DB;
 }
 
@@ -579,8 +410,10 @@ box-shadow: 0 2px 4px #BBB inset;
 
 
 .gwt-DialogBackGround {
-	background-color: #F9F9F9;
+	/* background-color: #F9F9F9; */
+	background-color: white;
 }
+
 .gwt-Butonkaydet{
 	background-image: url(download_folder_icon.png);	
 	
@@ -611,7 +444,7 @@ box-shadow: 0 2px 4px #BBB inset;
 	text-align: right;
 	background-position: left;
 	 */
-		background-image: url(kapat-1.png);	
+		background-image: url(kapat.png);	
 	background-repeat: no-repeat;
 	
 	background-position: center;
@@ -622,7 +455,7 @@ box-shadow: 0 2px 4px #BBB inset;
 	/* background-image: url(kapat.png);
 	background-repeat: no-repeat;
 	text-align: right; */
-	background-color: #ffcc33;
+	background-color: red;
 }	
 
 
@@ -681,21 +514,25 @@ box-shadow: 0 2px 4px #BBB inset;
 .gwt-ButtonRaporAl {
 	background-image: url(FileWriteDocument.png);
 }
+
+
 .gwt-HzPan {
-	background-color: #f5f5f5;
+	background-color: white;
 	border-bottom-width: thin;
 	border-bottom-style: solid;
-	border-bottom-color: #CCC;
-	background-image: url(body.png);
-	background-repeat: repeat;
+	border-bottom-color: white;
+	/* background-image: url(body.png); */
+/* 	background-repeat: repeat; */
 }
+
+
 .gwt-dlgbackgorund {
-	background-color: whitesmoke;
+	background-color: white;
 	
 }
 .gwttextbuton {
 	border-color: rgb(38, 154, 188);
-	font-family: Trebuc;
+	font-family: arial,sans-serif;
 
 	border-radius: 4px 4px 4px 4px;
 }
@@ -767,7 +604,7 @@ box-sizing: border-box;
 color: rgb(51, 51, 51);
 direction: ltr;
 display: list-item;
-font-family: sans-serif, Arial, Verdana, 'Trebuchet MS';
+font-family: sans-serif, Arial;
 font-size: 13px;
 height: 30px;
 line-height: 17px;
@@ -784,11 +621,49 @@ padding-right: 0px;
 padding-top: 0px;
 /* text-align: left; */
 width: 225px;
-font-family:sans-serif, Arial, Verdana, 'Trebuchet MS';
-	font-weight: bold;
+/* font-family:sans-serif, Arial, Verdana, 'Trebuchet MS';
+ */	font-weight: bold;
 
 }
+.gwt-MenuButton:BEFORE {
+	width: 275px;
+	-moz-box-shadow: 0 2px 4px #bbb inset;
+	-webkit-box-shadow: 0 2px 4px #BBB inset;
+	box-shadow: 0 2px 4px #BBB inset;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color: black;
+	border: 1px solid #B9BDC1;
+	font-size: 14px;
+	font-style: normal;
+	font-family: arial,sans-serif;
+	font-weight: bold;
+	background-attachment: scroll;
+	background-color: rgb(217,217,217);
+	background-position: 0% 0%;
+	
 
+	}
+
+.gwt-MenuButton:LINK:VISITED {
+	width: 275px;
+	-moz-box-shadow: 0 2px 4px #bbb inset;
+	-webkit-box-shadow: 0 2px 4px #BBB inset;
+	box-shadow: 0 2px 4px #BBB inset;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color: black;
+	border: 1px solid #B9BDC1;
+	font-size: 14px;
+	font-style: normal;
+	font-family: arial,sans-serif;
+	font-weight: bold;
+	background-attachment: scroll;
+	background-color: rgb(217,217,217);
+	background-position: 0% 0%;
+	
+
+	}
 .gwt-MenuButton:active {
 	
 	width: 275px;
@@ -801,7 +676,7 @@ font-family:sans-serif, Arial, Verdana, 'Trebuchet MS';
 	border: 1px solid #B9BDC1;
 	font-size: 14px;
 	font-style: normal;
-	font-family: Trebuc, c, cursive;
+	font-family: arial,sans-serif;
 	font-weight: bold;
 	background-attachment: scroll;
 	background-color: rgb(217,217,217);
@@ -846,11 +721,431 @@ background: none repeat scroll 0% 0% #D9D9D9 !important;
 
 
 .gwt-BilgileriniGetir {
-	background-color: rgb(92, 184, 92);
+/* 	background-color: rgb(92, 184, 92); */
+	background-color:rgb(94, 94, 94);
     cursor: pointer;
     border-radius: 4px 4px 4px 4px;
     	 color: rgb(255, 255, 255);
       
 }
-.gwt-Loginbackground {
+
+.gwt-BilgileriniGetir:HOVER{
+	
+	background-color: rgb(140, 140, 140);
+	
+	
+	}
+.gwt-TextBoxAra {
+	
+	
+
+	color: black;
+	border: 1px solid #B9BDC1;
+	font-size: 14px;
+	font-style: normal;
+	font-family: arial,sans-serif;
+	background-image: url("search.png");
+	background-position: right;
+	background-repeat: no-repeat;
+	
+
+	
+	
 }
+.gwt-TextBoxAra:HOVER {
+		/* width: 250px;
+		height: 100px;
+		size: 500px; */
+	/* 	size: "300px","400px"; */
+	/* size: 400px; */
+	height: 50px;
+	width: 200px;
+}
+
+.gwt-TextBoxAra:FOCUS {
+		
+	/* 	float: right; */
+	height: 50px;
+	width: 200px;
+	height: ;
+	/* size: 400px; */
+	
+		
+}
+
+.gwt-TabPanel {
+}
+.gwt-TabPanelBottom {
+  border-color: rgb(108, 127, 146);
+  border-style: solid;
+  border-width: 3px 2px 2px;
+  overflow: hidden;
+  padding: 6px;
+}
+
+.gwt-DecoratedTabBar {
+}
+.gwt-DecoratedTabBar .gwt-TabBarFirst {
+  width: 5px;  /* first tab distance from the left */
+}
+.gwt-DecoratedTabBar .gwt-TabBarRest {
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem {
+  border-collapse: collapse;
+  margin-left: 6px;
+}
+.gwt-DecoratedTabBar .tabTopCenter {
+  padding: 0px;
+  background:  silver;
+}
+.gwt-DecoratedTabBar .tabTopLeft,
+.gwt-DecoratedTabBar .tabTopRight {
+  padding: 0px;
+  zoom: 1;
+}
+.gwt-DecoratedTabBar .tabTopLeftInner,
+.gwt-DecoratedTabBar .tabTopRightInner {
+  width: 6px;
+  height: 6px;
+   background: silver;
+}
+.gwt-DecoratedTabBar .tabTopLeft {
+  background: url(images/corner.png) no-repeat 0px -55px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -55px;
+}
+.gwt-DecoratedTabBar .tabTopRight {
+  background: url(images/corner.png) no-repeat -6px -55px;
+  -background: url(images/corner_ie6.png) no-repeat -6px -55px;
+}
+* html .gwt-DecoratedTabBar .tabTopLeftInner,
+* html .gwt-DecoratedTabBar .tabTopRightInner {
+  width: 6px;
+  height: 6px;
+  overflow: hidden;
+  background-color:   silver;
+}
+.gwt-DecoratedTabBar .tabMiddleLeft,
+.gwt-DecoratedTabBar .tabMiddleRight {
+  width: 6px;
+  padding: 0px;
+  background-color:  silver;
+}
+.gwt-DecoratedTabBar .tabMiddleLeftInner,
+.gwt-DecoratedTabBar .tabMiddleRightInner {
+  width: 1px;
+  height: 1px;
+}
+.gwt-DecoratedTabBar .tabMiddleCenter {
+  padding: 0px 4px 2px 4px;
+  cursor: pointer;
+  cursor: hand;
+  color:  rgb(108, 127, 146);;
+  font-weight: bold;
+  text-align: center;
+  background: silver;
+}
+
+.gwt-DecoratedTabBar .tabTopCenter {
+
+  color: white;
+  font-weight: bold;
+ 
+  background: silver;
+}
+
+.gwt-DecoratedTabBar  .gwt-TabBarItem-selected .tabTopLeftInner,
+.gwt-DecoratedTabBar  .gwt-TabBarItem-selected .tabTopRightInner {
+  width: 6px;
+  height: 6px;
+   background:  rgb(108, 127, 146);
+}
+
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopCenter {
+  background:  rgb(108, 127, 146);
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeft {
+  background-position: 0px -61px;
+  
+  
+    background:  rgb(108, 127, 146);
+  
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
+  background-position: -6px -61px;
+  background:   rgb(108, 127, 146);
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft,
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight {
+  background:  rgb(108, 127, 146);
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter {
+  cursor: default;
+  background: rgb(108, 127, 146);
+  color:  whitesmoke;
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-disabled .tabMiddleCenter {
+  cursor: default;
+  color: whitesmoke;
+   background:   rgb(108, 127, 146);
+}
+
+.gwt-LeftPadding {
+	padding-left: 5px;
+}
+
+.cellTableHeader {
+padding: 0px;
+color: #545454;
+text-align: center;
+font-size: 13px;
+background-image: none;
+background-color: #cfcfcf;
+height: 25px;
+vertical-align: middle;
+font-weight: bold;
+text-shadow: 0 1px 1px rgba(255,255,255,.7);
+}
+
+
+
+@def selectionBorderWidth 2px;
+.cellTableWidget {
+ 
+}
+
+.cellTableFirstColumn {
+ 
+}
+
+.cellTableLastColumn {
+ 
+}
+
+.cellTableFooter {
+  border-top: 2px solid #6f7277;
+  padding: 3px 15px;
+  text-align: left;
+  color: #4b4a4a;
+  text-shadow: #ddf 1px 1px 0;
+  overflow: hidden;
+}
+
+.cellTableHeader {
+  border-bottom: 2px solid #6f7277;
+  padding: 3px 15px;
+  text-align: left;
+  color: #4b4a4a;
+  text-shadow: #ddf 1px 1px 0;
+  overflow: hidden;
+}
+
+.cellTableCell {
+  padding: 2px 15px;
+  overflow: hidden;
+}
+
+.cellTableFirstColumnFooter {
+ 
+}
+
+.cellTableFirstColumnHeader {
+ 
+}
+
+.cellTableLastColumnFooter {
+ 
+}
+
+.cellTableLastColumnHeader {
+ 
+}
+
+.cellTableSortableHeader {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.cellTableSortableHeader:hover {
+  color: #6c6b6b;
+}
+
+.cellTableSortedHeaderAscending {
+
+}
+
+.cellTableSortedHeaderDescending {
+
+}
+
+.cellTableEvenRow {
+  background: #ffffff;
+}
+
+.cellTableEvenRowCell {
+  border: selectionBorderWidth solid #ffffff;
+}
+
+.cellTableOddRow {
+  background: #f3f7fb;
+}
+
+.cellTableOddRowCell {
+  border: selectionBorderWidth solid #f3f7fb;
+}
+
+.cellTableHoveredRow {
+  background: #eee;
+}
+
+.cellTableHoveredRowCell {
+  border: selectionBorderWidth solid #eee;
+}
+
+.cellTableKeyboardSelectedRow {
+  background: #ffc;
+}
+
+.cellTableKeyboardSelectedRowCell {
+  border: selectionBorderWidth solid #ffc;
+}
+
+.cellTableSelectedRow {
+  background: #628cd5;
+  color: white;
+  height: auto;
+  overflow: auto;
+}
+
+.cellTableSelectedRowCell {
+  border: selectionBorderWidth solid #628cd5;
+}
+
+
+.cellTableKeyboardSelectedCell {
+  border: selectionBorderWidth solid #d7dde8;
+}
+
+@sprite .cellTableLoading {
+  gwt-image: 'cellTableLoading';
+  margin: 30px;
+}
+
+
+
+
+
+
+.gwt-TabBar .gwt-TabBarItem-selected {
+  cursor: default;
+  background: silver;
+} 
+.gwt-TabLayoutPanelContentContainer {
+  border-color: silver;
+  border-style: solid;
+  border-width: 2px 1px 1px;
+}
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelContent {
+  border-color: silver;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  padding: 6px;
+}
+
+.gwt-DialogBox .Caption {
+/*   background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px; */
+background: rgb(108, 127, 146);
+color: white;
+  padding: 4px 4px 4px 8px;
+  cursor: default;
+  border-bottom: 1px solid #bbbbbb;
+  border-top: 5px solid #d0e4f6 rgb(108, 127, 146);
+  /*border-top: #d0e4f6  */
+}
+.gwt-DialogBox .dialogContent {
+}
+.gwt-DialogBox .dialogMiddleCenter {
+  padding: 3px;
+  background: white;
+}
+.gwt-DialogBox .dialogBottomCenter {
+  background: url(images/hborder.png) repeat-x 0px -4px;
+  -background: url(images/hborder_ie6.png) repeat-x 0px -4px;
+  background: rgb(108, 127, 146);
+}
+.gwt-DialogBox .dialogMiddleLeft {
+  background: url(images/vborder.png) repeat-y;
+  background: rgb(108, 127, 146);
+}
+.gwt-DialogBox .dialogMiddleRight {
+  background: url(images/vborder.png) repeat-y -4px 0px;
+  -background: url(images/vborder_ie6.png) repeat-y -4px 0px;
+  background: rgb(108, 127, 146);
+}
+.gwt-DialogBox .dialogTopLeftInner {
+  width: 5px;
+  zoom: 1;
+  background: rgb(108, 127, 146);
+}
+.gwt-DialogBox .dialogTopRightInner {
+  width: 8px;
+  zoom: 1;
+  background: rgb(108, 127, 146);
+}
+.gwt-DialogBox .dialogBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+  background: rgb(108, 127, 146);
+}
+.gwt-DialogBox .dialogBottomRightInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+  background: rgb(108, 127, 146);
+}
+.gwt-DialogBox .dialogTopLeft {
+  background: url(images/corner.png) no-repeat -13px 0px;
+  -background: url(images/corner_ie6.png) no-repeat -13px 0px;
+  background: rgb(108, 127, 146);
+}
+.gwt-DialogBox .dialogTopRight {
+  background: url(images/corner.png) no-repeat -18px 0px;
+  -background: url(images/corner_ie6.png) no-repeat -18px 0px;
+  background: rgb(108, 127, 146);
+}
+.gwt-DialogBox .dialogBottomLeft {
+  background: url(images/corner.png) no-repeat 0px -15px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -15px;
+  background: rgb(108, 127, 146);
+}
+.gwt-DialogBox .dialogBottomRight {
+  background: url(images/corner.png) no-repeat -5px -15px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -15px;
+  background: rgb(108, 127, 146);
+}
+* html .gwt-DialogBox .dialogTopLeftInner {
+  width: 5px;
+  overflow: hidden;
+  background: rgb(108, 127, 146);
+}
+* html .gwt-DialogBox .dialogTopRightInner {
+  width: 8px;
+  overflow: hidden;
+  background: rgb(108, 127, 146);
+}
+* html .gwt-DialogBox .dialogBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  overflow: hidden;
+  background: rgb(108, 127, 146);
+}
+* html .gwt-DialogBox .dialogBottomRightInner {
+  width: 8px;
+  height: 8px;
+  overflow: hidden;
+  background: rgb(108, 127, 146);
+}
+

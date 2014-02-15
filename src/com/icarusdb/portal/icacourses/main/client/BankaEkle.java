@@ -22,8 +22,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class BankaEkle extends Composite {
@@ -37,18 +40,40 @@ public class BankaEkle extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("795px", "750px");
+		absolutePanel.setSize("100%", "750px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		horizontalPanel_1
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_1.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "50");
+		horizontalPanel_1.setSize("100%", "33px");
+
+		Label lblBankaEkle = new Label("Banka Ekle");
+		horizontalPanel_1.add(lblBankaEkle);
+		lblBankaEkle.setWidth("100px");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2.setSpacing(15);
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "30");
+		horizontalPanel_2.setWidth("100%");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
+		horizontalPanel_2.add(btnYeniKayit);
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 450, 70);
-		btnYeniKayit.setSize("81px", "58px");
+		btnYeniKayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 197);
-		horizontalPanel.setSize("774px", "75px");
+		horizontalPanel.setSpacing(10);
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSize("100%", "75px");
 
 		grdBankaEkle = new CellTable<XMLBankaEkle>();
 		horizontalPanel.add(grdBankaEkle);
@@ -71,15 +96,15 @@ public class BankaEkle extends Composite {
 		};
 		grdBankaEkle.addColumn(textColumn, "Banka Adı");
 
-		Column<XMLBankaEkle, String> column = new Column<XMLBankaEkle, String>(
+		Column<XMLBankaEkle, String> column_2 = new Column<XMLBankaEkle, String>(
 				new ButtonCell()) {
 			@Override
 			public String getValue(XMLBankaEkle object) {
 				return "Düzenle";
 			}
 		};
-		grdBankaEkle.addColumn(column, "Düzenle");
-		grdBankaEkle.setColumnWidth(column, "142px");
+		grdBankaEkle.addColumn(column_2, "Düzenle");
+		grdBankaEkle.setColumnWidth(column_2, "142px");
 
 		Column<XMLBankaEkle, String> column_1 = new Column<XMLBankaEkle, String>(
 				new ButtonCell()) {
@@ -114,7 +139,7 @@ public class BankaEkle extends Composite {
 				}
 			}, DoubleClickEvent.getType());
 
-			column.setFieldUpdater(new FieldUpdater<XMLBankaEkle, String>() {
+			column_2.setFieldUpdater(new FieldUpdater<XMLBankaEkle, String>() {
 
 				@Override
 				public void update(int index, XMLBankaEkle object, String value) {

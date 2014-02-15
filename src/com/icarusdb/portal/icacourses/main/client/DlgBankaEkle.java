@@ -4,9 +4,16 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -25,6 +32,8 @@ public class DlgBankaEkle extends DialogBox {
 	private ListBox cbxBankaninOdemeSekli;
 	private TextBox tctVadeTarihi;
 	private Button btnKapat;
+	private Image image;
+	private Image image_1;
 
 	public DlgBankaEkle(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -38,99 +47,106 @@ public class DlgBankaEkle extends DialogBox {
 		setWidget(absolutePanel);
 		absolutePanel.setSize("596px", "403px");
 
-		Label lblBankaIlemleriekleme = new Label(
-				"Banka İşlemleri (Ekleme / Düzenleme)");
-		lblBankaIlemleriekleme.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblBankaIlemleriekleme, 0, 0);
-		lblBankaIlemleriekleme.setSize("596px", "30px");
-
-		Label lblBankaAd = new Label("Banka Adı");
-		lblBankaAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblBankaAd, 10, 63);
-
-		Label lblBankaube = new Label("Banka Şube");
-		lblBankaube.setStyleName("gwt-Bold");
-		absolutePanel.add(lblBankaube, 10, 102);
-
-		Label lblHesapNo = new Label("Hesap No");
-		lblHesapNo.setStyleName("gwt-Bold");
-		absolutePanel.add(lblHesapNo, 10, 143);
-
-		Label lblNewLabel = new Label("IBAN No");
-		lblNewLabel.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel, 10, 188);
-
-		Label lblBankanndemeekli = new Label("Bankanın Ödeme Şekli");
-		lblBankanndemeekli.setStyleName("gwt-Bold");
-		absolutePanel.add(lblBankanndemeekli, 10, 229);
-
-		Label lblVadeTarihi = new Label("Vade Tarihi");
-		lblVadeTarihi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblVadeTarihi, 10, 271);
-
-		cbxBankaninOdemeSekli = new ListBox();
-		cbxBankaninOdemeSekli.setStyleName("gwt-ComboBox1");
-		cbxBankaninOdemeSekli
-				.addChangeHandler(new CbxBankaninOdemeSekliChangeHandler());
-		cbxBankaninOdemeSekli.addItem("Ertesi Gün");
-		cbxBankaninOdemeSekli.addItem("Vadeli");
-		absolutePanel.add(cbxBankaninOdemeSekli, 246, 223);
-		cbxBankaninOdemeSekli.setSize("198px", "22px");
-
 		Label label = new Label("");
 		absolutePanel.add(label, 154, 63);
-
-		tctBankaAdi = new TextBox();
-		tctBankaAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctBankaAdi, 246, 63);
-		tctBankaAdi.setSize("193px", "14px");
-
-		tctBankaSube = new TextBox();
-		tctBankaSube.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctBankaSube, 246, 102);
-		tctBankaSube.setSize("193px", "14px");
-
-		tctHesapNo = new TextBox();
-		tctHesapNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctHesapNo, 246, 143);
-		tctHesapNo.setSize("193px", "14px");
-
-		tctIBANNo = new TextBox();
-		tctIBANNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctIBANNo, 246, 184);
-		tctIBANNo.setSize("246px", "14px");
-
-		tctVadeTarihi = new TextBox();
-		tctVadeTarihi.setEnabled(false);
-		tctVadeTarihi.setText("0");
-		tctVadeTarihi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVadeTarihi, 249, 269);
-		tctVadeTarihi.setSize("193px", "14px");
 
 		btnKaydet = new Button("Kaydet");
 		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		absolutePanel.add(btnKaydet, 77, 314);
+		absolutePanel.add(btnKaydet, 238, 229);
 		btnKaydet.setSize("78px", "46px");
 
 		btnKapat = new Button("Kapat");
 		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel.add(btnKapat, 169, 314);
+		absolutePanel.add(btnKapat, 154, 229);
 		btnKapat.setSize("78px", "46px");
 
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		image.addMouseOutHandler(new ImageMouseOutHandler());
+		image.addMouseOverHandler(new ImageMouseOverHandler());
+
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 290, 310);
+		absolutePanel.add(image, 374, 213);
 		image.setSize("72px", "66px");
 
-		Image image_1 = new Image("kapat-1.png");
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+
 		image_1.addClickHandler(new Image_1ClickHandler());
 		image_1.setAltText("aedasda");
-		absolutePanel.add(image_1, 372, 310);
+		absolutePanel.add(image_1, 452, 213);
 		image_1.setSize("72px", "66px");
+
+		FlexTable flexTable = new FlexTable();
+		absolutePanel.add(flexTable, 0, 0);
+		flexTable.setSize("435px", "163px");
+
+		Label lblBankaAd = new Label("Banka Adı");
+		flexTable.setWidget(0, 0, lblBankaAd);
+		lblBankaAd.setStyleName("gwt-Bold");
+
+		tctBankaAdi = new TextBox();
+		flexTable.setWidget(0, 1, tctBankaAdi);
+		tctBankaAdi.setStyleName("gwt-TextBox1");
+		tctBankaAdi.setSize("193px", "14px");
+
+		Label lblBankaube = new Label("Banka Şube");
+		flexTable.setWidget(1, 0, lblBankaube);
+		lblBankaube.setStyleName("gwt-Bold");
+
+		tctBankaSube = new TextBox();
+		flexTable.setWidget(1, 1, tctBankaSube);
+		tctBankaSube.setStyleName("gwt-TextBox1");
+		tctBankaSube.setSize("193px", "14px");
+
+		Label lblHesapNo = new Label("Hesap No");
+		flexTable.setWidget(2, 0, lblHesapNo);
+		lblHesapNo.setStyleName("gwt-Bold");
+
+		tctHesapNo = new TextBox();
+		tctHesapNo.addKeyPressHandler(new TctHesapNoKeyPressHandler());
+		flexTable.setWidget(2, 1, tctHesapNo);
+		tctHesapNo.setStyleName("gwt-TextBox1");
+		tctHesapNo.setSize("193px", "14px");
+
+		Label lblNewLabel = new Label("IBAN No");
+		flexTable.setWidget(3, 0, lblNewLabel);
+		lblNewLabel.setStyleName("gwt-Bold");
+
+		tctIBANNo = new TextBox();
+		tctIBANNo.addKeyPressHandler(new TctIBANNoKeyPressHandler());
+		flexTable.setWidget(3, 1, tctIBANNo);
+		tctIBANNo.setStyleName("gwt-TextBox1");
+		tctIBANNo.setSize("246px", "14px");
+
+		Label lblBankanndemeekli = new Label("Bankanın Ödeme Şekli");
+		flexTable.setWidget(4, 0, lblBankanndemeekli);
+		lblBankanndemeekli.setStyleName("gwt-Bold");
+
+		cbxBankaninOdemeSekli = new ListBox();
+		flexTable.setWidget(4, 1, cbxBankaninOdemeSekli);
+		cbxBankaninOdemeSekli.setStyleName("gwt-ComboBox1");
+		cbxBankaninOdemeSekli
+				.addChangeHandler(new CbxBankaninOdemeSekliChangeHandler());
+		cbxBankaninOdemeSekli.addItem("Ertesi Gün");
+		cbxBankaninOdemeSekli.addItem("Vadeli");
+		cbxBankaninOdemeSekli.setSize("198px", "22px");
+
+		Label lblVadeTarihi = new Label("Vade Tarihi");
+		flexTable.setWidget(5, 0, lblVadeTarihi);
+		lblVadeTarihi.setStyleName("gwt-Bold");
+
+		tctVadeTarihi = new TextBox();
+		tctVadeTarihi.addKeyPressHandler(new TctVadeTarihiKeyPressHandler());
+		flexTable.setWidget(5, 1, tctVadeTarihi);
+		tctVadeTarihi.setEnabled(false);
+		tctVadeTarihi.setText("0");
+		tctVadeTarihi.setStyleName("gwt-TextBox1");
+		tctVadeTarihi.setSize("193px", "14px");
 
 		if (!isDesignTime()) {
 
@@ -214,6 +230,87 @@ public class DlgBankaEkle extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
+		}
+	}
+
+	private class TctHesapNoKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctHesapNo.getText();
+			if (!input.matches("[0-9]*")) {
+				tctHesapNo.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctHesapNo.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctIBANNoKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctIBANNo.getText();
+			if (!input.matches("[0-9]*")) {
+				tctIBANNo.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctIBANNo.setStyleName("gwt-TextBox1");
+
+		}
+
+	}
+
+	private class TctVadeTarihiKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctVadeTarihi.getText();
+			if (!input.matches("[0-9]*")) {
+				tctVadeTarihi.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctVadeTarihi.setStyleName("gwt-TextBox1");
+
 		}
 	}
 }

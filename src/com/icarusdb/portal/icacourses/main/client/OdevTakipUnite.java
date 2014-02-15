@@ -22,17 +22,19 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class OdevTakipUnite extends Composite {
 	private ListBox cbxEgitimTuru;
 	private ListBox cbxAlan;
 	private ListBox cbxDersAdi;
-	private Button button;
 	private CellTable<XMLOdevTakipUnite> grdOdevTakipUnite;
 	private TextColumn<XMLOdevTakipUnite> grdcEgitimTuruAdi;
 	private TextColumn<XMLOdevTakipUnite> grdcalanAdi;
@@ -48,24 +50,36 @@ public class OdevTakipUnite extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("789px", "750px");
+		absolutePanel.setSize("100%", "750px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "40");
+		horizontalPanel_2.setSize("100%", "33px");
+
+		Label lbldevTakipnite = new Label("Ödev Takip Ünite");
+		horizontalPanel_2.add(lbldevTakipnite);
+		lbldevTakipnite.setWidth("100%");
+
+		FlexTable flexTable = new FlexTable();
+		verticalPanel.add(flexTable);
+		verticalPanel.setCellHeight(flexTable, "30");
+		flexTable.setSize("100px", "100px");
 
 		Label label = new Label("Eğitim Türü");
+		flexTable.setWidget(0, 0, label);
 		label.setStyleName("gwt-Bold");
-		absolutePanel.add(label, 10, 10);
-		label.setSize("66px", "16px");
-
-		Label label_1 = new Label("Alan");
-		label_1.setStyleName("gwt-Bold");
-		absolutePanel.add(label_1, 10, 45);
-		label_1.setSize("56px", "16px");
-
-		Label label_2 = new Label("Ders Adı");
-		label_2.setStyleName("gwt-Bold");
-		absolutePanel.add(label_2, 10, 80);
-		label_2.setSize("56px", "16px");
+		label.setSize("100px", "16px");
 
 		cbxEgitimTuru = new ListBox();
+		flexTable.setWidget(0, 1, cbxEgitimTuru);
 		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
 		cbxEgitimTuru.addItem("YGS HAZIRLIK");
 		cbxEgitimTuru.addItem("YGS/LYS HAZIRLIK");
@@ -79,26 +93,49 @@ public class OdevTakipUnite extends Composite {
 		cbxEgitimTuru.addItem("5.SINIF TAKVİYE");
 		cbxEgitimTuru.addItem("4.SINIF TAKVİYE");
 		cbxEgitimTuru.addItem("3.SINIF TAKVİYE");
-		absolutePanel.add(cbxEgitimTuru, 137, 10);
 		cbxEgitimTuru.setSize("139px", "25px");
 
+		Label label_1 = new Label("Alan");
+		flexTable.setWidget(1, 0, label_1);
+		label_1.setStyleName("gwt-Bold");
+		label_1.setSize("56px", "16px");
+
 		cbxAlan = new ListBox();
+		flexTable.setWidget(1, 1, cbxAlan);
 		cbxAlan.setStyleName("gwt-ComboBox1");
 		cbxAlan.addItem(" ");
 		cbxAlan.addItem("Lütfen Seçiniz");
 		cbxAlan.addItem("ALAN YOK");
-		absolutePanel.add(cbxAlan, 137, 45);
 		cbxAlan.setSize("139px", "25px");
 
+		Label label_2 = new Label("Ders Adı");
+		flexTable.setWidget(2, 0, label_2);
+		label_2.setStyleName("gwt-Bold");
+		label_2.setSize("100px", "16px");
+
 		cbxDersAdi = new ListBox();
+		flexTable.setWidget(2, 1, cbxDersAdi);
 		cbxDersAdi.setStyleName("gwt-ComboBox1");
 		cbxDersAdi.addItem("Lütfen Seçiniz");
-		absolutePanel.add(cbxDersAdi, 137, 80);
 		cbxDersAdi.setSize("139px", "25px");
 
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1.setSpacing(15);
+		horizontalPanel_1.setSize("100%", "27px");
+
+		Button btnYeniKayit = new Button("ARA");
+		horizontalPanel_1.add(btnYeniKayit);
+		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
+		btnYeniKayit.setText("Yeni Kayıt");
+		btnYeniKayit.setSize("115px", "30px");
+
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 108);
-		horizontalPanel.setSize("701px", "309px");
+		horizontalPanel.setSpacing(10);
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSize("100%", "309px");
 
 		grdOdevTakipUnite = new CellTable<XMLOdevTakipUnite>();
 		horizontalPanel.add(grdOdevTakipUnite);
@@ -151,19 +188,6 @@ public class OdevTakipUnite extends Composite {
 			}
 		};
 		grdOdevTakipUnite.addColumn(column_1, "Sil");
-
-		Button btnYeniKayit = new Button("ARA");
-		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit.setText("");
-		absolutePanel.add(btnYeniKayit, 434, 30);
-		btnYeniKayit.setSize("91px", "66px");
-
-		button = new Button("ARA");
-		button.setText("");
-		button.setStyleName("gwt-ButtonAra");
-		absolutePanel.add(button, 342, 30);
-		button.setSize("86px", "66px");
 
 		if (!isDesignTime()) {
 

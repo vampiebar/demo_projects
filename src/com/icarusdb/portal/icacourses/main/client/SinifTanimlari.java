@@ -22,8 +22,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class SinifTanimlari extends Composite {
@@ -35,22 +38,44 @@ public class SinifTanimlari extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("908px", "439px");
+		absolutePanel.setSize("100%", "439px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "50");
+		horizontalPanel_2.setSize("100%", "33px");
+
+		Label lblSnfTanmlar = new Label("Sınıf Tanımları");
+		horizontalPanel_2.add(lblSnfTanmlar);
+		lblSnfTanmlar.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1.setSpacing(15);
+		horizontalPanel_1.setSize("100%", "39px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
+		horizontalPanel_1.add(btnYeniKayit);
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 465, 44);
-		btnYeniKayit.setSize("90px", "73px");
+		btnYeniKayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 25, 171);
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSpacing(10);
 		horizontalPanel.setSize("100%", "75px");
 
 		grdSinifTanimlari = new CellTable<XMLSinifTanimlari>();
 		horizontalPanel.add(grdSinifTanimlari);
-		grdSinifTanimlari.setSize("884px", "100%");
+		grdSinifTanimlari.setSize("100%", "100%");
 
 		TextColumn<XMLSinifTanimlari> textColumn = new TextColumn<XMLSinifTanimlari>() {
 			@Override

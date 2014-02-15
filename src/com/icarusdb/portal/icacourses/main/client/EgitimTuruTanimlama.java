@@ -22,7 +22,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class EgitimTuruTanimlama extends Composite {
@@ -36,13 +40,46 @@ public class EgitimTuruTanimlama extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("738px", "650px");
+		absolutePanel.setSize("100%", "750px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		horizontalPanel_1
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_1.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "50");
+		horizontalPanel_1.setSize("100%", "33px");
+
+		Label lblEitimTrTanmlama = new Label("Eğitim Türü Tanımlama");
+		horizontalPanel_1.add(lblEitimTrTanmlama);
+		lblEitimTrTanmlama.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2.setSpacing(15);
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "30");
+		horizontalPanel_2.setWidth("100%");
+
+		Button btnYeniKayit = new Button("Yeni Kayıt");
+		horizontalPanel_2.add(btnYeniKayit);
+		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
+		btnYeniKayit.setSize("115px", "30px");
+
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSpacing(10);
+		horizontalPanel.setSize("100%", "100px");
 
 		grdEgitimTuru = new CellTable<XMLEgitimTuruTanimlama>();
+		horizontalPanel.add(grdEgitimTuru);
 		grdEgitimTuru.setStyleName("gwt-cellTable");
 		grdEgitimTuru.setPageStart(2);
-		absolutePanel.add(grdEgitimTuru, 0, 147);
-		grdEgitimTuru.setSize("100%", "154px");
+		grdEgitimTuru.setSize("100%", "100%");
 
 		TextColumn<XMLEgitimTuruTanimlama> textColumn_1 = new TextColumn<XMLEgitimTuruTanimlama>() {
 			@Override
@@ -85,13 +122,6 @@ public class EgitimTuruTanimlama extends Composite {
 		};
 		grdEgitimTuru.addColumn(column_1, "Sil");
 		grdEgitimTuru.setColumnWidth(column_1, "135px");
-
-		Button btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
-		absolutePanel.add(btnYeniKayit, 347, 47);
-		btnYeniKayit.setSize("86px", "64px");
 
 		if (!isDesignTime()) {
 

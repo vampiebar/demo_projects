@@ -7,6 +7,12 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.http.client.Request;
@@ -51,9 +57,10 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	private TextArea tctAdres;
 	private Button btnKaydet;
 	private Button btnKapat;
+	private Image image_1;
+	private Image image;
 
 	public DlgDBSSinavTanimla(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -64,15 +71,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		VerticalPanel vtpanMain = new VerticalPanel();
 		vtpanMain.setStyleName("gwt-DialogBackGround");
 		setWidget(vtpanMain);
-
-		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		vtpanMain.add(horizontalPanel);
-
-		Label lblDbsSnavIlemleri = new Label(
-				"DBS Sınav İşlemleri (Ekleme / Düzenleme)");
-		horizontalPanel.add(lblDbsSnavIlemleri);
-		lblDbsSnavIlemleri.setStyleName("gwt-LabelMor");
-		lblDbsSnavIlemleri.setSize("660px", "29px");
+		vtpanMain.setSize("530px", "455px");
 
 		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
 		vtpanMain.add(horizontalPanel_1);
@@ -80,6 +79,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 
 		FlexTable flexTable = new FlexTable();
 		horizontalPanel_1.add(flexTable);
+		flexTable.setHeight("124px");
 
 		Label lblOkulDurumu = new Label("Okul Durumu");
 		flexTable.setWidget(0, 0, lblOkulDurumu);
@@ -187,6 +187,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		lblNewLabel.setStyleName("gwt-Bold");
 
 		tctKota = new TextBox();
+		tctKota.addKeyPressHandler(new TctKotaKeyPressHandler());
 		flexTable.setWidget(3, 1, tctKota);
 		tctKota.setStyleName("gwt-TextBox1");
 		tctKota.setSize("174px", "14px");
@@ -197,6 +198,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		lblSinavYeri.setSize("76px", "18px");
 
 		cbxSinavYeri = new ListBox();
+		cbxSinavYeri.addKeyPressHandler(new CbxSinavYeriKeyPressHandler());
 		cbxSinavYeri.addChangeHandler(new CbxSinavYeriChangeHandler());
 		flexTable.setWidget(4, 1, cbxSinavYeri);
 		cbxSinavYeri.setStyleName("gwt-ComboBox1");
@@ -213,7 +215,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		flexTable_1.setCellPadding(2);
 		flexTable_1.setBorderWidth(0);
 		hzpanOtherBuilding.add(flexTable_1);
-		flexTable_1.setSize("392px", "111px");
+		flexTable_1.setSize("392px", "201px");
 
 		Label lblNewLabel_1 = new Label("Ülke");
 		lblNewLabel_1.setStyleName("gwt-Bold");
@@ -286,26 +288,22 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
 		horizontalPanel_2.setSpacing(6);
 		vtpanMain.add(horizontalPanel_2);
+		horizontalPanel_2.setWidth("100%");
 		vtpanMain.setCellHorizontalAlignment(horizontalPanel_2,
 				HasHorizontalAlignment.ALIGN_RIGHT);
 
 		btnKaydet = new Button("Kaydet");
 		btnKaydet.setVisible(false);
 		horizontalPanel_2.add(btnKaydet);
+		horizontalPanel_2.setCellWidth(btnKaydet, "600");
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setSize("78px", "49px");
 
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		image.addMouseOutHandler(new ImageMouseOutHandler());
+		image.addMouseOverHandler(new ImageMouseOverHandler());
 		image.addClickHandler(new ImageClickHandler());
-		horizontalPanel_2.add(image);
-		image.setSize("72px", "66px");
-
-		Image image_1 = new Image("kapat-1.png");
-		image_1.addClickHandler(new Image_1ClickHandler());
-		image_1.setAltText("aedasda");
-		horizontalPanel_2.add(image_1);
-		image_1.setSize("72px", "66px");
 
 		btnKapat = new Button("Kapat");
 		btnKapat.setVisible(false);
@@ -313,6 +311,16 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setSize("78px", "49px");
+		horizontalPanel_2.add(image);
+		image.setSize("72px", "66px");
+
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+		image_1.addClickHandler(new Image_1ClickHandler());
+		image_1.setAltText("aedasda");
+		horizontalPanel_2.add(image_1);
+		image_1.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
 
@@ -674,6 +682,58 @@ public class DlgDBSSinavTanimla extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
+		}
+	}
+
+	private class CbxSinavYeriKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+		}
+	}
+
+	private class TctKotaKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctKota.getText();
+			if (!input.matches("[0-9]*")) {
+				tctKota.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctKota.setStyleName("gwt-TextBox1");
+
 		}
 	}
 }

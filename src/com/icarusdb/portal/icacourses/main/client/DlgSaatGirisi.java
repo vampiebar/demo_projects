@@ -2,22 +2,26 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.TextArea;
 
 public class DlgSaatGirisi extends DialogBox {
 
 	public boolean _isInsert = true;
 	public long _id = -1;
-
-	private TextBox tctAciklama;
 	private ListBox cbxGun;
 	public DecoratedTabPanel tabSaatGirisi;
 	private ListBox cbxBitisSaat;
@@ -25,6 +29,9 @@ public class DlgSaatGirisi extends DialogBox {
 	private ListBox cbxBaslangicDakika;
 	private ListBox cbxBaslangicSaat;
 	private Button btnKaydet;
+	private TextArea tctAciklama;
+	private Image image;
+	private Image image_1;
 
 	public DlgSaatGirisi(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -37,64 +44,52 @@ public class DlgSaatGirisi extends DialogBox {
 		tabSaatGirisi = new DecoratedTabPanel();
 		tabSaatGirisi.setAnimationEnabled(true);
 		setWidget(tabSaatGirisi);
-		tabSaatGirisi.setSize("351px", "256px");
+		tabSaatGirisi.setSize("523px", "455px");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		tabSaatGirisi.add(absolutePanel, "El İle Ekleme", false);
-		absolutePanel.setSize("550px", "400px");
-
-		Label lblBalangSaati = new Label("Başlangıç Saati");
-		lblBalangSaati.setStyleName("gwt-Bold");
-		absolutePanel.add(lblBalangSaati, 10, 30);
-
-		Label lblBitiSaati = new Label("Bitiş Saati");
-		lblBitiSaati.setStyleName("gwt-Bold");
-		absolutePanel.add(lblBitiSaati, 10, 72);
-		lblBitiSaati.setSize("91px", "18px");
-
-		Label lblGn = new Label("Gün");
-		lblGn.setStyleName("gwt-Bold");
-		absolutePanel.add(lblGn, 10, 112);
-
-		Label lblAklama = new Label("Açıklama");
-		lblAklama.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAklama, 10, 150);
-		lblAklama.setSize("54px", "18px");
+		absolutePanel.setSize("500px", "400px");
 
 		btnKaydet = new Button("Kaydet");
 		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		absolutePanel.add(btnKaydet, 237, 271);
+		absolutePanel.add(btnKaydet, 237, 295);
 		btnKaydet.setSize("78px", "43px");
 
 		Button btnKapat = new Button("Kapat");
 		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel.add(btnKapat, 333, 271);
+		absolutePanel.add(btnKapat, 321, 295);
 		btnKapat.setSize("78px", "43px");
 
-		cbxGun = new ListBox();
-		cbxGun.setStyleName("gwt-ComboBox1");
-		cbxGun.addItem("Pazartesi");
-		cbxGun.addItem("Salı");
-		cbxGun.addItem("Çarşamba");
-		cbxGun.addItem("Perşembe");
-		cbxGun.addItem("Cuma");
-		cbxGun.addItem("Cumartesi");
-		cbxGun.addItem("Pazar");
-		absolutePanel.add(cbxGun, 128, 108);
-		cbxGun.setSize("143px", "22px");
+		image = new Image("kaydet-1.png");
+		image.addMouseOverHandler(new ImageMouseOverHandler());
+		image.addMouseOutHandler(new ImageMouseOutHandler());
+		image.addClickHandler(new ImageClickHandler());
 
-		tctAciklama = new TextBox();
-		tctAciklama.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAciklama, 128, 150);
-		tctAciklama.setSize("143px", "14px");
+		absolutePanel.add(image, 312, 213);
+		image.setSize("72px", "66px");
+
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 390, 213);
+		image_1.setSize("72px", "66px");
+
+		FlexTable flexTable = new FlexTable();
+		absolutePanel.add(flexTable, 10, 10);
+		flexTable.setSize("342px", "165px");
+
+		Label lblBalangSaati = new Label("Başlangıç Saati");
+		flexTable.setWidget(0, 0, lblBalangSaati);
+		lblBalangSaati.setStyleName("gwt-Bold");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 126, 26);
+		flexTable.setWidget(0, 1, horizontalPanel);
 		horizontalPanel.setSize("184px", "24px");
 
 		cbxBaslangicSaat = new ListBox();
@@ -197,8 +192,13 @@ public class DlgSaatGirisi extends DialogBox {
 		horizontalPanel.add(cbxBaslangicDakika);
 		cbxBaslangicDakika.setSize("45px", "23px");
 
+		Label lblBitiSaati = new Label("Bitiş Saati");
+		flexTable.setWidget(1, 0, lblBitiSaati);
+		lblBitiSaati.setStyleName("gwt-Bold");
+		lblBitiSaati.setSize("91px", "18px");
+
 		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel_1, 128, 68);
+		flexTable.setWidget(1, 1, horizontalPanel_1);
 		horizontalPanel_1.setSize("184px", "24px");
 
 		cbxBitisSaat = new ListBox();
@@ -234,7 +234,7 @@ public class DlgSaatGirisi extends DialogBox {
 		Label label_1 = new Label(":");
 		label_1.setStyleName("gwt-Bold");
 		horizontalPanel_1.add(label_1);
-		label_1.setSize("5px", "16px");
+		label_1.setSize("6px", "16px");
 
 		cbxBitisDakika = new ListBox();
 		cbxBitisDakika.setStyleName("gwt-ComboBox1");
@@ -299,23 +299,40 @@ public class DlgSaatGirisi extends DialogBox {
 		cbxBitisDakika.addItem("58");
 		cbxBitisDakika.addItem("59");
 		horizontalPanel_1.add(cbxBitisDakika);
-		cbxBitisDakika.setSize("45px", "23px");
+		cbxBitisDakika.setSize("46px", "23px");
 
-		Image image = new Image("kaydet-1.png");
-		image.addClickHandler(new ImageClickHandler());
+		Label lblGn = new Label("Gün");
+		flexTable.setWidget(2, 0, lblGn);
+		lblGn.setStyleName("gwt-Bold");
 
-		absolutePanel.add(image, 237, 184);
-		image.setSize("72px", "66px");
+		cbxGun = new ListBox();
+		flexTable.setWidget(2, 1, cbxGun);
+		cbxGun.setStyleName("gwt-ComboBox1");
+		cbxGun.addItem("Pazartesi");
+		cbxGun.addItem("Salı");
+		cbxGun.addItem("Çarşamba");
+		cbxGun.addItem("Perşembe");
+		cbxGun.addItem("Cuma");
+		cbxGun.addItem("Cumartesi");
+		cbxGun.addItem("Pazar");
+		cbxGun.setSize("143px", "22px");
 
-		Image image_1 = new Image("kapat-1.png");
-		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutePanel.add(image_1, 325, 184);
-		image_1.setSize("72px", "66px");
+		Label lblAklama = new Label("Açıklama");
+		flexTable.setWidget(3, 0, lblAklama);
+		lblAklama.setStyleName("gwt-Bold");
+		lblAklama.setSize("54px", "18px");
+		flexTable.getCellFormatter().setVerticalAlignment(3, 0,
+				HasVerticalAlignment.ALIGN_TOP);
+
+		tctAciklama = new TextArea();
+		tctAciklama.setStyleName("gwt-TextAreaResible");
+		flexTable.setWidget(3, 1, tctAciklama);
+		tctAciklama.setSize("225px", "67px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
 		tabSaatGirisi.add(absolutePanel_1, "Kopyalama İşlemi", false);
-		absolutePanel_1.setSize("550px", "400px");
+		absolutePanel_1.setSize("500px", "400px");
 
 		Label lblKopyalanacakGn = new Label("Kopyalanacak Gün");
 		lblKopyalanacakGn.setStyleName("gwt-Bold");
@@ -411,6 +428,38 @@ public class DlgSaatGirisi extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
 		}
 	}
 }

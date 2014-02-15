@@ -22,10 +22,12 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class SinavTanimlama extends Composite {
@@ -39,21 +41,71 @@ public class SinavTanimlama extends Composite {
 	private DlgSinavTanimlama _dlgSinavTanimlama;
 	private Column<XMLSinavTanimlama, String> column_1;
 	private Column<XMLSinavTanimlama, String> column;
+	private HorizontalPanel horizontalPanel_3;
+	private Label lblSnavTanmlama;
 
 	public SinavTanimlama() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("780px", "750px");
+		absolutePanel.setSize("100%", "750px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		horizontalPanel_3 = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel_3);
+		verticalPanel.setCellHeight(horizontalPanel_3, "50");
+		horizontalPanel_3
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_3.setStyleName("gwt-LabelMor2");
+		horizontalPanel_3.setSize("100%", "33px");
+
+		lblSnavTanmlama = new Label("Sınav Tanımlama");
+		horizontalPanel_3.add(lblSnavTanmlama);
+		lblSnavTanmlama.setWidth("100%");
+
+		VerticalPanel horizontalPanel_1 = new VerticalPanel();
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1.setSpacing(15);
+		horizontalPanel_1.setSize("100%", "41px");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_1.add(horizontalPanel_2);
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		verticalPanel.setCellHeight(horizontalPanel_2, "30");
+		horizontalPanel_2.setSize("100%", "23px");
+
+		Label lblSnavTuru = new Label("Sınav Türü");
+		horizontalPanel_2.add(lblSnavTuru);
+		horizontalPanel_2.setCellWidth(lblSnavTuru, "30");
+		lblSnavTuru.setWidth("80px");
+		lblSnavTuru.setStyleName("gwt-Bold");
+
+		cbxSinavTuru = new ListBox();
+		horizontalPanel_2.add(cbxSinavTuru);
+		cbxSinavTuru.setStyleName("gwt-ComboBox1");
+		cbxSinavTuru.addItem(" ");
+		cbxSinavTuru.setSize("153px", "24px");
+
+		btnYeniKayit = new Button("Yeni Kayıt");
+		horizontalPanel_1.add(btnYeniKayit);
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
+		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
+		btnYeniKayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 20, 137);
-		horizontalPanel.setSize("727px", "156px");
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSpacing(10);
+		horizontalPanel.setSize("100%", "156px");
 
 		grdSinavTanimlama = new CellTable<XMLSinavTanimlama>();
 		horizontalPanel.add(grdSinavTanimlama);
-		grdSinavTanimlama.setSize("737px", "124px");
+		grdSinavTanimlama.setSize("100%", "100%");
 
 		textColumn_3 = new TextColumn<XMLSinavTanimlama>() {
 			@Override
@@ -103,23 +155,6 @@ public class SinavTanimlama extends Composite {
 		};
 		grdSinavTanimlama.addColumn(column_1, "Sil");
 		grdSinavTanimlama.setColumnWidth(column_1, "101px");
-
-		btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 588, 42);
-		btnYeniKayit.setSize("85px", "56px");
-
-		Label lblSnavTuru = new Label("Sınav Türü");
-		lblSnavTuru.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSnavTuru, 32, 37);
-
-		cbxSinavTuru = new ListBox();
-		cbxSinavTuru.setStyleName("gwt-ComboBox1");
-		cbxSinavTuru.addItem(" ");
-		absolutePanel.add(cbxSinavTuru, 115, 37);
-		cbxSinavTuru.setSize("153px", "24px");
 
 		if (!isDesignTime()) {
 

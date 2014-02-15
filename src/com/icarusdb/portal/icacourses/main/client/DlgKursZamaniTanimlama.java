@@ -2,6 +2,10 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -16,9 +20,10 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 
 	private TextBox tctKursZamani;
 	private Button btnKaydet;
+	private Image image;
+	private Image image_1;
 
 	public DlgKursZamaniTanimlama(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -29,21 +34,15 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("562px", "414px");
-
-		Label lblKursZamanIlemleri = new Label(
-				"Kurs Zamanı İşlemleri (Ekleme / Düzenleme)");
-		lblKursZamanIlemleri.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblKursZamanIlemleri, 0, 0);
-		lblKursZamanIlemleri.setSize("572px", "28px");
+		absolutePanel.setSize("546px", "404px");
 
 		Label lblKursZaman = new Label("Kurs Zamanı");
 		lblKursZaman.setStyleName("gwt-Bold");
-		absolutePanel.add(lblKursZaman, 10, 47);
+		absolutePanel.add(lblKursZaman, 10, 13);
 
 		tctKursZamani = new TextBox();
 		tctKursZamani.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctKursZamani, 126, 44);
+		absolutePanel.add(tctKursZamani, 126, 10);
 		tctKursZamani.setSize("143px", "17px");
 
 		btnKaydet = new Button("New button");
@@ -66,17 +65,21 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 		btnYeniKaydet.addClickHandler(new BtnYeniKaydetClickHandler());
 		btnYeniKaydet.setStyleName("gwt-ButonYeniKayit");
 		btnYeniKaydet.setText("");
-		absolutePanel.add(btnYeniKaydet, 222, 109);
-		btnYeniKaydet.setSize("78px", "66px");
+		absolutePanel.add(btnYeniKaydet, 250, 63);
+		btnYeniKaydet.setSize("86px", "66px");
 
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		image.addMouseOutHandler(new ImageMouseOutHandler());
+		image.addMouseOverHandler(new ImageMouseOverHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 314, 109);
+		absolutePanel.add(image, 342, 63);
 		image.setSize("72px", "66px");
 
-		Image image_1 = new Image("kapat-1.png");
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutePanel.add(image_1, 402, 109);
+		absolutePanel.add(image_1, 420, 63);
 		image_1.setSize("72px", "66px");
 	}
 
@@ -121,6 +124,38 @@ public class DlgKursZamaniTanimlama extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
 		}
 	}
 }

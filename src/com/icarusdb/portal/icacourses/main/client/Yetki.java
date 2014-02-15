@@ -8,7 +8,10 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class Yetki extends Composite {
 
@@ -17,26 +20,39 @@ public class Yetki extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("796px", "461px");
+		absolutePanel.setSize("100%", "750px");
 
-		Button button = new Button("Listeyi Yenile");
-		button.setStyleName("gwt-ButtonListeyiYenile");
-		absolutePanel.add(button, 565, 35);
-		button.setSize("78px", "48px");
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "50");
+		horizontalPanel_2.setSize("100%", "33px");
+
+		Label lblYetki = new Label("Kullanıcı Tanımlama");
+		horizontalPanel_2.add(lblYetki);
+		lblYetki.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1.setSpacing(15);
+		horizontalPanel_1.setSize("100%", "44px");
 
 		Button button_1 = new Button("Yeni Kayıt");
-		button_1.setStyleName("gwt-ButonYeniKayit");
-		absolutePanel.add(button_1, 470, 35);
-		button_1.setSize("78px", "48px");
-
-		Button button_2 = new Button("Excel'e Aktar");
-		button_2.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(button_2, 654, 35);
-		button_2.setSize("78px", "48px");
+		horizontalPanel_1.add(button_1);
+		button_1.setStyleName("gwt-YeniKayit2");
+		button_1.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 146);
-		horizontalPanel.setSize("774px", "75px");
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSpacing(10);
+		horizontalPanel.setSize("100%", "75px");
 
 		CellTable<Object> cellTable = new CellTable<Object>();
 		horizontalPanel.add(cellTable);
@@ -82,5 +98,4 @@ public class Yetki extends Composite {
 		};
 		cellTable.addColumn(column, "İşlemler");
 	}
-
 }

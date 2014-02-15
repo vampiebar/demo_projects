@@ -4,24 +4,19 @@ import java.util.Date;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.NumberCell;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.RequestBuilder;
-import com.google.gwt.http.client.RequestCallback;
-import com.google.gwt.http.client.RequestException;
-import com.google.gwt.http.client.Response;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
 
@@ -35,37 +30,67 @@ public class AtanmisOdevler extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("628px", "579px");
+		absolutePanel.setSize("100%", "750px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		horizontalPanel_1
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_1.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "50");
+		horizontalPanel_1.setSize("100%", "33px");
+
+		Label lblAtanmdevler = new Label("Atanmış Ödevler");
+		horizontalPanel_1.add(lblAtanmdevler);
+		lblAtanmdevler.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "30");
+		horizontalPanel_2.setWidth("100%");
+
+		Label lblNewLabel = new Label("");
+		horizontalPanel_2.add(lblNewLabel);
+		lblNewLabel.setWidth("12px");
+
+		FlexTable flexTable = new FlexTable();
+		horizontalPanel_2.add(flexTable);
+		flexTable.setSize("100px", "100px");
 
 		Label lblBalangTarihi = new Label("Başlangıç Tarihi");
+		flexTable.setWidget(0, 0, lblBalangTarihi);
 		lblBalangTarihi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblBalangTarihi, 10, 24);
-
-		Label lblBitiTarihi = new Label("Bitiş Tarihi");
-		lblBitiTarihi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblBitiTarihi, 10, 59);
 
 		dtpBaslangicTarihi = new DateBox();
+		flexTable.setWidget(0, 1, dtpBaslangicTarihi);
 		dtpBaslangicTarihi
 				.addValueChangeHandler(new DtpBaslangicTarihiValueChangeHandler());
 		dtpBaslangicTarihi.setStyleName("gwt-TextBox1");
 		dtpBaslangicTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getShortDateTimeFormat()));
-		absolutePanel.add(dtpBaslangicTarihi, 128, 24);
 		dtpBaslangicTarihi.setSize("143px", "16px");
 
+		Label lblBitiTarihi = new Label("Bitiş Tarihi");
+		flexTable.setWidget(1, 0, lblBitiTarihi);
+		lblBitiTarihi.setStyleName("gwt-Bold");
+
 		dtpBitisTarihi = new DateBox();
+		flexTable.setWidget(1, 1, dtpBitisTarihi);
 		dtpBitisTarihi
 				.addValueChangeHandler(new DtpBitisTarihiValueChangeHandler());
 		dtpBitisTarihi.setStyleName("gwt-TextBox1");
 		dtpBitisTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getShortDateTimeFormat()));
-		absolutePanel.add(dtpBitisTarihi, 128, 55);
 		dtpBitisTarihi.setSize("143px", "16px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 109);
-		horizontalPanel.setSize("608px", "183px");
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSpacing(10);
+		horizontalPanel.setSize("100%", "183px");
 
 		grdAtanmisOdevler = new CellTable<Object>();
 		horizontalPanel.add(grdAtanmisOdevler);
@@ -96,62 +121,6 @@ public class AtanmisOdevler extends Composite {
 			}
 		};
 		grdAtanmisOdevler.addColumn(column_1, "");
-
-		Button btnAra = new Button("ARA");
-		btnAra.setText("");
-		btnAra.setStyleName("gwt-ButtonAra");
-		btnAra.addClickHandler(new BtnAraClickHandler());
-		absolutePanel.add(btnAra, 434, 24);
-		btnAra.setSize("93px", "70px");
-	}
-
-	private class BtnAraClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-
-			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-					Util.urlBase + "getatanmisodevler");
-
-			try {
-				Request request = builder.sendRequest(null,
-						new RequestCallback() {
-							public void onError(Request request,
-									Throwable exception) {
-
-							}
-
-							@Override
-							public void onResponseReceived(Request request,
-									Response response) {
-
-								// Window.alert("AAABBBCCC " +
-								// response.getText());
-
-								XMLAtanmisODevler xmlAtanmisODevler = XMLAtanmisODevler.XML
-										.read(response.getText());
-
-								// lblNewLabel
-								// .setText(xmlAtanmisODevler.baslangic_tarihi);
-								// Set the total row count. This isn't strictly
-								// necessary, but it affects
-								// paging calculations, so its good habit to
-								// keep the row count up to date.
-								// grdAtanmisOdevler.setRowCount(1, true);
-
-								// Push the data into the widget.
-								// grdAtanmisOdevler.setRowData(0,
-								// list);
-
-							}
-
-						});
-
-			} catch (RequestException e) {
-				// displayError("Couldn't retrieve JSON");
-
-				// Window.alert(e.getMessage() + "ERROR");
-			}
-
-		}
 	}
 
 	private class DtpBaslangicTarihiValueChangeHandler implements

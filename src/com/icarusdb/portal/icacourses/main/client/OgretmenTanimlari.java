@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.FieldUpdater;
-import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -22,32 +21,62 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class OgretmenTanimlari extends Composite {
 	private CellTable<XMLOgretmenTanimlari> grdOgretmenTanimlari;
 	private DlgOgretmenTanimlari _dlgOgretmenTanimlari;
+	private CheckBox chxPasifOgretmenler;
 
 	public OgretmenTanimlari() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("797px", "453px");
+		absolutePanel.setSize("100%", "453px");
+
+		VerticalPanel verticalPanel_1 = new VerticalPanel();
+		absolutePanel.add(verticalPanel_1, 0, 0);
+		verticalPanel_1.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		horizontalPanel_1
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_1.setStyleName("gwt-LabelMor2");
+		verticalPanel_1.add(horizontalPanel_1);
+		verticalPanel_1.setCellHeight(horizontalPanel_1, "50");
+		horizontalPanel_1.setSize("100%", "33px");
+
+		Label lblretmenTanmlar = new Label("Öğretmen Tanımları");
+		horizontalPanel_1.add(lblretmenTanmlar);
+		lblretmenTanmlar.setWidth("100%");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		verticalPanel_1.add(verticalPanel);
+		verticalPanel_1.setCellHeight(verticalPanel, "30");
+		verticalPanel.setSpacing(15);
+		verticalPanel.setSize("100%", "100px");
+
+		chxPasifOgretmenler = new CheckBox("Pasif Ogretmenleri Göster");
+		verticalPanel.add(chxPasifOgretmenler);
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
+		verticalPanel.add(btnYeniKayit);
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 450, 62);
-		btnYeniKayit.setSize("91px", "70px");
+		btnYeniKayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 189);
-		horizontalPanel.setSize("774px", "75px");
+		verticalPanel_1.add(horizontalPanel);
+		horizontalPanel.setSpacing(10);
+		horizontalPanel.setSize("100%", "75px");
 
 		grdOgretmenTanimlari = new CellTable<XMLOgretmenTanimlari>();
 		horizontalPanel.add(grdOgretmenTanimlari);
@@ -59,17 +88,7 @@ public class OgretmenTanimlari extends Composite {
 				return object.id.toString();
 			}
 		};
-		grdOgretmenTanimlari.addColumn(textColumn_1, "İD");
-		grdOgretmenTanimlari.setColumnWidth(textColumn_1, "19px");
-
-		Column<XMLOgretmenTanimlari, ?> column_6 = new Column<XMLOgretmenTanimlari, Number>(
-				new NumberCell()) {
-			@Override
-			public Number getValue(XMLOgretmenTanimlari object) {
-				return (Number) null;
-			}
-		};
-		grdOgretmenTanimlari.addColumn(column_6, "Öğretmen Özel No");
+		grdOgretmenTanimlari.addColumn(textColumn_1, "Öğretmen Özel No");
 
 		TextColumn<XMLOgretmenTanimlari> column_2 = new TextColumn<XMLOgretmenTanimlari>() {
 			@Override
@@ -120,6 +139,8 @@ public class OgretmenTanimlari extends Composite {
 			}
 		};
 		grdOgretmenTanimlari.addColumn(column_1, "Sil");
+		chxPasifOgretmenler
+				.addClickHandler(new ChxPasifOgretmenlerClickHandler());
 
 		if (!isDesignTime()) {
 
@@ -307,7 +328,7 @@ public class OgretmenTanimlari extends Composite {
 	private void putDataToGrid() {
 
 		String urlWithParameters = Util.urlBase
-				+ "getogretmentanimlari?kayit_silinsin_mi=FALSE";
+				+ "getogretmentanimlari?durum=TRUE";
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				urlWithParameters);
@@ -376,6 +397,116 @@ public class OgretmenTanimlari extends Composite {
 
 						}
 					});
+
+		}
+	}
+
+	private class ChxPasifOgretmenlerClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			if (chxPasifOgretmenler.getValue() == true) {
+
+				String urlWithParameters = Util.urlBase
+						+ "getogretmentanimlari?durum=FALSE";
+
+				RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+						urlWithParameters);
+
+				// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+				try {
+					Request request = builder.sendRequest(null,
+							new RequestCallback() {
+								public void onError(Request request,
+										Throwable exception) {
+
+								}
+
+								@Override
+								public void onResponseReceived(Request request,
+										Response response) {
+
+									// Window.alert("AAABBBCCC " +
+									// response.getText());
+
+									List<XMLOgretmenTanimlari> listXmlOgretmenTanimlari = XMLOgretmenTanimlari.XML
+											.readList(response.getText());
+
+									// Window.alert("gun: " +
+									// listXmlSaatGirisi.get(0).gun);
+
+									// Set the total row count. This isn't
+									// strictly
+									// necessary, but it affects
+									// paging calculations, so its good habit to
+									// keep the row count up to date.
+									grdOgretmenTanimlari.setRowCount(1, true);
+
+									// Push the data into the widget.
+									grdOgretmenTanimlari.setRowData(0,
+											listXmlOgretmenTanimlari);
+
+								}
+
+							});
+
+				} catch (RequestException e) {
+					// displayError("Couldn't retrieve JSON");
+
+					// Window.alert(e.getMessage() + "ERROR");
+				}
+
+			} else {
+
+				String urlWithParameters = Util.urlBase
+						+ "getogretmentanimlari?durum=TRUE";
+
+				RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+						urlWithParameters);
+
+				// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+				try {
+					Request request = builder.sendRequest(null,
+							new RequestCallback() {
+								public void onError(Request request,
+										Throwable exception) {
+
+								}
+
+								@Override
+								public void onResponseReceived(Request request,
+										Response response) {
+
+									// Window.alert("AAABBBCCC " +
+									// response.getText());
+
+									List<XMLOgretmenTanimlari> listXmlOgretmenTanimlari = XMLOgretmenTanimlari.XML
+											.readList(response.getText());
+
+									// Window.alert("gun: " +
+									// listXmlSaatGirisi.get(0).gun);
+
+									// Set the total row count. This isn't
+									// strictly
+									// necessary, but it affects
+									// paging calculations, so its good habit to
+									// keep the row count up to date.
+									grdOgretmenTanimlari.setRowCount(1, true);
+
+									// Push the data into the widget.
+									grdOgretmenTanimlari.setRowData(0,
+											listXmlOgretmenTanimlari);
+
+								}
+
+							});
+
+				} catch (RequestException e) {
+					// displayError("Couldn't retrieve JSON");
+
+					// Window.alert(e.getMessage() + "ERROR");
+				}
+			}
 
 		}
 	}

@@ -6,6 +6,12 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -31,6 +37,8 @@ public class DlgHizmetTanimla extends DialogBox {
 	private ListBox cbxGuzergah;
 	private Label lblGuzergah;
 	private Button btnKaydet;
+	private Image image_1;
+	private Image image;
 
 	public DlgHizmetTanimla(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -43,18 +51,13 @@ public class DlgHizmetTanimla extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("590px", "446px");
-
-		Label lblNewLabel = new Label("Hizmet İşlemleri (Ekleme / Düzenleme)");
-		lblNewLabel.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblNewLabel, 0, 0);
-		lblNewLabel.setSize("100%", "28px");
+		absolutePanel.setSize("582px", "404px");
 
 		Button btnYeniKayit = new Button("New button");
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit.setText("Yeni Kayıt");
-		absolutePanel.add(btnYeniKayit, 258, 196);
-		btnYeniKayit.setSize("78px", "66px");
+		btnYeniKayit.setText("");
+		absolutePanel.add(btnYeniKayit, 276, 139);
+		btnYeniKayit.setSize("90px", "66px");
 
 		btnKaydet = new Button("");
 		btnKaydet.setVisible(false);
@@ -73,8 +76,8 @@ public class DlgHizmetTanimla extends DialogBox {
 		btnKapat.setSize("78px", "45px");
 
 		FlexTable flexTable = new FlexTable();
-		absolutePanel.add(flexTable, 10, 46);
-		flexTable.setSize("345px", "144px");
+		absolutePanel.add(flexTable, 0, 0);
+		flexTable.setSize("316px", "104px");
 
 		Label lblHizmetAd = new Label("Hizmet Adı");
 		flexTable.setWidget(0, 0, lblHizmetAd);
@@ -116,19 +119,24 @@ public class DlgHizmetTanimla extends DialogBox {
 		lblBirimFiyat.setSize("81px", "18px");
 
 		tctBirimFiyati = new TextBox();
+		tctBirimFiyati.addKeyPressHandler(new TctBirimFiyatiKeyPressHandler());
 		flexTable.setWidget(3, 1, tctBirimFiyati);
 		tctBirimFiyati.setStyleName("gwt-TextBox1");
 		tctBirimFiyati.setSize("149px", "15px");
 
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		image.addMouseOutHandler(new ImageMouseOutHandler());
+		image.addMouseOverHandler(new ImageMouseOverHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 342, 196);
+		absolutePanel.add(image, 372, 139);
 		image.setSize("72px", "66px");
 
-		Image image_1 = new Image("kapat-1.png");
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
 		image_1.setAltText("aedasda");
-		absolutePanel.add(image_1, 421, 196);
+		absolutePanel.add(image_1, 447, 139);
 		image_1.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
@@ -248,6 +256,54 @@ public class DlgHizmetTanimla extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
+		}
+	}
+
+	private class TctBirimFiyatiKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctBirimFiyati.getText();
+			if (!input.matches("[0-9]*")) {
+				tctBirimFiyati.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctBirimFiyati.setStyleName("gwt-TextBox1");
+
 		}
 	}
 }

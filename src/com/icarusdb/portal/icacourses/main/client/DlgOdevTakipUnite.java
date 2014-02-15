@@ -6,6 +6,10 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -14,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -28,9 +33,10 @@ public class DlgOdevTakipUnite extends DialogBox {
 	public boolean _isInsert = true;
 	public long _id = -1;
 	private Button btnKaydet;
+	private Image image;
+	private Image image_1;
 
 	public DlgOdevTakipUnite(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -41,83 +47,85 @@ public class DlgOdevTakipUnite extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("562px", "460px");
-
-		Label lbldevTakipnite = new Label(
-				"Ödev Takip Ünite İşlemleri (Ekleme / Düzenleme)");
-		lbldevTakipnite.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lbldevTakipnite, 0, 0);
-		lbldevTakipnite.setSize("562px", "28px");
-
-		Label lblEitimTr = new Label("Eğitim Türü");
-		lblEitimTr.setStyleName("gwt-Bold");
-		absolutePanel.add(lblEitimTr, 10, 51);
-		lblEitimTr.setSize("102px", "16px");
-
-		Label lblAlan = new Label("Alan");
-		lblAlan.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAlan, 10, 90);
-		lblAlan.setSize("41px", "16px");
-
-		Label lblDers = new Label("Ders");
-		lblDers.setStyleName("gwt-Bold");
-		absolutePanel.add(lblDers, 10, 135);
-		lblDers.setSize("41px", "16px");
-
-		Label lblnite = new Label("Ünite");
-		lblnite.setStyleName("gwt-Bold");
-		absolutePanel.add(lblnite, 10, 174);
-		lblnite.setSize("65px", "16px");
-
-		cbxEgitimTuru = new ListBox();
-		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
-		cbxEgitimTuru.addItem(" ");
-		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxEgitimTuru, 118, 45);
-		cbxEgitimTuru.setSize("163px", "22px");
-
-		cbxAlan = new ListBox();
-		cbxAlan.addChangeHandler(new CbxAlanChangeHandler());
-
-		cbxAlan.addItem(" ");
-		cbxAlan.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxAlan, 118, 86);
-		cbxAlan.setSize("163px", "22px");
-
-		cbxDers = new ListBox();
-		cbxDers.addItem(" ");
-		cbxDers.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxDers, 118, 131);
-		cbxDers.setSize("163px", "22px");
-
-		tctUnite = new TextBox();
-		tctUnite.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctUnite, 118, 170);
-		tctUnite.setSize("161px", "16px");
+		absolutePanel.setSize("542px", "406px");
 
 		btnKaydet = new Button("Kaydet");
 		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		absolutePanel.add(btnKaydet, 216, 322);
+		absolutePanel.add(btnKaydet, 39, 143);
 		btnKaydet.setSize("78px", "43px");
 
 		Button btnKapat = new Button("Kapat");
 		btnKapat.setVisible(false);
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel.add(btnKapat, 308, 322);
+		absolutePanel.add(btnKapat, 131, 143);
 		btnKapat.setSize("78px", "43px");
 
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		image.addMouseOverHandler(new ImageMouseOverHandler());
+		image.addMouseOutHandler(new ImageMouseOutHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 227, 222);
+		absolutePanel.add(image, 285, 134);
 		image.setSize("72px", "66px");
 
-		Image image_1 = new Image("kapat-1.png");
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutePanel.add(image_1, 315, 222);
+		absolutePanel.add(image_1, 363, 134);
 		image_1.setSize("72px", "66px");
+
+		FlexTable flexTable = new FlexTable();
+		absolutePanel.add(flexTable, 0, 0);
+		flexTable.setSize("275px", "50px");
+
+		Label lblEitimTr = new Label("Eğitim Türü");
+		flexTable.setWidget(0, 0, lblEitimTr);
+		lblEitimTr.setStyleName("gwt-Bold");
+		lblEitimTr.setSize("102px", "16px");
+
+		cbxEgitimTuru = new ListBox();
+		flexTable.setWidget(0, 1, cbxEgitimTuru);
+		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
+		cbxEgitimTuru.addItem(" ");
+		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
+		cbxEgitimTuru.setSize("163px", "22px");
+
+		Label lblAlan = new Label("Alan");
+		flexTable.setWidget(1, 0, lblAlan);
+		lblAlan.setStyleName("gwt-Bold");
+		lblAlan.setSize("41px", "16px");
+
+		cbxAlan = new ListBox();
+		flexTable.setWidget(1, 1, cbxAlan);
+		cbxAlan.addChangeHandler(new CbxAlanChangeHandler());
+
+		cbxAlan.addItem(" ");
+		cbxAlan.setStyleName("gwt-ComboBox1");
+		cbxAlan.setSize("163px", "22px");
+
+		Label lblDers = new Label("Ders");
+		flexTable.setWidget(2, 0, lblDers);
+		lblDers.setStyleName("gwt-Bold");
+		lblDers.setSize("41px", "16px");
+
+		cbxDers = new ListBox();
+		flexTable.setWidget(2, 1, cbxDers);
+		cbxDers.addItem(" ");
+		cbxDers.setStyleName("gwt-ComboBox1");
+		cbxDers.setSize("163px", "22px");
+
+		Label lblnite = new Label("Ünite");
+		flexTable.setWidget(3, 0, lblnite);
+		lblnite.setStyleName("gwt-Bold");
+		lblnite.setSize("65px", "16px");
+
+		tctUnite = new TextBox();
+		flexTable.setWidget(3, 1, tctUnite);
+		tctUnite.setStyleName("gwt-TextBox1");
+		tctUnite.setSize("161px", "16px");
 
 		if (!isDesignTime()) {
 
@@ -324,6 +332,38 @@ public class DlgOdevTakipUnite extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
 		}
 	}
 }

@@ -6,6 +6,10 @@ import com.axeiya.gwtckeditor.client.CKConfig;
 import com.axeiya.gwtckeditor.client.CKEditor;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -15,9 +19,12 @@ import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class SozlesmeMaddeleri extends Composite {
 	public boolean _isInsert = true;
@@ -26,6 +33,7 @@ public class SozlesmeMaddeleri extends Composite {
 
 	public CKEditor ckhtmlSozlesmeMaddeleri;
 	private Button btnKaydet;
+	private Image image;
 
 	public SozlesmeMaddeleri(boolean isInsert, long id) {
 
@@ -35,36 +43,63 @@ public class SozlesmeMaddeleri extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("813px", "750px");
+		absolutePanel.setSize("100%", "750px");
+
+		VerticalPanel verticalPanel_1 = new VerticalPanel();
+		absolutePanel.add(verticalPanel_1, 0, 0);
+		verticalPanel_1.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		horizontalPanel_1
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_1.setStyleName("gwt-LabelMor2");
+		verticalPanel_1.add(horizontalPanel_1);
+		verticalPanel_1.setCellHeight(horizontalPanel_1, "50");
+		horizontalPanel_1.setSize("100%", "33px");
 
 		Label lblKesinKaytSzleme = new Label(
 				"Kesin Kayıt Sözleşme Maddeleri (Düzenleme)");
-		lblKesinKaytSzleme.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblKesinKaytSzleme, 0, 10);
-		lblKesinKaytSzleme.setSize("813px", "32px");
+		horizontalPanel_1.add(lblKesinKaytSzleme);
+		lblKesinKaytSzleme.setWidth("100%");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		verticalPanel_1.add(verticalPanel);
+		verticalPanel.setSize("100px", "100px");
 
 		Label lblMteriSzlemeMaddeleri = new Label("Müşteri Sözleşme Maddeleri");
+		verticalPanel.add(lblMteriSzlemeMaddeleri);
+		lblMteriSzlemeMaddeleri.setWidth("100%");
+		verticalPanel.setCellHeight(lblMteriSzlemeMaddeleri, "25");
 		lblMteriSzlemeMaddeleri.setStyleName("gwt-Bold");
-		absolutePanel.add(lblMteriSzlemeMaddeleri, 43, 60);
 
 		Label lblSzlemeMaddelri = new Label("Sözleşme Maddeleri\r\n");
+		verticalPanel.add(lblSzlemeMaddelri);
+		lblSzlemeMaddelri.setWidth("100%");
+		verticalPanel.setCellHeight(lblSzlemeMaddelri, "25");
 		lblSzlemeMaddelri.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSzlemeMaddelri, 43, 92);
+
+		smpanHtmlEditor = new SimplePanel();
+		verticalPanel.add(smpanHtmlEditor);
+		smpanHtmlEditor.setSize("760px", "414px");
+
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setWidth("100%");
 
 		btnKaydet = new Button("New button");
+		btnKaydet.setVisible(false);
+		horizontalPanel.add(btnKaydet);
+		horizontalPanel.setCellWidth(btnKaydet, "600");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 520, 541);
 		btnKaydet.setSize("69px", "36px");
 
-		smpanHtmlEditor = new SimplePanel();
-		absolutePanel.add(smpanHtmlEditor, 43, 110);
-		smpanHtmlEditor.setSize("760px", "414px");
-
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		horizontalPanel.add(image);
+		image.addMouseOutHandler(new ImageMouseOutHandler());
+		image.addMouseOverHandler(new ImageMouseOverHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 629, 530);
 		image.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
@@ -154,6 +189,22 @@ public class SozlesmeMaddeleri extends Composite {
 	private class ImageClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			btnKaydet.click();
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
 		}
 	}
 }

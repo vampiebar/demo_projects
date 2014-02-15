@@ -15,12 +15,14 @@
 package com.icarusdb.portal.icacourses.main.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedStackPanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -30,6 +32,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.StackLayoutPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
@@ -51,15 +54,22 @@ public class Main implements EntryPoint {
 	private Label btnMenuSinifTanimlari;
 	private Label btnEgitimTurutanimlama;
 	private Image ImgLogo;
+	private VerticalPanel verticalPanel;
 
 	public void onModuleLoad() {
 		RootPanel rootPanel = RootPanel.get();
+		rootPanel.setWidth("");
 		rootPanel.setStyleName("gwt-DialogBackGround");
+		MenuBar menuBar_1 = new MenuBar(true);
+
+		VerticalPanel verticalPanel_1 = new VerticalPanel();
+		rootPanel.add(verticalPanel_1);
+		verticalPanel_1.setWidth("100%");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		verticalPanel_1.add(horizontalPanel);
 		horizontalPanel.setBorderWidth(0);
 		horizontalPanel.setStyleName("gwt-HzPan");
-		rootPanel.add(horizontalPanel, 0, 0);
 		horizontalPanel.setSize("100%", "89px");
 
 		AbsolutePanel horizontalPanel_2 = new AbsolutePanel();
@@ -80,31 +90,40 @@ public class Main implements EntryPoint {
 				HasHorizontalAlignment.ALIGN_RIGHT);
 		horizontalPanel_1.setSize("635px", "29px");
 
-		VerticalPanel verticalPanel = new VerticalPanel();
-		verticalPanel.setStyleName("gwt-DialogBackGround");
-		verticalPanel.setSpacing(10);
-		rootPanel.add(verticalPanel, 10, 96);
-		verticalPanel.setSize("274px", "493px");
+		HorizontalPanel horizontalPanel_3 = new HorizontalPanel();
+		verticalPanel_1.add(horizontalPanel_3);
+		horizontalPanel_3.setWidth("100%");
+
+		verticalPanel = new VerticalPanel();
+		horizontalPanel_3.add(verticalPanel);
+		horizontalPanel_3.setCellWidth(verticalPanel, "245px");
+		verticalPanel.setSize("245px", "493px");
+
+		HorizontalPanel verticalPanel_2 = new HorizontalPanel();
+		verticalPanel_2.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		verticalPanel_2.setStyleName("gwt-LabelMor");
+		verticalPanel.add(verticalPanel_2);
+		verticalPanel.setCellHeight(verticalPanel_2, "33px");
+		verticalPanel_2.setSize("244px", "32px");
 
 		Label lblEitimDnemi = new Label("Eğitim Dönemi:");
-		lblEitimDnemi.setStyleName("gwt-Bold");
-		verticalPanel.add(lblEitimDnemi);
-		verticalPanel.setCellHeight(lblEitimDnemi, "10");
+		verticalPanel_2.add(lblEitimDnemi);
+		lblEitimDnemi.setWidth("125px");
 
 		ListBox comboBox = new ListBox();
-		comboBox.setStyleName("gwt-ComboBox1");
+		verticalPanel_2.add(comboBox);
 		comboBox.addItem("2013/2014");
 		comboBox.addItem("2014/2015");
+		comboBox.setStyleName("gwt-ComboBox1");
 		comboBox.setVisibleItemCount(1);
-		verticalPanel.add(comboBox);
 		verticalPanel.setCellHeight(comboBox, "10");
-		comboBox.setSize("254px", "26px");
+		comboBox.setSize("97px", "21px");
 
 		DecoratedStackPanel decoratedStackPanel = new DecoratedStackPanel();
 		decoratedStackPanel.setStylePrimaryName("gwt-StackPanel");
 		decoratedStackPanel.setStyleName("gwt-StackPanel");
 		verticalPanel.add(decoratedStackPanel);
-		decoratedStackPanel.setSize("254px", "296px");
+		decoratedStackPanel.setSize("245px", "296px");
 
 		vtpanKayitIslemleri = new VerticalPanel();
 		vtpanKayitIslemleri.setSpacing(2);
@@ -495,6 +514,8 @@ public class Main implements EntryPoint {
 
 		Label lblServisTanimlama = new Label("Servis Tanimlama");
 		lblServisTanimlama
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		lblServisTanimlama
 				.addClickHandler(new LblServisTanimlamaClickHandler());
 		lblServisTanimlama.setStyleName("gwt-MenuButton");
 		vtpanSabitTanimlamalar.add(lblServisTanimlama);
@@ -543,17 +564,300 @@ public class Main implements EntryPoint {
 		btnMenuKullaniciTanimlama.setStyleName("gwt-MenuButton");
 		vtpanYetki.add(btnMenuKullaniciTanimlama);
 		btnMenuKullaniciTanimlama.setSize("100%", "25px");
-		MenuBar menuBar_1 = new MenuBar(true);
 
 		smpanMain = new SimplePanel();
-		rootPanel.add(smpanMain, 285, 95);
-		smpanMain.setSize("1007px", "674px");
+		horizontalPanel_3.add(smpanMain);
+		horizontalPanel_3.setCellWidth(smpanMain, "0");
+		smpanMain.setSize("100%", "674px");
 
-		Label lblDer = new Label("Dershane Yönetim Sistemi");
-		smpanMain.setWidget(lblDer);
-		lblDer.setSize("165px", "34px");
-		lblDer.setStylePrimaryName("gwt-LabelNew");
-		lblDer.setStyleName("body");
+		HorizontalPanel horizontalPanel_4 = new HorizontalPanel();
+		horizontalPanel_4
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_4.setStyleName("gwt-LabelMor2");
+		smpanMain.setWidget(horizontalPanel_4);
+		horizontalPanel_4.setSize("100%", "33px");
+
+		Label lblDershaneYnetimSistemi = new Label("Dershane Yönetim Sistemi");
+		horizontalPanel_4.add(lblDershaneYnetimSistemi);
+		lblDershaneYnetimSistemi.setWidth("100%");
+
+		VerticalPanel verticalPanel_3 = new VerticalPanel();
+		horizontalPanel_3.add(verticalPanel_3);
+		horizontalPanel_3.setCellWidth(verticalPanel_3, "30");
+		verticalPanel_3.setSize("247px", "547px");
+
+		StackLayoutPanel stackLayoutPanel = new StackLayoutPanel(Unit.EM);
+		stackLayoutPanel.setVisible(true);
+
+		VerticalPanel verticalPanel_4 = new VerticalPanel();
+		verticalPanel_4.setSpacing(2);
+		stackLayoutPanel.add(verticalPanel_4, new HTML("KAYIT İŞLEMLERİ"), 2.4);
+		verticalPanel_4.setSize("100%", "89px");
+
+		Label lblNewLabel = new Label("DBS Kayıt");
+		lblNewLabel.setStyleName("gwt-MenuButton");
+		lblNewLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_4.add(lblNewLabel);
+		lblNewLabel.setSize("100%", "25px");
+
+		Label lblNewLabel_2 = new Label("Ön Kayıt");
+		lblNewLabel_2.setStyleName("gwt-MenuButton");
+		lblNewLabel_2
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_4.add(lblNewLabel_2);
+		lblNewLabel_2.setSize("100%", "25px");
+
+		Label lblNewLabel_3 = new Label("Kesin Kayıt");
+		lblNewLabel_3.setStyleName("gwt-MenuButton");
+		lblNewLabel_3
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_4.add(lblNewLabel_3);
+		lblNewLabel_3.setSize("100%", "25px");
+
+		VerticalPanel lblNewLabel_1 = new VerticalPanel();
+		lblNewLabel_1.setSpacing(2);
+		stackLayoutPanel.add(lblNewLabel_1, new HTML("ÖĞRENCİ İŞLERİ"), 2.0);
+		lblNewLabel_1.setSize("100%", "100%");
+
+		Label lblNewLabel_4 = new Label("Öğrenci Kayıtları");
+		lblNewLabel_4.setStyleName("gwt-MenuButton");
+		lblNewLabel_4
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		lblNewLabel_1.add(lblNewLabel_4);
+		lblNewLabel_4.setSize("100%", "25px");
+
+		Label lblNewLabel_5 = new Label("Raporlar");
+		lblNewLabel_5.setStyleName("gwt-MenuButton");
+		lblNewLabel_5
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		lblNewLabel_1.add(lblNewLabel_5);
+		lblNewLabel_5.setSize("100%", "25px");
+
+		VerticalPanel verticalPanel_5 = new VerticalPanel();
+		verticalPanel_5.setSpacing(2);
+		stackLayoutPanel.add(verticalPanel_5, new HTML("DERS DAĞITIM"), 2.0);
+		verticalPanel_5.setSize("100%", "100%");
+
+		Label lblNewLabel_6 = new Label("Ders Dağıtım Sistemi");
+		lblNewLabel_6.setStyleName("gwt-MenuButton");
+		lblNewLabel_6
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_5.add(lblNewLabel_6);
+		lblNewLabel_6.setSize("100%", "25px");
+
+		Label lblNewLabel_8 = new Label("Yetki Tanımlama (Kısıtlama)");
+		lblNewLabel_8.setStyleName("gwt-MenuButton");
+		lblNewLabel_8
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_5.add(lblNewLabel_8);
+		lblNewLabel_8.setSize("100%", "25px");
+
+		Label lblNewLabel_7 = new Label("Saat Girişi");
+		lblNewLabel_7.setStyleName("gwt-MenuButton");
+		lblNewLabel_7
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_5.add(lblNewLabel_7);
+		lblNewLabel_7.setSize("100%", "25px");
+
+		VerticalPanel verticalPanel_6 = new VerticalPanel();
+		verticalPanel_6.setSpacing(2);
+		stackLayoutPanel.add(verticalPanel_6, new HTML("ÖDEV TAKİP"), 2.0);
+		verticalPanel_6.setSize("100%", "100%");
+
+		Label lblNewLabel_9 = new Label("Ödev Oluştur");
+		lblNewLabel_9.setStyleName("gwt-MenuButton");
+		lblNewLabel_9
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_6.add(lblNewLabel_9);
+		lblNewLabel_9.setSize("100%", "25px");
+
+		Label lblCevapAdediBelirle = new Label("Cevap Adedi Belirle");
+		lblCevapAdediBelirle.setStyleName("gwt-MenuButton");
+		lblCevapAdediBelirle
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_6.add(lblCevapAdediBelirle);
+		lblCevapAdediBelirle.setSize("100%", "25px");
+
+		Label lbldevTakipnite = new Label("Ödev Takip Ünite");
+		lbldevTakipnite.setStyleName("gwt-MenuButton");
+		lbldevTakipnite
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_6.add(lbldevTakipnite);
+		lbldevTakipnite.setSize("100%", "25px");
+
+		VerticalPanel verticalPanel_7 = new VerticalPanel();
+		verticalPanel_7.setSpacing(2);
+		stackLayoutPanel.add(verticalPanel_7, new HTML("SINAV DEĞERLENDİRME"),
+				2.0);
+		verticalPanel_7.setSize("100%", "25px");
+
+		Label label = new Label("Şablon Tanımları");
+		label.setStyleName("gwt-MenuButton");
+		label.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_7.add(label);
+		label.setSize("100%", "25px");
+
+		Label label_1 = new Label("Sınav Tanımlama");
+		label_1.setStyleName("gwt-MenuButton");
+		label_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_7.add(label_1);
+		label_1.setSize("100%", "25px");
+
+		VerticalPanel verticalPanel_8 = new VerticalPanel();
+		stackLayoutPanel.add(verticalPanel_8, new HTML("MUHASEBE"), 2.0);
+		verticalPanel_8.setSize("100%", "61px");
+
+		Label label_2 = new Label("Gelir ve Giderler");
+		label_2.setStyleName("gwt-MenuButton");
+		label_2.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_8.add(label_2);
+		label_2.setSize("100%", "25px");
+
+		Label label_3 = new Label("Banka Ekle");
+		label_3.setStyleName("gwt-MenuButton");
+		label_3.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_8.add(label_3);
+		label_3.setSize("100%", "25px");
+
+		Label label_4 = new Label("Gelir Gider Kategorileri");
+		label_4.setStyleName("gwt-MenuButton");
+		label_4.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_8.add(label_4);
+		label_4.setSize("100%", "25px");
+
+		Label label_5 = new Label("Gelir/Gider Tanımları");
+		label_5.setStyleName("gwt-MenuButton");
+		label_5.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_8.add(label_5);
+		label_5.setSize("100%", "25px");
+
+		Label label_6 = new Label("Kasa Hareketleri");
+		label_6.setStyleName("gwt-MenuButton");
+		label_6.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_8.add(label_6);
+		label_6.setSize("100%", "25px");
+
+		VerticalPanel verticalPanel_9 = new VerticalPanel();
+		stackLayoutPanel.add(verticalPanel_9, new HTML("DÖNEMSEL TANIMLAR"),
+				2.0);
+		verticalPanel_9.setWidth("100%");
+
+		Label label_7 = new Label("DBS Sınav Tanımla");
+		label_7.setStyleName("gwt-MenuButton");
+		label_7.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_9.add(label_7);
+		label_7.setSize("100%", "25px");
+
+		Label label_8 = new Label("Öğretmen Tanımları");
+		label_8.setStyleName("gwt-MenuButton");
+		label_8.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_9.add(label_8);
+		label_8.setSize("100%", "25px");
+
+		Label label_9 = new Label("Sınıf Tanımları");
+		label_9.setStyleName("gwt-MenuButton");
+		label_9.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		label_9.setDirection(Direction.LTR);
+		verticalPanel_9.add(label_9);
+		label_9.setSize("100%", "25px");
+
+		Label label_10 = new Label("İndirim Türü");
+		label_10.setStyleName("gwt-MenuButton");
+		label_10.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		label_10.setDirection(Direction.LTR);
+		verticalPanel_9.add(label_10);
+		label_10.setSize("100%", "25px");
+
+		Label label_11 = new Label("Hizmet Tanımla");
+		label_11.setStyleName("gwt-MenuButton");
+		label_11.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		label_11.setDirection(Direction.LTR);
+		verticalPanel_9.add(label_11);
+		label_11.setSize("100%", "25px");
+
+		Label label_12 = new Label("Referanslar");
+		label_12.setStyleName("gwt-MenuButton");
+		label_12.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		label_12.setDirection(Direction.LTR);
+		verticalPanel_9.add(label_12);
+		label_12.setSize("100%", "25px");
+
+		Label label_13 = new Label("Personel Tanımları");
+		label_13.setStyleName("gwt-MenuButton");
+		label_13.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_9.add(label_13);
+		label_13.setSize("100%", "25px");
+
+		VerticalPanel verticalPanel_10 = new VerticalPanel();
+		stackLayoutPanel.add(verticalPanel_10, new HTML("SABİT TANIMLAMALAR"),
+				2.0);
+		verticalPanel_10.setSize("100%", "100%");
+
+		Label label_14 = new Label("Kurumsal Bilgiler");
+		label_14.setStyleName("gwt-MenuButton");
+		label_14.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		label_14.setDirection(Direction.LTR);
+		verticalPanel_10.add(label_14);
+		label_14.setSize("100%", "25px");
+
+		Label label_15 = new Label("Dönem Tanımları");
+		label_15.setStyleName("gwt-MenuButton");
+		label_15.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		label_15.setDirection(Direction.LTR);
+		verticalPanel_10.add(label_15);
+		label_15.setSize("100%", "25px");
+
+		Label label_16 = new Label("Ders Tanımları");
+		label_16.setStyleName("gwt-MenuButton");
+		label_16.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		label_16.setDirection(Direction.LTR);
+		verticalPanel_10.add(label_16);
+		label_16.setSize("100%", "25px");
+
+		Label label_17 = new Label("Ünite Tanımları");
+		label_17.setStyleName("gwt-MenuButton");
+		label_17.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		label_17.setDirection(Direction.LTR);
+		verticalPanel_10.add(label_17);
+		label_17.setSize("100%", "25px");
+
+		Label label_18 = new Label("Konu Tanımları");
+		label_18.setStyleName("gwt-MenuButton");
+		label_18.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_10.add(label_18);
+		label_18.setSize("100%", "25px");
+
+		Label label_19 = new Label("Fiziksel Sınıf Tanımlama");
+		label_19.setStyleName("gwt-MenuButton");
+		label_19.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_10.add(label_19);
+		label_19.setSize("100%", "25px");
+
+		Label label_20 = new Label("Kurs Zamanı Tanımlama");
+		label_20.setStyleName("gwt-MenuButton");
+		label_20.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_10.add(label_20);
+		label_20.setSize("100%", "25px");
+
+		Label label_21 = new Label("Eğitim Türü Tanimlama");
+		label_21.setStyleName("gwt-MenuButton");
+		label_21.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_10.add(label_21);
+		label_21.setSize("100%", "25px");
+
+		Label label_22 = new Label("Servis Tanimlama");
+		label_22.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		label_22.setStyleName("gwt-MenuButton");
+		verticalPanel_10.add(label_22);
+		label_22.setSize("100%", "25px");
+
+		Label label_23 = new Label("Sözleşme Maddeleri");
+		label_23.setStyleName("gwt-MenuButton");
+		label_23.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel_10.add(label_23);
+		label_23.setSize("100%", "25px");
+		verticalPanel_3.add(stackLayoutPanel);
+		stackLayoutPanel.setSize("100%", "481px");
 
 		if (!isDesignTime()) {
 			// DlgLogIn dlgTemp = new DlgLogIn();

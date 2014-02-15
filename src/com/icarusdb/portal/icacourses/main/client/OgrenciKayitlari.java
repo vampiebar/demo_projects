@@ -3,8 +3,6 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.http.client.Request;
@@ -15,9 +13,9 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -31,26 +29,41 @@ public class OgrenciKayitlari extends Composite {
 
 		VerticalPanel verticalPanel = new VerticalPanel();
 		initWidget(verticalPanel);
-		verticalPanel.setSize("488px", "366px");
+		verticalPanel.setSize("100%", "100%");
 
-		AbsolutePanel absolutePanel = new AbsolutePanel();
-		absolutePanel.setStyleName("gwt-dlgbackgorund");
-		verticalPanel.add(absolutePanel);
-		absolutePanel.setSize("755px", "472px");
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "50");
+		horizontalPanel_2.setSize("100%", "33px");
 
-		Label lblAranacakAnahtarKelime = new Label("Aranacak Anahtar Kelime");
-		lblAranacakAnahtarKelime.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAranacakAnahtarKelime, 30, 38);
-		lblAranacakAnahtarKelime.setSize("171px", "16px");
+		Label lblrenciKaytlar = new Label("Öğrenci Kayıtları");
+		horizontalPanel_2.add(lblrenciKaytlar);
+		lblrenciKaytlar.setWidth("100%");
+
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		horizontalPanel.setSpacing(15);
+		verticalPanel.add(horizontalPanel);
+		verticalPanel.setCellHeight(horizontalPanel, "30");
+		horizontalPanel.setSize("100%", "19px");
 
 		tctAranacakAnahtarKelime = new TextBox();
-		tctAranacakAnahtarKelime.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAranacakAnahtarKelime, 207, 31);
+		tctAranacakAnahtarKelime.setText("Ne Aramıştınız?");
+		horizontalPanel.add(tctAranacakAnahtarKelime);
+		horizontalPanel.setCellHeight(tctAranacakAnahtarKelime, "30");
+		tctAranacakAnahtarKelime.setStyleName("gwt-TextBoxAra");
 		tctAranacakAnahtarKelime.setSize("239px", "19px");
 
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		horizontalPanel_1.setSpacing(10);
+		verticalPanel.add(horizontalPanel_1);
+		horizontalPanel_1.setSize("100%", "100px");
+
 		grdOgrenciKayitlari = new CellTable<XMLOnKayit>();
-		absolutePanel.add(grdOgrenciKayitlari, 10, 97);
-		grdOgrenciKayitlari.setSize("100%", "154px");
+		horizontalPanel_1.add(grdOgrenciKayitlari);
+		grdOgrenciKayitlari.setSize("100%", "100%");
 
 		TextColumn<XMLOnKayit> textColumn_2 = new TextColumn<XMLOnKayit>() {
 			@Override
@@ -85,12 +98,6 @@ public class OgrenciKayitlari extends Composite {
 			}
 		};
 		grdOgrenciKayitlari.addColumn(column, "İşlemler");
-
-		Button btnNewButton = new Button("");
-		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
-		btnNewButton.setStyleName("gwt-ButtonAra");
-		absolutePanel.add(btnNewButton, 608, 10);
-		btnNewButton.setSize("93px", "68px");
 
 		if (!isDesignTime()) {
 
@@ -216,62 +223,4 @@ public class OgrenciKayitlari extends Composite {
 		}
 
 	}
-
-	private class BtnNewButtonClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-			String urlWithParameters = Util.urlBase
-					+ "getonkayit?kesin_kayit_mi=TRUE"
-					+ "&adi_soyadi_tc_kimlik_no="
-					+ tctAranacakAnahtarKelime.getText();
-
-			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-					urlWithParameters);
-
-			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
-
-			try {
-				Request request = builder.sendRequest(null,
-						new RequestCallback() {
-							public void onError(Request request,
-									Throwable exception) {
-
-							}
-
-							@Override
-							public void onResponseReceived(Request request,
-									Response response) {
-
-								// Window.alert("AAABBBCCC " +
-								// response.getText());
-
-								List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
-										.readList(response.getText());
-
-								// listXmlOnKayit.add(xmlOnKayit);
-
-								// lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
-
-								// Set the total row count. This isn't strictly
-								// necessary, but it affects
-								// paging calculations, so its good habit to
-								// keep the row count up to date.
-								grdOgrenciKayitlari.setRowCount(1, true);
-
-								// Push the data into the widget.
-								grdOgrenciKayitlari.setRowData(0,
-										listXmlOnKayit);
-
-							}
-
-						});
-
-			} catch (RequestException e) {
-				// displayError("Couldn't retrieve JSON");
-
-				// Window.alert(e.getMessage() + "ERROR");
-			}
-
-		}
-	}
-
 }

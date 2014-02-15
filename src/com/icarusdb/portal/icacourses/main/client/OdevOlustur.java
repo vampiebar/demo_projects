@@ -24,10 +24,13 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class OdevOlustur extends Composite {
@@ -50,38 +53,82 @@ public class OdevOlustur extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("721px", "439px");
+		absolutePanel.setSize("100%", "439px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "40");
+		horizontalPanel_2.setSize("100%", "33px");
+
+		Label lbldevOlutur = new Label("Ödev Oluştur");
+		horizontalPanel_2.add(lbldevOlutur);
+		lbldevOlutur.setWidth("100%");
+
+		FlexTable flexTable = new FlexTable();
+		verticalPanel.add(flexTable);
+		verticalPanel.setCellHeight(flexTable, "30");
+		flexTable.setSize("247px", "100px");
 
 		Label lblNewLabel_2 = new Label("Eğitim Türü");
+		flexTable.setWidget(0, 0, lblNewLabel_2);
+		lblNewLabel_2.setWidth("100px");
 		lblNewLabel_2.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_2, 10, 22);
+
+		cbxEgitimTuru = new ListBox();
+		flexTable.setWidget(0, 1, cbxEgitimTuru);
+		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
+		cbxEgitimTuru.addItem("Lütfen Seçiniz");
+		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
+		cbxEgitimTuru.setSize("145px", "22px");
 
 		Label label = new Label("Alan");
+		flexTable.setWidget(1, 0, label);
 		label.setStyleName("gwt-Bold");
-		absolutePanel.add(label, 10, 56);
 		label.setSize("56px", "16px");
 
-		Label label_1 = new Label("Ders Adı");
-		label_1.setStyleName("gwt-Bold");
-		absolutePanel.add(label_1, 10, 88);
-		label_1.setSize("56px", "16px");
-
 		cbxAlan = new ListBox();
+		flexTable.setWidget(1, 1, cbxAlan);
 		cbxAlan.addItem("Lütfen Seçiniz ");
 		cbxAlan.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxAlan, 106, 50);
 		cbxAlan.setSize("149px", "24px");
 
+		Label label_1 = new Label("Ders Adı");
+		flexTable.setWidget(2, 0, label_1);
+		label_1.setStyleName("gwt-Bold");
+		label_1.setSize("100px", "16px");
+
 		cbxDersAdi = new ListBox();
+		flexTable.setWidget(2, 1, cbxDersAdi);
 		cbxDersAdi.addItem("Lütfen Seçiniz ");
 		cbxDersAdi.setStyleName("gwt-ComboBox1");
 		cbxDersAdi.setName("Lütfen Seçiniz");
-		absolutePanel.add(cbxDersAdi, 106, 82);
 		cbxDersAdi.setSize("149px", "24px");
 
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1.setSpacing(15);
+		horizontalPanel_1.setSize("100%", "62px");
+
+		Button btnYeniKayit = new Button("ARA");
+		horizontalPanel_1.add(btnYeniKayit);
+		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler1());
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
+
+		btnYeniKayit.setText("Yeni Kayit");
+		btnYeniKayit.setSize("115px", "30px");
+
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 120);
-		horizontalPanel.setSize("701px", "309px");
+		horizontalPanel.setSpacing(10);
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSize("100%", "180px");
 
 		grdOdevOlustur = new CellTable<XMLOdevOlustur>();
 		horizontalPanel.add(grdOdevOlustur);
@@ -142,29 +189,6 @@ public class OdevOlustur extends Composite {
 			}
 		};
 		grdOdevOlustur.addColumn(column_1, "Sil");
-
-		Button btnYeniKayit = new Button("ARA");
-		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler1());
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
-
-		btnYeniKayit.setText("");
-		absolutePanel.add(btnYeniKayit, 441, 42);
-		btnYeniKayit.setSize("78px", "48px");
-
-		Button btnAra = new Button("ARA");
-		btnAra.setText("");
-		btnAra.addClickHandler(new BtnAraClickHandler());
-		btnAra.setStyleName("gwt-ButtonAra");
-
-		absolutePanel.add(btnAra, 346, 42);
-		btnAra.setSize("78px", "48px");
-
-		cbxEgitimTuru = new ListBox();
-		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
-		cbxEgitimTuru.addItem("Lütfen Seçiniz");
-		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxEgitimTuru, 106, 16);
-		cbxEgitimTuru.setSize("145px", "22px");
 
 		if (!isDesignTime()) {
 
@@ -474,64 +498,6 @@ public class OdevOlustur extends Composite {
 			putEgitimTuruAlanToCbx(
 					cbxEgitimTuru.getItemText(cbxEgitimTuru.getSelectedIndex()),
 					cbxAlan);
-		}
-	}
-
-	private class BtnAraClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-
-			// String urlWithParameters = Util.urlBase + "getodevolustur?"
-			// + "egitim_turu=" + cbxEgitimTuru.getSelectedIndex()
-			// + "&alan=" + cbxAlan.getSelectedIndex();
-			//
-			// RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-			// urlWithParameters);
-			//
-			// // Window.alert("URL TO GET VALUES: " + urlWithParameters);
-			//
-			// try {
-			// Request request = builder.sendRequest(null,
-			// new RequestCallback() {
-			// public void onError(Request request,
-			// Throwable exception) {
-			//
-			// }
-			//
-			// @Override
-			// public void onResponseReceived(Request request,
-			// Response response) {
-			//
-			// // Window.alert("AAABBBCCC " +
-			// // response.getText());
-			//
-			// List<XMLOdevOlustur> listXmlOdevOlustur = XMLOdevOlustur.XML
-			// .readList(response.getText());
-			//
-			// // listXmlOnKayit.add(xmlOnKayit);
-			//
-			// // lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
-			//
-			// // Set the total row count. This isn't strictly
-			// // necessary, but it affects
-			// // paging calculations, so its good habit to
-			// // keep the row count up to date.
-			// grdOdevOlustur.setRowCount(1, true);
-			//
-			// // Push the data into the widget.
-			// grdOdevOlustur
-			// .setRowData(0, listXmlOdevOlustur);
-			//
-			// }
-			//
-			// });
-			//
-			// } catch (RequestException e) {
-			// // displayError("Couldn't retrieve JSON");
-			//
-			// // Window.alert(e.getMessage() + "ERROR");
-			// }
-			//
-			// }
 		}
 	}
 }

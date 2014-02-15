@@ -2,6 +2,10 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -21,7 +25,6 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 	private Image image_1;
 
 	public DlgGelirGiderKategorileri(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -34,19 +37,13 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 		setWidget(absolutePanel);
 		absolutePanel.setSize("492px", "387px");
 
-		Label lblGelirgiderKategoriIlemleri = new Label(
-				"Gelir/Gider Kategori İşlemleri (Ekleme / Düzenleme)");
-		lblGelirgiderKategoriIlemleri.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblGelirgiderKategoriIlemleri, 0, 0);
-		lblGelirgiderKategoriIlemleri.setSize("632px", "28px");
-
 		Label lblKategoriAd = new Label("Kategori Adı");
 		lblKategoriAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblKategoriAd, 10, 44);
+		absolutePanel.add(lblKategoriAd, 10, 10);
 
 		tctKategoriAdi = new TextBox();
 		tctKategoriAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctKategoriAdi, 110, 44);
+		absolutePanel.add(tctKategoriAdi, 117, 10);
 		tctKategoriAdi.setSize("143px", "14px");
 
 		btnKaydet = new Button("Kaydet");
@@ -64,14 +61,18 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 		btnKapat.setSize("78px", "43px");
 
 		image = new Image("kaydet-1.png");
+		image.addMouseOverHandler(new ImageMouseOverHandler());
+		image.addMouseOutHandler(new ImageMouseOutHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 120, 87);
+		absolutePanel.add(image, 300, 54);
 		image.setSize("72px", "66px");
 
 		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
 		image_1.setAltText("aedasda");
-		absolutePanel.add(image_1, 202, 87);
+		absolutePanel.add(image_1, 378, 54);
 		image_1.setSize("72px", "66px");
 	}
 
@@ -110,6 +111,38 @@ public class DlgGelirGiderKategorileri extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
 		}
 	}
 }

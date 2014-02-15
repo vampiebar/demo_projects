@@ -22,8 +22,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class ServisTanimlama extends Composite {
@@ -33,20 +36,43 @@ public class ServisTanimlama extends Composite {
 	public ServisTanimlama() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
-		absolutePanel.setStyleName("gwt-DialogBackGround");
+		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("635px", "566px");
+		absolutePanel.setSize("100%", "750px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "50");
+		horizontalPanel_2.setSize("100%", "33px");
+
+		Label lblServisTanmlama = new Label("Servis Tanımlama");
+		horizontalPanel_2.add(lblServisTanmlama);
+		lblServisTanmlama.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1.setSpacing(15);
+		horizontalPanel_1.setSize("100%", "47px");
 
 		Button btnYenikayit = new Button("New button");
-		btnYenikayit.setStyleName("gwt-ButonYeniKayit");
+		horizontalPanel_1.add(btnYenikayit);
+		btnYenikayit.setStyleName("gwt-YeniKayit2");
 		btnYenikayit.addClickHandler(new BtnYenikayitClickHandler());
 
-		btnYenikayit.setText("");
-		absolutePanel.add(btnYenikayit, 339, 35);
-		btnYenikayit.setSize("78px", "56px");
+		btnYenikayit.setText("Yeni Kayıt");
+		btnYenikayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 124);
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSpacing(10);
 		horizontalPanel.setSize("100%", "174px");
 
 		grdServisTanimlama = new CellTable<XMLServisTanimlama>();

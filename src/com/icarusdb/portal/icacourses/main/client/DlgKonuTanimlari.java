@@ -6,6 +6,10 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -14,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -31,9 +36,10 @@ public class DlgKonuTanimlari extends DialogBox {
 	private ListBox cbxUniteAdi;
 	private TextBox tctKonu;
 	private Button btnKaydet;
+	private Image image;
+	private Image image_1;
 
 	public DlgKonuTanimlari(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -45,70 +51,6 @@ public class DlgKonuTanimlari extends DialogBox {
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
 		absolutePanel.setSize("498px", "373px");
-
-		Label lblDersIlemleriekleme = new Label(
-				"Ders İşlemleri (Ekleme / Düzenleme)");
-		lblDersIlemleriekleme.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblDersIlemleriekleme, 0, 0);
-		lblDersIlemleriekleme.setSize("527px", "28px");
-
-		Label label = new Label("Eğitim Türü");
-		label.setStyleName("gwt-Bold");
-		absolutePanel.add(label, 10, 47);
-		label.setSize("106px", "18px");
-
-		Label label_1 = new Label("Alan");
-		label_1.setStyleName("gwt-Bold");
-		absolutePanel.add(label_1, 10, 77);
-		label_1.setSize("105px", "18px");
-
-		Label label_2 = new Label("Ders");
-		label_2.setStyleName("gwt-Bold");
-		absolutePanel.add(label_2, 10, 107);
-		label_2.setSize("106px", "18px");
-
-		Label label_3 = new Label("Ünite Adı");
-		label_3.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		label_3.setStyleName("gwt-Bold");
-		absolutePanel.add(label_3, 10, 142);
-		label_3.setSize("106px", "18px");
-
-		Label lblKonu = new Label("Konu");
-		lblKonu.setStyleName("gwt-Bold");
-		absolutePanel.add(lblKonu, 10, 173);
-		lblKonu.setSize("106px", "16px");
-
-		cbxDers = new ListBox();
-		cbxDers.addChangeHandler(new CbxDersChangeHandler());
-		cbxDers.addItem(" ");
-		cbxDers.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxDers, 122, 105);
-		cbxDers.setSize("151px", "18px");
-
-		cbxAlan = new ListBox();
-		cbxAlan.addChangeHandler(new CbxAlanChangeHandler());
-		cbxAlan.addItem(" ");
-		cbxAlan.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxAlan, 122, 75);
-		cbxAlan.setSize("151px", "18px");
-
-		cbxEgitimTuru = new ListBox();
-		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
-		cbxEgitimTuru.addItem(" ");
-		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxEgitimTuru, 122, 45);
-		cbxEgitimTuru.setSize("151px", "18px");
-
-		cbxUniteAdi = new ListBox();
-		cbxUniteAdi.addItem(" ");
-		cbxUniteAdi.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxUniteAdi, 122, 140);
-		cbxUniteAdi.setSize("151px", "18px");
-
-		tctKonu = new TextBox();
-		tctKonu.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctKonu, 122, 171);
-		tctKonu.setSize("149px", "16px");
 
 		btnKaydet = new Button("New button");
 		btnKaydet.setVisible(false);
@@ -126,15 +68,81 @@ public class DlgKonuTanimlari extends DialogBox {
 		absolutePanel.add(btnKapat, 206, 318);
 		btnKapat.setSize("78px", "45px");
 
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		image.addMouseOverHandler(new ImageMouseOverHandler());
+		image.addMouseOutHandler(new ImageMouseOutHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 226, 221);
+		absolutePanel.add(image, 307, 153);
 		image.setSize("72px", "66px");
 
-		Image image_1 = new Image("kapat-1.png");
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutePanel.add(image_1, 314, 221);
+		absolutePanel.add(image_1, 385, 153);
 		image_1.setSize("72px", "66px");
+
+		FlexTable flexTable = new FlexTable();
+		absolutePanel.add(flexTable, 0, 0);
+		flexTable.setSize("270px", "85px");
+
+		Label label = new Label("Eğitim Türü");
+		flexTable.setWidget(0, 0, label);
+		label.setStyleName("gwt-Bold");
+		label.setSize("106px", "18px");
+
+		cbxEgitimTuru = new ListBox();
+		flexTable.setWidget(0, 1, cbxEgitimTuru);
+		cbxEgitimTuru.addChangeHandler(new CbxEgitimTuruChangeHandler());
+		cbxEgitimTuru.addItem(" ");
+		cbxEgitimTuru.setStyleName("gwt-ComboBox1");
+		cbxEgitimTuru.setSize("151px", "18px");
+
+		Label label_1 = new Label("Alan");
+		flexTable.setWidget(1, 0, label_1);
+		label_1.setStyleName("gwt-Bold");
+		label_1.setSize("105px", "18px");
+
+		cbxAlan = new ListBox();
+		flexTable.setWidget(1, 1, cbxAlan);
+		cbxAlan.addChangeHandler(new CbxAlanChangeHandler());
+		cbxAlan.addItem(" ");
+		cbxAlan.setStyleName("gwt-ComboBox1");
+		cbxAlan.setSize("151px", "18px");
+
+		Label label_2 = new Label("Ders");
+		flexTable.setWidget(2, 0, label_2);
+		label_2.setStyleName("gwt-Bold");
+		label_2.setSize("106px", "18px");
+
+		cbxDers = new ListBox();
+		flexTable.setWidget(2, 1, cbxDers);
+		cbxDers.addChangeHandler(new CbxDersChangeHandler());
+		cbxDers.addItem(" ");
+		cbxDers.setStyleName("gwt-ComboBox1");
+		cbxDers.setSize("151px", "18px");
+
+		Label label_3 = new Label("Ünite Adı");
+		flexTable.setWidget(3, 0, label_3);
+		label_3.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		label_3.setStyleName("gwt-Bold");
+		label_3.setSize("106px", "18px");
+
+		cbxUniteAdi = new ListBox();
+		flexTable.setWidget(3, 1, cbxUniteAdi);
+		cbxUniteAdi.addItem(" ");
+		cbxUniteAdi.setStyleName("gwt-ComboBox1");
+		cbxUniteAdi.setSize("151px", "18px");
+
+		Label lblKonu = new Label("Konu");
+		flexTable.setWidget(4, 0, lblKonu);
+		lblKonu.setStyleName("gwt-Bold");
+		lblKonu.setSize("106px", "16px");
+
+		tctKonu = new TextBox();
+		flexTable.setWidget(4, 1, tctKonu);
+		tctKonu.setStyleName("gwt-TextBox1");
+		tctKonu.setSize("149px", "16px");
 		if (!isDesignTime()) {
 
 			putEgitimTuruToCbx(cbxEgitimTuru);
@@ -399,6 +407,38 @@ public class DlgKonuTanimlari extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
 		}
 	}
 }

@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -31,6 +35,7 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 	public DecoratedTabPanel tabKesinKayitIslemleri;
 	public DialogBox _dlgKesinKayitIslemleri;
 	private Button btnOgrenciBilgileriniKaydet;
+	private Image image_1;
 
 	public DlgKesinKayitIslemleri(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -61,8 +66,9 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 		lblTcKimlikNo.setSize("100px", "18px");
 
 		chxTCKimlikNoSorgulama = new CheckBox("New check box");
+		chxTCKimlikNoSorgulama.setVisible(false);
 		chxTCKimlikNoSorgulama.setHTML("T.C Kimlik No Sorgulama");
-		absolutepanel.add(chxTCKimlikNoSorgulama, 127, 65);
+		absolutepanel.add(chxTCKimlikNoSorgulama, 121, 265);
 
 		Label lblAd = new Label("Adı");
 		lblAd.setVisible(false);
@@ -93,7 +99,7 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 		tctTCKimlikNo.setSize("159px", "14px");
 
 		Button btnBilgileriniGetir = new Button("Bilgilerini Getir");
-		btnBilgileriniGetir.setStyleName("gwt-ButonYeniKayit");
+		btnBilgileriniGetir.setStyleName("gwt-BilgileriniGetir");
 		btnBilgileriniGetir
 				.addClickHandler(new BtnBilgileriniGetirClickHandler());
 		absolutepanel.add(btnBilgileriniGetir, 305, 35);
@@ -120,10 +126,12 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 		absolutepanel.add(image, 102, 102);
 		image.setSize("72px", "66px");
 
-		Image image_1 = new Image("kapat-1.png");
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
 		image_1.setStyleName("gwt-ImageKapat");
 		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutepanel.add(image_1, 180, 102);
+		absolutepanel.add(image_1, 180, 82);
 		image_1.setSize("72px", "66px");
 	}
 
@@ -213,6 +221,22 @@ public class DlgKesinKayitIslemleri extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
 		}
 	}
 }

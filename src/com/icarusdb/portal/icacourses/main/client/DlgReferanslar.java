@@ -2,6 +2,10 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -16,9 +20,10 @@ public class DlgReferanslar extends DialogBox {
 
 	private TextBox tctReferansAdiSoyadi;
 	private Button btnKaydet;
+	private Image image;
+	private Image image_1;
 
 	public DlgReferanslar(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -31,27 +36,21 @@ public class DlgReferanslar extends DialogBox {
 		setWidget(absolutePanel);
 		absolutePanel.setSize("531px", "397px");
 
-		Label lblReferansIlemleriekleme = new Label(
-				"Referans İşlemleri (Ekleme / Düzenleme)");
-		lblReferansIlemleriekleme.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblReferansIlemleriekleme, 0, 0);
-		lblReferansIlemleriekleme.setSize("541px", "28px");
-
 		Label lblReferansAdSoyad = new Label("Referans Adı Soyadı");
 		lblReferansAdSoyad.setStyleName("gwt-Bold");
-		absolutePanel.add(lblReferansAdSoyad, 10, 47);
+		absolutePanel.add(lblReferansAdSoyad, 10, 10);
 
 		tctReferansAdiSoyadi = new TextBox();
 		tctReferansAdiSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctReferansAdiSoyadi, 167, 47);
+		absolutePanel.add(tctReferansAdiSoyadi, 167, 10);
 		tctReferansAdiSoyadi.setSize("149px", "14px");
 
 		Button btnYeniKayit = new Button("New button");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
 		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit.setText("Yeni Kayıt");
-		absolutePanel.add(btnYeniKayit, 192, 118);
-		btnYeniKayit.setSize("78px", "65px");
+		btnYeniKayit.setText("");
+		absolutePanel.add(btnYeniKayit, 238, 66);
+		btnYeniKayit.setSize("87px", "65px");
 
 		btnKaydet = new Button("New button");
 		btnKaydet.setVisible(false);
@@ -69,14 +68,18 @@ public class DlgReferanslar extends DialogBox {
 		absolutePanel.add(btnKapat, 372, 228);
 		btnKapat.setSize("78px", "45px");
 
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		image.addMouseOverHandler(new ImageMouseOverHandler());
+		image.addMouseOutHandler(new ImageMouseOutHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 281, 117);
+		absolutePanel.add(image, 331, 66);
 		image.setSize("72px", "66px");
 
-		Image image_1 = new Image("kapat-1.png");
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutePanel.add(image_1, 369, 117);
+		absolutePanel.add(image_1, 409, 67);
 		image_1.setSize("72px", "66px");
 	}
 
@@ -123,6 +126,38 @@ public class DlgReferanslar extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
 		}
 	}
 }

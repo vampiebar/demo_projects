@@ -4,12 +4,19 @@ import java.util.Date;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
@@ -28,9 +35,10 @@ public class DlgPersonelIslemleri extends DialogBox {
 	private TextBox tctTelefonu1;
 	private TextBox tctTelefonu2;
 	private Button btnKaydet;
+	private Image image;
+	private Image image_1;
 
 	public DlgPersonelIslemleri(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -41,86 +49,21 @@ public class DlgPersonelIslemleri extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("621px", "493px");
-
-		Label lblNewLabel = new Label("Personel İşlemleri (Ekleme / Düzenleme)");
-		lblNewLabel.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblNewLabel, 0, 0);
-		lblNewLabel.setSize("621px", "28px");
-
-		Label lblAd = new Label("Adı Soyadı");
-		lblAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAd, 10, 46);
-
-		Label lblGorevi = new Label("Görevi");
-		lblGorevi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblGorevi, 10, 81);
-
-		Label lblIeGiriTarihi = new Label("İşe Giriş Tarihi");
-		lblIeGiriTarihi.setStyleName("gwt-Bold");
-		absolutePanel.add(lblIeGiriTarihi, 10, 121);
-
-		Label lblcreti = new Label("Ücreti");
-		lblcreti.setStyleName("gwt-Bold");
-		absolutePanel.add(lblcreti, 10, 158);
-
-		Label lblTelefonu = new Label("Telefonu 1");
-		lblTelefonu.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTelefonu, 10, 194);
-		lblTelefonu.setSize("84px", "18px");
-
-		Label lblTelefonu_1 = new Label("Telefonu 2");
-		lblTelefonu_1.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTelefonu_1, 10, 229);
-		lblTelefonu_1.setSize("84px", "18px");
-
-		tctAdiSoyadi = new TextBox();
-		tctAdiSoyadi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctAdiSoyadi, 130, 42);
-		tctAdiSoyadi.setSize("151px", "14px");
-
-		tctGorevi = new TextBox();
-		tctGorevi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctGorevi, 130, 81);
-		tctGorevi.setSize("151px", "14px");
-
-		tctUcreti = new TextBox();
-		tctUcreti.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctUcreti, 130, 158);
-		tctUcreti.setSize("151px", "14px");
-
-		tctTelefonu1 = new TextBox();
-		tctTelefonu1.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctTelefonu1, 130, 194);
-		tctTelefonu1.setSize("151px", "14px");
-
-		tctTelefonu2 = new TextBox();
-		tctTelefonu2.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctTelefonu2, 130, 229);
-		tctTelefonu2.setSize("151px", "14px");
-
-		dtpIseGirisTarihi = new DateBox();
-		dtpIseGirisTarihi.setStyleName("gwt-TextBox1");
-		dtpIseGirisTarihi
-				.addValueChangeHandler(new DtpIseGirisTarihiValueChangeHandler());
-		dtpIseGirisTarihi.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy.MM.dd")));
-		absolutePanel.add(dtpIseGirisTarihi, 130, 121);
-		dtpIseGirisTarihi.setSize("151px", "14px");
+		absolutePanel.setSize("587px", "400px");
 
 		Button btnYenikayit = new Button("New button");
 		btnYenikayit.addClickHandler(new BtnYenikayitClickHandler());
 		btnYenikayit.setStyleName("gwt-ButonYeniKayit");
 		btnYenikayit.setText("");
-		absolutePanel.add(btnYenikayit, 297, 271);
-		btnYenikayit.setSize("78px", "66px");
+		absolutePanel.add(btnYenikayit, 303, 165);
+		btnYenikayit.setSize("84px", "66px");
 
 		btnKaydet = new Button("New button");
 		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 405, 158);
+		absolutePanel.add(btnKaydet, 368, 96);
 		btnKaydet.setSize("78px", "45px");
 
 		Button btnKapat = new Button("New button");
@@ -128,18 +71,92 @@ public class DlgPersonelIslemleri extends DialogBox {
 		btnKapat.setStyleName("gwt-ButonKapat");
 		btnKapat.addClickHandler(new BtnKapatClickHandler());
 		btnKapat.setText("Kapat");
-		absolutePanel.add(btnKapat, 489, 158);
+		absolutePanel.add(btnKapat, 467, 96);
 		btnKapat.setSize("78px", "45px");
 
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		image.addMouseOutHandler(new ImageMouseOutHandler());
+		image.addMouseOverHandler(new ImageMouseOverHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 390, 271);
-		image.setSize("72px", "66px");
+		absolutePanel.add(image, 396, 165);
 
-		Image image_1 = new Image("kapat-1.png");
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutePanel.add(image_1, 478, 271);
+		absolutePanel.add(image_1, 474, 165);
 		image_1.setSize("72px", "66px");
+
+		FlexTable flexTable = new FlexTable();
+		absolutePanel.add(flexTable, 0, 0);
+		flexTable.setSize("302px", "87px");
+
+		Label lblAd = new Label("Adı Soyadı");
+		flexTable.setWidget(0, 0, lblAd);
+		lblAd.setStyleName("gwt-Bold");
+
+		tctAdiSoyadi = new TextBox();
+		tctAdiSoyadi.setMaxLength(30);
+		flexTable.setWidget(0, 1, tctAdiSoyadi);
+		tctAdiSoyadi.setStyleName("gwt-TextBox1");
+		tctAdiSoyadi.setSize("151px", "14px");
+
+		Label lblGorevi = new Label("Görevi");
+		flexTable.setWidget(1, 0, lblGorevi);
+		lblGorevi.setStyleName("gwt-Bold");
+
+		tctGorevi = new TextBox();
+		tctGorevi.setMaxLength(30);
+		flexTable.setWidget(1, 1, tctGorevi);
+		tctGorevi.setStyleName("gwt-TextBox1");
+		tctGorevi.setSize("151px", "14px");
+
+		Label lblIeGiriTarihi = new Label("İşe Giriş Tarihi");
+		flexTable.setWidget(2, 0, lblIeGiriTarihi);
+		lblIeGiriTarihi.setStyleName("gwt-Bold");
+
+		dtpIseGirisTarihi = new DateBox();
+		flexTable.setWidget(2, 1, dtpIseGirisTarihi);
+		dtpIseGirisTarihi.setStyleName("gwt-TextBox1");
+		dtpIseGirisTarihi
+				.addValueChangeHandler(new DtpIseGirisTarihiValueChangeHandler());
+		dtpIseGirisTarihi.setFormat(new DefaultFormat(DateTimeFormat
+				.getFormat("yyyy.MM.dd")));
+		dtpIseGirisTarihi.setSize("151px", "14px");
+
+		Label lblcreti = new Label("Ücreti");
+		flexTable.setWidget(3, 0, lblcreti);
+		lblcreti.setStyleName("gwt-Bold");
+
+		tctUcreti = new TextBox();
+		tctUcreti.addKeyPressHandler(new TctUcretiKeyPressHandler());
+		flexTable.setWidget(3, 1, tctUcreti);
+		tctUcreti.setStyleName("gwt-TextBox1");
+		tctUcreti.setSize("151px", "14px");
+
+		Label lblTelefonu = new Label("Telefonu 1");
+		flexTable.setWidget(4, 0, lblTelefonu);
+		lblTelefonu.setStyleName("gwt-Bold");
+		lblTelefonu.setSize("84px", "18px");
+
+		tctTelefonu1 = new TextBox();
+		tctTelefonu1.addKeyPressHandler(new TctTelefonu1KeyPressHandler());
+		tctTelefonu1.setMaxLength(11);
+		flexTable.setWidget(4, 1, tctTelefonu1);
+		tctTelefonu1.setStyleName("gwt-TextBox1");
+		tctTelefonu1.setSize("151px", "14px");
+
+		Label lblTelefonu_1 = new Label("Telefonu 2");
+		flexTable.setWidget(5, 0, lblTelefonu_1);
+		lblTelefonu_1.setStyleName("gwt-Bold");
+		lblTelefonu_1.setSize("84px", "18px");
+
+		tctTelefonu2 = new TextBox();
+		tctTelefonu2.addKeyPressHandler(new TctTelefonu2KeyPressHandler());
+		tctTelefonu2.setMaxLength(11);
+		flexTable.setWidget(5, 1, tctTelefonu2);
+		tctTelefonu2.setStyleName("gwt-TextBox1");
+		tctTelefonu2.setSize("151px", "14px");
 	}
 
 	private class BtnKapatClickHandler implements ClickHandler {
@@ -216,6 +233,86 @@ public class DlgPersonelIslemleri extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
+		}
+	}
+
+	private class TctTelefonu2KeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctTelefonu2.getText();
+			if (!input.matches("[0-9]*")) {
+				tctTelefonu2.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctTelefonu2.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctUcretiKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctUcreti.getText();
+			if (!input.matches("[0-9]*")) {
+				tctUcreti.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctUcreti.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class TctTelefonu1KeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctTelefonu1.getText();
+			if (!input.matches("[0-9]*")) {
+				tctTelefonu1.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctTelefonu1.setStyleName("gwt-TextBox1");
+
 		}
 	}
 }

@@ -2,10 +2,16 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
@@ -19,19 +25,15 @@ public class YetkiTanimlama extends Composite {
 	private TextBox tctEnGecRezervasyon;
 	private TextBox tctEnErkenRezervasyon;
 	private IntegerBox tctDersSilmeZamani;
+	private Button btnNewButton;
+	private Image image;
 
 	public YetkiTanimlama() {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("777px", "497px");
-
-		Label lblNewLabel = new Label("Ders Dağıtım Yetki Belirleme");
-		lblNewLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		lblNewLabel.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblNewLabel, 0, 0);
-		lblNewLabel.setSize("794px", "33px");
+		absolutePanel.setSize("100%", "622px");
 
 		Label lblDersSilme = new Label("Ders Silme Zamanı");
 		lblDersSilme.setStyleName("gwt-Bold");
@@ -143,11 +145,12 @@ public class YetkiTanimlama extends Composite {
 		absolutePanel.add(lblSaat_2, 381, 397);
 		lblSaat_2.setSize("57px", "16px");
 
-		Button btnNewButton = new Button("New button");
+		btnNewButton = new Button("New button");
+		btnNewButton.setVisible(false);
 		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
 		btnNewButton.setStyleName("gwt-ButtonSave");
 		btnNewButton.setText("Kaydet");
-		absolutePanel.add(btnNewButton, 228, 438);
+		absolutePanel.add(btnNewButton, 107, 471);
 		btnNewButton.setSize("78px", "49px");
 
 		Label lblNewLabel_2 = new Label("0 Limit Yok Demektir.");
@@ -175,6 +178,23 @@ public class YetkiTanimlama extends Composite {
 		lblDersinBalamasnaKa.setStyleName("gwt-MenuButton2");
 		absolutePanel.add(lblDersinBalamasnaKa, 10, 78);
 		lblDersinBalamasnaKa.setSize("205px", "49px");
+
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		horizontalPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel.setStyleName("gwt-LabelMor2");
+		absolutePanel.add(horizontalPanel, 0, 0);
+		horizontalPanel.setSize("100%", "33px");
+
+		Label lblDersDatmYetki = new Label("Yetki Tanımlama (Kısıtlama)");
+		horizontalPanel.add(lblDersDatmYetki);
+		lblDersDatmYetki.setWidth("100%");
+
+		image = new Image("kaydet-1.png");
+		image.addMouseOutHandler(new ImageMouseOutHandler());
+		image.addMouseOverHandler(new ImageMouseOverHandler());
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 272, 438);
+		image.setSize("72px", "66px");
 	}
 
 	private class BtnNewButtonClickHandler implements ClickHandler {
@@ -199,6 +219,30 @@ public class YetkiTanimlama extends Composite {
 			// Window.alert(URLValue);
 
 			new Util().sendRequest(URLValue, "", "");
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			btnNewButton.click();
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
 		}
 	}
 }

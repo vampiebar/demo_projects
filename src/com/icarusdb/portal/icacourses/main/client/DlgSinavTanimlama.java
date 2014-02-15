@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.http.client.Request;
@@ -17,7 +21,9 @@ import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -43,7 +49,6 @@ public class DlgSinavTanimlama extends DialogBox {
 	private Image image_1;
 
 	public DlgSinavTanimlama(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -55,61 +60,6 @@ public class DlgSinavTanimlama extends DialogBox {
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
 		absolutePanel.setSize("541px", "409px");
-
-		Label label = new Label("Sınav No - Sınav Adı");
-		label.setStyleName("gwt-Bold");
-		absolutePanel.add(label, 10, 41);
-		label.setSize("149px", "18px");
-
-		Label lblTarihSaat = new Label("Tarih - Saat");
-		lblTarihSaat.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTarihSaat, 10, 75);
-		lblTarihSaat.setSize("85px", "18px");
-
-		Label label_2 = new Label("Son Kitapçık No");
-		label_2.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		label_2.setStyleName("gwt-Bold");
-		absolutePanel.add(label_2, 10, 107);
-		label_2.setSize("126px", "18px");
-
-		Label label_3 = new Label("Şablon Seçiniz");
-		label_3.setStyleName("gwt-Bold");
-		absolutePanel.add(label_3, 10, 143);
-		label_3.setSize("104px", "18px");
-
-		tctSinavNo = new TextBox();
-		tctSinavNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSinavNo, 165, 41);
-		tctSinavNo.setSize("152px", "14px");
-
-		tctSinavAdi = new TextBox();
-		tctSinavAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSinavAdi, 334, 41);
-		tctSinavAdi.setSize("143px", "14px");
-
-		Label label_4 = new Label("      -");
-		absolutePanel.add(label_4, 325, 41);
-		label_4.setSize("14px", "18px");
-
-		dtpTarih = new DateBox();
-		dtpTarih.setStyleName("gwt-TextBox1");
-		dtpTarih.addValueChangeHandler(new DtpTarihValueChangeHandler());
-		dtpTarih.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("yyyy-MM-dd")));
-		absolutePanel.add(dtpTarih, 165, 75);
-		dtpTarih.setSize("152px", "14px");
-
-		tctSOnKitapcikNo = new TextBox();
-		tctSOnKitapcikNo.setMaxLength(1);
-		tctSOnKitapcikNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSOnKitapcikNo, 165, 107);
-		tctSOnKitapcikNo.setSize("152px", "14px");
-
-		cbxSablonSeciniz = new ListBox();
-		cbxSablonSeciniz.addItem(" ");
-		cbxSablonSeciniz.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxSablonSeciniz, 165, 139);
-		cbxSablonSeciniz.setSize("154px", "22px");
 
 		btnKaydet = new Button("New button");
 		btnKaydet.setVisible(false);
@@ -127,12 +77,67 @@ public class DlgSinavTanimlama extends DialogBox {
 		absolutePanel.add(btnKapat, 393, 312);
 		btnKapat.setSize("78px", "50px");
 
-		Label lblNewLabel = new Label("Sınav Tanımlama (Ekleme / Düzenleme)");
-		lblNewLabel.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblNewLabel, 0, 0);
-		lblNewLabel.setSize("541px", "28px");
+		image = new Image("kaydet-1.png");
+		image.addMouseOverHandler(new ImageMouseOverHandler());
+		image.addMouseOutHandler(new ImageMouseOutHandler());
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 360, 139);
+		image.setSize("72px", "66px");
+
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
+		image_1.addClickHandler(new Image_1ClickHandler());
+		absolutePanel.add(image_1, 438, 139);
+		image_1.setSize("72px", "66px");
+
+		FlexTable flexTable = new FlexTable();
+		absolutePanel.add(flexTable, 0, 0);
+		flexTable.setSize("100px", "100px");
+
+		Label label = new Label("Sınav No - Sınav Adı");
+		flexTable.setWidget(0, 0, label);
+		label.setStyleName("gwt-Bold");
+		label.setSize("149px", "18px");
+
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		flexTable.setWidget(0, 1, horizontalPanel);
+
+		tctSinavNo = new TextBox();
+		tctSinavNo.setMaxLength(1000);
+		horizontalPanel.add(tctSinavNo);
+		tctSinavNo.setStyleName("gwt-TextBox1");
+		tctSinavNo.setSize("152px", "14px");
+
+		Label label_4 = new Label("      -");
+		horizontalPanel.add(label_4);
+		label_4.setSize("6px", "18px");
+
+		tctSinavAdi = new TextBox();
+		tctSinavAdi.setMaxLength(30);
+		horizontalPanel.add(tctSinavAdi);
+		tctSinavAdi.setStyleName("gwt-TextBox1");
+		tctSinavAdi.setSize("143px", "14px");
+
+		Label lblTarihSaat = new Label("Tarih - Saat");
+		flexTable.setWidget(1, 0, lblTarihSaat);
+		lblTarihSaat.setStyleName("gwt-Bold");
+		lblTarihSaat.setSize("85px", "18px");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		flexTable.setWidget(1, 1, horizontalPanel_1);
+		horizontalPanel_1.setSize("272px", "22px");
+
+		dtpTarih = new DateBox();
+		horizontalPanel_1.add(dtpTarih);
+		dtpTarih.setStyleName("gwt-TextBox1");
+		dtpTarih.addValueChangeHandler(new DtpTarihValueChangeHandler());
+		dtpTarih.setFormat(new DefaultFormat(DateTimeFormat
+				.getFormat("yyyy-MM-dd")));
+		dtpTarih.setSize("152px", "14px");
 
 		cbxSaat = new ListBox();
+		horizontalPanel_1.add(cbxSaat);
 		cbxSaat.addItem("00");
 		cbxSaat.addItem("01");
 		cbxSaat.addItem("02");
@@ -158,34 +163,46 @@ public class DlgSinavTanimlama extends DialogBox {
 		cbxSaat.addItem("22");
 		cbxSaat.addItem("23");
 		cbxSaat.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxSaat, 345, 72);
 		cbxSaat.setSize("43px", "22px");
 
 		Label label_5 = new Label(":");
+		horizontalPanel_1.add(label_5);
 		label_5.setDirection(Direction.RTL);
 		label_5.setStyleName("gwt-Bold");
 		label_5.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		absolutePanel.add(label_5, 386, 71);
 		label_5.setSize("14px", "18px");
 
 		cbxDakika = new ListBox();
+		horizontalPanel_1.add(cbxDakika);
 		cbxDakika.addItem("00");
 		cbxDakika.addItem("15");
 		cbxDakika.addItem("30");
 		cbxDakika.addItem("45");
 		cbxDakika.setStyleName("gwt-ComboBox1");
-		absolutePanel.add(cbxDakika, 396, 72);
 		cbxDakika.setSize("43px", "22px");
 
-		image = new Image("kaydet-1.png");
-		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 240, 191);
-		image.setSize("72px", "66px");
+		Label label_2 = new Label("Son Kitapçık No");
+		flexTable.setWidget(2, 0, label_2);
+		label_2.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		label_2.setStyleName("gwt-Bold");
+		label_2.setSize("126px", "18px");
 
-		image_1 = new Image("kapat-1.png");
-		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutePanel.add(image_1, 328, 191);
-		image_1.setSize("72px", "66px");
+		tctSOnKitapcikNo = new TextBox();
+		flexTable.setWidget(2, 1, tctSOnKitapcikNo);
+		tctSOnKitapcikNo.setMaxLength(1);
+		tctSOnKitapcikNo.setStyleName("gwt-TextBox1");
+		tctSOnKitapcikNo.setSize("152px", "14px");
+
+		Label label_3 = new Label("Şablon Seçiniz");
+		flexTable.setWidget(3, 0, label_3);
+		label_3.setStyleName("gwt-Bold");
+		label_3.setSize("104px", "18px");
+
+		cbxSablonSeciniz = new ListBox();
+		flexTable.setWidget(3, 1, cbxSablonSeciniz);
+		cbxSablonSeciniz.addItem(" ");
+		cbxSablonSeciniz.setStyleName("gwt-ComboBox1");
+		cbxSablonSeciniz.setSize("154px", "22px");
 		if (!isDesignTime()) {
 
 			putSablonAdiToCbx(cbxSablonSeciniz);
@@ -310,4 +327,37 @@ public class DlgSinavTanimlama extends DialogBox {
 			hide();
 		}
 	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
+		}
+	}
+
 }

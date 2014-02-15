@@ -26,8 +26,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.VerticalSplitPanelImages;
 import com.google.gwt.view.client.Range;
 import com.google.gwt.view.client.RangeChangeEvent;
@@ -52,18 +55,40 @@ public class DBSSinavTanimla extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("791px", "461px");
+		absolutePanel.setSize("100%", "461px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "50");
+		horizontalPanel_2.setSize("100%", "33px");
+
+		Label lblDbsSinavTanimla = new Label("DBS SınavTanımla");
+		horizontalPanel_2.add(lblDbsSinavTanimla);
+		lblDbsSinavTanimla.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		horizontalPanel_1.setSpacing(15);
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1.setSize("100%", "27px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
+		horizontalPanel_1.add(btnYeniKayit);
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 451, 21);
-		btnYeniKayit.setSize("89px", "68px");
+		btnYeniKayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 102);
-		horizontalPanel.setSize("774px", "75px");
+		horizontalPanel.setSpacing(10);
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSize("100%", "75px");
 
 		grdDBSSinavTanimla = new CellTable<XMLDBSSinavTanimla>();
 		grdDBSSinavTanimla
@@ -172,6 +197,18 @@ public class DBSSinavTanimla extends Composite {
 		// };
 		// grdDBSSinavTanimla.addColumn(imageColumn, "11");
 		if (!isDesignTime()) {
+
+			// grdDBSSinavTanimla.addDomHandler(new ClickHandler() {
+			// @Override
+			// public void onClick(ClickEvent event) {
+			// CellTable<List<String>> selectedcell = (CellTable<List<String>>)
+			// event
+			// .getSource();
+			// Window.alert("  Current Selected Row : "
+			// + selectedcell.getKeyboardSelectedRow()
+			// + selectedcell.getColumnCount());
+			// }
+			// }, ClickEvent.getType());
 
 			putDataToGrid();
 

@@ -22,8 +22,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
 public class KullaniciTanimlama extends Composite {
@@ -35,18 +38,40 @@ public class KullaniciTanimlama extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("780px", "590px");
+		absolutePanel.setSize("100%", "750px");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel.add(verticalPanel, 0, 0);
+		verticalPanel.setSize("100%", "100%");
+
+		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel_2.setStyleName("gwt-LabelMor2");
+		verticalPanel.add(horizontalPanel_2);
+		verticalPanel.setCellHeight(horizontalPanel_2, "50");
+		horizontalPanel_2.setSize("100%", "33px");
+
+		Label lblKullancTanmlama = new Label("Kullanıcı Tanımlama");
+		horizontalPanel_2.add(lblKullancTanmlama);
+		lblKullancTanmlama.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel_1);
+		verticalPanel.setCellHeight(horizontalPanel_1, "30");
+		horizontalPanel_1.setSpacing(15);
+		horizontalPanel_1.setSize("100%", "49px");
 
 		Button btnYeniKayit = new Button("Yeni Kayıt");
-		btnYeniKayit.setText("");
-		btnYeniKayit.setStyleName("gwt-ButonYeniKayit");
+		horizontalPanel_1.add(btnYeniKayit);
+		btnYeniKayit.setStyleName("gwt-YeniKayit2");
 		btnYeniKayit.addClickHandler(new BtnYeniKayitClickHandler());
-		absolutePanel.add(btnYeniKayit, 459, 23);
-		btnYeniKayit.setSize("85px", "62px");
+		btnYeniKayit.setSize("115px", "30px");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		absolutePanel.add(horizontalPanel, 10, 109);
-		horizontalPanel.setSize("760px", "222px");
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSpacing(10);
+		horizontalPanel.setSize("100%", "165px");
 
 		grdKullaniciTanimlari = new CellTable<XMLKullaniciTanimlama>();
 		horizontalPanel.add(grdKullaniciTanimlari);
@@ -59,7 +84,7 @@ public class KullaniciTanimlama extends Composite {
 			}
 		};
 		grdKullaniciTanimlari.addColumn(column_6, "Kullanıcı Kodu");
-		grdKullaniciTanimlari.setColumnWidth(column_6, "124px");
+		grdKullaniciTanimlari.setColumnWidth(column_6, "118px");
 
 		Column<XMLKullaniciTanimlama, ?> textColumn = new TextColumn<XMLKullaniciTanimlama>() {
 			@Override
@@ -93,7 +118,7 @@ public class KullaniciTanimlama extends Composite {
 			}
 		};
 		grdKullaniciTanimlari.addColumn(column, "Düzenle");
-		grdKullaniciTanimlari.setColumnWidth(column, "123px");
+		grdKullaniciTanimlari.setColumnWidth(column, "95px");
 
 		Column<XMLKullaniciTanimlama, String> column_1 = new Column<XMLKullaniciTanimlama, String>(
 				new ButtonCell()) {
@@ -103,7 +128,7 @@ public class KullaniciTanimlama extends Composite {
 			}
 		};
 		grdKullaniciTanimlari.addColumn(column_1, "Sil");
-		grdKullaniciTanimlari.setColumnWidth(column_1, "114px");
+		grdKullaniciTanimlari.setColumnWidth(column_1, "103px");
 		if (!isDesignTime()) {
 
 			putDataToGrid();

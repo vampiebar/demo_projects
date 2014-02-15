@@ -4,8 +4,9 @@ import java.util.Date;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -27,44 +28,39 @@ public class DersDagitimSistemi extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("820px", "601px");
-
-		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
-		absolutePanel_1.setStyleName("gwtabsolute");
-		absolutePanel.add(absolutePanel_1, 10, 10);
-		absolutePanel_1.setSize("694px", "33px");
-
-		Label lblDersDatmIlemler = new Label("Ders Dağıtım İşlemler");
-		lblDersDatmIlemler.setStyleName("gwt-Bold");
-		absolutePanel_1.add(lblDersDatmIlemler, 20, 10);
-
-		Button btnListeyiYenile = new Button("Listeyi Yenile");
-		btnListeyiYenile.setText("");
-		btnListeyiYenile.setStyleName("gwt-ButtonListeyiYenile");
-		absolutePanel.add(btnListeyiYenile, 509, 49);
-		btnListeyiYenile.setSize("91px", "75px");
-
-		Button btnRaporAl = new Button("Rapor Al");
-		btnRaporAl.setText("");
-		btnRaporAl.setStyleName("gwt-ButtonExceleAktar");
-		absolutePanel.add(btnRaporAl, 606, 49);
-		btnRaporAl.setSize("97px", "75px");
-
-		Label lblTarihSeiniz = new Label("Tarih Seçiniz...");
-		lblTarihSeiniz.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTarihSeiniz, 10, 121);
-		lblTarihSeiniz.setSize("104px", "26px");
-
-		dtpTarihSeciniz = new DateBox();
-		dtpTarihSeciniz.setStyleName("gwt-TextBox1");
-		dtpTarihSeciniz.setFormat(new DefaultFormat(DateTimeFormat
-				.getFormat("dd-MM-yyyy")));
-		absolutePanel.add(dtpTarihSeciniz, 120, 121);
-		dtpTarihSeciniz.setSize("143px", "17px");
+		absolutePanel.setSize("100%", "601px");
 
 		smpanCalendar = new SimplePanel();
 		absolutePanel.add(smpanCalendar, 10, 153);
 		smpanCalendar.setSize("800px", "347px");
+
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		horizontalPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel.setStyleName("gwt-LabelMor2");
+		absolutePanel.add(horizontalPanel, 0, 0);
+		horizontalPanel.setSize("100%", "33px");
+
+		Label lblDersDatmSistemi = new Label("Ders Dağıtım Sistemi");
+		horizontalPanel.add(lblDersDatmSistemi);
+		lblDersDatmSistemi.setWidth("100%");
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		horizontalPanel_1
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		absolutePanel.add(horizontalPanel_1, 10, 85);
+		horizontalPanel_1.setSize("249px", "23px");
+
+		Label lblTarihSeiniz = new Label("Tarih Seçiniz...");
+		horizontalPanel_1.add(lblTarihSeiniz);
+		lblTarihSeiniz.setStyleName("gwt-Bold");
+		lblTarihSeiniz.setSize("104px", "18px");
+
+		dtpTarihSeciniz = new DateBox();
+		horizontalPanel_1.add(dtpTarihSeciniz);
+		dtpTarihSeciniz.setStyleName("gwt-TextBox1");
+		dtpTarihSeciniz.setFormat(new DefaultFormat(DateTimeFormat
+				.getFormat("dd-MM-yyyy")));
+		dtpTarihSeciniz.setSize("143px", "17px");
 
 		if (!isDesignTime()) {
 			dtpTarihSeciniz.setValue(new Date());
@@ -80,5 +76,4 @@ public class DersDagitimSistemi extends Composite {
 		// return Beans.isDesignTime(); // GWT 2.4 and above
 
 	}
-
 }

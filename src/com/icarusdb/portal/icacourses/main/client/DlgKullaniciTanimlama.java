@@ -2,6 +2,10 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
@@ -9,6 +13,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class DlgKullaniciTanimlama extends DialogBox {
@@ -19,13 +24,14 @@ public class DlgKullaniciTanimlama extends DialogBox {
 	private TextBox tctKullaniciKodu;
 	private TextBox tctAdi;
 	private TextBox tctSoyadi;
-	private TextBox tctSifre;
-	private TextBox tctSifretekrar;
+	private PasswordTextBox tctSifre;
+	private PasswordTextBox tctSifretekrar;
 	public DecoratedTabPanel tabKullaniciTanimlama;
 	private Button btnKaydet;
+	private Image image;
+	private Image image_1;
 
 	public DlgKullaniciTanimlama(boolean isInsert, long id) {
-		setAnimationEnabled(true);
 		setGlassEnabled(true);
 
 		_isInsert = isInsert;
@@ -36,7 +42,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("540px", "519px");
+		absolutePanel.setSize("501px", "467px");
 
 		Label lblKullancIlemlerieklemedzenleme = new Label(
 				"Kullanıcı İşlemleri (Ekleme/Düzenleme)");
@@ -46,7 +52,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 
 		tabKullaniciTanimlama = new DecoratedTabPanel();
 		absolutePanel.add(tabKullaniciTanimlama, 10, 38);
-		tabKullaniciTanimlama.setSize("476px", "314px");
+		tabKullaniciTanimlama.setSize("487px", "314px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
@@ -56,13 +62,14 @@ public class DlgKullaniciTanimlama extends DialogBox {
 
 		FlexTable flexTable = new FlexTable();
 		absolutePanel_1.add(flexTable, 10, 10);
-		flexTable.setSize("302px", "184px");
+		flexTable.setSize("265px", "123px");
 
 		Label lblKullancKodu = new Label("Kullanıcı Kodu");
 		flexTable.setWidget(0, 0, lblKullancKodu);
 		lblKullancKodu.setStyleName("gwt-Bold");
 
 		tctKullaniciKodu = new TextBox();
+		tctKullaniciKodu.setMaxLength(3);
 		flexTable.setWidget(0, 1, tctKullaniciKodu);
 		tctKullaniciKodu.setStyleName("gwt-TextBox1");
 		tctKullaniciKodu.setSize("143px", "16px");
@@ -72,6 +79,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		lblAd.setStyleName("gwt-Bold");
 
 		tctAdi = new TextBox();
+		tctAdi.setMaxLength(30);
 		flexTable.setWidget(1, 1, tctAdi);
 		tctAdi.setStyleName("gwt-TextBox1");
 		tctAdi.setSize("143px", "16px");
@@ -81,6 +89,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		lblSoyad.setStyleName("gwt-Bold");
 
 		tctSoyadi = new TextBox();
+		tctSoyadi.setMaxLength(30);
 		flexTable.setWidget(2, 1, tctSoyadi);
 		tctSoyadi.setStyleName("gwt-TextBox1");
 		tctSoyadi.setSize("143px", "16px");
@@ -89,7 +98,8 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		flexTable.setWidget(3, 0, lblifre);
 		lblifre.setStyleName("gwt-Bold");
 
-		tctSifre = new TextBox();
+		tctSifre = new PasswordTextBox();
+		tctSifre.setMaxLength(10);
 		flexTable.setWidget(3, 1, tctSifre);
 		tctSifre.setStyleName("gwt-TextBox1");
 		tctSifre.setSize("143px", "16px");
@@ -99,7 +109,8 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		lblifreTekrar.setStyleName("gwt-Bold");
 		lblifreTekrar.setSize("87px", "23px");
 
-		tctSifretekrar = new TextBox();
+		tctSifretekrar = new PasswordTextBox();
+		tctSifretekrar.setMaxLength(10);
 		flexTable.setWidget(4, 1, tctSifretekrar);
 		tctSifretekrar.setStyleName("gwt-TextBox1");
 		tctSifretekrar.setSize("143px", "16px");
@@ -113,7 +124,7 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new TctKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 248, 441);
+		absolutePanel.add(btnKaydet, 62, 382);
 		btnKaydet.setSize("78px", "47px");
 
 		Button tctKapat = new Button("New button");
@@ -121,17 +132,21 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		tctKapat.setStyleName("gwt-ButonKapat");
 		tctKapat.addClickHandler(new TctKapatClickHandler());
 		tctKapat.setText("Kapat");
-		absolutePanel.add(tctKapat, 344, 441);
+		absolutePanel.add(tctKapat, 140, 382);
 		tctKapat.setSize("78px", "47px");
 
-		Image image = new Image("kaydet-1.png");
+		image = new Image("kaydet-1.png");
+		image.addMouseOverHandler(new ImageMouseOverHandler());
+		image.addMouseOutHandler(new ImageMouseOutHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 248, 358);
+		absolutePanel.add(image, 284, 358);
 		image.setSize("72px", "66px");
 
-		Image image_1 = new Image("kapat-1.png");
+		image_1 = new Image("kapat-1.png");
+		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutePanel.add(image_1, 336, 358);
+		absolutePanel.add(image_1, 365, 358);
 		image_1.setSize("72px", "66px");
 	}
 
@@ -178,6 +193,38 @@ public class DlgKullaniciTanimlama extends DialogBox {
 	private class Image_1ClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			hide();
+		}
+	}
+
+	private class Image_1MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_1.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class ImageMouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class ImageMouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image.setUrl("kaydet-1.png");
+
+		}
+	}
+
+	private class Image_1MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_1.setUrl("kapat-1.png");
+
 		}
 	}
 }
