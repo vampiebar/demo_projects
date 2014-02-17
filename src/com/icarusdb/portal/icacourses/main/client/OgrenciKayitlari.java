@@ -5,6 +5,11 @@ import java.util.List;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -50,6 +55,10 @@ public class OgrenciKayitlari extends Composite {
 		horizontalPanel.setSize("100%", "19px");
 
 		tctAranacakAnahtarKelime = new TextBox();
+		tctAranacakAnahtarKelime
+				.addKeyDownHandler(new TctAranacakAnahtarKelimeKeyDownHandler());
+		tctAranacakAnahtarKelime
+				.addFocusHandler(new TctAranacakAnahtarKelimeFocusHandler());
 		tctAranacakAnahtarKelime.setText("Ne Aramıştınız?");
 		horizontalPanel.add(tctAranacakAnahtarKelime);
 		horizontalPanel.setCellHeight(tctAranacakAnahtarKelime, "30");
@@ -89,6 +98,14 @@ public class OgrenciKayitlari extends Composite {
 			}
 		};
 		grdOgrenciKayitlari.addColumn(textColumn, "Soyadı");
+
+		TextColumn<XMLOnKayit> textColumn_3 = new TextColumn<XMLOnKayit>() {
+			@Override
+			public String getValue(XMLOnKayit object) {
+				return object.tc_kimlik_no.toString();
+			}
+		};
+		grdOgrenciKayitlari.addColumn(textColumn_3, "TC Kimlik No");
 
 		Column<XMLOnKayit, String> column = new Column<XMLOnKayit, String>(
 				new ButtonCell()) {
@@ -220,6 +237,77 @@ public class OgrenciKayitlari extends Composite {
 			// displayError("Couldn't retrieve JSON");
 
 			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private class TctAranacakAnahtarKelimeFocusHandler implements FocusHandler {
+		public void onFocus(FocusEvent event) {
+
+			tctAranacakAnahtarKelime.setText(tctAranacakAnahtarKelime.getText()
+					.replace("Ne Aramıştınız?", ""));
+		}
+	}
+
+	private class TctAranacakAnahtarKelimeKeyDownHandler implements
+			KeyDownHandler {
+		public void onKeyDown(KeyDownEvent event) {
+
+			if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+				// do something
+				String urlWithParameters = Util.urlBase
+						+ "getonkayit?kayit_silinsin_mi=FALSE"
+						+ "&kesin_kayit_mi=TRUE" + "&adi_soyadi_tc_kimlik_no="
+						+ tctAranacakAnahtarKelime.getText();
+
+				RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+						urlWithParameters);
+
+				// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+				try {
+					Request request = builder.sendRequest(null,
+							new RequestCallback() {
+								public void onError(Request request,
+										Throwable exception) {
+
+								}
+
+								@Override
+								public void onResponseReceived(Request request,
+										Response response) {
+
+									// Window.alert("AAABBBCCC " +
+									// response.getText());
+
+									List<XMLOnKayit> listXmlOnKayit = XMLOnKayit.XML
+											.readList(response.getText());
+
+									// listXmlOnKayit.add(xmlOnKayit);
+
+									// lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
+
+									// Set the total row count. This isn't
+									// strictly
+									// necessary, but it affects
+									// paging calculations, so its good habit to
+									// keep the row count up to date.
+									grdOgrenciKayitlari.setRowCount(1, true);
+
+									// Push the data into the widget.
+									grdOgrenciKayitlari.setRowData(0,
+											listXmlOnKayit);
+
+								}
+
+							});
+
+				} catch (RequestException e) {
+					// displayError("Couldn't retrieve JSON");
+
+					// Window.alert(e.getMessage() + "ERROR");
+				}
+			}
 		}
 
 	}

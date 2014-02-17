@@ -3,15 +3,18 @@ package com.icarusdb.portal.icacourses.main.client;
 import java.util.List;
 
 import com.google.gwt.cell.client.ButtonCell;
-import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.event.dom.client.MouseOverHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -25,10 +28,12 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.widget.client.TextButton;
 
 public class DlgOdevOlustur extends DialogBox {
@@ -46,6 +51,11 @@ public class DlgOdevOlustur extends DialogBox {
 	private Button btnKaydet;
 	private Image image;
 	private Image image_1;
+	private FlexTable flxOdevCevaplari;
+	private ListBox cbxSonHarf;
+	private Image image_2;
+	private Image image_3;
+	private Button btnCevaplariKaydet;
 
 	public DlgOdevOlustur(boolean isInsert, long id) {
 		setGlassEnabled(true);
@@ -57,12 +67,14 @@ public class DlgOdevOlustur extends DialogBox {
 
 		absolutePanel = new AbsolutePanel();
 		setWidget(absolutePanel);
-		absolutePanel.setSize("625px", "472px");
+		absolutePanel.setSize("616px", "456px");
 
 		tabOdevOlustur = new DecoratedTabPanel();
+		tabOdevOlustur
+				.addSelectionHandler(new TabOdevOlusturSelectionHandler());
 		tabOdevOlustur.setAnimationEnabled(true);
 		absolutePanel.add(tabOdevOlustur, 0, 0);
-		tabOdevOlustur.setSize("615px", "442px");
+		tabOdevOlustur.setSize("616px", "446px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
@@ -80,14 +92,14 @@ public class DlgOdevOlustur extends DialogBox {
 		image.addMouseOutHandler(new ImageMouseOutHandler());
 		image.addMouseOverHandler(new ImageMouseOverHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel_1.add(image, 255, 198);
+		absolutePanel_1.add(image, 325, 209);
 		image.setSize("72px", "66px");
 
 		image_1 = new Image("kapat-1.png");
 		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
 		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutePanel_1.add(image_1, 333, 198);
+		absolutePanel_1.add(image_1, 403, 209);
 		image_1.setSize("72px", "66px");
 
 		FlexTable flexTable = new FlexTable();
@@ -158,59 +170,96 @@ public class DlgOdevOlustur extends DialogBox {
 		lblSoruSays.setSize("86px", "18px");
 
 		tctSoruSayisi = new TextBox();
+		tctSoruSayisi.addKeyPressHandler(new TctSoruSayisiKeyPressHandler());
 		flexTable.setWidget(5, 1, tctSoruSayisi);
 		tctSoruSayisi.setStyleName("gwt-TextBox1");
 		tctSoruSayisi.setSize("149px", "16px");
+
+		Label lblNewLabel_3 = new Label("Son Harf");
+		lblNewLabel_3.setStyleName("gwt-Bold");
+		flexTable.setWidget(6, 0, lblNewLabel_3);
+
+		cbxSonHarf = new ListBox();
+		cbxSonHarf.addItem("A");
+		cbxSonHarf.addItem("B");
+		cbxSonHarf.addItem("C");
+		cbxSonHarf.addItem("D");
+		cbxSonHarf.addItem("E");
+		cbxSonHarf.addItem("F");
+		cbxSonHarf.setStyleName("gwt-ComboBox1");
+		flexTable.setWidget(6, 1, cbxSonHarf);
+		cbxSonHarf.setSize("151px", "22px");
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
 		tabOdevOlustur.add(absolutePanel_2, "Ödev Cevapları", false);
 		absolutePanel_2.setSize("600px", "400px");
 
-		CellTable<Object> grdOdevCevaplari = new CellTable<Object>();
-		absolutePanel_2.add(grdOdevCevaplari, 10, 10);
-		grdOdevCevaplari.setSize("537px", "156px");
+		VerticalPanel verticalPanel_1 = new VerticalPanel();
+		absolutePanel_2.add(verticalPanel_1, 0, 0);
+		verticalPanel_1.setSize("100%", "100%");
 
-		Column<Object, Number> column = new Column<Object, Number>(
-				new NumberCell()) {
-			@Override
-			public Number getValue(Object object) {
-				return (Number) null;
-			}
-		};
-		grdOdevCevaplari.addColumn(column, "Soru No");
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		verticalPanel_1.add(horizontalPanel);
+		horizontalPanel.setSize("100%", "8px");
 
-		TextColumn<Object> textColumn = new TextColumn<Object>() {
-			@Override
-			public String getValue(Object object) {
-				return object.toString();
-			}
-		};
-		grdOdevCevaplari.addColumn(textColumn, "Cevaplar");
+		Label lblSoruNo = new Label("Soru No");
+		horizontalPanel.add(lblSoruNo);
+		lblSoruNo.setStyleName("gwt-Bold");
 
-		Button btnYenikayit = new Button("Yeni Kayit");
-		btnYenikayit.setStyleName("gwt-ButonYeniKayit");
-		absolutePanel_2.add(btnYenikayit, 159, 190);
-		btnYenikayit.setSize("78px", "47px");
+		Label lblCevaplar = new Label("Cevaplar");
+		horizontalPanel.add(lblCevaplar);
+		lblCevaplar.setStyleName("gwt-Bold");
 
-		Button btnCevaplarIeriAl = new Button("Cevapları İçeri Al");
-		absolutePanel_2.add(btnCevaplarIeriAl, 235, 190);
-		btnCevaplarIeriAl.setSize("78px", "47px");
+		VerticalPanel verticalPanel = new VerticalPanel();
+		verticalPanel_1.add(verticalPanel);
+		verticalPanel.setSize("100%", "199px");
 
-		Button btnCevaplariDısariAl = new Button("Cevapları Dışarı Al");
-		absolutePanel_2.add(btnCevaplariDısariAl, 310, 190);
-		btnCevaplariDısariAl.setSize("78px", "47px");
+		flxOdevCevaplari = new FlexTable();
+		verticalPanel.add(flxOdevCevaplari);
+		flxOdevCevaplari.setSize("100%", "100%");
 
-		Button btnCevaplariKaydet = new Button("Cevapları Kaydet");
+		Label lblNewLabel_4 = new Label("New label");
+		flxOdevCevaplari.setWidget(0, 0, lblNewLabel_4);
+
+		Label lblNewLabel_1 = new Label("New label");
+		flxOdevCevaplari.setWidget(0, 1, lblNewLabel_1);
+
+		Label lblNewLabel_2 = new Label("New label");
+		flxOdevCevaplari.setWidget(1, 1, lblNewLabel_2);
+
+		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+		verticalPanel_1.add(horizontalPanel_1);
+		horizontalPanel_1.setSize("100%", "66px");
+
+		btnCevaplariKaydet = new Button("Cevapları Kaydet");
+		btnCevaplariKaydet.setVisible(false);
+		horizontalPanel_1.add(btnCevaplariKaydet);
+		horizontalPanel_1.setCellWidth(btnCevaplariKaydet, "350");
+		btnCevaplariKaydet
+				.addClickHandler(new BtnCevaplariKaydetClickHandler());
 		btnCevaplariKaydet.setStyleName("gwt-ButtonSave");
-		absolutePanel_2.add(btnCevaplariKaydet, 385, 190);
 		btnCevaplariKaydet.setSize("78px", "47px");
 
-		Button btnKapat = new Button("Kapat");
-		btnKapat.setStyleName("gwt-ButonKapat");
-		btnKapat.addClickHandler(new BtnKapatClickHandler());
-		absolutePanel_2.add(btnKapat, 457, 190);
-		btnKapat.setSize("78px", "47px");
+		Button btnYenikayit = new Button("Yeni Kayit");
+		horizontalPanel_1.add(btnYenikayit);
+		btnYenikayit.setText("");
+		btnYenikayit.setStyleName("gwt-ButonYeniKayit");
+		btnYenikayit.setSize("90px", "66px");
+
+		image_2 = new Image("kaydet-1.png");
+		horizontalPanel_1.add(image_2);
+		image_2.addMouseOutHandler(new Image_2MouseOutHandler());
+		image_2.addMouseOverHandler(new Image_2MouseOverHandler());
+		image_2.addClickHandler(new Image_2ClickHandler());
+		image_2.setSize("72px", "66px");
+
+		image_3 = new Image("kapat-1.png");
+		horizontalPanel_1.add(image_3);
+		image_3.addMouseOutHandler(new Image_3MouseOutHandler());
+		image_3.addMouseOverHandler(new Image_3MouseOverHandler());
+		image_3.addClickHandler(new Image_3ClickHandler());
+		image_3.setSize("72px", "66px");
 
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
@@ -265,6 +314,12 @@ public class DlgOdevOlustur extends DialogBox {
 		if (!isDesignTime()) {
 
 			putEgitimTuruToCbx(cbxEgitimTuru);
+
+			for (int i = 0; i <= 4; i++) {
+
+				flxOdevCevaplari.setWidget(i, 0, new Label("1"));
+
+			}
 
 		}
 	}
@@ -449,12 +504,6 @@ public class DlgOdevOlustur extends DialogBox {
 		return false;
 	}
 
-	private class BtnKapatClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-			hide();
-		}
-	}
-
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			String URLValue = Util.urlBase + "putodevolustur?";
@@ -472,6 +521,9 @@ public class DlgOdevOlustur extends DialogBox {
 			URLValue = URLValue + "&unite="
 					+ cbxUnite.getItemText(cbxUnite.getSelectedIndex());
 			URLValue = URLValue + "&soru_sayisi=" + tctSoruSayisi.getText();
+			URLValue = URLValue + "&son_harf="
+					+ cbxSonHarf.getValue(cbxSonHarf.getSelectedIndex());
+
 			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
 			// Window.alert(URLValue);
 
@@ -488,6 +540,9 @@ public class DlgOdevOlustur extends DialogBox {
 		cbxAlan.setItemText(0, xml.alan);
 		cbxDers.setItemText(0, xml.ders);
 		cbxUnite.setItemText(0, xml.unite);
+
+		cbxSonHarf.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxSonHarf,
+				xml.son_harf));
 
 		// cbxDers.setSelectedIndex(Util
 		// .GetLBXSelectedTextIndex(cbxDers, xml.ders));
@@ -569,6 +624,199 @@ public class DlgOdevOlustur extends DialogBox {
 		public void onMouseOut(MouseOutEvent event) {
 
 			image_1.setUrl("kapat-1.png");
+
+		}
+	}
+
+	private class TabOdevOlusturSelectionHandler implements
+			SelectionHandler<Integer> {
+		public void onSelection(SelectionEvent<Integer> event) {
+			if (event.getSelectedItem() == 1) {
+				showWithData(String.valueOf(_id));
+			}
+
+		}
+
+		protected void showWithData(final String id) {
+
+			String urlWithParameters = Util.urlBase + "getodevolustur?id=" + id;
+
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+					urlWithParameters);
+
+			// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+			try {
+				Request request = builder.sendRequest(null,
+						new RequestCallback() {
+							public void onError(Request request,
+									Throwable exception) {
+
+							}
+
+							@Override
+							public void onResponseReceived(Request request,
+									Response response) {
+
+								// Window.alert("AAABBBCCC " +
+								// response.getText());
+
+								List<XMLOdevOlustur> listXmlOdevOlustur = XMLOdevOlustur.XML
+										.readList(response.getText());
+
+								putDataFromXML2(listXmlOdevOlustur.get(0));
+
+							}
+
+						});
+
+			} catch (RequestException e) {
+				// displayError("Couldn't retrieve JSON");
+
+				// Window.alert(e.getMessage() + "ERROR");
+			}
+
+		}
+
+	}
+
+	private void putDataFromXML2(XMLOdevOlustur xml) {
+
+		// Window.alert("Soru Sayısı" + xml.soru_sayisi);
+
+		int soruSayisi = new Integer(xml.soru_sayisi).intValue();
+
+		flxOdevCevaplari.clear();
+
+		for (int i = 0; i < soruSayisi; i++) {
+
+			flxOdevCevaplari.setWidget(i, 0, new Label(i + ". Soru "));
+
+			ListBox cbxSecenekler = new ListBox();
+
+			cbxSecenekler.setTitle(i + "");
+
+			cbxSecenekler.addItem("A");
+			cbxSecenekler.addItem("B");
+			cbxSecenekler.addItem("C");
+			cbxSecenekler.addItem("D");
+			cbxSecenekler.addItem("E");
+
+			// for(;;)
+			flxOdevCevaplari.setWidget(i, 1, cbxSecenekler);
+
+		}
+
+	}
+
+	private class BtnCevaplariKaydetClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			String cevaplar = produceAllAnswers();
+			// Window.alert("Cevaplar:" + cevaplar);
+
+			String URLValue = Util.urlBase + "putodevolustur?";
+
+			URLValue = URLValue + "id=" + _id;
+			URLValue = URLValue + "&odev_adi=" + tctOdevAdi.getText();
+			URLValue = URLValue
+					+ "&egitim_turu="
+					+ cbxEgitimTuru.getItemText(cbxEgitimTuru
+							.getSelectedIndex());
+			URLValue = URLValue + "&alan="
+					+ cbxAlan.getItemText(cbxAlan.getSelectedIndex());
+			URLValue = URLValue + "&ders="
+					+ cbxDers.getItemText(cbxDers.getSelectedIndex());
+			URLValue = URLValue + "&unite="
+					+ cbxUnite.getItemText(cbxUnite.getSelectedIndex());
+			URLValue = URLValue + "&soru_sayisi=" + tctSoruSayisi.getText();
+			URLValue = URLValue + "&son_harf="
+					+ cbxSonHarf.getValue(cbxSonHarf.getSelectedIndex());
+
+			URLValue = URLValue + "&kayit_silinsin_mi=FALSE";
+
+			URLValue = URLValue + "&cevaplar=" + cevaplar;
+			// Window.alert(URLValue);
+
+			new Util().sendRequest(URLValue, "", "");
+
+		}
+	}
+
+	public String produceAllAnswers() {
+
+		String answers = "";
+		ListBox lbxTemp;
+		for (int i = 0; i < flxOdevCevaplari.getRowCount(); i++) {
+
+			lbxTemp = ((ListBox) flxOdevCevaplari.getWidget(i, 1));
+
+			answers = answers + lbxTemp.getItemText(lbxTemp.getSelectedIndex());
+
+		}
+
+		return answers;
+	}
+
+	private class Image_3ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			hide();
+
+		}
+	}
+
+	private class Image_2ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			btnCevaplariKaydet.click();
+
+		}
+	}
+
+	private class TctSoruSayisiKeyPressHandler implements KeyPressHandler {
+		public void onKeyPress(KeyPressEvent event) {
+
+			String input = tctSoruSayisi.getText();
+			if (!input.matches("[0-9]*")) {
+				tctSoruSayisi.setStyleName("gwt-TextBoxError");
+
+				return;
+			}
+			// do your thing
+
+			tctSoruSayisi.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class Image_3MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_3.setUrl("kapat-2.png");
+
+		}
+	}
+
+	private class Image_3MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_3.setUrl("kapat-1.png");
+
+		}
+	}
+
+	private class Image_2MouseOverHandler implements MouseOverHandler {
+		public void onMouseOver(MouseOverEvent event) {
+
+			image_2.setUrl("kaydet-2.png");
+
+		}
+	}
+
+	private class Image_2MouseOutHandler implements MouseOutHandler {
+		public void onMouseOut(MouseOutEvent event) {
+
+			image_2.setUrl("kaydet-1.png");
 
 		}
 	}

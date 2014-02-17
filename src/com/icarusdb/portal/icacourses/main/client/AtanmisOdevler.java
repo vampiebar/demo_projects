@@ -59,7 +59,7 @@ public class AtanmisOdevler extends Composite {
 
 		FlexTable flexTable = new FlexTable();
 		horizontalPanel_2.add(flexTable);
-		flexTable.setSize("100px", "100px");
+		flexTable.setSize("274px", "56px");
 
 		Label lblBalangTarihi = new Label("Başlangıç Tarihi");
 		flexTable.setWidget(0, 0, lblBalangTarihi);

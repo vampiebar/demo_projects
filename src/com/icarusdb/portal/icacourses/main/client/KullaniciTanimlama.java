@@ -71,11 +71,11 @@ public class KullaniciTanimlama extends Composite {
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		verticalPanel.add(horizontalPanel);
 		horizontalPanel.setSpacing(10);
-		horizontalPanel.setSize("100%", "165px");
+		horizontalPanel.setSize("100%", "100%");
 
 		grdKullaniciTanimlari = new CellTable<XMLKullaniciTanimlama>();
 		horizontalPanel.add(grdKullaniciTanimlari);
-		grdKullaniciTanimlari.setSize("100%", "100%");
+		grdKullaniciTanimlari.setSize("100%", "100px");
 
 		TextColumn<XMLKullaniciTanimlama> column_6 = new TextColumn<XMLKullaniciTanimlama>() {
 			@Override

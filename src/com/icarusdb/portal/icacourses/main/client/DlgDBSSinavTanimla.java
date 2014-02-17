@@ -79,7 +79,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 
 		FlexTable flexTable = new FlexTable();
 		horizontalPanel_1.add(flexTable);
-		flexTable.setHeight("124px");
+		flexTable.setSize("448px", "124px");
 
 		Label lblOkulDurumu = new Label("Okul Durumu");
 		flexTable.setWidget(0, 0, lblOkulDurumu);
@@ -118,26 +118,28 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxAlan.setStyleName("gwt-ComboBox1");
 		cbxAlan.setSize("174px", "22px");
 
-		Label lblSnavTarihi = new Label("Sınav Tarihi/Zamanı");
+		Label lblSnavTarihi = new Label("Sınav Tarihi / Zamanı");
 		flexTable.setWidget(2, 0, lblSnavTarihi);
 		lblSnavTarihi.setStyleName("gwt-Bold");
 
 		HorizontalPanel horizontalPanel_3 = new HorizontalPanel();
-		horizontalPanel_3.setSpacing(2);
 		horizontalPanel_3
 				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		horizontalPanel_3
 				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		flexTable.setWidget(2, 1, horizontalPanel_3);
+		flexTable.getCellFormatter().setWidth(2, 1, "");
+		horizontalPanel_3.setSize("279px", "20px");
 
 		dtpSinavTarihi = new DateBox();
 		horizontalPanel_3.add(dtpSinavTarihi);
+		horizontalPanel_3.setCellWidth(dtpSinavTarihi, "172");
 		dtpSinavTarihi.setStyleName("gwt-TextBox1");
 		dtpSinavTarihi
 				.addValueChangeHandler(new DtpSinavTarihiValueChangeHandler());
 		dtpSinavTarihi.setFormat(new DefaultFormat(DateTimeFormat
 				.getFormat("yyyy-MM-dd")));
-		dtpSinavTarihi.setSize("172px", "14px");
+		dtpSinavTarihi.setSize("172px", "17px");
 
 		cbxSaat = new ListBox();
 		cbxSaat.addItem("00");
@@ -166,13 +168,15 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxSaat.addItem("23");
 		cbxSaat.setStyleName("gwt-ComboBox1");
 		horizontalPanel_3.add(cbxSaat);
+		cbxSaat.setHeight("22px");
 
 		Label lblNewLabel_5 = new Label(":");
 		lblNewLabel_5
 				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		lblNewLabel_5.setStyleName("gwt-Bold");
 		horizontalPanel_3.add(lblNewLabel_5);
-		lblNewLabel_5.setSize("14px", "23px");
+		horizontalPanel_3.setCellWidth(lblNewLabel_5, "0");
+		lblNewLabel_5.setSize("12px", "19px");
 
 		cbxDakika = new ListBox();
 		cbxDakika.setStyleName("gwt-ComboBox1");
@@ -181,8 +185,9 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		cbxDakika.addItem("30");
 		cbxDakika.addItem("45");
 		horizontalPanel_3.add(cbxDakika);
+		cbxDakika.setHeight("22px");
 
-		Label lblNewLabel = new Label("Kota ( Kişi)");
+		Label lblNewLabel = new Label("Kota (Kişi)");
 		flexTable.setWidget(3, 0, lblNewLabel);
 		lblNewLabel.setStyleName("gwt-Bold");
 
@@ -190,7 +195,7 @@ public class DlgDBSSinavTanimla extends DialogBox {
 		tctKota.addKeyPressHandler(new TctKotaKeyPressHandler());
 		flexTable.setWidget(3, 1, tctKota);
 		tctKota.setStyleName("gwt-TextBox1");
-		tctKota.setSize("174px", "14px");
+		tctKota.setSize("172px", "17px");
 
 		Label lblSinavYeri = new Label("Sınav Yeri");
 		flexTable.setWidget(4, 0, lblSinavYeri);

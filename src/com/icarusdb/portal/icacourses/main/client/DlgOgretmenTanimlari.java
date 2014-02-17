@@ -70,7 +70,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		setWidget(absolutePanel);
-		absolutePanel.setSize("607px", "535px");
+		absolutePanel.setSize("607px", "498px");
 
 		tabOgretmenIslemleri = new DecoratedTabPanel();
 		absolutePanel.add(tabOgretmenIslemleri, 0, 0);
@@ -242,7 +242,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		FlexTable flexTable_1 = new FlexTable();
 		absolutePanel_3.add(flexTable_1, 10, 10);
-		flexTable_1.setSize("95px", "117px");
+		flexTable_1.setSize("78px", "130px");
 
 		Label lblPazartesi = new Label("Pazartesi");
 		flexTable_1.setWidget(0, 0, lblPazartesi);
@@ -250,7 +250,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		chxPazartesi = new SimpleCheckBox();
 		flexTable_1.setWidget(0, 1, chxPazartesi);
-		chxPazartesi.setSize("20px", "19px");
+		chxPazartesi.setSize("20px", "14px");
 
 		Label lblSal = new Label("Salı");
 		flexTable_1.setWidget(1, 0, lblSal);
@@ -258,7 +258,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		chxSali = new SimpleCheckBox();
 		flexTable_1.setWidget(1, 1, chxSali);
-		chxSali.setSize("20px", "19px");
+		chxSali.setSize("20px", "14px");
 
 		Label lblaramba = new Label("Çarşamba");
 		flexTable_1.setWidget(2, 0, lblaramba);
@@ -266,7 +266,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		chxCarsamba = new SimpleCheckBox();
 		flexTable_1.setWidget(2, 1, chxCarsamba);
-		chxCarsamba.setSize("20px", "19px");
+		chxCarsamba.setSize("20px", "14px");
 
 		Label lblPerembe = new Label("Perşembe");
 		flexTable_1.setWidget(3, 0, lblPerembe);
@@ -274,7 +274,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		chxPersembe = new SimpleCheckBox();
 		flexTable_1.setWidget(3, 1, chxPersembe);
-		chxPersembe.setSize("20px", "19px");
+		chxPersembe.setSize("20px", "14px");
 
 		Label lblCuma = new Label("Cuma");
 		flexTable_1.setWidget(4, 0, lblCuma);
@@ -282,7 +282,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		chxCuma = new SimpleCheckBox();
 		flexTable_1.setWidget(4, 1, chxCuma);
-		chxCuma.setSize("20px", "19px");
+		chxCuma.setSize("20px", "14px");
 
 		Label lblCumartesi = new Label("Cumartesi");
 		flexTable_1.setWidget(5, 0, lblCumartesi);
@@ -290,7 +290,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		chxCumartesi = new SimpleCheckBox();
 		flexTable_1.setWidget(5, 1, chxCumartesi);
-		chxCumartesi.setSize("20px", "19px");
+		chxCumartesi.setSize("20px", "14px");
 
 		Label lblPazar = new Label("Pazar");
 		flexTable_1.setWidget(6, 0, lblPazar);
@@ -298,7 +298,7 @@ public class DlgOgretmenTanimlari extends DialogBox {
 
 		chxPazar = new SimpleCheckBox();
 		flexTable_1.setWidget(6, 1, chxPazar);
-		chxPazar.setSize("20px", "19px");
+		chxPazar.setSize("20px", "14px");
 
 		btnKaydet = new Button("New button");
 		absolutePanel_3.add(btnKaydet, 223, 50);

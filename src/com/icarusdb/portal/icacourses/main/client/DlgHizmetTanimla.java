@@ -226,6 +226,7 @@ public class DlgHizmetTanimla extends DialogBox {
 
 		cbxGuzergah.setVisible((cbxHizmetTuru.getSelectedIndex() == 1));
 		lblGuzergah.setVisible((cbxHizmetTuru.getSelectedIndex() == 1));
+
 	}
 
 	private class CbxHizmetTuruChangeHandler implements ChangeHandler {
@@ -238,10 +239,12 @@ public class DlgHizmetTanimla extends DialogBox {
 			} else if (cbxHizmetTuru.getSelectedIndex() == 0) {
 				cbxGuzergah.setVisible(false);
 				lblGuzergah.setVisible(false);
+				cbxGuzergah.setItemText(0, " ");
 
 			} else if (cbxHizmetTuru.getSelectedIndex() == 2) {
 				cbxGuzergah.setVisible(false);
 				lblGuzergah.setVisible(false);
+				cbxGuzergah.setItemText(0, " ");
 
 			}
 		}

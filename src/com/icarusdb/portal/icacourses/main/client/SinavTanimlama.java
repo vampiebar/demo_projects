@@ -8,6 +8,11 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.logical.shared.CloseEvent;
 import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.http.client.Request;
@@ -25,8 +30,8 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.SingleSelectionModel;
 
@@ -36,13 +41,13 @@ public class SinavTanimlama extends Composite {
 	private Column<XMLSinavTanimlama, String> column_2;
 	private TextColumn<XMLSinavTanimlama> textColumn_1;
 	private Button btnYeniKayit;
-	private ListBox cbxSinavTuru;
 	private TextColumn<XMLSinavTanimlama> textColumn_3;
 	private DlgSinavTanimlama _dlgSinavTanimlama;
 	private Column<XMLSinavTanimlama, String> column_1;
 	private Column<XMLSinavTanimlama, String> column;
 	private HorizontalPanel horizontalPanel_3;
 	private Label lblSnavTanmlama;
+	private TextBox tctAranacakAnahtarKelime;
 
 	public SinavTanimlama() {
 
@@ -80,17 +85,15 @@ public class SinavTanimlama extends Composite {
 		verticalPanel.setCellHeight(horizontalPanel_2, "30");
 		horizontalPanel_2.setSize("100%", "23px");
 
-		Label lblSnavTuru = new Label("Sınav Türü");
-		horizontalPanel_2.add(lblSnavTuru);
-		horizontalPanel_2.setCellWidth(lblSnavTuru, "30");
-		lblSnavTuru.setWidth("80px");
-		lblSnavTuru.setStyleName("gwt-Bold");
+		tctAranacakAnahtarKelime = new TextBox();
+		tctAranacakAnahtarKelime
+				.addFocusHandler(new TctAranacakAnahtarKelimeFocusHandler());
 
-		cbxSinavTuru = new ListBox();
-		horizontalPanel_2.add(cbxSinavTuru);
-		cbxSinavTuru.setStyleName("gwt-ComboBox1");
-		cbxSinavTuru.addItem(" ");
-		cbxSinavTuru.setSize("153px", "24px");
+		tctAranacakAnahtarKelime.addKeyDownHandler(new TextBoxKeyDownHandler());
+		tctAranacakAnahtarKelime.setText("Ne Aramıştınız?");
+		tctAranacakAnahtarKelime.setStyleName("gwt-TextBoxAra");
+		horizontalPanel_2.add(tctAranacakAnahtarKelime);
+		tctAranacakAnahtarKelime.setSize("200px", "17px");
 
 		btnYeniKayit = new Button("Yeni Kayıt");
 		horizontalPanel_1.add(btnYeniKayit);
@@ -377,5 +380,77 @@ public class SinavTanimlama extends Composite {
 			});
 		}
 
+	}
+
+	private class TextBoxKeyDownHandler implements KeyDownHandler {
+		public void onKeyDown(KeyDownEvent event) {
+
+			if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+				// do something
+				String urlWithParameters = Util.urlBase
+						+ "getsinavtanimlama?kayit_silinsin_mi=FALSE"
+						+ "&sinav_no_sinav_adi="
+						+ tctAranacakAnahtarKelime.getText();
+
+				RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+						urlWithParameters);
+
+				// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+				try {
+					Request request = builder.sendRequest(null,
+							new RequestCallback() {
+								public void onError(Request request,
+										Throwable exception) {
+
+								}
+
+								@Override
+								public void onResponseReceived(Request request,
+										Response response) {
+
+									// Window.alert("AAABBBCCC " +
+									// response.getText());
+
+									List<XMLSinavTanimlama> listXmlSinavTanimlama = XMLSinavTanimlama.XML
+											.readList(response.getText());
+
+									// listXmlOnKayit.add(xmlOnKayit);
+
+									// lblNewLabel.setText(listXmlOnKayit.get(0).tc_kimlik_no);
+
+									// Set the total row count. This isn't
+									// strictly
+									// necessary, but it affects
+									// paging calculations, so its good habit to
+									// keep the row count up to date.
+									grdSinavTanimlama.setRowCount(1, true);
+
+									// Push the data into the widget.
+									grdSinavTanimlama.setRowData(0,
+											listXmlSinavTanimlama);
+
+								}
+
+							});
+
+				} catch (RequestException e) {
+					// displayError("Couldn't retrieve JSON");
+
+					// Window.alert(e.getMessage() + "ERROR");
+				}
+
+			}
+		}
+
+	}
+
+	private class TctAranacakAnahtarKelimeFocusHandler implements FocusHandler {
+		public void onFocus(FocusEvent event) {
+
+			tctAranacakAnahtarKelime.setText(tctAranacakAnahtarKelime.getText()
+					.replace("Ne Aramıştınız?", ""));
+
+		}
 	}
 }

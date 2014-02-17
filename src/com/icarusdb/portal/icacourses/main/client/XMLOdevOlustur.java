@@ -33,4 +33,10 @@ public class XMLOdevOlustur {
 	@Path("soru_sayisi")
 	String soru_sayisi;
 
+	@Path("son_harf")
+	String son_harf;
+
+	@Path("cevaplar")
+	String cevaplar;
+
 }

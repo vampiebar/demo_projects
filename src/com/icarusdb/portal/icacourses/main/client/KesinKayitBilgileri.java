@@ -33,6 +33,7 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
@@ -41,7 +42,6 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -107,7 +107,7 @@ public class KesinKayitBilgileri extends DialogBox {
 	private ListBox cbxOgrenciBilgileriSinif;
 	private TextBox tctOkulNumarasi;
 	private CellTable<XMLVeliler> grdVeliEkle;
-	public TabPanel tabKesinKayitBilgileri;
+	public DecoratedTabPanel tabKesinKayitBilgileri;
 	private TextBox tctHizmetlerinToplamı;
 	private TextBox tctIndirimliTutar;
 	private TextBox tctToplamTutar;
@@ -151,10 +151,8 @@ public class KesinKayitBilgileri extends DialogBox {
 		setWidget(absolutePanel);
 		absolutePanel.setSize("822px", "650px");
 
-		tabKesinKayitBilgileri = new TabPanel();
+		tabKesinKayitBilgileri = new DecoratedTabPanel();
 		tabKesinKayitBilgileri.setAnimationEnabled(true);
-		tabKesinKayitBilgileri
-				.addSelectionHandler(new TabKesinKayitBilgileriSelectionHandler());
 		absolutePanel.add(tabKesinKayitBilgileri, 10, 121);
 		tabKesinKayitBilgileri.setSize("809px", "500px");
 
@@ -243,6 +241,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		horizontalPanel.setSize("296px", "11px");
 
 		tctEvTelefonu = new TextBox();
+		tctEvTelefonu.setMaxLength(11);
 		tctEvTelefonu.addKeyPressHandler(new TctEvTelefonuKeyPressHandler());
 		horizontalPanel.add(tctEvTelefonu);
 		horizontalPanel.setCellHeight(tctEvTelefonu, "20");
@@ -250,6 +249,7 @@ public class KesinKayitBilgileri extends DialogBox {
 		tctEvTelefonu.setSize("126px", "14px");
 
 		tctCepTelefonu = new TextBox();
+		tctCepTelefonu.setMaxLength(11);
 		tctCepTelefonu.addKeyPressHandler(new TctCepTelefonuKeyPressHandler());
 		horizontalPanel.add(tctCepTelefonu);
 		tctCepTelefonu.setStyleName("gwt-TextBox1");

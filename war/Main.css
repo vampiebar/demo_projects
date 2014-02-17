@@ -1061,7 +1061,8 @@ color: white;
   padding: 4px 4px 4px 8px;
   cursor: default;
   border-bottom: 1px solid #bbbbbb;
-  border-top: 5px solid #d0e4f6 rgb(108, 127, 146);
+  border-top: 5px solid rgb(108, 127, 146);
+   border-left: 9px solid rgn(108 , 127, 146);
   /*border-top: #d0e4f6  */
 }
 .gwt-DialogBox .dialogContent {
@@ -1085,7 +1086,7 @@ color: white;
   background: rgb(108, 127, 146);
 }
 .gwt-DialogBox .dialogTopLeftInner {
-  width: 5px;
+  width: 8px;
   zoom: 1;
   background: rgb(108, 127, 146);
 }

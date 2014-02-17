@@ -78,7 +78,7 @@ public class Main implements EntryPoint {
 
 		ImgLogo = new Image("images/1.gif");
 		horizontalPanel_2.add(ImgLogo, 23, 10);
-		ImgLogo.setSize("115px", "43px");
+		ImgLogo.setSize("125px", "40px");
 
 		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
 		horizontalPanel_1

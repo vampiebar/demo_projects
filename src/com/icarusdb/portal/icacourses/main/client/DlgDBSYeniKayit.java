@@ -198,7 +198,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		tctAdi.setMaxLength(30);
 		flexTable.setWidget(0, 1, tctAdi);
 		tctAdi.setStyleName("gwt-TextBox1");
-		tctAdi.setSize("232px", "14px");
+		tctAdi.setSize("232px", "15px");
 
 		Label lblNewLabel_1 = new Label("Soyadi");
 		flexTable.setWidget(1, 0, lblNewLabel_1);
@@ -209,7 +209,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		tctSoyadi.setMaxLength(30);
 		flexTable.setWidget(1, 1, tctSoyadi);
 		tctSoyadi.setStyleName("gwt-TextBox1");
-		tctSoyadi.setSize("232px", "14px");
+		tctSoyadi.setSize("232px", "15px");
 
 		Label lblTcKimlikNo = new Label("T.C. Kimlik No ");
 		flexTable.setWidget(2, 0, lblTcKimlikNo);
@@ -227,7 +227,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		horizontalPanel_2.setCellWidth(tctTCKimlikNo, "100");
 		tctTCKimlikNo.setMaxLength(11);
 		tctTCKimlikNo.setStyleName("gwt-TextBox1");
-		tctTCKimlikNo.setSize("126px", "14px");
+		tctTCKimlikNo.setSize("126px", "15px");
 
 		Button btnBilgileriniGetir = new Button("Bilgilerini Getir");
 		horizontalPanel_2.add(btnBilgileriniGetir);
@@ -271,7 +271,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 				.getFormat("yyyy-MM-dd")));
 		dtpDogumTarihi
 				.addValueChangeHandler(new DtpDogumTarihiValueChangeHandler());
-		dtpDogumTarihi.setSize("126px", "14px");
+		dtpDogumTarihi.setSize("126px", "15px");
 
 		Label lblEvCep = new Label("Ev / Cep Telefonu");
 		flexTable.setWidget(6, 0, lblEvCep);
@@ -287,14 +287,14 @@ public class DlgDBSYeniKayit extends DialogBox {
 		tctEvTelefonu.setMaxLength(10);
 
 		tctEvTelefonu.setStyleName("gwt-TextBox1");
-		tctEvTelefonu.setSize("126px", "14px");
+		tctEvTelefonu.setSize("126px", "15px");
 
 		tctCepTelefonu = new TextBox();
 		tctCepTelefonu.addKeyPressHandler(new TctCepTelefonuKeyPressHandler());
 		horizontalPanel_1.add(tctCepTelefonu);
 		tctCepTelefonu.setMaxLength(10);
 		tctCepTelefonu.setStyleName("gwt-TextBox1");
-		tctCepTelefonu.setSize("143px", "14px");
+		tctCepTelefonu.setSize("143px", "15px");
 
 		Label lblEmail = new Label("E-Mail");
 		flexTable.setWidget(7, 0, lblEmail);
@@ -306,7 +306,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		tctEmail.setMaxLength(30);
 		flexTable.setWidget(7, 1, tctEmail);
 		tctEmail.setStyleName("gwt-TextBox1");
-		tctEmail.setSize("232px", "14px");
+		tctEmail.setSize("232px", "15px");
 
 		Label lblOkulBilgisi = new Label("OKUL BİLGİSİ");
 		flexTable.setWidget(8, 0, lblOkulBilgisi);
@@ -380,8 +380,9 @@ public class DlgDBSYeniKayit extends DialogBox {
 		lblSilmeSebebi.setStyleName("gwt-Bold");
 
 		tctSilmeSebebi = new TextBox();
+		tctSilmeSebebi.setStyleName("gwt-TextBox1");
 		flexTable.setWidget(15, 1, tctSilmeSebebi);
-		tctSilmeSebebi.setSize("143px", "14px");
+		tctSilmeSebebi.setSize("151px", "15px");
 
 		VerticalPanel verticalPanel_1 = new VerticalPanel();
 		decoratedTabPanel.add(verticalPanel_1, "Öğrenci Kimlik Bilgileri",

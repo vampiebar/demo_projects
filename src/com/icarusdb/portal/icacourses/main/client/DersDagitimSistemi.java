@@ -50,7 +50,7 @@ public class DersDagitimSistemi extends Composite {
 		absolutePanel.add(horizontalPanel_1, 10, 85);
 		horizontalPanel_1.setSize("249px", "23px");
 
-		Label lblTarihSeiniz = new Label("Tarih Seçiniz...");
+		Label lblTarihSeiniz = new Label("Tarih Seçiniz");
 		horizontalPanel_1.add(lblTarihSeiniz);
 		lblTarihSeiniz.setStyleName("gwt-Bold");
 		lblTarihSeiniz.setSize("104px", "18px");

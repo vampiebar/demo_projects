@@ -212,8 +212,10 @@ public class HizmetTanimla extends Composite {
 									+ object.hizmet_turu.toString();
 							URLValue = URLValue + "&birim_fiyati="
 									+ object.birim_fiyati.toString();
-							URLValue = URLValue + "&guzergah="
-									+ object.guzergah.toString();
+							URLValue = URLValue
+									+ "&guzergah="
+									+ ((object.guzergah == null) ? ""
+											: object.guzergah);
 
 							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
 

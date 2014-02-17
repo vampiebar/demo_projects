@@ -120,7 +120,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		flexTable.setWidget(1, 1, cbxKategoriler);
 		cbxKategoriler.addItem(" ");
 		cbxKategoriler.setStyleName("gwt-ComboBox1");
-		cbxKategoriler.setSize("190px", "22px");
+		cbxKategoriler.setSize("157px", "22px");
 
 		Label lblGelirler = new Label("Gelirler");
 		flexTable.setWidget(2, 0, lblGelirler);
@@ -164,6 +164,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		lblBanka.setStyleName("gwt-Bold");
 
 		cbxBanka = new ListBox();
+
 		flexTable.setWidget(4, 1, cbxBanka);
 		cbxBanka.setEnabled(false);
 		cbxBanka.addItem(" ");
@@ -341,8 +342,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 
 	private class BtnKaydetClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			String URLValue = Util.urlBase
-					+ "putgelirlervegiderler?kayit_silinsin_mi=FALSE";
+			String URLValue = Util.urlBase + "putgelirlervegiderler?";
 
 			URLValue = URLValue + "id=" + _id;
 
@@ -371,8 +371,12 @@ public class DlgGelirlerveGiderler extends DialogBox {
 
 			DateTimeFormat dtf2 = DateTimeFormat.getFormat("yyyy-MM-dd");
 
-			URLValue = URLValue + "&vade_tarihi="
-					+ dtf2.format(dtpVadeTarihi.getValue());
+			String vade_tarihi = "1970-01-01";
+			if (dtpVadeTarihi.getValue() != null) {
+				vade_tarihi = dtf2.format(dtpVadeTarihi.getValue());
+			}
+
+			URLValue = URLValue + "&vade_tarihi=" + vade_tarihi;
 
 			// Window.alert(URLValue);
 
@@ -403,7 +407,7 @@ public class DlgGelirlerveGiderler extends DialogBox {
 		tctMiktar.setText(xml.miktar);
 		// cbxBanka.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxBanka,
 		// xml.banka));
-
+		// cbxBanka.setItemText(0, xml.banka);
 		cbxGelirler.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxGelirler,
 				xml.gelirler));
 		cbxİslemTipi.setSelectedIndex(Util.GetLBXSelectedTextIndex(
@@ -420,70 +424,90 @@ public class DlgGelirlerveGiderler extends DialogBox {
 
 		dtpVadeTarihi.setValue(dtf2.parse(xml.vade_tarihi));
 
+		// dtpVadeTarihi
+		// .setValue((Date) ((dtf2.parse(xml.vade_tarihi) == null) ? ""
+		// : dtf2.parse(xml.vade_tarihi)));
+
 		if (cbxOdemeTuru.getSelectedIndex() == 3) {
+
 			cbxBanka.setEnabled(false);
 			// cbxCek.setEnabled(false);
 			dtpVadeTarihi.setEnabled(false);
-			// cbxBanka.setItemText(0, xml.banka);
+			dtpVadeTarihi.setValue(null);
+			cbxBanka.setSelectedIndex(0);
 
 		} else if (cbxOdemeTuru.getSelectedIndex() == 2) {
 
 			cbxBanka.setEnabled(false);
 			// cbxCek.setEnabled(false);
 			dtpVadeTarihi.setEnabled(true);
-			// cbxBanka.setItemText(0, xml.banka);
+			cbxBanka.setSelectedIndex(0);
 
 		} else if (cbxOdemeTuru.getSelectedIndex() == 1) {
+
 			cbxBanka.setEnabled(true);
 			// cbxCek.setEnabled(false);
-			// dtpVadeTarihi.setEnabled(false);
+			dtpVadeTarihi.setEnabled(false);
+			dtpVadeTarihi.setValue(null);
+			cbxBanka.setItemText(0, xml.banka);
 
 		} else if (cbxOdemeTuru.getSelectedIndex() == 0) {
+
 			cbxBanka.setEnabled(false);
 			// cbxCek.setEnabled(false);
 			dtpVadeTarihi.setEnabled(false);
-			// cbxBanka.addItem("Lütfen Seçiniz");
+			dtpVadeTarihi.setValue(null);
+			cbxBanka.setSelectedIndex(0);
 
 		} else if (cbxOdemeTuru.getSelectedIndex() == 4) {
+
 			cbxBanka.setEnabled(true);
 			// cbxCek.setEnabled(false);
 			dtpVadeTarihi.setEnabled(false);
-			// cbxBanka.setItemText(0, xml.banka);
+			dtpVadeTarihi.setValue(null);
+			cbxBanka.setItemText(0, xml.banka);
 
 		}
-
 	}
 
 	private class CbxOdemeTuruChangeHandler implements ChangeHandler {
 		public void onChange(ChangeEvent event) {
 			if (cbxOdemeTuru.getSelectedIndex() == 3) {
+
 				cbxBanka.setEnabled(false);
 				// cbxCek.setEnabled(false);
 				dtpVadeTarihi.setEnabled(false);
-				// cbxBanka.setItemText(0, "Lütfen Seçiniz");
+				dtpVadeTarihi.setValue(null);
+				cbxBanka.setSelectedIndex(0);
 
 			} else if (cbxOdemeTuru.getSelectedIndex() == 2) {
 
 				cbxBanka.setEnabled(false);
 				// cbxCek.setEnabled(false);
 				dtpVadeTarihi.setEnabled(true);
-				// cbxBanka.setItemText(0, "Lütfen Seçiniz");
+				cbxBanka.setSelectedIndex(0);
 
 			} else if (cbxOdemeTuru.getSelectedIndex() == 1) {
+
 				cbxBanka.setEnabled(true);
 				// cbxCek.setEnabled(false);
 				dtpVadeTarihi.setEnabled(false);
+				dtpVadeTarihi.setValue(null);
 
 			} else if (cbxOdemeTuru.getSelectedIndex() == 0) {
+
 				cbxBanka.setEnabled(false);
 				// cbxCek.setEnabled(false);
 				dtpVadeTarihi.setEnabled(false);
-				// cbxBanka.setItemText(0, "Lütfen Seçiniz");
+				dtpVadeTarihi.setValue(null);
+				cbxBanka.setSelectedIndex(0);
 
 			} else if (cbxOdemeTuru.getSelectedIndex() == 4) {
+
 				cbxBanka.setEnabled(true);
 				// cbxCek.setEnabled(false);
 				dtpVadeTarihi.setEnabled(false);
+				dtpVadeTarihi.setValue(null);
 
 			}
 

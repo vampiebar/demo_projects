@@ -228,7 +228,7 @@ public class SinifTanimlari extends Composite {
 									+ object.egitim_turu.toString();
 							URLValue = URLValue + "&alan="
 									+ object.alan.toString();
-							URLValue = URLValue + "&dan_ogretmen="
+							URLValue = URLValue + "&danisman_ogretmen="
 									+ object.dan_ogretmen.toString();
 							URLValue = URLValue + "&sinif_kontenjani="
 									+ object.sinif_kontenjani.toString();
