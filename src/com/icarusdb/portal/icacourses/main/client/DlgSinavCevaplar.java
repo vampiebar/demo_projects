@@ -2,83 +2,157 @@ package com.icarusdb.portal.icacourses.main.client;
 
 import java.util.List;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.MouseOutEvent;
-import com.google.gwt.event.dom.client.MouseOutHandler;
-import com.google.gwt.event.dom.client.MouseOverEvent;
-import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class DlgSinavCevaplar extends DialogBox {
-	private Image image_1;
+	private HorizontalPanel hzPanKazanimlar;
+	private Button btnCevaplariGetir;
+
+	public boolean _isInsert = true;
+	public long _id = -1;
+	private VerticalPanel vtPanKazanimlar;
+	private ListBox cbxDers;
+	private ListBox cbxDersGrubu;
 
 	public DlgSinavCevaplar() {
+		// boolean isInsert, long id
+		// _isInsert = isInsert;
+		// _id = id;
+
 		setGlassEnabled(true);
 		setHTML("Sınav Tanım Cevap (Ekleme / Düzenleme)");
 
-		AbsolutePanel verticalPanel = new AbsolutePanel();
-		setWidget(verticalPanel);
-		verticalPanel.setSize("514px", "421px");
+		AbsolutePanel AbsolutePanel = new AbsolutePanel();
+		setWidget(AbsolutePanel);
+		AbsolutePanel.setSize("808px", "547px");
+
+		ScrollPanel scrollPanel = new ScrollPanel();
+		AbsolutePanel.add(scrollPanel);
+		scrollPanel.setSize("100%", "100%");
+
+		VerticalPanel verticalPanel = new VerticalPanel();
+		scrollPanel.setWidget(verticalPanel);
+		verticalPanel.setSize("100%", "100%");
 
 		FlexTable flexTable = new FlexTable();
 		verticalPanel.add(flexTable);
+		verticalPanel.setCellHeight(flexTable, "95");
 		flexTable.setSize("229px", "43px");
 
 		Label lblNewLabel = new Label("Ders Grubu");
 		flexTable.setWidget(0, 0, lblNewLabel);
 
-		ListBox comboBox = new ListBox();
-		comboBox.addItem("Lütfen Seçiniz");
-		comboBox.setStyleName("gwt-ComboBox1");
-		flexTable.setWidget(0, 1, comboBox);
-		comboBox.setWidth("120px");
+		cbxDersGrubu = new ListBox();
+		cbxDersGrubu.addChangeHandler(new CbxDersGrubuChangeHandler());
+		cbxDersGrubu.addItem("Lütfen Seçiniz");
+		cbxDersGrubu.setStyleName("gwt-ComboBox1");
+		flexTable.setWidget(0, 1, cbxDersGrubu);
+		cbxDersGrubu.setWidth("120px");
 
 		Label lblNewLabel_1 = new Label("Ders");
 		flexTable.setWidget(1, 0, lblNewLabel_1);
 
-		ListBox comboBox_1 = new ListBox();
-		comboBox_1.addItem(" ");
-		comboBox_1.setStyleName("gwt-ComboBox1");
-		flexTable.setWidget(1, 1, comboBox_1);
-		comboBox_1.setWidth("120px");
+		cbxDers = new ListBox();
+		cbxDers.addItem(" ");
+		cbxDers.setStyleName("gwt-ComboBox1");
+		flexTable.setWidget(1, 1, cbxDers);
+		cbxDers.setWidth("120px");
 
-		Image image = new Image((String) null);
-		verticalPanel.add(image);
+		btnCevaplariGetir = new Button("New button");
+		btnCevaplariGetir.addClickHandler(new BtnCevaplariGetirClickHandler());
+		btnCevaplariGetir.setStyleName("gwt-BilgileriniGetir");
+		btnCevaplariGetir.setText("Cevapları Getir");
+		flexTable.setWidget(2, 1, btnCevaplariGetir);
+		btnCevaplariGetir.setWidth("120px");
+		flexTable.getCellFormatter().setHorizontalAlignment(2, 1,
+				HasHorizontalAlignment.ALIGN_LEFT);
 
-		image_1 = new Image("kapat-1.png");
-		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
-		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
+		hzPanKazanimlar = new HorizontalPanel();
+		verticalPanel.add(hzPanKazanimlar);
+		verticalPanel.setCellHeight(hzPanKazanimlar, "30");
+		hzPanKazanimlar.setVisible(false);
+		hzPanKazanimlar.setSize("100%", "17px");
+
+		Label lblNewLabel_5 = new Label("Soru No");
+		hzPanKazanimlar.add(lblNewLabel_5);
+		hzPanKazanimlar.setCellHeight(lblNewLabel_5, "30");
+		lblNewLabel_5.setWidth("50px");
+
+		Label lblNewLabel_4 = new Label("Ünite");
+		hzPanKazanimlar.add(lblNewLabel_4);
+
+		Label lblNewLabel_3 = new Label("");
+		hzPanKazanimlar.add(lblNewLabel_3);
+
+		Label lblNewLabel_2 = new Label("Konu");
+		hzPanKazanimlar.add(lblNewLabel_2);
+
+		Label lblNewLabel_6 = new Label("Kazanım");
+		hzPanKazanimlar.add(lblNewLabel_6);
+		lblNewLabel_6.setWidth("156px");
+
+		vtPanKazanimlar = new VerticalPanel();
+		verticalPanel.add(vtPanKazanimlar);
+		verticalPanel.setCellHeight(vtPanKazanimlar, "30");
+		vtPanKazanimlar.setSize("100%", "88px");
+
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel
+				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		horizontalPanel.setSize("100%", "70px");
+
+		Image image_2 = new Image("kaydet-1.png");
+		horizontalPanel.add(image_2);
+		horizontalPanel.setCellWidth(image_2, "0");
+		image_2.setSize("72px", "66px");
+
+		Image image_1 = new Image("kapat-1.png");
 		image_1.addClickHandler(new Image_1ClickHandler());
-		verticalPanel.add(image_1, 377, 96);
+		horizontalPanel.add(image_1);
 		image_1.setSize("72px", "66px");
 
 		if (!isDesignTime()) {
 
+			putDersGrubuToCbx(cbxDersGrubu);
+
+			for (int i = 0; i <= 5; i++) {
+				vtPanKazanimlar.add(new CmpstRowTest());
+			}
+
 		}
 	}
 
-	private void putOKulDurumuToCbx(final ListBox lbxTemp,
-			final ListBox lbxTemp2) {
+	private void putDersGrubuToCbx(final ListBox lbxTemp) {
 
 		lbxTemp.clear();
-		lbxTemp.addItem("");
-
-		lbxTemp2.clear();
-		lbxTemp2.addItem("");
+		lbxTemp.addItem("Lütfen Seçiniz");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				Util.urlBase + "getokulsinifbilgisi");
+				Util.urlBase + "getegitimturudersgrupadi");
+
+		// Window.alert(Util.urlBase + "getpostakodumahalle?il=" + il +
+		// "&ilce="
+		// + ilce + "&semt_bucak_belde=" + semt_bucak_belde);
 
 		try {
 			Request request = builder.sendRequest(null, new RequestCallback() {
@@ -91,16 +165,62 @@ public class DlgSinavCevaplar extends DialogBox {
 				public void onResponseReceived(Request request,
 						Response response) {
 
-					// Window.alert("getdbssinavtanimla " + response.getText());
+					// Window.alert("AAABBBCCC " +
+					// response.getText());
 
-					List<XMLOkulSinifBilgisi> xmlOkulSinifBilgisi = XMLOkulSinifBilgisi.XML
+					List<XMLEgitimTuruDersAdi> xmlEgitimTuruDersAdi = XMLEgitimTuruDersAdi.XML
 							.readList(response.getText());
 
-					for (int i = 0; i < xmlOkulSinifBilgisi.size(); i++) {
+					for (int i = 0; i < xmlEgitimTuruDersAdi.size(); i++) {
 
-						lbxTemp.addItem(xmlOkulSinifBilgisi.get(i).okul_durumu);
+						lbxTemp.addItem(xmlEgitimTuruDersAdi.get(i).ders_grup_adi);
+					}
 
-						lbxTemp2.addItem(xmlOkulSinifBilgisi.get(i).okul_durumu);
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	private void putDersToCbx(String ders_grup_adi, final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("Lütfen Seçiniz");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getegitimturudersadi?" + "&ders_grup_adi="
+						+ ders_grup_adi);
+
+		// Window.alert(Util.urlBase + "getpostakodumahalle?il=" + il +
+		// "&ilce="
+		// + ilce + "&semt_bucak_belde=" + semt_bucak_belde);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " +
+					// response.getText());
+
+					List<XMLEgitimTuruDersAdi> xmlEgitimTuruDersAdi = XMLEgitimTuruDersAdi.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlEgitimTuruDersAdi.size(); i++) {
+
+						lbxTemp.addItem(xmlEgitimTuruDersAdi.get(i).ders_adi);
 					}
 
 				}
@@ -120,26 +240,26 @@ public class DlgSinavCevaplar extends DialogBox {
 		return false;
 	}
 
-	private class Image_1ClickHandler implements ClickHandler {
+	private class BtnCevaplariGetirClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
+			hzPanKazanimlar.setVisible(true);
+
+		}
+	}
+
+	private class Image_1ClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
 			hide();
-
 		}
 	}
 
-	private class Image_1MouseOverHandler implements MouseOverHandler {
-		public void onMouseOver(MouseOverEvent event) {
+	private class CbxDersGrubuChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
 
-			image_1.setUrl("kapat-2.png");
-
-		}
-	}
-
-	private class Image_1MouseOutHandler implements MouseOutHandler {
-		public void onMouseOut(MouseOutEvent event) {
-
-			image_1.setUrl("kapat-1.png");
+			putDersToCbx(
+					cbxDersGrubu.getItemText(cbxDersGrubu.getSelectedIndex()),
+					cbxDers);
 
 		}
 	}

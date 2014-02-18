@@ -25,7 +25,7 @@ public class DlgSablonTanimlari extends DialogBox {
 		_isInsert = isInsert;
 		_id = id;
 
-		setHTML("Dönem Ekle/Değiştir");
+		setHTML("Form Şablonu Tanımlama (Ekleme / Düzenleme)");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");

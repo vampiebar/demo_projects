@@ -54,7 +54,7 @@ public class DlgSinavTanimlama extends DialogBox {
 		_isInsert = isInsert;
 		_id = id;
 
-		setHTML("Dönem  Ekle / Değiştir");
+		setHTML("Sınav Tanımlama (Ekleme / Düzenleme)");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
@@ -203,6 +203,11 @@ public class DlgSinavTanimlama extends DialogBox {
 		cbxSablonSeciniz.addItem(" ");
 		cbxSablonSeciniz.setStyleName("gwt-ComboBox1");
 		cbxSablonSeciniz.setSize("154px", "22px");
+
+		Button btnNewButton = new Button("Cevaplar");
+		btnNewButton.addClickHandler(new BtnNewButtonClickHandler());
+		absolutePanel.add(btnNewButton, 271, 138);
+		btnNewButton.setSize("72px", "66px");
 		if (!isDesignTime()) {
 
 			putSablonAdiToCbx(cbxSablonSeciniz);
@@ -360,4 +365,12 @@ public class DlgSinavTanimlama extends DialogBox {
 		}
 	}
 
+	private class BtnNewButtonClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			DlgSinavCevaplar dlgTemp = new DlgSinavCevaplar();
+			dlgTemp.center();
+
+		}
+	}
 }

@@ -32,6 +32,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.widget.client.TextButton;
@@ -74,12 +75,12 @@ public class DlgOdevOlustur extends DialogBox {
 				.addSelectionHandler(new TabOdevOlusturSelectionHandler());
 		tabOdevOlustur.setAnimationEnabled(true);
 		absolutePanel.add(tabOdevOlustur, 0, 0);
-		tabOdevOlustur.setSize("616px", "446px");
+		tabOdevOlustur.setSize("616px", "456px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
 		tabOdevOlustur.add(absolutePanel_1, "Ödev Bilgileri", false);
-		absolutePanel_1.setSize("600px", "400px");
+		absolutePanel_1.setSize("600px", "410px");
 
 		btnKaydet = new Button("Kaydet");
 		btnKaydet.setVisible(false);
@@ -103,7 +104,7 @@ public class DlgOdevOlustur extends DialogBox {
 		image_1.setSize("72px", "66px");
 
 		FlexTable flexTable = new FlexTable();
-		absolutePanel_1.add(flexTable, 10, 10);
+		absolutePanel_1.add(flexTable, 0, 0);
 		flexTable.setSize("258px", "144px");
 
 		Label lbldevAd = new Label("Ödev Adı");
@@ -193,40 +194,40 @@ public class DlgOdevOlustur extends DialogBox {
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
 		tabOdevOlustur.add(absolutePanel_2, "Ödev Cevapları", false);
-		absolutePanel_2.setSize("600px", "400px");
+		absolutePanel_2.setSize("600px", "410px");
+
+		ScrollPanel scrollPanel = new ScrollPanel();
+		absolutePanel_2.add(scrollPanel);
+		scrollPanel.setSize("100%", "100%");
 
 		VerticalPanel verticalPanel_1 = new VerticalPanel();
-		absolutePanel_2.add(verticalPanel_1, 0, 0);
+		scrollPanel.setWidget(verticalPanel_1);
 		verticalPanel_1.setSize("100%", "100%");
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		verticalPanel_1.add(horizontalPanel);
+		verticalPanel_1.setCellHeight(horizontalPanel, "25");
 		horizontalPanel.setSize("100%", "8px");
 
 		Label lblSoruNo = new Label("Soru No");
 		horizontalPanel.add(lblSoruNo);
+		horizontalPanel.setCellWidth(lblSoruNo, "20");
+		lblSoruNo.setWidth("92px");
 		lblSoruNo.setStyleName("gwt-Bold");
 
 		Label lblCevaplar = new Label("Cevaplar");
 		horizontalPanel.add(lblCevaplar);
+		lblCevaplar.setWidth("400px");
 		lblCevaplar.setStyleName("gwt-Bold");
 
 		VerticalPanel verticalPanel = new VerticalPanel();
 		verticalPanel_1.add(verticalPanel);
+		verticalPanel_1.setCellHeight(verticalPanel, "205");
 		verticalPanel.setSize("100%", "199px");
 
 		flxOdevCevaplari = new FlexTable();
 		verticalPanel.add(flxOdevCevaplari);
-		flxOdevCevaplari.setSize("100%", "100%");
-
-		Label lblNewLabel_4 = new Label("New label");
-		flxOdevCevaplari.setWidget(0, 0, lblNewLabel_4);
-
-		Label lblNewLabel_1 = new Label("New label");
-		flxOdevCevaplari.setWidget(0, 1, lblNewLabel_1);
-
-		Label lblNewLabel_2 = new Label("New label");
-		flxOdevCevaplari.setWidget(1, 1, lblNewLabel_2);
+		flxOdevCevaplari.setSize("30%", "100%");
 
 		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
 		verticalPanel_1.add(horizontalPanel_1);
@@ -235,7 +236,7 @@ public class DlgOdevOlustur extends DialogBox {
 		btnCevaplariKaydet = new Button("Cevapları Kaydet");
 		btnCevaplariKaydet.setVisible(false);
 		horizontalPanel_1.add(btnCevaplariKaydet);
-		horizontalPanel_1.setCellWidth(btnCevaplariKaydet, "350");
+		horizontalPanel_1.setCellWidth(btnCevaplariKaydet, "340");
 		btnCevaplariKaydet
 				.addClickHandler(new BtnCevaplariKaydetClickHandler());
 		btnCevaplariKaydet.setStyleName("gwt-ButtonSave");
@@ -264,7 +265,7 @@ public class DlgOdevOlustur extends DialogBox {
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
 		tabOdevOlustur.add(absolutePanel_3, "Dosya Ekle", false);
-		absolutePanel_3.setSize("600px", "400px");
+		absolutePanel_3.setSize("600px", "410px");
 
 		Label lblDosyaAklama = new Label("Dosya Açıklama");
 		absolutePanel_3.add(lblDosyaAklama, 10, 10);

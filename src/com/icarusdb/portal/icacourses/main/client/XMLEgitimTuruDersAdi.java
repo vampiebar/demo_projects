@@ -21,4 +21,6 @@ public class XMLEgitimTuruDersAdi {
 	@Path("ders_adi")
 	String ders_adi;
 
+	@Path("ders_grup_adi")
+	String ders_grup_adi;
 }
