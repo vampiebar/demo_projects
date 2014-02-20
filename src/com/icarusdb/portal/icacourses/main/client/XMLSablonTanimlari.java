@@ -62,4 +62,7 @@ public class XMLSablonTanimlari {
 
 	@Path("sinav_turu")
 	String sinav_turu;
+
+	@Path("sablon")
+	String sablon;
 }

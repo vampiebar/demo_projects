@@ -223,16 +223,17 @@ public class DBSKayit extends Composite {
 			final SingleSelectionModel<XMLDBSKayit> selectionModel = new SingleSelectionModel<XMLDBSKayit>();
 
 			grdDBSKayit.setSelectionModel(selectionModel);
-			grdDBSKayit.addDomHandler(new ClickHandler() {
-				@Override
-				public void onClick(ClickEvent event) {
-					CellTable<List<String>> selectedcell = (CellTable<List<String>>) event
-							.getSource();
-					Window.alert("  Current Selected Row : "
-							+ selectedcell.getKeyboardSelectedRow()
-							+ selectedcell.getColumnCount());
-				}
-			}, ClickEvent.getType());
+			// grdDBSKayit.addDomHandler(new ClickHandler() {
+			// @Override
+			// public void onClick(ClickEvent event) {
+			// CellTable<List<String>> selectedcell = (CellTable<List<String>>)
+			// event
+			// .getSource();
+			// Window.alert("  Current Selected Row : "
+			// + selectedcell.getKeyboardSelectedRow()
+			// + selectedcell.getColumnCount());
+			// }
+			// }, ClickEvent.getType());
 
 			grdDBSKayit.addDomHandler(new DoubleClickHandler() {
 

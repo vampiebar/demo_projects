@@ -204,6 +204,50 @@ public class SablonTaninmlari extends Composite {
 
 	private void putDataToGrid() {
 
+		String urlWithParameters = Util.urlBase
+				+ "getsablontanimlari?kayit_silinsin_mi=FALSE";
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				urlWithParameters);
+
+		// Window.alert("URL TO GET VALUES: " + urlWithParameters);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLSablonTanimlari> listXmlSablonTanimlari = XMLSablonTanimlari.XML
+							.readList(response.getText());
+
+					// Window.alert("gun: " + listXmlSaatGirisi.get(0).gun);
+
+					// Set the total row count. This isn't strictly
+					// necessary, but it affects
+					// paging calculations, so its good habit to
+					// keep the row count up to date.
+					grdSablonTanimlari.setRowCount(1, true);
+
+					// Push the data into the widget.
+					grdSablonTanimlari.setRowData(0, listXmlSablonTanimlari);
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
 	}
 
 	private boolean isDesignTime() {

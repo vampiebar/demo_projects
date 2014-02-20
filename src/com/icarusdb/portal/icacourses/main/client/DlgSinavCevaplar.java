@@ -150,7 +150,7 @@ public class DlgSinavCevaplar extends DialogBox {
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
 				Util.urlBase + "getegitimturudersgrupadi");
 
-		// Window.alert(Util.urlBase + "getpostakodumahalle?il=" + il +
+		// Window.alert(Util.urlBase + "getegitimturudersgrupadi");
 		// "&ilce="
 		// + ilce + "&semt_bucak_belde=" + semt_bucak_belde);
 
@@ -194,7 +194,7 @@ public class DlgSinavCevaplar extends DialogBox {
 		lbxTemp.addItem("Lütfen Seçiniz");
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				Util.urlBase + "getegitimturudersadi?" + "&ders_grup_adi="
+				Util.urlBase + "getegitimturudersadi?" + "ders_grup_adi="
 						+ ders_grup_adi);
 
 		// Window.alert(Util.urlBase + "getpostakodumahalle?il=" + il +

@@ -667,15 +667,20 @@ public class DlgDBSYeniKayit extends DialogBox {
 		decoratedTabPanel.add(absolutePanel_4, "Veli Bilgileri", false);
 		absolutePanel_4.setSize("774px", "450px");
 
+		VerticalPanel verticalPanel = new VerticalPanel();
+		absolutePanel_4.add(verticalPanel);
+		verticalPanel.setSize("100%", "100%");
+
 		Button btnVeliEkle = new Button("Veli Ekle");
+		verticalPanel.add(btnVeliEkle);
+		verticalPanel.setCellHeight(btnVeliEkle, "40");
 		btnVeliEkle.addClickHandler(new BtnVeliEkleClickHandler());
 		btnVeliEkle.setStyleName("gwt-YeniKayit2");
-		absolutePanel_4.add(btnVeliEkle, 10, 10);
 		btnVeliEkle.setSize("120px", "30px");
 
 		VerticalPanel horizontalPanel = new VerticalPanel();
-		absolutePanel_4.add(horizontalPanel, 10, 46);
-		horizontalPanel.setSize("754px", "192px");
+		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSize("100%", "192px");
 
 		grdVeliler = new CellTable<XMLVeliler>();
 		horizontalPanel.add(grdVeliler);
