@@ -18,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -179,8 +180,8 @@ public class GelirGiderKategorileri extends Composite {
 									+ "putgelirgiderkategorileri?";
 
 							URLValue = URLValue + "id=" + selected.id;
-							URLValue = URLValue + "&egitim_turu_adi="
-									+ textColumn.getValue(selected);
+							URLValue = URLValue + "&kategori_adi="
+									+ object.kategori_adi.toString();
 
 							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
 
@@ -189,6 +190,18 @@ public class GelirGiderKategorileri extends Composite {
 							new Util().sendRequest(URLValue,
 									"DERS BİLGİSİ KAYIT EDİLDİ",
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+							Timer t = new Timer() {
+								@Override
+								public void run() {
+
+									putDataToGrid();
+								}
+							};
+
+							// Schedule the timer to run once in 1s seconds.
+							t.schedule(1000);
+
 						}
 					}
 				}
@@ -285,8 +298,20 @@ public class GelirGiderKategorileri extends Composite {
 					grdGelirGiderKategorileri.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdGelirGiderKategorileri.setRowData(0,
-							listXnmlGelirGiderKategorileri);
+					// grdGelirGiderKategorileri.setRowData(0,
+					// listXnmlGelirGiderKategorileri);
+
+					if (listXnmlGelirGiderKategorileri != null) {
+
+						grdGelirGiderKategorileri.setRowData(0,
+								listXnmlGelirGiderKategorileri);
+
+						grdGelirGiderKategorileri.redraw();
+					} else {
+
+						grdGelirGiderKategorileri.setRowCount(0, true);
+						grdGelirGiderKategorileri.redraw();
+					}
 
 				}
 

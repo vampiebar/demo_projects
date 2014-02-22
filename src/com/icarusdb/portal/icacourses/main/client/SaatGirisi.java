@@ -18,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -221,6 +222,18 @@ public class SaatGirisi extends Composite {
 											"DERS BİLGİSİ KAYIT EDİLDİ",
 											"DERS BİLGİSİ KAYIT EDİLEMEDİ");
 
+									Timer t = new Timer() {
+										@Override
+										public void run() {
+
+											putDataToGrid();
+										}
+									};
+
+									// Schedule the timer to run once in 1s
+									// seconds.
+									t.schedule(1000);
+
 								}
 
 								// putDataToGrid();
@@ -317,7 +330,19 @@ public class SaatGirisi extends Composite {
 					grdSaatGirisi.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdSaatGirisi.setRowData(0, listXmlSaatGirisi);
+					// grdSaatGirisi.setRowData(0, listXmlSaatGirisi);
+
+					if (listXmlSaatGirisi != null) {
+
+						grdSaatGirisi.setRowData(0, listXmlSaatGirisi);
+
+						grdSaatGirisi.redraw();
+
+					} else {
+
+						grdSaatGirisi.setRowCount(0, true);
+						grdSaatGirisi.redraw();
+					}
 
 				}
 

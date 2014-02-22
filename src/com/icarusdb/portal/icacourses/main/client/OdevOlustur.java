@@ -23,6 +23,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -240,6 +241,10 @@ public class OdevOlustur extends Composite {
 									+ object.soru_sayisi.toString();
 							URLValue = URLValue + "&son_harf="
 									+ object.son_harf.toString();
+							URLValue = URLValue
+									+ "&cevaplar="
+									+ ((object.cevaplar == null) ? ""
+											: object.cevaplar);
 
 							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
 
@@ -248,6 +253,17 @@ public class OdevOlustur extends Composite {
 							new Util().sendRequest(URLValue,
 									"DERS BİLGİSİ KAYIT EDİLDİ",
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+							Timer t = new Timer() {
+								@Override
+								public void run() {
+
+									putDataToGrid();
+								}
+							};
+
+							// Schedule the timer to run once in 1s seconds.
+							t.schedule(1000);
 
 						}
 
@@ -334,7 +350,18 @@ public class OdevOlustur extends Composite {
 					grdOdevOlustur.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdOdevOlustur.setRowData(0, listXmlOdevOlustur);
+					// grdOdevOlustur.setRowData(0, listXmlOdevOlustur);
+
+					if (listXmlOdevOlustur != null) {
+
+						grdOdevOlustur.setRowData(0, listXmlOdevOlustur);
+
+						grdOdevOlustur.redraw();
+					} else {
+
+						grdOdevOlustur.setRowCount(0, true);
+						grdOdevOlustur.redraw();
+					}
 
 				}
 

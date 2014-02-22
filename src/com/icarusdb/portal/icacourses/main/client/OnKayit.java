@@ -121,7 +121,7 @@ public class OnKayit extends Composite {
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		horizontalPanel.setSpacing(10);
 		verticalPanel.add(horizontalPanel);
-		horizontalPanel.setSize("100%", "156px");
+		horizontalPanel.setSize("100%", "106px");
 
 		grdOnKayit = new CellTable<XMLOnKayit>();
 		grdOnKayit.addCellPreviewHandler(new GrdOnKayitHandler());

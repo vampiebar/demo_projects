@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="senet2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="673a3859-221b-4061-a623-b9cb6b587c2b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="96"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="adi" class="java.lang.String"/>
+	<field name="soyadi" class="java.lang.String"/>
+	<field name="tc_kimlik_no" class="java.lang.String"/>
+	<field name="cinsiyet" class="java.lang.String"/>
+	<field name="medeni_hali" class="java.lang.String"/>
+	<field name="dogum_tarihi" class="java.sql.Date"/>
+	<field name="ev_telefonu" class="java.lang.String"/>
+	<field name="cep_telefonu" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_ulke" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_il" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_ilce" class="java.lang.String"/>
+	<field name="okul" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_sinif" class="java.lang.String"/>
+	<field name="gorusme_egitim_turu" class="java.lang.String"/>
+	<field name="gorusme_alan" class="java.lang.String"/>
+	<field name="gorusme_kurs_zamani" class="java.lang.String"/>
+	<field name="gorusme_sinif" class="java.lang.String"/>
+	<field name="gorusme_kurs_indirim_fiyati" class="java.lang.String"/>
+	<field name="gorusme_referans" class="java.lang.String"/>
+	<field name="gorusme_tarihi" class="java.sql.Date"/>
+	<field name="gorusme_tipi" class="java.lang.String"/>
+	<field name="gorusme_sonucu" class="java.lang.String"/>
+	<field name="gorusme_yuzdesi" class="java.lang.String"/>
+	<field name="aciklama" class="java.lang.String"/>
+	<field name="adres_bilgileri_ulke" class="java.lang.String"/>
+	<field name="adres_bilgileri_il" class="java.lang.String"/>
+	<field name="adres_bilgileri_ilce" class="java.lang.String"/>
+	<field name="semt" class="java.lang.String"/>
+	<field name="mahalle" class="java.lang.String"/>
+	<field name="sokak_ve_no" class="java.lang.String"/>
+	<field name="seri_no" class="java.lang.String"/>
+	<field name="cuzdan_no" class="java.lang.String"/>
+	<field name="ogrenci_kimlik_bilgileri_ulke" class="java.lang.String"/>
+	<field name="ogrenci_kimlik_bilgileri_il" class="java.lang.String"/>
+	<field name="ogrenci_kimlik_bilgileri_ilce" class="java.lang.String"/>
+	<field name="mahalle_koy" class="java.lang.String"/>
+	<field name="cilt_no" class="java.lang.String"/>
+	<field name="aile_sira_no" class="java.lang.String"/>
+	<field name="sira_no" class="java.lang.String"/>
+	<field name="verildigi_yer" class="java.lang.String"/>
+	<field name="verilis_nedeni" class="java.lang.String"/>
+	<field name="kayit_no" class="java.lang.String"/>
+	<field name="verilis_tarihi" class="java.sql.Date"/>
+	<field name="gorusme_indirim_turu" class="java.lang.String"/>
+	<field name="gorusme_indirim_miktari" class="java.lang.String"/>
+	<field name="kesin_kayit_mi" class="java.lang.Boolean"/>
+	<field name="okul_numarasi" class="java.lang.String"/>
+	<field name="egitim_turu" class="java.lang.String"/>
+	<field name="alan" class="java.lang.String"/>
+	<field name="kurs_zamani" class="java.lang.String"/>
+	<field name="sinif" class="java.lang.String"/>
+	<field name="ogrenci_numarasi" class="java.lang.String"/>
+	<field name="kurs_indirim_fiyati" class="java.lang.String"/>
+	<field name="indirim_turu" class="java.lang.String"/>
+	<field name="indirim_sekli" class="java.lang.String"/>
+	<field name="indirim_miktari" class="java.lang.String"/>
+	<field name="referans" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="398" splitType="Stretch">
+			<textField>
+				<reportElement uuid="56404294-4c8e-4f69-9f8a-8104568a0ba2" x="212" y="30" width="100" height="20"/>
+				<textElement textAlignment="Left" markup="none">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fd8488b3-f988-4223-8272-0b6d042ab790" x="359" y="30" width="100" height="20"/>
+				<textElement markup="none">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="baa7f7e7-c97c-493f-ad32-9afe1217bdf5" x="515" y="30" width="100" height="20"/>
+				<textElement markup="none">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ec40eb52-c0db-434a-92ec-8b38f3945153" x="657" y="30" width="100" height="20"/>
+				<textElement markup="none">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6c749e7a-9fc5-4fdd-9303-5af24e1d9570" x="212" y="63" width="573" height="64"/>
+				<textElement markup="none">
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[İşbu emre muharrer senedim mukabilinde 10.10.2013 tarihinde Alya Öğretim Kurumları Tic Ltd Şti veya
+emrühavalesine yukarıda yazılı yalnız YediYüzYetmişBeş TL ödeyeceğim. Bedeli hizmeden ahzolunmuştur.
+İşbu senet vadesinde ödenmediği takdirde, müteakip senetlerin de muacceliyet kebedeceğini, ihtilaf halinde İSTANBUL mahkemelerinin selahiyetini şimdiden kabul ederim.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f292d34b-581f-4e83-a942-b69c2ea94f79" x="212" y="139" width="110" height="20"/>
+				<textElement markup="none">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ÖDEYECEK]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="04abc4d8-b982-4c54-8e5f-f6f75b2c0916" x="322" y="159" width="335" height="23"/>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3ae371ff-860d-4d36-8053-ed78b8597df8" x="322" y="182" width="335" height="37"/>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="dc472f76-fe70-48a3-b946-ffbf809c957c" x="212" y="234" width="110" height="20"/>
+				<textElement markup="none">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Öğrencinin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a61dde59-1e52-4cad-8ace-17da5256f2d3" x="212" y="254" width="110" height="20"/>
+				<textElement markup="none"/>
+				<text><![CDATA[Adı Soyadı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e3e5c672-ab40-4fee-b728-5d008a4e172c" x="212" y="274" width="110" height="20"/>
+				<textElement markup="none"/>
+				<text><![CDATA[Öğrencinin Telefonu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="470e0d7e-3dbb-4369-bd8b-f4f4e36349ad" x="212" y="294" width="110" height="20"/>
+				<textElement markup="none"/>
+				<text><![CDATA[Veli Telefonu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7a7b1ff5-1c6c-4bcc-b40d-ae4af37c11de" x="212" y="10" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[        Vade Tarihi      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bd08ce20-d014-4b4d-89f1-dfb15edb4ff1" x="359" y="10" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[             Tutar            ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="115a7e5b-01c0-42f0-bff5-607f7499cc85" x="515" y="10" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[  Düzenlenme Tarihi  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5bbf5ce8-24d3-4cf2-99ff-7e418e12a2d8" x="657" y="10" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[          Senet No        ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d9cedc22-8b75-4154-b891-c0e40741d35d" x="212" y="159" width="110" height="20"/>
+				<textElement/>
+				<text><![CDATA[Adı Soyadı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67656c78-4248-45f6-a9a5-1973c2869ae2" x="212" y="179" width="110" height="40"/>
+				<textElement/>
+				<text><![CDATA[Adres]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="80a0b18a-e00a-4e68-8c88-1e686cafbfd2" x="322" y="254" width="335" height="20"/>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="88a2ddb2-5b08-4ca5-8fb1-93ff69f3b960" x="322" y="274" width="335" height="20"/>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0b9038fe-d863-4d98-9ad4-f1bb55cba848" x="322" y="294" width="335" height="20"/>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8ea89a92-f2c1-443e-8ffc-0826c273f266" x="68" y="53" width="22" height="129"/>
+				<textElement rotation="Left" markup="none"/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="808e688d-8ed2-438d-940c-f18647d4842b" x="113" y="53" width="22" height="129"/>
+				<textElement rotation="Left" markup="none"/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7664c3f3-3ca3-4c52-a061-addf5ab016ed" x="91" y="53" width="22" height="129"/>
+				<textElement rotation="Left" markup="none"/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c494bfbb-2f34-4729-8345-dbcfaef7167d" x="67" y="182" width="23" height="60"/>
+				<textElement rotation="Left"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3f180f32-80b4-4eb4-b593-6f0d6e004e93" x="90" y="182" width="23" height="60"/>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Sınıfı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9ca4d4fc-732f-46f0-975b-ba3707bca0a0" x="113" y="182" width="22" height="60"/>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Adı Soyadı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="de739af4-67c2-4564-bb96-d9e23fa9f262" x="50" y="53" width="17" height="189"/>
+				<textElement rotation="Left">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ Öğrencinin                                             ]]></text>
+			</staticText>
+			<frame>
+				<reportElement uuid="da803668-b312-4c9f-a970-240b8c4d6c84" x="32" y="30" width="122" height="244"/>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

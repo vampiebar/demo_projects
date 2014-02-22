@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OdemePlaniYazdir" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="841c8ec9-5d7c-40f2-8417-9d6aa291d0f2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Sun Jan 26 13:16:36 EET 2014"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="6501a395-b7e5-4ea0-aba1-e791d55b934e"/>
+	<queryString>
+		<![CDATA[select * from on_kayit]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="adi" class="java.lang.String"/>
+	<field name="soyadi" class="java.lang.String"/>
+	<field name="tc_kimlik_no" class="java.lang.String"/>
+	<field name="cinsiyet" class="java.lang.String"/>
+	<field name="medeni_hali" class="java.lang.String"/>
+	<field name="dogum_tarihi" class="java.sql.Date"/>
+	<field name="ev_telefonu" class="java.lang.String"/>
+	<field name="cep_telefonu" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_ulke" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_il" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_ilce" class="java.lang.String"/>
+	<field name="okul" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_sinif" class="java.lang.String"/>
+	<field name="gorusme_egitim_turu" class="java.lang.String"/>
+	<field name="gorusme_alan" class="java.lang.String"/>
+	<field name="gorusme_kurs_zamani" class="java.lang.String"/>
+	<field name="gorusme_sinif" class="java.lang.String"/>
+	<field name="gorusme_kurs_indirim_fiyati" class="java.lang.String"/>
+	<field name="gorusme_referans" class="java.lang.String"/>
+	<field name="gorusme_tarihi" class="java.sql.Date"/>
+	<field name="gorusme_tipi" class="java.lang.String"/>
+	<field name="gorusme_sonucu" class="java.lang.String"/>
+	<field name="gorusme_yuzdesi" class="java.lang.String"/>
+	<field name="aciklama" class="java.lang.String"/>
+	<field name="adres_bilgileri_ulke" class="java.lang.String"/>
+	<field name="adres_bilgileri_il" class="java.lang.String"/>
+	<field name="adres_bilgileri_ilce" class="java.lang.String"/>
+	<field name="semt" class="java.lang.String"/>
+	<field name="mahalle" class="java.lang.String"/>
+	<field name="sokak_ve_no" class="java.lang.String"/>
+	<field name="seri_no" class="java.lang.String"/>
+	<field name="cuzdan_no" class="java.lang.String"/>
+	<field name="ogrenci_kimlik_bilgileri_ulke" class="java.lang.String"/>
+	<field name="ogrenci_kimlik_bilgileri_il" class="java.lang.String"/>
+	<field name="ogrenci_kimlik_bilgileri_ilce" class="java.lang.String"/>
+	<field name="mahalle_koy" class="java.lang.String"/>
+	<field name="cilt_no" class="java.lang.String"/>
+	<field name="aile_sira_no" class="java.lang.String"/>
+	<field name="sira_no" class="java.lang.String"/>
+	<field name="verildigi_yer" class="java.lang.String"/>
+	<field name="verilis_nedeni" class="java.lang.String"/>
+	<field name="kayit_no" class="java.lang.String"/>
+	<field name="verilis_tarihi" class="java.sql.Date"/>
+	<field name="gorusme_indirim_turu" class="java.lang.String"/>
+	<field name="gorusme_indirim_miktari" class="java.lang.String"/>
+	<field name="kesin_kayit_mi" class="java.lang.Boolean"/>
+	<field name="okul_numarasi" class="java.lang.String"/>
+	<field name="egitim_turu" class="java.lang.String"/>
+	<field name="alan" class="java.lang.String"/>
+	<field name="kurs_zamani" class="java.lang.String"/>
+	<field name="sinif" class="java.lang.String"/>
+	<field name="ogrenci_numarasi" class="java.lang.String"/>
+	<field name="sinif_bilgileri_kurs_indirim_fiyati" class="java.lang.String"/>
+	<field name="indirim_turu" class="java.lang.String"/>
+	<field name="indirim_sekli" class="java.lang.String"/>
+	<field name="indirim_miktari" class="java.lang.String"/>
+	<field name="referans" class="java.lang.String"/>
+	<field name="gorusme_indirim_sekli" class="java.lang.String"/>
+	<field name="kayit_silinsin_mi" class="java.lang.Boolean"/>
+	<field name="silme_sebebi" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="364" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="0b9361e3-18cd-488a-ba05-71f9f46d68ae" x="355" y="141" width="38" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Adresi:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0210644b-af99-4868-ac7b-3c5948f2d0b5" x="89" y="55" width="304" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[PRESTİJ ÖZEL BUTİK EĞİTİM DERSHANESİ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0d6ce302-d838-482a-af62-356f6248cba6" x="78" y="161" width="130" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="12ff1cff-bca1-4895-9903-505a9a4e929b" x="416" y="95" width="36" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Saat:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f4772f5c-6925-4adf-a5f0-3127bad46b94" x="89" y="75" width="304" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Ödeme Planı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f9f9ff94-8f2d-4f01-8244-3db88250b67c" x="8" y="141" width="70" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Öğrenci No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="626b4099-b16c-46ed-89bb-0541f17dc151" x="8" y="181" width="70" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Veli Adı:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="7a46be52-cc65-4cc1-99ba-dbdb645988e0" x="393" y="141" width="123" height="40"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sokak_ve_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8095755d-57fe-404d-8a46-a0fcb440fb0c" x="82" y="141" width="126" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ogrenci_numarasi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="83106da7-b494-4c7a-b988-6076ce7ec723" x="8" y="161" width="70" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Öğrenci Adı:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b2b13c72-790f-402d-98ab-661be66ce5db" x="416" y="75" width="36" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Tarih:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="ad3fab0e-d5c6-434f-9a39-7d59403ed3f4" x="452" y="75" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm.ss">
+				<reportElement uuid="a261d4b7-65ce-4a6d-a7c8-541f78776f15" x="452" y="95" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="9ed6a2b0-f3c2-4019-98ef-f11d08720ff9" x="20" y="9" width="124" height="32"/>
+				<imageExpression><![CDATA["C:\\Users\\cagla\\Desktop\\ICACourses\\images\\1.gif"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement uuid="37072271-6b37-4229-b7d1-e0a9d89896f7" x="8" y="125" width="530" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="2ce7e54c-6fd6-4c3c-bd3b-20c43b5ef89e" x="8" y="200" width="530" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

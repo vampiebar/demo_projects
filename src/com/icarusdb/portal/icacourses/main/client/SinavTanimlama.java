@@ -23,6 +23,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -104,7 +105,7 @@ public class SinavTanimlama extends Composite {
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		verticalPanel.add(horizontalPanel);
 		horizontalPanel.setSpacing(10);
-		horizontalPanel.setSize("100%", "156px");
+		horizontalPanel.setSize("100%", "106px");
 
 		grdSinavTanimlama = new CellTable<XMLSinavTanimlama>();
 		horizontalPanel.add(grdSinavTanimlama);
@@ -247,12 +248,22 @@ public class SinavTanimlama extends Composite {
 									"DERS BİLGİSİ KAYIT EDİLDİ",
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
 
+							Timer t = new Timer() {
+								@Override
+								public void run() {
+
+									putDataToGrid();
+								}
+							};
+
+							// Schedule the timer to run once in 1s seconds.
+							t.schedule(1000);
+
 						}
 
-						putDataToGrid();
+						// putDataToGrid();
 					}
 
-					putDataToGrid();
 				}
 			});
 
@@ -343,7 +354,19 @@ public class SinavTanimlama extends Composite {
 					grdSinavTanimlama.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdSinavTanimlama.setRowData(0, listXmlSinavTanimlama);
+					// grdSinavTanimlama.setRowData(0, listXmlSinavTanimlama);
+
+					if (listXmlSinavTanimlama != null) {
+
+						grdSinavTanimlama.setRowData(0, listXmlSinavTanimlama);
+
+						grdSinavTanimlama.redraw();
+
+					} else {
+
+						grdSinavTanimlama.setRowCount(0, true);
+						grdSinavTanimlama.redraw();
+					}
 
 				}
 

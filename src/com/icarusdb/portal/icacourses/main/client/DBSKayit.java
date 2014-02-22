@@ -54,13 +54,13 @@ public class DBSKayit extends Composite {
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		initWidget(horizontalPanel);
-		horizontalPanel.setWidth("100%");
+		horizontalPanel.setSize("100%", "750px");
 
 		VerticalPanel verticalPanel = new VerticalPanel();
 		verticalPanel
 				.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		horizontalPanel.add(verticalPanel);
-		verticalPanel.setSize("100%", "380px");
+		verticalPanel.setSize("100%", "100%");
 
 		HorizontalPanel verticalPanel_1 = new HorizontalPanel();
 		verticalPanel_1.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
@@ -130,7 +130,7 @@ public class DBSKayit extends Composite {
 		horizontalPanel_1.setSpacing(10);
 		horizontalPanel_1.setStyleName("gwt-LeftPadding");
 		verticalPanel.add(horizontalPanel_1);
-		horizontalPanel_1.setSize("100%", "174px");
+		horizontalPanel_1.setSize("100%", "104px");
 
 		grdDBSKayit = new CellTable<XMLDBSKayit>();
 		horizontalPanel_1.add(grdDBSKayit);
@@ -726,5 +726,4 @@ public class DBSKayit extends Composite {
 			}
 		}
 	}
-
 }

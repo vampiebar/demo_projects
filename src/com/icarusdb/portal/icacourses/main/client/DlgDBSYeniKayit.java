@@ -1580,6 +1580,11 @@ public class DlgDBSYeniKayit extends DialogBox {
 					"ÖĞRENCİ BİLGİLERİ BAŞARI İLE KAYIT EDİLDİ",
 					"ÖĞRENCİ BİLGİLERİ KAYIT EDİLEMEDİ");
 
+			if (tctAdi.getText() == null) {
+
+				Window.alert("Lütfen İsim giriniz!");
+			}
+
 		}
 	}
 

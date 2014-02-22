@@ -18,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -206,6 +207,18 @@ public class GelirGiderTanimlari extends Composite {
 									.sendRequest(URLValue,
 											"BAŞARIYLA KAYIT EDİLDİ",
 											"KAYIT EDİLEMEDİ");
+
+							Timer t = new Timer() {
+								@Override
+								public void run() {
+
+									putDataToGrid();
+								}
+							};
+
+							// Schedule the timer to run once in 1s seconds.
+							t.schedule(1000);
+
 						}
 					}
 				}
@@ -299,8 +312,20 @@ public class GelirGiderTanimlari extends Composite {
 					grdGelirgiderTanimnlari.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdGelirgiderTanimnlari.setRowData(0,
-							listXmlGelirGiderTanimlari);
+					// grdGelirgiderTanimnlari.setRowData(0,
+					// listXmlGelirGiderTanimlari);
+
+					if (listXmlGelirGiderTanimlari != null) {
+
+						grdGelirgiderTanimnlari.setRowData(0,
+								listXmlGelirGiderTanimlari);
+
+						grdGelirgiderTanimnlari.redraw();
+					} else {
+
+						grdGelirgiderTanimnlari.setRowCount(0, true);
+						grdGelirgiderTanimnlari.redraw();
+					}
 
 				}
 

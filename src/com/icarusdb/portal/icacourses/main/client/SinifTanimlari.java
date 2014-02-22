@@ -18,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -253,6 +254,17 @@ public class SinifTanimlari extends Composite {
 									"SINIF BİLGİSİ KAYIT EDİLDİ",
 									"SINIF BİLGİSİ KAYIT EDİLEMEDİ");
 
+							Timer t = new Timer() {
+								@Override
+								public void run() {
+
+									putDataToGrid();
+								}
+							};
+
+							// Schedule the timer to run once in 1s seconds.
+							t.schedule(1000);
+
 						}
 
 						// putDataToGrid();
@@ -350,7 +362,19 @@ public class SinifTanimlari extends Composite {
 					grdSinifTanimlari.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdSinifTanimlari.setRowData(0, listXmlSinifTanimlari);
+					// grdSinifTanimlari.setRowData(0, listXmlSinifTanimlari);
+
+					if (listXmlSinifTanimlari != null) {
+
+						grdSinifTanimlari.setRowData(0, listXmlSinifTanimlari);
+
+						grdSinifTanimlari.redraw();
+
+					} else {
+
+						grdSinifTanimlari.setRowCount(0, true);
+						grdSinifTanimlari.redraw();
+					}
 
 				}
 

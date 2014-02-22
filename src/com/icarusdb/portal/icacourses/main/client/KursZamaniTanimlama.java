@@ -18,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -189,6 +190,17 @@ public class KursZamaniTanimlama extends Composite {
 									"DERS BİLGİSİ KAYIT EDİLDİ",
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
 
+							Timer t = new Timer() {
+								@Override
+								public void run() {
+
+									putDataToGrid();
+								}
+							};
+
+							// Schedule the timer to run once in 1s seconds.
+							t.schedule(1000);
+
 						}
 
 						// putDataToGrid();
@@ -287,8 +299,20 @@ public class KursZamaniTanimlama extends Composite {
 					grdKursZamaniTanimlama.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdKursZamaniTanimlama.setRowData(0,
-							listXmlKursZamaniTanimlama);
+					// grdKursZamaniTanimlama.setRowData(0,
+					// listXmlKursZamaniTanimlama);
+
+					if (listXmlKursZamaniTanimlama != null) {
+
+						grdKursZamaniTanimlama.setRowData(0,
+								listXmlKursZamaniTanimlama);
+
+						grdKursZamaniTanimlama.redraw();
+					} else {
+
+						grdKursZamaniTanimlama.setRowCount(0, true);
+						grdKursZamaniTanimlama.redraw();
+					}
 
 				}
 

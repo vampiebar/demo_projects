@@ -18,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -235,8 +236,7 @@ public class OgretmenTanimlari extends Composite {
 									+ object.sigorta_gun_sayisi.toString();
 							URLValue = URLValue + "&ders_programini_gorsun="
 									+ object.ders_programini_gorsun.toString();
-							URLValue = URLValue + "&durum="
-									+ object.durum.toString();
+							URLValue = URLValue + "&durum=FALSE";
 							URLValue = URLValue + "&pazartesi="
 									+ object.pazartesi.toString();
 							URLValue = URLValue + "&pazartesi="
@@ -253,13 +253,23 @@ public class OgretmenTanimlari extends Composite {
 									+ object.cumartesi.toString();
 							URLValue = URLValue + "&pazar="
 									+ object.pazar.toString();
-							URLValue = URLValue + "&kayit_silinsin_mi=TRUE";
 
 							// Window.alert(URLValue);
 
 							new Util().sendRequest(URLValue,
 									"DERS BİLGİSİ KAYIT EDİLDİ",
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
+
+							Timer t = new Timer() {
+								@Override
+								public void run() {
+
+									putDataToGrid();
+								}
+							};
+
+							// Schedule the timer to run once in 1s seconds.
+							t.schedule(1000);
 
 						}
 
@@ -442,8 +452,21 @@ public class OgretmenTanimlari extends Composite {
 									grdOgretmenTanimlari.setRowCount(1, true);
 
 									// Push the data into the widget.
-									grdOgretmenTanimlari.setRowData(0,
-											listXmlOgretmenTanimlari);
+									// grdOgretmenTanimlari.setRowData(0,
+									// listXmlOgretmenTanimlari);
+
+									if (listXmlOgretmenTanimlari != null) {
+
+										grdOgretmenTanimlari.setRowData(0,
+												listXmlOgretmenTanimlari);
+
+										grdOgretmenTanimlari.redraw();
+									} else {
+
+										grdOgretmenTanimlari.setRowCount(0,
+												true);
+										grdOgretmenTanimlari.redraw();
+									}
 
 								}
 

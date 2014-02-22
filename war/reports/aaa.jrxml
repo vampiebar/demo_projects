@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="842" pageHeight="1000" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be139aab-ef31-4aeb-9407-1dd5c069f1df">
+	<property name="ireport.zoom" value="1.0000000000000024"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from on_kayit]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="adi" class="java.lang.String"/>
+	<field name="soyadi" class="java.lang.String"/>
+	<field name="tc_kimlik_no" class="java.lang.String"/>
+	<field name="cinsiyet" class="java.lang.String"/>
+	<field name="medeni_hali" class="java.lang.String"/>
+	<field name="dogum_tarihi" class="java.sql.Date"/>
+	<field name="ev_telefonu" class="java.lang.String"/>
+	<field name="cep_telefonu" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_ulke" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_il" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_ilce" class="java.lang.String"/>
+	<field name="okul" class="java.lang.String"/>
+	<field name="ogrenci_bilgileri_sinif" class="java.lang.String"/>
+	<field name="egitim_turu" class="java.lang.String"/>
+	<field name="alan" class="java.lang.String"/>
+	<field name="kurs_zamani" class="java.lang.String"/>
+	<field name="gorusme_sinif" class="java.lang.String"/>
+	<field name="kurs_indirim_fiyati" class="java.lang.String"/>
+	<field name="referans" class="java.lang.String"/>
+	<field name="gorusme_tarihi" class="java.sql.Timestamp"/>
+	<field name="gorusme_tipi" class="java.lang.String"/>
+	<field name="gorusme_sonucu" class="java.lang.String"/>
+	<field name="gorusme_yuzdesi" class="java.lang.String"/>
+	<field name="aciklama" class="java.lang.String"/>
+	<field name="adres_bilgileri_ulke" class="java.lang.String"/>
+	<field name="adres_bilgileri_il" class="java.lang.String"/>
+	<field name="adres_bilgileri_ilce" class="java.lang.String"/>
+	<field name="semt" class="java.lang.String"/>
+	<field name="mahalle" class="java.lang.String"/>
+	<field name="sokak_ve_no" class="java.lang.String"/>
+	<field name="seri_no" class="java.lang.String"/>
+	<field name="cuzdan_no" class="java.lang.String"/>
+	<field name="ogrenci_kimlik_bilgileri_ulke" class="java.lang.String"/>
+	<field name="ogrenci_kimlik_bilgileri_il" class="java.lang.String"/>
+	<field name="ogrenci_kimlik_bilgileri_ilce" class="java.lang.String"/>
+	<field name="mahalle_koy" class="java.lang.String"/>
+	<field name="cilt_no" class="java.lang.String"/>
+	<field name="aile_sira_no" class="java.lang.String"/>
+	<field name="sira_no" class="java.lang.String"/>
+	<field name="verildigi_yer" class="java.lang.String"/>
+	<field name="verilis_nedeni" class="java.lang.String"/>
+	<field name="kayit_no" class="java.lang.String"/>
+	<field name="verilis_tarihi" class="java.sql.Date"/>
+	<field name="indirim_turu" class="java.lang.String"/>
+	<field name="indirim_miktari" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="8" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="567" splitType="Stretch">
+			<textField>
+				<reportElement uuid="5eb16f6b-2625-4cfc-9c2b-d3bb3446819c" x="149" y="75" width="177" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{adi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e77c0e84-9d29-42db-b69c-bdf43b9c76dd" x="149" y="95" width="177" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{soyadi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caace2f7-8b5b-4ef4-80e0-c2d6fa6ef78c" x="49" y="74" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Adı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8eb99225-f268-4401-a1ac-ea32a0cb900f" x="49" y="95" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Soyadı]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ce2122a3-68e0-4bf1-849c-4bceed2f6b43" x="504" y="55" width="177" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f03a2c3d-73aa-45a6-b7ac-15458c548ff6" x="377" y="95" width="127" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Telefonu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="481da563-08e9-4561-bc62-69d4d3aaf0bd" x="377" y="115" width="127" height="38"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Adresi]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="151428e5-d9e9-45e5-bdea-e61d3b64336a" x="504" y="94" width="177" height="21"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e78cf7ed-1bd2-4276-aa20-958e1d8f5a5a" x="504" y="74" width="177" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4eacc2c3-a788-48eb-ab73-e5c8199af801" x="377" y="75" width="127" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Adı Soyadı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7482a23a-46f7-4073-8c0b-50ac67cda67f" x="377" y="54" width="127" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[TC Kimlik no]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2b7c8bb7-fcfd-4ad1-aef7-a2f1ed5aa12e" x="504" y="114" width="177" height="39"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="be76a604-f486-42db-9dc6-c90558715fca" x="377" y="34" width="127" height="20"/>
+				<textElement markup="none">
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Velinin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0850db6d-81d3-43d1-b027-ed46dea939af" x="49" y="54" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[TC Kimlik No]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="05a5a0f2-a002-4ff1-a86d-d37696f8ddd0" x="149" y="55" width="177" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tc_kimlik_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="da92efc7-44e4-4c25-9914-c7f231f366bd" x="149" y="272" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7b7ba38a-5dee-436e-a259-9a5d23b13c99" x="377" y="252" width="100" height="20"/>
+				<textElement markup="none">
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Ögrenci No]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0864151c-bacc-4667-8413-3feb4b325991" x="477" y="272" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fcccd85c-0c5d-48fc-9e02-9cadd3f47cb1" x="477" y="232" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9eed9fa8-e634-4ca8-bfe2-6eaff09ea6e5" x="477" y="252" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8fb5f1f0-bfba-4c2b-af69-12fecfa7862b" x="149" y="252" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="515918d7-0b1e-4139-b3d9-31cdd57a97ca" x="377" y="272" width="100" height="20"/>
+				<textElement markup="none">
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Ders Bitiş Tarihi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="08ba53a9-863d-4ae5-a6d2-b961fdec29f6" x="266" y="197" width="139" height="20" forecolor="#CC0033"/>
+				<textElement markup="none">
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[EĞİTİM BİLGİLERİ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a5d0d540-fb55-4bed-9e59-692ab377d83b" x="377" y="232" width="100" height="20"/>
+				<textElement markup="none">
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Sınıfı]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1ef36615-4df5-4c07-b2bd-3b95c87166eb" x="149" y="232" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="4075f394-e59d-4685-9743-2591b9e1219f" x="577" y="359" width="100" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="e765a3da-f152-4795-b0ec-ed84664462ed" x="377" y="339" width="100" height="20" forecolor="#33CCFF"/>
+				<textElement>
+					<font isUnderline="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Taksitler]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="de8e4a00-6666-4ecc-b5b1-3525d2f77034" x="377" y="359" width="100" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="ec29182f-23fc-43ff-9ba2-d0c06854f0b1" x="577" y="379" width="100" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="a040c29f-c440-4ca4-b83e-43d0c473ceab" x="581" y="359" width="100" height="20" forecolor="#00CCFF"/>
+				<textElement>
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ Tutar]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="804bb305-dd1e-4e63-af33-cad985185ea6" x="477" y="379" width="100" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="da4f9924-58a2-45a0-b15c-e0cc63817721" x="477" y="359" width="100" height="20"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="bed2094f-d607-4d77-bce3-547dbc5615df" x="377" y="379" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c7d7d0ed-b736-4051-8b53-be3ddd38f483" x="477" y="379" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2a644e10-c846-4ef0-903f-a85b1f5b7688" x="577" y="379" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2718feda-768d-40b0-ae59-229dbaac6c67" x="377" y="359" width="100" height="20" forecolor="#00CCFF"/>
+				<textElement>
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ Ödeme Tarihi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2f26cb5b-4d06-4205-b7dc-8f429e5f4a77" x="477" y="359" width="100" height="20" forecolor="#00CCFF"/>
+				<textElement>
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ Ödeme Şekli]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ebcf542c-82fa-4ae1-8366-13ac3c1a7f85" x="266" y="307" width="139" height="20" forecolor="#CC0033"/>
+				<textElement markup="none">
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ÜCRET BİLGİLERİ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a0577c6c-96f0-40e1-9c8b-abe70a30f2ba" x="49" y="34" width="127" height="20"/>
+				<textElement markup="none">
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Öğrencinin]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="355d9f41-7d18-48bf-9b66-d1110d249cec" x="377" y="379" width="100" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="66963051-c322-44f7-adec-bf38525170a3" x="49" y="114" width="100" height="38"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Adresi]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="12d4fc35-7b34-4d53-bc96-95a2da8d3ffd" x="149" y="113" width="177" height="39"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7d92c3fe-2c20-40de-b749-1b8ce74c444b" x="49" y="232" width="100" height="19"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Eğitim Türü]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="52b06f77-20ca-4553-97b6-89ab79baf63d" x="49" y="252" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Özel Ders Hakkı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b75dacf-2ad4-4b8d-ab9c-bac4eca44a36" x="49" y="272" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Ders Baslama Tarihi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2165e8b6-d994-484c-a574-c9e7e7bc3f02" x="49" y="339" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Kurs Ücreti]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c1379c66-a10a-466a-ba6f-442360d00216" x="49" y="359" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[İnidirim Oranı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="54ea56fa-56d5-4fda-89a3-562ce3a194c6" x="49" y="379" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Net Kayıt Ücreti]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="61c2181c-c4b7-4f7f-a981-616580f961fb" x="49" y="399" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Kayıt Ücreti]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ebfb293-0d0b-46ae-9f50-f2a467fe56fb" x="49" y="419" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Peşinat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7fd6a4d6-83c1-464a-bbc1-7a518f2b5f7f" x="49" y="439" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Kalan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e3791252-b16e-458a-b93d-1c30f4eda6b0" x="49" y="459" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Taksit Sayısı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="57f2ea62-5ce1-4160-a0d4-6ea03e395525" x="49" y="479" width="100" height="20"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Hizmetler Toplamı]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="fa6f0570-5e26-487c-9c27-f692524cc752" x="49" y="539" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="572942e0-2798-48f1-890d-d9cf42637c16" x="149" y="479" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="96b11683-208b-41b3-af81-bac1a7c2806d" x="347" y="539" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="adcd105b-80ac-4d24-a39c-170fd8838963" x="249" y="539" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2f26afce-6f4d-4546-a342-d30d4ac4983f" x="49" y="499" width="200" height="20" forecolor="#00CCFF"/>
+				<textElement>
+					<font isUnderline="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Faydanılan Hizmetler]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c38c6ee5-569b-49f8-8087-36d969158151" x="149" y="539" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="cc7b88df-ed48-4178-8364-a89374d701d5" x="149" y="519" width="100" height="20" forecolor="#33CCFF"/>
+				<textElement>
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ İnd. Şek.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f08d47c2-bd5a-440e-9901-83a23a0f8868" x="49" y="519" width="100" height="20" forecolor="#33CCFF"/>
+				<textElement>
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ Hizmet Adı]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="62e53113-5658-4441-811d-c616a70ec2fe" x="347" y="519" width="100" height="20" forecolor="#33CCFF"/>
+				<textElement>
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ Toplam Tutar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2c63d02c-4986-4e8f-99fa-b3ee5b050ffd" x="247" y="519" width="100" height="20" forecolor="#33CCFF"/>
+				<textElement>
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ İnd. Mik.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="af88d252-44b5-4a05-8644-b6c7488343ac" x="149" y="459" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3e6d3c25-a3c0-4eea-a245-3c2c7ceb9acb" x="149" y="438" width="100" height="21"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="28c6e7bd-dbf0-49a2-b653-81dd64d7e2e5" x="149" y="339" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2776bb96-21e9-4fb4-a234-fc3aa89a59f5" x="149" y="359" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8752d245-b04f-487f-968b-c036c5bc131a" x="149" y="399" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d9d5738c-e9b2-4a7a-894a-9fdb5d945a26" x="149" y="379" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fe19527d-bbda-497c-a5ac-b6b039602992" x="149" y="418" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="73b81d94-a5c3-4037-a973-490bec8e9041" x="529" y="14" width="186" height="20"/>
+				<textElement markup="none">
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ÖĞRENCİ KAYIT SÖZLEŞMESİ]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="345" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="125db477-7f6a-4d3b-a594-f5a098a7300b" x="49" y="12" width="731" height="261"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ALYA ÖĞRETİM KURUMLARI TİC LTD ŞTİ. ÖĞRENCİ KAYIT SÖZLEŞMESİ
+Öğrencisini dershanemize kayıt yaptıran velimiz aşağıdaki maddelere uyacağını kabul eder.
+1. Velimiz, öğrencisinin disiplin yönergesine uyacağını kabul eder. Disiplinsiz davranışlarda bulunan öğrencinin kaydının silinmesi durumunda, yıllık kayıt ücreti
+tahsil edilir.
+2. Tek kişilik sınıflara kayıt olan öğrencinin, gelmediği günlere denk gelen dersleri toplam ders hakkından düşer.
+KAYIT SİLME VE ÜCRET İADESİ
+Şirketimiz mali planlarını öğrenci kayıt sayısına göre yaptığından, kayıtlı öğrencilerin öğretim yılı boyunca kayıtlarını sildirmemeleri temel esastır.
+3. Öğretim dönemi içinde zorunlu bir sebeple kayıt sildirmek isteyen öğrenci için, velisinin yazılı müracaatı gereklidir. Müracaat sonrası şirket yetkilisi veya
+dershane müdürü tarafından kayıt silme gerekçesi incelenerek kayıt silinir.
+4. Kayıt silme tarihi, ilgili müracaat dilekçesinin dershaneye ulaştığı tarihtir.
+5. Kaydını sildirmek isteyen öğrenciye verilen indirimler iptal edilir. Kaydı silinen öğrencimizin velisi, öğrencisinin almış olduğu toplam ders saatini, 6 kişilik sınıflar
+için 25 TL'den, aldığı özel dersler için 60 TL'den, tek kişilik sınıf için 60 TL'den çarpılarak hesaplanacağını kabul eder. Erken kayıt yaptıran öğrencilerimize
+verdiğimiz ücretsiz özel ders toplamı 60 TL'den çarpılarak, tahsil edilir.
+6. Velimiz ücretsiz yaz programına katılan öğrencisi için, kayıt sildirme durumunda almış olduğu bu hizmete istinaden 750 TL ödemeyi kabul eder.
+7. Velimiz, öğrencisinin dershaneden almış olduğu kitap, test v.b. yayınlar için 300 TL ödemeyi kabul eder.
+8. Öğrencinin almış olduğu hizmetlerin toplam ücreti, ödemiş olduğu ücretten düşülür. Öğrencinin alacağı ücret çıkarsa kendisine 2 hafta içinde ödeme yapılır.
+Öğrencinin vereceği ücret varsa kendisinden tahsil edilir.
+9. İhtilaf vukuunda bu sözleşmeden doğabilecek tüm anlaşmazlıklarda İstanbul Mahkemeleri ve icra dairelerinin yetkili olduğunu kabul ederim. İş bu kayıt
+sözleşmesinin tüm hükümleri tarafımızca eksiksiz olarak okunmuş ve herhangi bir tereddüdüm olmaksızın anlaşılmış olup, tamamen hür irade ve arzumla
+yukarıdaki ikaz çerçevesinde sözleşme şartlarını kesin olarak kabul ediyorum.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f81f3649-b7e4-4f5c-b3f7-2308950cb693" x="94" y="284" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[ÖĞRENCİ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="01cf2b9a-328d-4ae3-88ea-72aae3968341" x="545" y="284" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[VELİ]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="17" splitType="Stretch"/>
+	</summary>
+</jasperReport>

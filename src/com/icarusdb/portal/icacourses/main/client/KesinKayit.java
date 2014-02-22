@@ -51,7 +51,7 @@ public class KesinKayit extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("100%", "617px");
+		absolutePanel.setSize("100%", "750px");
 
 		VerticalPanel verticalPanel = new VerticalPanel();
 		absolutePanel.add(verticalPanel, 0, 0);
@@ -114,7 +114,7 @@ public class KesinKayit extends Composite {
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		horizontalPanel.setSpacing(10);
 		verticalPanel.add(horizontalPanel);
-		horizontalPanel.setSize("100%", "164px");
+		horizontalPanel.setSize("100%", "104px");
 
 		grdKesinKayit = new CellTable<XMLOnKayit>();
 

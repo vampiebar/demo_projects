@@ -18,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -196,12 +197,22 @@ public class BankaEkle extends Composite {
 									"DERS BİLGİSİ KAYIT EDİLDİ",
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
 
+							Timer t = new Timer() {
+								@Override
+								public void run() {
+
+									putDataToGrid();
+								}
+							};
+
+							// Schedule the timer to run once in 1s seconds.
+							t.schedule(1000);
+
 						}
 
 						// putDataToGrid();
 					}
 
-					// putDataToGrid();
 				}
 			});
 
@@ -293,7 +304,17 @@ public class BankaEkle extends Composite {
 					grdBankaEkle.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdBankaEkle.setRowData(0, listXmlBankaEkle);
+
+					if (listXmlBankaEkle != null) {
+
+						grdBankaEkle.setRowData(0, listXmlBankaEkle);
+
+						grdBankaEkle.redraw();
+					} else {
+
+						grdBankaEkle.setRowCount(0, true);
+						grdBankaEkle.redraw();
+					}
 
 				}
 

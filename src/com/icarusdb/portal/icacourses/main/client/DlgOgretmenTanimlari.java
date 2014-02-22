@@ -491,7 +491,8 @@ public class DlgOgretmenTanimlari extends DialogBox {
 					+ cbxEgitimTuru.getItemText(cbxEgitimTuru
 							.getSelectedIndex());
 			URLValue = URLValue + "&brans="
-					+ cbxBrans.getValue(cbxBrans.getSelectedIndex());
+					+ cbxBrans.getItemText(cbxBrans.getSelectedIndex());
+
 			URLValue = URLValue
 					+ "&girdigi_dersler="
 					+ cbxGirdigiDersler.getItemText(cbxGirdigiDersler
@@ -537,8 +538,9 @@ public class DlgOgretmenTanimlari extends DialogBox {
 		tctUcreti.setText(xml.ucreti);
 		tctSigortaGunSayisi.setText(xml.sigorta_gun_sayisi);
 
-		cbxBrans.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxBrans,
-				xml.brans));
+		// cbxBrans.setSelectedIndex(Util.GetLBXSelectedTextIndex(cbxBrans,
+		// xml.brans));
+		cbxBrans.setItemText(0, xml.brans);
 
 		cbxEgitimTuru.setItemText(0, xml.egitim_turu);
 		cbxGirdigiDersler.setItemText(0, xml.girdigi_dersler);

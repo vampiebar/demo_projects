@@ -18,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -190,6 +191,17 @@ public class Referanslar extends Composite {
 									"DERS BİLGİSİ KAYIT EDİLDİ",
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
 
+							Timer t = new Timer() {
+								@Override
+								public void run() {
+
+									putDataToGrid();
+								}
+							};
+
+							// Schedule the timer to run once in 1s seconds.
+							t.schedule(1000);
+
 						}
 
 						// putDataToGrid();
@@ -284,7 +296,18 @@ public class Referanslar extends Composite {
 					grdReferanslar.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdReferanslar.setRowData(0, listXmlReferanslar);
+					// grdReferanslar.setRowData(0, listXmlReferanslar);
+
+					if (listXmlReferanslar != null) {
+
+						grdReferanslar.setRowData(0, listXmlReferanslar);
+
+						grdReferanslar.redraw();
+					} else {
+
+						grdReferanslar.setRowCount(0, true);
+						grdReferanslar.redraw();
+					}
 
 				}
 

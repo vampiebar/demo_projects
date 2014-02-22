@@ -39,7 +39,7 @@ public class SablonTaninmlari extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("100%", "403px");
+		absolutePanel.setSize("100%", "750px");
 
 		VerticalPanel verticalPanel = new VerticalPanel();
 		absolutePanel.add(verticalPanel, 0, 0);
@@ -92,7 +92,7 @@ public class SablonTaninmlari extends Composite {
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		verticalPanel.add(horizontalPanel);
 		horizontalPanel.setSpacing(10);
-		horizontalPanel.setSize("100%", "156px");
+		horizontalPanel.setSize("100%", "100");
 
 		grdSablonTanimlari = new CellTable<XMLSablonTanimlari>();
 		horizontalPanel.add(grdSablonTanimlari);

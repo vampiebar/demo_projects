@@ -78,52 +78,6 @@ public class CmpstRowTest extends Composite {
 		}
 	}
 
-	public void putKazanimlarToCbx(String unite_adi, String konu_adi,
-			final ListBox lbxTemp) {
-
-		lbxTemp.clear();
-		lbxTemp.addItem("Lütfen Seçiniz");
-
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
-				Util.urlBase + "getegitimturukazanimlar?" + "unite_adi="
-						+ unite_adi + "&konu_adi=" + konu_adi);
-
-		// Window.alert(Util.urlBase + "getegitimturukazanimlar?unite_adi="
-		// + unite_adi + "&konu_adi=" + konu_adi);
-
-		try {
-			Request request = builder.sendRequest(null, new RequestCallback() {
-
-				public void onError(Request request, Throwable exception) {
-
-				}
-
-				@Override
-				public void onResponseReceived(Request request,
-						Response response) {
-
-					// Window.alert("AAABBBCCC " + response.getText());
-
-					List<XMLEgitimTuruKazanimlar> xmlEgitimTuruKazanimlar = XMLEgitimTuruKazanimlar.XML
-							.readList(response.getText());
-
-					for (int i = 0; i < xmlEgitimTuruKazanimlar.size(); i++) {
-
-						lbxTemp.addItem(xmlEgitimTuruKazanimlar.get(i).kazanimlar);
-					}
-
-				}
-
-			});
-
-		} catch (RequestException e) {
-			// displayError("Couldn't retrieve JSON");
-
-			// Window.alert(e.getMessage() + "ERROR");
-		}
-
-	}
-
 	private void putUniteToCbx(final ListBox lbxTemp) {
 
 		lbxTemp.clear();
@@ -202,6 +156,52 @@ public class CmpstRowTest extends Composite {
 					for (int i = 0; i < xmlEgitimTuruKonuAdi.size(); i++) {
 
 						lbxTemp.addItem(xmlEgitimTuruKonuAdi.get(i).konu_adi);
+					}
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
+		}
+
+	}
+
+	public void putKazanimlarToCbx(String unite_adi, String konu_adi,
+			final ListBox lbxTemp) {
+
+		lbxTemp.clear();
+		lbxTemp.addItem("Lütfen Seçiniz");
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "getegitimturukazanimlar?" + "unite_adi="
+						+ unite_adi + "&konu_adi=" + konu_adi);
+
+		// Window.alert(Util.urlBase + "getegitimturukazanimlar?unite_adi="
+		// + unite_adi + "&konu_adi=" + konu_adi);
+
+		try {
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					// Window.alert("AAABBBCCC " + response.getText());
+
+					List<XMLEgitimTuruKazanimlar> xmlEgitimTuruKazanimlar = XMLEgitimTuruKazanimlar.XML
+							.readList(response.getText());
+
+					for (int i = 0; i < xmlEgitimTuruKazanimlar.size(); i++) {
+
+						lbxTemp.addItem(xmlEgitimTuruKazanimlar.get(i).kazanimlar);
 					}
 
 				}

@@ -42,23 +42,17 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		setWidget(absolutePanel);
-		absolutePanel.setSize("501px", "467px");
-
-		Label lblKullancIlemlerieklemedzenleme = new Label(
-				"Kullanıcı İşlemleri (Ekleme/Düzenleme)");
-		lblKullancIlemlerieklemedzenleme.setStyleName("gwt-LabelMor");
-		absolutePanel.add(lblKullancIlemlerieklemedzenleme, 0, 0);
-		lblKullancIlemlerieklemedzenleme.setSize("500px", "28px");
+		absolutePanel.setSize("485px", "430px");
 
 		tabKullaniciTanimlama = new DecoratedTabPanel();
-		absolutePanel.add(tabKullaniciTanimlama, 10, 38);
-		tabKullaniciTanimlama.setSize("487px", "314px");
+		absolutePanel.add(tabKullaniciTanimlama, 0, 0);
+		tabKullaniciTanimlama.setSize("475px", "314px");
 
 		AbsolutePanel absolutePanel_1 = new AbsolutePanel();
 		absolutePanel_1.setStyleName("gwt-DialogBackGround");
 		tabKullaniciTanimlama
 				.add(absolutePanel_1, "Kullanıcı Bilgileri", false);
-		absolutePanel_1.setSize("462px", "268px");
+		absolutePanel_1.setSize("460px", "270px");
 
 		FlexTable flexTable = new FlexTable();
 		absolutePanel_1.add(flexTable, 10, 10);
@@ -117,14 +111,14 @@ public class DlgKullaniciTanimlama extends DialogBox {
 
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		tabKullaniciTanimlama.add(absolutePanel_2, "Yetkileri", false);
-		absolutePanel_2.setSize("455px", "264px");
+		absolutePanel_2.setSize("460px", "270px");
 
 		btnKaydet = new Button("New button");
 		btnKaydet.setVisible(false);
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new TctKaydetClickHandler());
 		btnKaydet.setText("Kaydet");
-		absolutePanel.add(btnKaydet, 62, 382);
+		absolutePanel.add(btnKaydet, 68, 354);
 		btnKaydet.setSize("78px", "47px");
 
 		Button tctKapat = new Button("New button");
@@ -132,21 +126,21 @@ public class DlgKullaniciTanimlama extends DialogBox {
 		tctKapat.setStyleName("gwt-ButonKapat");
 		tctKapat.addClickHandler(new TctKapatClickHandler());
 		tctKapat.setText("Kapat");
-		absolutePanel.add(tctKapat, 140, 382);
+		absolutePanel.add(tctKapat, 146, 354);
 		tctKapat.setSize("78px", "47px");
 
 		image = new Image("kaydet-1.png");
 		image.addMouseOverHandler(new ImageMouseOverHandler());
 		image.addMouseOutHandler(new ImageMouseOutHandler());
 		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 284, 358);
+		absolutePanel.add(image, 302, 320);
 		image.setSize("72px", "66px");
 
 		image_1 = new Image("kapat-1.png");
 		image_1.addMouseOverHandler(new Image_1MouseOverHandler());
 		image_1.addMouseOutHandler(new Image_1MouseOutHandler());
 		image_1.addClickHandler(new Image_1ClickHandler());
-		absolutePanel.add(image_1, 365, 358);
+		absolutePanel.add(image_1, 383, 320);
 		image_1.setSize("72px", "66px");
 	}
 

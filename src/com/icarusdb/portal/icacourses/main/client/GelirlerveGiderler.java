@@ -18,6 +18,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -215,8 +216,6 @@ public class GelirlerveGiderler extends Composite {
 									+ object.odeme_turu.toString();
 							URLValue = URLValue + "&banka="
 									+ object.banka.toString();
-							URLValue = URLValue + "&cek="
-									+ object.cek.toString();
 							URLValue = URLValue + "&vade_tarihi="
 									+ object.vade_tarihi.toString();
 							URLValue = URLValue + "&miktar="
@@ -233,12 +232,22 @@ public class GelirlerveGiderler extends Composite {
 									"DERS BİLGİSİ KAYIT EDİLDİ",
 									"DERS BİLGİSİ KAYIT EDİLEMEDİ");
 
+							Timer t = new Timer() {
+								@Override
+								public void run() {
+
+									putDataToGrid();
+								}
+							};
+
+							// Schedule the timer to run once in 1s seconds.
+							t.schedule(1000);
+
 						}
 
-						putDataToGrid();
+						// putDataToGrid();
 					}
 
-					putDataToGrid();
 				}
 			});
 
@@ -330,8 +339,20 @@ public class GelirlerveGiderler extends Composite {
 					grdGelirlerveGiderler.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdGelirlerveGiderler.setRowData(0,
-							listXmlGelirlerveGiderler);
+					// grdGelirlerveGiderler.setRowData(0,
+					// listXmlGelirlerveGiderler);
+
+					if (listXmlGelirlerveGiderler != null) {
+
+						grdGelirlerveGiderler.setRowData(0,
+								listXmlGelirlerveGiderler);
+
+						grdGelirlerveGiderler.redraw();
+					} else {
+
+						grdGelirlerveGiderler.setRowCount(0, true);
+						grdGelirlerveGiderler.redraw();
+					}
 
 				}
 

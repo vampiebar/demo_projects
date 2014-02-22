@@ -236,13 +236,14 @@ public class DlgOdevOlustur extends DialogBox {
 		btnCevaplariKaydet = new Button("Cevapları Kaydet");
 		btnCevaplariKaydet.setVisible(false);
 		horizontalPanel_1.add(btnCevaplariKaydet);
-		horizontalPanel_1.setCellWidth(btnCevaplariKaydet, "340");
+		horizontalPanel_1.setCellWidth(btnCevaplariKaydet, "410");
 		btnCevaplariKaydet
 				.addClickHandler(new BtnCevaplariKaydetClickHandler());
 		btnCevaplariKaydet.setStyleName("gwt-ButtonSave");
 		btnCevaplariKaydet.setSize("78px", "47px");
 
 		Button btnYenikayit = new Button("Yeni Kayit");
+		btnYenikayit.setVisible(false);
 		horizontalPanel_1.add(btnYenikayit);
 		btnYenikayit.setText("");
 		btnYenikayit.setStyleName("gwt-ButonYeniKayit");
@@ -250,6 +251,7 @@ public class DlgOdevOlustur extends DialogBox {
 
 		image_2 = new Image("kaydet-1.png");
 		horizontalPanel_1.add(image_2);
+		horizontalPanel_1.setCellWidth(image_2, "80");
 		image_2.addMouseOutHandler(new Image_2MouseOutHandler());
 		image_2.addMouseOverHandler(new Image_2MouseOverHandler());
 		image_2.addClickHandler(new Image_2ClickHandler());
@@ -316,13 +318,8 @@ public class DlgOdevOlustur extends DialogBox {
 
 			putEgitimTuruToCbx(cbxEgitimTuru);
 
-			for (int i = 0; i <= 4; i++) {
-
-				flxOdevCevaplari.setWidget(i, 0, new Label("1"));
-
-			}
-
 		}
+
 	}
 
 	private void putEgitimTuruToCbx(final ListBox lbxTemp) {
@@ -690,7 +687,7 @@ public class DlgOdevOlustur extends DialogBox {
 
 		for (int i = 0; i < soruSayisi; i++) {
 
-			flxOdevCevaplari.setWidget(i, 0, new Label(i + ". Soru "));
+			flxOdevCevaplari.setWidget(i, 0, new Label(i + 1 + ". Soru "));
 
 			ListBox cbxSecenekler = new ListBox();
 
