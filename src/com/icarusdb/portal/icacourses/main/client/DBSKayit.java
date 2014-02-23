@@ -380,7 +380,18 @@ public class DBSKayit extends Composite {
 					grdDBSKayit.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdDBSKayit.setRowData(0, listXmlDBSKayit);
+					// grdDBSKayit.setRowData(0, listXmlDBSKayit);
+
+					if (listXmlDBSKayit != null) {
+
+						grdDBSKayit.setRowData(0, listXmlDBSKayit);
+
+						grdDBSKayit.redraw();
+					} else {
+
+						grdDBSKayit.setRowCount(0, true);
+						grdDBSKayit.redraw();
+					}
 
 				}
 

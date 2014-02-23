@@ -39,6 +39,11 @@ a:visited {
 
 .gwt-Loginbackground {
 	
+	background-image: url("loginbg.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	
+	
 }
 .gwt-YeniKayit2 {
 	background-color: rgb(56, 136, 0);
@@ -104,6 +109,35 @@ background-position: right;
 	color: blue;
 	font-weight: bold;	
 }
+
+.gwt-LabelSistemGirisi {
+	
+	color: white;
+	background-repeat: no-repeat;
+	background-image: url("");
+	background-position: left;
+	font-weight: bold;
+	font-family: cursive;
+	
+	
+}
+
+.gwt-ButtonLogIn {
+
+	color: white;
+	background-color: blue;
+	
+	border-radius: 6px;
+/* 	border-bottom-left-radius: 4px;
+border-bottom-right-radius: 4px; */
+
+	
+	
+	
+	
+}
+
+
 .gwt-TextAreaResible {
 	height:wwpx; 
 width: 275px; 
@@ -367,8 +401,7 @@ box-shadow: 0 2px 4px #BBB inset;
 }
 
 .gwt-TextBox1-readonly {
-  color: grey;
-  
+  color: #888;
 }
 
 .gwt-TextBox1:focus{
@@ -753,21 +786,29 @@ background: none repeat scroll 0% 0% #D9D9D9 !important;
 	
 }
 .gwt-TextBoxAra:HOVER {
+	
+	
+	color: black;
+	border: 1px solid #B9BDC1;
+	font-size: 14px;
+	font-style: normal;
+	font-family: arial,sans-serif;
+	background-image: url("search.png");
+	background-position: right;
+	background-repeat: no-repeat;
 		/* width: 250px;
 		height: 100px;
 		size: 500px; */
 	/* 	size: "300px","400px"; */
-	/* size: 400px; */
-	height: 50px;
-	width: 200px;
+
 }
 
 .gwt-TextBoxAra:FOCUS {
 		
 	/* 	float: right; */
-	height: 50px;
-	width: 200px;
-	height: ;
+	/* height: 50px;
+	width: 200px; */
+	
 	/* size: 400px; */
 	
 		

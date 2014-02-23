@@ -3,7 +3,6 @@ package com.icarusdb.portal.icacourses.main.client;
 import com.axeiya.gwtckeditor.client.CKEditor;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -11,7 +10,6 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -19,10 +17,10 @@ public class DlgLogIn extends DialogBox {
 	private TextBox tctKullaniciKodu;
 	private PasswordTextBox tctSifre;
 	private Button btnGirisYap;
-	private SimplePanel smpanHtmlEditor;
 	public CKEditor ckhtmlLogIn;
-	private CheckBox chckbxKullaniciKoduHatirla;
-	private CheckBox chckbxifreyiHatrla;
+	private CheckBox chxSifreyiHatirla;
+	private CheckBox chxKullaniciKodunuHatirla;
+	private Button btnIptal;
 
 	public DlgLogIn() {
 		setGlassEnabled(true);
@@ -30,17 +28,17 @@ public class DlgLogIn extends DialogBox {
 
 		VerticalPanel verticalPanel = new VerticalPanel();
 		setWidget(verticalPanel);
-		verticalPanel.setSize("335px", "317px");
+		verticalPanel.setSize("693px", "417px");
 
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-Loginbackground");
 		verticalPanel.add(absolutePanel);
-		absolutePanel.setSize("573px", "504px");
+		absolutePanel.setSize("693px", "418px");
 
 		AbsolutePanel verticalPanel_1 = new AbsolutePanel();
 		verticalPanel_1.setStyleName("gwt-LOG İN BACKGROUND");
-		absolutePanel.add(verticalPanel_1, 10, 40);
-		verticalPanel_1.setSize("267px", "231px");
+		absolutePanel.add(verticalPanel_1, 35, 115);
+		verticalPanel_1.setSize("248px", "231px");
 
 		Label lblKullaniciKodu = new Label("KULLANICI KODU");
 		lblKullaniciKodu
@@ -51,41 +49,50 @@ public class DlgLogIn extends DialogBox {
 
 		tctKullaniciKodu = new TextBox();
 		tctKullaniciKodu.setStyleName("gwt-TextBox1");
-		verticalPanel_1.add(tctKullaniciKodu);
-		tctKullaniciKodu.setWidth("90%");
+		verticalPanel_1.add(tctKullaniciKodu, 0, 24);
+		tctKullaniciKodu.setWidth("85%");
 
 		Label lblNewLabel = new Label("ŞİFRE");
 		lblNewLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		verticalPanel_1.add(lblNewLabel);
+		verticalPanel_1.add(lblNewLabel, 0, 56);
 		lblNewLabel.setStyleName("gwt-Label-Login");
 		lblNewLabel.setSize("142px", "18px");
 
 		tctSifre = new PasswordTextBox();
 		tctSifre.setStyleName("gwt-TextBox1");
-		verticalPanel_1.add(tctSifre);
-		tctSifre.setWidth("90%");
+		verticalPanel_1.add(tctSifre, 0, 80);
+		tctSifre.setWidth("85%");
 
 		btnGirisYap = new Button("New button");
-		verticalPanel_1.add(btnGirisYap, 28, 149);
+		btnGirisYap.setStyleName("gwt-ButtonLogIn");
+		verticalPanel_1.add(btnGirisYap, 10, 174);
 		btnGirisYap.setText("GİRİŞ YAP");
 		btnGirisYap.setSize("100px", "27px");
 
-		chckbxKullaniciKoduHatirla = new CheckBox("Beni Hatırla");
-		chckbxKullaniciKoduHatirla.setHTML("Kullanıcı Kodunu Hatırla");
-		verticalPanel_1.add(chckbxKullaniciKoduHatirla, 0, 95);
+		chxKullaniciKodunuHatirla = new CheckBox("Beni Hatırla");
+		chxKullaniciKodunuHatirla.setHTML("Kullanıcı Kodunu Hatırla");
+		verticalPanel_1.add(chxKullaniciKodunuHatirla, 0, 110);
 
-		Button btnIptal = new Button("New button");
+		btnIptal = new Button("New button");
+		btnIptal.setStyleName("gwt-ButtonLogIn");
 		btnIptal.addClickHandler(new BtnIptalClickHandler());
 		btnIptal.setText("İPTAL");
-		verticalPanel_1.add(btnIptal, 142, 149);
+		verticalPanel_1.add(btnIptal, 124, 174);
 		btnIptal.setSize("100px", "27px");
 
-		chckbxifreyiHatrla = new CheckBox("Şifreyi Hatırla");
-		verticalPanel_1.add(chckbxifreyiHatrla, 0, 121);
+		chxSifreyiHatirla = new CheckBox("Şifreyi Hatırla");
+		verticalPanel_1.add(chxSifreyiHatirla, 0, 136);
 
-		smpanHtmlEditor = new SimplePanel();
-		absolutePanel.add(smpanHtmlEditor, 283, 40);
-		smpanHtmlEditor.setSize("280px", "231px");
+		Label txtrSistemzerindeIzleyeceiniz = new Label();
+		txtrSistemzerindeIzleyeceiniz
+				.setText("Sistem üzerinde izleyeceğiniz bilgiler resmi bilgi olarak değerlendirilemez ve yasal geçerliliği yoktur. Öğrencilerin resmi bilgileri dershane yönetimi tarafından öğrenci ve/veya velilerimize basılı evrak olarak elden iletilmektedir.");
+		absolutePanel.add(txtrSistemzerindeIzleyeceiniz, 300, 230);
+		txtrSistemzerindeIzleyeceiniz.setSize("255px", "110px");
+
+		Label lblSistemGirii = new Label("SİSTEM GİRİŞİ");
+		lblSistemGirii.setStyleName("gwt-LabelSistemGirisi");
+		absolutePanel.add(lblSistemGirii, 46, 84);
+		lblSistemGirii.setSize("120px", "18px");
 
 		if (!isDesignTime()) {
 
@@ -105,7 +112,8 @@ public class DlgLogIn extends DialogBox {
 	private class BtnIptalClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 
-			Window.Location.assign("https://www.google.com.tr");
+			// Window.Location.assign("https://www.google.com.tr");
+			hide();
 		}
 	}
 }
