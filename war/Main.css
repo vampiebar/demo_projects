@@ -1,19 +1,4 @@
-/* @font-face {
-    font-family: 'Trebuc';
-    src: url('trebuc.ttf');
-    src: local('Trebuc'),
-         local('Trebuc'),	
-         url('trebuc.ttf') format('truetype');
-}
- 
-Bold declaration only for non-IE browsers
-@font-face {
-    font-family: 'Trebuc Bold';
-    src: local('Trebuc Bold'),
-         local('Trebuc-Bold'),
-         url('trebucbd.ttf') format('truetype');
-    font-weight: bold;
-} */
+
 .active {
 font-color:#000000
 text-decoration: none;
@@ -576,54 +561,7 @@ box-shadow: 0 2px 4px #BBB inset;
 }
 .gwt-MenuButton {
 
-	/* border-color: rgb(38, 154, 188);
-	font-family: Trebuc;
-	font-weight: bold;
-	background-color: (86, 144, 153); */
-	/* 
--webkit-background-clip: border-box;
--webkit-background-origin: padding-box;
--webkit-background-size: auto;
-background-attachment: scroll;
-background-clip: border-box;
-background-color: rgb(217, 217, 217);
-background-image: none;
-background-origin: padding-box;
-background-size: auto;
-border-bottom-color: rgb(0, 0, 0);
-border-bottom-style: none;
-border-bottom-width: 0px;
-border-top-color: rgb(200, 199, 204);
-box-sizing: border-box;
-color: rgb(0, 0, 0);
-cursor: auto;
-direction: ltr;
-display: block;
-font-family: 'Open+Sans', sans-serif;
-font-size: 14px;
-font-weight: 300;
-height: 25px;
-line-height: 20px;
-list-style-image: none;
-list-style-position: outside;
-list-style-type: none;
-margin-bottom: 0px;
-margin-left: 0px;
-margin-right: 0px;
-margin-top: 0px;
-outline-color: rgb(0, 0, 0);
-outline-style: none;
-outline-width: 0px;
-padding-bottom: 0px;
-padding-left: 0px;
-padding-right: 0px;
-padding-top: 0px;
-text-decoration: none solid rgb(0, 0, 0);
-width: 225px;
-font-family:
- box-shadow: 1px 0 0 0 #FFFFFF; */
-
-
+	
 -webkit-background-clip: border-box;
 -webkit-background-origin: padding-box;
 -webkit-background-size: auto;
@@ -654,8 +592,7 @@ padding-right: 0px;
 padding-top: 0px;
 /* text-align: left; */
 width: 225px;
-/* font-family:sans-serif, Arial, Verdana, 'Trebuchet MS';
- */	font-weight: bold;
+font-weight: bold;
 
 }
 .gwt-MenuButton:BEFORE {

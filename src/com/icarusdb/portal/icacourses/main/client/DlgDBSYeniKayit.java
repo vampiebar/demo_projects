@@ -135,7 +135,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		vtpanOgrenciBilgileri = new AbsolutePanel();
 		vtpanOgrenciBilgileri.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(hzpanMain, "Öğrenci Bilgileri", false);
-		vtpanOgrenciBilgileri.setSize("774px", "450px");
+		vtpanOgrenciBilgileri.setSize("840px", "450px");
 
 		hzpanMain.add(vtpanOgrenciBilgileri);
 
@@ -143,9 +143,6 @@ public class DlgDBSYeniKayit extends DialogBox {
 		hzpanMenu1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		hzpanMenu1.setSize("784px", "72px");
 		vtpanMain.add(hzpanMenu1);
-
-		btnOgrenciyiKaydet5 = new Button("Öğrenciyi Kaydet");
-		btnOgrenciyiKaydet5.setVisible(false);
 
 		imgKapat5 = new Image("kapat-1.png");
 		imgKapat5.addMouseOutHandler(new ImgKapat5MouseOutHandler());
@@ -159,21 +156,24 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 		Button btnYeniKayit5 = new Button("");
 		btnYeniKayit5.setVisible(false);
-		btnYeniKayit5.setText("");
-		hzpanMenu1.add(btnYeniKayit5);
-		hzpanMenu1.setCellWidth(btnYeniKayit5, "600");
-		btnYeniKayit5.setStyleName("gwt-ButonYeniKayit");
-		btnYeniKayit5.setSize("25px", "72px");
-		hzpanMenu1.add(imgKaydet);
-		imgKaydet.setSize("72px", "66px");
-		hzpanMenu1.add(imgKapat5);
-		imgKapat5.setSize("72px", "66px");
+
+		btnOgrenciyiKaydet5 = new Button("Öğrenciyi Kaydet");
+		btnOgrenciyiKaydet5.setVisible(false);
 		btnOgrenciyiKaydet5.setText("");
 		hzpanMenu1.add(btnOgrenciyiKaydet5);
 		btnOgrenciyiKaydet5.setStyleName("gwt-ButtonSave");
 		btnOgrenciyiKaydet5
 				.addClickHandler(new BtnOgrenciyiKaydet5ClickHandler());
 		btnOgrenciyiKaydet5.setSize("26px", "67px");
+		btnYeniKayit5.setText("");
+		hzpanMenu1.add(btnYeniKayit5);
+		hzpanMenu1.setCellWidth(btnYeniKayit5, "625");
+		btnYeniKayit5.setStyleName("gwt-ButonYeniKayit");
+		btnYeniKayit5.setSize("25px", "72px");
+		hzpanMenu1.add(imgKaydet);
+		imgKaydet.setSize("72px", "66px");
+		hzpanMenu1.add(imgKapat5);
+		imgKapat5.setSize("72px", "66px");
 
 		btnKapat5 = new Button("Kapat");
 		btnKapat5.setVisible(false);
@@ -392,7 +392,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-DialogBackGround");
 		verticalPanel_1.add(absolutePanel);
-		absolutePanel.setSize("774px", "450px");
+		absolutePanel.setSize("840px", "450px");
 
 		FlexTable flexTable_1 = new FlexTable();
 		absolutePanel.add(flexTable_1, 10, 10);
@@ -547,7 +547,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		AbsolutePanel absolutePanel_2 = new AbsolutePanel();
 		absolutePanel_2.setStyleName("gwt-DialogBackGround");
 		verticalPanel_2.add(absolutePanel_2);
-		absolutePanel_2.setSize("774px", "450px");
+		absolutePanel_2.setSize("840px", "450px");
 
 		FlexTable flexTable_3 = new FlexTable();
 		absolutePanel_2.add(flexTable_3, 10, 10);
@@ -624,7 +624,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		AbsolutePanel absolutePanel_3 = new AbsolutePanel();
 		absolutePanel_3.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(absolutePanel_3, "Sınav Bilgileri", false);
-		absolutePanel_3.setSize("774px", "450px");
+		absolutePanel_3.setSize("840px", "450px");
 
 		FlexTable flexTable_4 = new FlexTable();
 		absolutePanel_3.add(flexTable_4, 10, 10);
@@ -665,7 +665,7 @@ public class DlgDBSYeniKayit extends DialogBox {
 		absolutePanel_4 = new AbsolutePanel();
 		absolutePanel_4.setStyleName("gwt-DialogBackGround");
 		decoratedTabPanel.add(absolutePanel_4, "Veli Bilgileri", false);
-		absolutePanel_4.setSize("774px", "450px");
+		absolutePanel_4.setSize("840px", "450px");
 
 		VerticalPanel verticalPanel = new VerticalPanel();
 		absolutePanel_4.add(verticalPanel);
@@ -1049,6 +1049,19 @@ public class DlgDBSYeniKayit extends DialogBox {
 
 					// Push the data into the widget.
 					grdVeliler.setRowData(0, listXmlVeliler);
+
+					if (listXmlVeliler != null) {
+
+						grdVeliler.setRowData(0, listXmlVeliler);
+
+						grdVeliler.redraw();
+
+					} else {
+
+						grdVeliler.setRowCount(0, true);
+						grdVeliler.redraw();
+
+					}
 
 				}
 

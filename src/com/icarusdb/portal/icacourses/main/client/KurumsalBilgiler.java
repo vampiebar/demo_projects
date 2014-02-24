@@ -1,31 +1,27 @@
 package com.icarusdb.portal.icacourses.main.client;
 
+import gwtupload.client.IUploader;
+import gwtupload.client.IUploader.OnFinishUploaderHandler;
+import gwtupload.client.SingleUploader;
+
 import java.util.List;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyPressEvent;
-import com.google.gwt.event.dom.client.KeyPressHandler;
-import com.google.gwt.event.dom.client.MouseOutEvent;
-import com.google.gwt.event.dom.client.MouseOutHandler;
-import com.google.gwt.event.dom.client.MouseOverEvent;
-import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FileUpload;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -52,9 +48,8 @@ public class KurumsalBilgiler extends Composite {
 	private TextBox tctFaks;
 	private TextBox tctEMail;
 	private TextArea tctAdres;
-	private FileUpload fileUpload;
-	private Button btnKaydet;
-	private Image image;
+	private SingleUploader fileUpload;
+	private SimplePanel simplePanel;
 
 	public KurumsalBilgiler(boolean isInsert, long id) {
 
@@ -64,240 +59,280 @@ public class KurumsalBilgiler extends Composite {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("gwt-dlgbackgorund");
 		initWidget(absolutePanel);
-		absolutePanel.setSize("100%", "669px");
+		absolutePanel.setSize("808px", "669px");
+
+		Label lblNewLabel = new Label("Kurumsal Bilgileri (Düzenleme)");
+		lblNewLabel.setStyleName("gwt-LabelMor");
+		absolutePanel.add(lblNewLabel, 0, 0);
+		lblNewLabel.setSize("808px", "33px");
 
 		Label lblubeAdKsa = new Label("Şube Adı Kısa");
 		lblubeAdKsa.setStyleName("gwt-Bold");
-		absolutePanel.add(lblubeAdKsa, 22, 56);
+		absolutePanel.add(lblubeAdKsa, 24, 93);
 
 		Label lblubeResmiAd = new Label("Şube Resmi Adı");
 		lblubeResmiAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblubeResmiAd, 22, 94);
+		absolutePanel.add(lblubeResmiAd, 24, 131);
 
 		Label lblirketAd = new Label("Şirket Adı");
 		lblirketAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblirketAd, 22, 135);
+		absolutePanel.add(lblirketAd, 24, 172);
 
 		Label lblVergiAd = new Label("Vergi Dairesi");
 		lblVergiAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblVergiAd, 23, 171);
+		absolutePanel.add(lblVergiAd, 25, 208);
 
 		Label lblVergiNo = new Label("Vergi No");
 		lblVergiNo.setStyleName("gwt-Bold");
-		absolutePanel.add(lblVergiNo, 23, 204);
+		absolutePanel.add(lblVergiNo, 25, 241);
 
 		tctSubeAdiKisa = new TextBox();
 		tctSubeAdiKisa.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSubeAdiKisa, 136, 52);
+		absolutePanel.add(tctSubeAdiKisa, 138, 89);
 		tctSubeAdiKisa.setSize("166px", "16px");
 
 		tctSubeResmiAdi = new TextBox();
 		tctSubeResmiAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSubeResmiAdi, 136, 90);
+		absolutePanel.add(tctSubeResmiAdi, 138, 127);
 		tctSubeResmiAdi.setSize("166px", "16px");
 
 		tctSirketAdi = new TextBox();
 		tctSirketAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctSirketAdi, 136, 131);
+		absolutePanel.add(tctSirketAdi, 138, 168);
 		tctSirketAdi.setSize("166px", "16px");
 
 		tctVergiDairesi = new TextBox();
 		tctVergiDairesi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVergiDairesi, 136, 171);
+		absolutePanel.add(tctVergiDairesi, 138, 208);
 		tctVergiDairesi.setSize("166px", "16px");
 
 		tctVergiNo = new TextBox();
-		tctVergiNo.setMaxLength(30);
-		tctVergiNo.addKeyPressHandler(new TctVergiNoKeyPressHandler());
 		tctVergiNo.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctVergiNo, 136, 204);
+		absolutePanel.add(tctVergiNo, 138, 241);
 		tctVergiNo.setSize("166px", "16px");
 
 		Label lblYneticiAd = new Label("Yönetici Adı");
 		lblYneticiAd.setStyleName("gwt-Bold");
-		absolutePanel.add(lblYneticiAd, 355, 52);
+		absolutePanel.add(lblYneticiAd, 357, 89);
 
 		Label lblYneticiTel = new Label("Yönetici Tel");
 		lblYneticiTel.setStyleName("gwt-Bold");
-		absolutePanel.add(lblYneticiTel, 355, 90);
+		absolutePanel.add(lblYneticiTel, 357, 127);
 
 		Label label = new Label("Müdür");
 		label.setStyleName("gwt-Bold");
-		absolutePanel.add(label, 355, 131);
+		absolutePanel.add(label, 357, 168);
 		label.setSize("68px", "16px");
 
 		Label lblMdrYardmcs = new Label("Müdür Yardımcısı");
 		lblMdrYardmcs.setStyleName("gwt-Bold");
-		absolutePanel.add(lblMdrYardmcs, 355, 171);
+		absolutePanel.add(lblMdrYardmcs, 357, 208);
 
 		Label lblLogopng = new Label("Logo (png)");
 		lblLogopng.setStyleName("gwt-Bold");
-		absolutePanel.add(lblLogopng, 355, 204);
+		absolutePanel.add(lblLogopng, 357, 241);
 
 		tctYoneticiAdi = new TextBox();
-		tctYoneticiAdi.setMaxLength(30);
 		tctYoneticiAdi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctYoneticiAdi, 497, 52);
+		absolutePanel.add(tctYoneticiAdi, 499, 89);
 		tctYoneticiAdi.setSize("164px", "16px");
 
 		tctYoneticiTel = new TextBox();
-		tctYoneticiTel.setMaxLength(11);
-		tctYoneticiTel.addKeyPressHandler(new TctYoneticiTelKeyPressHandler());
 		tctYoneticiTel.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctYoneticiTel, 497, 90);
+		absolutePanel.add(tctYoneticiTel, 499, 127);
 		tctYoneticiTel.setSize("164px", "16px");
 
 		tctMudur = new TextBox();
-		tctMudur.setMaxLength(30);
 		tctMudur.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctMudur, 497, 131);
+		absolutePanel.add(tctMudur, 499, 168);
 		tctMudur.setSize("164px", "16px");
 
 		tctMudurYardimcisi = new TextBox();
-		tctMudurYardimcisi.setMaxLength(30);
 		tctMudurYardimcisi.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctMudurYardimcisi, 497, 171);
+		absolutePanel.add(tctMudurYardimcisi, 499, 208);
 		tctMudurYardimcisi.setSize("164px", "16px");
+
+		Label lblKurumsalBilgiler = new Label("Kurumsal Bilgiler");
+		lblKurumsalBilgiler.setStyleName("gwt-Bold");
+		absolutePanel.add(lblKurumsalBilgiler, 10, 49);
 
 		Label lblIletiimBilgiler = new Label("İletişim Bilgiler");
 		lblIletiimBilgiler.setStyleName("gwt-Bold");
-		absolutePanel.add(lblIletiimBilgiler, 22, 258);
+		absolutePanel.add(lblIletiimBilgiler, 24, 295);
 		lblIletiimBilgiler.setSize("101px", "16px");
 
 		Label lbllke = new Label("Ülke");
 		lbllke.setStyleName("gwt-Bold");
-		absolutePanel.add(lbllke, 22, 302);
+		absolutePanel.add(lbllke, 24, 339);
 
 		Label lblIl = new Label("İl");
 		lblIl.setStyleName("gwt-Bold");
-		absolutePanel.add(lblIl, 22, 337);
+		absolutePanel.add(lblIl, 24, 374);
 		lblIl.setSize("27px", "16px");
 
 		Label lblIle = new Label("İlçe");
 		lblIle.setStyleName("gwt-Bold");
-		absolutePanel.add(lblIle, 22, 372);
+		absolutePanel.add(lblIle, 24, 409);
 		lblIle.setSize("26px", "16px");
 
 		Label lblSemt = new Label("Semt");
 		lblSemt.setStyleName("gwt-Bold");
-		absolutePanel.add(lblSemt, 22, 407);
+		absolutePanel.add(lblSemt, 24, 444);
 
 		Label lblMahalleKy = new Label("Mahalle / Köy");
 		lblMahalleKy.setStyleName("gwt-Bold");
-		absolutePanel.add(lblMahalleKy, 22, 442);
+		absolutePanel.add(lblMahalleKy, 24, 479);
 		lblMahalleKy.setSize("101px", "16px");
 
 		cbxUlke = new ListBox();
 		cbxUlke.addItem("TÜRKİYE");
 		cbxUlke.setStyleName("gwt-TextBox1");
-		absolutePanel.add(cbxUlke, 136, 293);
+		absolutePanel.add(cbxUlke, 138, 330);
 		cbxUlke.setSize("168px", "23px");
 
 		cbxIl = new ListBox();
 		cbxIl.addChangeHandler(new CbxIlChangeHandler());
 		cbxIl.addItem(" ");
 		cbxIl.setStyleName("gwt-TextBox1");
-		absolutePanel.add(cbxIl, 136, 328);
+		absolutePanel.add(cbxIl, 138, 365);
 		cbxIl.setSize("168px", "23px");
 
 		cbxIlce = new ListBox();
 		cbxIlce.addChangeHandler(new CbxIlceChangeHandler());
 		cbxIlce.addItem(" ");
 		cbxIlce.setStyleName("gwt-TextBox1");
-		absolutePanel.add(cbxIlce, 136, 363);
+		absolutePanel.add(cbxIlce, 138, 400);
 		cbxIlce.setSize("168px", "23px");
 
 		cbxSemt = new ListBox();
 		cbxSemt.addChangeHandler(new CbxSemtChangeHandler());
 		cbxSemt.addItem(" ");
 		cbxSemt.setStyleName("gwt-TextBox1");
-		absolutePanel.add(cbxSemt, 136, 398);
+		absolutePanel.add(cbxSemt, 138, 435);
 		cbxSemt.setSize("168px", "23px");
 
 		cbxMahalleKoy = new ListBox();
 		cbxMahalleKoy.addItem(" ");
 		cbxMahalleKoy.setStyleName("gwt-TextBox1");
-		absolutePanel.add(cbxMahalleKoy, 136, 433);
+		absolutePanel.add(cbxMahalleKoy, 138, 470);
 		cbxMahalleKoy.setSize("168px", "23px");
 
 		Label lblTelefon = new Label("Telefon");
 		lblTelefon.setStyleName("gwt-Bold");
-		absolutePanel.add(lblTelefon, 355, 303);
+		absolutePanel.add(lblTelefon, 357, 340);
 
 		Label lblFaks = new Label("Faks");
 		lblFaks.setStyleName("gwt-Bold");
-		absolutePanel.add(lblFaks, 355, 337);
+		absolutePanel.add(lblFaks, 357, 374);
 
 		Label lblNewLabel_1 = new Label("E-Mail");
 		lblNewLabel_1.setStyleName("gwt-Bold");
-		absolutePanel.add(lblNewLabel_1, 355, 369);
+		absolutePanel.add(lblNewLabel_1, 357, 406);
 
 		Label lblAdres = new Label("Adres");
 		lblAdres.setStyleName("gwt-Bold");
-		absolutePanel.add(lblAdres, 355, 408);
+		absolutePanel.add(lblAdres, 357, 445);
 
 		tctTelefon = new TextBox();
-		tctTelefon.setMaxLength(11);
-		tctTelefon.addKeyPressHandler(new TctTelefonKeyPressHandler());
 		tctTelefon.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctTelefon, 456, 300);
+		absolutePanel.add(tctTelefon, 458, 337);
 		tctTelefon.setSize("143px", "16px");
 
 		tctFaks = new TextBox();
-		tctFaks.setMaxLength(11);
-		tctFaks.addKeyPressHandler(new TctFaksKeyPressHandler());
 		tctFaks.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctFaks, 456, 334);
+		absolutePanel.add(tctFaks, 458, 371);
 		tctFaks.setSize("143px", "16px");
 
 		tctEMail = new TextBox();
-		tctEMail.setMaxLength(40);
-		tctEMail.addKeyPressHandler(new TctEMailKeyPressHandler());
 		tctEMail.setStyleName("gwt-TextBox1");
-		absolutePanel.add(tctEMail, 456, 366);
+		absolutePanel.add(tctEMail, 458, 403);
 		tctEMail.setSize("234px", "16px");
 
 		tctAdres = new TextArea();
 		tctAdres.setStyleName("gwt-TextAreaResible");
-		absolutePanel.add(tctAdres, 456, 408);
+		absolutePanel.add(tctAdres, 458, 445);
 		tctAdres.setSize("236px", "61px");
 
-		btnKaydet = new Button("Kaydet");
-		btnKaydet.setVisible(false);
+		Button btnKaydet = new Button("Kaydet");
 		btnKaydet.setStyleName("gwt-ButtonSave");
 		btnKaydet.addClickHandler(new BtnKaydetClickHandler());
-		absolutePanel.add(btnKaydet, 439, 511);
+		absolutePanel.add(btnKaydet, 605, 541);
 		btnKaydet.setSize("78px", "48px");
 
-		fileUpload = new FileUpload();
-		absolutePanel.add(fileUpload, 497, 204);
-		fileUpload.setSize("132px", "22px");
-
-		Button btnYkle = new Button("Seç");
-		btnYkle.setText("Seç");
-		absolutePanel.add(btnYkle, 641, 200);
-
-		image = new Image("kaydet-1.png");
-		image.addMouseOutHandler(new ImageMouseOutHandler());
-		image.addMouseOverHandler(new ImageMouseOverHandler());
-		image.addClickHandler(new ImageClickHandler());
-		absolutePanel.add(image, 540, 493);
-		image.setSize("72px", "66px");
-
-		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		horizontalPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
-		horizontalPanel.setStyleName("gwt-LabelMor2");
-		absolutePanel.add(horizontalPanel, 0, 0);
-		horizontalPanel.setSize("100%", "33px");
-
-		Label lblKurumsalBilgiler_1 = new Label("Kurumsal Bilgiler");
-		horizontalPanel.add(lblKurumsalBilgiler_1);
-		lblKurumsalBilgiler_1.setWidth("100%");
+		simplePanel = new SimplePanel();
+		absolutePanel.add(simplePanel, 524, 278);
+		simplePanel.setSize("82px", "46px");
 
 		if (!isDesignTime()) {
+
+			fileUpload = new SingleUploader();
+			absolutePanel.add(fileUpload, 499, 241);
+			fileUpload.setSize("217px", "22px");
+
+			fileUpload.setStyleName("");
+			fileUpload.setAutoSubmit(true);
+
+			fileUpload.addOnFinishUploadHandler(new OnFinishUploaderHandler() {
+
+				@Override
+				public void onFinish(IUploader uploader) {
+
+					String strFileName = fileUpload.getFileName().substring(
+							fileUpload.getFileName().lastIndexOf("\\") + 1);
+
+					Window.alert(strFileName);
+
+					// Window.alert("finished upload    " +
+					// strFileName);
+
+					// Window.alert("File To Move " + strFileName);
+
+					// moveFileToPath(strFileName,
+					// //
+					// "/home/vampie/PROJECTS/ECLIPSE/ImageEditor/deploy/uploaded_images"
+					// "/home/playground/trendsetter/imageeditor/uploaded_images"
+					//
+					// );
+
+					putLogoToRightPlace();
+
+				}
+			});
+
 			getKurumsalBilgiler(1);
 			putIlToCbx(cbxIl);
 
+		}
+
+	}
+
+	protected void putLogoToRightPlace() {
+
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,
+				Util.urlBase + "copylogofile");
+
+		try {
+
+			Request request = builder.sendRequest(null, new RequestCallback() {
+
+				public void onError(Request request, Throwable exception) {
+
+				}
+
+				@Override
+				public void onResponseReceived(Request request,
+						Response response) {
+
+					Window.alert("putLogoToRightPlace(): " + response.getText());
+
+				}
+
+			});
+
+		} catch (RequestException e) {
+			// displayError("Couldn't retrieve JSON");
+
+			// Window.alert(e.getMessage() + "ERROR");
 		}
 
 	}
@@ -609,105 +644,6 @@ public class KurumsalBilgiler extends Composite {
 					cbxIlce.getItemText(cbxIlce.getSelectedIndex()),
 					cbxSemt.getItemText(cbxSemt.getSelectedIndex()),
 					cbxMahalleKoy);
-
-		}
-	}
-
-	private class TctVergiNoKeyPressHandler implements KeyPressHandler {
-		public void onKeyPress(KeyPressEvent event) {
-
-			String input = tctVergiNo.getText();
-			if (!input.matches("[0-9]*")) {
-				tctVergiNo.setStyleName("gwt-TextBoxError");
-				return;
-			}
-			// do your thang
-
-			tctVergiNo.setStyleName("gwt-TextBox1");
-		}
-
-	}
-
-	private class TctTelefonKeyPressHandler implements KeyPressHandler {
-		public void onKeyPress(KeyPressEvent event) {
-
-			String input = tctTelefon.getText();
-			if (!input.matches("[0-9]*")) {
-				tctTelefon.setStyleName("gwt-TextBoxError");
-				return;
-			}
-			// do your thing
-
-			tctTelefon.setStyleName("gwt-TextBox1");
-		}
-	}
-
-	private class TctFaksKeyPressHandler implements KeyPressHandler {
-		public void onKeyPress(KeyPressEvent event) {
-
-			String input = tctFaks.getText();
-			if (!input.matches("[0-9]*")) {
-				tctFaks.setStyleName("gwt-TextBoxError");
-				return;
-			}
-			// do your thing
-
-			tctFaks.setStyleName("gwt-TextBox1");
-		}
-	}
-
-	private class TctYoneticiTelKeyPressHandler implements KeyPressHandler {
-		public void onKeyPress(KeyPressEvent event) {
-
-			String input = tctYoneticiTel.getText();
-			if (!input.matches("[0-9]*")) {
-				tctYoneticiTel.setStyleName("gwt-TextBoxError");
-
-				return;
-			}
-			// do your thing
-
-			tctYoneticiTel.setStyleName("gwt-TextBox1");
-		}
-	}
-
-	private class TctEMailKeyPressHandler implements KeyPressHandler {
-		public void onKeyPress(KeyPressEvent event) {
-
-			String input = tctEMail.getText();
-			if (!input
-					.matches("^([a-zA-Z0-9_.\\-+])+@(([a-zA-Z0-9\\-])+\\.)+[a-zA-Z0-9]{2,4}$")) {
-				tctEMail.setStyleName("gwt-TextBoxError");
-
-				return;
-			}
-			// do your thing
-
-			tctEMail.setStyleName("gwt-TextBox1");
-
-		}
-	}
-
-	private class ImageClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-
-			btnKaydet.click();
-
-		}
-	}
-
-	private class ImageMouseOverHandler implements MouseOverHandler {
-		public void onMouseOver(MouseOverEvent event) {
-
-			image.setUrl("kaydet-2.png");
-
-		}
-	}
-
-	private class ImageMouseOutHandler implements MouseOutHandler {
-		public void onMouseOut(MouseOutEvent event) {
-
-			image.setUrl("kaydet-1.png");
 
 		}
 	}

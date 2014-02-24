@@ -857,9 +857,13 @@ public class DlgOnKayit extends DialogBox {
 		absolutePanel_7.add(button, 10, 10);
 		button.setSize("76px", "24px");
 
+		HorizontalPanel horizontalPanel_3 = new HorizontalPanel();
+		absolutePanel_7.add(horizontalPanel_3, 0, 40);
+		horizontalPanel_3.setSize("100%", "100px");
+
 		grdVeliEkle = new CellTable<XMLVeliler>();
-		absolutePanel_7.add(grdVeliEkle, 10, 54);
-		grdVeliEkle.setSize("820px", "192px");
+		horizontalPanel_3.add(grdVeliEkle);
+		grdVeliEkle.setSize("100%", "100%");
 
 		TextColumn<XMLVeliler> textColumn_4 = new TextColumn<XMLVeliler>() {
 			@Override
@@ -1289,7 +1293,19 @@ public class DlgOnKayit extends DialogBox {
 					grdVeliEkle.setRowCount(1, true);
 
 					// Push the data into the widget.
-					grdVeliEkle.setRowData(0, listXmlVeliler);
+					// grdVeliEkle.setRowData(0, listXmlVeliler);
+
+					if (listXmlVeliler != null) {
+
+						grdVeliEkle.setRowData(0, listXmlVeliler);
+
+						grdVeliEkle.redraw();
+
+					} else {
+
+						grdVeliEkle.setRowCount(0, true);
+						grdVeliEkle.redraw();
+					}
 
 				}
 
@@ -2361,5 +2377,4 @@ public class DlgOnKayit extends DialogBox {
 
 		}
 	}
-
 }

@@ -28,8 +28,6 @@
 			<fileset file="C:\projects\Tools\gwt-2.5.1\gwt-dev.jar"/>
 			<fileset file="C:\projects\Tools\gwt-2.5.1\validation-api-1.0.0.GA-sources.jar"/>
 			<fileset file="C:\projects\Tools\gwt-2.5.1\validation-api-1.0.0.GA.jar"/>
-			<fileset file="C:\projects\GIT\icacourses\lib\gwt-crypto.jar"/>
-			<fileset file="C:\projects\GIT\icacourses\lib\gwt-widgets-0.2.0.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\piriti-core-0.7b2.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\piriti-restlet-0.7b2.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\postgresql-9.0-801.jdbc4.jar"/>
@@ -39,13 +37,15 @@
 			<fileset file="C:\projects\GIT\icacourses\lib\gin\guice-assistedinject-snapshot.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\gin\guice-snapshot.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\gin\javax.inject.jar"/>
-			<fileset file="C:\projects\GIT\icacourses\lib\gwt-cal-0.9.4.jar"/>
-			<fileset file="C:\projects\GIT\icacourses\lib\gwt-dnd-3.2.3.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\validation-api-1.0.0.GA-sources.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\validation-api-1.0.0.GA.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\gwt-traction-1.5.4.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\gwt-ckeditor-0.5.jar"/>
 			<fileset file="C:\projects\GIT\icacourses\lib\gwtupload-1.0.0.jar"/>
+			<fileset file="C:\projects\GIT\icacourses\lib\gwt-servlet.jar"/>
+			<fileset file="C:\projects\GIT\icacourses\lib\commons-fileupload-1.3.1.jar"/>
+			<fileset file="C:\projects\GIT\icacourses\lib\commons-io-2.4.jar"/>
+			<fileset file="C:\projects\GIT\icacourses\lib\commons-logging-1.1.3.jar"/>
 		</copy>		
 	</target>
 
@@ -58,8 +58,6 @@
 				<pathelement location="C:/projects/Tools/gwt-2.5.1/gwt-dev.jar" />
 				<pathelement location="C:/projects/Tools/gwt-2.5.1/validation-api-1.0.0.GA-sources.jar" />
 				<pathelement location="C:/projects/Tools/gwt-2.5.1/validation-api-1.0.0.GA.jar" />
-				<pathelement location="C:/projects/GIT/icacourses/lib/gwt-crypto.jar" />
-				<pathelement location="C:/projects/GIT/icacourses/lib/gwt-widgets-0.2.0.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/piriti-core-0.7b2.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/piriti-restlet-0.7b2.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/postgresql-9.0-801.jdbc4.jar" />
@@ -69,13 +67,15 @@
 				<pathelement location="C:/projects/GIT/icacourses/lib/gin/guice-assistedinject-snapshot.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/gin/guice-snapshot.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/gin/javax.inject.jar" />
-				<pathelement location="C:/projects/GIT/icacourses/lib/gwt-cal-0.9.4.jar" />
-				<pathelement location="C:/projects/GIT/icacourses/lib/gwt-dnd-3.2.3.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/validation-api-1.0.0.GA-sources.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/validation-api-1.0.0.GA.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/gwt-traction-1.5.4.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/gwt-ckeditor-0.5.jar" />
 				<pathelement location="C:/projects/GIT/icacourses/lib/gwtupload-1.0.0.jar" />
+				<pathelement location="C:/projects/GIT/icacourses/lib/gwt-servlet.jar" />
+				<pathelement location="C:/projects/GIT/icacourses/lib/commons-fileupload-1.3.1.jar" />
+				<pathelement location="C:/projects/GIT/icacourses/lib/commons-io-2.4.jar" />
+				<pathelement location="C:/projects/GIT/icacourses/lib/commons-logging-1.1.3.jar" />
 				<pathelement location="C:/projects/Tools/gwt-2.5.1/gwt-dev.jar" />
 			</classpath>
 			<arg value="-style"/>
