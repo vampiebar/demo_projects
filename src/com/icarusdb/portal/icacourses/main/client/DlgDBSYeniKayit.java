@@ -217,6 +217,8 @@ public class DlgDBSYeniKayit extends DialogBox {
 		lblTcKimlikNo.setStyleName("gwt-Bold");
 
 		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
+		horizontalPanel_2
+				.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		flexTable.setWidget(2, 1, horizontalPanel_2);
 		flexTable.getCellFormatter().setWidth(2, 1, "");
 		horizontalPanel_2.setWidth("100%");

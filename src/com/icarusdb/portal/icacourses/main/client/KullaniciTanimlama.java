@@ -72,11 +72,11 @@ public class KullaniciTanimlama extends Composite {
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		verticalPanel.add(horizontalPanel);
 		horizontalPanel.setSpacing(10);
-		horizontalPanel.setSize("100%", "100%");
+		horizontalPanel.setSize("100%", "106px");
 
 		grdKullaniciTanimlari = new CellTable<XMLKullaniciTanimlama>();
 		horizontalPanel.add(grdKullaniciTanimlari);
-		grdKullaniciTanimlari.setSize("100%", "100px");
+		grdKullaniciTanimlari.setSize("100%", "100%");
 
 		TextColumn<XMLKullaniciTanimlama> column_6 = new TextColumn<XMLKullaniciTanimlama>() {
 			@Override
@@ -85,7 +85,7 @@ public class KullaniciTanimlama extends Composite {
 			}
 		};
 		grdKullaniciTanimlari.addColumn(column_6, "Kullanıcı Kodu");
-		grdKullaniciTanimlari.setColumnWidth(column_6, "118px");
+		grdKullaniciTanimlari.setColumnWidth(column_6, "157px");
 
 		Column<XMLKullaniciTanimlama, ?> textColumn = new TextColumn<XMLKullaniciTanimlama>() {
 			@Override
@@ -94,6 +94,7 @@ public class KullaniciTanimlama extends Composite {
 			}
 		};
 		grdKullaniciTanimlari.addColumn(textColumn, "Adı");
+		grdKullaniciTanimlari.setColumnWidth(textColumn, "190px");
 
 		Column<XMLKullaniciTanimlama, ?> textColumn_1 = new TextColumn<XMLKullaniciTanimlama>() {
 			@Override
@@ -102,6 +103,7 @@ public class KullaniciTanimlama extends Composite {
 			}
 		};
 		grdKullaniciTanimlari.addColumn(textColumn_1, "Soyadı");
+		grdKullaniciTanimlari.setColumnWidth(textColumn_1, "215px");
 
 		TextColumn<XMLKullaniciTanimlama> column_4 = new TextColumn<XMLKullaniciTanimlama>() {
 			@Override
@@ -110,6 +112,7 @@ public class KullaniciTanimlama extends Composite {
 			}
 		};
 		grdKullaniciTanimlari.addColumn(column_4, "Şifre");
+		grdKullaniciTanimlari.setColumnWidth(column_4, "179px");
 
 		Column<XMLKullaniciTanimlama, String> column = new Column<XMLKullaniciTanimlama, String>(
 				new ButtonCell()) {
@@ -119,7 +122,7 @@ public class KullaniciTanimlama extends Composite {
 			}
 		};
 		grdKullaniciTanimlari.addColumn(column, "Düzenle");
-		grdKullaniciTanimlari.setColumnWidth(column, "95px");
+		grdKullaniciTanimlari.setColumnWidth(column, "120px");
 
 		Column<XMLKullaniciTanimlama, String> column_1 = new Column<XMLKullaniciTanimlama, String>(
 				new ButtonCell()) {
@@ -129,7 +132,7 @@ public class KullaniciTanimlama extends Composite {
 			}
 		};
 		grdKullaniciTanimlari.addColumn(column_1, "Sil");
-		grdKullaniciTanimlari.setColumnWidth(column_1, "103px");
+		grdKullaniciTanimlari.setColumnWidth(column_1, "89px");
 		if (!isDesignTime()) {
 
 			putDataToGrid();

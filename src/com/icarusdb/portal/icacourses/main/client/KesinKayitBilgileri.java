@@ -1340,8 +1340,9 @@ public class KesinKayitBilgileri extends DialogBox {
 		absolutePanel.add(lblSoyad, 10, 85);
 		lblSoyad.setSize("51px", "18px");
 
-		Image image = new Image("images/resimyok.png");
-		absolutePanel.add(image, 545, 0);
+		Image image = new Image("fotograf.png");
+		image.addClickHandler(new ImageClickHandler());
+		absolutePanel.add(image, 545, 3);
 		image.setSize("130px", "115px");
 
 		Label lblTcKimlikNo = new Label("T.C Kimlik No");
@@ -3475,6 +3476,15 @@ public class KesinKayitBilgileri extends DialogBox {
 			// do your thing
 
 			tctMiktar.setStyleName("gwt-TextBox1");
+
+		}
+	}
+
+	private class ImageClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+
+			DlgWebcam dlgTemp = new DlgWebcam();
+			dlgTemp.center();
 
 		}
 	}
